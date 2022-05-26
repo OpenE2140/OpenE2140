@@ -1,0 +1,8 @@
+^palettes:
+	PaletteFromGrayscale@mask:
+		Name: mask
+	PlayerColorPalette@player:
+		BasePalette: mask
+	ColorPickerPalette@colorpicker:
+		BasePalette: mask
+		Name: colorpicker

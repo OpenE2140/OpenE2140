@@ -1,0 +1,7 @@
+mpspawn:
+	Immobile:
+		OccupiesSpace: false
+	MapEditorData:
+		Categories: System
+	RenderSpritesEditorOnly:
+	WithSpriteBody:

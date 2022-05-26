@@ -1,0 +1,32 @@
+Cursors:
+	Example|cursors/default.yaml
+
+Music:
+	Example|music/example.yaml
+
+Missions:
+	Example|missions/example.yaml
+
+Notifications:
+	Example|notifications/example.yaml
+
+Rules:
+	Example|rules/example.yaml
+	Example|rules/mpspawn.yaml
+	Example|rules/palettes.yaml
+	Example|rules/player.yaml
+	Example|rules/world.yaml
+
+Sequences:
+	Example|sequences/example.yaml
+	Example|sequences/mapeditor.yaml
+	Example|sequences/mpspawn.yaml
+
+TileSets:
+	Example|tilesets/example.yaml
+	
+Voices:
+	Example|voices/example.yaml
+
+Weapons:
+	Example|weapons/example.yaml
