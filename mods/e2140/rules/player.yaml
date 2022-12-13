@@ -1,9 +1,9 @@
-^baseplayer:
+^BasePlayer:
 	Shroud:
 
-player:
-	Inherits: ^baseplayer
+Player:
+	Inherits: ^BasePlayer
 	DeveloperMode:
 
-editorplayer:
-	Inherits: ^baseplayer
+EditorPlayer:
+	Inherits: ^BasePlayer

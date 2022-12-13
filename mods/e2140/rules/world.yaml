@@ -1,5 +1,5 @@
-^baseworld:
-	Inherits: ^palettes
+^BaseWorld:
+	Inherits: ^Palettes
 	ActorMap:
 	ControlGroups:
 	Faction@Random:
@@ -18,8 +18,8 @@
 		Factions: example
 	TerrainRenderer:
 
-world:
-	Inherits: ^baseworld
+World:
+	Inherits: ^BaseWorld
 	ColorPickerManager:
 		PreviewActor: example.colorpicker
 	CreateMapPlayers:
@@ -29,8 +29,8 @@ world:
 	SpawnMapActors:
 	SpawnStartingUnits:
 
-editorworld:
-	Inherits: ^baseworld
+EditorWorld:
+	Inherits: ^BaseWorld
 	BuildableTerrainOverlay:
 		AllowedTerrainTypes:
 		Palette:
