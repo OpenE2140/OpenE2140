@@ -1,19 +1,19 @@
 Metadata:
-	Title: Example
+	Title: Earth 2140
 	Version: {DEV_VERSION}
-	WindowTitle: Example
+	WindowTitle: Earth 2140
 
 Packages:
 	^EngineDir
-	$example: Example
+	$e2140: e2140
 	^EngineDir|mods/common: common
 
 MapFolders:
-	Example|maps: System
+	e2140|maps: System
 
 Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
-	^BinDir|OpenRA.Mods.Example.dll
+	^BinDir|OpenRA.Mods.E2140.dll
 
 SoundFormats: Wav
 SpriteFormats: PngSheet
@@ -30,7 +30,7 @@ SpriteSequenceFormat: DefaultSpriteSequence
 
 DefaultOrderGenerator: UnitOrderGenerator
 
-SupportsMapsFrom: Example
+SupportsMapsFrom: e2140
 
 LoadScreen: BlankLoadScreen
 

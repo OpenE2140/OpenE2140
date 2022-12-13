@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRA.Mods.Example", "OpenRA.Mods.Example\OpenRA.Mods.Example.csproj", "{4E5B38F7-4E99-4C92-BB39-9100CC7F3829}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRA.Mods.E2140", "OpenRA.Mods.E2140\OpenRA.Mods.E2140.csproj", "{4E5B38F7-4E99-4C92-BB39-9100CC7F3829}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenRA.Game", "engine\OpenRA.Game\OpenRA.Game.csproj", "{0DFB103F-2962-400F-8C6D-E2C28CCBA633}"
 EndProject

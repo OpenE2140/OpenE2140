@@ -1,8 +1,8 @@
 MapFormat: 11
 
-RequiresMod: Example
+RequiresMod: e2140
 
-Title: Example Shellmap
+Title: Example Map
 
 Author: Example Author
 
@@ -12,7 +12,7 @@ MapSize: 34,34
 
 Bounds: 1,1,32,32
 
-Visibility: Shellmap
+Visibility: Lobby
 
 Categories: Maps
 
@@ -26,5 +26,13 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
 
 Actors:
+	Actor0: mpspawn
+		Owner: Multi0
+		Location: 16,16

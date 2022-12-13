@@ -1,5 +1,5 @@
 Chrome:
-	Example|chrome/chrome.yaml
+	e2140|chrome/chrome.yaml
 
 ChromeLayout:
 	common|chrome/assetbrowser.yaml
@@ -26,7 +26,7 @@ ChromeLayout:
 	common|chrome/ingame-menu.yaml
 	common|chrome/ingame-observer.yaml
 	common|chrome/ingame-perf.yaml
-	Example|chrome/layouts/ingame-player.yaml
+	e2140|chrome/layouts/ingame-player.yaml
 	common|chrome/ingame-transients.yaml
 	common|chrome/lobby.yaml
 	common|chrome/lobby-kickdialogs.yaml
