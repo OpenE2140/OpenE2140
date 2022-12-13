@@ -11,16 +11,19 @@ Notifications:
 	e2140|notifications/example.yaml
 
 Rules:
+	e2140|rules/defaults.yaml
 	e2140|rules/example.yaml
 	e2140|rules/mpspawn.yaml
 	e2140|rules/palettes.yaml
 	e2140|rules/player.yaml
+	e2140|rules/vehicles.yaml
 	e2140|rules/world.yaml
 
 Sequences:
 	e2140|sequences/example.yaml
 	e2140|sequences/mapeditor.yaml
 	e2140|sequences/mpspawn.yaml
+	e2140|sequences/vehicles.yaml
 
 TileSets:
 	e2140|tilesets/example.yaml

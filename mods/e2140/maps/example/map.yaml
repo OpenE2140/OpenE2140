@@ -36,3 +36,6 @@ Actors:
 	Actor0: mpspawn
 		Owner: Multi0
 		Location: 16,16
+	Tiger1: tigerassault
+		Location: 13,13
+		Owner: Multi0

@@ -1,0 +1,101 @@
+^ExistsInWorld:
+	AppearsOnRadar:
+	CombatDebugOverlay:
+	GivesExperience:
+		PlayerExperienceModifier: 1
+	ScriptTriggers:
+	RenderDebugState:
+
+^SpriteActor:
+	BodyOrientation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+	
+^ClassicFacingSpriteActor:
+	ClassicFacingBodyOrientation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+
+
+^Vehicle:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^ClassicFacingSpriteActor
+	#Inherits@bounty: ^GlobalBounty
+	Inherits@selection: ^SelectableCombatUnit
+	#Inherits@handicaps: ^PlayerHandicaps
+	#Huntable:
+	#OwnerLostAction:
+	#	Action: Kill
+	#UpdatesPlayerStatistics:
+	Mobile:
+		#PauseOnCondition: being-captured
+		Locomotor: wheeled
+		TurnSpeed: 20
+	Selectable:
+		Bounds: 1024, 1024
+	#Targetable:
+	#	RequiresCondition: !parachute
+	#	TargetTypes: GroundActor, Vehicle
+	#Targetable@REPAIR:
+	#	RequiresCondition: !parachute && damaged
+	#	TargetTypes: Repair
+	#GrantConditionOnDamageState@DAMAGED:
+	#	Condition: damaged
+	#	ValidDamageStates: Light, Medium, Heavy, Critical
+	#Repairable:
+	#	RepairActors: fix
+	#Passenger:
+	#	CargoType: Vehicle
+	#AttackMove:
+	HiddenUnderFog:
+	#ActorLostNotification:
+	#	TextNotification: Unit lost.
+	#ProximityCaptor:
+	#	Types: Vehicle
+	#GpsDot:
+	#	String: Vehicle
+	WithDamageOverlay:
+	Guard:
+	Guardable:
+ 	Tooltip:
+		GenericName: Vehicle
+	#MustBeDestroyed:
+	#Voiced:
+	#	VoiceSet: VehicleVoice
+	#Explodes:
+	#	Weapon: UnitExplodeSmall
+	#	EmptyWeapon: UnitExplodeSmall
+	WithFacingSpriteBody:
+	HitShape:
+	MapEditorData:
+		Categories: Vehicle
+
+
+
+#	CaptureManager:
+#		BeingCapturedCondition: being-captured
+#	Capturable:
+#		Types: vehicle
+#		CancelActivity: True
+#	CaptureNotification:
+#		Notification: UnitStolen
+#		TextNotification: Unit stolen.
+#		LoseNotification: UnitLost
+#		LoseTextNotification: Unit lost.
+#
+
+
+
+
+^Selectable:
+	Selectable:
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+		Margin: -2, 0
+	DrawLineToTarget:
+
+^SelectableCombatUnit:
+	Inherits@selectiondecorations: ^Selectable
+	Selectable:
+		Priority: 10
+		PriorityModifiers: Ctrl

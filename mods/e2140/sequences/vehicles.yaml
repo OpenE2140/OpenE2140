@@ -1,0 +1,47 @@
+tigerassault:
+	muzzle: gunfire2
+		Length: 5
+	icon: 2tnkicon
+	idle: SPRU0.MIX
+		Frames: 45, 54, 63, 72, 81
+		Start: 0
+		Facings: -8
+		FlipFacings: true
+		UseClassicFacingFudge: false
+		AddExtension: false
+	move: SPRU0.MIX
+		Start: 0
+		Length: 8
+		Stride: 8
+		Facings: -8
+		FlipFacings: true
+		Combine:
+			SPRU0.MIX:
+				Length: 8
+				Frames: 37, 38, 39, 40, 41, 42, 43, 44
+				AddExtension: false
+			SPRU0.MIX:
+				Length: 8
+				Frames: 46, 47, 48, 49, 50, 51, 52, 53
+				AddExtension: false
+			SPRU0.MIX:
+				Length: 8
+				Frames: 55, 57, 57, 58, 59, 60, 61, 62
+				AddExtension: false
+			SPRU0.MIX:
+				Length: 8
+				Frames: 64, 65, 66, 67, 68, 69, 70, 71
+				AddExtension: false
+			SPRU0.MIX:
+				Length: 8
+				Frames: 73, 74, 75, 76, 77, 78, 79, 80
+				AddExtension: false
+		UseClassicFacingFudge: false
+		AddExtension: false
+	turret: SPRU0.MIX
+		Frames: 82, 83, 84, 85, 86, 87, 88, 89, 90
+		Start: 0
+		Facings: -16
+		FlipFacings: true
+		UseClassicFacingFudge: false
+		AddExtension: false
