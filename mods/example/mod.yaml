@@ -5,7 +5,7 @@ Metadata:
 
 Packages:
 	^EngineDir
-	$Example: Example
+	$example: Example
 	^EngineDir|mods/common: common
 
 MapFolders:
@@ -27,6 +27,8 @@ AssetBrowser:
 
 ModelSequenceFormat: PlaceholderModelSequence
 SpriteSequenceFormat: DefaultSpriteSequence
+
+DefaultOrderGenerator: UnitOrderGenerator
 
 SupportsMapsFrom: Example
 
