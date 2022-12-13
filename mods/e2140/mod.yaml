@@ -3,10 +3,14 @@ Metadata:
 	Version: {DEV_VERSION}
 	WindowTitle: Earth 2140
 
+PackageFormats: Wd
+
 Packages:
+	~^SupportDir|Content/e2140/
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
+	~MIX.WD
 
 MapFolders:
 	e2140|maps: System
@@ -16,7 +20,7 @@ Assemblies:
 	^BinDir|OpenRA.Mods.E2140.dll
 
 SoundFormats: Wav
-SpriteFormats: PngSheet
+SpriteFormats: PngSheet, MixSprite
 TerrainFormat: DefaultTerrain
 VideoFormats:
 
@@ -26,7 +30,7 @@ AssetBrowser:
 	VideoExtensions:
 
 ModelSequenceFormat: PlaceholderModelSequence
-SpriteSequenceFormat: DefaultSpriteSequence
+SpriteSequenceFormat: Earth2140SpriteSequence
 
 DefaultOrderGenerator: UnitOrderGenerator
 

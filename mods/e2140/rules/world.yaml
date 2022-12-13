@@ -28,6 +28,10 @@ World:
 	MapStartingLocations:
 	SpawnMapActors:
 	SpawnStartingUnits:
+	ReversedRotationPaletteEffect@movement:
+		Palettes: palette72playerMovement, palette49playerMovement
+		RotationBase: 240
+		RotationRange: 4
 
 EditorWorld:
 	Inherits: ^BaseWorld
