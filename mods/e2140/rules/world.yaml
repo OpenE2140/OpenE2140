@@ -1,7 +1,22 @@
 ^BaseWorld:
 	Inherits: ^Palettes
+	AlwaysVisible:
 	ActorMap:
+	ScreenMap:
+	Selection:
 	ControlGroups:
+	MusicPlaylist:
+	Locomotor@WHEELED:
+		Name: wheeled
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Clear: 100
+			Rough: 50
+			Road: 125
+			Bridge: 125
+			Ore: 88
+			Gems: 88
+			Beach: 50
 	Faction@Random:
 		InternalName: Random
 		Name: Random
@@ -10,9 +25,6 @@
 		InternalName: example
 		Name: Example
 	LoadWidgetAtGameStart:
-	MusicPlaylist:
-	ScreenMap:
-	Selection:
 	StartingUnits@Example:
 		BaseActor: example
 		Factions: example
@@ -28,6 +40,7 @@ World:
 	MapStartingLocations:
 	SpawnMapActors:
 	SpawnStartingUnits:
+	PathFinder:
 	ReversedRotationPaletteEffect@movement:
 		Palettes: palette72playerMovement, palette49playerMovement
 		RotationBase: 240

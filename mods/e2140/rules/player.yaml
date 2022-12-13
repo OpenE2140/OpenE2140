@@ -1,9 +1,10 @@
 ^BasePlayer:
+	AlwaysVisible:
 	Shroud:
+
+EditorPlayer:
+	Inherits: ^BasePlayer
 
 Player:
 	Inherits: ^BasePlayer
 	DeveloperMode:
-
-EditorPlayer:
-	Inherits: ^BasePlayer
