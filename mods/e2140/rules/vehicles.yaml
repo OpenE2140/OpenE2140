@@ -31,8 +31,8 @@ tigerassault:
 		Palette: palette49playerMovement
 	#ProducibleWithLevel:
 	#	Prerequisites: vehicles.upgraded
-	Selectable:
-		DecorationBounds: 28,28	
+	# Selectable:
+	# DecorationBounds: 28,28	
 	Turreted:
 		TurnSpeed: 20
 		Offset: 0,0,200

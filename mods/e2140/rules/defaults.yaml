@@ -20,8 +20,8 @@
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^ClassicFacingSpriteActor
+	Inherits@selection: ^Selectable
 	#Inherits@bounty: ^GlobalBounty
-	Inherits@selection: ^SelectableCombatUnit
 	#Inherits@handicaps: ^PlayerHandicaps
 	#Huntable:
 	#OwnerLostAction:
