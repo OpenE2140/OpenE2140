@@ -1,12 +1,13 @@
+using System;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.E2140.Traits.World
 {
-    [Desc("More beautiful variant of the PlayerColorPalette by using the overlay blend mode.")]
-    public class OverlayPlayerColorPaletteInfo : TraitInfo
-    {
+	[Desc("More beautiful variant of the PlayerColorPalette by using the overlay blend mode.")]
+	public class OverlayPlayerColorPaletteInfo : TraitInfo
+	{
 		[Desc("The name of the palette to base off.")]
 		[PaletteReference]
 		public readonly string BasePalette = null;
@@ -16,37 +17,37 @@ namespace OpenRA.Mods.E2140.Traits.World
 		public readonly string BaseName = "player";
 
 		[Desc("Remap these indices to player colors.")]
-		public readonly int[] RemapIndex = { };
+		public readonly int[] RemapIndex = Array.Empty<int>();
 
 		[Desc("Allow palette modifiers to change the palette.")]
 		public readonly bool AllowModifiers = true;
 
 		public override object Create(ActorInitializer init) { return new OverlayPlayerColorPalette(this); }
-    }
+	}
 
-    public class OverlayPlayerColorPalette : ILoadsPlayerPalettes
-    {
-        private readonly OverlayPlayerColorPaletteInfo info;
+	public class OverlayPlayerColorPalette : ILoadsPlayerPalettes
+	{
+		private readonly OverlayPlayerColorPaletteInfo info;
 
-        public OverlayPlayerColorPalette(OverlayPlayerColorPaletteInfo info)
-        {
-            this.info = info;
-        }
+		public OverlayPlayerColorPalette(OverlayPlayerColorPaletteInfo info)
+		{
+			this.info = info;
+		}
 
-        public void LoadPlayerPalettes(WorldRenderer wr, string playerName, Color c, bool replaceExisting)
-        {
-            var pal = new MutablePalette(wr.Palette(info.BasePalette).Palette);
+		public void LoadPlayerPalettes(WorldRenderer wr, string playerName, Color c, bool replaceExisting)
+		{
+			var pal = new MutablePalette(wr.Palette(info.BasePalette).Palette);
 
-            foreach (var i in info.RemapIndex)
-            {
-                var bw = (float)(((pal[i] & 0xff) + ((pal[i] >> 8) & 0xff) + ((pal[i] >> 16) & 0xff)) / 3) / 0xff;
-                var dstR = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.R / 0xff) : 2 * bw * ((float)c.R / 0xff);
-                var dstG = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.G / 0xff) : 2 * bw * ((float)c.G / 0xff);
-                var dstB = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.B / 0xff) : 2 * bw * ((float)c.B / 0xff);
-                pal[i] = (pal[i] & 0xff000000) | ((uint)(dstR * 0xff) << 16) | ((uint)(dstG * 0xff) << 8) | (uint)(dstB * 0xff);
-            }
+			foreach (var i in info.RemapIndex)
+			{
+				var bw = (float)(((pal[i] & 0xff) + ((pal[i] >> 8) & 0xff) + ((pal[i] >> 16) & 0xff)) / 3) / 0xff;
+				var dstR = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.R / 0xff) : 2 * bw * ((float)c.R / 0xff);
+				var dstG = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.G / 0xff) : 2 * bw * ((float)c.G / 0xff);
+				var dstB = bw > .5 ? 1 - (1 - 2 * (bw - .5)) * (1 - (float)c.B / 0xff) : 2 * bw * ((float)c.B / 0xff);
+				pal[i] = (pal[i] & 0xff000000) | ((uint)(dstR * 0xff) << 16) | ((uint)(dstG * 0xff) << 8) | (uint)(dstB * 0xff);
+			}
 
-            wr.AddPalette(info.BaseName + playerName, new ImmutablePalette(pal), info.AllowModifiers, replaceExisting);
-        }
-    }
+			wr.AddPalette(info.BaseName + playerName, new ImmutablePalette(pal), info.AllowModifiers, replaceExisting);
+		}
+	}
 }
