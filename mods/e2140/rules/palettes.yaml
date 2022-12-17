@@ -267,3 +267,8 @@
 		BaseName: palette74player
 		BasePalette: palette74
 		RemapIndex: 248,249,250,251,252
+	
+	PaletteFromFile@terrain-temperat:
+		Name: terrain
+		Tileset: TEMPERAT
+		Filename: SPRT3.MIX
