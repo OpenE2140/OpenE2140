@@ -27,6 +27,7 @@ Sequences:
 
 TileSets:
 	e2140|tilesets/example.yaml
+	e2140|tilesets/temperat.yaml
 	
 Voices:
 	e2140|voices/example.yaml
