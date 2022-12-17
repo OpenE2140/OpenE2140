@@ -1,0 +1,64 @@
+^AntiGroundMissile:
+	ReloadDelay: 50
+	Range: 5c0
+	MinRange: 0c512
+	# Report: missile6.aud
+	ValidTargets: Ground, Water, GroundActor, WaterActor
+	Projectile: Missile
+		Speed: 213
+		Arm: 2
+		Blockable: false
+		ContrailLength: 10
+		Inaccuracy: 128
+		# Image: DRAGON
+		Shadow: True
+		HorizontalRateOfTurn: 20
+		RangeLimit: 6c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 5000
+		ValidTargets: GroundActor, WaterActor, AirborneActor
+		Versus:
+			None: 10
+			Wood: 74
+			Light: 34
+			Heavy: 100
+			Concrete: 50
+		DamageTypes: ExplosionDeath
+		
+# Warhead@2Smu: LeaveSmudge
+# SmudgeType: Crater
+# ValidTargets: Ground, Infantry
+# Warhead@3Eff: CreateEffect
+# Explosions: med_explosion
+# ImpactSounds: kaboom25.aud
+# ValidTargets: Ground, Air, GroundActor, AirborneActor, WaterActor, Trees
+# Warhead@4EffWater: CreateEffect
+# Explosions: med_splash
+# ImpactSounds: splash9.aud
+# ValidTargets: Water, Underwater
+# InvalidTargets: Bridge
+
+
+StandardMissile:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 60
+	Range: 7c512
+	Burst: 2
+	BurstDelays: 0
+	#InvalidTargets: Underwater
+	Projectile: Missile
+		Arm: 3
+		Inaccuracy: 0
+		HorizontalRateOfTurn: 80
+		RangeLimit: 9c512
+		Speed: 170
+		CloseEnough: 149
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 36
+			Wood: 88
+			Light: 88
+			Heavy: 120
+			Concrete: 60

@@ -1,6 +1,4 @@
 tigerassault:
-	muzzle: gunfire2
-		Length: 5
 	icon: 2tnkicon
 	idle: SPRU0.MIX
 		Frames: 45, 54, 63, 72, 81
