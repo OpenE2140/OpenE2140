@@ -45,7 +45,7 @@ ServerTraits:
 	LobbySettingsNotification
 
 MapGrid:
-	TileSize: 32, 32
+	TileSize: 64, 64
 	Type: Rectangular
 
 GameSpeeds:
