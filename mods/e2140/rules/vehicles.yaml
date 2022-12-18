@@ -20,6 +20,7 @@ tigerassault:
 	#	Type: Heavy
 	Mobile:
 		Speed: 100
+		AlwaysTurnInPlace: true
 	#RevealsShroud:
 	#	MinRange: 4c0
 	#	Range: 6c0
