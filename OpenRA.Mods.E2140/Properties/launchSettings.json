@@ -7,7 +7,7 @@
       "commandName": "Executable",
       "executablePath": "..\\engine\\bin\\OpenRA.exe",
       //;"commandLineArgs": "Game.Mod=e2140 ",
-      "commandLineArgs": "Game.Mod=e2140 Launch.Map=\"example\" Engine.EngineDir=\"..\" Engine.LaunchPath=\"../\" Engine.ModSearchPaths=\"../mods/,./mods/\"",
+      "commandLineArgs": "Game.Mod=e2140 Launch.Map=\"testmap\" Engine.EngineDir=\"..\" Engine.LaunchPath=\"../\" Engine.ModSearchPaths=\"../mods/,./mods/\"",
       "workingDirectory": "..\\engine"
     }
   }

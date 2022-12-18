@@ -2,9 +2,9 @@ MapFormat: 11
 
 RequiresMod: e2140
 
-Title: Example Map
+Title: Test Map
 
-Author: Example Author
+Author: author
 
 Tileset: TEMPERAT
 
@@ -36,6 +36,18 @@ Actors:
 	Actor0: mpspawn
 		Owner: Multi0
 		Location: 16,16
-	Tiger1: tigerassault
-		Location: 13,13
+	Actor1: tigerassault
+		Location: 17,16
 		Owner: Multi0
+	Actor3: tigerassault
+		Owner: Multi0
+		Location: 14,17
+	Actor4: tigerassault
+		Owner: Multi0
+		Location: 16,18
+	Actor5: tigerassault
+		Owner: Multi0
+		Location: 18,18
+	Actor6: tigerassault
+		Owner: Multi0
+		Location: 18,20
