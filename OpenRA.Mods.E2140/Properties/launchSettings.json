@@ -3,11 +3,16 @@
     "OpenRA.Mods.E2140": {
       "commandName": "Project"
     },
+    "Run E2140 (testmap)": {
+      "commandName": "Executable",
+      "executablePath": "..\\engine\\bin\\OpenRA.exe",
+      "commandLineArgs": "Game.Mod=e2140 Launch.Map=\"testmap\" Engine.EngineDir=\"..\" Engine.LaunchPath=\"../\" Engine.ModSearchPaths=\"../mods/,./mods/\"",
+      "workingDirectory": "..\\engine"
+    },
     "Run E2140": {
       "commandName": "Executable",
       "executablePath": "..\\engine\\bin\\OpenRA.exe",
-      //;"commandLineArgs": "Game.Mod=e2140 ",
-      "commandLineArgs": "Game.Mod=e2140 Launch.Map=\"testmap\" Engine.EngineDir=\"..\" Engine.LaunchPath=\"../\" Engine.ModSearchPaths=\"../mods/,./mods/\"",
+      "commandLineArgs": "Game.Mod=e2140 Engine.EngineDir=\"..\" Engine.LaunchPath=\"../\" Engine.ModSearchPaths=\"../mods/,./mods/\"",
       "workingDirectory": "..\\engine"
     }
   }
