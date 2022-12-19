@@ -6,6 +6,8 @@
 	Selection:
 	ControlGroups:
 	MusicPlaylist:
+	TerrainGeometryOverlay:
+	DebugVisualizations:
 	Locomotor@WHEELED:
 		Name: wheeled
 		Crushes: mine, crate
@@ -17,6 +19,8 @@
 			Ore: 88
 			Gems: 88
 			Beach: 50
+
+	TerrainRenderer:
 	Faction@Random:
 		InternalName: Random
 		Name: Random
@@ -25,22 +29,23 @@
 		InternalName: example
 		Name: Example
 	LoadWidgetAtGameStart:
-	StartingUnits@Example:
-		BaseActor: example
-		Factions: example
-	TerrainRenderer:
 
 World:
 	Inherits: ^BaseWorld
-	ColorPickerManager:
-		PreviewActor: example.colorpicker
-	CreateMapPlayers:
+	BuildingInfluence:
 	CustomTerrainDebugOverlay:
-	DebugVisualizations:
-	MapStartingLocations:
 	SpawnMapActors:
+
+	CreateMapPlayers:
+	StartingUnits@Example:
+		BaseActor: example
+		Factions: example
+	MapStartingLocations:
+
 	SpawnStartingUnits:
 	PathFinder:
+	ColorPickerManager:
+		PreviewActor: example.colorpicker
 	ReversedRotationPaletteEffect@movement:
 		Palettes: palette72playerMovement, palette49playerMovement
 		RotationBase: 240
@@ -48,12 +53,11 @@ World:
 
 EditorWorld:
 	Inherits: ^BaseWorld
-	BuildableTerrainOverlay:
-		AllowedTerrainTypes:
-		Palette:
-	EditorActionManager:
 	EditorActorLayer:
 	EditorCursorLayer:
 	EditorSelectionLayer:
 		Palette:
-	TerrainGeometryOverlay:
+	EditorActionManager:
+	BuildableTerrainOverlay:
+		AllowedTerrainTypes:
+		Palette:
