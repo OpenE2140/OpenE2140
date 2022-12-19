@@ -39,15 +39,30 @@ Actors:
 	Actor1: tigerassault
 		Location: 17,16
 		Owner: Multi0
-	Actor3: tigerassault
-		Owner: Multi0
-		Location: 14,17
-	Actor4: tigerassault
-		Owner: Multi0
-		Location: 16,18
-	Actor5: tigerassault
-		Owner: Multi0
+	Actor3: t02
+		Owner: Neutral
+		Location: 19,16
+	Actor4: t03
+		Owner: Neutral
 		Location: 18,18
-	Actor6: tigerassault
-		Owner: Multi0
-		Location: 18,20
+	Actor5: t04
+		Owner: Neutral
+		Location: 19,19
+	Actor6: t05
+		Owner: Neutral
+		Location: 16,18
+	Actor7: t06
+		Owner: Neutral
+		Location: 14,16
+	Actor8: t03
+		Owner: Neutral
+		Location: 18,15
+	Actor9: t04
+		Owner: Neutral
+		Location: 18,16
+	Actor12: t06
+		Owner: Neutral
+		Location: 16,20
+	Actor13: t06
+		Owner: Neutral
+		Location: 14,18
