@@ -2,11 +2,11 @@ MapFormat: 11
 
 RequiresMod: e2140
 
-Title: Example Shellmap
+Title: Dummy Shellmap
 
 Author: Example Author
 
-Tileset: EXAMPLE
+Tileset: TEMPERAT
 
 MapSize: 34,34
 
@@ -28,3 +28,15 @@ Players:
 		Faction: Random
 
 Actors:
+	Actor0: t01
+		Owner: Neutral
+		Location: 18,14
+	Actor1: t04
+		Owner: Neutral
+		Location: 15,18
+	Actor2: t02
+		Owner: Neutral
+		Location: 17,17
+	Actor3: t06
+		Owner: Neutral
+		Location: 14,14
