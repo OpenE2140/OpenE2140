@@ -1,0 +1,30 @@
+T01:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+
+T02:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+
+T03:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+
+T04:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+
+T05:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+
+T06:
+	Inherits: ^Tree
+	RenderSprites:
+		Palette: palette9
+

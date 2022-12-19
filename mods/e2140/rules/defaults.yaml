@@ -16,6 +16,12 @@
 	QuantizeFacingsFromSequence:
 	RenderSprites:
 
+^1x1Shape:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512
 
 ^Vehicle:
 	Inherits@1: ^ExistsInWorld
@@ -86,6 +92,35 @@
 
 
 
+^Tree:
+	Inherits@1: ^SpriteActor
+	Inherits@shape: ^1x1Shape
+	Interactable:
+	Tooltip:
+		Name: Tree
+		ShowOwnerRow: false
+	RenderSprites:
+		Palette: terrain
+	WithSpriteBody:
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tree
+	AppearsOnMapPreview:
+		Terrain: Tree
+	Health:
+		HP: 50000
+	Armor:
+		Type: Tree
+	Targetable:
+		TargetTypes: Trees
+	HiddenUnderShroud:
+	MapEditorData:
+		Categories: Tree
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
 
 ^Selectable:
 	Selectable:

@@ -7,6 +7,12 @@
 		BasePalette: mask
 		Name: colorpicker
 		
+		
+	PaletteFromMix@palette9:
+		Name: palette9
+		Filename: SPRO3.MIX
+		Index: 9
+		
 	
 	MuzzlePalette:
 		Name: muzzle

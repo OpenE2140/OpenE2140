@@ -1,0 +1,29 @@
+t01:
+	idle: SPRO3.MIX
+		Start: 93
+		AddExtension: false
+
+t02:
+	idle: SPRO3.MIX
+		Start: 94
+		AddExtension: false
+
+t03:
+	idle: SPRO3.MIX
+		Start: 95
+		AddExtension: false
+
+t04:
+	idle: SPRO3.MIX
+		Start: 96
+		AddExtension: false
+
+t05:
+	idle: SPRO3.MIX
+		Start: 97
+		AddExtension: false
+
+t06:
+	idle: SPRO3.MIX
+		Start: 98
+		AddExtension: false

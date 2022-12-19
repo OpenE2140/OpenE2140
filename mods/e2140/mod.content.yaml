@@ -12,6 +12,7 @@ Notifications:
 
 Rules:
 	e2140|rules/defaults.yaml
+	e2140|rules/decoration.yaml
 	e2140|rules/example.yaml
 	e2140|rules/mpspawn.yaml
 	e2140|rules/palettes.yaml
@@ -21,6 +22,7 @@ Rules:
 
 Sequences:
 	e2140|sequences/example.yaml
+	e2140|sequences/decorations.yaml
 	e2140|sequences/mapeditor.yaml
 	e2140|sequences/mpspawn.yaml
 	e2140|sequences/vehicles.yaml
