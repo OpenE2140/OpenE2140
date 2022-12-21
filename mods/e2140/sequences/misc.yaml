@@ -1,0 +1,18 @@
+shroud:
+	shroud: sequences/assets/shroud/shroud.png
+		AddExtension: false
+		#Start: 0
+		Length: 16
+	# shroudfull: sequences/assets/shroud/shroudfull.png
+	# AddExtension: false
+	# Length: 1
+	
+	fog: sequences/assets/shroud/fog.png
+		AddExtension: false
+		#Start: 0
+		Length: 10
+	# fogfull: sequences/assets/shroud/shroud.png
+	# AddExtension: false
+	# Start: 1
+
+	

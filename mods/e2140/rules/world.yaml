@@ -21,6 +21,12 @@
 			Beach: 50
 
 	TerrainRenderer:
+	ShroudRenderer:
+		UseExtendedIndex: false
+		# bit-field, where on cell the shroud should be
+		# 0 = clear (transparent), 1 = shroud (black)
+		# see 
+		Index: 0, 15, 3, 6, 12, 9,   11, 7, 14, 13,    1, 2, 4, 8,   10, 5
 	Faction@Random:
 		InternalName: Random
 		Name: Random

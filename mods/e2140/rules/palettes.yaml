@@ -6,7 +6,13 @@
 	ColorPickerPalette@colorpicker:
 		BasePalette: mask
 		Name: colorpicker
-		
+	
+	ShroudPalette@shroud:
+		Name: shroud
+	
+	ShroudPalette@fog:
+		Name: fog
+		Fog: true	
 		
 	PaletteFromMix@palette9:
 		Name: palette9
