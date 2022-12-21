@@ -21,10 +21,10 @@ tigerassault:
 	Mobile:
 		Speed: 100
 		AlwaysTurnInPlace: true
-	#RevealsShroud:
-	#	MinRange: 4c0
-	#	Range: 6c0
-	#	RevealGeneratedShroud: False
+	RevealsShroud:
+		MinRange: 4c0
+		Range: 6c0
+		RevealGeneratedShroud: False
 	#RevealsShroud@GAPGEN:
 	#	Range: 4c0
 	WithMoveAnimation:
