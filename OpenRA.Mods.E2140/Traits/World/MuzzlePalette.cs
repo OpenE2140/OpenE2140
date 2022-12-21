@@ -14,19 +14,17 @@ namespace OpenRA.Mods.E2140.Traits.World
 
         public readonly bool AllowModifiers = true;
 
-        public override object Create(ActorInitializer init) { return new MuzzlePalette(init, this); }
+        public override object Create(ActorInitializer init) { return new MuzzlePalette(this); }
     }
 
     public class MuzzlePalette : ILoadsPalettes, IProvidesAssetBrowserPalettes
     {
-        private MuzzlePaletteInfo info;
-        private OpenRA.World world;
+        private readonly MuzzlePaletteInfo info;
 
         public IEnumerable<string> PaletteNames { get { yield return info.Name; } }
 
-        public MuzzlePalette(ActorInitializer init, MuzzlePaletteInfo info)
+        public MuzzlePalette(MuzzlePaletteInfo info)
         {
-            world = init.World;
             this.info = info;
         }
 
