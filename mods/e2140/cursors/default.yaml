@@ -2,3 +2,5 @@ Cursors:
 	cursors/assets/default.png:
 		default:
 			Start: 0
+		move:
+			Start: 0
