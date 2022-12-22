@@ -22,7 +22,6 @@ tigerassault:
 		Speed: 100
 		AlwaysTurnInPlace: true
 	RevealsShroud:
-		MinRange: 4c0
 		Range: 6c0
 		RevealGeneratedShroud: False
 	#RevealsShroud@GAPGEN:
