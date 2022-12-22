@@ -12,7 +12,7 @@
 	
 	ShroudPalette@fog:
 		Name: fog
-		Fog: true	
+		Fog: true
 		
 	PaletteFromMix@palette9:
 		Name: palette9

@@ -37,15 +37,12 @@ namespace OpenRA.Mods.E2140.Traits
 		static readonly Color[] Fog = new[]
 		{
 			Color.FromArgb(0, 0, 0, 0),
-			Color.FromArgb(60, 0, 0, 0),
-			Color.FromArgb(0, 0, 0, 0),
-			Color.FromArgb(60, 0, 0, 0),
+			Color.FromArgb(60, 0, 0, 0)
 		};
 
 		static readonly Color[] Shroud = new[]
 		{
 			Color.FromArgb(255, 0, 0, 0),
-
 			Color.FromArgb(0, 0, 0, 0),
 			Color.FromArgb(128, 0, 0, 0),
 			Color.FromArgb(32, 0, 0, 0),
