@@ -45,9 +45,18 @@ namespace OpenRA.Mods.E2140.Traits
 			Color.FromArgb(255, 0, 0, 0),
 			Color.FromArgb(0, 0, 0, 0),
 			Color.FromArgb(128, 0, 0, 0),
-			Color.FromArgb(32, 0, 0, 0),
-			Color.FromArgb(255, 0, 0, 0),
+			Color.FromArgb(32, 0, 0, 0)
 		};
+
+		/*
+		static readonly Color[] ShroudDebug = new[]
+		{
+			Color.FromArgb(255, 0, 0, 0),
+			Color.FromArgb(255, 97, 14, 14),
+			Color.FromArgb(255, 97, 14, 14),
+			Color.FromArgb(255, 97, 14, 14)
+		};
+		*/
 
 		public IEnumerable<string> PaletteNames { get { yield return info.Name; } }
 	}
