@@ -1,0 +1,19 @@
+ucs_vehicles_mobileproductioncenter:
+	Inherits@1: ^CoreVehicle
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	Tooltip:
+		Name: Mobile Production Center
+	Transforms:
+		IntoActor: ucs_buildings_productioncenter
+		Offset: -1,0
+	Valued:
+		Cost: 2500
+	Health:
+		HP: 1000
+	Mobile:
+		Speed: 35
+		TurnSpeed: 8
+	RevealsShroud:
+		Range: 6c0
+	TriggerTransformSequence:

@@ -1,35 +1,35 @@
-﻿using System.IO;
+﻿#region Copyright & License Information
 
-namespace OpenRA.Mods.E2140.FileFormats
+/*
+ * Copyright 2007-2022 The Earth 2140 Developers (see AUTHORS)
+ * This file is part of OpenKrush, which is free software. It is made
+ * available to you under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version. For more
+ * information, see COPYING.
+ */
+
+#endregion
+
+using OpenRA.Primitives;
+
+namespace OpenRA.Mods.E2140.FileFormats;
+
+public class MixPalette
 {
-	public class MixPalette
+	public readonly Color[] Colors = new Color[256];
+
+	public MixPalette(Stream stream)
 	{
-		public readonly uint[] Colors = new uint[256];
+		for (var i = 0; i < this.Colors.Length; i++)
+			this.Colors[i] = Color.FromArgb(0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
 
-		public MixPalette(Stream stream)
-		{
-			for (var i = 0; i < Colors.Length; i++)
-				Colors[i] = (uint)((0xff << 24) | (stream.ReadUInt8() << 16) | (stream.ReadUInt8() << 8) | (stream.ReadUInt8() << 0));
+		// Transparent.
+		this.Colors[0] = Color.FromArgb(0x00000000);
 
-			// Transparent.
-			Colors[0] = 0x00000000;
-
-			// Tracks
-			Colors[240] = 0xff181c18;
-			Colors[241] = 0xff212421;
-			Colors[242] = 0xff181c18;
-			Colors[243] = 0xff292c29;
-
-			// Muzzle flash.
-			Colors[244] = 0x00000000;
-			Colors[245] = 0x00000000;
-			Colors[246] = 0x00000000;
-			Colors[247] = 0x00000000;
-
-			// Shadow.
-			Colors[253] = 0x40000000;
-			Colors[254] = 0x80000000;
-			Colors[255] = 0xc0000000;
-		}
+		// Shadow.
+		this.Colors[253] = Color.FromArgb(0x40000000);
+		this.Colors[254] = Color.FromArgb(0x80000000);
+		this.Colors[255] = Color.FromArgb(0xc0000000);
 	}
 }

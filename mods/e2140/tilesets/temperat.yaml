@@ -11,10 +11,6 @@ Terrain:
 		Type: Rock
 		TargetTypes: Ground
 		Color: 44443C
-	TerrainType@Tree:
-		Type: Tree
-		TargetTypes: Ground
-		Color: 1C2024
 
 Templates:
 	Template@255:

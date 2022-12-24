@@ -1,0 +1,10 @@
+^CoreWorld:
+	Faction@UCS:
+		Name: UCS
+		InternalName: ucs
+	StartingUnits@ucs_default:
+		Class: default
+		ClassName: Default
+		BaseActor: ucs_vehicles_mobileproductioncenter
+		SupportActors: ucs_vehicles_tigerassault
+		Factions: ucs

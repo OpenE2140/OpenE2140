@@ -1,0 +1,23 @@
+neutral_tree01:
+	idle: SPRO3.MIX
+		Start: 93
+
+neutral_tree02:
+	idle: SPRO3.MIX
+		Start: 94
+
+neutral_tree03:
+	idle: SPRO3.MIX
+		Start: 95
+
+neutral_tree04:
+	idle: SPRO3.MIX
+		Start: 96
+
+neutral_tree05:
+	idle: SPRO3.MIX
+		Start: 97
+
+neutral_tree06:
+	idle: SPRO3.MIX
+		Start: 98

@@ -1,0 +1,14 @@
+Rules:
+	e2140|content/core/rules/colorpicker.yaml
+	e2140|content/core/rules/defaults.yaml
+	e2140|content/core/rules/mpspawn.yaml
+	e2140|content/core/rules/palettes.yaml
+	e2140|content/core/rules/player.yaml
+	e2140|content/core/rules/world.yaml
+
+Sequences:
+	e2140|content/core/sequences/buildingsequence.yaml
+	e2140|content/core/sequences/colorpicker.yaml
+	e2140|content/core/sequences/mapeditor.yaml
+	e2140|content/core/sequences/misc.yaml
+	e2140|content/core/sequences/mpspawn.yaml

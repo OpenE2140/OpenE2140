@@ -1,0 +1,17 @@
+ucs_vehicles_mobileproductioncenter:
+	idle: SPRU0.MIX
+		EarthFormat: true
+		Facings: 16
+		Start: 0
+	idle_mask: SPRU0.MIX
+		EarthFormat: true
+		Facings: 16
+		Start: 1
+	move: SPRU0.MIX
+		EarthFormat: true
+		Facings: 16
+		Start: 0
+	move_mask: SPRU0.MIX
+		EarthFormat: true
+		Facings: 16
+		Start: 1

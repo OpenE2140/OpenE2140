@@ -1,0 +1,8 @@
+gog: Earth 2140 (GoG, English)
+	Type: Gog
+		AppId: 1207658737
+	IDFiles:
+		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
+	Install:
+		Copy: .
+			^SupportDir|Content/e2140/mix.wd: MIX.WD

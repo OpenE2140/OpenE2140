@@ -1,24 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <EngineRootPath>../engine</EngineRootPath>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>../engine/bin</OutputPath>
+    </PropertyGroup>
 
-  <Import Project="$(EngineRootPath)/Directory.Build.props" />
+    <ItemGroup>
+        <ProjectReference Include="../engine/OpenRA.Game/OpenRA.Game.csproj" />
+        <ProjectReference Include="../engine/OpenRA.Mods.Common/OpenRA.Mods.Common.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="$(EngineRootPath)/OpenRA.Game/OpenRA.Game.csproj">
-      <Private>False</Private>
-    </ProjectReference>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2021.2.0" />
+    </ItemGroup>
 
-    <ProjectReference Include="$(EngineRootPath)/OpenRA.Mods.Common/OpenRA.Mods.Common.csproj">
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="$(EngineRootPath)/AUTHORS">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

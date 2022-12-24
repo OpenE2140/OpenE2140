@@ -1,80 +1,91 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿#region Copyright & License Information
+
+/*
+ * Copyright 2007-2022 The Earth 2140 Developers (see AUTHORS)
+ * This file is part of OpenKrush, which is free software. It is made
+ * available to you under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version. For more
+ * information, see COPYING.
+ */
+
+#endregion
+
 using OpenRA.FileSystem;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.FileFormats
+namespace OpenRA.Mods.E2140.FileFormats;
+
+public class Wd : IReadOnlyPackage
 {
-	public class Wd : IReadOnlyPackage
+	private class WdEntry
 	{
-		private class WdEntry
+		public int Offset;
+		public int Length;
+	}
+
+	public string Name { get; }
+	public IEnumerable<string> Contents => this.index.Keys;
+
+	private readonly Dictionary<string, WdEntry> index = new();
+	private readonly Stream stream;
+
+	public Wd(Stream stream, string filename)
+	{
+		this.stream = stream;
+		this.Name = filename;
+
+		var numFiles = stream.ReadUInt32();
+
+		if (numFiles == 0)
+			return; // TODO implement sound container support
+
+		for (var i = 0; i < numFiles; i++)
 		{
-			public int Offset;
-			public int Length;
+			var entry = new WdEntry { Offset = stream.ReadInt32(), Length = stream.ReadInt32() };
+
+			var unk1 = stream.ReadUInt32(); // 0x00
+			var unk2 = stream.ReadUInt32(); // 0x00
+			var unk3 = stream.ReadUInt32(); // TODO has a value in MIX.WD
+
+			var filePathOffset = stream.ReadUInt32();
+
+			var originalPosition = stream.Position;
+			stream.Position = numFiles * 24 + 8 + filePathOffset;
+			this.index.Add(stream.ReadASCIIZ(), entry);
+			stream.Position = originalPosition;
 		}
+	}
 
-		public string Name { get; }
-		public IEnumerable<string> Contents => index.Keys;
+	public Stream? GetStream(string filename)
+	{
+		return !this.index.TryGetValue(filename, out var entry) ? null : SegmentStream.CreateWithoutOwningStream(this.stream, entry.Offset, entry.Length);
+	}
 
-		private readonly Dictionary<string, WdEntry> index = new Dictionary<string, WdEntry>();
-		private readonly Stream stream;
+	public bool Contains(string filename)
+	{
+		return this.index.ContainsKey(filename);
+	}
 
-		public Wd(Stream stream, string filename)
-		{
-			this.stream = stream;
-			Name = filename;
+	public IReadOnlyPackage? OpenPackage(string filename, OpenRA.FileSystem.FileSystem context)
+	{
+		var childStream = this.GetStream(filename);
 
-			var numFiles = stream.ReadUInt32();
-
-			if (numFiles == 0)
-				return; // TODO implement sound container support
-
-			for (var i = 0; i < numFiles; i++)
-			{
-				var entry = new WdEntry { Offset = stream.ReadInt32(), Length = stream.ReadInt32() };
-				stream.ReadUInt32(); // 0x00
-				stream.ReadUInt32(); // 0x00
-				stream.ReadUInt32(); // 0x00
-				var filePathOffset = stream.ReadUInt32();
-
-				var originalPosition = stream.Position;
-				stream.Position = numFiles * 24 + 8 + filePathOffset;
-				index.Add(stream.ReadASCIIZ(), entry);
-				stream.Position = originalPosition;
-			}
-		}
-
-		public Stream GetStream(string filename)
-		{
-			if (!index.TryGetValue(filename, out var entry))
-				return null;
-
-			return SegmentStream.CreateWithoutOwningStream(stream, entry.Offset, entry.Length);
-		}
-
-		public bool Contains(string filename)
-		{
-			return index.ContainsKey(filename);
-		}
-
-		public IReadOnlyPackage OpenPackage(string filename, OpenRA.FileSystem.FileSystem context)
-		{
-			var childStream = GetStream(filename);
-
-			if (childStream == null)
-				return null;
-
-			if (context.TryParsePackage(childStream, filename, out var package))
-				return package;
-
-			childStream.Dispose();
-
+		if (childStream == null)
 			return null;
-		}
 
-		public void Dispose()
-		{
-			stream.Dispose();
-		}
+		if (context.TryParsePackage(childStream, filename, out var package))
+			return package;
+
+		childStream.Dispose();
+
+		return null;
+	}
+
+	public void Dispose()
+	{
+		GC.SuppressFinalize(this);
+
+		this.stream.Dispose();
 	}
 }
