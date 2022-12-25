@@ -14,6 +14,8 @@ After deployment is initiated:
 - after a period of time, pyramid descends to ground and is hidden
 - building is ready
 
+Since original animation (and its sprites) is a bit quirky, [here's slowed down version of the construction](https://dalek.zone/w/nzQMX2DDB4mn5CTapibtia) (for reference).
+
 ### Air base
 
 Air base occupies one extra tile, which is not mandatory for deployment of MCU, but if it's not free when initiating deployment, this tile won't be occupied after construction and air base will be missing one heliport.
