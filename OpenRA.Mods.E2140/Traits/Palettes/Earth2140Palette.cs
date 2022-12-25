@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2007-2022 The Earth 2140 Developers (see AUTHORS)
- * This file is part of OpenKrush, which is free software. It is made
+ * This file is part of Earth 2140, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version. For more
@@ -13,7 +13,6 @@
 
 using JetBrains.Annotations;
 using OpenRA.Graphics;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.E2140.Traits.Palettes;
@@ -47,23 +46,23 @@ public class Earth2140Palette : ILoadsPalettes
 		var colors = new uint[Palette.Size];
 
 		// Tracks
-		colors[240] = (uint)Color.FromArgb(0xff181c18).ToArgb();
-		colors[241] = (uint)Color.FromArgb(0xff212421).ToArgb();
-		colors[242] = (uint)Color.FromArgb(0xff181c18).ToArgb();
-		colors[243] = (uint)Color.FromArgb(0xff292c29).ToArgb();
+		colors[240] = 0xff181c18;
+		colors[241] = 0xff212421;
+		colors[242] = 0xff181c18;
+		colors[243] = 0xff292c29;
 
 		// Muzzle flash.
-		colors[244] = (uint)Color.FromArgb(0xffff9e52).ToArgb();
-		colors[245] = (uint)Color.FromArgb(0xffefb68c).ToArgb();
-		colors[246] = (uint)Color.FromArgb(0xffffebc6).ToArgb();
-		colors[247] = (uint)Color.FromArgb(0xffffffff).ToArgb();
+		colors[244] = 0xffff9e52;
+		colors[245] = 0xffefb68c;
+		colors[246] = 0xffffebc6;
+		colors[247] = 0xffffffff;
 
 		// Player colors
 		for (var i = 248; i <= 252; i++)
 		{
 			var gray = 0x80 + (i - 250) * 0x18;
 
-			colors[i] = (uint)Color.FromArgb(0xff, gray, gray, gray).ToArgb();
+			colors[i] = (uint)((0xff << 24) | (gray << 16) | (gray << 8) | gray);
 		}
 
 		worldRenderer.AddPalette(this.info.Name, new(colors), this.info.AllowModifiers);

@@ -2,7 +2,7 @@
 
 /*
  * Copyright 2007-2022 The Earth 2140 Developers (see AUTHORS)
- * This file is part of OpenKrush, which is free software. It is made
+ * This file is part of Earth 2140, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version. For more
