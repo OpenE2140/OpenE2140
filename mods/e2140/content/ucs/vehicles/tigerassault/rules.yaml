@@ -10,6 +10,7 @@ ucs_vehicles_tigerassault:
 	Mobile:
 		Speed: 70
 		TurnSpeed: 32
+		AlwaysTurnInPlace: true
 	RevealsShroud:
 		Range: 6c0
 	Turreted:
