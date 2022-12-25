@@ -1,19 +1,26 @@
 Metadata:
 	Title: Earth 2140
-	Version: {DEV_VERSION}
+	Version: 721b225b5465922b6705e262d26a58306cc50bd1
 	WindowTitle: Earth 2140
+	Website: https://github.com/michaeldgg2/Earth2140
+	WebIcon32: https://raw.githubusercontent.com/michaeldgg2/Earth2140/master/packaging/artwork/icon_32x32.png
 
 PackageFormats: Wd
 
 Packages:
-	~^SupportDir|Content/e2140/
+	~^SupportDir|Content/e2140/: game
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
-	~MIX.WD
+	~game|MIX.WD: mix
+
+ModCredits:
+	ModCreditsFile: e2140|CREDITS
+	ModTabTitle: Earth 2140
 
 MapFolders:
 	e2140|maps: System
+	~^SupportDir|maps/e2140/721b225b5465922b6705e262d26a58306cc50bd1: User
 
 Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
@@ -56,5 +63,29 @@ GameSpeeds:
 			Timestep: 40
 			OrderLatency: 3
 
-Include: mod.content.yaml
-Include: mod.chrome.yaml
+ModContent:
+	InstallPromptMessage: Earth 2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
+	HeaderMessage: Game content may be extracted from an\nexisting digital install.
+	Packages:
+		base: Base Game Files
+			TestFiles: ^SupportDir|Content/e2140/mix.wd
+			Sources: gog, steam
+			Required: true
+	Sources:
+		e2140|installer/gog.yaml
+		e2140|installer/steam.yaml
+
+# TODO DiscordService
+
+Include: chrome/mod.yaml
+
+Music:
+	e2140|music.yaml
+
+TileSets:
+	e2140|tilesets/temperat.yaml
+
+Include: content/core/mod.yaml
+Include: content/neutral/mod.yaml
+Include: content/ed/mod.yaml
+Include: content/ucs/mod.yaml

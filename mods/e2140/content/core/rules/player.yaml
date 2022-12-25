@@ -1,0 +1,28 @@
+# Shared player setup.
+^CorePlayer:
+	# This actor is not affected by shroud or fog.
+	AlwaysVisible:
+	# Enable shroud and fog.
+	Shroud:
+
+# Ingame specific player setup.
+Player:
+	Inherits: ^CorePlayer
+	# Developer debug menu
+	DeveloperMode:
+	# Allow players to place building.
+	PlaceBuilding:
+	# Enable mission objectives, required to win or loose mission.
+	MissionObjectives:
+	# Default objective: Win by killing all enemies.
+	ConquestVictoryConditions:
+	# Required for FrozenUnderFog to work
+	FrozenActorLayer:
+	PlaceBeacon:
+		ArrowSequence:
+		CircleSequence: x
+		Duration: 250
+
+# Map editor specific player setup.
+EditorPlayer:
+	Inherits: ^CorePlayer

@@ -1,0 +1,6 @@
+Cursors:
+	chrome/assets/default.png: # TODO use cursor from game assets!
+		default:
+			Start: 0
+		move:
+			Start: 0

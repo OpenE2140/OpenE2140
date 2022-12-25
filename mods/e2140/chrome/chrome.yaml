@@ -22,14 +22,22 @@ observer-scrollpanel-button-disabled:
 	Inherits: ^Dialog
 	PanelRegion: 769, 385, 2, 2, 122, 122, 2, 2
 
-observer-scrollheader-selected:
+observer-scrollheader:
 	Inherits: observer-scrollpanel-button-disabled
 
-observer-scrollitem-selected:
-	Inherits: observer-scrollpanel-button-pressed
+observer-scrollheader-highlighted:
+	Inherits: observer-scrollpanel-button-disabled
+
+observer-scrollitem:
 
 observer-scrollitem-hover:
 	Inherits: observer-scrollpanel-button
+
+observer-scrollitem-pressed:
+	Inherits: observer-scrollpanel-button
+
+observer-scrollitem-highlighted:
+	Inherits: observer-scrollpanel-button-pressed
 
 # Used for the main menu frame
 dialog:
@@ -111,7 +119,8 @@ strategic:
 flags:
 	Inherits: ^Glyphs
 	Regions:
-		example: 226, 241, 30, 15
+		ed: 226, 241, 30, 15
+		ucs: 226, 241, 30, 15
 		Random: 226, 241, 30, 15
 		spectator: 226, 241, 30, 15
 
@@ -232,17 +241,45 @@ slider-thumb-disabled:
 checkbox:
 	Inherits: button-pressed
 
-checkbox-bits:
+checkmark-tick:
 	Inherits: ^Glyphs
 	Regions:
 		checked: 187, 0, 16, 16
-		checked-disabled: 204, 0, 16, 16
-		crossed: 221, 0, 16, 16
-		crossed-disabled: 238, 0, 16, 16
+		checked-pressed: 204, 0, 16, 16
+		unchecked: 0, 0, 0, 0
+		unchecked-pressed: 204, 0, 16, 16
+
+checkmark-tick-highlighted:
+	Inherits: checkmark-tick
+
+checkmark-cross:
+	Inherits: ^Glyphs
+	Regions:
+		checked: 221, 0, 16, 16
+		checked-pressed: 238, 0, 16, 16
+		unchecked: 0, 0, 0, 0
+		unchecked-pressed: 238, 0, 16, 16
+
+checkmark-cross-highlighted:
+	Inherits: checkmark-cross
+
+checkmark-mute:
+	Inherits: ^Glyphs
+	Regions:
+		unchecked: 0, 170, 16, 16
+		unchecked-pressed: 17, 170, 16, 16
+		checked: 17, 170, 16, 16
+		checked-pressed: 0, 170, 16, 16
+
+checkmark-mute-highlighted:
+	Inherits: checkmark-mute
 
 checkbox-hover:
 	Inherits: ^Dialog
 	PanelRegion: 641, 129, 2, 2, 122, 122, 2, 2
+
+checkbox-pressed:
+	Inherits: checkbox-hover
 
 checkbox-disabled:
 	Inherits: ^Dialog
@@ -255,21 +292,48 @@ checkbox-highlighted:
 checkbox-highlighted-hover:
 	Inherits: checkbox-highlighted
 
+checkbox-highlighted-pressed:
+	Inherits: checkbox-highlighted
+
 checkbox-highlighted-disabled:
 	Inherits: checkbox-disabled
 
-scrollitem-selected:
-	Inherits: button-pressed
+checkbox-toggle:
+
+checkbox-toggle-hover:
+	Inherits: button
+
+checkbox-toggle-pressed:
+	Inherits: checkbox-pressed
+
+checkbox-toggle-highlighted:
+
+checkbox-toggle-highlighted-hover:
+	Inherits: button-highlighted
+
+checkbox-toggle-highlighted-pressed:
+	Inherits: checkbox-highlighted-pressed
+
+scrollitem:
 
 scrollitem-hover:
 	Inherits: button
 
-scrollheader-selected:
+scrollitem-pressed:
 	Inherits: button
+
+scrollitem-highlighted:
+	Inherits: button-pressed
 
 scrollitem-nohover:
 
-scrollitem-nohover-hover:
+scrollitem-nohover-highlighted:
+
+scrollheader:
+	Inherits: button
+
+scrollheader-highlighted:
+	Inherits: button
 
 logos:
 	Inherits: ^LoadScreen

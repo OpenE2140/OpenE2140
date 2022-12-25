@@ -1,0 +1,17 @@
+neutral_tree01:
+	Inherits: ^CoreDecoration
+
+neutral_tree02:
+	Inherits: ^CoreDecoration
+
+neutral_tree03:
+	Inherits: ^CoreDecoration
+
+neutral_tree04:
+	Inherits: ^CoreDecoration
+
+neutral_tree05:
+	Inherits: ^CoreDecoration
+
+neutral_tree06:
+	Inherits: ^CoreDecoration

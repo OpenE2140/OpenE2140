@@ -31,38 +31,43 @@ Players:
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
 
 Actors:
 	Actor0: mpspawn
 		Owner: Multi0
 		Location: 16,16
-	Actor1: tigerassault
-		Location: 17,16
-		Owner: Multi0
-	Actor3: t02
+	Actor1: mpspawn
+		Owner: Multi1
+		Location: 32,16
+	Actor3: neutral_tree02
 		Owner: Neutral
 		Location: 19,16
-	Actor4: t03
+	Actor4: neutral_tree03
 		Owner: Neutral
 		Location: 18,18
-	Actor5: t04
+	Actor5: neutral_tree04
 		Owner: Neutral
 		Location: 19,19
-	Actor6: t05
+	Actor6: neutral_tree05
 		Owner: Neutral
 		Location: 16,18
-	Actor7: t06
+	Actor7: neutral_tree06
 		Owner: Neutral
 		Location: 14,16
-	Actor8: t03
+	Actor8: neutral_tree03
 		Owner: Neutral
 		Location: 18,15
-	Actor9: t04
+	Actor9: neutral_tree04
 		Owner: Neutral
 		Location: 18,16
-	Actor12: t06
+	Actor12: neutral_tree06
 		Owner: Neutral
 		Location: 16,20
-	Actor13: t06
+	Actor13: neutral_tree06
 		Owner: Neutral
 		Location: 14,18

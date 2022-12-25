@@ -1,0 +1,9 @@
+shroud:
+	shroud: content/core/assets/shroud.png
+		Length: 16
+	fog: content/core/assets/fog.png
+		Length: 16
+	shroudfull: content/core/assets/shroud.png
+		Start: 1
+	fogfull: content/core/assets/fog.png
+		Start: 1

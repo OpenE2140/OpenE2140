@@ -1,0 +1,10 @@
+colorpicker:
+	RenderSprites:
+	BodyOrientation:
+	QuantizeFacingsFromSequence:
+	WithFacingSpriteBody:
+	WithFacingSpriteBody@mask:
+		Name: body_mask
+		Sequence: idle_mask
+	RenderSprites:
+		Palette: colorpicker

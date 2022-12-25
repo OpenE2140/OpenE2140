@@ -1,0 +1,291 @@
+# Base for all actors.
+^CoreVisibleActor:
+	# All our actors are sprite based and need to render sprites.
+	RenderSprites:
+	# At default fog hides every actor.
+	HiddenUnderFog:
+	# Allow actors to rotate and use facings.
+	BodyOrientation: # TODO verify if we can remove this from constructions!
+	# Automatically detect the number of facings from the sequences.
+	QuantizeFacingsFromSequence: # TODO see BodyOrientation todo
+	# Required to see debug overlays.
+	CombatDebugOverlay:
+
+# Map decoration actors.
+^CoreDecoration:
+	Inherits: ^CoreVisibleActor
+	# Always visible, no special shroud logic here.
+	-HiddenUnderFog:
+	FrozenUnderFog:
+	# Decorations have sprites but do not use facing for them.
+	WithSpriteBody:
+	# Default setting makes decorations take 1x1 tiles.
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	# Put decorations in own catgegory in map editor.
+	MapEditorData:
+		Categories: Decorations
+	# Enforce neutral ownership.
+	RequiresSpecificOwners:
+		ValidOwnerNames: Neutral
+
+# Base for all movable units.
+^CoreUnit:
+	Inherits: ^CoreVisibleActor
+	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
+	HitShape:
+		Type: Circle
+			Radius: 512
+	# In general all units can be selected by using its full cell / tile.
+	Selectable:
+		Bounds: 1024, 1024
+		# Make the default priority higher, so units are prefered over constructions.
+		Priority: 20
+	# Units have a healthbar when selected or hovered.
+	SelectionDecorations:
+	# Enemy units must be destroyed to win a game.
+	MustBeDestroyed:
+	# Units sequences should always use facings.
+	WithFacingSpriteBody:
+	# Earth 2140 palette magic.
+	WithFacingSpriteBody@mask:
+		Name: body_mask
+		Sequence: idle_mask
+	# Units are visible on the radar.
+	AppearsOnRadar:
+	# Allow units to use the AttackMove and AssaultMove commands.
+	AttackMove:
+	# Use their center position instead of their footprint for fog hiding logic.
+	HiddenUnderFog:
+		Type: CenterPosition
+	# Units should die when owner lost the game.
+	OwnerLostAction:
+		Action: Kill
+	# Show control group numbers when selected.
+	WithTextControlGroupDecoration:
+		Position: BottomRight
+	# Earth 2140 palette magic.
+
+# Base for all buildings and towers.
+^CoreConstruction:
+	Inherits: ^CoreVisibleActor
+	# Last seen state of a building will be rendered under fog, instead of using the default hiding behavior.
+	-HiddenUnderFog:
+	FrozenUnderFog:
+	# Applying "building"-damage to all actors based on this.
+	Armor:
+		Type: building
+	# Add building specific logic to Constructions.
+	Building:
+		TerrainTypes: Clear
+	# Constructions can be targeted by anything which attacks ground.
+	Targetable:
+		TargetTypes: Ground
+	# In general all constructions can be selected.
+	Selectable:
+	# Constructions have sprites but do not use facing for them.
+	WithSpriteBody:
+	# Earth 2140 palette magic.
+	WithSpriteBody@mask:
+		Name: body_mask
+		Sequence: idle_mask
+	# Constructions are visible on the radar.
+	AppearsOnRadar:
+	# Constructions should explode when owner lost the game.
+	OwnerLostAction:
+		Action: Kill
+	# No projectiles can pass through a construction.
+	BlocksProjectiles:
+	# Buildings have healthbars.
+	SelectionDecorations:
+
+# Base for all buildings.
+^CoreBuilding:
+	Inherits: ^CoreConstruction
+	# Enemy buildings have to be destroyed to win, even when short game option is used.
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	# The view radius of buildings.
+	RevealsShroud:
+		Range: 5c0
+	# Group all buildings in the map editor.
+	MapEditorData:
+		Categories: Building
+	# Should not be auto attacked.
+	Targetable@NoAutoAttack:
+		TargetTypes: NoAutoAttack
+	# Target "Structure" target for ai.
+	Targetable:
+		TargetTypes: Ground, Structure
+	# Earth 2140 construction animation.
+	TransformSequence:
+		Suffix: large
+
+# Base for all towers.
+^CoreTower:
+	Inherits@1: ^CoreConstruction
+	Inherits@2: ^CoreTurret
+	# Group all towers in the map editor.
+	MapEditorData:
+		Categories: Tower
+	# Towers are always 2x2 in size.
+	Building:
+		Dimensions: 2,2
+		Footprint: xx==
+	# Correct Hitshape and selection box for all towers
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 0
+		TargetableOffsets: 819,-512,0, 819,512,0
+	Selectable:
+		Bounds: 2048, 2048, 0, -512
+	# Towers also have to be destroyed when short game option is used.
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	# Default looking south
+	Turreted:
+		InitialFacing: 512
+		RealignDelay: -1
+	# Earth 2140 construction animation.
+	TransformSequence:
+		Suffix: small
+
+# Base for all infantry.
+^CoreInfantry:
+	Inherits: ^CoreUnit
+	# Applying "infantry"-damage to all actors based on this.
+	Armor:
+		Type: infantry
+	# Vehicles can kill infantry by driving over them.
+	Crushable:
+		CrushClasses: infantry
+		WarnProbability: 0
+	# Allow 5 infantry units to share a cell and set movement modifiers.
+	Mobile:
+		Locomotor: infantry
+	# Actor can be targeted by anything which attacks ground.
+	Targetable:
+		TargetTypes: Ground, Infantry
+	# Calculated size for infantry to match shared cells.
+	Selectable:
+		Bounds: 576,640,0,-192
+	# Infantry hitshape
+	HitShape:
+		Type: Circle
+			Radius: 128
+	# Infantry has an animation while moving: walking.
+	WithMoveAnimation:
+	# Earth 2140 palette magic.
+	WithMoveAnimation@mask:
+		Body: body_mask
+		MoveSequence: move_mask
+	# Group all infantry in the map editor.
+	MapEditorData:
+		Categories: Infantry
+	# Infantry has a smaller healthbar.
+	SelectionDecorations:
+		Width: 16
+		Offset: 0,-6
+
+# Add locomotor to world...
+^CoreWorld:
+	Locomotor@infantry:
+		Name: infantry
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 100
+
+# Base for all vehicles
+^CoreVehicle:
+	Inherits: ^CoreUnit
+	Armor:
+		Type: vehicle
+	# Vehicles can kill infantry by moving over them and set movement modifiers.
+	Mobile:
+		Locomotor: vehicle
+	# Actor can be targeted by anything which attacks ground.
+	Targetable:
+		TargetTypes: Ground
+	# Vehicles have an animation while moving.
+	WithMoveAnimation:
+	# Earth 2140 palette magic.
+	WithMoveAnimation@mask:
+		Body: body_mask
+		MoveSequence: move_mask
+	WithMovePalette:
+	# Group all vehicles in the map editor.
+	MapEditorData:
+		Categories: Vehicle
+
+# Add locomotor to world...
+^CoreWorld:
+	Locomotor@vehicle:
+		Name: vehicle
+		Crushes: infantry
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Clear: 100
+
+# Base for all aircrafts
+^CoreAircraft:
+	Inherits: ^CoreUnit
+	# Applying "armor"-damage to all actors based on this.
+	Armor:
+		Type: aircraft
+	# Making the actors actualy fly.
+	Aircraft:
+		CruiseAltitude: 2560
+		Repulsable: False # TODO verify what this is and if its correct
+	# Actor can be targeted by anything which attacks air.
+	Targetable:
+		TargetTypes: Air
+	# Group all aircrafts in the map editor.
+	MapEditorData:
+		Categories: Aircraft
+	# Aircraft has visible shadow on ground beneath
+	WithShadow: # TODO verify this one. why 43? Shouldnt it be just "below"? And how does this work in combination with ZOffset?
+		Offset: 43,128,0
+		ZOffset: -129
+
+# Special light vehicles
+^CoreLightVehicle:
+	# Can not crush infantry.
+	Mobile:
+		Locomotor: vehicleNonCrushing
+
+# Add locomotor to world...
+^CoreWorld:
+	Locomotor@vehicleNonCrushing:
+		Name: vehicleNonCrushing
+		TerrainSpeeds:
+			Clear: 100
+
+# Grouped traits for standard turret behavior.
+^CoreTurret:
+	# General turret behavior.
+	Turreted:
+	# Special trait to position turret depending on attachment point (only visualy).
+	WithSpriteTurret:
+	# Earth 2140 palette magic.
+	WithSpriteTurret@mask:
+		Sequence: turret_mask
+	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.
+	AttackTurreted:
+		Voice: Attack
+	# Auto target enemies nearby.
+	AutoTarget:
+	AutoTargetPriority:
+		InvalidTargets: Structure
+
+# Grouped traits for standard non-turreted behavior.
+^CoreArmedSelf:
+	# Units without a turret have to stop and aim at a target to shoot.
+	AttackFrontal:
+		FacingTolerance: 0
+		Voice: Attack
+	# Auto target enemies nearby.
+	AutoTarget:
+	AutoTargetPriority:
+		InvalidTargets: Structure

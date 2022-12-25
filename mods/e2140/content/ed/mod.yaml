@@ -1,0 +1,17 @@
+MapFolders:
+	#e2140|content/ed/maps: System
+
+Missions:
+	e2140|content/ed/missions.yaml
+
+Notifications:
+	e2140|content/ed/notifications.yaml
+
+Rules:
+
+Sequences:
+
+Voices:
+	e2140|content/ed/voices.yaml
+
+Weapons:

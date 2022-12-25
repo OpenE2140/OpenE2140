@@ -1,0 +1,33 @@
+core_buildingsequence_small:
+	deploy:
+		EarthFormat: true
+		Start: 18
+		Length: 7
+	deploy_mask:
+		EarthFormat: true
+		Start: 19
+		Length: 7
+	cover_building:
+		EarthFormat: true
+		Frames: 62, 60, 58, 56, 54, 52
+	cover_building_mask:
+		EarthFormat: true
+		Frames: 63, 61, 59, 57, 55, 53
+
+core_buildingsequence_large:
+	deploy:
+		EarthFormat: true
+		Reverse: true
+		Start: 32
+		Length: 7
+	deploy_mask:
+		EarthFormat: true
+		Reverse: true
+		Start: 33
+		Length: 7
+	cover_building:
+		EarthFormat: true
+		Frames: 64, 66, 68, 70, 72, 48, 50
+	cover_building_mask:
+		EarthFormat: true
+		Frames: 65, 67, 69, 71, 73, 49, 51

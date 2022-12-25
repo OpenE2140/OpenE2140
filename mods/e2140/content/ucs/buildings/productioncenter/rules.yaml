@@ -1,0 +1,15 @@
+ucs_buildings_productioncenter:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Production Center
+	Health:
+		HP: 1000
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Selectable:
+		Bounds: 3072, 2048, 0, 0

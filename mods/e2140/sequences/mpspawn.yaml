@@ -1,3 +1,0 @@
-mpspawn:
-	idle: sequences/assets/mpspawn.png
-		AddExtension: false
