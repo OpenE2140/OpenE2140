@@ -43,7 +43,7 @@ Actors:
 		Location: 16,16
 	Actor1: mpspawn
 		Owner: Multi1
-		Location: 32,16
+		Location: 24,16
 	Actor3: neutral_tree02
 		Owner: Neutral
 		Location: 19,16

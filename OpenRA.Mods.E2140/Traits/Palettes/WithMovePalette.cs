@@ -44,7 +44,7 @@ public class WithMovePalette : IRenderModifier
 		this.renderSpritesInfo = init.Self.Info.TraitInfo<RenderSpritesInfo>();
 	}
 
-	public IEnumerable<IRenderable> ModifyRender(Actor self, WorldRenderer worldRenderer, IEnumerable<IRenderable> renderables)
+	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer worldRenderer, IEnumerable<IRenderable> renderables)
 	{
 		return renderables.Select(
 			renderable =>
@@ -59,7 +59,7 @@ public class WithMovePalette : IRenderModifier
 		);
 	}
 
-	public IEnumerable<Rectangle> ModifyScreenBounds(Actor self, WorldRenderer worldRenderer, IEnumerable<Rectangle> bounds)
+	IEnumerable<Rectangle> IRenderModifier.ModifyScreenBounds(Actor self, WorldRenderer worldRenderer, IEnumerable<Rectangle> bounds)
 	{
 		return bounds;
 	}

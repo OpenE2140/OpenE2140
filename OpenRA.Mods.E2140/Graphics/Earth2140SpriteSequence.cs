@@ -59,6 +59,7 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		var start = Earth2140SpriteSequence.GetInt(settings, "Start", 0);
 		var length = Earth2140SpriteSequence.GetInt(settings, "Length", 1);
 		var stride = Earth2140SpriteSequence.GetInt(settings, "Stride", 1);
+		var reverse = Earth2140SpriteSequence.GetBool(settings, "Reverse", false);
 
 		var combineNode = new MiniYamlNode("Combine", "");
 
@@ -67,15 +68,12 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 			var facingNode = new MiniYamlNode(info.Value, "");
 			facingNode.Value.Nodes.Add(new("Length", $"{length}"));
 
-			facingNode.Value.Nodes.Add(
-				new(
-					"Frames",
-					string.Join(
-						',',
-						Enumerable.Range(0, length).Select(i => start + ((facing > facings / 2 ? facings - facing : facing) * stride + i) * 2).ToArray()
-					)
-				)
-			);
+			var frames = Enumerable.Range(0, length).Select(i => start + ((facing > facings / 2 ? facings - facing : facing) * stride + i) * 2).ToArray();
+
+			if (reverse)
+				frames = frames.Reverse().ToArray();
+
+			facingNode.Value.Nodes.Add(new("Frames", string.Join(',', frames)));
 
 			if (facing > facings / 2)
 				facingNode.Value.Nodes.Add(new("FlipX", "true"));
@@ -89,6 +87,12 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		newInfo.Nodes.Add(combineNode);
 
 		return newInfo;
+	}
+
+	private static bool GetBool(IReadOnlyDictionary<string, MiniYaml> settings, string key, bool fallback)
+	{
+		return !settings.TryGetValue(key, out var value) ? fallback :
+			!bool.TryParse(value.Value, out var intValue) ? fallback : intValue;
 	}
 
 	private static int GetInt(IReadOnlyDictionary<string, MiniYaml> settings, string key, int fallback)

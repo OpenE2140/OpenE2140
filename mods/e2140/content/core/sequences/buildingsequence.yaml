@@ -1,33 +1,47 @@
 core_buildingsequence_small:
-	deploy:
-		EarthFormat: true
-		Start: 18
+	deploy: SPRU0.MIX
+		Frames: 18, 20, 22, 24, 26, 28, 30
 		Length: 7
-	deploy_mask:
-		EarthFormat: true
-		Start: 19
+	deploy_mask: SPRU0.MIX
+		Frames: 19, 21, 23, 25, 27, 29, 31
 		Length: 7
-	cover_building:
-		EarthFormat: true
+	deployed: SPRU0.MIX
+		Frames: 30
+	deployed_mask: SPRU0.MIX
+		Frames: 31
+	cover: SPRU0.MIX
 		Frames: 62, 60, 58, 56, 54, 52
-	cover_building_mask:
-		EarthFormat: true
+		Length: 6
+	cover_mask: SPRU0.MIX
 		Frames: 63, 61, 59, 57, 55, 53
+		Length: 6
+	covered: SPRU0.MIX
+		Frames: 62
+	covered_mask: SPRU0.MIX
+		Frames: 63
 
 core_buildingsequence_large:
-	deploy:
-		EarthFormat: true
-		Reverse: true
-		Start: 32
+	deploy: SPRU0.MIX
+		Frames: 44, 42, 40, 38, 36, 34, 32
 		Length: 7
-	deploy_mask:
-		EarthFormat: true
-		Reverse: true
-		Start: 33
+	deploy_mask: SPRU0.MIX
+		Frames: 45, 43, 41, 39, 37, 35, 33
 		Length: 7
-	cover_building:
-		EarthFormat: true
-		Frames: 64, 66, 68, 70, 72, 48, 50
-	cover_building_mask:
-		EarthFormat: true
-		Frames: 65, 67, 69, 71, 73, 49, 51
+	deployed: SPRU0.MIX
+		Frames: 32
+	deployed_mask: SPRU0.MIX
+		Frames: 33
+	cover: SPRU0.MIX
+		Frames: 50, 48, 72, 70, 68, 66, 64
+		Length: 7
+		Offset: 0, -32, 0
+	cover_mask: SPRU0.MIX
+		Frames: 51, 49, 73, 71, 69, 67, 65
+		Length: 7
+		Offset: 0, -32, 0
+	covered: SPRU0.MIX
+		Frames: 64
+		Offset: 0, -32, 0
+	covered_mask: SPRU0.MIX
+		Frames: 65
+		Offset: 0, -32, 0

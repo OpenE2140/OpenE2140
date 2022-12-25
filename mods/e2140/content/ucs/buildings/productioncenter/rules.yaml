@@ -5,8 +5,8 @@ ucs_buildings_productioncenter:
 	Health:
 		HP: 1000
 	Building:
-		Dimensions: 3,2
-		Footprint: xxx xxx
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
 	HitShape:
 		Type: Rectangle
 			TopLeft: -1536, -1024

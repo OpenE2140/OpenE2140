@@ -20,8 +20,6 @@ namespace OpenRA.Mods.E2140.Traits;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class TriggerTransformSequenceInfo : TraitInfo
 {
-	public readonly string? Suffix;
-
 	public override object Create(ActorInitializer init)
 	{
 		return new TriggerTransformSequence();
@@ -30,16 +28,16 @@ public class TriggerTransformSequenceInfo : TraitInfo
 
 public class TriggerTransformSequence : INotifyTransform
 {
-	public void BeforeTransform(Actor self)
+	void INotifyTransform.BeforeTransform(Actor self)
 	{
 	}
 
-	public void OnTransform(Actor self)
+	void INotifyTransform.OnTransform(Actor self)
 	{
 	}
 
-	public void AfterTransform(Actor toActor)
+	void INotifyTransform.AfterTransform(Actor toActor)
 	{
-		toActor.TraitOrDefault<TransformSequence>().Run();
+		toActor.TraitOrDefault<TransformSequence>().Run(toActor);
 	}
 }

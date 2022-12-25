@@ -41,7 +41,7 @@ public class Earth2140Palette : ILoadsPalettes
 		this.info = info;
 	}
 
-	public void LoadPalettes(WorldRenderer worldRenderer)
+	void ILoadsPalettes.LoadPalettes(WorldRenderer worldRenderer)
 	{
 		var colors = new uint[Palette.Size];
 
