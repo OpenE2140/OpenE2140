@@ -31,17 +31,9 @@ core_buildingsequence_large:
 		Frames: 32
 	deployed_mask: SPRU0.MIX
 		Frames: 33
-	cover: SPRU0.MIX
-		Frames: 50, 48, 72, 70, 68, 66, 64
-		Length: 7
-		Offset: 0, -32, 0
-	cover_mask: SPRU0.MIX
-		Frames: 51, 49, 73, 71, 69, 67, 65
-		Length: 7
-		Offset: 0, -32, 0
-	covered: SPRU0.MIX
-		Frames: 64
-		Offset: 0, -32, 0
-	covered_mask: SPRU0.MIX
-		Frames: 65
-		Offset: 0, -32, 0
+	cover: content/core/assets/buildings/construction_pyramid.png
+		Length: 6
+		Offset: 5, -44, 0
+	covered: content/core/assets/buildings/construction_pyramid_covered.png
+		Length: 1
+		Offset: 5, -44, 0

@@ -44,7 +44,7 @@ public class TransformSequence : INotifyCreated, ITick
 	private int token = Actor.InvalidConditionToken;
 	private int remainingTime = -1;
 	private AnimationWithOffset? animationCover;
-	private AnimationWithOffset? animationCoverMask;
+	private AnimationWithOffset? animationDeployMask;
 
 	public TransformSequence(TransformSequenceInfo info)
 	{
@@ -76,7 +76,11 @@ public class TransformSequence : INotifyCreated, ITick
 					"cover",
 					() =>
 					{
-						self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(animationDeploy));
+						self.World.AddFrameEndTask(_ =>
+						{
+							this.renderSprites?.Remove(animationDeploy);
+							this.renderSprites?.Remove(this.animationDeployMask);
+						});
 						this.animationCover.Animation.PlayRepeating("covered");
 						this.remainingTime = this.info.ConstructionTime;
 					}
@@ -84,26 +88,14 @@ public class TransformSequence : INotifyCreated, ITick
 			}
 		);
 
-		var animationDeployMask = new AnimationWithOffset(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationDeployMask));
+		this.animationDeployMask = new AnimationWithOffset(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationDeployMask));
 
-		animationDeployMask.Animation.PlayThen(
+		this.animationDeployMask.Animation.PlayThen(
 			"deploy_mask",
 			() =>
 			{
-				animationDeployMask.Animation.PlayRepeating("deployed_mask");
-
-				this.animationCoverMask = new(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-				self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationCoverMask));
-
-				this.animationCoverMask.Animation.PlayThen(
-					"cover_mask",
-					() =>
-					{
-						self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(animationDeployMask));
-						this.animationCoverMask.Animation.PlayRepeating("covered_mask");
-					}
-				);
+				this.animationDeployMask.Animation.PlayRepeating("deployed_mask");
 			}
 		);
 	}
@@ -122,10 +114,5 @@ public class TransformSequence : INotifyCreated, ITick
 		this.token = Actor.InvalidConditionToken;
 
 		this.animationCover?.Animation.PlayBackwardsThen("cover", () => self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(this.animationCover)));
-
-		this.animationCoverMask?.Animation.PlayBackwardsThen(
-			"cover_mask",
-			() => self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(this.animationCoverMask))
-		);
 	}
 }
