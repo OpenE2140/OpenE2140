@@ -76,7 +76,7 @@ World:
 	DevCommands:
 	DebugVisualizationCommands:
 	# Earth 2140 palette effect for moving tracks.
-	ReversedRotationPaletteEffect:
+	RotationPaletteEffect:
 		Palettes: playerMove
 		RotationBase: 240
 		RotationRange: 4

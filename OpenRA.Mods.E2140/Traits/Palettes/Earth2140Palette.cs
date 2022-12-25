@@ -51,7 +51,7 @@ public class Earth2140Palette : ILoadsPalettes
 		colors[242] = 0xff181c18;
 		colors[243] = 0xff292c29;
 
-		// Muzzle flash.
+		// Effects
 		colors[244] = 0xffff9e52;
 		colors[245] = 0xffefb68c;
 		colors[246] = 0xffffebc6;

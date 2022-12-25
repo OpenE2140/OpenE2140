@@ -82,16 +82,43 @@ public class MixSpriteLoader : ISpriteLoader
 					var index = frame.Pixels[i];
 					var color = palette[index];
 
-					if (!specialLogic || index is < 244 or > 247)
+					if (specialLogic)
 					{
-						argbImage[i * 4 + 0] = color.R;
-						argbImage[i * 4 + 1] = color.G;
-						argbImage[i * 4 + 2] = color.B;
-						argbImage[i * 4 + 3] = color.A;
-					}
+						switch (index)
+						{
+							// Tracks
+							case >= 240 and <= 243:
+								// Has to be reversed to work with the OpenRA trait.
+								index = (byte)(240 + 243 - index);
+								color = palette[index];
+								break;
 
-					if (specialLogic && index is >= 240 and <= 252)
-						indexedImage[i] = index;
+							// Effects
+							case >= 244 and <= 247:
+								color = Color.Transparent;
+
+								break;
+
+							// Player color
+							case >= 248 and <= 252:
+								break;
+
+							// Normal pixel
+							default:
+								index = 0;
+
+								break;
+						}
+					}
+					else
+						index = 0;
+
+					indexedImage[i] = index;
+
+					argbImage[i * 4 + 0] = color.R;
+					argbImage[i * 4 + 1] = color.G;
+					argbImage[i * 4 + 2] = color.B;
+					argbImage[i * 4 + 3] = color.A;
 				}
 
 				framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
@@ -117,7 +144,7 @@ public class MixSpriteLoader : ISpriteLoader
 		newPalette[242] = Color.FromArgb(0xff181c18);
 		newPalette[243] = Color.FromArgb(0xff292c29);
 
-		// Muzzle flash.
+		// Effects
 		newPalette[244] = Color.FromArgb(0xffff9e52);
 		newPalette[245] = Color.FromArgb(0xffefb68c);
 		newPalette[246] = Color.FromArgb(0xffffebc6);

@@ -21,6 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.E2140.Traits.Palettes;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[Desc("Cycle the tracks pixels when an actor moves.")]
 public class WithMovePaletteInfo : TraitInfo, Requires<IMoveInfo>
 {
 	[Desc("Custom PlayerColorPalette: BaseName when moving")]
