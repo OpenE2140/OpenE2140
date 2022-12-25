@@ -35,7 +35,7 @@ Templates:
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
-		Frames: 199, 200, 201, 202, 203
+		Frames: 199, 200, 201, 202, 203, 204
 		Tiles:
 			0: Rock
 			1: Rock
