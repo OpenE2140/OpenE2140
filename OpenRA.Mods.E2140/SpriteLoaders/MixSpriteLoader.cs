@@ -41,11 +41,11 @@ public class MixSpriteFrame : ISpriteFrame
 [UsedImplicitly]
 public class MixSpriteLoader : ISpriteLoader
 {
-	public bool TryParseSprite(Stream s, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
 	{
-		var start = s.Position;
-		var identifier = s.ReadASCII(10);
-		s.Position = start;
+		var start = stream.Position;
+		var identifier = stream.ReadASCII(10);
+		stream.Position = start;
 
 		frames = null;
 		metadata = null;
@@ -53,7 +53,7 @@ public class MixSpriteLoader : ISpriteLoader
 		if (identifier != "MIX FILE  ")
 			return false;
 
-		var mix = new Mix(s);
+		var mix = new Mix(stream);
 
 		if (mix.Frames.Length == 0)
 			return false;
@@ -91,6 +91,7 @@ public class MixSpriteLoader : ISpriteLoader
 								// Has to be reversed to work with the OpenRA trait.
 								index = (byte)(240 + 243 - index);
 								color = palette[index];
+
 								break;
 
 							// Effects

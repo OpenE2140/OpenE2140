@@ -66,24 +66,24 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		for (var facing = 0; facing < facings; facing++)
 		{
 			var facingNode = new MiniYamlNode(info.Value, "");
-			facingNode.Value.Nodes.Add(new("Length", $"{length}"));
+			facingNode.Value.Nodes.Add(new MiniYamlNode("Length", $"{length}"));
 
 			var frames = Enumerable.Range(0, length).Select(i => start + ((facing > facings / 2 ? facings - facing : facing) * stride + i) * 2).ToArray();
 
 			if (reverse)
 				frames = frames.Reverse().ToArray();
 
-			facingNode.Value.Nodes.Add(new("Frames", string.Join(',', frames)));
+			facingNode.Value.Nodes.Add(new MiniYamlNode("Frames", string.Join(',', frames)));
 
 			if (facing > facings / 2)
-				facingNode.Value.Nodes.Add(new("FlipX", "true"));
+				facingNode.Value.Nodes.Add(new MiniYamlNode("FlipX", "true"));
 
 			combineNode.Value.Nodes.Add(facingNode);
 		}
 
 		var newInfo = new MiniYaml("");
-		newInfo.Nodes.Add(new("Length", $"{length}"));
-		newInfo.Nodes.Add(new("Facings", $"{-facings}"));
+		newInfo.Nodes.Add(new MiniYamlNode("Length", $"{length}"));
+		newInfo.Nodes.Add(new MiniYamlNode("Facings", $"{-facings}"));
 		newInfo.Nodes.Add(combineNode);
 
 		return newInfo;

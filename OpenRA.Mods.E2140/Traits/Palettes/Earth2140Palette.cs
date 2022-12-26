@@ -65,6 +65,6 @@ public class Earth2140Palette : ILoadsPalettes
 			colors[i] = (uint)((0xff << 24) | (gray << 16) | (gray << 8) | gray);
 		}
 
-		worldRenderer.AddPalette(this.info.Name, new(colors), this.info.AllowModifiers);
+		worldRenderer.AddPalette(this.info.Name, new ImmutablePalette(colors), this.info.AllowModifiers);
 	}
 }

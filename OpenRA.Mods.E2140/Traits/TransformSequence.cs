@@ -44,7 +44,6 @@ public class TransformSequence : INotifyCreated, ITick
 	private int token = Actor.InvalidConditionToken;
 	private int remainingTime = -1;
 	private AnimationWithOffset? animationCover;
-	private AnimationWithOffset? animationDeployMask;
 
 	public TransformSequence(TransformSequenceInfo info)
 	{
@@ -60,8 +59,11 @@ public class TransformSequence : INotifyCreated, ITick
 	{
 		this.token = self.GrantCondition(this.info.Condition);
 
-		var animationDeploy = new AnimationWithOffset(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+		var animationDeploy = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
 		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationDeploy));
+
+		var animationDeployMask = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationDeployMask));
 
 		animationDeploy.Animation.PlayThen(
 			"deploy",
@@ -69,18 +71,21 @@ public class TransformSequence : INotifyCreated, ITick
 			{
 				animationDeploy.Animation.PlayRepeating("deployed");
 
-				this.animationCover = new(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+				this.animationCover = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
 				self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationCover));
 
 				this.animationCover.Animation.PlayThen(
 					"cover",
 					() =>
 					{
-						self.World.AddFrameEndTask(_ =>
-						{
-							this.renderSprites?.Remove(animationDeploy);
-							this.renderSprites?.Remove(this.animationDeployMask);
-						});
+						self.World.AddFrameEndTask(
+							_ =>
+							{
+								this.renderSprites?.Remove(animationDeploy);
+								this.renderSprites?.Remove(animationDeployMask);
+							}
+						);
+
 						this.animationCover.Animation.PlayRepeating("covered");
 						this.remainingTime = this.info.ConstructionTime;
 					}
@@ -88,16 +93,7 @@ public class TransformSequence : INotifyCreated, ITick
 			}
 		);
 
-		this.animationDeployMask = new AnimationWithOffset(new(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationDeployMask));
-
-		this.animationDeployMask.Animation.PlayThen(
-			"deploy_mask",
-			() =>
-			{
-				this.animationDeployMask.Animation.PlayRepeating("deployed_mask");
-			}
-		);
+		animationDeployMask.Animation.PlayThen("deploy_mask", () => animationDeployMask.Animation.PlayRepeating("deployed_mask"));
 	}
 
 	void ITick.Tick(Actor self)

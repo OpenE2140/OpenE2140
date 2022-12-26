@@ -53,7 +53,7 @@ public class MixFrame
 				var heightCopy = stream.ReadInt32();
 
 				if (this.Width != widthCopy || this.Height != heightCopy)
-					throw new("Broken mix file!");
+					throw new Exception("Broken mix file!");
 
 				var dataSize = stream.ReadInt32();
 				var numScanlines = stream.ReadInt32();
@@ -64,7 +64,7 @@ public class MixFrame
 				var compressedImageDataOffset = stream.ReadInt32();
 
 				if (scanLinesOffset != stream.Position - 6)
-					throw new("Broken mix file!");
+					throw new Exception("Broken mix file!");
 
 				var scanlines = new int[numScanlines];
 
@@ -72,7 +72,7 @@ public class MixFrame
 					scanlines[i] = stream.ReadUInt16();
 
 				if (dataOffsetsOffset != stream.Position - 6)
-					throw new("Broken mix file!");
+					throw new Exception("Broken mix file!");
 
 				var dataOffsets = new int[numScanlines];
 
@@ -80,7 +80,7 @@ public class MixFrame
 					dataOffsets[i] = stream.ReadUInt16();
 
 				if (patternsOffset != stream.Position - 6)
-					throw new("Broken mix file!");
+					throw new Exception("Broken mix file!");
 
 				var patterns = stream.ReadBytes(numPatterns);
 				var data = new SegmentStream(stream, compressedImageDataOffset + 6, dataSize);

@@ -21,7 +21,7 @@ namespace OpenRA.Mods.E2140.FileSystem;
 [UsedImplicitly]
 public class WdLoader : IPackageLoader
 {
-	public bool TryParsePackage(Stream s, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
+	public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
 	{
 		if (!filename.EndsWith(".wd", StringComparison.OrdinalIgnoreCase))
 		{
@@ -30,7 +30,7 @@ public class WdLoader : IPackageLoader
 			return false;
 		}
 
-		package = new Wd(s, filename);
+		package = new Wd(stream, filename);
 
 		return true;
 	}
