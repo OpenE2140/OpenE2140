@@ -12,7 +12,11 @@ Packages:
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
-	~game|MIX.WD: mix
+	~game|menu.wd: menu
+	~game|mix.wd: mix
+	~game|piro.wd: piro
+	~game|smp0.wd: smp0
+	~game|smp1.wd: smp1
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS
