@@ -8,3 +8,10 @@
 		BaseActor: ucs_vehicles_mobileproductioncenter
 		SupportActors: ucs_vehicles_tigerassault
 		Factions: ucs
+
+^ucs_vehicles_walker:
+	Inherits: ^CoreVehicle
+	Mobile:
+		Locomotor: vehicleFastSand
+		AlwaysTurnInPlace: true
+

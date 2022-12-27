@@ -1,5 +1,5 @@
 ucs_vehicles_tigerassault:
-	Inherits@1: ^CoreVehicle
+	Inherits@1: ^ucs_vehicles_walker
 	Inherits@2: ^CoreTurret
 	Tooltip:
 		Name: Tiger Assault
@@ -10,7 +10,6 @@ ucs_vehicles_tigerassault:
 	Mobile:
 		Speed: 70
 		TurnSpeed: 32
-		AlwaysTurnInPlace: true
 	RevealsShroud:
 		Range: 6c0
 	Turreted:
