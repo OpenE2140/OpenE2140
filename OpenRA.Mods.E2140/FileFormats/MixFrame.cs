@@ -34,6 +34,12 @@ public class MixFrame
 
 		switch (type)
 		{
+			case 1:
+				for (var i = 0; i < this.Pixels.Length;)
+					i += stream.Read(this.Pixels, i, this.Pixels.Length - i);
+
+				break;
+
 			case 2:
 				this.Is32Bpp = true;
 
