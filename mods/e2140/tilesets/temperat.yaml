@@ -27,6 +27,7 @@ Templates:
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
+		Frames: 0, 1, 2, 3, 4
 		Tiles:
 			0: Clear
 			1: Clear
@@ -46,6 +47,7 @@ Templates:
 			2: Rock
 			3: Rock
 			4: Rock
+			5: Rock
 
 	# Small (passable) rocks
 	Template@10:
