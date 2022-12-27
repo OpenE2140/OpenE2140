@@ -19,6 +19,11 @@ Terrain:
 		Type: Road
 		TargetTypes: Ground
 		Color: 5E430D
+	TerrainType@Water:
+		Type: Water
+		TargetTypes: Water
+		Color: 5C74A4
+		RestrictPlayerColor: true
 
 Templates:
 	Template@255:
@@ -382,6 +387,33 @@ Templates:
 		Tiles:
 			0: Sand
 	
+	
+	# Water tiles
+	
+	Template@100:
+		Id: 100
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 189, 190, 191, 192
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+	Template@101:
+		Id: 101
+		Images: SPRT3.MIX
+		Size: 2,2
+		PickAny: True
+		Categories: Terrain
+		Frames: 191, 190, 192, 189
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
 	
 	
 	
