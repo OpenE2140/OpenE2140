@@ -17,9 +17,9 @@ namespace OpenRA.Mods.E2140.FileFormats;
 
 public class MixFrame
 {
-	public readonly int Width;
-	public readonly int Height;
-	public readonly int Palette;
+	public readonly ushort Width;
+	public readonly ushort Height;
+	public readonly byte Palette;
 	public readonly byte[] Pixels;
 	public readonly bool Is32Bpp;
 

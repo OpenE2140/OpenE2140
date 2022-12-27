@@ -33,7 +33,7 @@ public class MixSpriteFrame : ISpriteFrame
 		this.Type = type;
 		this.Size = size;
 		this.FrameSize = size;
-		this.Offset = new int2(0, 0);
+		this.Offset = new float2(0, 0);
 		this.Data = pixels;
 	}
 }
