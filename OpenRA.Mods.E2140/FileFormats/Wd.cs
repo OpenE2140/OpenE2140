@@ -18,11 +18,7 @@ namespace OpenRA.Mods.E2140.FileFormats;
 
 public class Wd : IReadOnlyPackage
 {
-	private class WdEntry
-	{
-		public int Offset;
-		public int Length;
-	}
+	private record WdEntry(int Offset, int Length);
 
 	public string Name { get; }
 	public IEnumerable<string> Contents => this.index.Keys;
@@ -38,22 +34,34 @@ public class Wd : IReadOnlyPackage
 		var numFiles = stream.ReadUInt32();
 
 		if (numFiles == 0)
-			return; // TODO implement sound container support
-
-		for (var i = 0; i < numFiles; i++)
 		{
-			var entry = new WdEntry { Offset = stream.ReadInt32(), Length = stream.ReadInt32() };
+			var soundOffsets = new List<int> { (int)this.stream.Length };
 
-			var unk1 = stream.ReadUInt32(); // 0x00
-			var unk2 = stream.ReadUInt32(); // 0x00
-			var unk3 = stream.ReadUInt32(); // TODO has a value in MIX.WD
+			for (var i = 0; i < 255; i++)
+				soundOffsets.Add(this.stream.ReadInt32());
 
-			var filePathOffset = stream.ReadUInt32();
+			soundOffsets = soundOffsets.Distinct().Where(i => i != 0).OrderBy(i => i).ToList();
 
-			var originalPosition = stream.Position;
-			stream.Position = numFiles * 24 + 8 + filePathOffset;
-			this.index.Add(stream.ReadASCIIZ(), entry);
-			stream.Position = originalPosition;
+			for (var i = 0; i < soundOffsets.Count - 1; i++)
+				this.index.Add($"{i}.smp", new WdEntry(soundOffsets[i], soundOffsets[i + 1] - soundOffsets[i]));
+		}
+		else
+		{
+			for (var i = 0; i < numFiles; i++)
+			{
+				var entry = new WdEntry(stream.ReadInt32(), stream.ReadInt32());
+
+				var unk1 = stream.ReadUInt32(); // 0x00
+				var unk2 = stream.ReadUInt32(); // 0x00
+				var unk3 = stream.ReadUInt32(); // TODO has a value in MIX.WD
+
+				var filePathOffset = stream.ReadUInt32();
+
+				var originalPosition = stream.Position;
+				stream.Position = numFiles * 24 + 8 + filePathOffset;
+				this.index.Add(stream.ReadASCIIZ(), entry);
+				stream.Position = originalPosition;
+			}
 		}
 	}
 

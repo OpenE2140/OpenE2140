@@ -50,7 +50,7 @@ public class WithMovePalette : IRenderModifier
 			renderable =>
 			{
 				if (renderable is IPalettedRenderable { Palette: { } } palettedRenderable
-					&& this.move.CurrentMovementTypes.HasFlag(MovementType.Horizontal) // TODO != None?
+					&& this.move.CurrentMovementTypes.HasFlag(MovementType.Horizontal)
 					&& palettedRenderable.Palette.Name == this.renderSpritesInfo.PlayerPalette + self.Owner.InternalName)
 					return palettedRenderable.WithPalette(worldRenderer.Palette(this.info.Palette + self.Owner.InternalName));
 

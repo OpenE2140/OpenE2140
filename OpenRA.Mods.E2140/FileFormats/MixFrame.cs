@@ -30,17 +30,15 @@ public class MixFrame
 		var type = stream.ReadUInt8();
 		this.Palette = stream.ReadUInt8();
 
-		this.Pixels = new byte[this.Width * this.Height * (type == 2 ? 4 : 1)];
-
 		switch (type)
 		{
 			case 1:
-				for (var i = 0; i < this.Pixels.Length;)
-					i += stream.Read(this.Pixels, i, this.Pixels.Length - i);
+				this.Pixels = stream.ReadBytes(this.Width * this.Height);
 
 				break;
 
 			case 2:
+				this.Pixels = new byte[this.Width * this.Height * 4];
 				this.Is32Bpp = true;
 
 				for (var i = 0; i < this.Pixels.Length; i += 4)
@@ -55,6 +53,8 @@ public class MixFrame
 				break;
 
 			case 9:
+				this.Pixels = new byte[this.Width * this.Height];
+
 				var widthCopy = stream.ReadInt32();
 				var heightCopy = stream.ReadInt32();
 
@@ -117,9 +117,7 @@ public class MixFrame
 				break;
 
 			default:
-				Log.Write("debug", "Unknown MixSprite type " + type);
-
-				break;
+				throw new Exception("Unknown MixSprite type " + type);
 		}
 	}
 }

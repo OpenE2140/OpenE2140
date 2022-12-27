@@ -24,10 +24,6 @@ public class DatImage
 		this.Width = stream.ReadUInt16();
 		this.Height = stream.ReadUInt16();
 		var unk = stream.ReadUInt16(); // TODO whas is this?!
-
-		this.Pixels = new byte[this.Width * this.Height];
-
-		for (var i = 0; i < this.Pixels.Length;)
-			i += stream.Read(this.Pixels, i, this.Pixels.Length - i);
+		this.Pixels = stream.ReadBytes(this.Width * this.Height);
 	}
 }
