@@ -43,6 +43,35 @@ Templates:
 			3: Rock
 			4: Rock
 
+	# Small (passable) rocks
+	Template@10:
+		Id: 10
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 223, 224, 225, 226, 227, 228
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+			5: Clear
+	
+	
+	Template@50:
+		Id: 50
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 193, 194, 195, 196
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
 	Template@150:
 		Id: 150
 		Images: SPRT3.MIX
