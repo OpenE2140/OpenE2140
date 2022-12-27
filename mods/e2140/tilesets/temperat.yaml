@@ -78,6 +78,17 @@ Templates:
 			2: Rock
 			3: Rock
 		
+	Template@51:
+		Id: 51
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 205, 206, 207, 208
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
 
 	# Sand tiles
 	Template@60:
