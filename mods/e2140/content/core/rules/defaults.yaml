@@ -206,6 +206,7 @@
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 100
+			Sand: 100
 
 # Base for all vehicles
 ^CoreVehicle:
@@ -237,6 +238,13 @@
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
+			Sand: 50
+	Locomotor@vehicleFastSand:
+		Name: vehicleFastSand
+		TerrainSpeeds:
+			Clear: 100
+			Sand: 100
+
 
 # Base for all aircrafts
 ^CoreAircraft:
