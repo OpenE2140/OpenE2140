@@ -18,3 +18,5 @@ ucs_vehicles_tigerassault:
 		Offset: 0,0,200
 	Armament:
 		Weapon: ucs_vehicles_tigerassault
+	WithMoveSound:
+		Sound: 28.smp

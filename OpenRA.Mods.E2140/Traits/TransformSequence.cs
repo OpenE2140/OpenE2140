@@ -19,6 +19,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.E2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[Desc("The MCU to building transform sequence.")]
 public class TransformSequenceInfo : TraitInfo
 {
 	[Desc("Image used for this decoration.")]

@@ -18,6 +18,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.E2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[Desc("Add to MCU to trigger the TransformSequence trait.")]
 public class TriggerTransformSequenceInfo : TraitInfo
 {
 	public override object Create(ActorInitializer init)
