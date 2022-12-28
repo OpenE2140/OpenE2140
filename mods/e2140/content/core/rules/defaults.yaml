@@ -207,6 +207,7 @@
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 100
+			Road: 100
 
 # Base for all vehicles
 ^CoreVehicle:
@@ -239,11 +240,13 @@
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 50
+			Road: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 100
+			Road: 100
 
 
 # Base for all aircrafts
