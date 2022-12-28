@@ -217,6 +217,7 @@
 	# Vehicles can kill infantry by moving over them and set movement modifiers.
 	Mobile:
 		Locomotor: vehicle
+		BlockedCursor: generic-blocked
 	# Actor can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground
