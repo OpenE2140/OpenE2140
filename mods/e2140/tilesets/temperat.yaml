@@ -71,8 +71,8 @@ Templates:
 			5: Clear
 	
 	
-	Template@50:
-		Id: 50
+	Template@30:
+		Id: 30
 		Images: SPRT3.MIX
 		Size: 2,2
 		Categories: Terrain
@@ -83,8 +83,8 @@ Templates:
 			2: Rock
 			3: Rock
 		
-	Template@51:
-		Id: 51
+	Template@31:
+		Id: 31
 		Images: SPRT3.MIX
 		Size: 2,2
 		Categories: Terrain
