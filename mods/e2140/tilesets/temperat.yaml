@@ -1,7 +1,7 @@
 General:
 	Name: Temperate
 	Id: TEMPERAT
-	EditorTemplateOrder: Terrain
+	EditorTemplateOrder: Terrain, Cliffs
 	Palette:
 
 Terrain:
@@ -594,3 +594,376 @@ Templates:
 		Frames: 251
 		Tiles:
 			0: Road
+
+	# Cliff tiles
+	Template@300:
+		Id: 300
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 5, 6
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@301:
+		Id: 301
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 7, 8
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@302:
+		Id: 302
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 9, 10
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@303:
+		Id: 303
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 11, 12
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@304:
+		Id: 304
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 14, 15, 13
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@305:
+		Id: 305
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 15, 18, 16, 17
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@306:
+		Id: 306
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 20, 21, 19
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@307:
+		Id: 307
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 0, 24, 22, 23
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@308:
+		Id: 308
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 27, 26, 0, 25
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@309:
+		Id: 309
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 30, 0, 29, 28
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@310:
+		Id: 310
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 33, 32, 0, 31
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@311:
+		Id: 311
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 36, 0, 35, 34
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@312:
+		Id: 312
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 37, 38
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@313:
+		Id: 313
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 39, 40
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@314:
+		Id: 314
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 42, 41
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@315:
+		Id: 315
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 44, 43
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@316:
+		Id: 316
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 45, 46
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@317:
+		Id: 317
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 47, 48
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@318:
+		Id: 318
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 49, 50
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@319:
+		Id: 319
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 51, 52
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@320:
+		Id: 320
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 53, 54
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@321:
+		Id: 321
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 55, 56
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@322:
+		Id: 322
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 58, 57
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@323:
+		Id: 323
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 60, 59
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@324:
+		Id: 324
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 62, 61
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@325:
+		Id: 325
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 64, 63
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@326:
+		Id: 326
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 66, 65
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@327:
+		Id: 327
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 68, 67
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@328:
+		Id: 328
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Cliffs
+		Frames: 69, 70, 71, 72, 73, 74
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
+	Template@329:
+		Id: 329
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 75, 76
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@330:
+		Id: 330
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 78, 77
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@331:
+		Id: 331
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 80, 79
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@332:
+		Id: 332
+		Images: SPRT3.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 81, 82
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@333:
+		Id: 333
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 84, 83, 86, 85
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@334:
+		Id: 334
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 87, 88, 89, 90
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@335:
+		Id: 335
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 91
+		Tiles:
+			0: Rock
+	Template@336:
+		Id: 336
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 92
+		Tiles:
+			0: Rock
+	Template@337:
+		Id: 337
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 94, 93, 96, 95
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@338:
+		Id: 338
+		Images: SPRT3.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 97, 98, 99, 100
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
