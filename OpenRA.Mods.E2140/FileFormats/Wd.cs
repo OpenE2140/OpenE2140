@@ -35,15 +35,25 @@ public class Wd : IReadOnlyPackage
 
 		if (numFiles == 0)
 		{
-			var soundOffsets = new List<int> { (int)this.stream.Length };
+			this.stream.Position = 0;
 
-			for (var i = 0; i < 255; i++)
-				soundOffsets.Add(this.stream.ReadInt32());
+			var offsets = new int[256];
 
-			soundOffsets = soundOffsets.Distinct().Where(i => i != 0).OrderBy(i => i).ToList();
+			for (var i = 0; i < 256; i++)
+				offsets[i] = this.stream.ReadInt32();
 
-			for (var i = 0; i < soundOffsets.Count - 1; i++)
-				this.index.Add($"{i}.smp", new WdEntry(soundOffsets[i], soundOffsets[i + 1] - soundOffsets[i]));
+			for (var i = 0; i < 256; i++)
+			{
+				if (offsets[i] == 0)
+					continue;
+
+				var nextFile = i < 255 ? offsets[i + 1] : 0;
+
+				if (nextFile == 0)
+					nextFile = (int)this.stream.Length;
+
+				this.index.Add($"{i}.smp", new WdEntry(offsets[i], nextFile - offsets[i]));
+			}
 		}
 		else
 		{
