@@ -21,7 +21,8 @@ namespace OpenRA.Mods.E2140.Traits;
 [Desc("Makes an actor play a sound while moving.")]
 public class WithMoveSoundInfo : TraitInfo
 {
-	public readonly string? Sound;
+	[FieldLoader.RequireAttribute]
+	public readonly string Sound = "";
 
 	public override object Create(ActorInitializer init)
 	{

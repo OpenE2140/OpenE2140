@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits;
+namespace OpenRA.Mods.E2140.Traits.Transforming;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Add to MCU to trigger the TransformSequence trait.")]

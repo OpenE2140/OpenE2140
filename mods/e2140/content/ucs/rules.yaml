@@ -9,7 +9,7 @@
 		SupportActors: ucs_vehicles_tigerassault
 		Factions: ucs
 
-^ucs_vehicles_walker:
+^UcsWalker:
 	Inherits: ^CoreVehicle
 	Mobile:
 		Locomotor: vehicleFastSand

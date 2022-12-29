@@ -16,14 +16,15 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits;
+namespace OpenRA.Mods.E2140.Traits.Transforming;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("The MCU to building transform sequence.")]
-public class TransformSequenceInfo : TraitInfo
+public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 {
+	[FieldLoader.RequireAttribute]
 	[Desc("Image used for this decoration.")]
-	public readonly string? Image;
+	public readonly string Image = "";
 
 	[Desc("Grant this condition while the actor is playing the sequence.")]
 	public readonly string Condition = "Transforming";
