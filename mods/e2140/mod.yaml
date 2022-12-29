@@ -30,7 +30,7 @@ Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
 	^BinDir|OpenRA.Mods.E2140.dll
 
-SoundFormats: Wav, Smp
+SoundFormats: Wav, Ogg, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite
 TerrainFormat: DefaultTerrain
 VideoFormats:
@@ -95,6 +95,9 @@ ModContent:
 			TestFiles: ^SupportDir|Content/e2140/mix.wd
 			Sources: gog, steam
 			Required: true
+		music: Base Game Music
+			TestFiles: ^SupportDir|Content/e2140/music/1.ogg
+			Sources: gog, steam
 	Sources:
 		e2140|installer/gog.yaml
 		e2140|installer/steam.yaml

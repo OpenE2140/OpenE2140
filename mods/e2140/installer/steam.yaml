@@ -10,3 +10,12 @@ steam: Earth 2140 (Steam, English)
 			^SupportDir|Content/e2140/piro.wd: classic/PIRO.WD
 			^SupportDir|Content/e2140/smp0.wd: classic/smp0.WD
 			^SupportDir|Content/e2140/smp1.wd: classic/smp1.WD
+			^SupportDir|Content/e2140/music/1.ogg: classic/music/1.ogg
+			^SupportDir|Content/e2140/music/2.ogg: classic/music/2.ogg
+			^SupportDir|Content/e2140/music/3.ogg: classic/music/3.ogg
+			^SupportDir|Content/e2140/music/4.ogg: classic/music/4.ogg
+			^SupportDir|Content/e2140/music/5.ogg: classic/music/5.ogg
+			^SupportDir|Content/e2140/music/6.ogg: classic/music/6.ogg
+			^SupportDir|Content/e2140/music/7.ogg: classic/music/7.ogg
+			^SupportDir|Content/e2140/music/8.ogg: classic/music/8.ogg
+			^SupportDir|Content/e2140/music/9.ogg: classic/music/9.ogg
