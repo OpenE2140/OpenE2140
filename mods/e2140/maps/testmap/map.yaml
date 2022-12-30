@@ -39,35 +39,44 @@ Players:
 
 Actors:
 	Actor0: mpspawn
+		Location: 20,9
 		Owner: Multi0
-		Location: 16,16
 	Actor1: mpspawn
+		Location: 22,17
 		Owner: Multi1
-		Location: 24,16
-	Actor3: neutral_tree02
+	Actor3: neutral_tree01
 		Owner: Neutral
-		Location: 19,16
-	Actor4: neutral_tree03
+		Location: 4,9
+	Actor4: neutral_tree04
 		Owner: Neutral
-		Location: 18,18
-	Actor5: neutral_tree04
+		Location: 12,5
+	Actor5: neutral_tree03
 		Owner: Neutral
-		Location: 19,19
-	Actor6: neutral_tree05
+		Location: 18,24
+	Actor6: neutral_tree04
 		Owner: Neutral
-		Location: 16,18
+		Location: 13,23
 	Actor7: neutral_tree06
 		Owner: Neutral
-		Location: 14,16
-	Actor8: neutral_tree03
+		Location: 15,21
+	Actor8: neutral_tree05
 		Owner: Neutral
-		Location: 18,15
-	Actor9: neutral_tree04
+		Location: 16,22
+	Actor9: neutral_tree01
 		Owner: Neutral
-		Location: 18,16
-	Actor12: neutral_tree06
+		Location: 28,6
+	Actor10: neutral_tree01
 		Owner: Neutral
-		Location: 16,20
-	Actor13: neutral_tree06
+		Location: 29,8
+	Actor11: neutral_tree02
 		Owner: Neutral
-		Location: 14,18
+		Location: 24,7
+	Actor12: neutral_tree05
+		Owner: Neutral
+		Location: 31,24
+	Actor13: neutral_tree04
+		Owner: Neutral
+		Location: 2,31
+	Actor14: neutral_tree06
+		Owner: Neutral
+		Location: 2,18
