@@ -26,6 +26,7 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
+		Enemies: Multi0, Multi1
 	PlayerReference@Multi0:
 		Name: Multi0
 		Playable: True
@@ -39,7 +40,7 @@ Players:
 
 Actors:
 	Actor0: mpspawn
-		Location: 20,9
+		Location: 24,6
 		Owner: Multi0
 	Actor1: mpspawn
 		Location: 22,17
@@ -62,15 +63,9 @@ Actors:
 	Actor8: neutral_tree05
 		Owner: Neutral
 		Location: 16,22
-	Actor9: neutral_tree01
-		Owner: Neutral
-		Location: 28,6
 	Actor10: neutral_tree01
 		Owner: Neutral
 		Location: 29,8
-	Actor11: neutral_tree02
-		Owner: Neutral
-		Location: 24,7
 	Actor12: neutral_tree05
 		Owner: Neutral
 		Location: 31,24
@@ -80,3 +75,6 @@ Actors:
 	Actor14: neutral_tree06
 		Owner: Neutral
 		Location: 2,18
+	Actor16: neutral_tree04
+		Owner: Neutral
+		Location: 17,11
