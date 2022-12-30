@@ -1,10 +1,14 @@
 General:
 	Name: Temperate
 	Id: TEMPERAT
-	EditorTemplateOrder: Terrain, Cliffs
+	EditorTemplateOrder: Terrain, Cliffs, Shore
 	Palette:
 
 Terrain:
+	TerrainType@Shore:
+		Type: Shore
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Clear:
 		Type: Clear
 	TerrainType@Sand:
@@ -82,7 +86,7 @@ Templates:
 			1: Rock
 			2: Rock
 			3: Rock
-		
+	
 	Template@31:
 		Id: 31
 		Images: SPRT3.MIX
@@ -94,7 +98,7 @@ Templates:
 			1: Rock
 			2: Rock
 			3: Rock
-
+		
 	# Sand tiles
 	Template@60:
 		Id: 60
@@ -415,14 +419,257 @@ Templates:
 			2: Water
 			3: Water
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	# Shore tiles
+	Template@105:
+		Id: 105
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Shore
+		Frames: 133
+		Tiles:
+			0: Clear
+	Template@106:
+		Id: 106
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Shore
+		Frames: 134
+		Tiles:
+			0: Clear
+	Template@107:
+		Id: 107
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 135, 136, 137, 138
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@108:
+		Id: 108
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 139, 140, 141, 142
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@109:
+		Id: 109
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 175, 176, 182
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@110:
+		Id: 110
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 177, 178, 181
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@111:
+		Id: 111
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 179, 186
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@112:
+		Id: 112
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 180, 185
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@113:
+		Id: 113
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 184, 187
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@114:
+		Id: 114
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 183, 188
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@115:
+		Id: 115
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 143, 144
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@116:
+		Id: 116
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 145, 146
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@117
+		Id: 117
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 147, 148
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@118:
+		Id: 118
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 149, 150
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@119:
+		Id: 119
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 151, 152
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@120:
+		Id: 120
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 153, 154
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@121:
+		Id: 121
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 155, 156
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@122:
+		Id: 122
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 157, 158
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@123:
+		Id: 123
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 159, 160
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@124:
+		Id: 124
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 161, 162
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@125:
+		Id: 125
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 163, 164
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@126:
+		Id: 126
+		Images: SPRT3.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 165, 166
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@127:
+		Id: 127
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 167, 173
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@128:
+		Id: 128
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 168, 171
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@129:
+		Id: 129
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 169, 172
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@130:
+		Id: 130
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 170, 174
+		Tiles:
+			0: Shore
+			1: Shore
 	
 	# Road tiles
 	Template@200:
