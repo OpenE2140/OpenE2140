@@ -13,6 +13,10 @@ shared_buildings_powerplant:
 			BottomRight: 1536, 1024
 	Selectable:
 		Bounds: 3072, 2048, 0, 0
+	ProvidesPrerequisite:
+		Prerequisite: anypower
+	Power:
+		Amount: 2000
 
 shared_mcu_powerplant:
 	Inherits@1: ^SharedVehicleMcu
@@ -22,3 +26,8 @@ shared_mcu_powerplant:
 		IntoActor: shared_buildings_powerplant
 	Valued:
 		Cost: 1000
+	Buildable:
+		Icon: powerplant_icon
+		Queue: Building.UCS #Building.ED
+		BuildDurationModifier: 4
+		Description: Generates power
