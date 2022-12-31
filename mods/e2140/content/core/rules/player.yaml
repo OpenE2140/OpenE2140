@@ -24,6 +24,8 @@ Player:
 		ArrowSequence:
 		CircleSequence: x
 		Duration: 250
+	# Player always has access to radar
+	ProvidesRadar:
 	# Manage power for buildings
 	PowerManager:
 	# Tech

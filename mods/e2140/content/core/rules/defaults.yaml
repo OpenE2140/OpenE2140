@@ -122,6 +122,7 @@
 	TransformSequence:
 		Image: core_buildingsequence_large
 		Condition: Transforming
+		ConstructionTime: 30
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 	WithSpriteBody@mask:

@@ -1,6 +1,73 @@
 Container@PLAYER_WIDGETS:
-	Logic: MenuButtonsChromeLogic
 	Children:
-		LogicTicker@SIDEBAR_TICKER:
-		MenuButton@OPTIONS_BUTTON:
-			Key: escape
+		Container@OPTIONS:
+			Logic: MenuButtonsChromeLogic
+			Children:
+				LogicTicker@SIDEBAR_TICKER:
+				MenuButton@OPTIONS_BUTTON:
+					Key: escape
+		Image@SIDEBAR_BACKGROUND:
+			X: WINDOW_RIGHT - WIDTH
+			Y: 5
+			Width: 156
+			Height: 480
+			ImageCollection: sidebar-ucs
+			ImageName: background-sidebar
+			ClickThrough: false
+			Children:
+				Container@RADAR:
+					Logic: IngameRadarDisplayLogic
+					X: 9
+					Y: 5
+					Children:
+						LogicTicker@RADAR_TICKER:
+						Radar@RADAR_MINIMAP:
+							WorldInteractionController: INTERACTION_CONTROLLER
+							Width: 126
+							Height: 126
+				Container@PRODUCTION_TYPES:
+					X: 27
+					Y: 137
+					Width: 122
+					Height: 26
+					Children:
+						ProductionTypeButton@Building:
+							X: 7
+							Y: 5
+							Width: 32
+							Height: 21
+							Background: sidebar-production-tab
+							TooltipText: Buildings
+							ProductionGroup: Building
+							Key: ProductionTypeBuilding
+							Children:
+								Image@ICON:
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
+				Container@PRODUCTION_BACKGROUND:
+					X: 13
+					Y: 252
+					Children:
+						Background@ICON_TEMPLATE:
+							Background: production-palette-button
+							Width: 59
+							Height: 41
+				ProductionPalette@PRODUCTION_PALETTE:
+					X: 13
+					Y: 252
+					Width: 200
+					IconSize: 59, 40
+					IconMargin: 0, 0
+					ReadyText: Ready
+					HoldText: On Hold
+					ClockPalette: chrome
+					NotBuildablePalette: chrome
+				ProductionTabs@PRODUCTION_TABS:
+					Logic: ProductionTabsLogic
+					PaletteWidget: PRODUCTION_PALETTE
+					TypesContainer: PRODUCTION_TYPES
+					BackgroundContainer: PRODUCTION_BACKGROUND
+					X: 14
+					Y: 225
+					Width: 117

@@ -7,3 +7,7 @@ shroud:
 		Start: 1
 	fogfull: content/core/assets/fog.png
 		Start: 1
+
+
+clock:
+	idle: chrome/assets/clock.png

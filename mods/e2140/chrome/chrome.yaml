@@ -1,3 +1,6 @@
+^Sidebar:
+	Image: chrome/assets/ucs_sidebar.png
+	
 ^Dialog:
 	Image: chrome/assets/dialog.png
 
@@ -379,3 +382,47 @@ dropdown-separators:
 
 separator:
 	Inherits: button
+
+
+production-icons:
+	Inherits: ^Glyphs
+	Regions:
+		building: 0, 68, 16, 16
+		building-disabled: 0, 85, 16, 16
+		building-alert: 0, 102, 16, 16
+		defense: 17, 68, 16, 16
+		defense-disabled: 17, 85, 16, 16
+		defense-alert: 17, 102, 16, 16
+		infantry: 34, 68, 16, 16
+		infantry-disabled: 34, 85, 16, 16
+		infantry-alert: 34, 102, 16, 16
+		vehicle: 51, 68, 16, 16
+		vehicle-disabled: 51, 85, 16, 16
+		vehicle-alert: 51, 102, 16, 16
+		aircraft: 68, 68, 16, 16
+		aircraft-disabled: 68, 85, 16, 16
+		aircraft-alert: 68, 102, 16, 16
+		ship: 187, 68, 16, 16
+		ship-disabled: 187, 85, 16, 16
+		ship-alert: 187, 102, 16, 16
+
+
+sidebar-ucs:
+	Inherits: ^Sidebar
+	Regions:
+		background-sidebar: 0, 0, 156, 480
+
+sidebar-production-tab:
+	Regions:
+		production-tab: 33, 142, 24, 21
+
+production-palette-button:
+	Inherits: ^Sidebar
+	PanelRegion: 159, 1, 4, 4, 51, 33, 4, 4
+
+production-palette-button-ucs:
+	Inherits: production-palette-button
+
+production-palette-button-pressed:
+	Inherits: ^Sidebar
+	PanelRegion: 159, 46, 4, 4, 51, 33, 4, 4

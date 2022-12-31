@@ -33,3 +33,10 @@
 		G: 255
 		B: 255
 		A: 64
+	
+	PaletteFromRGBA@chrome: # just to satisfy widgets, can we remove this?
+		Name: chrome
+		R: 255
+		G: 255
+		B: 255
+		A: 255
