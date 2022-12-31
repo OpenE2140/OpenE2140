@@ -1,16 +1,11 @@
-ucs_vehicles_mobileproductioncenter:
+^SharedVehicleMcu:
 	Inherits@1: ^CoreVehicle
 	MustBeDestroyed:
 		RequiredForShortGame: true
-	Tooltip:
-		Name: Mobile Production Center
 	Transforms:
 		Offset: -1, -1
-		IntoActor: ucs_buildings_productioncenter
 		DeployBlockedCursor: generic-blocked
 		Facing: 512
-	Valued:
-		Cost: 2500
 	Health:
 		HP: 1000
 	Mobile:

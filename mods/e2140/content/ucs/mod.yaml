@@ -8,14 +8,16 @@ Notifications:
 	e2140|content/ucs/notifications.yaml
 
 Rules:
+	e2140|content/shared/vehicles/mcu/rules.yaml
+	e2140|content/shared/buildings/powerplant/rules.yaml
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/buildings/productioncenter/rules.yaml
-	e2140|content/ucs/vehicles/mobileproductioncenter/rules.yaml
 	e2140|content/ucs/vehicles/tigerassault/rules.yaml
 
 Sequences:
+	e2140|content/shared/vehicles/mcu/sequences.yaml
+	e2140|content/shared/buildings/powerplant/sequences.yaml
 	e2140|content/ucs/buildings/productioncenter/sequences.yaml
-	e2140|content/ucs/vehicles/mobileproductioncenter/sequences.yaml
 	e2140|content/ucs/vehicles/tigerassault/sequences.yaml
 
 Voices:

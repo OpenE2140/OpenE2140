@@ -1,7 +1,7 @@
-ucs_buildings_productioncenter:
+shared_buildings_powerplant:
 	Inherits: ^CoreBuilding
 	Tooltip:
-		Name: Production Center
+		Name: Power Plant
 	Health:
 		HP: 1000
 	Building:
@@ -14,11 +14,11 @@ ucs_buildings_productioncenter:
 	Selectable:
 		Bounds: 3072, 2048, 0, 0
 
-ucs_mcu_productioncenter:
+shared_mcu_powerplant:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
-		Name: Mobile Production Center
+		Name: Mobile Power Plant
 	Transforms:
-		IntoActor: ucs_buildings_productioncenter
+		IntoActor: shared_buildings_powerplant
 	Valued:
-		Cost: 2500
+		Cost: 1000

@@ -1,16 +1,16 @@
-ucs_buildings_productioncenter:
+shared_buildings_powerplant:
 	idle: SPRB0.MIX
 		EarthFormat: true
-		Start: 122
+		Start: 0
 	idle_mask: SPRB0.MIX
 		EarthFormat: true
-		Start: 123
+		Start: 1
 	idle_damaged: SPRB0.MIX
 		EarthFormat: true
-		Start: 124
+		Start: 2
 	idle_damaged_mask: SPRB0.MIX
 		EarthFormat: true
-		Start: 125
+		Start: 3
 
-ucs_mcu_productioncenter:
+shared_mcu_powerplant:
 	Inherits: ^SharedVehiclesMcu
