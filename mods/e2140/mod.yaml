@@ -12,6 +12,7 @@ Packages:
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
+	~game|graph.wd: graph
 	~game|menu.wd: menu
 	~game|mix.wd: mix
 	~game|piro.wd: piro
