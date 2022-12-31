@@ -13,6 +13,20 @@ ucs_buildings_productioncenter:
 			BottomRight: 1536, 1024
 	Selectable:
 		Bounds: 3072, 2048, 0, 0
+	
+	Production:
+		Produces: Building.UCS
+	ProductionQueue:
+		Type: Building.UCS
+		DisplayOrder: 0
+		Factions: ucs
+		Group: Building
+	ProductionBar@BuildingUCS:
+		ProductionType: Building.UCS
+	ProvidesPrerequisite@buildingname:
+	Exit@1:
+		SpawnOffset: 512,1024,0
+		ExitCell: 2,3
 
 ucs_mcu_productioncenter:
 	Inherits@1: ^SharedVehicleMcu
@@ -22,3 +36,8 @@ ucs_mcu_productioncenter:
 		IntoActor: ucs_buildings_productioncenter
 	Valued:
 		Cost: 2500
+	Buildable:
+		#BuildPaletteOrder: 30
+		Icon: productioncenter_icon
+		Queue: Building.UCS
+		BuildDurationModifier: 1

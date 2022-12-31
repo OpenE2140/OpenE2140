@@ -14,3 +14,9 @@ ucs_buildings_productioncenter:
 
 ucs_mcu_productioncenter:
 	Inherits: ^SharedVehiclesMcu
+		
+	# HACK
+	productioncenter_icon: SPRI1.MIX
+		Start: 166
+		Length: 1
+

@@ -4,6 +4,8 @@
 	AlwaysVisible:
 	# Enable shroud and fog.
 	Shroud:
+	# Resources
+	PlayerResources:
 
 # Ingame specific player setup.
 Player:
@@ -22,6 +24,10 @@ Player:
 		ArrowSequence:
 		CircleSequence: x
 		Duration: 250
+	# Manage power for buildings
+	PowerManager:
+	# Tech
+	TechTree:
 
 # Map editor specific player setup.
 EditorPlayer:
