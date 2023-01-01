@@ -112,6 +112,7 @@ Music:
 
 TileSets:
 	e2140|tilesets/temperat.yaml
+	e2140|tilesets/snow.yaml
 
 Include: content/core/mod.yaml
 Include: content/neutral/mod.yaml
