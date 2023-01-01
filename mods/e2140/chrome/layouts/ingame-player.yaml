@@ -25,6 +25,30 @@ Container@PLAYER_WIDGETS:
 							WorldInteractionController: INTERACTION_CONTROLLER
 							Width: 126
 							Height: 126
+				Container@SIDEBAR_MONEYBIN:
+					X: 22
+					Y: 172
+					Width: 105
+					Height: 41
+					Children:
+						Label:
+							X: 7
+							Y: 5
+							TextColor: ad7131
+							Width: 40
+							Height: 23
+							Font: Small
+							Text: Cash:
+						LabelWithTooltip@CASH:
+							Logic: IngameCashCounterLogic
+							X: 50
+							Y: 5
+							# ED: TextColor: 009e00
+							TextColor: ad7131
+							Width: 50
+							Height: 23
+							Font: Small
+							Text: {0}
 				Container@PRODUCTION_TYPES:
 					X: 27
 					Y: 137
