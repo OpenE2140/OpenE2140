@@ -19,7 +19,7 @@ using OpenRA.Primitives;
 
 namespace OpenRA.Mods.E2140.SpriteLoaders;
 
-public class FlcSpriteFrame : ISpriteFrame
+public class PcxSpriteFrame : ISpriteFrame
 {
 	public SpriteFrameType Type => SpriteFrameType.Rgba32;
 	public Size Size { get; }
@@ -28,7 +28,7 @@ public class FlcSpriteFrame : ISpriteFrame
 	public byte[] Data { get; }
 	public bool DisableExportPadding => true;
 
-	public FlcSpriteFrame(Size size, byte[] pixels)
+	public PcxSpriteFrame(Size size, byte[] pixels)
 	{
 		this.Size = size;
 		this.FrameSize = size;
@@ -38,31 +38,24 @@ public class FlcSpriteFrame : ISpriteFrame
 }
 
 [UsedImplicitly]
-public class FlcSpriteLoader : ISpriteLoader
+public class PcxSpriteLoader : ISpriteLoader
 {
 	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
 	{
 		var start = stream.Position;
-		stream.Position = 4;
-		var identifier = stream.ReadUInt16();
+		var identifier = stream.ReadByte();
 		stream.Position = start;
 
 		frames = null;
 		metadata = null;
 
-		if (identifier != 0xaf12)
+		if (identifier != 0x0a)
 			return false;
 
-		var flc = new Flc(stream);
+		var pcx = new Pcx(stream);
+		var size = new Size(pcx.Width, pcx.Height);
 
-		if (flc.Frames.Length == 0)
-			return false;
-
-		var size = new Size(flc.Width, flc.Height);
-
-		frames = flc.Frames.Select(frame => new FlcSpriteFrame(size, frame.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray()))
-			.Cast<ISpriteFrame>()
-			.ToArray();
+		frames = new[] { new PcxSpriteFrame(size, pcx.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray()) };
 
 		return true;
 	}

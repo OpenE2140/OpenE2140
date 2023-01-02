@@ -26,7 +26,7 @@ public class Flc
 	{
 		var size = stream.ReadUInt32();
 
-		if (stream.ReadUInt16() != 44818)
+		if (stream.ReadUInt16() != 0xaf12)
 			throw new Exception("Broken flc file!");
 
 		this.Frames = new FlcFrame[stream.ReadUInt16()];
@@ -48,10 +48,10 @@ public class Flc
 		if (stream.ReadBytes(2).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");
 
-		var created = stream.ReadUInt32(); // TODO
-		var creator = stream.ReadUInt32(); // TODO
-		var updated = stream.ReadUInt32(); // TODO
-		var updater = stream.ReadUInt32(); // TODO
+		stream.ReadUInt32(); // created
+		stream.ReadUInt32(); // creator
+		stream.ReadUInt32(); // updated
+		stream.ReadUInt32(); // updater
 		var aspectX = stream.ReadUInt16();
 		var aspectY = stream.ReadUInt16();
 
@@ -61,8 +61,8 @@ public class Flc
 		if (stream.ReadBytes(38).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");
 
-		var frame1 = stream.ReadUInt32(); // TODO
-		var frame2 = stream.ReadUInt32(); // TODO
+		stream.ReadUInt32(); // frame1
+		stream.ReadUInt32(); // frame2
 
 		if (stream.ReadBytes(40).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");

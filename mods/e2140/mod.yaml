@@ -33,13 +33,13 @@ Assemblies:
 	^BinDir|OpenRA.Mods.E2140.dll
 
 SoundFormats: Wav, Ogg, Smp
-SpriteFormats: PngSheet, MixSprite, DatSprite, FlcSprite #, PcxSprite
+SpriteFormats: PngSheet, MixSprite, DatSprite, FlcSprite, PcxSprite
 TerrainFormat: DefaultTerrain
 VideoFormats:
 
 AssetBrowser:
 	AudioExtensions: .wav, .smp
-	SpriteExtensions: .png, .mix, .dat, .flc #, pcx
+	SpriteExtensions: .png, .mix, .dat, .flc, .pcx
 	VideoExtensions:
 
 ModelSequenceFormat: PlaceholderModelSequence
