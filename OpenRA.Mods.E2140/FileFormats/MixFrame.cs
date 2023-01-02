@@ -59,7 +59,7 @@ public class MixFrame
 				var heightCopy = stream.ReadInt32();
 
 				if (this.Width != widthCopy || this.Height != heightCopy)
-					throw new Exception("Broken mix file!");
+					throw new Exception("Broken mix frame!");
 
 				var dataSize = stream.ReadInt32();
 				var numScanlines = stream.ReadInt32();
@@ -70,7 +70,7 @@ public class MixFrame
 				var compressedImageDataOffset = stream.ReadInt32();
 
 				if (scanLinesOffset != stream.Position - 6)
-					throw new Exception("Broken mix file!");
+					throw new Exception("Broken mix frame!");
 
 				var scanlines = new int[numScanlines];
 
@@ -78,7 +78,7 @@ public class MixFrame
 					scanlines[i] = stream.ReadUInt16();
 
 				if (dataOffsetsOffset != stream.Position - 6)
-					throw new Exception("Broken mix file!");
+					throw new Exception("Broken mix frame!");
 
 				var dataOffsets = new int[numScanlines];
 

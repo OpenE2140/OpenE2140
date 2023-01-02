@@ -12,6 +12,7 @@ Packages:
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
+	~game|flc.wd: flc
 	~game|graph.wd: graph
 	~game|menu.wd: menu
 	~game|mix.wd: mix
@@ -32,13 +33,13 @@ Assemblies:
 	^BinDir|OpenRA.Mods.E2140.dll
 
 SoundFormats: Wav, Ogg, Smp
-SpriteFormats: PngSheet, MixSprite, DatSprite
+SpriteFormats: PngSheet, MixSprite, DatSprite, FlcSprite #, PcxSprite
 TerrainFormat: DefaultTerrain
 VideoFormats:
 
 AssetBrowser:
 	AudioExtensions: .wav, .smp
-	SpriteExtensions: .png, .mix, .dat
+	SpriteExtensions: .png, .mix, .dat, .flc #, pcx
 	VideoExtensions:
 
 ModelSequenceFormat: PlaceholderModelSequence

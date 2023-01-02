@@ -50,6 +50,7 @@ public class MixSpriteLoader : ISpriteLoader
 		frames = null;
 		metadata = null;
 
+		// This happens on MIXMAX files, which are simply 1x1, 2x2 and 4x4 minimap variants of the tiles.
 		if (identifier != "MIX FILE  ")
 			return false;
 

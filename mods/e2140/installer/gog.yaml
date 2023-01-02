@@ -5,6 +5,8 @@ gog: Earth 2140 (GoG, English)
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
 		Copy: .
+			^SupportDir|Content/e2140/flc.wd: FLC.WD
+			^SupportDir|Content/e2140/graph.wd: GRAPH.WD
 			^SupportDir|Content/e2140/menu.wd: MENU.WD
 			^SupportDir|Content/e2140/mix.wd: MIX.WD
 			^SupportDir|Content/e2140/piro.wd: PIRO.WD

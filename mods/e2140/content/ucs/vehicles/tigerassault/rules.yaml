@@ -1,5 +1,5 @@
 ucs_vehicles_tigerassault:
-	Inherits@1: ^UcsWalker
+	Inherits@1: ^UcsMech
 	Inherits@2: ^CoreTurret
 	Tooltip:
 		Name: Tiger Assault
