@@ -1,23 +1,33 @@
+^Tree:
+	Defaults:
+		TilesetSpecific: true
+
 neutral_tree01:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 93
 
 neutral_tree02:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 94
 
 neutral_tree03:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 95
 
 neutral_tree04:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 96
 
 neutral_tree05:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 97
 
 neutral_tree06:
-	idle: SPRO3.MIX
+	Inherits: ^Tree
+	idle:
 		Start: 98
