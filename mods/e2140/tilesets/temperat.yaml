@@ -679,7 +679,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 231
+		Frames: 234
 		Tiles:
 			0: Road
 	Template@201:
@@ -687,7 +687,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 232
+		Frames: 235
 		Tiles:
 			0: Road
 	Template@202:
@@ -695,7 +695,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 233
+		Frames: 236
 		Tiles:
 			0: Road
 	Template@203:
@@ -703,7 +703,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 234
+		Frames: 237
 		Tiles:
 			0: Road
 	Template@204:
@@ -711,7 +711,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 235
+		Frames: 238
 		Tiles:
 			0: Road
 	Template@205:
@@ -719,7 +719,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 236
+		Frames: 239
 		Tiles:
 			0: Road
 	Template@206:
@@ -727,7 +727,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 237
+		Frames: 240
 		Tiles:
 			0: Road
 	Template@207:
@@ -735,7 +735,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 238
+		Frames: 241
 		Tiles:
 			0: Road
 	Template@208:
@@ -743,7 +743,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 239
+		Frames: 242
 		Tiles:
 			0: Road
 	Template@209:
@@ -751,7 +751,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 240
+		Frames: 243
 		Tiles:
 			0: Road
 	Template@210:
@@ -759,7 +759,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 241
+		Frames: 244
 		Tiles:
 			0: Road
 	Template@211:
@@ -767,7 +767,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 242
+		Frames: 245
 		Tiles:
 			0: Road
 	Template@212:
@@ -775,7 +775,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 243
+		Frames: 246
 		Tiles:
 			0: Road
 	Template@213:
@@ -783,7 +783,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 244
+		Frames: 247
 		Tiles:
 			0: Road
 	Template@214:
@@ -791,7 +791,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 245
+		Frames: 248
 		Tiles:
 			0: Road
 	Template@215:
@@ -799,7 +799,7 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 246
+		Frames: 249
 		Tiles:
 			0: Road
 	Template@216:
@@ -807,35 +807,11 @@ Templates:
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
-		Frames: 247
+		Frames: 250
 		Tiles:
 			0: Road
 	Template@217:
 		Id: 217
-		Images: SPRT3.MIX
-		Size: 1,1
-		Categories: Road
-		Frames: 248
-		Tiles:
-			0: Road
-	Template@218:
-		Id: 218
-		Images: SPRT3.MIX
-		Size: 1,1
-		Categories: Road
-		Frames: 249
-		Tiles:
-			0: Road
-	Template@219:
-		Id: 219
-		Images: SPRT3.MIX
-		Size: 1,1
-		Categories: Road
-		Frames: 250
-		Tiles:
-			0: Road
-	Template@220:
-		Id: 220
 		Images: SPRT3.MIX
 		Size: 1,1
 		Categories: Road
