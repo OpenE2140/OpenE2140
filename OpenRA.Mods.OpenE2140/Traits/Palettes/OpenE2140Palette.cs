@@ -20,7 +20,7 @@ namespace OpenRA.Mods.E2140.Traits.Palettes;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [TraitLocation(SystemActors.World | SystemActors.EditorWorld)]
 [Desc("Creates the OpenE2140 special effects palette.")]
-public class Earth2140PaletteInfo : TraitInfo
+public class OpenE2140PaletteInfo : TraitInfo
 {
 	[PaletteDefinition]
 	[FieldLoader.RequireAttribute]
@@ -29,14 +29,14 @@ public class Earth2140PaletteInfo : TraitInfo
 
 	public readonly bool AllowModifiers = true;
 
-	public override object Create(ActorInitializer init) { return new Earth2140Palette(this); }
+	public override object Create(ActorInitializer init) { return new OpenE2140Palette(this); }
 }
 
-public class Earth2140Palette : ILoadsPalettes
+public class OpenE2140Palette : ILoadsPalettes
 {
-	private readonly Earth2140PaletteInfo info;
+	private readonly OpenE2140PaletteInfo info;
 
-	public Earth2140Palette(Earth2140PaletteInfo info)
+	public OpenE2140Palette(OpenE2140PaletteInfo info)
 	{
 		this.info = info;
 	}

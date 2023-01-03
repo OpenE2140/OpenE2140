@@ -1,15 +1,11 @@
 shared_buildings_powerplant:
 	idle: SPRB0.MIX
-		EarthFormat: true
 		Start: 0
 	idle_mask: SPRB0.MIX
-		EarthFormat: true
 		Start: 1
 	idle_damaged: SPRB0.MIX
-		EarthFormat: true
 		Start: 2
 	idle_damaged_mask: SPRB0.MIX
-		EarthFormat: true
 		Start: 3
 
 shared_mcu_powerplant:

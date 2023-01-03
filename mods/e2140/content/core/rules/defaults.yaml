@@ -48,7 +48,7 @@
 	MustBeDestroyed:
 	# Units sequences should always use facings.
 	WithFacingSpriteBody:
-	# Earth 2140 palette magic.
+	# Palette magic.
 	WithFacingSpriteBody@mask:
 		Name: body_mask
 		Sequence: idle_mask
@@ -65,7 +65,6 @@
 	# Show control group numbers when selected.
 	WithTextControlGroupDecoration:
 		Position: BottomRight
-	# Earth 2140 palette magic.
 
 # Base for all buildings and towers.
 ^CoreConstruction:
@@ -86,7 +85,7 @@
 	Selectable:
 	# Constructions have sprites but do not use facing for them.
 	WithSpriteBody:
-	# Earth 2140 palette magic.
+	# Palette magic.
 	WithSpriteBody@mask:
 		Name: body_mask
 		Sequence: idle_mask
@@ -118,7 +117,7 @@
 	# Target "Structure" target for ai.
 	Targetable:
 		TargetTypes: Ground, Structure
-	# Earth 2140 construction animation.
+	# Construction animation.
 	TransformSequence:
 		Image: core_buildingsequence_large
 		Condition: Transforming
@@ -154,7 +153,7 @@
 	Turreted:
 		InitialFacing: 512
 		RealignDelay: -1
-	# Earth 2140 construction animation.
+	# Construction animation.
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Condition: Transforming
@@ -188,7 +187,7 @@
 			Radius: 128
 	# Infantry has an animation while moving: walking.
 	WithMoveAnimation:
-	# Earth 2140 palette magic.
+	# Palette magic.
 	WithMoveAnimation@mask:
 		Body: body_mask
 		MoveSequence: move_mask
@@ -224,7 +223,7 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
-	# Earth 2140 palette magic.
+	# Palette magic.
 	WithMoveAnimation@mask:
 		Body: body_mask
 		MoveSequence: move_mask
@@ -291,7 +290,7 @@
 	Turreted:
 	# Special trait to position turret depending on attachment point (only visualy).
 	WithSpriteTurret:
-	# Earth 2140 palette magic.
+	# Palette magic.
 	WithSpriteTurret@mask:
 		Sequence: turret_mask
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.

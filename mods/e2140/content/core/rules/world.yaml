@@ -75,7 +75,7 @@ World:
 	PlayerCommands:
 	DevCommands:
 	DebugVisualizationCommands:
-	# Earth 2140 palette effect for moving tracks.
+	# Palette effect for moving tracks.
 	RotationPaletteEffect:
 		Palettes: playerMove
 		RotationBase: 240

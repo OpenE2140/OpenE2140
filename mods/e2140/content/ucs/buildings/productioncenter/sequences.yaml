@@ -1,15 +1,11 @@
 ucs_buildings_productioncenter:
 	idle: SPRB0.MIX
-		EarthFormat: true
 		Start: 122
 	idle_mask: SPRB0.MIX
-		EarthFormat: true
 		Start: 123
 	idle_damaged: SPRB0.MIX
-		EarthFormat: true
 		Start: 124
 	idle_damaged_mask: SPRB0.MIX
-		EarthFormat: true
 		Start: 125
 
 ucs_mcu_productioncenter:

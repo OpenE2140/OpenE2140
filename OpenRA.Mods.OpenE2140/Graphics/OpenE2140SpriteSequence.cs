@@ -57,10 +57,10 @@ public class OpenE2140SpriteSequence : DefaultSpriteSequence
 	{
 		var e2140Loader = (OpenE2140SpriteSequenceLoader)loader;
 
-		var earthFormatNode = info.Nodes.FirstOrDefault(node => node.Key == "EarthFormat");
+		var e2140FormatNode = info.Nodes.FirstOrDefault(node => node.Key == "E2140Format");
 
-		if (earthFormatNode != null)
-			return OpenE2140SpriteSequence.ApplyEarthFormat(info);
+		if (e2140FormatNode != null)
+			return OpenE2140SpriteSequence.ApplyE2140Format(info);
 
 		var tilesetSpecific = info.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
 
@@ -70,7 +70,7 @@ public class OpenE2140SpriteSequence : DefaultSpriteSequence
 		return info;
 	}
 
-	private static MiniYaml ApplyEarthFormat(MiniYaml info)
+	private static MiniYaml ApplyE2140Format(MiniYaml info)
 	{
 		var settings = info.ToDictionary();
 
