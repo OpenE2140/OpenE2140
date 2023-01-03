@@ -1,6 +1,6 @@
 General:
-	Name: Snow
-	Id: SNOW
+	Name: Sandy
+	Id: SANDY
 	EditorTemplateOrder: Terrain, Cliffs, Shore
 	Palette:
 
@@ -33,7 +33,7 @@ Templates:
 	# Clear tiles
 	Template@255:
 		Id: 255
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -48,7 +48,7 @@ Templates:
 	# Large, unpassable rocks
 	Template@1:
 		Id: 1
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -64,7 +64,7 @@ Templates:
 	# Small, passable rocks
 	Template@10:
 		Id: 10
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -80,7 +80,7 @@ Templates:
 	# Large crater made by destruction of Power Plant
 	Template@30:
 		Id: 30
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Terrain
 		Frames: 193, 194, 195, 196
@@ -93,7 +93,7 @@ Templates:
 	# Unknown large crater
 	Template@31:
 		Id: 31
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Terrain
 		Frames: 205, 206, 207, 208
@@ -106,7 +106,7 @@ Templates:
 	# Sand tiles
 	Template@60:
 		Id: 60
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -116,7 +116,7 @@ Templates:
 			1: Sand
 	Template@61:
 		Id: 61
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 104
@@ -124,7 +124,7 @@ Templates:
 			0: Sand
 	Template@62:
 		Id: 62
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 105
@@ -132,7 +132,7 @@ Templates:
 			0: Sand
 	Template@63:
 		Id: 63
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 106
@@ -140,7 +140,7 @@ Templates:
 			0: Sand
 	Template@64:
 		Id: 64
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 107
@@ -148,7 +148,7 @@ Templates:
 			0: Sand
 	Template@65:
 		Id: 65
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 108
@@ -156,7 +156,7 @@ Templates:
 			0: Sand
 	Template@66:
 		Id: 66
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 109
@@ -164,7 +164,7 @@ Templates:
 			0: Sand
 	Template@67:
 		Id: 67
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 110
@@ -172,7 +172,7 @@ Templates:
 			0: Sand
 	Template@68:
 		Id: 68
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 111
@@ -180,7 +180,7 @@ Templates:
 			0: Sand
 	Template@69:
 		Id: 69
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 112
@@ -188,7 +188,7 @@ Templates:
 			0: Sand
 	Template@70:
 		Id: 70
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 113
@@ -196,7 +196,7 @@ Templates:
 			0: Sand
 	Template@71:
 		Id: 71
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 114
@@ -204,7 +204,7 @@ Templates:
 			0: Sand
 	Template@72:
 		Id: 72
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 115
@@ -212,7 +212,7 @@ Templates:
 			0: Sand
 	Template@73:
 		Id: 73
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 116
@@ -220,7 +220,7 @@ Templates:
 			0: Sand
 	Template@74:
 		Id: 74
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 117
@@ -228,7 +228,7 @@ Templates:
 			0: Sand
 	Template@75:
 		Id: 75
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 118
@@ -236,7 +236,7 @@ Templates:
 			0: Sand
 	Template@76:
 		Id: 76
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 113
@@ -244,7 +244,7 @@ Templates:
 			0: Sand
 	Template@77:
 		Id: 77
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 114
@@ -252,7 +252,7 @@ Templates:
 			0: Sand
 	Template@78:
 		Id: 78
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 115
@@ -260,7 +260,7 @@ Templates:
 			0: Sand
 	Template@79:
 		Id: 79
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 116
@@ -268,7 +268,7 @@ Templates:
 			0: Sand
 	Template@80:
 		Id: 80
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 117
@@ -276,7 +276,7 @@ Templates:
 			0: Sand
 	Template@81:
 		Id: 81
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 118
@@ -284,7 +284,7 @@ Templates:
 			0: Sand
 	Template@82:
 		Id: 82
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 119
@@ -292,7 +292,7 @@ Templates:
 			0: Sand
 	Template@83:
 		Id: 83
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 120
@@ -300,7 +300,7 @@ Templates:
 			0: Sand
 	Template@84:
 		Id: 84
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 121
@@ -308,7 +308,7 @@ Templates:
 			0: Sand
 	Template@85:
 		Id: 85
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 122
@@ -316,7 +316,7 @@ Templates:
 			0: Sand
 	Template@86:
 		Id: 86
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 123
@@ -324,7 +324,7 @@ Templates:
 			0: Sand
 	Template@87:
 		Id: 87
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 124
@@ -332,7 +332,7 @@ Templates:
 			0: Sand
 	Template@88:
 		Id: 88
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 125
@@ -340,7 +340,7 @@ Templates:
 			0: Sand
 	Template@89:
 		Id: 89
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 126
@@ -348,7 +348,7 @@ Templates:
 			0: Sand
 	Template@90:
 		Id: 90
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 127
@@ -356,7 +356,7 @@ Templates:
 			0: Sand
 	Template@91:
 		Id: 91
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 128
@@ -364,7 +364,7 @@ Templates:
 			0: Sand
 	Template@92:
 		Id: 92
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 129
@@ -372,7 +372,7 @@ Templates:
 			0: Sand
 	Template@93:
 		Id: 93
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 130
@@ -380,7 +380,7 @@ Templates:
 			0: Sand
 	Template@94:
 		Id: 94
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 131
@@ -388,7 +388,7 @@ Templates:
 			0: Sand
 	Template@95:
 		Id: 95
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Terrain
 		Frames: 132
@@ -398,7 +398,7 @@ Templates:
 	# Water tiles
 	Template@100:
 		Id: 100
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
@@ -410,7 +410,7 @@ Templates:
 			3: Water
 	Template@101:
 		Id: 101
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		PickAny: True
 		Categories: Terrain
@@ -424,7 +424,7 @@ Templates:
 	# Shore tiles
 	Template@105:
 		Id: 105
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Shore
 		Frames: 133
@@ -432,7 +432,7 @@ Templates:
 			0: Clear
 	Template@106:
 		Id: 106
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Shore
 		Frames: 134
@@ -440,7 +440,7 @@ Templates:
 			0: Clear
 	Template@107:
 		Id: 107
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -452,7 +452,7 @@ Templates:
 			3: Shore
 	Template@108:
 		Id: 108
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -464,7 +464,7 @@ Templates:
 			3: Shore
 	Template@109:
 		Id: 109
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -475,7 +475,7 @@ Templates:
 			2: Shore
 	Template@110:
 		Id: 110
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -486,7 +486,7 @@ Templates:
 			2: Shore
 	Template@111:
 		Id: 111
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: true
 		Categories: Shore
@@ -496,7 +496,7 @@ Templates:
 			1: Shore
 	Template@112:
 		Id: 112
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: true
 		Categories: Shore
@@ -506,7 +506,7 @@ Templates:
 			1: Shore
 	Template@113:
 		Id: 113
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: true
 		Categories: Shore
@@ -516,7 +516,7 @@ Templates:
 			1: Shore
 	Template@114:
 		Id: 114
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: true
 		Categories: Shore
@@ -526,7 +526,7 @@ Templates:
 			1: Shore
 	Template@115:
 		Id: 115
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 143, 144
@@ -535,7 +535,7 @@ Templates:
 			1: Shore
 	Template@116:
 		Id: 116
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 145, 146
@@ -544,7 +544,7 @@ Templates:
 			1: Shore
 	Template@117
 		Id: 117
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 147, 148
@@ -553,7 +553,7 @@ Templates:
 			1: Shore
 	Template@118:
 		Id: 118
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 149, 150
@@ -562,7 +562,7 @@ Templates:
 			1: Clear
 	Template@119:
 		Id: 119
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 151, 152
@@ -571,7 +571,7 @@ Templates:
 			1: Clear
 	Template@120:
 		Id: 120
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 153, 154
@@ -580,7 +580,7 @@ Templates:
 			1: Clear
 	Template@121:
 		Id: 121
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 155, 156
@@ -589,7 +589,7 @@ Templates:
 			1: Clear
 	Template@122:
 		Id: 122
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 157, 158
@@ -598,7 +598,7 @@ Templates:
 			1: Clear
 	Template@123:
 		Id: 123
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 159, 160
@@ -607,7 +607,7 @@ Templates:
 			1: Clear
 	Template@124:
 		Id: 124
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 161, 162
@@ -616,7 +616,7 @@ Templates:
 			1: Shore
 	Template@125:
 		Id: 125
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 163, 164
@@ -625,7 +625,7 @@ Templates:
 			1: Shore
 	Template@126:
 		Id: 126
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Shore
 		Frames: 165, 166
@@ -634,7 +634,7 @@ Templates:
 			1: Shore
 	Template@127:
 		Id: 127
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -644,7 +644,7 @@ Templates:
 			1: Shore
 	Template@128:
 		Id: 128
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -654,7 +654,7 @@ Templates:
 			1: Shore
 	Template@129:
 		Id: 129
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: true
 		Categories: Shore
@@ -664,7 +664,7 @@ Templates:
 			1: Shore
 	Template@130:
 		Id: 130
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Shore
@@ -676,7 +676,7 @@ Templates:
 	# Road tiles
 	Template@200:
 		Id: 200
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 234
@@ -684,7 +684,7 @@ Templates:
 			0: Road
 	Template@201:
 		Id: 201
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 235
@@ -692,7 +692,7 @@ Templates:
 			0: Road
 	Template@202:
 		Id: 202
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 236
@@ -700,7 +700,7 @@ Templates:
 			0: Road
 	Template@203:
 		Id: 203
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 237
@@ -708,7 +708,7 @@ Templates:
 			0: Road
 	Template@204:
 		Id: 204
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 238
@@ -716,7 +716,7 @@ Templates:
 			0: Road
 	Template@205:
 		Id: 205
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 239
@@ -724,7 +724,7 @@ Templates:
 			0: Road
 	Template@206:
 		Id: 206
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 240
@@ -732,7 +732,7 @@ Templates:
 			0: Road
 	Template@207:
 		Id: 207
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 241
@@ -740,7 +740,7 @@ Templates:
 			0: Road
 	Template@208:
 		Id: 208
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 242
@@ -748,7 +748,7 @@ Templates:
 			0: Road
 	Template@209:
 		Id: 209
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 243
@@ -756,7 +756,7 @@ Templates:
 			0: Road
 	Template@210:
 		Id: 210
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 244
@@ -764,7 +764,7 @@ Templates:
 			0: Road
 	Template@211:
 		Id: 211
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 245
@@ -772,7 +772,7 @@ Templates:
 			0: Road
 	Template@212:
 		Id: 212
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 246
@@ -780,7 +780,7 @@ Templates:
 			0: Road
 	Template@213:
 		Id: 213
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 247
@@ -788,7 +788,7 @@ Templates:
 			0: Road
 	Template@214:
 		Id: 214
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 248
@@ -796,7 +796,7 @@ Templates:
 			0: Road
 	Template@215:
 		Id: 215
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 249
@@ -804,7 +804,7 @@ Templates:
 			0: Road
 	Template@216:
 		Id: 216
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 250
@@ -812,7 +812,7 @@ Templates:
 			0: Road
 	Template@217:
 		Id: 217
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Road
 		Frames: 251
@@ -822,7 +822,7 @@ Templates:
 	# Cliff tiles
 	Template@300:
 		Id: 300
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Cliffs
 		Frames: 5, 6
@@ -831,7 +831,7 @@ Templates:
 			1: Rock
 	Template@301:
 		Id: 301
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Cliffs
 		Frames: 7, 8
@@ -840,7 +840,7 @@ Templates:
 			1: Rock
 	Template@302:
 		Id: 302
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Cliffs
 		Frames: 9, 10
@@ -849,7 +849,7 @@ Templates:
 			1: Rock
 	Template@303:
 		Id: 303
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,2
 		Categories: Cliffs
 		Frames: 11, 12
@@ -858,7 +858,7 @@ Templates:
 			1: Rock
 	Template@304:
 		Id: 304
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 14, 15, 13
@@ -868,7 +868,7 @@ Templates:
 			2: Rock
 	Template@305:
 		Id: 305
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 15, 18, 16, 17
@@ -878,7 +878,7 @@ Templates:
 			3: Rock
 	Template@306:
 		Id: 306
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 20, 21, 19
@@ -888,7 +888,7 @@ Templates:
 			2: Rock
 	Template@307:
 		Id: 307
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 0, 24, 22, 23
@@ -898,7 +898,7 @@ Templates:
 			3: Rock
 	Template@308:
 		Id: 308
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 27, 26, 0, 25
@@ -908,7 +908,7 @@ Templates:
 			3: Rock
 	Template@309:
 		Id: 309
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 30, 0, 29, 28
@@ -918,7 +918,7 @@ Templates:
 			3: Rock
 	Template@310:
 		Id: 310
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 33, 32, 0, 31
@@ -928,7 +928,7 @@ Templates:
 			3: Rock
 	Template@311:
 		Id: 311
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 36, 0, 35, 34
@@ -938,7 +938,7 @@ Templates:
 			3: Rock
 	Template@312:
 		Id: 312
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 37, 38
@@ -947,7 +947,7 @@ Templates:
 			1: Rock
 	Template@313:
 		Id: 313
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 39, 40
@@ -956,7 +956,7 @@ Templates:
 			1: Rock
 	Template@314:
 		Id: 314
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 42, 41
@@ -965,7 +965,7 @@ Templates:
 			1: Rock
 	Template@315:
 		Id: 315
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 44, 43
@@ -974,7 +974,7 @@ Templates:
 			1: Rock
 	Template@316:
 		Id: 316
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 45, 46
@@ -983,7 +983,7 @@ Templates:
 			1: Rock
 	Template@317:
 		Id: 317
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 47, 48
@@ -992,7 +992,7 @@ Templates:
 			1: Rock
 	Template@318:
 		Id: 318
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 49, 50
@@ -1001,7 +1001,7 @@ Templates:
 			1: Rock
 	Template@319:
 		Id: 319
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 51, 52
@@ -1010,7 +1010,7 @@ Templates:
 			1: Rock
 	Template@320:
 		Id: 320
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 53, 54
@@ -1019,7 +1019,7 @@ Templates:
 			1: Rock
 	Template@321:
 		Id: 321
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 55, 56
@@ -1028,7 +1028,7 @@ Templates:
 			1: Rock
 	Template@322:
 		Id: 322
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 58, 57
@@ -1037,7 +1037,7 @@ Templates:
 			1: Rock
 	Template@323:
 		Id: 323
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 60, 59
@@ -1046,7 +1046,7 @@ Templates:
 			1: Rock
 	Template@324:
 		Id: 324
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 62, 61
@@ -1055,7 +1055,7 @@ Templates:
 			1: Rock
 	Template@325:
 		Id: 325
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 64, 63
@@ -1064,7 +1064,7 @@ Templates:
 			1: Rock
 	Template@326:
 		Id: 326
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 66, 65
@@ -1073,7 +1073,7 @@ Templates:
 			1: Rock
 	Template@327:
 		Id: 327
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 68, 67
@@ -1082,7 +1082,7 @@ Templates:
 			1: Rock
 	Template@328:
 		Id: 328
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		PickAny: True
 		Categories: Cliffs
@@ -1096,7 +1096,7 @@ Templates:
 			5: Rock
 	Template@329:
 		Id: 329
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 75, 76
@@ -1105,7 +1105,7 @@ Templates:
 			1: Rock
 	Template@330:
 		Id: 330
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 78, 77
@@ -1114,7 +1114,7 @@ Templates:
 			1: Rock
 	Template@331:
 		Id: 331
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 80, 79
@@ -1123,7 +1123,7 @@ Templates:
 			1: Rock
 	Template@332:
 		Id: 332
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,1
 		Categories: Cliffs
 		Frames: 81, 82
@@ -1132,7 +1132,7 @@ Templates:
 			1: Rock
 	Template@333:
 		Id: 333
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 84, 83, 86, 85
@@ -1143,7 +1143,7 @@ Templates:
 			3: Rock
 	Template@334:
 		Id: 334
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 87, 88, 89, 90
@@ -1154,7 +1154,7 @@ Templates:
 			3: Rock
 	Template@335:
 		Id: 335
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Cliffs
 		Frames: 91
@@ -1162,7 +1162,7 @@ Templates:
 			0: Rock
 	Template@336:
 		Id: 336
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Cliffs
 		Frames: 92
@@ -1170,7 +1170,7 @@ Templates:
 			0: Rock
 	Template@337:
 		Id: 337
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 94, 93, 96, 95
@@ -1181,7 +1181,7 @@ Templates:
 			3: Rock
 	Template@338:
 		Id: 338
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 2,2
 		Categories: Cliffs
 		Frames: 97, 98, 99, 100
@@ -1192,7 +1192,7 @@ Templates:
 			3: Rock
 	Template@339:
 		Id: 339
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Cliffs
 		Frames: 229
@@ -1200,7 +1200,7 @@ Templates:
 			0: Rock
 	Template@340:
 		Id: 340
-		Images: SPRT4.MIX
+		Images: SPRT2.MIX
 		Size: 1,1
 		Categories: Cliffs
 		Frames: 230

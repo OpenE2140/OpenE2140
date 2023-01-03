@@ -45,7 +45,10 @@ AssetBrowser:
 ModelSequenceFormat: PlaceholderModelSequence
 SpriteSequenceFormat: Earth2140SpriteSequence
 	TilesetOverrides:
+		DESERT: SPRO1.MIX
+		SANDY: SPRO2.MIX
 		TEMPERATE: SPRO3.MIX
+		SNOW: SPRO4.MIX
 
 DefaultOrderGenerator: UnitOrderGenerator
 
@@ -114,6 +117,9 @@ Music:
 	e2140|music.yaml
 
 TileSets:
+	e2140|tilesets/desert.yaml
+	e2140|tilesets/sandy.yaml
+	e2140|tilesets/snow.yaml
 	e2140|tilesets/temperate.yaml
 
 Include: content/core/mod.yaml
