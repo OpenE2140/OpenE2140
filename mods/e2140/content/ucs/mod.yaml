@@ -19,6 +19,7 @@ Sequences:
 	e2140|content/shared/buildings/powerplant/sequences.yaml
 	e2140|content/ucs/buildings/productioncenter/sequences.yaml
 	e2140|content/ucs/vehicles/tigerassault/sequences.yaml
+	e2140|content/ucs/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml

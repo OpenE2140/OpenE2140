@@ -1,0 +1,16 @@
+ucs_elevator:
+	closed: SPRB0.MIX
+		Start: 164
+	opening: SPRB0.MIX
+		Frames: 166, 168
+		Length: 2
+		Tick: 100
+	open: SPRB0.MIX
+		Start: 170
+		Offset: 0, -8
+	overlay: SPRB0.MIX
+		Start: 172
+		Offset: 0, 22
+	elevator: SPRB0.MIX
+		Start: 174
+		Offset: -3, -1

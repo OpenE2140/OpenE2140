@@ -14,8 +14,5 @@ shared_buildings_powerplant:
 
 shared_mcu_powerplant:
 	Inherits: ^SharedVehiclesMcu
-	
-	# HACK
-	powerplant_icon: SPRI1.MIX
+	icon: SPRI1.MIX
 		Start: 183
-		Length: 1

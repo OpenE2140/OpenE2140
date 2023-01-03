@@ -13,20 +13,22 @@ ucs_buildings_productioncenter:
 			BottomRight: 1536, 1024
 	Selectable:
 		Bounds: 3072, 2048, 0, 0
-	
-	Production:
+	ElevatorProduction:
+		Image: ucs_elevator
+		Position: 528, 1376, 0
 		Produces: Building.UCS
+		RequiresCondition: !Transforming
 	ProductionQueue:
 		Type: Building.UCS
-		DisplayOrder: 0
-		Factions: ucs
 		Group: Building
-	ProductionBar@BuildingUCS:
+		RequiresCondition: !Transforming
+	ProductionBar:
 		ProductionType: Building.UCS
-	ProvidesPrerequisite@buildingname:
-	Exit@1:
-		SpawnOffset: 512,1024,0
+	ProvidesPrerequisite:
+	Exit:
+		SpawnOffset: 528, 1376, 0
 		ExitCell: 2,3
+		Facing: 384
 
 ucs_mcu_productioncenter:
 	Inherits@1: ^SharedVehicleMcu
@@ -37,7 +39,5 @@ ucs_mcu_productioncenter:
 	Valued:
 		Cost: 2500
 	Buildable:
-		#BuildPaletteOrder: 30
-		Icon: productioncenter_icon
 		Queue: Building.UCS
-		BuildDurationModifier: 1
+		BuildDuration: 40

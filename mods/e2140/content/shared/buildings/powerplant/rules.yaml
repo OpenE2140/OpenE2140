@@ -27,7 +27,5 @@ shared_mcu_powerplant:
 	Valued:
 		Cost: 1000
 	Buildable:
-		Icon: powerplant_icon
-		Queue: Building.UCS #Building.ED
-		BuildDurationModifier: 4
-		Description: Generates power
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160
