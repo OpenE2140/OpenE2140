@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "OpenE2140 Linux": {
+      "commandName": "Executable",
+      "executablePath": "../../engine/bin/OpenRA",
+      "commandLineArgs": "Game.Mod=\"e2140\" Engine.EngineDir=\"..\" Engine.ModSearchPaths=\"../../mods,../mods\""
+    },
+    "OpenE2140 Windows": {
+      "commandName": "Executable",
+      "executablePath": "../../engine/bin/OpenRA.exe",
+      "commandLineArgs": "Game.Mod=\"e2140\" Engine.EngineDir=\"..\" Engine.ModSearchPaths=\"../../mods,../mods\""
+    }
+  }
+}

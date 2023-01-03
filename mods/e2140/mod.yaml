@@ -1,9 +1,9 @@
 Metadata:
-	Title: Earth 2140
+	Title: OpenE2140
 	Version: 721b225b5465922b6705e262d26a58306cc50bd1
-	WindowTitle: Earth 2140
-	Website: https://github.com/michaeldgg2/Earth2140
-	WebIcon32: https://raw.githubusercontent.com/michaeldgg2/Earth2140/master/packaging/artwork/icon_32x32.png
+	WindowTitle: OpenE2140
+	Website: https://github.com/michaeldgg2/OpenE2140
+	WebIcon32: https://raw.githubusercontent.com/michaeldgg2/OpenE2140/master/packaging/artwork/icon_32x32.png
 
 PackageFormats: Wd
 
@@ -22,7 +22,7 @@ Packages:
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS
-	ModTabTitle: Earth 2140
+	ModTabTitle: OpenE2140
 
 MapFolders:
 	e2140|maps: System
@@ -30,7 +30,7 @@ MapFolders:
 
 Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
-	^BinDir|OpenRA.Mods.E2140.dll
+	^BinDir|OpenRA.Mods.OpenE2140.dll
 
 SoundFormats: Wav, Ogg, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite, FlcSprite, PcxSprite
@@ -43,7 +43,7 @@ AssetBrowser:
 	VideoExtensions:
 
 ModelSequenceFormat: PlaceholderModelSequence
-SpriteSequenceFormat: Earth2140SpriteSequence
+SpriteSequenceFormat: OpenE2140SpriteSequence
 	TilesetOverrides:
 		DESERT: SPRO1.MIX
 		SANDY: SPRO2.MIX
@@ -95,7 +95,7 @@ GameSpeeds:
 			OrderLatency: 6
 
 ModContent:
-	InstallPromptMessage: Earth 2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
+	InstallPromptMessage: OpenE2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
 	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
 		base: Base Game Files
