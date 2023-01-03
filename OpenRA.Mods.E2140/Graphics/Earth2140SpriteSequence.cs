@@ -20,9 +20,15 @@ namespace OpenRA.Mods.E2140.Graphics;
 [UsedImplicitly]
 public class Earth2140SpriteSequenceLoader : DefaultSpriteSequenceLoader
 {
+	[Desc("Dictionary of <string: string> with tileset name to override -> sprite name to use instead.")]
+	public readonly Dictionary<string, string> TilesetOverrides = new Dictionary<string, string>();
+
 	public Earth2140SpriteSequenceLoader(ModData modData)
 		: base(modData)
 	{
+		var metadata = modData.Manifest.Get<SpriteSequenceFormat>().Metadata;
+		if (metadata.TryGetValue("TilesetOverrides", out var yaml))
+			this.TilesetOverrides = yaml.ToDictionary(kv => kv.Value);
 	}
 
 	public override ISpriteSequence CreateSequence(ModData modData, string tileSet, SpriteCache cache, string sequence, string animation, MiniYaml info)
@@ -42,17 +48,32 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		string animation,
 		MiniYaml info
 	)
-		: base(modData, tileSet, cache, loader, sequence, animation, Earth2140SpriteSequence.FlipFacings(info))
+		: base(modData, tileSet, cache, loader, sequence, animation, Earth2140SpriteSequence.Preprocess(tileSet, loader, info))
 	{
+	}
+
+	private static MiniYaml Preprocess(string tileSet, ISpriteSequenceLoader loader, MiniYaml info)
+	{
+		var e2140Loader = (Earth2140SpriteSequenceLoader)loader;
+
+		var earthFormatNode = info.Nodes.FirstOrDefault(node => node.Key == "EarthFormat");
+
+		if (earthFormatNode != null)
+		{
+			return Earth2140SpriteSequence.FlipFacings(info);
+		}
+
+		var tilesetSpecific = info.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
+		if (tilesetSpecific != null)
+		{
+			return Earth2140SpriteSequence.ChangeSpritesForTileset(tileSet, e2140Loader, info);
+		}
+
+		return info;
 	}
 
 	private static MiniYaml FlipFacings(MiniYaml info)
 	{
-		var earthFormatNode = info.Nodes.FirstOrDefault(node => node.Key == "EarthFormat");
-
-		if (earthFormatNode == null)
-			return info;
-
 		var settings = info.ToDictionary();
 
 		var facings = Earth2140SpriteSequence.GetInt(settings, "Facings", 1);
@@ -87,6 +108,14 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		newInfo.Nodes.Add(combineNode);
 
 		return newInfo;
+	}
+
+	private static MiniYaml ChangeSpritesForTileset(string tileSet, Earth2140SpriteSequenceLoader loader, MiniYaml info)
+	{
+		if (!loader.TilesetOverrides.TryGetValue(tileSet, out var spriteName))
+			throw new Exception($"Unknown tileset '{tileSet}', cannot determine sprite name");
+
+		return new MiniYaml(spriteName, info.Nodes);
 	}
 
 	private static bool GetBool(IReadOnlyDictionary<string, MiniYaml> settings, string key, bool fallback)
