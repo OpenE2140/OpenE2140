@@ -11,12 +11,15 @@
 
 #endregion
 
+using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.E2140.Graphics;
+using OpenRA.Mods.E2140.Traits.Rendering;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -58,11 +61,11 @@ public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSprites
 	}
 }
 
-public class ElevatorProduction : Production, ITick, IRender
+public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 {
-	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits);
+	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits, Actor? Actor);
 
-	private enum State
+	private enum AnimationState
 	{
 		Closed, Opening, ElevatorUp, Ejecting, ElevatorDown, Closing
 	}
@@ -72,9 +75,19 @@ public class ElevatorProduction : Production, ITick, IRender
 	private readonly RenderSprites? renderSprites;
 	private readonly AnimationWithOffset animation;
 
-	private State state = State.Closed;
-	private int stateStartTick;
+	private AnimationState state = AnimationState.Closed;
+	private int stateAge;
 	private ProductionInfo? productionInfo;
+
+	private AnimationState State
+	{
+		get => this.state;
+		set
+		{
+			this.state = value;
+			this.stateAge = 0;
+		}
+	}
 
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
@@ -93,11 +106,12 @@ public class ElevatorProduction : Production, ITick, IRender
 		this.animation.Animation.PlayRepeating("closed");
 		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animation));
 
-		var animationElevator = new AnimationWithOffset(
+		var animationElevator = new ElevatorAnimationWithOffset(
 			new Animation(init.Self.World, this.info.Image),
-			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight(init.Self)),
-			() => this.IsTraitDisabled || this.state is not State.ElevatorUp and not State.Ejecting and not State.ElevatorDown,
-			_ => -this.info.Position.Y - 1
+			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight()),
+			() => this.IsTraitDisabled || this.State is AnimationState.Closed or AnimationState.Opening or AnimationState.Closing,
+			_ => -this.info.Position.Y - 1,
+			() => this.GetElevatorHeight() / 16
 		);
 
 		animationElevator.Animation.PlayRepeating("elevator");
@@ -116,13 +130,12 @@ public class ElevatorProduction : Production, ITick, IRender
 
 	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo exitinfo, string productionType, TypeDictionary inits)
 	{
-		if (this.state != State.Closed)
+		if (this.State != AnimationState.Closed)
 			return;
 
-		this.productionInfo = new ProductionInfo(producee, exitinfo, productionType, inits);
+		this.productionInfo = new ProductionInfo(producee, exitinfo, productionType, inits, null);
 
-		this.state = State.Opening;
-		this.stateStartTick = self.World.WorldTick;
+		this.State = AnimationState.Opening;
 
 		this.animation.Animation.PlayThen(
 			"opening",
@@ -130,18 +143,17 @@ public class ElevatorProduction : Production, ITick, IRender
 			{
 				this.animation.Animation.PlayRepeating("open");
 
-				this.state = State.ElevatorUp;
-				this.stateStartTick = self.World.WorldTick;
+				this.State = AnimationState.ElevatorUp;
 			}
 		);
 	}
 
-	private int GetElevatorHeight(Actor self)
+	private int GetElevatorHeight()
 	{
-		return this.state switch
+		return this.State switch
 		{
-			State.ElevatorUp => -(this.info.Height - (self.World.WorldTick - this.stateStartTick) * this.info.Height / this.info.Duration),
-			State.ElevatorDown => -(self.World.WorldTick - this.stateStartTick) * this.info.Height / this.info.Duration,
+			AnimationState.ElevatorUp => -(this.info.Height - this.stateAge * this.info.Height / this.info.Duration),
+			AnimationState.ElevatorDown => -this.stateAge * this.info.Height / this.info.Duration,
 			_ => 0
 		};
 	}
@@ -153,12 +165,11 @@ public class ElevatorProduction : Production, ITick, IRender
 
 		switch (this.state)
 		{
-			case State.ElevatorUp:
-				if (self.World.WorldTick - this.stateStartTick < this.info.Duration)
+			case AnimationState.ElevatorUp:
+				if (this.stateAge++ < this.info.Duration)
 					return;
 
-				this.state = State.Ejecting;
-				this.stateStartTick = self.World.WorldTick;
+				this.State = AnimationState.Ejecting;
 
 				if (this.productionInfo != null)
 				{
@@ -169,35 +180,33 @@ public class ElevatorProduction : Production, ITick, IRender
 						this.productionInfo.ProductionType,
 						this.productionInfo.Inits
 					);
+				}
+
+				break;
+
+			case AnimationState.Ejecting:
+				var actor = this.productionInfo?.Actor;
+
+				if (actor != null && (!actor.IsInWorld || actor.CurrentActivity is not Mobile.ReturnToCellActivity))
+				{
+					this.State = AnimationState.ElevatorDown;
 
 					this.productionInfo = null;
 				}
 
 				break;
 
-			case State.Ejecting:
-				// TODO wait for produced actor to leave platform.
-				if (self.World.WorldTick - this.stateStartTick < 25)
+			case AnimationState.ElevatorDown:
+				if (this.stateAge++ < this.info.Duration)
 					return;
 
-				this.state = State.ElevatorDown;
-				this.stateStartTick = self.World.WorldTick;
-
-				break;
-
-			case State.ElevatorDown:
-				if (self.World.WorldTick - this.stateStartTick < this.info.Duration)
-					return;
-
-				this.state = State.Closing;
-				this.stateStartTick = self.World.WorldTick;
+				this.State = AnimationState.Closing;
 
 				this.animation.Animation.PlayBackwardsThen(
 					"opening",
 					() =>
 					{
-						this.state = State.Closed;
-						this.stateStartTick = self.World.WorldTick;
+						this.State = AnimationState.Closed;
 
 						this.animation.Animation.PlayRepeating("closed");
 					}
@@ -205,9 +214,9 @@ public class ElevatorProduction : Production, ITick, IRender
 
 				break;
 
-			case State.Closed:
-			case State.Opening:
-			case State.Closing:
+			case AnimationState.Closed:
+			case AnimationState.Opening:
+			case AnimationState.Closing:
 				break;
 
 			default:
@@ -215,9 +224,15 @@ public class ElevatorProduction : Production, ITick, IRender
 		}
 	}
 
+	void INotifyProduction.UnitProduced(Actor self, Actor other, CPos exit)
+	{
+		if (this.productionInfo != null)
+			this.productionInfo = this.productionInfo with { Actor = other };
+	}
+
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer worldRenderer)
 	{
-		if (this.state != State.ElevatorUp)
+		if (this.State != AnimationState.ElevatorUp)
 			return Array.Empty<IRenderable>();
 
 		if (this.productionInfo == null)
@@ -237,9 +252,18 @@ public class ElevatorProduction : Production, ITick, IRender
 			new ActorPreviewInitializer(new ActorReference(this.productionInfo.Producee.Name, previewInit), worldRenderer)
 		);
 
-		return actorPreviews.SelectMany(
-			actorPreview => actorPreview.Render(worldRenderer, self.CenterPosition + this.info.Position + new WVec(0, 0, this.GetElevatorHeight(self)))
-		);
+		var renderables = actorPreviews.SelectMany(
+				actorPreview => actorPreview.Render(worldRenderer, self.CenterPosition + this.info.Position + new WVec(0, 0, this.GetElevatorHeight()))
+			)
+			.ToArray();
+
+		// TODO Hack: SpriteRenderable.zOffset is private.
+		foreach (var renderable in renderables.OfType<SpriteRenderable>())
+			renderable.GetType().GetField("zOffset", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(renderable, -this.info.Position.Y - 1);
+
+		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() / 16);
+
+		return renderables;
 	}
 
 	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer worldRenderer)

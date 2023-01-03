@@ -13,6 +13,8 @@ ucs_buildings_productioncenter:
 			BottomRight: 1536, 1024
 	Selectable:
 		Bounds: 3072, 2048, 0, 0
+	-RenderSprites:
+	RenderElevatorSprites:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: 528, 1376, 0
