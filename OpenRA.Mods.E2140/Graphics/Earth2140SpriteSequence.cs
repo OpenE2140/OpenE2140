@@ -27,6 +27,7 @@ public class Earth2140SpriteSequenceLoader : DefaultSpriteSequenceLoader
 		: base(modData)
 	{
 		var metadata = modData.Manifest.Get<SpriteSequenceFormat>().Metadata;
+
 		if (metadata.TryGetValue("TilesetOverrides", out var yaml))
 			this.TilesetOverrides = yaml.ToDictionary(kv => kv.Value);
 	}
@@ -59,20 +60,17 @@ public class Earth2140SpriteSequence : DefaultSpriteSequence
 		var earthFormatNode = info.Nodes.FirstOrDefault(node => node.Key == "EarthFormat");
 
 		if (earthFormatNode != null)
-		{
-			return Earth2140SpriteSequence.FlipFacings(info);
-		}
+			return Earth2140SpriteSequence.ApplyEarthFormat(info);
 
 		var tilesetSpecific = info.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
+
 		if (tilesetSpecific != null)
-		{
 			return Earth2140SpriteSequence.ChangeSpritesForTileset(tileSet, e2140Loader, info);
-		}
 
 		return info;
 	}
 
-	private static MiniYaml FlipFacings(MiniYaml info)
+	private static MiniYaml ApplyEarthFormat(MiniYaml info)
 	{
 		var settings = info.ToDictionary();
 

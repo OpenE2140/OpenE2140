@@ -24,7 +24,7 @@ namespace OpenRA.Mods.E2140.Traits.Construction;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor has an elevater used for production.")]
-public class ElevatorProductionInfo : ProductionInfo, Requires<RenderSpritesInfo>
+public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSpritesInfo, Requires<RenderSpritesInfo>
 {
 	[FieldLoader.RequireAttribute]
 	[Desc("Image used for the elevator.")]
@@ -43,9 +43,22 @@ public class ElevatorProductionInfo : ProductionInfo, Requires<RenderSpritesInfo
 	{
 		return new ElevatorProduction(init, this);
 	}
+
+	IEnumerable<IActorPreview> IRenderActorPreviewSpritesInfo.RenderPreviewSprites(
+		ActorPreviewInitializer init,
+		string image,
+		int facings,
+		PaletteReference palette
+	)
+	{
+		var animation = new Animation(init.World, this.Image);
+		animation.PlayRepeating("closed");
+
+		yield return new SpriteActorPreview(animation, () => this.Position, () => -this.Height - this.Position.Y - 1, palette);
+	}
 }
 
-public class ElevatorProduction : Production, INotifyCreated, ITick, IRender
+public class ElevatorProduction : Production, ITick, IRender
 {
 	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits);
 
@@ -56,21 +69,49 @@ public class ElevatorProduction : Production, INotifyCreated, ITick, IRender
 
 	private readonly ElevatorProductionInfo info;
 
-	private RenderSprites? renderSprites;
+	private readonly RenderSprites? renderSprites;
+	private readonly AnimationWithOffset animation;
 
 	private State state = State.Closed;
-
-	private AnimationWithOffset? animationBase;
-	private AnimationWithOffset? animationElevator;
-	private AnimationWithOffset? animationOverlay;
 	private int stateStartTick;
-
 	private ProductionInfo? productionInfo;
 
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
 	{
 		this.info = info;
+
+		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
+
+		this.animation = new AnimationWithOffset(
+			new Animation(init.Self.World, this.info.Image),
+			() => this.info.Position,
+			() => this.IsTraitDisabled,
+			_ => -this.info.Height - this.info.Position.Y - 1
+		);
+
+		this.animation.Animation.PlayRepeating("closed");
+		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animation));
+
+		var animationElevator = new AnimationWithOffset(
+			new Animation(init.Self.World, this.info.Image),
+			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight(init.Self)),
+			() => this.IsTraitDisabled || this.state is not State.ElevatorUp and not State.Ejecting and not State.ElevatorDown,
+			_ => -this.info.Position.Y - 1
+		);
+
+		animationElevator.Animation.PlayRepeating("elevator");
+		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationElevator));
+
+		var animationOverlay = new AnimationWithOffset(
+			new Animation(init.Self.World, this.info.Image),
+			() => this.info.Position,
+			() => this.IsTraitDisabled,
+			_ => -this.info.Position.Y - 1
+		);
+
+		animationOverlay.Animation.PlayRepeating("overlay");
+		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationOverlay));
 	}
 
 	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo exitinfo, string productionType, TypeDictionary inits)
@@ -83,51 +124,16 @@ public class ElevatorProduction : Production, INotifyCreated, ITick, IRender
 		this.state = State.Opening;
 		this.stateStartTick = self.World.WorldTick;
 
-		this.animationBase?.Animation.PlayThen(
+		this.animation.Animation.PlayThen(
 			"opening",
 			() =>
 			{
-				this.animationBase?.Animation.PlayRepeating("open");
+				this.animation.Animation.PlayRepeating("open");
 
 				this.state = State.ElevatorUp;
 				this.stateStartTick = self.World.WorldTick;
 			}
 		);
-	}
-
-	void INotifyCreated.Created(Actor self)
-	{
-		this.renderSprites = self.TraitOrDefault<RenderSprites>();
-
-		this.animationBase = new AnimationWithOffset(
-			new Animation(self.World, this.info.Image),
-			() => this.info.Position,
-			() => this.IsTraitDisabled,
-			_ => -this.info.Height - this.info.Position.Y - 1
-		);
-
-		this.animationBase.Animation.PlayRepeating("closed");
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationBase));
-
-		this.animationElevator = new AnimationWithOffset(
-			new Animation(self.World, this.info.Image),
-			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight(self)),
-			() => this.IsTraitDisabled || this.state is not State.ElevatorUp and not State.Ejecting and not State.ElevatorDown,
-			_ => -this.info.Position.Y - 1
-		);
-
-		this.animationElevator.Animation.PlayRepeating("elevator");
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationElevator));
-
-		this.animationOverlay = new AnimationWithOffset(
-			new Animation(self.World, this.info.Image),
-			() => this.info.Position,
-			() => this.IsTraitDisabled,
-			_ => -this.info.Position.Y - 1
-		);
-
-		this.animationOverlay.Animation.PlayRepeating("overlay");
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationOverlay));
 	}
 
 	private int GetElevatorHeight(Actor self)
@@ -186,14 +192,14 @@ public class ElevatorProduction : Production, INotifyCreated, ITick, IRender
 				this.state = State.Closing;
 				this.stateStartTick = self.World.WorldTick;
 
-				this.animationBase?.Animation.PlayBackwardsThen(
+				this.animation.Animation.PlayBackwardsThen(
 					"opening",
 					() =>
 					{
 						this.state = State.Closed;
 						this.stateStartTick = self.World.WorldTick;
 
-						this.animationBase.Animation.PlayRepeating("closed");
+						this.animation.Animation.PlayRepeating("closed");
 					}
 				);
 

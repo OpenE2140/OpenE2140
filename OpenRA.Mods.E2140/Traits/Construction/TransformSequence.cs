@@ -34,27 +34,24 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 
 	public override object Create(ActorInitializer init)
 	{
-		return new TransformSequence(this);
+		return new TransformSequence(init, this);
 	}
 }
 
-public class TransformSequence : INotifyCreated, ITick
+public class TransformSequence : ITick
 {
 	private readonly TransformSequenceInfo info;
-	private RenderSprites? renderSprites;
+	private readonly RenderSprites renderSprites;
 
 	private int token = Actor.InvalidConditionToken;
 	private int remainingTime = -1;
 	private AnimationWithOffset? animationCover;
 
-	public TransformSequence(TransformSequenceInfo info)
+	public TransformSequence(ActorInitializer init, TransformSequenceInfo info)
 	{
 		this.info = info;
-	}
 
-	void INotifyCreated.Created(Actor self)
-	{
-		this.renderSprites = self.TraitOrDefault<RenderSprites>();
+		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
 	}
 
 	public void Run(Actor self)
