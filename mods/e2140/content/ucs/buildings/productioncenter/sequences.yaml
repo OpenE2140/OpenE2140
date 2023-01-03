@@ -1,4 +1,6 @@
 ucs_buildings_productioncenter:
+	Defaults:
+		Offset: -32, -22, 0
 	idle: SPRB0.MIX
 		Start: 122
 	idle_mask: SPRB0.MIX
