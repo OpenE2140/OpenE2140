@@ -40,7 +40,11 @@ public class OpenE2140SpriteSequenceLoader : DefaultSpriteSequenceLoader
 
 public class OpenE2140SpriteSequence : DefaultSpriteSequence
 {
-	public OpenE2140SpriteSequence(
+    private static readonly List<string> FieldsToCopy = new List<string>
+    {
+        "Offset"
+    };
+    public OpenE2140SpriteSequence(
 		ModData modData,
 		string tileSet,
 		SpriteCache cache,
@@ -103,6 +107,7 @@ public class OpenE2140SpriteSequence : DefaultSpriteSequence
 		var newInfo = new MiniYaml("");
 		newInfo.Nodes.Add(new MiniYamlNode("Length", $"{length}"));
 		newInfo.Nodes.Add(new MiniYamlNode("Facings", $"{-facings}"));
+		newInfo.Nodes.AddRange(info.Nodes.Where(p => FieldsToCopy.Contains(p.Key)));
 		newInfo.Nodes.Add(combineNode);
 
 		return newInfo;
