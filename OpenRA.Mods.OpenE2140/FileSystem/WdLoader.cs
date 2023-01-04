@@ -30,7 +30,7 @@ public class WdLoader : IPackageLoader
 			return false;
 		}
 
-		package = new Wd(stream, filename);
+		package = new Wd(stream, filename, context);
 
 		return true;
 	}
