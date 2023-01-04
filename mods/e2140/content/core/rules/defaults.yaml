@@ -65,6 +65,10 @@
 	# Show control group numbers when selected.
 	WithTextControlGroupDecoration:
 		Position: BottomRight
+	# Units have slightly lighter color on radar than buildings
+	ActorRadarColor:
+		DeltaS: -0.2
+		DeltaV: -0.1
 
 # Base for all buildings and towers.
 ^CoreConstruction:

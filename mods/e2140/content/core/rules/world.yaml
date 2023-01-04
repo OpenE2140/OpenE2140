@@ -69,6 +69,7 @@ World:
 	# Required for the color picker.
 	ColorPickerManager:
 		PreviewActor: colorpicker
+		HsvSaturationRange: 0.6, 0.95
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:
