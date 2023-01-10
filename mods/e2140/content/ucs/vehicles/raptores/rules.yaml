@@ -1,0 +1,25 @@
+ucs_vehicles_raptores:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: RAPTOR ES
+	Valued:
+		Cost: 250
+	Buildable:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 3c0
+	Armament@PRIMARY:
+		Weapon: MachineGun
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 0,0,0
+		LocalYaw: 0, 0
+	WithMoveSound:
+		Sound: 32.smp
