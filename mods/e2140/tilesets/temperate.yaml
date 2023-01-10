@@ -11,6 +11,7 @@ Terrain:
 		Color: B09C78
 	TerrainType@Clear:
 		Type: Clear
+		TargetTypes: Ground
 	TerrainType@Sand:
 		Type: Sand
 		TargetTypes: Ground
