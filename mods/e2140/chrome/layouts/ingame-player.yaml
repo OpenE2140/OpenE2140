@@ -94,10 +94,11 @@ Container@PLAYER_WIDGETS:
 				ProductionPalette@PRODUCTION_PALETTE:
 					X: 13
 					Y: 252
-					#Columns: 2
+					Columns: 2
 					Width: 200
 					IconSize: 59, 40
 					IconMargin: 0, 0
+					MaxIconRowOffset: 5
 					ReadyText: Ready
 					HoldText: On Hold
 					ClockPalette: chrome
