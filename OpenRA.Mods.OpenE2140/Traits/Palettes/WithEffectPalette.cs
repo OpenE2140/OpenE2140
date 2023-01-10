@@ -22,26 +22,30 @@ namespace OpenRA.Mods.E2140.Traits.Palettes;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Cycle the tracks pixels when an actor moves.")]
-public class WithMovePaletteInfo : TraitInfo, Requires<IMoveInfo>
+public class WithEffectPaletteInfo : TraitInfo
 {
 	[PaletteReference(true)]
 	[Desc("Custom PlayerColorPalette: BaseName when moving")]
 	public readonly string Palette = "playerMove";
 
-	public override object Create(ActorInitializer init) { return new WithMovePalette(init, this); }
+	public override object Create(ActorInitializer init) { return new WithEffectPalette(init, this); }
 }
 
-public class WithMovePalette : IRenderModifier
+public class WithEffectPalette : INotifyCreated, IRenderModifier
 {
-	private readonly WithMovePaletteInfo info;
-	private readonly IMove move;
+	private readonly WithEffectPaletteInfo info;
 	private readonly RenderSpritesInfo renderSpritesInfo;
+	private IMove? move;
 
-	public WithMovePalette(ActorInitializer init, WithMovePaletteInfo info)
+	public WithEffectPalette(ActorInitializer init, WithEffectPaletteInfo info)
 	{
 		this.info = info;
-		this.move = init.Self.Trait<IMove>();
 		this.renderSpritesInfo = init.Self.Info.TraitInfo<RenderSpritesInfo>();
+	}
+
+	void INotifyCreated.Created(Actor self)
+	{
+		this.move = self.TraitOrDefault<IMove>();
 	}
 
 	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer worldRenderer, IEnumerable<IRenderable> renderables)
@@ -49,9 +53,11 @@ public class WithMovePalette : IRenderModifier
 		return renderables.Select(
 			renderable =>
 			{
-				if (renderable is IPalettedRenderable { Palette: { } } palettedRenderable
-					&& this.move.CurrentMovementTypes.HasFlag(MovementType.Horizontal)
-					&& palettedRenderable.Palette.Name == this.renderSpritesInfo.PlayerPalette + self.Owner.InternalName)
+				if (renderable is not IPalettedRenderable { Palette: { } } palettedRenderable
+					|| palettedRenderable.Palette.Name != this.renderSpritesInfo.PlayerPalette + self.Owner.InternalName)
+					return renderable;
+
+				if (this.move != null && this.move.CurrentMovementTypes.HasFlag(MovementType.Horizontal))
 					return palettedRenderable.WithPalette(worldRenderer.Palette(this.info.Palette + self.Owner.InternalName));
 
 				return renderable;

@@ -49,6 +49,7 @@
 	# Units sequences should always use facings.
 	WithFacingSpriteBody:
 	# Palette magic.
+	WithEffectPalette:
 	WithFacingSpriteBody@mask:
 		Name: body_mask
 		Sequence: idle_mask
@@ -90,6 +91,7 @@
 	# Constructions have sprites but do not use facing for them.
 	WithSpriteBody:
 	# Palette magic.
+	WithEffectPalette:
 	WithSpriteBody@mask:
 		Name: body_mask
 		Sequence: idle_mask
@@ -231,7 +233,6 @@
 	WithMoveAnimation@mask:
 		Body: body_mask
 		MoveSequence: move_mask
-	WithMovePalette:
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle

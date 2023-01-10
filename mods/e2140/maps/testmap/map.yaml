@@ -25,6 +25,7 @@ Players:
 	PlayerReference@Creeps:
 		Name: Creeps
 		Faction: Random
+		NonCombatant: True
 		Enemies: Multi0, Multi1
 	PlayerReference@Multi0:
 		Name: Multi0
@@ -77,12 +78,3 @@ Actors:
 	Actor16: neutral_tree04
 		Owner: Neutral
 		Location: 17,11
-	Actor15: shared_buildings_powerplant
-		Owner: Multi0
-		Location: 18,5
-	Actor17: ucs_buildings_productioncenter
-		Owner: Multi0
-		Location: 19,9
-	Actor18: ucs_buildings_heavytech
-		Owner: Multi0
-		Location: 23,10

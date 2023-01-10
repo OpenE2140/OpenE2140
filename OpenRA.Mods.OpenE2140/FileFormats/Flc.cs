@@ -11,16 +11,26 @@
 
 #endregion
 
-using OpenRA.Primitives;
+using OpenRA.Video;
 
 namespace OpenRA.Mods.E2140.FileFormats;
 
-public class Flc
+public class Flc : IVideo
 {
-	public readonly ushort Width;
-	public readonly ushort Height;
-	public readonly FlcFrame[] Frames;
-	public readonly uint Speed;
+	public ushort FrameCount { get; }
+	public byte Framerate { get; }
+	public ushort Width { get; }
+	public ushort Height { get; }
+	public byte[] CurrentFrameData { get; }
+	public int CurrentFrameIndex { get; private set; }
+	public bool HasAudio => false;
+	public byte[] AudioData => Array.Empty<byte>();
+	public int AudioChannels => 0;
+	public int SampleBits => 0;
+	public int SampleRate => 0;
+
+	private readonly byte[][] frames;
+	private readonly byte[] palette = new byte[1024];
 
 	public Flc(Stream stream)
 	{
@@ -29,9 +39,12 @@ public class Flc
 		if (stream.ReadUInt16() != 0xaf12)
 			throw new Exception("Broken flc file!");
 
-		this.Frames = new FlcFrame[stream.ReadUInt16()];
+		this.FrameCount = stream.ReadUInt16();
 		this.Width = stream.ReadUInt16();
 		this.Height = stream.ReadUInt16();
+
+		this.frames = new byte[this.FrameCount + 1][];
+		this.CurrentFrameData = new byte[Exts.NextPowerOf2(this.Height) * Exts.NextPowerOf2(this.Width) * 4];
 
 		var depth = stream.ReadUInt16();
 
@@ -43,7 +56,7 @@ public class Flc
 		if (flags != 3)
 			throw new Exception("Broken flc file!");
 
-		this.Speed = stream.ReadUInt32();
+		this.Framerate = (byte)stream.ReadUInt32();
 
 		if (stream.ReadBytes(2).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");
@@ -67,26 +80,205 @@ public class Flc
 		if (stream.ReadBytes(40).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");
 
-		var palette = new Color[256];
-
-		for (var i = 0; i <= this.Frames.Length; i++)
-		{
-			var chunkStart = stream.Position;
-			var chunkSize = stream.ReadUInt32();
-
-			if (stream.ReadUInt16() != 0xf1fa)
-				throw new Exception("Broken flc file!");
-
-			var frame = new FlcFrame(stream, palette, this, i == 0 ? new Color[this.Width * this.Height] : this.Frames[i - 1].Pixels);
-
-			if (i < this.Frames.Length)
-				this.Frames[i] = frame;
-
-			if (stream.Position - chunkStart != chunkSize)
-				throw new Exception("Broken flc file!");
-		}
+		for (var i = 0; i < this.frames.Length; i++)
+			this.frames[i] = stream.ReadBytes((int)(stream.ReadUInt32() - 4));
 
 		if (stream.Position != size)
 			throw new Exception("Broken flc file!");
+
+		this.ApplyFrame();
+	}
+
+	public void AdvanceFrame()
+	{
+		this.CurrentFrameIndex++;
+		this.ApplyFrame();
+	}
+
+	public void Reset()
+	{
+		this.CurrentFrameIndex = 0;
+		this.ApplyFrame();
+	}
+
+	private void ApplyFrame()
+	{
+		var stream = new MemoryStream(this.frames[this.CurrentFrameIndex]);
+
+		if (stream.ReadUInt16() != 0xf1fa)
+			throw new Exception("Broken flc file!");
+
+		var chunks = stream.ReadUInt16();
+		var delay = stream.ReadUInt16(); // TODO use this somehow
+
+		if (stream.ReadBytes(6).Any(b => b != 0x00))
+			throw new Exception("Broken flc frame!");
+
+		for (var i = 0; i < chunks; i++)
+		{
+			var chunkStart = stream.Position;
+			var chunkSize = stream.ReadUInt32();
+			var chunkType = stream.ReadUInt16();
+
+			switch (chunkType)
+			{
+				case 4:
+				{
+					var numChunks = stream.ReadUInt16();
+
+					for (var chunk = 0; chunk < numChunks; chunk++)
+					{
+						var skipColors = stream.ReadByte();
+						var numColors = stream.ReadByte();
+
+						if (numColors == 0)
+							numColors = 256;
+
+						for (var color = 0; color < numColors; color++)
+						{
+							Array.Copy(stream.ReadBytes(3).Reverse().ToArray(), 0, this.palette, (skipColors + color) * 4, 3);
+							this.palette[(skipColors + color) * 4 + 3] = 0xff;
+						}
+					}
+
+					break;
+				}
+
+				case 7:
+				{
+					var numLines = stream.ReadUInt16();
+					var y = 0;
+
+					while (numLines > 0)
+					{
+						var numChunks = stream.ReadInt16();
+
+						if (numChunks > 0)
+						{
+							numLines--;
+							var x = 0;
+
+							for (var chunk = 0; chunk < numChunks; chunk++)
+							{
+								x += stream.ReadByte();
+								var count = (sbyte)stream.ReadByte();
+
+								if (count > 0)
+								{
+									for (var j = 0; j < count; j++)
+									{
+										this.Draw(x++, y, stream.ReadByte());
+										this.Draw(x++, y, stream.ReadByte());
+									}
+								}
+								else
+								{
+									var index1 = stream.ReadByte();
+									var index2 = stream.ReadByte();
+
+									for (var j = 0; j < -count; j++)
+									{
+										this.Draw(x++, y, index1);
+										this.Draw(x++, y, index2);
+									}
+								}
+							}
+
+							y++;
+						}
+						else
+							y += -numChunks;
+					}
+
+					break;
+				}
+
+				case 12:
+				{
+					var firstLine = stream.ReadUInt16();
+					var numLines = stream.ReadUInt16();
+
+					for (var y = firstLine; y < firstLine + numLines; y++)
+					{
+						var numChunks = stream.ReadByte();
+						var x = 0;
+
+						for (var chunk = 0; chunk < numChunks; chunk++)
+						{
+							x += stream.ReadByte();
+							var count = (sbyte)stream.ReadByte();
+
+							if (count < 0)
+							{
+								var index = stream.ReadByte();
+
+								for (var j = 0; j < -count; j++)
+									this.Draw(x++, y, index);
+							}
+							else
+							{
+								for (var j = 0; j < count; j++)
+									this.Draw(x++, y, stream.ReadByte());
+							}
+						}
+					}
+
+					break;
+				}
+
+				case 15:
+				{
+					for (var y = 0; y < this.Height; y++)
+					{
+						var numChunks = stream.ReadByte();
+						var x = 0;
+
+						for (var chunk = 0; chunk < numChunks; chunk++)
+						{
+							var count = (sbyte)stream.ReadByte();
+
+							if (count > 0)
+							{
+								var index = stream.ReadByte();
+
+								for (var j = 0; j < count; j++)
+									this.Draw(x++, y, index);
+							}
+							else
+							{
+								for (var j = 0; j < -count; j++)
+									this.Draw(x++, y, stream.ReadByte());
+							}
+						}
+					}
+
+					break;
+				}
+
+				case 16:
+					for (var y = 0; y < this.Height; y++)
+					for (var x = 0; x < this.Width; x++)
+						this.Draw(x, y, stream.ReadByte());
+
+					break;
+
+				case 18:
+					// TODO this is a thumbnail image.
+					stream.Position += chunkSize - 6;
+
+					break;
+
+				default:
+					throw new Exception("Broken flc frame!");
+			}
+
+			if (stream.Position - chunkStart != chunkSize)
+				stream.Position += chunkStart + chunkSize - stream.Position;
+		}
+	}
+
+	private void Draw(int x, int y, int index)
+	{
+		Array.Copy(this.palette, index * 4, this.CurrentFrameData, (y * Exts.NextPowerOf2(this.Width) + x) * 4, 4);
 	}
 }

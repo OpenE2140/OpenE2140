@@ -33,14 +33,14 @@ Assemblies:
 	^BinDir|OpenRA.Mods.OpenE2140.dll
 
 SoundFormats: Wav, Ogg, Smp
-SpriteFormats: PngSheet, MixSprite, DatSprite, FlcSprite, PcxSprite
+SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite
 TerrainFormat: DefaultTerrain
-VideoFormats:
+VideoFormats: FlcVideo
 
 AssetBrowser:
 	AudioExtensions: .wav, .smp
-	SpriteExtensions: .png, .mix, .dat, .flc, .pcx
-	VideoExtensions:
+	SpriteExtensions: .png, .mix, .dat, .pcx
+	VideoExtensions: .flc
 
 ModelSequenceFormat: PlaceholderModelSequence
 SpriteSequenceFormat: OpenE2140SpriteSequence
@@ -123,6 +123,7 @@ TileSets:
 	e2140|tilesets/temperate.yaml
 
 Include: content/core/mod.yaml
+Include: content/shared/mod.yaml
 Include: content/neutral/mod.yaml
 Include: content/ed/mod.yaml
 Include: content/ucs/mod.yaml

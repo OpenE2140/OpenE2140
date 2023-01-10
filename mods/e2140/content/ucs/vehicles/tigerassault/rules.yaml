@@ -19,13 +19,13 @@ ucs_vehicles_tigerassault:
 		TurnSpeed: 20
 		Offset: 0,0,200
 	Armament@PRIMARY:
-		Weapon: SmallMissile
+		Weapon: ucs_vehicles_tigerassault
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 0,-500,0
 		LocalYaw: 0, 0
 	Armament@SECONDARY:
-		Weapon: SmallMissile
+		Weapon: ucs_vehicles_tigerassault
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 0,500,0

@@ -77,7 +77,7 @@ Templates:
 			3: Clear
 			4: Clear
 			5: Clear
-	
+
 	# Large crater made by destruction of Power Plant
 	Template@30:
 		Id: 30
@@ -103,7 +103,7 @@ Templates:
 			1: Rock
 			2: Rock
 			3: Rock
-		
+
 	# Sand tiles
 	Template@60:
 		Id: 60
@@ -395,7 +395,7 @@ Templates:
 		Frames: 132
 		Tiles:
 			0: Sand
-	
+
 	# Water tiles
 	Template@100:
 		Id: 100
@@ -421,7 +421,7 @@ Templates:
 			1: Water
 			2: Water
 			3: Water
-	
+
 	# Shore tiles
 	Template@105:
 		Id: 105
@@ -673,7 +673,7 @@ Templates:
 		Tiles:
 			0: Shore
 			1: Shore
-	
+
 	# Road tiles
 	Template@200:
 		Id: 200
