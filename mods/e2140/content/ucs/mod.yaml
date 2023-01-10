@@ -17,6 +17,7 @@ Rules:
 Sequences:
 	e2140|content/shared/vehicles/mcu/sequences.yaml
 	e2140|content/shared/buildings/powerplant/sequences.yaml
+	e2140|content/shared/weapons/sequences.yaml
 	e2140|content/ucs/buildings/productioncenter/sequences.yaml
 	e2140|content/ucs/vehicles/tigerassault/sequences.yaml
 	e2140|content/ucs/sequences.yaml
@@ -26,3 +27,4 @@ Voices:
 
 Weapons:
 	e2140|content/ucs/vehicles/tigerassault/weapons.yaml
+	e2140|content/shared/weapons/missiles.yaml
