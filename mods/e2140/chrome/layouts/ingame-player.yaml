@@ -69,6 +69,20 @@ Container@PLAYER_WIDGETS:
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
+						ProductionTypeButton@Vehicle:
+							X: 94
+							Y: 5
+							Width: 32
+							Height: 21
+							Background: sidebar-production-tab
+							TooltipText: Vehicles
+							ProductionGroup: Vehicle
+							Key: ProductionTypeVehicle
+							Children:
+								Image@ICON:
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
 					X: 13
 					Y: 252
@@ -80,6 +94,7 @@ Container@PLAYER_WIDGETS:
 				ProductionPalette@PRODUCTION_PALETTE:
 					X: 13
 					Y: 252
+					#Columns: 2
 					Width: 200
 					IconSize: 59, 40
 					IconMargin: 0, 0
