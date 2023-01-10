@@ -29,3 +29,5 @@ ucs_vehicles_tigerassault:
 		E2140Format: true
 		Facings: 16
 		Start: 165
+	icon: SPRI1.MIX
+		Start: 133

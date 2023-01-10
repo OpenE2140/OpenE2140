@@ -5,6 +5,9 @@ ucs_vehicles_tigerassault:
 		Name: Tiger Assault
 	Valued:
 		Cost: 700
+	Buildable:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
 	Health:
 		HP: 400
 	Mobile:
