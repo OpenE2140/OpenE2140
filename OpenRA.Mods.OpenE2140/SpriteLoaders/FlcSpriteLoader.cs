@@ -37,6 +37,7 @@ public class FlcSpriteFrame : ISpriteFrame
 	}
 }
 
+// TODO this should be a video instead of a spritesheet, cause that has better performance for this!
 [UsedImplicitly]
 public class FlcSpriteLoader : ISpriteLoader
 {

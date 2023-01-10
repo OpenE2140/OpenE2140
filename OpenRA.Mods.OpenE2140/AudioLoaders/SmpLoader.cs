@@ -22,14 +22,13 @@ public class SmpLoader : ISoundLoader
 	{
 		public int Channels => 1;
 		public int SampleBits => 8;
-		public int SampleRate { get; set; }
+		public int SampleRate => 16000;
 		public float LengthInSeconds => (float)this.data.Length / this.SampleRate;
 
 		private readonly byte[] data;
 
-		public SmpSoundFormat(int sampleRate, byte[] data)
+		public SmpSoundFormat(byte[] data)
 		{
-			this.SampleRate = sampleRate;
 			this.data = data;
 		}
 
@@ -46,7 +45,7 @@ public class SmpLoader : ISoundLoader
 
 	public bool TryParseSound(Stream stream, out ISoundFormat sound)
 	{
-		sound = new SmpSoundFormat(stream.ReadInt32(), stream.ReadAllBytes());
+		sound = new SmpSoundFormat(stream.ReadAllBytes());
 
 		return true;
 	}

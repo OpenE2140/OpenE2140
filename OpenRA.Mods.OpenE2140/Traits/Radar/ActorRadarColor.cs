@@ -11,40 +11,45 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits.Radar
+namespace OpenRA.Mods.E2140.Traits.Radar;
+
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[Desc("Changes what color actor has on minimap. Applied to color as HSV.")]
+public class ActorRadarColorInfo : TraitInfo
 {
-	[Desc("Changes what color actor has on minimap. Applied to color as HSV.")]
-	public class ActorRadarColorInfo : TraitInfo
+	[Desc("Delta applied to H")]
+	public readonly float DeltaH;
+
+	[Desc("Delta applied to S")]
+	public readonly float DeltaS;
+
+	[Desc("Delta applied to V")]
+	public readonly float DeltaV;
+
+	public override object Create(ActorInitializer init)
 	{
-		[Desc("Delta applied to H")]
-		public readonly float DeltaH = 0;
+		return new ActorRadarColor(this);
+	}
+}
 
-		[Desc("Delta applied to S")]
-		public readonly float DeltaS = 0;
+public class ActorRadarColor : IRadarColorModifier
+{
+	private readonly ActorRadarColorInfo info;
 
-		[Desc("Delta applied to V")]
-		public readonly float DeltaV = 0;
-
-		public override object Create(ActorInitializer init) { return new ActorRadarColor(this); }
+	public ActorRadarColor(ActorRadarColorInfo info)
+	{
+		this.info = info;
 	}
 
-	public class ActorRadarColor : IRadarColorModifier
+	public Color RadarColorOverride(Actor self, Color color)
 	{
-		private readonly ActorRadarColorInfo info;
+		var (a, h, s, v) = color.ToAhsv();
 
-		public ActorRadarColor(ActorRadarColorInfo info)
-		{
-			this.info = info;
-		}
-
-		public Color RadarColorOverride(Actor self, Color color)
-		{
-			var (_, h, s, v) = color.ToAhsv();
-			return Color.FromAhsv(color.A, h + this.info.DeltaH, s + this.info.DeltaS, v + this.info.DeltaV);
-		}
+		return Color.FromAhsv(a, h + this.info.DeltaH, s + this.info.DeltaS, v + this.info.DeltaV);
 	}
 }

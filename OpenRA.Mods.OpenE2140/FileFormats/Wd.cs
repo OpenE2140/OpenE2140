@@ -18,76 +18,40 @@ namespace OpenRA.Mods.E2140.FileFormats;
 
 public class Wd : IReadOnlyPackage
 {
-	private record WdEntry(int Offset, int Length);
-
-	private record WdSoundEntry(WdEntry Entry, int SampleRate);
+	private record WdEntry(uint Offset, uint Length);
 
 	public string Name { get; }
 	public IEnumerable<string> Contents => this.index.Keys;
 
-	private readonly Dictionary<string, object> index = new Dictionary<string, object>();
+	private readonly Dictionary<string, WdEntry> index = new Dictionary<string, WdEntry>();
 	private readonly Stream stream;
 
-	public Wd(Stream stream, string filename, IReadOnlyFileSystem? fileSystem)
+	public Wd(Stream stream, string filename)
 	{
 		this.stream = stream;
 		this.Name = filename;
 
-		var numFiles = stream.ReadUInt32();
+		var numFiles = this.stream.ReadUInt32();
 
 		if (numFiles == 0)
 		{
-			if (fileSystem != null && fileSystem.TryOpen($"lookups/{Path.GetFileNameWithoutExtension(filename)}.yaml", out var lookupStream))
+			var lastOffset = 0u;
+
+			for (var i = 0; i < 255; i++)
 			{
-				var lookup = MiniYaml.FromStream(lookupStream);
+				var offset = this.stream.ReadUInt32();
 
-				foreach (var soundsNode in lookup)
-				{
-					this.stream.Position = int.Parse(soundsNode.Key) * 4;
+				if (offset > lastOffset)
+					this.index.Add($"{i}.smp", new WdEntry(lastOffset + 0x400, offset - lastOffset));
 
-					var start = this.stream.ReadInt32();
-					var end = this.stream.ReadInt32();
-
-					if (start == 0)
-						continue;
-
-					if (end == 0)
-						end = (int)this.stream.Length;
-
-					var entry = new WdEntry(start, end - start);
-
-					foreach (var pitchedSoundNode in soundsNode.Value.Nodes)
-						this.index.Add($"{pitchedSoundNode.Key}.smp", new WdSoundEntry(entry, int.Parse(pitchedSoundNode.Value.Value)));
-				}
-			}
-			else
-			{
-				this.stream.Position = 0;
-
-				var offsets = new int[256];
-
-				for (var i = 0; i < 256; i++)
-					offsets[i] = this.stream.ReadInt32();
-
-				for (var i = 0; i < 256; i++)
-				{
-					if (offsets[i] == 0)
-						continue;
-
-					var nextFile = i < 255 ? offsets[i + 1] : 0;
-
-					if (nextFile == 0)
-						nextFile = (int)this.stream.Length;
-
-					this.index.Add($"{i}.smp", new WdSoundEntry(new WdEntry(offsets[i], nextFile - offsets[i]), 16000));
-				}
+				lastOffset = offset;
 			}
 		}
 		else
 		{
 			for (var i = 0; i < numFiles; i++)
 			{
-				var entry = new WdEntry(stream.ReadInt32(), stream.ReadInt32());
+				var entry = new WdEntry(stream.ReadUInt32(), stream.ReadUInt32());
 
 				var unk1 = stream.ReadUInt32(); // 0x00
 				var unk2 = stream.ReadUInt32(); // 0x00
@@ -105,25 +69,7 @@ public class Wd : IReadOnlyPackage
 
 	public Stream? GetStream(string filename)
 	{
-		if (!this.index.TryGetValue(filename, out var entry))
-			return null;
-
-		if (entry is WdEntry wdEntry)
-			return SegmentStream.CreateWithoutOwningStream(this.stream, wdEntry.Offset, wdEntry.Length);
-
-		if (entry is not WdSoundEntry soundEntry)
-			return null;
-
-		this.stream.Position = soundEntry.Entry.Offset;
-
-		var newData = new MemoryStream();
-		newData.Write(soundEntry.SampleRate);
-		newData.Write(soundEntry.SampleRate);
-		newData.Write(this.stream.ReadBytes(soundEntry.Entry.Length));
-
-		newData.Position = 0;
-
-		return newData;
+		return this.index.TryGetValue(filename, out var entry) ? SegmentStream.CreateWithoutOwningStream(this.stream, entry.Offset, (int)entry.Length) : null;
 	}
 
 	public bool Contains(string filename)

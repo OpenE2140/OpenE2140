@@ -18,25 +18,25 @@ namespace OpenRA.Mods.E2140.FileFormats;
 public class Mix
 {
 	public readonly MixFrame[] Frames;
-	public readonly Dictionary<int, MixPalette> Palettes = new Dictionary<int, MixPalette>();
+	public readonly Dictionary<uint, MixPalette> Palettes = new Dictionary<uint, MixPalette>();
 
 	public Mix(Stream stream)
 	{
 		if (stream.ReadASCII(10) != "MIX FILE  ")
 			throw new Exception("Not a mix file!");
 
-		var dataSize = stream.ReadInt32();
-		var frameOffsets = new int[stream.ReadInt32()];
-		var frameOffset = stream.ReadInt32();
-		var numPalettes = stream.ReadInt32();
-		var firstPaletteId = stream.ReadInt32();
-		var palettesOffset = stream.ReadInt32();
+		var dataSize = stream.ReadUInt32();
+		var frameOffsets = new uint[stream.ReadUInt32()];
+		var frameOffset = stream.ReadUInt32();
+		var numPalettes = stream.ReadUInt32();
+		var firstPaletteId = stream.ReadUInt32();
+		var palettesOffset = stream.ReadUInt32();
 
 		if (stream.ReadASCII(5) != "ENTRY")
 			throw new Exception("Broken mix file!");
 
 		for (var i = 0; i < frameOffsets.Length; i++)
-			frameOffsets[i] = stream.ReadInt32();
+			frameOffsets[i] = stream.ReadUInt32();
 
 		if (stream.ReadASCII(5) != " PAL ")
 			throw new Exception("Broken mix file!");
@@ -44,7 +44,7 @@ public class Mix
 		if (stream.Position != palettesOffset)
 			throw new Exception("Broken mix file!");
 
-		for (var i = 0; i < numPalettes; i++)
+		for (var i = 0u; i < numPalettes; i++)
 			this.Palettes.Add(firstPaletteId + i, new MixPalette(stream));
 
 		if (stream.ReadASCII(5) != "DATA ")
