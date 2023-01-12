@@ -1,0 +1,11 @@
+ucs_vehicles_raptor_es:
+	ReloadDelay: 50
+	Burst: 3
+	Range: 3c0
+	Report: 2.smp
+	ValidTargets: Ground
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 20
+		ValidTargets: Ground

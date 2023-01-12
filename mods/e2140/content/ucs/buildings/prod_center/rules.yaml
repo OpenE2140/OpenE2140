@@ -1,0 +1,61 @@
+ucs_buildings_prod_center:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Prod. Center
+	Health:
+		HP: 1000
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= =x=
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Selectable:
+		Bounds: 2064, 1984, -513, -495
+	-RenderSprites:
+	RenderElevatorSprites:
+	ElevatorProduction:
+		Image: ucs_elevator
+		Position: 16, 1024, 0
+		Produces: Building.UCS
+		RequiresCondition: !Transforming
+	ProductionQueue:
+		Type: Building.UCS
+		Group: Building
+		RequiresCondition: !Transforming
+	ProductionBar:
+		ProductionType: Building.UCS
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: 16, 1024, 0
+		ExitCell: 0,2
+		Facing: 256
+	Exit@Exit2:
+		SpawnOffset: 16, 1024, 0
+		ExitCell: 0,3
+		Facing: 384
+	Exit@Exit3:
+		SpawnOffset: 16, 1024, 0
+		ExitCell: 1,3
+		Facing: 512
+	Exit@Exit4:
+		SpawnOffset: 16, 1024, 0
+		ExitCell: 2,3
+		Facing: 640
+	Exit@Exit5:
+		SpawnOffset: 16, 1024, 0
+		ExitCell: 2,2
+		Facing: 768
+
+ucs_mcu_prod_center:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Production Center
+	Transforms:
+		IntoActor: ucs_buildings_prod_center
+	Valued:
+		Cost: 2500
+	Buildable:
+		Queue: Building.UCS
+		BuildDuration: 40

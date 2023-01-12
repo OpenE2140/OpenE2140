@@ -9,23 +9,21 @@ Notifications:
 
 Rules:
 	e2140|content/ucs/rules.yaml
-	e2140|content/ucs/buildings/heavytech/rules.yaml
-	e2140|content/ucs/buildings/productioncenter/rules.yaml
-	e2140|content/ucs/vehicles/raptores/rules.yaml
-	e2140|content/ucs/vehicles/tigerassault/rules.yaml
+	e2140|content/ucs/buildings/heavy_tech/rules.yaml
+	e2140|content/ucs/buildings/prod_center/rules.yaml
+	e2140|content/ucs/vehicles/raptor_es/rules.yaml
+	e2140|content/ucs/vehicles/tiger_assault/rules.yaml
 
 Sequences:
-	e2140|content/shared/buildings/powerplant/sequences.yaml
-	e2140|content/shared/vehicles/mcu/sequences.yaml
-	e2140|content/ucs/buildings/heavytech/sequences.yaml
-	e2140|content/ucs/buildings/productioncenter/sequences.yaml
-	e2140|content/ucs/vehicles/raptores/sequences.yaml
-	e2140|content/ucs/vehicles/tigerassault/sequences.yaml
+	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
+	e2140|content/ucs/buildings/prod_center/sequences.yaml
+	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
+	e2140|content/ucs/vehicles/tiger_assault/sequences.yaml
 	e2140|content/ucs/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
 
 Weapons:
-	e2140|content/ucs/vehicles/raptores/weapons.yaml
-	e2140|content/ucs/vehicles/tigerassault/weapons.yaml
+	e2140|content/ucs/vehicles/raptor_es/weapons.yaml
+	e2140|content/ucs/vehicles/tiger_assault/weapons.yaml

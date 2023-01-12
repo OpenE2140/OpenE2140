@@ -1,0 +1,29 @@
+ucs_vehicles_raptor_es:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: RAPTOR ES
+	Valued:
+		Cost: 250
+	Buildable:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 3c0
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_raptor_es
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 0,0,0
+		LocalYaw: 0, 0
+		# TODO the following 3 lines must be removed => we need a custom trait! 1-frame animations are not supported for this in OpenRA yet
+		MuzzleSequence: idle
+		MuzzlePalette: effectsMuzzleYellow
+	WithMuzzleOverlay@muzzle:
+	WithMoveSound:
+		Sound: 32.smp

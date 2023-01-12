@@ -4,6 +4,5 @@ colorpicker:
 	BodyOrientation:
 	QuantizeFacingsFromSequence:
 	WithFacingSpriteBody:
-	WithFacingSpriteBody@mask:
-		Name: body_mask
-		Sequence: idle_mask
+	Husk:
+		InitialFacing: 378

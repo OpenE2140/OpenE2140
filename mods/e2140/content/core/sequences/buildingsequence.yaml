@@ -1,36 +1,23 @@
+# TODO refactor!
 core_buildingsequence_small:
 	deploy: SPRU0.MIX
 		Frames: 18, 20, 22, 24, 26, 28, 30
 		Length: 7
-	deploy_mask: SPRU0.MIX
-		Frames: 19, 21, 23, 25, 27, 29, 31
-		Length: 7
 	deployed: SPRU0.MIX
 		Frames: 30
-	deployed_mask: SPRU0.MIX
-		Frames: 31
 	cover: SPRU0.MIX
 		Frames: 62, 60, 58, 56, 54, 52
 		Length: 6
-	cover_mask: SPRU0.MIX
-		Frames: 63, 61, 59, 57, 55, 53
-		Length: 6
 	covered: SPRU0.MIX
 		Frames: 62
-	covered_mask: SPRU0.MIX
-		Frames: 63
 
+# TODO refactor!
 core_buildingsequence_large:
 	deploy: SPRU0.MIX
 		Frames: 44, 42, 40, 38, 36, 34, 32
 		Length: 7
-	deploy_mask: SPRU0.MIX
-		Frames: 45, 43, 41, 39, 37, 35, 33
-		Length: 7
 	deployed: SPRU0.MIX
 		Frames: 32
-	deployed_mask: SPRU0.MIX
-		Frames: 33
 	cover: content/core/assets/construction_pyramid.png
 		Length: 6
 	covered: content/core/assets/construction_pyramid.png

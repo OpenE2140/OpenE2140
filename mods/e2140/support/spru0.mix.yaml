@@ -1,0 +1,311 @@
+vehicle_mcu: Shadow Player Tracks
+	idle: 0-8 16
+	deploy_small: 9-15
+	deployed_small: 15
+	deploy_large: 22-16
+	deployed_large: 16
+
+pyramid: Shadow
+	construct_small: 31,30,29,28,27,26
+	constructed_small: 26
+	deconstruct_small: 26,27,28,29,30,31
+	construct_large: 25,24,23,35,34,33,32
+	constructed_large: 32
+	deconstruct_large: 32,33,34,35,23,24,25
+
+vehicle_tiger_assault: Shadow Player
+	idle: 37-81[8:1:0] 8
+	move: 37-81[0:8:1] 8
+	turret: 82-90 16
+
+vehicle_tiger_hellmaker: Shadow Player
+	idle: 37-81[8:1:0] 8
+	move: 37-81[0:8:1] 8
+	turret: 91-99 16
+
+vehicle_spider: Shadow Player
+	idle: 37-81[8:1:0] 8
+	move: 37-81[0:8:1] 8
+	turret: 100-108 16
+
+vehicle_spider_ii: Shadow Player
+	idle: 37-81[8:1:0] 8
+	move: 37-81[0:8:1] 8
+	turret: 1162-1170 16
+
+vehicle_raptor_es: Player Attack
+	idle: 115,144,122,145,129,146,136,147,143 16
+	move: 109-143[0:6:1] 8
+
+vehicle_raptor_ad: Player
+	idle: 154,184,161,183,168,185,175,186,182 16
+	move: 148-182[0:6:1] 8
+
+vehicle_wtp_100: Player
+	idle: 187-195 16
+	open: 196-201 4
+	opened: 196-201[1:1:0] 4
+	close: 197-196,199-198,201-200 4
+
+vehicle_hcr_m: Shadow Player Tracks
+	idle: 202-210 16
+
+turret_hcr_m: Shadow
+	idle: 211-219 16
+	repair: 230-234,225-229,220,224 4
+
+vehicle_heavy_lifter: Player
+	idle: 235-243 16
+	vertical: 244
+
+vehicle_bantha: Shadow Player Tracks
+	idle: 245-253 16
+	extend: 254-255
+	extended: 255
+	retract: 255-256
+
+cargo: Shadow
+	idle: 257-265 16
+
+vehicle_bio: Shadow Player Tracks Light
+	idle: 266-274 16
+	open: 275-276
+	opened: 276
+	close: 276-275
+
+vehicle_tur: Shadow Player Tracks
+	idle: 277-285 16
+	open: 286-287
+	opened: 287
+	close: 287-286
+
+vehicle_tank_small: Shadow Player Tracks
+	idle: 288-296 16
+
+vehicle_btti: Shadow Player Tracks Attack
+	idle: 297-305 16
+
+vehicle_tank_medium: Shadow Player Tracks
+	idle: 306-314 16
+
+aircraft_storm: Player Attack
+	idle: 315-323 16
+
+aircraft_thunder: Player
+	idle: 324-332 16
+
+vehicle_tank_large: Shadow Player Tracks
+	idle: 333-341 16
+
+turret_ht_33_r: Shadow Player
+	idle: 342-350 16
+
+turret_mt_201l: Shadow Player
+	idle: 351-359 16
+
+turret_mt_200: Shadow Player Attack
+	idle: 360-368 16
+
+turret_st_01b: Shadow Player Attack
+	idle: 369-377 16
+
+turret_kt30:
+	idle: 378-386 16
+
+turret_ht_30_lr__kt30:
+	idle: 387-395 16
+
+turret_thunder__st_02__little_eye:
+	idle: 396-404 16
+
+turret_ht_30_lr: Player
+	idle: 405-413 16
+
+turret_ht_34_j__heavy_def_tower: Shadow
+	idle: 414-422 16
+
+turret_android_a01: Shadow Attack #TODO unused?!
+	idle: 423-431 16
+
+turret_defend_tower: Shadow
+	idle: 432-440 16
+
+turret_big_eye: Player
+	idle: 441-449 16
+
+turret_little_eye__defend_tower: Attack
+	idle: 450-458 16
+
+turret_pillbox: Shadow Player Attack
+	idle: 459-467 16
+
+turret_atm_500__miner__miner_bt: Shadow Attack
+	idle: 468-476 16
+
+turret_big_eye__heavy_def_tower:
+	idle: 477-485 16
+
+ship_kt30: Shadow Player
+	idle: 486-494 16
+
+ship_russ3:
+	idle: 495-503 16
+
+aircraft_hell_wind: Player Engine
+	idle: 504-512 16
+
+aircraft_gargoil: Player Engine Attack
+	idle: 513-521 16
+
+vehicle_miner_bt: Shadow Player Tracks Light
+	idle: 522-530 16
+
+vehicle_hb_bike: Shadow Player
+	idle: 531-539 16
+
+vehicle_shadow: Shadow Player Tracks
+	idle: 540-548 16
+
+vehicle_t100: Shadow Tracks
+	idle: 549-557 16
+
+turret_t100: Shadow Player Attack
+	idle: 558-566 16
+
+vehicle_atm_500: Shadow Player Tracks
+	idle: 567-575 16
+	open: 576-577
+	opened: 577
+	close: 577-576
+
+vehicle_screamer: Shadow Player Tracks
+	idle: 578-586 16
+
+turret_screamer__an_center__heavy_tech: Shadow
+	idle: 587-595 16
+
+vehicle_hat: Player Rotors
+	idle: 596-604 16
+	open: 605-606
+	opened: 606
+	close: 606-605
+
+vehicle_miner: Shadow Player Tracks Light
+	idle: 607-615 16
+
+ship_ttre_400: Shadow Player
+	idle: 616-624 16
+
+ship_shark: Shadow Player
+	idle: 625-633 16
+
+ship_wtrn: Shadow Player
+	idle: 634-642 16
+	open: 643-648 4
+	opened: 643-648[1:1:0] 4
+	close: 644-643,646-645,648-647 4
+
+rotor_slow:
+	idle: 649-652
+
+rotor_fast:
+	idle: 653-654
+
+infantry_silver_t: Player
+	idle: 655-684[4:1:1] 8
+	idle2: 655-684[5:1:0] 8
+	move: 655-684[0:4:2] 8
+
+# TODO what is 685
+# TODO what is 686-690 (1370-1380)
+
+infantry_silver_one: Player
+	idle: 691-720[5:1:0] 8
+	idle2: 691-720[5:1:0] 8
+	move: 691-720[0:4:2] 8
+	attack: 721-730 8
+
+infantry_silver_max: Player
+	idle: 731-760[4:1:1] 8
+	idle2: 731-760[5:1:0] 8
+	move: 731-760[0:4:2] 8
+	attack: 761-770 8
+
+infantry_silver_r: Player
+	idle: 771-800[4:1:1] 8
+	idle2: 771-800[5:1:0] 8
+	move: 771-800[0:4:2] 8
+	attack: 801-810 8
+
+infantry_android_a04: Player
+	idle: 811-840[4:1:1] 8
+	idle2: 811-840[5:1:0] 8
+	move: 811-840[0:4:2] 8
+	attack: 841-850 8
+
+infantry_android_a03: Player
+	idle: 851-880[4:1:1] 8
+	idle2: 851-880[5:1:0] 8
+	move: 851-880[0:4:2] 8
+	attack: 881-890 8
+
+infantry_android_a01: Player
+	idle: 891-920[4:1:1] 8
+	idle2: 891-920[5:1:0] 8
+	move: 891-920[0:4:2] 8
+	attack: 921-930 8
+	attack2: 931-940 8
+
+infantry_android_a02: Player
+	idle: 941-970[4:1:1] 8
+	idle2: 941-970[5:1:0] 8
+	move: 941-970[0:4:2] 8
+	attack: 971-980 8
+
+infantry_civil1: Player
+	idle: 981-1010[4:1:1] 8
+	idle2: 981-1010[5:1:0] 8
+	move: 981-1010[0:4:2] 8
+	die: 1011-1014
+
+infantry_civil2: Player
+	idle: 1015-1044[4:1:1] 8
+	idle2: 1015-1044[5:1:0] 8
+	move: 1015-1044[0:4:2] 8
+	die: 1045-1048
+
+infantry_civil3: Player
+	idle: 1049-1078[4:1:1] 8
+	idle2: 1049-1078[5:1:0] 8
+	move: 1049-1078[0:4:2] 8
+	die: 1079-1082
+
+# TODO they are heavily broken. We need to fix that or implement custom ones.
+# android death 2166-2220 4 directional shot 7 frames no player color
+# android death 2222-2276 4 directional explode 7 frames no player color
+# android death 2278-2290 burned 7 frames no player color
+# silver death 2292-2304 7 frames has come crazy color
+# 9 total empty frames?! Is this as bug?
+
+vehicle_big_meh: Shadow Player
+	idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
+	move: 1171-1205[0:6:1] 8
+	shadow: 1210-1214 8
+
+vehicle_goliat: Shadow Player
+	idle: 1215-1223 16
+
+aircraft_gargoil_ii: Player Engine
+	idle: 1224-1232 16
+
+vehicle_warhammer: Shadow Player Tracks
+	idle: 1233-1241 16
+
+turret_warhammer: Shadow Player Attack
+	idle: 1242-1250 16
+
+aircraft_vtol: Player Engine
+	idle: 1251-1259 16
+
+aircraft_nemezis: Player Engine
+	idle: 1260-1268 16

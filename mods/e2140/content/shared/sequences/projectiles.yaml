@@ -1,0 +1,3 @@
+projectile_rocket: projectile_rocket.vmix
+	explode:
+		BlendMode: Additive

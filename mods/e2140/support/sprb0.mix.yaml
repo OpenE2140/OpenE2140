@@ -1,0 +1,164 @@
+building_power_plant: Shadow Player
+	idle: 0
+	idle_damaged: 1
+	addon: 2
+	addon_damaged: 3
+
+building_teleport: Shadow Player
+	idle: 4
+	idle_damaged: 5
+
+building_refinery: Shadow Player
+	idle: 6
+	idle_damaged: 7
+	belt: 8
+	animation: 9-11
+
+building_research_center: Shadow Player
+	idle: 12
+	idle_damaged: 13
+
+building_air_base: Shadow Player
+	idle: 14
+	idle_damaged: 15
+	addon_left: 16
+	addon_right: 17
+
+building_water_base: Shadow Player
+	idle: 18
+	idle_damaged: 19
+	addon: 88
+	addon_damaged: 89
+
+building_shelter: Shadow Player
+	idle: 20
+	idle_damaged: 21
+	lower: 22
+	lower_damaged: 23
+	door: 24
+	door_damaged: 25
+
+building_mine: Shadow Player
+	idle: 26
+	idle_damaged: 27
+	rotor: 28-32
+
+building_tech_house: Shadow Player
+	idle: 33
+	idle_damaged: 34
+
+building_bio_center: Shadow Player
+	idle: 35
+	idle_damaged: 36
+	opening: 37-38
+	opened: 38
+	closing: 38-37
+
+building_constr_center: Shadow Player
+	idle: 39
+	idle_damaged: 40
+
+building_bcc: Shadow Player
+	idle: 41
+	idle_damaged: 42
+
+building_silo: Shadow Player
+	idle: 43
+	idle_damaged: 48
+	lower: 46
+	upper: 47
+	opening: 43-45
+	open: 45
+	closing: 45-43
+
+building_pillbox: Shadow
+	idle: 49
+	idle_damaged: 50
+
+building_defend_tower: Shadow
+	idle: 51
+	idle_damaged: 52
+
+building_heavy_def_tower: Shadow
+	idle: 53
+	idle_damaged: 54
+
+building_heavy_tech: Shadow Player
+	idle: 55
+	idle_damaged: 56
+
+building_robot_factory: Shadow Player
+	idle: 57
+	idle_damaged: 58
+	opening: 59-60
+	opened: 60
+	closing: 60-59
+
+building_prod_center: Shadow Player
+	idle: 61
+	idle_damaged: 62
+
+building_pb_control: Shadow Player
+	idle: 63
+	idle_damaged: 64
+
+building_pb_cannon: Shadow Player
+	idle: 65
+	idle_damaged: 66
+	firing: 67-71,70-67
+
+building_little_eye: Shadow
+	idle: 72
+	idle_damaged: 73
+
+building_big_eye: Shadow
+	idle: 74
+	idle_damaged: 75
+
+building_elevator_ed: Player
+	closed: 76
+	opening: 77-78
+	open_upper: 79
+	open_lower: 80
+	closing: 78-77
+	elevator: 81
+
+building_elevator_ucs: Player
+	closed: 82
+	opening: 83-84
+	open_upper: 85
+	open_lower: 86
+	closing: 84-83
+	elevator: 87
+
+building_civ_building_1: Shadow
+	idle: 90
+	idle_damaged: 91
+
+building_civ_building_2: Shadow
+	idle: 92
+	idle_damaged: 93
+
+building_civ_building_3: Shadow
+	idle: 94
+	idle_damaged: 95
+
+building_civ_building_4: Shadow
+	idle: 96
+	idle_damaged: 97
+
+building_civ_building_5: Shadow
+	idle: 98
+	idle_damaged: 99
+
+building_civ_building_6: Shadow
+	idle: 100
+	idle_damaged: 101
+
+building_sdi_defence: Shadow Player
+	idle: 102
+	idle_damaged: 103
+
+building_an_center: Shadow Player
+	idle: 104
+	idle_damaged: 105

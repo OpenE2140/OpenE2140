@@ -59,10 +59,7 @@ public class TransformSequence : ITick
 		this.token = self.GrantCondition(this.info.Condition);
 
 		var animationDeploy = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationDeploy));
-
-		var animationDeployMask = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationDeployMask));
+		self.World.AddFrameEndTask(_ => this.renderSprites.Add(animationDeploy));
 
 		animationDeploy.Animation.PlayThen(
 			"deploy",
@@ -77,13 +74,7 @@ public class TransformSequence : ITick
 					"cover",
 					() =>
 					{
-						self.World.AddFrameEndTask(
-							_ =>
-							{
-								this.renderSprites?.Remove(animationDeploy);
-								this.renderSprites?.Remove(animationDeployMask);
-							}
-						);
+						self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(animationDeploy));
 
 						this.animationCover.Animation.PlayRepeating("covered");
 						this.remainingTime = this.info.ConstructionTime;
@@ -91,8 +82,6 @@ public class TransformSequence : ITick
 				);
 			}
 		);
-
-		animationDeployMask.Animation.PlayThen("deploy_mask", () => animationDeployMask.Animation.PlayRepeating("deployed_mask"));
 	}
 
 	void ITick.Tick(Actor self)

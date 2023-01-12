@@ -5,8 +5,8 @@
 	StartingUnits@ucs_default:
 		Class: default
 		ClassName: Default
-		BaseActor: ucs_mcu_productioncenter
-		SupportActors: ucs_vehicles_tigerassault
+		BaseActor: ucs_mcu_prod_center
+		SupportActors: ucs_vehicles_tiger_assault
 		Factions: ucs
 
 ^UcsMech:
@@ -14,3 +14,11 @@
 	Mobile:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
+
+ucs_colorpicker:
+	Inherits: ucs_vehicles_tiger_assault
+	RenderSprites:
+		Image: ucs_vehicles_tiger_assault
+		Palette: colorpicker
+	-MapEditorData:
+	-Buildable:

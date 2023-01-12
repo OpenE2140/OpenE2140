@@ -48,11 +48,6 @@
 	MustBeDestroyed:
 	# Units sequences should always use facings.
 	WithFacingSpriteBody:
-	# Palette magic.
-	WithEffectPalette:
-	WithFacingSpriteBody@mask:
-		Name: body_mask
-		Sequence: idle_mask
 	# Units are visible on the radar.
 	AppearsOnRadar:
 	# Allow units to use the AttackMove and AssaultMove commands.
@@ -90,11 +85,6 @@
 	Selectable:
 	# Constructions have sprites but do not use facing for them.
 	WithSpriteBody:
-	# Palette magic.
-	WithEffectPalette:
-	WithSpriteBody@mask:
-		Name: body_mask
-		Sequence: idle_mask
 	# Constructions are visible on the radar.
 	AppearsOnRadar:
 	# Constructions should explode when owner lost the game.
@@ -130,8 +120,6 @@
 		ConstructionTime: 30
 	WithSpriteBody:
 		RequiresCondition: !Transforming
-	WithSpriteBody@mask:
-		RequiresCondition: !Transforming
 
 # Base for all towers.
 ^CoreTower:
@@ -165,8 +153,6 @@
 		Condition: Transforming
 	WithSpriteBody:
 		RequiresCondition: !Transforming
-	WithSpriteBody@mask:
-		RequiresCondition: !Transforming
 
 # Base for all infantry.
 ^CoreInfantry:
@@ -193,10 +179,6 @@
 			Radius: 128
 	# Infantry has an animation while moving: walking.
 	WithMoveAnimation:
-	# Palette magic.
-	WithMoveAnimation@mask:
-		Body: body_mask
-		MoveSequence: move_mask
 	# Group all infantry in the map editor.
 	MapEditorData:
 		Categories: Infantry
@@ -229,10 +211,6 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
-	# Palette magic.
-	WithMoveAnimation@mask:
-		Body: body_mask
-		MoveSequence: move_mask
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle
@@ -295,9 +273,6 @@
 	Turreted:
 	# Special trait to position turret depending on attachment point (only visualy).
 	WithSpriteTurret:
-	# Palette magic.
-	WithSpriteTurret@mask:
-		Sequence: turret_mask
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.
 	AttackTurreted:
 		Voice: Attack

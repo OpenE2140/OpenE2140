@@ -67,7 +67,7 @@ public class RenderElevatorSprites : RenderSprites
 
 			var renderables = animation.Render(self, paletteReferenceProperty?.GetValue(animationWrapper) as PaletteReference);
 
-			if (animation is ElevatorAnimationWithOffset elevatorAnimation)
+			if (animation is CutOffAnimationWithOffset elevatorAnimation)
 				RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.Bottom());
 
 			foreach (var renderable in renderables)

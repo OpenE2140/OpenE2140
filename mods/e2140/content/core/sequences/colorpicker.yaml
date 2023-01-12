@@ -1,7 +1,1 @@
-colorpicker:
-	idle: SPRU0.MIX
-		Start: 12
-		FlipX: true
-	idle_mask: SPRU0.MIX
-		Start: 13
-		FlipX: true
+colorpicker: vehicle_mcu.vmix

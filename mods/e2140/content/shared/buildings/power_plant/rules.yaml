@@ -1,0 +1,31 @@
+shared_buildings_power_plant:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Power Plant
+	Health:
+		HP: 1000
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Selectable:
+		Bounds: 3072, 2048, 0, 0
+	ProvidesPrerequisite:
+		Prerequisite: anypower
+	Power:
+		Amount: 2000
+
+shared_mcu_power_plant:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Power Plant
+	Transforms:
+		IntoActor: shared_buildings_power_plant
+	Valued:
+		Cost: 1000
+	Buildable:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160

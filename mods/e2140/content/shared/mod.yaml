@@ -1,3 +1,7 @@
 Rules:
-	e2140|content/shared/buildings/powerplant/rules.yaml
+	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/vehicles/mcu/rules.yaml
+
+Sequences:
+	e2140|content/shared/buildings/power_plant/sequences.yaml
+	e2140|content/shared/sequences/projectiles.yaml

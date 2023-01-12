@@ -13,20 +13,18 @@
 		G: 255
 		B: 255
 		A: 128
-	OpenE2140Palette@e2140:
-		Name: e2140
+	PaletteFromGrayscale@greyscale:
+		Name: greyscale
 	PlayerColorPalette@player:
-		BasePalette: e2140
-		RemapIndex: 248, 249, 250, 251, 252
-	PlayerColorPalette@playerMove:
-		BaseName: playerMove
-		BasePalette: e2140
-		RemapIndex: 248, 249, 250, 251, 252
+		BasePalette: greyscale
+	PlayerColorShift:
+		BasePalette: player
 	ColorPickerPalette@colorpicker:
 		Name: colorpicker
-		BasePalette: e2140
-		RemapIndex: 248, 249, 250, 251, 252
+		BasePalette: greyscale
 		AllowModifiers: false
+	ColorPickerColorShift:
+		BasePalette: colorpicker
 
 	PaletteFromRGBA@moveflash: # TODO can we remove this?
 		Name: moveflash

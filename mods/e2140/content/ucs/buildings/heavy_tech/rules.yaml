@@ -1,0 +1,61 @@
+ucs_buildings_heavy_tech:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Heavy Tech
+	Health:
+		HP: 1000
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+	Selectable:
+		Bounds: 2064, 1984, -513, -495
+	-RenderSprites:
+	RenderElevatorSprites:
+	ElevatorProduction:
+		Image: ucs_elevator
+		Position: -960, 96, 0
+		Produces: Vehicle.UCS
+		RequiresCondition: !Transforming
+	ProductionQueue:
+		Type: Vehicle.UCS
+		Group: Vehicle
+		RequiresCondition: !Transforming
+	ProductionBar:
+		ProductionType: Vehicle.UCS
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: -960, 96, 0
+		ExitCell: -1,0
+		Facing: 128
+	Exit@Exit2:
+		SpawnOffset: -960, 96, 0
+		ExitCell: -1,1
+		Facing: 256
+	Exit@Exit3:
+		SpawnOffset: -960, 96, 0
+		ExitCell: -1,2
+		Facing: 384
+	Exit@Exit4:
+		SpawnOffset: -960, 96, 0
+		ExitCell: 0,2
+		Facing: 512
+	Exit@Exit5:
+		SpawnOffset: -960, 96, 0
+		ExitCell: 1,2
+		Facing: 640
+
+ucs_mcu_heavy_tech:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Heavy Tech
+	Transforms:
+		IntoActor: ucs_buildings_heavy_tech
+	Valued:
+		Cost: 2500
+	Buildable:
+		Queue: Building.UCS
+		BuildDuration: 40

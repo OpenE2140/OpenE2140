@@ -69,6 +69,8 @@ World:
 	# Required for the color picker.
 	ColorPickerManager:
 		PreviewActor: colorpicker
+		FactionPreviewActors:
+			ucs: ucs_colorpicker
 		HsvSaturationRange: 0.6, 0.95
 	# Required for chat commands.
 	ChatCommands:
@@ -76,11 +78,6 @@ World:
 	PlayerCommands:
 	DevCommands:
 	DebugVisualizationCommands:
-	# Palette effect for moving tracks.
-	RotationPaletteEffect:
-		Palettes: playerMove
-		RotationBase: 240
-		RotationRange: 4
 
 # Map editor specific world setup.
 EditorWorld:

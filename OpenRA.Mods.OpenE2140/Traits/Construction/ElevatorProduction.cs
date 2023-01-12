@@ -106,7 +106,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		this.animation.Animation.PlayRepeating("closed");
 		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animation));
 
-		var animationElevator = new ElevatorAnimationWithOffset(
+		var animationElevator = new CutOffAnimationWithOffset(
 			new Animation(init.Self.World, this.info.Image),
 			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight()),
 			() => this.IsTraitDisabled || this.State is AnimationState.Closed or AnimationState.Opening or AnimationState.Closing,

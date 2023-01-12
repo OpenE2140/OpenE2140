@@ -1,0 +1,5 @@
+shared_buildings_power_plant: building_power_plant.vmix
+
+shared_mcu_power_plant: vehicle_mcu.vmix
+	icon: SPRI1.MIX
+		Start: 183
