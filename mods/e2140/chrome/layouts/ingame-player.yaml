@@ -1,11 +1,114 @@
 Container@PLAYER_WIDGETS:
+	Logic: LoadIngameChatLogic
 	Children:
 		Container@OPTIONS:
 			Logic: MenuButtonsChromeLogic
 			Children:
-				LogicTicker@SIDEBAR_TICKER:
 				MenuButton@OPTIONS_BUTTON:
 					Key: escape
+		Container@CHAT_ROOT:
+		LogicKeyListener@PLAYER_KEYHANDLER:
+			Logic: RemoveFromControlGroupHotkeyLogic
+				RemoveFromControlGroupKey: RemoveFromControlGroup
+		ControlGroups@CONTROLGROUPS:
+			SelectGroupKeyPrefix: ControlGroupSelect
+			CreateGroupKeyPrefix: ControlGroupCreate
+			AddToGroupKeyPrefix: ControlGroupAddTo
+			CombineWithGroupKeyPrefix: ControlGroupCombineWith
+			JumpToGroupKeyPrefix: ControlGroupJumpTo
+		LogicTicker@SIDEBAR_TICKER:
+		# TODO we need this for hotkeys to work!
+		#Container@COMMAND_BAR:
+		#	Logic: CommandBarLogic
+		#	Children:
+		#		LogicKeyListener@MODIFIER_OVERRIDES:
+		#		Button@ATTACK_MOVE:
+		#			Key: AttackMove
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@FORCE_MOVE:
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@FORCE_ATTACK:
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@GUARD:
+		#			Key: Guard
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@DEPLOY:
+		#			Key: Deploy
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@SCATTER:
+		#			Key: Scatter
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@STOP:
+		#			Key: Stop
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@QUEUE_ORDERS:
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#Container@STANCE_BAR:
+		#	Logic: StanceSelectorLogic
+		#	Children:
+		#		Button@STANCE_ATTACKANYTHING:
+		#			Key: StanceAttackAnything
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@STANCE_DEFEND:
+		#			Key: StanceDefend
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@STANCE_RETURNFIRE:
+		#			Key: StanceReturnFire
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		#		Button@STANCE_HOLDFIRE:
+		#			Key: StanceHoldFire
+		#			DisableKeyRepeat: true
+		#			DisableKeySound: true
+		#			Children:
+		#				Image@ICON:
+		Container@MUTE_INDICATOR:
+			Logic: MuteIndicatorLogic
+			X: WINDOW_RIGHT - WIDTH - 260
+			Y: 10
+			Width: 200
+			Height: 25
+			Children:
+				Image@ICON:
+					X: PARENT_RIGHT - WIDTH
+					Y: 1
+					Width: 24
+					Height: 24
+					ImageCollection: sidebar-bits
+					ImageName: indicator-muted
+				Label@LABEL:
+					Width: PARENT_RIGHT - 30
+					Height: 25
+					Align: Right
+					Text: Audio Muted
+					Contrast: true
 		Image@SIDEBAR_BACKGROUND:
 			X: WINDOW_RIGHT - WIDTH
 			Y: 5
@@ -111,3 +214,8 @@ Container@PLAYER_WIDGETS:
 					X: 14
 					Y: 225
 					Width: 117
+		Container@HPF_ROOT:
+			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
+			X: WINDOW_RIGHT - WIDTH - 260
+			Y: 40
+			Width: 175

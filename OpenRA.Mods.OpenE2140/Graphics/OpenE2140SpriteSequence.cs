@@ -14,7 +14,6 @@
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
-using OpenRA.Mods.Common.UpdateRules;
 using OpenRA.Mods.E2140.Assets.VirtualAssets;
 
 namespace OpenRA.Mods.E2140.Graphics;
@@ -36,33 +35,8 @@ public class OpenE2140SpriteSequenceLoader : DefaultSpriteSequenceLoader, ISprit
 
 	public new IReadOnlyDictionary<string, ISpriteSequence> ParseSequences(ModData modData, string tileSet, SpriteCache cache, MiniYamlNode node)
 	{
-		if (node.Value.Value == null || !node.Value.Value.EndsWith(".vmix"))
-			return base.ParseSequences(modData, tileSet, cache, node);
-
-		var vMix = VMix.Cache[node.Value.Value[..^5]];
-
-		var offset = 0;
-
-		foreach (var animation in vMix.Animations)
-		{
-			var sequenceNode = node.Value.Nodes.FirstOrDefault(n => n.Key == animation.Name);
-
-			if (sequenceNode == null)
-				node.Value.Nodes.Add(sequenceNode = new MiniYamlNode(animation.Name, node.Value.Value));
-			else if (sequenceNode.Value.Value == null)
-				sequenceNode.Value.Value = node.Value.Value;
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Start"))
-				sequenceNode.AddNode("Start", offset);
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Length"))
-				sequenceNode.AddNode("Length", animation.Frames.Length / animation.Facings);
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Facings"))
-				sequenceNode.AddNode("Facings", -animation.Facings);
-
-			offset += animation.Frames.Length;
-		}
+		// Virtual assets implementation
+		VirtualAssetsBuilder.BuildSequences(node);
 
 		return base.ParseSequences(modData, tileSet, cache, node);
 	}

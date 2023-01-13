@@ -42,6 +42,8 @@ World:
 	Inherits: ^CoreWorld
 	# Required for warhead debug overlays.
 	WarheadDebugOverlay:
+	# Required for pathfinder debug overlays.
+	HierarchicalPathFinderOverlay:
 	# Required for buildable area checks.
 	BuildingInfluence:
 	# Pathfinding requirement.

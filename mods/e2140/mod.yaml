@@ -33,13 +33,13 @@ Assemblies:
 	^BinDir|OpenRA.Mods.OpenE2140.dll
 
 SoundFormats: Wav, Ogg, Smp
-SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VMixSprite
+SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VirtualSprite
 TerrainFormat: DefaultTerrain
 VideoFormats: FlcVideo
 
 AssetBrowser:
 	AudioExtensions: .wav, .smp
-	SpriteExtensions: .png, .mix, .dat, .pcx, .vmix
+	SpriteExtensions: .png, .mix, .dat, .pcx, .vspr
 	VideoExtensions: .flc
 
 ModelSequenceFormat: PlaceholderModelSequence
@@ -70,27 +70,27 @@ GameSpeeds:
 	DefaultSpeed: default
 	Speeds:
 		slowest:
-			Name: Slowest
+			Name: options-game-speed.slowest
 			Timestep: 80
 			OrderLatency: 2
 		slower:
-			Name: Slower
+			Name: options-game-speed.slower
 			Timestep: 50
 			OrderLatency: 3
 		default:
-			Name: Normal
+			Name: options-game-speed.normal
 			Timestep: 40
 			OrderLatency: 3
 		fast:
-			Name: Fast
+			Name: options-game-speed.fast
 			Timestep: 35
 			OrderLatency: 4
 		faster:
-			Name: Faster
+			Name: options-game-speed.faster
 			Timestep: 30
 			OrderLatency: 4
 		fastest:
-			Name: Fastest
+			Name: options-game-speed.fastest
 			Timestep: 20
 			OrderLatency: 6
 

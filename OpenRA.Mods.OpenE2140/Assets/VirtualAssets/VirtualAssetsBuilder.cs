@@ -13,23 +13,80 @@
 
 using System.Text;
 using System.Text.RegularExpressions;
+using OpenRA.FileSystem;
+using OpenRA.Mods.Common.UpdateRules;
 using OpenRA.Mods.E2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
 
-public static class VMixBuilder
+public static class VirtualAssetsBuilder
 {
+	public const string Identifier = "VirtualSpriteSheet";
+	public const string Extension = ".vspr";
+	public static readonly Dictionary<string, VirtualSpriteSheet> Cache = new Dictionary<string, VirtualSpriteSheet>();
+
 	private record FrameInfo(int Frame, bool FlipX);
 
 	private record SequenceInfo(string Name, int Length);
 
-	public static byte[] Build(Mix mix, MiniYamlNode sheetNode)
+	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name, IReadOnlyPackage package)
 	{
-		if (!VMix.Cache.ContainsKey(sheetNode.Key))
+		var virtualAssets = new Dictionary<string, Stream>();
+
+		if (fileSystem == null || !fileSystem.TryOpen($"virtualassets/{name}.yaml", out var yamlStream))
+			return virtualAssets;
+
+		if (name.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
+		{
+			var mix = new Mix(package.GetStream(name));
+
+			foreach (var node in MiniYaml.FromStream(yamlStream))
+				virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(mix, node)));
+		}
+		else
+			throw new Exception("Not supported!");
+
+		return virtualAssets;
+	}
+
+	public static void BuildSequences(MiniYamlNode node)
+	{
+		if (node.Value.Value == null || !node.Value.Value.EndsWith(VirtualAssetsBuilder.Extension))
+			return;
+
+		var spriteSheet = VirtualAssetsBuilder.Cache[node.Value.Value[..^VirtualAssetsBuilder.Extension.Length]];
+
+		var offset = 0;
+
+		foreach (var animation in spriteSheet.Animations)
+		{
+			var sequenceNode = node.Value.Nodes.FirstOrDefault(n => n.Key == animation.Name);
+
+			if (sequenceNode == null)
+				node.Value.Nodes.Add(sequenceNode = new MiniYamlNode(animation.Name, node.Value.Value));
+			else if (sequenceNode.Value.Value == null)
+				sequenceNode.Value.Value = node.Value.Value;
+
+			if (sequenceNode.Value.Nodes.All(n => n.Key != "Start"))
+				sequenceNode.AddNode("Start", offset);
+
+			if (sequenceNode.Value.Nodes.All(n => n.Key != "Length"))
+				sequenceNode.AddNode("Length", animation.Frames.Length / animation.Facings);
+
+			if (sequenceNode.Value.Nodes.All(n => n.Key != "Facings"))
+				sequenceNode.AddNode("Facings", -animation.Facings);
+
+			offset += animation.Frames.Length;
+		}
+	}
+
+	private static byte[] BuildSpriteSheet(Mix mix, MiniYamlNode sheetNode)
+	{
+		if (!VirtualAssetsBuilder.Cache.ContainsKey(sheetNode.Key))
 		{
 			var sheetFlags = sheetNode.Value.Value == null ? Array.Empty<string>() : sheetNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-			var vMixAnimations = new List<VMixAnimation>();
+			var animations = new List<VirtualSpriteAnimation>();
 
 			foreach (var animationNode in sheetNode.Value.Nodes)
 			{
@@ -46,9 +103,9 @@ public static class VMixBuilder
 				foreach (var sequenceInfo in sequences)
 				{
 					var facings = chunks.Length > 1 ? byte.Parse(chunks[1]) : (byte)1;
-					var frameInfos = VMixBuilder.BuildFrameInfos(chunks[0], facings);
+					var frameInfos = VirtualAssetsBuilder.BuildFrameInfos(chunks[0], facings);
 
-					var vMixFrames = new List<VMixFrame>();
+					var frames = new List<VirtualSpriteFrame>();
 
 					foreach (var frameInfo in frameInfos)
 					{
@@ -90,20 +147,20 @@ public static class VMixBuilder
 								palette[254] = Color.FromArgb(0x80000000);
 							}
 
-							vMixFrames.Add(VMixBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX));
+							frames.Add(VirtualAssetsBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX));
 						}
 					}
 
-					vMixAnimations.Add(new VMixAnimation(sequenceInfo.Name, facings, vMixFrames.ToArray()));
+					animations.Add(new VirtualSpriteAnimation(sequenceInfo.Name, facings, frames.ToArray()));
 				}
 			}
 
-			VMix.Cache.Add(sheetNode.Key, new VMix(vMixAnimations.ToArray()));
+			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, new VirtualSpriteSheet(animations.ToArray()));
 		}
 
 		var stream = new MemoryStream();
 		var writer = new BinaryWriter(stream);
-		writer.Write(Encoding.ASCII.GetBytes("VMIX"));
+		writer.Write(Encoding.ASCII.GetBytes(VirtualAssetsBuilder.Identifier));
 		writer.Write(sheetNode.Key.Length);
 		writer.Write(Encoding.ASCII.GetBytes(sheetNode.Key));
 
@@ -154,7 +211,7 @@ public static class VMixBuilder
 		return frameInfos;
 	}
 
-	private static VMixFrame BuildFrames(MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX)
+	private static VirtualSpriteFrame BuildFrames(MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX)
 	{
 		var pixels = new byte[mixFrame.Width * mixFrame.Height * 4];
 
@@ -169,6 +226,6 @@ public static class VMixBuilder
 			pixels[i * 4 + 3] = color.A;
 		}
 
-		return new VMixFrame(mixFrame.Width, mixFrame.Height, pixels);
+		return new VirtualSpriteFrame(mixFrame.Width, mixFrame.Height, pixels);
 	}
 }

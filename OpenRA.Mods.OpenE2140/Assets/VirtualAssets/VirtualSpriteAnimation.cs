@@ -13,16 +13,16 @@
 
 namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
 
-public class VMixFrame
+public class VirtualSpriteAnimation
 {
-	public readonly uint Width;
-	public readonly uint Height;
-	public readonly byte[] Pixels;
+	public readonly string Name;
+	public readonly byte Facings;
+	public readonly VirtualSpriteFrame[] Frames;
 
-	public VMixFrame(uint width, uint height, byte[] pixels)
+	public VirtualSpriteAnimation(string name, byte facings, VirtualSpriteFrame[] frames)
 	{
-		this.Width = width;
-		this.Height = height;
-		this.Pixels = pixels;
+		this.Name = name;
+		this.Facings = facings;
+		this.Frames = frames;
 	}
 }

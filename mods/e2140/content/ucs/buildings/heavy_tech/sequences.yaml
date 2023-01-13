@@ -1,7 +1,7 @@
-ucs_buildings_heavy_tech: building_heavy_tech.vmix
+ucs_buildings_heavy_tech: building_heavy_tech.vspr
 	Defaults:
 		Offset: -22, -54, 0
 
-ucs_mcu_heavy_tech: vehicle_mcu.vmix
+ucs_mcu_heavy_tech: vehicle_mcu.vspr
 	icon: SPRI1.MIX
 		Start: 168

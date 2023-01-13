@@ -1,7 +1,7 @@
-ucs_buildings_prod_center: building_prod_center.vmix
+ucs_buildings_prod_center: building_prod_center.vspr
 	Defaults:
 		Offset: -32, -22, 0
 
-ucs_mcu_prod_center: vehicle_mcu.vmix
+ucs_mcu_prod_center: vehicle_mcu.vspr
 	icon: SPRI1.MIX
 		Start: 166

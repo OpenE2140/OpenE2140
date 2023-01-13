@@ -42,10 +42,12 @@ public class WithMoveSound : INotifyMoving, ITick
 
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
-		if (type.HasFlag(MovementType.Horizontal))
+		if (type != MovementType.None)
 			this.sound ??= Game.Sound.PlayLooped(SoundType.World, this.info.Sound, self.CenterPosition);
 		else
 		{
+			// TODO switch when https://github.com/OpenRA/OpenRA/pull/20611 is implemented
+			//Game.Sound.EndLoop(this.sound);
 			Game.Sound.StopSound(this.sound);
 			this.sound = null;
 		}

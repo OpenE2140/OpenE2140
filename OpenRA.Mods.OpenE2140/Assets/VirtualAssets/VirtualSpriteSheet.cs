@@ -13,13 +13,11 @@
 
 namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
 
-public class VMix
+public class VirtualSpriteSheet
 {
-	public static readonly Dictionary<string, VMix> Cache = new Dictionary<string, VMix>();
+	public readonly VirtualSpriteAnimation[] Animations;
 
-	public readonly VMixAnimation[] Animations;
-
-	public VMix(VMixAnimation[] animations)
+	public VirtualSpriteSheet(VirtualSpriteAnimation[] animations)
 	{
 		this.Animations = animations;
 	}

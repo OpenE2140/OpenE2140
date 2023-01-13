@@ -64,21 +64,9 @@ public class Wd : IReadOnlyPackage
 				this.index.Add(name, entry);
 				stream.Position = originalPosition;
 
-				if (fileSystem == null || !fileSystem.TryOpen($"support/{name}.yaml", out var yamlStream))
-					continue;
-
-				if (name.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
-				{
-					var mix = new Mix(SegmentStream.CreateWithoutOwningStream(entry.Stream, entry.Offset, (int)entry.Length));
-
-					foreach (var node in MiniYaml.FromStream(yamlStream))
-					{
-						var vmix = VMixBuilder.Build(mix, node);
-						this.index.Add($"{node.Key}.vmix", new WdEntry(new MemoryStream(vmix), 0, (uint)vmix.Length));
-					}
-				}
-				else
-					throw new Exception("Not supported!");
+				// Virtual assets implementation
+				foreach (var (virtualName, virtualStream) in VirtualAssetsBuilder.BuildAssets(fileSystem, name, this))
+					this.index.Add(virtualName, new WdEntry(virtualStream, 0, (uint)virtualStream.Length));
 			}
 		}
 	}

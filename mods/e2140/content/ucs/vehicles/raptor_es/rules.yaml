@@ -21,9 +21,8 @@ ucs_vehicles_raptor_es:
 		RecoilRecovery: 0
 		LocalOffset: 0,0,0
 		LocalYaw: 0, 0
-		# TODO the following 3 lines must be removed => we need a custom trait! 1-frame animations are not supported for this in OpenRA yet
-		MuzzleSequence: idle
-		MuzzlePalette: effectsMuzzleYellow
+		MuzzleSequence: idle # TODO must be muzzle!
+		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
 	WithMoveSound:
 		Sound: 32.smp
