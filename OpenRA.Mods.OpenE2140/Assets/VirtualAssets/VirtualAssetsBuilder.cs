@@ -100,6 +100,9 @@ public static class VirtualAssetsBuilder
 				if (animationNode.Key == "idle" && (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Engine") || sheetFlags.Contains("Rotors")))
 					sequences.Add(new SequenceInfo("move", 4));
 
+				if (animationNode.Key == "idle" && (sheetFlags.Contains("Attack") || sheetFlags.Contains("Light")))
+					sequences.Add(new SequenceInfo("effect", 4));
+
 				foreach (var sequenceInfo in sequences)
 				{
 					var facings = chunks.Length > 1 ? byte.Parse(chunks[1]) : (byte)1;
@@ -116,24 +119,26 @@ public static class VirtualAssetsBuilder
 
 							Array.Copy(mix.Palettes[mixFrame.Palette].Colors, 0, palette, 0, palette.Length);
 
-							if (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Engine") || sheetFlags.Contains("Rotors"))
+							if (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Rotors"))
 							{
-								palette[240 + (4 - i) % 4] = Color.FromArgb(0xff990000); // TODO colors!
-								palette[240 + (5 - i) % 4] = Color.FromArgb(0xffbb0000); // TODO colors!
-								palette[240 + (6 - i) % 4] = Color.FromArgb(0xffdd0000); // TODO colors!
-								palette[240 + (7 - i) % 4] = Color.FromArgb(0xffff0000); // TODO colors!
+								// TODO all colors are guessed!
+								palette[240 + (4 - i) % 4] = Color.FromArgb(0xff181c18);
+								palette[240 + (5 - i) % 4] = Color.FromArgb(0xff212421);
+								palette[240 + (6 - i) % 4] = Color.FromArgb(0xff181c18);
+								palette[240 + (7 - i) % 4] = Color.FromArgb(0xff292c29);
 							}
-
-							if (true) // TODO Attack (attack ? visible : invisible) or Light (attack ? visible : black)
+							else if (sheetFlags.Contains("Engine"))
 							{
-								palette[244] = Color.FromArgb(0xff009900); // TODO colors!
-								palette[245] = Color.FromArgb(0xff00bb00); // TODO colors!
-								palette[246] = Color.FromArgb(0xff00dd00); // TODO colors!
-								palette[247] = Color.FromArgb(0xff00ff00); // TODO colors!
+								// TODO all colors are guessed!
+								palette[240 + (4 - i) % 4] = Color.FromArgb(0xffff9e52);
+								palette[240 + (5 - i) % 4] = Color.FromArgb(0xffefb68c);
+								palette[240 + (6 - i) % 4] = Color.FromArgb(0xffffebc6);
+								palette[240 + (7 - i) % 4] = Color.FromArgb(0xffffffff);
 							}
 
 							if (sheetFlags.Contains("Player"))
 							{
+								// TODO all colors are guessed!
 								palette[248] = Color.FromArgb(0xff660066);
 								palette[249] = Color.FromArgb(0xff770077);
 								palette[250] = Color.FromArgb(0xff880088);
@@ -143,8 +148,59 @@ public static class VirtualAssetsBuilder
 
 							if (sheetFlags.Contains("Shadow"))
 							{
+								// TODO all colors are guessed!
 								palette[253] = Color.FromArgb(0x40000000);
 								palette[254] = Color.FromArgb(0x80000000);
+							}
+
+							if (sheetFlags.Contains("Attack"))
+							{
+								if (sequenceInfo.Name == "effect")
+								{
+									Array.Fill(palette, Color.FromArgb(0x00000000));
+
+									// TODO all colors are guessed!
+									palette[244] = Color.FromArgb(0xffff9e52);
+									palette[245] = Color.FromArgb(0xffefb68c);
+									palette[246] = Color.FromArgb(0xffffebc6);
+									palette[247] = Color.FromArgb(0xffffffff);
+
+									for (var j = 0; j < i; j++)
+									{
+										palette[247] = palette[246];
+										palette[246] = palette[245];
+										palette[245] = palette[244];
+										palette[244] = palette[247];
+										palette[244] = Color.FromArgb(0x00000000);
+									}
+								}
+								else
+								{
+									palette[244] = Color.FromArgb(0x00000000);
+									palette[245] = Color.FromArgb(0x00000000);
+									palette[246] = Color.FromArgb(0x00000000);
+									palette[247] = Color.FromArgb(0x00000000);
+								}
+							}
+							else if (sheetFlags.Contains("Light"))
+							{
+								if (sequenceInfo.Name == "effect")
+								{
+									Array.Fill(palette, Color.FromArgb(0x00000000));
+
+									// TODO all colors are guessed!
+									palette[244 + (4 - i) % 4] = Color.FromArgb(0xffff9e52); // TODO colors!
+									palette[244 + (5 - i) % 4] = Color.FromArgb(0xffefb68c); // TODO colors!
+									palette[244 + (6 - i) % 4] = Color.FromArgb(0xffffebc6); // TODO colors!
+									palette[244 + (7 - i) % 4] = Color.FromArgb(0xffffffff); // TODO colors!
+								}
+								else
+								{
+									palette[244] = Color.FromArgb(0xff000000);
+									palette[245] = Color.FromArgb(0xff111111);
+									palette[246] = Color.FromArgb(0xff222222);
+									palette[247] = Color.FromArgb(0xff333333);
+								}
 							}
 
 							frames.Add(VirtualAssetsBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX));
