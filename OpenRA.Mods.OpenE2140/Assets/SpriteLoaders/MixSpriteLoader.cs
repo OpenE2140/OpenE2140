@@ -61,8 +61,6 @@ public class MixSpriteLoader : ISpriteLoader
 
 		var framesList = new List<ISpriteFrame>();
 
-		var specialLogic = new[] { "sprb0.mix", "spru0.mix" }.Any(f => filename.EndsWith(f, StringComparison.OrdinalIgnoreCase));
-
 		var hasTransparency =
 			new[] { "spro0.mix", "spro1.mix", "spro2.mix", "spro3.mix", "spro4.mix", "spro5.mix", "spro6.mix" }.Any(
 				f => filename.EndsWith(f, StringComparison.OrdinalIgnoreCase)
@@ -97,9 +95,6 @@ public class MixSpriteLoader : ISpriteLoader
 				}
 
 				framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
-
-				if (specialLogic)
-					framesList.Add(new MixSpriteFrame(SpriteFrameType.Indexed8, size, indexedImage));
 			}
 		}
 

@@ -1,64 +1,58 @@
 Cursors:
 	SPRI1.MIX:
-		attack:
-			Start: 0
-			Length: 4
-		attackBlue: # todo
-			Start: 4
-			Length: 4
-		enter:
-			Start: 8
-			Length: 4
-		move:
-			Start: 12
-			Length: 4
-		movePipe: # todo
-			Start: 16
-			Length: 4
-		exit: # todo
-			Start: 20
-			Length: 4
-		generic-blocked:
-			Start: 24
-			Length: 4
-		recycle: # todo
-			Start: 28
-			Length: 4
+
 		default:
 			Start: 32
 			Length: 4
 			X: -24
 			Y: -24
-		attackMine: # todo
-			Start: 36
+		generic-blocked:
+			Start: 24
 			Length: 4
-		layMine: # todo
-			Start: 40
-			Length: 4
-		scroll-r:
-			Start: 44
-		scroll-l:
-			Start: 45
-		scroll-t:
-			Start: 46
-		scroll-b:
-			Start: 47
-		attackWtf: # todo
-			Start: 48
-			Length: 4
-		moveWtf: # todo
-			Start: 52
-			Length: 4
-		pickup: # todo
-			Start: 56
-			Length: 4
+
 		select:
 			Start: 60
+			Length: 4
+		move:
+			Start: 12
+			Length: 4
+
+		attack:
+			Start: 0
+			Length: 4
+		attackoutsiderange:
+			Start: 0
+			Length: 4
+		attackmove:
+			Start: 4
+			Length: 4
+		attackmove-blocked:
+			Start: 24
+			Length: 4
+		assaultmove:
+			Start: 92
+			Length: 4
+		assaultmove-blocked:
+			Start: 24
+			Length: 4
+
+		enter:
+			Start: 8
+			Length: 4
+		exit:
+			Start: 20
+			Length: 4
+
+		escort:
+			Start: 28
+			Length: 4
+		pickup:
+			Start: 56
 			Length: 4
 		heal:
 			Start: 64
 			Length: 4
-		tracks: # todo
+		deliver:
 			Start: 68
 			Length: 4
 		repair:
@@ -67,6 +61,28 @@ Cursors:
 		deploy:
 			Start: 76
 			Length: 4
-		attackYellow: # todo
-			Start: 92
+
+		waterMinePlace:
+			Start: 36
 			Length: 4
+		waterMineRemove:
+			Start: 40
+			Length: 4
+		minePlace:
+			Start: 48
+			Length: 4
+		mineRemove:
+			Start: 52
+			Length: 4
+		wallPlace:
+			Start: 16
+			Length: 4
+
+		scroll-r:
+			Start: 44
+		scroll-l:
+			Start: 45
+		scroll-t:
+			Start: 46
+		scroll-b:
+			Start: 47

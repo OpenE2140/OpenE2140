@@ -7,6 +7,7 @@ Rules:
 	e2140|content/core/rules/world.yaml
 
 Sequences:
+	e2140|content/core/sequences/beacon.yaml
 	e2140|content/core/sequences/buildingsequence.yaml
 	e2140|content/core/sequences/colorpicker.yaml
 	e2140|content/core/sequences/mapeditor.yaml

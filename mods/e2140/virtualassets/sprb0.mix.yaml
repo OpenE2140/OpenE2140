@@ -118,16 +118,16 @@ building_big_eye: Shadow
 building_elevator_ed: Player
 	closed: 76
 	opening: 77-78
-	open_upper: 79
-	open_lower: 80
+	open: 79
+	overlay: 80
 	closing: 78-77
 	elevator: 81
 
 building_elevator_ucs: Player
 	closed: 82
 	opening: 83-84
-	open_upper: 85
-	open_lower: 86
+	open: 85
+	overlay: 86
 	closing: 84-83
 	elevator: 87
 
