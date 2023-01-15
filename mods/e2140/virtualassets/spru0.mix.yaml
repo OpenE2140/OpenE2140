@@ -109,6 +109,9 @@ turret_mt_200: Shadow Player Attack
 turret_st_01b: Shadow Player Attack
 	idle: 369-377 16
 
+turret_st_02: Shadow Player
+	idle: 396-404 16
+
 turret_kt30:
 	idle: 378-386 16
 
