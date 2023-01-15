@@ -8,9 +8,10 @@ ucs_buildings_heavy_tech:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 	HitShape:
+		UseTargetableCellsOffsets: true
 		Type: Rectangle
-			TopLeft: -1536, -1024
-			BottomRight: 1536, 1024
+			TopLeft: -1535,-1948
+			BottomRight: 512, 512
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
 	-RenderSprites:
