@@ -52,9 +52,9 @@ public class Wd : IReadOnlyPackage
 			{
 				var entry = new WdEntry(stream, stream.ReadUInt32(), stream.ReadUInt32());
 
-				var unk1 = stream.ReadUInt32(); // 0x00
-				var unk2 = stream.ReadUInt32(); // 0x00
-				var unk3 = stream.ReadUInt32(); // TODO has a value in MIX.WD
+				stream.ReadUInt32(); // 0x00
+				stream.ReadUInt32(); // 0x00
+				stream.ReadUInt32(); // TODO has a value in MIX.WD
 
 				var filePathOffset = stream.ReadUInt32();
 

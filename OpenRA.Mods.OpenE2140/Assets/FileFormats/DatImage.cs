@@ -23,7 +23,7 @@ public class DatImage
 	{
 		this.Width = stream.ReadUInt16();
 		this.Height = stream.ReadUInt16();
-		var unk = stream.ReadUInt16(); // TODO whas is this?!
+		stream.ReadUInt16(); // TODO whas is this?!
 		this.Pixels = stream.ReadBytes(this.Width * this.Height);
 	}
 }

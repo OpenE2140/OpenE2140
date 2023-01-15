@@ -26,6 +26,7 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	[Desc("Image used for this decoration.")]
 	public readonly string Image = "";
 
+	[GrantedConditionReference]
 	[Desc("Grant this condition while the actor is playing the sequence.")]
 	public readonly string Condition = "Transforming";
 

@@ -23,7 +23,6 @@ ucs_buildings_prod_center:
 	ProductionQueue:
 		Type: Building.UCS
 		Group: Building
-		RequiresCondition: !Transforming
 	ProductionBar:
 		ProductionType: Building.UCS
 	ProvidesPrerequisite:

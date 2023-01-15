@@ -5,3 +5,4 @@ mpspawn:
 		Categories: System
 	RenderSpritesEditorOnly:
 	WithSpriteBody:
+	AlwaysVisible:

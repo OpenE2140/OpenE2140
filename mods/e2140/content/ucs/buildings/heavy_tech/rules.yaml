@@ -23,7 +23,6 @@ ucs_buildings_heavy_tech:
 	ProductionQueue:
 		Type: Vehicle.UCS
 		Group: Vehicle
-		RequiresCondition: !Transforming
 	ProductionBar:
 		ProductionType: Vehicle.UCS
 	ProvidesPrerequisite:

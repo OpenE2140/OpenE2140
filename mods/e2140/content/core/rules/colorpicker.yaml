@@ -4,5 +4,5 @@ colorpicker:
 	BodyOrientation:
 	QuantizeFacingsFromSequence:
 	WithFacingSpriteBody:
+	AlwaysVisible:
 	Husk:
-		InitialFacing: 378

@@ -24,11 +24,13 @@ ucs_vehicles_tiger_assault:
 		RecoilRecovery: 38
 		LocalOffset: 0,-500,0
 		LocalYaw: 0, 0
+		MuzzlePalette:
 	Armament@SECONDARY:
 		Weapon: ucs_vehicles_tiger_assault
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 0,500,0
 		LocalYaw: 0, 0
+		MuzzlePalette:
 	WithMoveSound:
 		Sound: 28.smp

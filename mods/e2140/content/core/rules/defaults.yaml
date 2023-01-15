@@ -182,10 +182,6 @@
 	# Group all infantry in the map editor.
 	MapEditorData:
 		Categories: Infantry
-	# Infantry has a smaller healthbar.
-	SelectionDecorations:
-		Width: 16
-		Offset: 0,-6
 
 # Add locomotor to world...
 ^CoreWorld:
