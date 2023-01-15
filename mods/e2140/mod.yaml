@@ -1,6 +1,6 @@
 Metadata:
 	Title: OpenE2140
-	Version: 721b225b5465922b6705e262d26a58306cc50bd1
+	Version: {DEV_VERSION}
 	WindowTitle: OpenE2140
 	Website: https://github.com/michaeldgg2/OpenE2140
 	WebIcon32: https://raw.githubusercontent.com/michaeldgg2/OpenE2140/master/packaging/artwork/icon_32x32.png
@@ -26,7 +26,7 @@ ModCredits:
 
 MapFolders:
 	e2140|maps: System
-	~^SupportDir|maps/e2140/721b225b5465922b6705e262d26a58306cc50bd1: User
+	~^SupportDir|maps/e2140/{DEV_VERSION}: User
 
 Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
