@@ -67,3 +67,59 @@ When unit production is completed:
 - you can't select unit being produced and manually target as player
 - when elevator gets to ground level, produced unit is selectable and targetable
 - produced unit moves out of the elevator onto ground (or flies out)
+
+
+
+# Infantry
+
+## ED infantry
+
+![Android A01 semi-automatic gun](img/E2140_A01_shooting.gif)
+
+Android A01 semi-automatic gun
+
+![Android A01 death animation](img/E2140_A01_death_by_shot.gif)
+
+Android A01 death animation
+
+![Android S03 ion gun](img/E2140_A03_shooting.gif)
+
+Android S03 ion gun
+
+![Android A04 mine laying](img/E2140_A04.gif)
+
+Android A04 mine laying
+
+## UCS infantry
+
+![Silver R rocket launcher](img/E2140_SilverR_shooting.gif)
+
+Silver R rocket launcher
+
+![Silver Max plasma gun](img/E2140_SilverMax_shooting.gif)
+
+Silver Max plasma gun
+
+
+# Vehicles
+
+## UCS vehicles
+
+![HCU-M repairing unit](img/E2140_hcum_repairing.gif)
+
+HCU-M repairing unit
+
+
+[MINER-BT minelaying unit](https://dalek.zone/w/c3CW7Buvhkn7qo6GLaQmR6)
+
+## ED vehicles
+
+[ST 01B](https://dalek.zone/w/dtFqPNzmdkkBRDqzqteuTC)
+
+[BTTI](https://dalek.zone/w/prQ4yjTKYPVTqend5QM81s)
+
+# Buildings
+
+## ED Buildings
+
+[Pillbox + Defend Tower](https://dalek.zone/w/kw2dRBFWJvt6ZFbAxEDsn5)
