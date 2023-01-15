@@ -8,9 +8,10 @@ ucs_buildings_prod_center:
 		Dimensions: 3,3
 		Footprint: xx= xx= =x=
 	HitShape:
+		UseTargetableCellsOffsets: true
 		Type: Rectangle
-			TopLeft: -1536, -1024
-			BottomRight: 1536, 1024
+			TopLeft: -1536, -1536
+			BottomRight: 768, 1536
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
 	-RenderSprites:
