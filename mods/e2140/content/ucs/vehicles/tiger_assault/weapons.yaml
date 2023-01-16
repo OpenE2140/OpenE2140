@@ -4,9 +4,9 @@ ucs_vehicles_tiger_assault:
 	MinRange: 0c512
 	Report: 5.smp
 	ValidTargets: Ground
-	Burst: 2
+	Burst: 3
 	Projectile: Missile
-		Speed: 213
+		Speed: 260
 		Arm: 2
 		Blockable: false
 		ContrailLength: 10
