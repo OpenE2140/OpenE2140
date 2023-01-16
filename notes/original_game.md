@@ -114,6 +114,8 @@ HCU-M repairing unit
 
 [ATM 500 scouting vehicle](https://dalek.zone/w/sT7arTMCTv9NejfeWdfnw6)
 
+[GARGOIL scouting aircraft](https://dalek.zone/w/naRDa69xgLAcAaQ32HUB82)
+
 ## ED vehicles
 
 [ST 01B](https://dalek.zone/w/dtFqPNzmdkkBRDqzqteuTC)
