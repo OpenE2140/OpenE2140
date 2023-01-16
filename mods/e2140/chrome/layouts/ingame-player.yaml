@@ -111,23 +111,23 @@ Container@PLAYER_WIDGETS:
 					Contrast: true
 		Image@SIDEBAR_BACKGROUND:
 			X: WINDOW_RIGHT - WIDTH
-			Y: 5
-			Width: 156
-			Height: 480
+			Y: 0
+			Width: 214
+			Height: 587
 			ImageCollection: sidebar-ucs
 			ImageName: background-sidebar
 			ClickThrough: false
 			Children:
 				Container@RADAR:
 					Logic: IngameRadarDisplayLogic
-					X: 9
-					Y: 5
+					X: 12
+					Y: 42
 					Children:
 						LogicTicker@RADAR_TICKER:
 						Radar@RADAR_MINIMAP:
 							WorldInteractionController: INTERACTION_CONTROLLER
-							Width: 126
-							Height: 126
+							Width: 193
+							Height: 216
 				Container@SIDEBAR_MONEYBIN:
 					X: 22
 					Y: 172
@@ -153,15 +153,15 @@ Container@PLAYER_WIDGETS:
 							Font: Small
 							Text: {0}
 				Container@PRODUCTION_TYPES:
-					X: 27
-					Y: 137
-					Width: 122
-					Height: 26
+					X: 25
+					Y: 306
+					Width: 170
+					Height: 23
 					Children:
 						ProductionTypeButton@Building:
-							X: 7
-							Y: 5
-							Width: 32
+							X: 0
+							Y: 0
+							Width: 23
 							Height: 21
 							Background: sidebar-production-tab
 							TooltipText: Buildings
@@ -173,9 +173,9 @@ Container@PLAYER_WIDGETS:
 									Y: 3
 									ImageCollection: production-icons
 						ProductionTypeButton@Vehicle:
-							X: 94
-							Y: 5
-							Width: 32
+							X: 87
+							Y: 0
+							Width: 23
 							Height: 21
 							Background: sidebar-production-tab
 							TooltipText: Vehicles
@@ -187,33 +187,39 @@ Container@PLAYER_WIDGETS:
 									Y: 3
 									ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
-					X: 13
-					Y: 252
+					X: 17
+					Y: 353
 					Children:
 						Background@ICON_TEMPLATE:
 							Background: production-palette-button
 							Width: 59
 							Height: 41
 				ProductionPalette@PRODUCTION_PALETTE:
-					X: 13
-					Y: 252
-					Columns: 2
+					X: 17
+					Y: 353
+					Columns: 3
 					Width: 200
-					IconSize: 59, 40
+					IconSize: 59, 41
 					IconMargin: 0, 0
 					MaxIconRowOffset: 5
 					ReadyText: Ready
 					HoldText: On Hold
 					ClockPalette: chrome
 					NotBuildablePalette: chrome
-				ProductionTabs@PRODUCTION_TABS:
+				ProductionTabsEx@PRODUCTION_TABS:
 					Logic: ProductionTabsLogic
 					PaletteWidget: PRODUCTION_PALETTE
 					TypesContainer: PRODUCTION_TYPES
 					BackgroundContainer: PRODUCTION_BACKGROUND
-					X: 14
-					Y: 225
-					Width: 117
+					ArrowButton: 
+					TabWidth: 28
+					ArrowWidth: 20
+					TabButton: sidebar-production-tab-button
+					Decorations: production-tabs-decorations
+					X: 9
+					Y: 330
+					Width: 196
+					Height: 21
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
 			X: WINDOW_RIGHT - WIDTH - 260

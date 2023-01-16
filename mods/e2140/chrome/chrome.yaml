@@ -410,19 +410,37 @@ production-icons:
 sidebar-ucs:
 	Inherits: ^Sidebar
 	Regions:
-		background-sidebar: 0, 0, 156, 480
+		background-sidebar: 52, 0, 214, 587
 
 sidebar-production-tab:
 	Regions:
-		production-tab: 33, 142, 24, 21
+		production-tab: 23, 281, 23, 21
 
+		
+sidebar-production-tab-button:
+	Inherits: ^Sidebar
+	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
+	
 production-palette-button:
 	Inherits: ^Sidebar
-	PanelRegion: 159, 1, 4, 4, 51, 33, 4, 4
+	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
 
 production-palette-button-ucs:
 	Inherits: production-palette-button
 
 production-palette-button-pressed:
 	Inherits: ^Sidebar
-	PanelRegion: 159, 46, 4, 4, 51, 33, 4, 4
+	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
+
+
+production-tabs-decorations:
+	Inherits: ^Sidebar
+	Regions:
+		right: 236, 330, 20, 20
+		right-hover: 0, 333, 20, 20
+		left: 61, 330, 20, 20
+		left-hover: 0, 307, 20, 20
