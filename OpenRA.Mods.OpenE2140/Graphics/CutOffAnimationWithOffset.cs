@@ -13,7 +13,7 @@
 
 using OpenRA.Graphics;
 
-namespace OpenRA.Mods.E2140.Graphics;
+namespace OpenRA.Mods.OpenE2140.Graphics;
 
 public class CutOffAnimationWithOffset : AnimationWithOffset
 {

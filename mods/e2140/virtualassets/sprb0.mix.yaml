@@ -1,24 +1,27 @@
-building_power_plant: Shadow Player
+building_power_plant: Shadow Player Light
 	idle: 0
 	idle_damaged: 1
 	addon: 2
 	addon_damaged: 3
 
-building_teleport: Shadow Player
+building_teleport: Shadow Player Light
 	idle: 4
 	idle_damaged: 5
 
-building_refinery: Shadow Player
+belt: Shadow Light
+	idle: 8
+	eject: 9-11
+	retract: 11-9
+
+building_refinery: Shadow Player Light
 	idle: 6
 	idle_damaged: 7
-	belt: 8
-	animation: 9-11
 
-building_research_center: Shadow Player
+building_research_center: Shadow Player Light
 	idle: 12
 	idle_damaged: 13
 
-building_air_base: Shadow Player
+building_air_base: Shadow Player Light AddonLight
 	idle: 14
 	idle_damaged: 15
 	addon_left: 16
@@ -38,27 +41,27 @@ building_shelter: Shadow Player
 	door: 24
 	door_damaged: 25
 
-building_mine: Shadow Player
+building_mine: Shadow Player Light
 	idle: 26
 	idle_damaged: 27
 	rotor: 28-32
 
-building_tech_house: Shadow Player
+building_tech_house: Shadow Player Light
 	idle: 33
 	idle_damaged: 34
 
-building_bio_center: Shadow Player
+building_bio_center: Shadow Player Light
 	idle: 35
 	idle_damaged: 36
 	opening: 37-38
 	opened: 38
 	closing: 38-37
 
-building_constr_center: Shadow Player
+building_constr_center: Shadow Player Light
 	idle: 39
 	idle_damaged: 40
 
-building_bcc: Shadow Player
+building_bcc: Shadow Player Light
 	idle: 41
 	idle_damaged: 42
 
@@ -83,22 +86,22 @@ building_heavy_def_tower: Shadow
 	idle: 53
 	idle_damaged: 54
 
-building_heavy_tech: Shadow Player
+building_heavy_tech: Shadow Player Light
 	idle: 55
 	idle_damaged: 56
 
-building_robot_factory: Shadow Player
+building_robot_factory: Shadow Player Light
 	idle: 57
 	idle_damaged: 58
 	opening: 59-60
 	opened: 60
 	closing: 60-59
 
-building_prod_center: Shadow Player
+building_prod_center: Shadow Player Light
 	idle: 61
 	idle_damaged: 62
 
-building_pb_control: Shadow Player
+building_pb_control: Shadow Player Light
 	idle: 63
 	idle_damaged: 64
 
@@ -115,7 +118,7 @@ building_big_eye: Shadow
 	idle: 74
 	idle_damaged: 75
 
-building_elevator_ed: Player
+elevator_ed: Player
 	closed: 76
 	opening: 77-78
 	open: 79
@@ -123,7 +126,7 @@ building_elevator_ed: Player
 	closing: 78-77
 	elevator: 81
 
-building_elevator_ucs: Player
+elevator_ucs: Player
 	closed: 82
 	opening: 83-84
 	open: 85
@@ -155,10 +158,10 @@ building_civ_building_6: Shadow
 	idle: 100
 	idle_damaged: 101
 
-building_sdi_defence: Shadow Player
+building_sdi_defence: Shadow Player Light
 	idle: 102
 	idle_damaged: 103
 
-building_an_center: Shadow Player
+building_an_center: Shadow Player Light
 	idle: 104
 	idle_damaged: 105

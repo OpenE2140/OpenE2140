@@ -13,7 +13,7 @@
 
 using JetBrains.Annotations;
 
-namespace OpenRA.Mods.E2140.Assets.AudioLoaders;
+namespace OpenRA.Mods.OpenE2140.Assets.AudioLoaders;
 
 [UsedImplicitly]
 public class SmpLoader : ISoundLoader

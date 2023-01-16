@@ -14,10 +14,10 @@
 using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
-using OpenRA.Mods.E2140.Assets.FileFormats;
+using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.Assets.SpriteLoaders;
+namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders;
 
 public class PcxSpriteFrame : ISpriteFrame
 {

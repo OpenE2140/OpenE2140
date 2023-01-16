@@ -18,12 +18,12 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
-using OpenRA.Mods.E2140.Graphics;
-using OpenRA.Mods.E2140.Traits.Rendering;
+using OpenRA.Mods.OpenE2140.Graphics;
+using OpenRA.Mods.OpenE2140.Traits.Rendering;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor has an elevater used for production.")]

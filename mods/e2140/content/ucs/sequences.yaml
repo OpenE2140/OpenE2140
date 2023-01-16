@@ -1,4 +1,4 @@
-ucs_elevator: building_elevator_ucs.vspr
+ucs_elevator: elevator_ucs.vspr
 	opening:
 		Tick: 100
 	open:

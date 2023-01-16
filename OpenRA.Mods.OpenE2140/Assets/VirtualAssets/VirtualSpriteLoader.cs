@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 [UsedImplicitly]
 public class VirtualSpriteLoader : ISpriteLoader
@@ -30,12 +30,12 @@ public class VirtualSpriteLoader : ISpriteLoader
 		public byte[] Data { get; }
 		public bool DisableExportPadding => true;
 
-		public SpriteFrame(SpriteFrameType type, Size size, byte[] pixels)
+		public SpriteFrame(SpriteFrameType type, Size size, float2 offset, byte[] pixels)
 		{
 			this.Type = type;
 			this.Size = size;
 			this.FrameSize = size;
-			this.Offset = new float2(0, 0);
+			this.Offset = offset;
 			this.Data = pixels;
 		}
 	}
@@ -57,7 +57,7 @@ public class VirtualSpriteLoader : ISpriteLoader
 		var spriteSheet = VirtualAssetsBuilder.Cache[stream.ReadASCII(stream.ReadInt32())];
 
 		frames = spriteSheet.Animations.SelectMany(animation => animation.Frames)
-			.Select(frame => new SpriteFrame(SpriteFrameType.Rgba32, new Size((int)frame.Width, (int)frame.Height), frame.Pixels))
+			.Select(frame => new SpriteFrame(SpriteFrameType.Rgba32, new Size((int)frame.Width, (int)frame.Height), frame.Offset, frame.Pixels))
 			.Cast<ISpriteFrame>()
 			.ToArray();
 

@@ -11,7 +11,7 @@
 
 #endregion
 
-namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 public class VirtualSpriteAnimation
 {

@@ -16,7 +16,7 @@ using OpenRA.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [TraitLocation(SystemActors.World | SystemActors.EditorWorld)]
 [Desc("Add color shifts to player palettes. Use to add RGBA compatibility to PlayerColorPalette.")]

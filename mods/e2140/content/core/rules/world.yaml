@@ -73,7 +73,6 @@ World:
 		PreviewActor: colorpicker
 		FactionPreviewActors:
 			ucs: ucs_colorpicker
-		HsvSaturationRange: 0.6, 0.95
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:

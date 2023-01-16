@@ -16,10 +16,10 @@ using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
-using OpenRA.Mods.E2140.Graphics;
+using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Cutoff sprites before rendering, used for the elevator.")]

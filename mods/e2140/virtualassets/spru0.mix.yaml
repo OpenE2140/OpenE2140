@@ -13,27 +13,20 @@ pyramid: Shadow
 	constructed_large: 32
 	deconstruct_large: 32,33,34,35,23,24,25
 
-vehicle_tiger_assault: Shadow Player
+vehicle_mech: Shadow
 	idle: 37-81[8:1:0] 8
 	move: 37-81[0:8:1] 8
-	turret: 82-90 16
 
-vehicle_tiger_hellmaker: Shadow Player
-	idle: 37-81[8:1:0] 8
-	move: 37-81[0:8:1] 8
-	turret: 91-99 16
+turret_tiger_assault: Player
+	idle: 82-90 16
 
-vehicle_spider: Shadow Player
-	idle: 37-81[8:1:0] 8
-	move: 37-81[0:8:1] 8
-	turret: 100-108 16
+turret_tiger_hellmaker: Player
+	idle: 91-99 16
 
-vehicle_spider_ii: Shadow Player
-	idle: 37-81[8:1:0] 8
-	move: 37-81[0:8:1] 8
-	turret: 1162-1170 16
+turret_spider: Player
+	idle: 100-108 16
 
-vehicle_raptor_es: Player Attack
+vehicle_raptor_es: Player Muzzle
 	idle: 115,144,122,145,129,146,136,147,143 16
 	move: 109-143[0:6:1] 8
 
@@ -54,7 +47,7 @@ turret_hcr_m: Shadow
 	idle: 211-219 16
 	repair: 230-234,225-229,220,224 4
 
-vehicle_heavy_lifter: Player
+aircraft_heavy_lifter: Player
 	idle: 235-243 16
 	vertical: 244
 
@@ -67,7 +60,7 @@ vehicle_bantha: Shadow Player Tracks
 cargo: Shadow
 	idle: 257-265 16
 
-vehicle_bio: Shadow Player Tracks Light
+vehicle_bio: Shadow Player Tracks Flicker
 	idle: 266-274 16
 	open: 275-276
 	opened: 276
@@ -82,13 +75,13 @@ vehicle_tur: Shadow Player Tracks
 vehicle_tank_small: Shadow Player Tracks
 	idle: 288-296 16
 
-vehicle_btti: Shadow Player Tracks Attack
+vehicle_btti: Shadow Player Tracks Muzzle
 	idle: 297-305 16
 
 vehicle_tank_medium: Shadow Player Tracks
 	idle: 306-314 16
 
-aircraft_storm: Player Attack
+aircraft_storm: Player Muzzle
 	idle: 315-323 16
 
 aircraft_thunder: Player
@@ -103,10 +96,10 @@ turret_ht_33_r: Shadow Player
 turret_mt_201l: Shadow Player
 	idle: 351-359 16
 
-turret_mt_200: Shadow Player Attack
+turret_mt_200: Shadow Player Muzzle
 	idle: 360-368 16
 
-turret_st_01b: Shadow Player Attack
+turret_st_01b: Shadow Player Muzzle
 	idle: 369-377 16
 
 turret_st_02: Shadow Player
@@ -127,7 +120,7 @@ turret_ht_30_lr: Player
 turret_ht_34_j__heavy_def_tower: Shadow
 	idle: 414-422 16
 
-turret_android_a01: Shadow Attack #TODO unused?!
+turret_android_a01: Shadow Muzzle #TODO unused?!
 	idle: 423-431 16
 
 turret_defend_tower: Shadow
@@ -136,13 +129,13 @@ turret_defend_tower: Shadow
 turret_big_eye: Player
 	idle: 441-449 16
 
-turret_little_eye__defend_tower: Attack
+turret_little_eye__defend_tower: Muzzle
 	idle: 450-458 16
 
-turret_pillbox: Shadow Player Attack
+turret_pillbox: Shadow Player Muzzle
 	idle: 459-467 16
 
-turret_atm_500__miner__miner_bt: Shadow Attack
+turret_atm_500__miner__miner_bt: Shadow Muzzle
 	idle: 468-476 16
 
 turret_big_eye__heavy_def_tower:
@@ -157,10 +150,10 @@ ship_russ3:
 aircraft_hell_wind: Player Engine
 	idle: 504-512 16
 
-aircraft_gargoil: Player Engine Attack
+aircraft_gargoil: Player Engine Muzzle
 	idle: 513-521 16
 
-vehicle_miner_bt: Shadow Player Tracks Light
+vehicle_miner_bt: Shadow Player Tracks Flicker
 	idle: 522-530 16
 
 vehicle_hb_bike: Shadow Player
@@ -172,7 +165,7 @@ vehicle_shadow: Shadow Player Tracks
 vehicle_t100: Shadow Tracks
 	idle: 549-557 16
 
-turret_t100: Shadow Player Attack
+turret_t100: Shadow Player Muzzle
 	idle: 558-566 16
 
 vehicle_atm_500: Shadow Player Tracks
@@ -187,7 +180,7 @@ vehicle_screamer: Shadow Player Tracks
 turret_screamer__an_center__heavy_tech: Shadow
 	idle: 587-595 16
 
-vehicle_hat: Player Rotors
+aircraft_hat: Player Rotors
 	idle: 596-604 16
 	open: 605-606
 	opened: 606
@@ -214,81 +207,83 @@ rotor_slow:
 rotor_fast:
 	idle: 653-654
 
-infantry_silver_t: Player
+infantry_silver_t: Player Infantry
 	idle: 655-684[4:1:1] 8
 	idle2: 655-684[5:1:0] 8
 	move: 655-684[0:4:2] 8
 
-# TODO what is 685
-# TODO what is 686-690 (1370-1380)
+# TODO 685 shadow for infantry units
+# TODO 686-690 shadow for raptor units
 
-infantry_silver_one: Player
+infantry_silver_one: Player Infantry
 	idle: 691-720[5:1:0] 8
 	idle2: 691-720[5:1:0] 8
 	move: 691-720[0:4:2] 8
-	attack: 721-730 8
+	Muzzle: 721-730 8
 
-infantry_silver_max: Player
+infantry_silver_max: Player Infantry
 	idle: 731-760[4:1:1] 8
 	idle2: 731-760[5:1:0] 8
 	move: 731-760[0:4:2] 8
-	attack: 761-770 8
+	Muzzle: 761-770 8
 
-infantry_silver_r: Player
+infantry_silver_r: Player Infantry
 	idle: 771-800[4:1:1] 8
 	idle2: 771-800[5:1:0] 8
 	move: 771-800[0:4:2] 8
-	attack: 801-810 8
+	Muzzle: 801-810 8
 
-infantry_android_a04: Player
+infantry_android_a04: Player Infantry
 	idle: 811-840[4:1:1] 8
 	idle2: 811-840[5:1:0] 8
 	move: 811-840[0:4:2] 8
-	attack: 841-850 8
+	Muzzle: 841-850 8
 
-infantry_android_a03: Player
+infantry_android_a03: Player Infantry
 	idle: 851-880[4:1:1] 8
 	idle2: 851-880[5:1:0] 8
 	move: 851-880[0:4:2] 8
-	attack: 881-890 8
+	Muzzle: 881-890 8
 
-infantry_android_a01: Player
+infantry_android_a01: Player Infantry
 	idle: 891-920[4:1:1] 8
 	idle2: 891-920[5:1:0] 8
 	move: 891-920[0:4:2] 8
-	attack: 921-930 8
-	attack2: 931-940 8
+	Muzzle: 921-930 8
+	Muzzle2: 931-940 8
 
-infantry_android_a02: Player
+infantry_android_a02: Player Infantry
 	idle: 941-970[4:1:1] 8
 	idle2: 941-970[5:1:0] 8
 	move: 941-970[0:4:2] 8
-	attack: 971-980 8
+	Muzzle: 971-980 8
 
-infantry_civil1: Player
+infantry_civil1: Player Infantry
 	idle: 981-1010[4:1:1] 8
 	idle2: 981-1010[5:1:0] 8
 	move: 981-1010[0:4:2] 8
 	die: 1011-1014
 
-infantry_civil2: Player
+infantry_civil2: Player Infantry
 	idle: 1015-1044[4:1:1] 8
 	idle2: 1015-1044[5:1:0] 8
 	move: 1015-1044[0:4:2] 8
 	die: 1045-1048
 
-infantry_civil3: Player
+infantry_civil3: Player Infantry
 	idle: 1049-1078[4:1:1] 8
 	idle2: 1049-1078[5:1:0] 8
 	move: 1049-1078[0:4:2] 8
 	die: 1079-1082
 
-# TODO they are heavily broken. We need to fix that or implement custom ones.
-# android death 2166-2220 4 directional shot 7 frames no player color
-# android death 2222-2276 4 directional explode 7 frames no player color
-# android death 2278-2290 burned 7 frames no player color
-# silver death 2292-2304 7 frames has come crazy color
-# 9 total empty frames?! Is this as bug?
+# TODO android death 1084-1110 4 directional shot 7 frames
+# TODO android death 1111-1138 4 directional explode 7 frames
+# TODO android death 1139-1145 1 directional burned 7 frames
+# TODO silver death 1146-1152 1 directional 7 frames
+# TODO 9 total empty frames?! Is this as bug?
+
+turret_spider_ii: Player
+	idle: 1162-1170 16
 
 vehicle_big_meh: Shadow Player
 	idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
@@ -304,7 +299,7 @@ aircraft_gargoil_ii: Player Engine
 vehicle_warhammer: Shadow Player Tracks
 	idle: 1233-1241 16
 
-turret_warhammer: Shadow Player Attack
+turret_warhammer: Shadow Player Muzzle
 	idle: 1242-1250 16
 
 aircraft_vtol: Player Engine

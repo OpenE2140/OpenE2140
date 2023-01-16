@@ -12,10 +12,10 @@
 #endregion
 
 using JetBrains.Annotations;
-using OpenRA.Mods.E2140.Assets.FileFormats;
+using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Video;
 
-namespace OpenRA.Mods.E2140.Assets.VideoLoaders;
+namespace OpenRA.Mods.OpenE2140.Assets.VideoLoaders;
 
 [UsedImplicitly]
 public class FlcVideoLoader : IVideoLoader

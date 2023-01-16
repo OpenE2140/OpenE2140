@@ -16,7 +16,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.E2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("The MCU to building transform sequence.")]

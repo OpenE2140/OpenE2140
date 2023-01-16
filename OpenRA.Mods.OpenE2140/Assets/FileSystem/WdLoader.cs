@@ -14,9 +14,9 @@
 using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using OpenRA.FileSystem;
-using OpenRA.Mods.E2140.Assets.FileFormats;
+using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
-namespace OpenRA.Mods.E2140.Assets.FileSystem;
+namespace OpenRA.Mods.OpenE2140.Assets.FileSystem;
 
 [UsedImplicitly]
 public class WdLoader : IPackageLoader

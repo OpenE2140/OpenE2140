@@ -14,9 +14,9 @@
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
-using OpenRA.Mods.E2140.Assets.VirtualAssets;
+using OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
-namespace OpenRA.Mods.E2140.Graphics;
+namespace OpenRA.Mods.OpenE2140.Graphics;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class OpenE2140SpriteSequenceLoader : DefaultSpriteSequenceLoader, ISpriteSequenceLoader

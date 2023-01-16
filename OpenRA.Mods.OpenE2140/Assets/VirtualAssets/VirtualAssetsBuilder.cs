@@ -15,20 +15,93 @@ using System.Text;
 using System.Text.RegularExpressions;
 using OpenRA.FileSystem;
 using OpenRA.Mods.Common.UpdateRules;
-using OpenRA.Mods.E2140.Assets.FileFormats;
+using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 public static class VirtualAssetsBuilder
 {
 	public const string Identifier = "VirtualSpriteSheet";
-	public const string Extension = ".vspr";
+	private const string Extension = ".vspr";
 	public static readonly Dictionary<string, VirtualSpriteSheet> Cache = new Dictionary<string, VirtualSpriteSheet>();
 
 	private record FrameInfo(int Frame, bool FlipX);
 
 	private record SequenceInfo(string Name, int Length);
+
+	private static readonly Color[] TracksPalette;
+	private static readonly Color[] RotorsPalette;
+	private static readonly Color[] EnginesOnPalette;
+	private static readonly Color[] EnginesOffPalette;
+	private static readonly Color[] MuzzlesPalette;
+	private static readonly Color[] FlickerOnPalette;
+	private static readonly Color[] FlickerOffPalette;
+	private static readonly Color[] LightOffPalette;
+	private static readonly Color[] PlayerPalette;
+	private static readonly Color[] ShadowsPalette;
+
+	static VirtualAssetsBuilder()
+	{
+		VirtualAssetsBuilder.TracksPalette = new Color[256];
+		VirtualAssetsBuilder.TracksPalette[240] = Color.FromArgb(0xff212421);
+		VirtualAssetsBuilder.TracksPalette[241] = Color.FromArgb(0xff181c18);
+		VirtualAssetsBuilder.TracksPalette[242] = Color.FromArgb(0xff292c29);
+		VirtualAssetsBuilder.TracksPalette[243] = Color.FromArgb(0xff181c18);
+
+		VirtualAssetsBuilder.RotorsPalette = new Color[256];
+		VirtualAssetsBuilder.RotorsPalette[240] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.RotorsPalette[241] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.RotorsPalette[242] = Color.FromArgb(0xff393c39);
+		VirtualAssetsBuilder.RotorsPalette[243] = Color.FromArgb(0xff000000);
+
+		VirtualAssetsBuilder.EnginesOnPalette = new Color[256];
+		VirtualAssetsBuilder.EnginesOnPalette[240] = Color.FromArgb(0xffff0000);
+		VirtualAssetsBuilder.EnginesOnPalette[241] = Color.FromArgb(0xff7b9ebd);
+		VirtualAssetsBuilder.EnginesOnPalette[242] = Color.FromArgb(0xff7b9eff);
+		VirtualAssetsBuilder.EnginesOnPalette[243] = Color.FromArgb(0xffffffbd);
+
+		VirtualAssetsBuilder.EnginesOffPalette = new Color[256];
+		VirtualAssetsBuilder.EnginesOffPalette[240] = Color.FromArgb(0xffff0000);
+		VirtualAssetsBuilder.EnginesOffPalette[241] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.EnginesOffPalette[242] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.EnginesOffPalette[243] = Color.FromArgb(0xff00007b);
+
+		VirtualAssetsBuilder.MuzzlesPalette = new Color[256];
+		VirtualAssetsBuilder.MuzzlesPalette[244] = Color.FromArgb(0xffc66d18);
+		VirtualAssetsBuilder.MuzzlesPalette[245] = Color.FromArgb(0xffff9e52);
+		VirtualAssetsBuilder.MuzzlesPalette[246] = Color.FromArgb(0xffefb68c);
+		VirtualAssetsBuilder.MuzzlesPalette[247] = Color.FromArgb(0xffffebc6);
+
+		VirtualAssetsBuilder.FlickerOnPalette = new Color[256];
+		VirtualAssetsBuilder.FlickerOnPalette[244] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.FlickerOnPalette[245] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.FlickerOnPalette[246] = Color.FromArgb(0xfff7ffc6);
+		VirtualAssetsBuilder.FlickerOnPalette[247] = Color.FromArgb(0xffff0000);
+
+		VirtualAssetsBuilder.FlickerOffPalette = new Color[256];
+		VirtualAssetsBuilder.FlickerOffPalette[244] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.FlickerOffPalette[245] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.FlickerOffPalette[246] = Color.FromArgb(0xffff0000);
+		VirtualAssetsBuilder.FlickerOffPalette[247] = Color.FromArgb(0xff444444);
+
+		VirtualAssetsBuilder.LightOffPalette = new Color[256];
+		VirtualAssetsBuilder.LightOffPalette[244] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.LightOffPalette[245] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.LightOffPalette[246] = Color.FromArgb(0xff000000);
+		VirtualAssetsBuilder.LightOffPalette[247] = Color.FromArgb(0xff000000);
+
+		VirtualAssetsBuilder.PlayerPalette = new Color[256];
+		VirtualAssetsBuilder.PlayerPalette[248] = Color.FromArgb(0xff660066);
+		VirtualAssetsBuilder.PlayerPalette[249] = Color.FromArgb(0xff770077);
+		VirtualAssetsBuilder.PlayerPalette[250] = Color.FromArgb(0xff880088);
+		VirtualAssetsBuilder.PlayerPalette[251] = Color.FromArgb(0xff990099);
+		VirtualAssetsBuilder.PlayerPalette[252] = Color.FromArgb(0xffaa00aa);
+
+		VirtualAssetsBuilder.ShadowsPalette = new Color[256];
+		VirtualAssetsBuilder.ShadowsPalette[253] = Color.FromArgb(0x40000000);
+		VirtualAssetsBuilder.ShadowsPalette[254] = Color.FromArgb(0x80000000);
+	}
 
 	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name, IReadOnlyPackage package)
 	{
@@ -97,11 +170,23 @@ public static class VirtualAssetsBuilder
 
 				var sequences = new List<SequenceInfo> { new SequenceInfo(animationNode.Key, 1) };
 
-				if (animationNode.Key == "idle" && (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Engine") || sheetFlags.Contains("Rotors")))
-					sequences.Add(new SequenceInfo("move", 4));
+				if (animationNode.Key.StartsWith("idle"))
+				{
+					if (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Rotors"))
+						sequences.Add(new SequenceInfo("move", 4));
+					else if (sheetFlags.Contains("Engine"))
+						sequences.Add(new SequenceInfo("move", 1));
 
-				if (animationNode.Key == "idle" && (sheetFlags.Contains("Attack") || sheetFlags.Contains("Light")))
-					sequences.Add(new SequenceInfo("effect", 4));
+					if (sheetFlags.Contains("Muzzle"))
+						sequences.Add(new SequenceInfo("muzzle", 3));
+					else if (sheetFlags.Contains("Flicker"))
+						sequences.Add(new SequenceInfo("flicker", 2));
+
+					if (sheetFlags.Contains("Light"))
+						sequences.Add(new SequenceInfo($"{animationNode.Key}_light", 1));
+				}
+				else if (animationNode.Key.StartsWith("addon") && sheetFlags.Contains("AddonLight"))
+					sequences.Add(new SequenceInfo($"{animationNode.Key}_light", 1));
 
 				foreach (var sequenceInfo in sequences)
 				{
@@ -119,91 +204,96 @@ public static class VirtualAssetsBuilder
 
 							Array.Copy(mix.Palettes[mixFrame.Palette].Colors, 0, palette, 0, palette.Length);
 
-							if (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Rotors"))
+							try
 							{
-								// TODO all colors are guessed!
-								palette[240 + (4 - i) % 4] = Color.FromArgb(0xff181c18);
-								palette[240 + (5 - i) % 4] = Color.FromArgb(0xff212421);
-								palette[240 + (6 - i) % 4] = Color.FromArgb(0xff181c18);
-								palette[240 + (7 - i) % 4] = Color.FromArgb(0xff292c29);
-							}
-							else if (sheetFlags.Contains("Engine"))
-							{
-								// TODO all colors are guessed!
-								palette[240 + (4 - i) % 4] = Color.FromArgb(0xffff9e52);
-								palette[240 + (5 - i) % 4] = Color.FromArgb(0xffefb68c);
-								palette[240 + (6 - i) % 4] = Color.FromArgb(0xffffebc6);
-								palette[240 + (7 - i) % 4] = Color.FromArgb(0xffffffff);
-							}
-
-							if (sheetFlags.Contains("Player"))
-							{
-								// TODO all colors are guessed!
-								palette[248] = Color.FromArgb(0xff660066);
-								palette[249] = Color.FromArgb(0xff770077);
-								palette[250] = Color.FromArgb(0xff880088);
-								palette[251] = Color.FromArgb(0xff990099);
-								palette[252] = Color.FromArgb(0xffaa00aa);
-							}
-
-							if (sheetFlags.Contains("Shadow"))
-							{
-								// TODO all colors are guessed!
-								palette[253] = Color.FromArgb(0x40000000);
-								palette[254] = Color.FromArgb(0x80000000);
-							}
-
-							if (sheetFlags.Contains("Attack"))
-							{
-								if (sequenceInfo.Name == "effect")
+								if (sheetFlags.Contains("Tracks"))
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.TracksPalette, 240, 4, palette, 240, 4, i);
+								else if (sheetFlags.Contains("Rotors"))
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.RotorsPalette, 240, 4, palette, 240, 4, i);
+								else if (sheetFlags.Contains("Engine"))
 								{
-									Array.Fill(palette, Color.FromArgb(0x00000000));
+									VirtualAssetsBuilder.ApplyPalette(
+										sequenceInfo.Name == "move" ? VirtualAssetsBuilder.EnginesOnPalette : VirtualAssetsBuilder.EnginesOffPalette,
+										240,
+										4,
+										palette,
+										240,
+										4,
+										i
+									);
+								}
 
-									// TODO all colors are guessed!
-									palette[244] = Color.FromArgb(0xffff9e52);
-									palette[245] = Color.FromArgb(0xffefb68c);
-									palette[246] = Color.FromArgb(0xffffebc6);
-									palette[247] = Color.FromArgb(0xffffffff);
+								if (sheetFlags.Contains("Player"))
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.PlayerPalette, 248, 5, palette, 248, 5, 0);
 
-									for (var j = 0; j < i; j++)
+								if (sheetFlags.Contains("Shadow"))
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.ShadowsPalette, 253, 2, palette, 253, 2, 0);
+
+								if (sheetFlags.Contains("Attack"))
+								{
+									if (sequenceInfo.Name == "muzzle")
 									{
-										palette[247] = palette[246];
-										palette[246] = palette[245];
-										palette[245] = palette[244];
-										palette[244] = palette[247];
-										palette[244] = Color.FromArgb(0x00000000);
+										Array.Fill(palette, Color.FromArgb(0x00000000));
+
+										VirtualAssetsBuilder.ApplyPalette(
+											VirtualAssetsBuilder.MuzzlesPalette,
+											i == 0 ? 247 : 246 - i,
+											i == 0 ? 1 : 3,
+											palette,
+											244,
+											3,
+											0
+										);
 									}
+									else
+										Array.Fill(palette, Color.Transparent, 244, 4);
 								}
-								else
+								else if (sheetFlags.Contains("Flicker"))
 								{
-									palette[244] = Color.FromArgb(0x00000000);
-									palette[245] = Color.FromArgb(0x00000000);
-									palette[246] = Color.FromArgb(0x00000000);
-									palette[247] = Color.FromArgb(0x00000000);
+									if (sequenceInfo.Name == "flicker")
+									{
+										Array.Fill(palette, Color.Transparent);
+										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOnPalette, 244, 4, palette, 244, 4, -i);
+									}
+									else
+										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOffPalette, 244, 4, palette, 244, 4, 0);
+								}
+								else if (sheetFlags.Contains("Light") || sheetFlags.Contains("AddonLight"))
+								{
+									if (sequenceInfo.Name.EndsWith("_light"))
+									{
+										Array.Fill(palette, Color.Transparent);
+										VirtualAssetsBuilder.ApplyPalette(mix.Palettes[mixFrame.Palette].Colors, 244, 4, palette, 244, 4, 0);
+									}
+									else
+										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.LightOffPalette, 244, 4, palette, 244, 4, 0);
 								}
 							}
-							else if (sheetFlags.Contains("Light"))
+							catch (Exception e)
 							{
-								if (sequenceInfo.Name == "effect")
-								{
-									Array.Fill(palette, Color.FromArgb(0x00000000));
+								Console.WriteLine(e);
+							}
 
-									// TODO all colors are guessed!
-									palette[244 + (4 - i) % 4] = Color.FromArgb(0xffff9e52); // TODO colors!
-									palette[244 + (5 - i) % 4] = Color.FromArgb(0xffefb68c); // TODO colors!
-									palette[244 + (6 - i) % 4] = Color.FromArgb(0xffffebc6); // TODO colors!
-									palette[244 + (7 - i) % 4] = Color.FromArgb(0xffffffff); // TODO colors!
-								}
-								else
+							// TODO we should make an empty frame first, and build a "Draw" function, which draws on top. Required for the shadows. Should auto-trim!
+							var frame = VirtualAssetsBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX);
+
+							if (sheetFlags.Contains("Infantry"))
+							{
+								var shadow = VirtualAssetsBuilder.BuildFrames(mix.Frames[685], VirtualAssetsBuilder.ShadowsPalette, false);
+								var shadowOffsetX = (frame.Width - shadow.Width) / 2;
+								var shadowOffsetY = (frame.Height - shadow.Height) / 2;
+
+								for (var x = 0; x < shadow.Width; x++)
+								for (var y = 0; y < shadow.Height; y++)
 								{
-									palette[244] = Color.FromArgb(0xff000000);
-									palette[245] = Color.FromArgb(0xff111111);
-									palette[246] = Color.FromArgb(0xff222222);
-									palette[247] = Color.FromArgb(0xff333333);
+									var target = ((shadowOffsetY + y) * frame.Width + shadowOffsetX + x) * 4;
+
+									if (frame.Pixels[target + 3] == 0)
+										frame.Pixels[target + 3] = shadow.Pixels[(y * shadow.Width + x) * 4 + 3];
 								}
 							}
 
-							frames.Add(VirtualAssetsBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX));
+							frames.Add(frame);
 						}
 					}
 
@@ -221,6 +311,20 @@ public static class VirtualAssetsBuilder
 		writer.Write(Encoding.ASCII.GetBytes(sheetNode.Key));
 
 		return stream.ToArray();
+	}
+
+	private static void ApplyPalette(
+		IReadOnlyList<Color> source,
+		int sourceStart,
+		int sourceLength,
+		IList<Color> destination,
+		int targetStart,
+		int targetLength,
+		int offset
+	)
+	{
+		for (var i = 0; i < targetLength; i++)
+			destination[targetStart + i] = source[sourceStart + (i + offset) % sourceLength];
 	}
 
 	private static List<FrameInfo> BuildFrameInfos(string frames, byte facings)
@@ -282,6 +386,6 @@ public static class VirtualAssetsBuilder
 			pixels[i * 4 + 3] = color.A;
 		}
 
-		return new VirtualSpriteFrame(mixFrame.Width, mixFrame.Height, pixels);
+		return new VirtualSpriteFrame(mixFrame.Width, mixFrame.Height, new float2(0, 0), pixels);
 	}
 }

@@ -11,18 +11,20 @@
 
 #endregion
 
-namespace OpenRA.Mods.E2140.Assets.VirtualAssets;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 public class VirtualSpriteFrame
 {
 	public readonly uint Width;
 	public readonly uint Height;
+	public readonly float2 Offset;
 	public readonly byte[] Pixels;
 
-	public VirtualSpriteFrame(uint width, uint height, byte[] pixels)
+	public VirtualSpriteFrame(uint width, uint height, float2 offset, byte[] pixels)
 	{
 		this.Width = width;
 		this.Height = height;
+		this.Offset = offset;
 		this.Pixels = pixels;
 	}
 }

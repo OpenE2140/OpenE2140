@@ -13,7 +13,7 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.E2140.Assets.FileFormats;
+namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
 public class Mix
 {

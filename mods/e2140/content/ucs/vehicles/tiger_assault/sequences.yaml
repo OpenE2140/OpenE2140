@@ -1,3 +1,5 @@
-ucs_vehicles_tiger_assault: vehicle_tiger_assault.vspr
+ucs_vehicles_tiger_assault: vehicle_mech.vspr
+	turret: turret_tiger_assault.vspr
+		Facings: -16
 	icon: SPRI1.MIX
 		Start: 133
