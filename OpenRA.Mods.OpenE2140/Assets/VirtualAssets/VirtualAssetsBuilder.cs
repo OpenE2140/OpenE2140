@@ -20,6 +20,7 @@ using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
+// TODO there is a LOT of optimization/refactoring potential here!
 public static class VirtualAssetsBuilder
 {
 	public const string Identifier = "VirtualSpriteSheet";
@@ -27,8 +28,6 @@ public static class VirtualAssetsBuilder
 	public static readonly Dictionary<string, VirtualSpriteSheet> Cache = new Dictionary<string, VirtualSpriteSheet>();
 
 	private record FrameInfo(int Frame, bool FlipX);
-
-	private record SequenceInfo(string Name, int Length);
 
 	private static readonly Color[] TracksPalette;
 	private static readonly Color[] RotorsPalette;
@@ -165,140 +164,111 @@ public static class VirtualAssetsBuilder
 			{
 				var chunks = animationNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-				if (chunks.Length is 0 or > 2)
+				if (chunks.Length is 0 or > 3)
 					throw new Exception("Broken format!");
 
-				var sequences = new List<SequenceInfo> { new SequenceInfo(animationNode.Key, 1) };
+				var cycles = chunks.Length > 2 ? byte.Parse(chunks[2]) : (byte)1;
+				var facings = chunks.Length > 1 ? byte.Parse(chunks[1]) : (byte)1;
+				var frameInfos = VirtualAssetsBuilder.BuildFrameInfos(chunks[0], facings);
 
-				if (animationNode.Key.StartsWith("idle"))
+				var frames = new List<VirtualSpriteFrame>();
+
+				foreach (var frameInfo in frameInfos)
 				{
-					if (sheetFlags.Contains("Tracks") || sheetFlags.Contains("Rotors"))
-						sequences.Add(new SequenceInfo("move", 4));
-					else if (sheetFlags.Contains("Engine"))
-						sequences.Add(new SequenceInfo("move", 1));
-
-					if (sheetFlags.Contains("Muzzle"))
-						sequences.Add(new SequenceInfo("muzzle", 3));
-					else if (sheetFlags.Contains("Flicker"))
-						sequences.Add(new SequenceInfo("flicker", 2));
-
-					if (sheetFlags.Contains("Light"))
-						sequences.Add(new SequenceInfo($"{animationNode.Key}_light", 1));
-				}
-				else if (animationNode.Key.StartsWith("addon") && sheetFlags.Contains("AddonLight"))
-					sequences.Add(new SequenceInfo($"{animationNode.Key}_light", 1));
-
-				foreach (var sequenceInfo in sequences)
-				{
-					var facings = chunks.Length > 1 ? byte.Parse(chunks[1]) : (byte)1;
-					var frameInfos = VirtualAssetsBuilder.BuildFrameInfos(chunks[0], facings);
-
-					var frames = new List<VirtualSpriteFrame>();
-
-					foreach (var frameInfo in frameInfos)
+					for (var cycle = 0; cycle < cycles; cycle++)
 					{
-						for (var i = 0; i < sequenceInfo.Length; i++)
+						var mixFrame = mix.Frames[frameInfo.Frame];
+						var palette = new Color[256];
+
+						Array.Copy(mix.Palettes[mixFrame.Palette].Colors, 0, palette, 0, palette.Length);
+
+						try
 						{
-							var mixFrame = mix.Frames[frameInfo.Frame];
-							var palette = new Color[256];
-
-							Array.Copy(mix.Palettes[mixFrame.Palette].Colors, 0, palette, 0, palette.Length);
-
-							try
+							// TODO move palettes to yaml!
+							if (sheetFlags.Contains("Tracks"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.TracksPalette, 240, 4, palette, 240, 4, cycle, false);
+							else if (sheetFlags.Contains("Rotors"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.RotorsPalette, 240, 4, palette, 240, 4, cycle, frameInfo.FlipX);
+							else if (sheetFlags.Contains("Engine"))
 							{
-								if (sheetFlags.Contains("Tracks"))
-									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.TracksPalette, 240, 4, palette, 240, 4, i);
-								else if (sheetFlags.Contains("Rotors"))
-									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.RotorsPalette, 240, 4, palette, 240, 4, i);
-								else if (sheetFlags.Contains("Engine"))
+								VirtualAssetsBuilder.ApplyPalette(
+									animationNode.Key == "move" ? VirtualAssetsBuilder.EnginesOnPalette : VirtualAssetsBuilder.EnginesOffPalette,
+									240,
+									4,
+									palette,
+									240,
+									4,
+									cycle,
+									false
+								);
+							}
+
+							if (sheetFlags.Contains("Player"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.PlayerPalette, 248, 5, palette, 248, 5, 0, false);
+
+							if (sheetFlags.Contains("Shadow"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.ShadowsPalette, 253, 2, palette, 253, 2, 0, false);
+
+							if (sheetFlags.Contains("Muzzle"))
+							{
+								if (animationNode.Key == "muzzle")
 								{
+									Array.Fill(palette, Color.FromArgb(0x00000000));
+
 									VirtualAssetsBuilder.ApplyPalette(
-										sequenceInfo.Name == "move" ? VirtualAssetsBuilder.EnginesOnPalette : VirtualAssetsBuilder.EnginesOffPalette,
-										240,
-										4,
+										VirtualAssetsBuilder.MuzzlesPalette,
+										cycle == 0 ? 247 : 246 - cycle,
+										cycle == 0 ? 1 : 3,
 										palette,
-										240,
-										4,
-										i
+										244,
+										3,
+										0,
+										false
 									);
 								}
-
-								if (sheetFlags.Contains("Player"))
-									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.PlayerPalette, 248, 5, palette, 248, 5, 0);
-
-								if (sheetFlags.Contains("Shadow"))
-									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.ShadowsPalette, 253, 2, palette, 253, 2, 0);
-
-								if (sheetFlags.Contains("Attack"))
-								{
-									if (sequenceInfo.Name == "muzzle")
-									{
-										Array.Fill(palette, Color.FromArgb(0x00000000));
-
-										VirtualAssetsBuilder.ApplyPalette(
-											VirtualAssetsBuilder.MuzzlesPalette,
-											i == 0 ? 247 : 246 - i,
-											i == 0 ? 1 : 3,
-											palette,
-											244,
-											3,
-											0
-										);
-									}
-									else
-										Array.Fill(palette, Color.Transparent, 244, 4);
-								}
-								else if (sheetFlags.Contains("Flicker"))
-								{
-									if (sequenceInfo.Name == "flicker")
-									{
-										Array.Fill(palette, Color.Transparent);
-										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOnPalette, 244, 4, palette, 244, 4, -i);
-									}
-									else
-										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOffPalette, 244, 4, palette, 244, 4, 0);
-								}
-								else if (sheetFlags.Contains("Light") || sheetFlags.Contains("AddonLight"))
-								{
-									if (sequenceInfo.Name.EndsWith("_light"))
-									{
-										Array.Fill(palette, Color.Transparent);
-										VirtualAssetsBuilder.ApplyPalette(mix.Palettes[mixFrame.Palette].Colors, 244, 4, palette, 244, 4, 0);
-									}
-									else
-										VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.LightOffPalette, 244, 4, palette, 244, 4, 0);
-								}
+								else
+									Array.Fill(palette, Color.Transparent, 244, 4);
 							}
-							catch (Exception e)
+							else if (sheetFlags.Contains("Flicker"))
 							{
-								Console.WriteLine(e);
+								if (animationNode.Key == "flicker")
+								{
+									Array.Fill(palette, Color.Transparent);
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOnPalette, 244, 4, palette, 244, 4, -cycle, false);
+								}
+								else
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.FlickerOffPalette, 244, 4, palette, 244, 4, 0, false);
+							}
+							else if (sheetFlags.Contains("Light") || sheetFlags.Contains("AddonLight"))
+							{
+								if (animationNode.Key.EndsWith("_light"))
+								{
+									Array.Fill(palette, Color.Transparent);
+									VirtualAssetsBuilder.ApplyPalette(mix.Palettes[mixFrame.Palette].Colors, 244, 4, palette, 244, 4, 0, false);
+								}
+								else
+									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.LightOffPalette, 244, 4, palette, 244, 4, 0, false);
 							}
 
-							// TODO we should make an empty frame first, and build a "Draw" function, which draws on top. Required for the shadows. Should auto-trim!
-							var frame = VirtualAssetsBuilder.BuildFrames(mixFrame, palette, frameInfo.FlipX);
+							var frame = new VirtualSpriteFrame(Rectangle.Empty, Array.Empty<byte>());
 
 							if (sheetFlags.Contains("Infantry"))
+								frame = VirtualAssetsBuilder.Draw(frame, mix.Frames[685], VirtualAssetsBuilder.ShadowsPalette, false, new int2(3, 11));
+							else if (sheetFlags.Contains("Raptor"))
 							{
-								var shadow = VirtualAssetsBuilder.BuildFrames(mix.Frames[685], VirtualAssetsBuilder.ShadowsPalette, false);
-								var shadowOffsetX = (frame.Width - shadow.Width) / 2;
-								var shadowOffsetY = (frame.Height - shadow.Height) / 2;
-
-								for (var x = 0; x < shadow.Width; x++)
-								for (var y = 0; y < shadow.Height; y++)
-								{
-									var target = ((shadowOffsetY + y) * frame.Width + shadowOffsetX + x) * 4;
-
-									if (frame.Pixels[target + 3] == 0)
-										frame.Pixels[target + 3] = shadow.Pixels[(y * shadow.Width + x) * 4 + 3];
-								}
+								// TODO raptor es / ad, uses 686-690
 							}
 
-							frames.Add(frame);
+							frames.Add(VirtualAssetsBuilder.Draw(frame, mixFrame, palette, frameInfo.FlipX, new int2(0, 0)));
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine(e);
 						}
 					}
-
-					animations.Add(new VirtualSpriteAnimation(sequenceInfo.Name, facings, frames.ToArray()));
 				}
+
+				animations.Add(new VirtualSpriteAnimation(animationNode.Key, facings, frames.ToArray()));
 			}
 
 			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, new VirtualSpriteSheet(animations.ToArray()));
@@ -320,11 +290,12 @@ public static class VirtualAssetsBuilder
 		IList<Color> destination,
 		int targetStart,
 		int targetLength,
-		int offset
+		int offset,
+		bool flipX
 	)
 	{
 		for (var i = 0; i < targetLength; i++)
-			destination[targetStart + i] = source[sourceStart + (i + offset) % sourceLength];
+			destination[targetStart + i] = source[sourceStart + ((flipX ? targetLength - i - 1 : i) + offset) % sourceLength];
 	}
 
 	private static List<FrameInfo> BuildFrameInfos(string frames, byte facings)
@@ -371,21 +342,91 @@ public static class VirtualAssetsBuilder
 		return frameInfos;
 	}
 
-	private static VirtualSpriteFrame BuildFrames(MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX)
+	private static VirtualSpriteFrame Draw(VirtualSpriteFrame frame, MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX, int2 offset)
 	{
+		var usedBounds = new Rectangle(mixFrame.Width, mixFrame.Height, 0, 0);
 		var pixels = new byte[mixFrame.Width * mixFrame.Height * 4];
 
-		for (var i = 0; i < pixels.Length / 4; i++)
+		for (var x = 0; x < mixFrame.Width; x++)
+		for (var y = 0; y < mixFrame.Height; y++)
 		{
-			var index = mixFrame.Pixels[flipX ? i / mixFrame.Width * mixFrame.Width + (mixFrame.Width - i % mixFrame.Width - 1) : i];
-			var color = palette[index];
+			var color = palette[mixFrame.Pixels[y * mixFrame.Width + (flipX ? mixFrame.Width - x - 1 : x)]];
 
-			pixels[i * 4 + 0] = color.R;
-			pixels[i * 4 + 1] = color.G;
-			pixels[i * 4 + 2] = color.B;
-			pixels[i * 4 + 3] = color.A;
+			if (color.A == 0)
+				continue;
+
+			var writeOffset = y * mixFrame.Width + x;
+
+			pixels[writeOffset * 4 + 0] = color.R;
+			pixels[writeOffset * 4 + 1] = color.G;
+			pixels[writeOffset * 4 + 2] = color.B;
+			pixels[writeOffset * 4 + 3] = color.A;
+
+			if (x < usedBounds.Left)
+				usedBounds.X = x;
+
+			if (y < usedBounds.Top)
+				usedBounds.Y = y;
+
+			if (x >= usedBounds.Right)
+				usedBounds.Width = x - usedBounds.Left + 1;
+
+			if (y >= usedBounds.Bottom)
+				usedBounds.Height = y - usedBounds.Top + 1;
 		}
 
-		return new VirtualSpriteFrame(mixFrame.Width, mixFrame.Height, new float2(0, 0), pixels);
+		// TODO fix me!
+		usedBounds = new Rectangle(0, 0, mixFrame.Width, mixFrame.Height);
+
+		var bounds = new Rectangle(
+			usedBounds.Left - mixFrame.Width / 2 + offset.X,
+			usedBounds.Top - mixFrame.Height / 2 + offset.Y,
+			usedBounds.Width,
+			usedBounds.Height
+		);
+
+		if (!frame.Bounds.Contains(bounds))
+		{
+			var newBounds = new Rectangle(
+				Math.Min(frame.Bounds.Left, bounds.Left),
+				Math.Min(frame.Bounds.Top, bounds.Top),
+				Math.Max(frame.Bounds.Right, bounds.Right) - Math.Min(frame.Bounds.Left, bounds.Left),
+				Math.Max(frame.Bounds.Bottom, bounds.Bottom) - Math.Min(frame.Bounds.Top, bounds.Top)
+			);
+
+			var newPixels = new byte[newBounds.Width * newBounds.Height * 4];
+
+			for (var y = 0; y < frame.Bounds.Height; y++)
+			{
+				Array.Copy(
+					frame.Pixels,
+					y * frame.Bounds.Width * 4,
+					newPixels,
+					((y - newBounds.Top + frame.Bounds.Top) * newBounds.Width - newBounds.Left + frame.Bounds.Left) * 4,
+					frame.Bounds.Width * 4
+				);
+			}
+
+			frame = new VirtualSpriteFrame(newBounds, newPixels);
+		}
+
+		for (var x = 0; x < usedBounds.Width; x++)
+		for (var y = 0; y < usedBounds.Height; y++)
+		{
+			var readOffset = ((usedBounds.Top + y) * mixFrame.Width + usedBounds.Left + x) * 4;
+
+			if (pixels[readOffset + 3] != 0)
+			{
+				Array.Copy(
+					pixels,
+					readOffset,
+					frame.Pixels,
+					((y - frame.Bounds.Top + bounds.Top) * frame.Bounds.Width + x - frame.Bounds.Left + bounds.Left) * 4,
+					4
+				);
+			}
+		}
+
+		return frame;
 	}
 }

@@ -57,7 +57,14 @@ public class VirtualSpriteLoader : ISpriteLoader
 		var spriteSheet = VirtualAssetsBuilder.Cache[stream.ReadASCII(stream.ReadInt32())];
 
 		frames = spriteSheet.Animations.SelectMany(animation => animation.Frames)
-			.Select(frame => new SpriteFrame(SpriteFrameType.Rgba32, new Size((int)frame.Width, (int)frame.Height), frame.Offset, frame.Pixels))
+			.Select(
+				frame => new SpriteFrame(
+					SpriteFrameType.Rgba32,
+					frame.Bounds.Size,
+					new float2(frame.Bounds.X + frame.Bounds.Width / 2f, frame.Bounds.Y + frame.Bounds.Height / 2f),
+					frame.Pixels
+				)
+			)
 			.Cast<ISpriteFrame>()
 			.ToArray();
 

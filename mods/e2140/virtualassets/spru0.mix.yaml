@@ -1,5 +1,6 @@
 vehicle_mcu: Shadow Player Tracks
 	idle: 0-8 16
+	move: 0-8 16 4
 	deploy_small: 9-15
 	deployed_small: 15
 	deploy_large: 22-16
@@ -26,11 +27,12 @@ turret_tiger_hellmaker: Player
 turret_spider: Player
 	idle: 100-108 16
 
-vehicle_raptor_es: Player Muzzle
+vehicle_raptor_es: Player Muzzle Raptor
 	idle: 115,144,122,145,129,146,136,147,143 16
 	move: 109-143[0:6:1] 8
+	muzzle: 115,144,122,145,129,146,136,147,143 16 3
 
-vehicle_raptor_ad: Player
+vehicle_raptor_ad: Player Raptor
 	idle: 154,184,161,183,168,185,175,186,182 16
 	move: 148-182[0:6:1] 8
 
@@ -42,6 +44,7 @@ vehicle_wtp_100: Player
 
 vehicle_hcr_m: Shadow Player Tracks
 	idle: 202-210 16
+	move: 202-210 16 4
 
 turret_hcr_m: Shadow
 	idle: 211-219 16
@@ -53,6 +56,7 @@ aircraft_heavy_lifter: Player
 
 vehicle_bantha: Shadow Player Tracks
 	idle: 245-253 16
+	move: 245-253 16 4
 	extend: 254-255
 	extended: 255
 	retract: 255-256
@@ -62,33 +66,42 @@ cargo: Shadow
 
 vehicle_bio: Shadow Player Tracks Flicker
 	idle: 266-274 16
+	move: 266-274 16 4
 	open: 275-276
 	opened: 276
 	close: 276-275
+	flicker: 266-274 16 2
 
 vehicle_tur: Shadow Player Tracks
 	idle: 277-285 16
+	move: 277-285 16 4
 	open: 286-287
 	opened: 287
 	close: 287-286
 
 vehicle_tank_small: Shadow Player Tracks
 	idle: 288-296 16
+	move: 288-296 16 4
 
 vehicle_btti: Shadow Player Tracks Muzzle
 	idle: 297-305 16
+	move: 297-305 16 4
+	muzzle: 297-305 16 3
 
 vehicle_tank_medium: Shadow Player Tracks
 	idle: 306-314 16
+	move: 306-314 16 4
 
 aircraft_storm: Player Muzzle
 	idle: 315-323 16
+	muzzle: 315-323 16 3
 
 aircraft_thunder: Player
 	idle: 324-332 16
 
 vehicle_tank_large: Shadow Player Tracks
 	idle: 333-341 16
+	move: 333-341 16 4
 
 turret_ht_33_r: Shadow Player
 	idle: 342-350 16
@@ -98,30 +111,42 @@ turret_mt_201l: Shadow Player
 
 turret_mt_200: Shadow Player Muzzle
 	idle: 360-368 16
+	muzzle: 360-368 16 3
 
 turret_st_01b: Shadow Player Muzzle
 	idle: 369-377 16
-
-turret_st_02: Shadow Player
-	idle: 396-404 16
+	muzzle: 369-377 16 3
 
 turret_kt30:
 	idle: 378-386 16
 
-turret_ht_30_lr__kt30:
+turret_ht_30_lr:
 	idle: 387-395 16
 
-turret_thunder__st_02__little_eye:
+turret_kt30:
+	idle: 387-395 16
+
+turret_thunder:
+	idle: 396-404 16
+
+turret_st_02:
+	idle: 396-404 16
+
+turret_little_eye:
 	idle: 396-404 16
 
 turret_ht_30_lr: Player
 	idle: 405-413 16
 
-turret_ht_34_j__heavy_def_tower: Shadow
+turret_ht_34_j: Shadow
+	idle: 414-422 16
+
+turret_heavy_def_tower: Shadow
 	idle: 414-422 16
 
 turret_android_a01: Shadow Muzzle #TODO unused?!
 	idle: 423-431 16
+	muzzle: 423-431 16 3
 
 turret_defend_tower: Shadow
 	idle: 432-440 16
@@ -129,16 +154,34 @@ turret_defend_tower: Shadow
 turret_big_eye: Player
 	idle: 441-449 16
 
-turret_little_eye__defend_tower: Muzzle
+turret_little_eye: Muzzle
 	idle: 450-458 16
+	muzzle: 450-458 16 3
+
+turret_defend_tower: Muzzle
+	idle: 450-458 16
+	muzzle: 450-458 16 3
 
 turret_pillbox: Shadow Player Muzzle
 	idle: 459-467 16
+	muzzle: 459-467 16 3
 
-turret_atm_500__miner__miner_bt: Shadow Muzzle
+turret_atm_500: Shadow Muzzle
 	idle: 468-476 16
+	muzzle: 468-476 16 3
 
-turret_big_eye__heavy_def_tower:
+turret_miner: Shadow Muzzle
+	idle: 468-476 16
+	muzzle: 468-476 16 3
+
+turret_miner_bt: Shadow Muzzle
+	idle: 468-476 16
+	muzzle: 468-476 16 3
+
+turret_big_eye:
+	idle: 477-485 16
+
+turret_heavy_def_tower:
 	idle: 477-485 16
 
 ship_kt30: Shadow Player
@@ -149,45 +192,64 @@ ship_russ3:
 
 aircraft_hell_wind: Player Engine
 	idle: 504-512 16
+	move: 504-512 16
 
 aircraft_gargoil: Player Engine Muzzle
 	idle: 513-521 16
+	move: 513-521 16
+	muzzle: 513-521 16 3
 
 vehicle_miner_bt: Shadow Player Tracks Flicker
 	idle: 522-530 16
+	move: 522-530 16 4
+	flicker: 522-530 16 2
 
 vehicle_hb_bike: Shadow Player
 	idle: 531-539 16
 
 vehicle_shadow: Shadow Player Tracks
 	idle: 540-548 16
+	move: 540-548 16 4
 
 vehicle_t100: Shadow Tracks
 	idle: 549-557 16
+	move: 549-557 16 4
 
 turret_t100: Shadow Player Muzzle
 	idle: 558-566 16
+	muzzle: 558-566 16 3
 
 vehicle_atm_500: Shadow Player Tracks
 	idle: 567-575 16
+	move: 567-575 16 4
 	open: 576-577
 	opened: 577
 	close: 577-576
 
 vehicle_screamer: Shadow Player Tracks
 	idle: 578-586 16
+	move: 578-586 16 4
 
-turret_screamer__an_center__heavy_tech: Shadow
+turret_screamer: Shadow
+	idle: 587-595 16
+
+turret_an_center: Shadow
+	idle: 587-595 16
+
+turret_heavy_tech: Shadow
 	idle: 587-595 16
 
 aircraft_hat: Player Rotors
 	idle: 596-604 16
+	move: 596-604 16 4 # TODO animation must be reversed on flip!
 	open: 605-606
 	opened: 606
 	close: 606-605
 
-vehicle_miner: Shadow Player Tracks Light
+vehicle_miner: Shadow Player Tracks Flicker
 	idle: 607-615 16
+	move: 607-615 16 4
+	flicker: 607-615 16 2
 
 ship_ttre_400: Shadow Player
 	idle: 616-624 16
@@ -211,9 +273,6 @@ infantry_silver_t: Player Infantry
 	idle: 655-684[4:1:1] 8
 	idle2: 655-684[5:1:0] 8
 	move: 655-684[0:4:2] 8
-
-# TODO 685 shadow for infantry units
-# TODO 686-690 shadow for raptor units
 
 infantry_silver_one: Player Infantry
 	idle: 691-720[5:1:0] 8
@@ -262,25 +321,31 @@ infantry_civil1: Player Infantry
 	idle: 981-1010[4:1:1] 8
 	idle2: 981-1010[5:1:0] 8
 	move: 981-1010[0:4:2] 8
-	die: 1011-1014
 
 infantry_civil2: Player Infantry
 	idle: 1015-1044[4:1:1] 8
 	idle2: 1015-1044[5:1:0] 8
 	move: 1015-1044[0:4:2] 8
-	die: 1045-1048
 
 infantry_civil3: Player Infantry
 	idle: 1049-1078[4:1:1] 8
 	idle2: 1049-1078[5:1:0] 8
 	move: 1049-1078[0:4:2] 8
-	die: 1079-1082
 
-# TODO android death 1084-1110 4 directional shot 7 frames
-# TODO android death 1111-1138 4 directional explode 7 frames
-# TODO android death 1139-1145 1 directional burned 7 frames
-# TODO silver death 1146-1152 1 directional 7 frames
-# TODO 9 total empty frames?! Is this as bug?
+death: Shadow
+	civil1: 1011-1014
+	civil2: 1045-1048
+	civil3: 1079-1082
+	android_shot1: 1084-1090
+	android_shot2: 1091-1097
+	android_shot3: 1098-1104
+	android_shot4: 1104-1110
+	android_explode1: 1111-1117
+	android_explode2: 1118-1124
+	android_explode3: 1125-1131
+	android_explode4: 1132-1138
+	android_burn: 1139-1145
+	silver: 1146-1152
 
 turret_spider_ii: Player
 	idle: 1162-1170 16
@@ -295,15 +360,20 @@ vehicle_goliat: Shadow Player
 
 aircraft_gargoil_ii: Player Engine
 	idle: 1224-1232 16
+	move: 1224-1232 16
 
 vehicle_warhammer: Shadow Player Tracks
 	idle: 1233-1241 16
+	move: 1233-1241 16 4
 
 turret_warhammer: Shadow Player Muzzle
 	idle: 1242-1250 16
+	muzzle: 1242-1250 16 3
 
 aircraft_vtol: Player Engine
 	idle: 1251-1259 16
+	move: 1251-1259 16
 
 aircraft_nemezis: Player Engine
 	idle: 1260-1268 16
+	move: 1260-1268 16
