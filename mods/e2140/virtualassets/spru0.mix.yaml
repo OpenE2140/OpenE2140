@@ -123,7 +123,7 @@ turret_kt30:
 turret_ht_30_lr:
 	idle: 387-395 16
 
-turret_kt30:
+turret_kt30_secondary:
 	idle: 387-395 16
 
 turret_thunder:
@@ -135,7 +135,7 @@ turret_st_02:
 turret_little_eye:
 	idle: 396-404 16
 
-turret_ht_30_lr: Player
+turret_ht_30_lr_secondary: Player
 	idle: 405-413 16
 
 turret_ht_34_j: Shadow
@@ -154,11 +154,11 @@ turret_defend_tower: Shadow
 turret_big_eye: Player
 	idle: 441-449 16
 
-turret_little_eye: Muzzle
+turret_little_eye_secondary: Muzzle
 	idle: 450-458 16
 	muzzle: 450-458 16 3
 
-turret_defend_tower: Muzzle
+turret_defend_tower_secondary: Muzzle
 	idle: 450-458 16
 	muzzle: 450-458 16 3
 
@@ -178,10 +178,10 @@ turret_miner_bt: Shadow Muzzle
 	idle: 468-476 16
 	muzzle: 468-476 16 3
 
-turret_big_eye:
+turret_big_eye_secondary:
 	idle: 477-485 16
 
-turret_heavy_def_tower:
+turret_heavy_def_tower_secondary:
 	idle: 477-485 16
 
 ship_kt30: Shadow Player

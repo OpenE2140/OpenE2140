@@ -1,4 +1,4 @@
 # TODO map all stuff here!
 projectile_rocket:
 	idle: 62-70 16
-	explode: 48-55
+	explode: 47-55
