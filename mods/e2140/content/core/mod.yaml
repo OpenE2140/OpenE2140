@@ -1,4 +1,5 @@
 Rules:
+	e2140|content/core/rules/ai.yaml
 	e2140|content/core/rules/colorpicker.yaml
 	e2140|content/core/rules/defaults.yaml
 	e2140|content/core/rules/mpspawn.yaml
