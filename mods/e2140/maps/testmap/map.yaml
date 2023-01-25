@@ -17,34 +17,30 @@ Visibility: Lobby
 Categories: Maps
 
 Players:
+	PlayerReference@UCS_Player:
+		Name: UCS_Player
+		Playable: True
+		AllowBots: False
+		Required: True
+		LockFaction: True
+		Faction: ucs
+		LockColor: True
+		Color: F20F0F
+		LockSpawn: True
+		LockTeam: True
+		Enemies: UCS_AI
+	PlayerReference@UCS_AI:
+		Name: UCS_AI
+		Bot: campaign
+		Faction: ucs
+		Enemies: UCS_Player
 	PlayerReference@Neutral:
 		Name: Neutral
 		OwnsWorld: True
 		NonCombatant: True
 		Faction: Random
-	PlayerReference@Creeps:
-		Name: Creeps
-		Faction: Random
-		NonCombatant: True
-		Enemies: Multi0, Multi1
-	PlayerReference@Multi0:
-		Name: Multi0
-		Playable: True
-		Faction: Random
-		Enemies: Creeps
-	PlayerReference@Multi1:
-		Name: Multi1
-		Playable: True
-		Faction: Random
-		Enemies: Creeps
 
 Actors:
-	Actor0: mpspawn
-		Location: 24,6
-		Owner: Multi0
-	Actor1: mpspawn
-		Location: 22,17
-		Owner: Multi1
 	Actor3: neutral_tree01
 		Owner: Neutral
 		Location: 4,9
@@ -78,3 +74,34 @@ Actors:
 	Actor16: neutral_tree04
 		Owner: Neutral
 		Location: 17,11
+	Actor15: ucs_buildings_prod_center
+		Location: 18,4
+		Owner: UCS_Player
+	Actor17: shared_buildings_power_plant
+		Location: 18,8
+		Owner: UCS_Player
+	Actor18: ucs_buildings_heavy_tech
+		Location: 22,8
+		Owner: UCS_Player
+	Actor19: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 5,22
+	Actor20: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 6,24
+	Actor21: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 7,22
+	Actor22: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 4,23
+	Actor23: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 5,20
+
+Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
