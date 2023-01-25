@@ -127,3 +127,23 @@ HCU-M repairing unit
 ## ED Buildings
 
 [Pillbox + Defend Tower](https://dalek.zone/w/kw2dRBFWJvt6ZFbAxEDsn5)
+
+# Resources
+
+Resources are retrieved by mining ore from tiles that have special "attribute" - i.e. they contain ore. Mining ore requires building Mine building on top of at least one ore tile. No other regular building can be built on top of ore tiles (only after they're mined completely - i.e. depleted).
+
+(VIDEO: video of mining)
+
+Internally mining works like this:
+- Mine extracts one row of 5 ore tiles starting from one row above Mine
+- these 5 tiles no longer contain any ore (even if Mine is destroyed at this point)
+- Mine produces containers with ore that are then transported by BANTHA truck or HEAVY LIFTER aircraft harvester to Refinery
+- containers are being produced until all ore from one row of tiles is extracted
+- once a row of ore tiles is produced and harvested via containers, Mine extracts second row of 5 ore tiles
+- the process repeats until 5x5 ore tiles are extracted and all containers are harvested
+- at this point Mine is depleted and will no longer produce any containers
+
+[Timelapse of Mine depletion](https://dalek.zone/w/6xh8NRRnb6AAo4EXoknjDr)
+
+One container of ore provides 200 cash (cheats can increase this). How much resources is extracted from one row of ore tiles is currently unknown.
+
