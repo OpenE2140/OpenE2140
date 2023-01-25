@@ -1,4 +1,5 @@
 Rules:
+	e2140|content/shared/campaign-maprules.yaml
 	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/vehicles/mcu/rules.yaml
 
