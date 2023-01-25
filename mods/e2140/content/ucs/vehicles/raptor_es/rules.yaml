@@ -21,7 +21,7 @@ ucs_vehicles_raptor_es:
 		RecoilRecovery: 0
 		LocalOffset: 0,0,0
 		LocalYaw: 0, 0
-		MuzzleSequence: effect
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
 	WithMoveSound:
