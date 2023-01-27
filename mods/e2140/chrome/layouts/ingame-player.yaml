@@ -142,15 +142,15 @@ Container@PLAYER_WIDGETS:
 							Height: 21
 							Align: Center
 							Font: TinyBold
-						LabelWithTooltip@POWER:
-							Logic: IngamePowerCounterLogic
+						IngamePower@POWER:
+							Logic: IngamePowerLogic
 							X: 18
 							Y: 0
 							Width: 68
 							Height: 21
 							Font: Bold
-							TextColor: ad7131
-							Text: {0}
+							NormalPowerColor: ad7131
+							CriticalPowerColor: ffff00
 							Children:
 								Image@POWER_ICON:
 									X: 0 - 18
