@@ -129,29 +129,51 @@ Container@PLAYER_WIDGETS:
 							Width: 193
 							Height: 216
 				Container@SIDEBAR_MONEYBIN:
-					X: 22
-					Y: 172
-					Width: 105
-					Height: 41
+					X: 23
+					Y: 271
+					Width: 169
+					Height: 21
 					Children:
-						Label:
-							X: 7
-							Y: 5
+						Label@GAME_TIMER:
+							Logic: GameTimerLogic
+							X: 0
+							Y: 0
+							Width: PARENT_RIGHT
+							Height: 21
+							Align: Center
+							Font: TinyBold
+						LabelWithTooltip@POWER:
+							Logic: IngamePowerCounterLogic
+							X: 18
+							Y: 0
+							Width: 68
+							Height: 21
+							Font: Bold
 							TextColor: ad7131
-							Width: 40
-							Height: 23
-							Font: Small
-							Text: Cash:
+							Text: {0}
+							Children:
+								Image@POWER_ICON:
+									X: 0 - 18
+									Y: 3
+									ImageCollection: power-icons
+									ImageName: power-normal
 						LabelWithTooltip@CASH:
 							Logic: IngameCashCounterLogic
-							X: 50
-							Y: 5
+							X: PARENT_RIGHT - WIDTH - 18
+							Y: 0
 							# ED: TextColor: 009e00
+							Width: 68
+							Height: 21
+							Align: Right
+							Font: Bold
 							TextColor: ad7131
-							Width: 50
-							Height: 23
-							Font: Small
 							Text: {0}
+							Children:
+								Image@CASH_ICON:
+									X: PARENT_RIGHT
+									Y: 3
+									ImageCollection: cash-icons
+									ImageName: cash-normal
 				Container@PRODUCTION_TYPES:
 					X: 25
 					Y: 306

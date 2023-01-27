@@ -383,6 +383,17 @@ dropdown-separators:
 separator:
 	Inherits: button
 
+power-icons:
+	Inherits: ^Glyphs
+	Regions:
+		power-normal: 102, 51, 16, 16
+		power-critical: 119, 51, 16, 16
+
+cash-icons:
+	Inherits: ^Glyphs
+	Regions:
+		cash-normal: 68, 51, 16, 16
+		cash-critical: 85, 51, 16, 16
 
 production-icons:
 	Inherits: ^Glyphs
