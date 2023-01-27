@@ -11,5 +11,7 @@ Work in progress...
 - [Dzierzan](https://github.com/Dzierzan)
 
 ## Credits
-Original code for loading and rendering sprites done by [IceReaper](https://github.com/IceReaper) in repo [IceReaper/Earth2140](https://github.com/IceReaper/Earth2140).
- 
+
+Huge thanks for OpenRA devs and contributors for all the great work done on OpenRA.
+
+Special thanks to original development team at Reality Pump Studios for making Earth 2140, an amazing game this mod recreates!
