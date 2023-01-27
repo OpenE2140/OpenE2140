@@ -12,13 +12,13 @@ Packages:
 	^EngineDir
 	$e2140: e2140
 	^EngineDir|mods/common: common
-	~game|flc.wd: flc
-	~game|graph.wd: graph
-	~game|menu.wd: menu
-	~game|mix.wd: mix
-	~game|piro.wd: piro
-	~game|smp0.wd: smp0
-	~game|smp1.wd: smp1
+	~game|FLC.WD: flc
+	~game|GRAPH.WD: graph
+	~game|MENU.WD: menu
+	~game|MIX.WD: mix
+	~game|PIRO.WD: piro
+	~game|SMP0.WD: smp0
+	~game|SMP1.WD: smp1
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS
@@ -99,7 +99,7 @@ ModContent:
 	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
 		base: Base Game Files
-			TestFiles: ^SupportDir|Content/e2140/mix.wd
+			TestFiles: ^SupportDir|Content/e2140/MIX.wd
 			Sources: gog, steam
 			Required: true
 		music: Base Game Music
