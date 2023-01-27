@@ -543,7 +543,7 @@ Templates:
 		Tiles:
 			0: Clear
 			1: Shore
-	Template@117
+	Template@117:
 		Id: 117
 		Images: SPRT4.MIX
 		Size: 1,2
