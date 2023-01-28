@@ -9,4 +9,5 @@ shroud:
 		Start: 1
 
 clock:
-	idle: chrome/assets/clock.png
+	idle: chrome/assets/clock-ucs.png
+		Length: 30
