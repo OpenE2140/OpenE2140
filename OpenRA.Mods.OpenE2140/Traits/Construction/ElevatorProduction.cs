@@ -65,7 +65,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 {
 	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits, Actor? Actor);
 
-	private enum AnimationState
+	public enum AnimationState
 	{
 		Closed, Opening, ElevatorUp, Ejecting, ElevatorDown, Closing
 	}
@@ -74,20 +74,22 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 	private readonly RenderSprites? renderSprites;
 	private readonly AnimationWithOffset animation;
-
+	private readonly ElevatorProductionQueue productionQueue;
 	private AnimationState state = AnimationState.Closed;
 	private int stateAge;
 	private ProductionInfo? productionInfo;
+	private ProductionInfo? lastProducedUnit;
 
-	private AnimationState State
+	public AnimationState State
 	{
 		get => this.state;
-		set
+		private set
 		{
 			this.state = value;
 			this.stateAge = 0;
 		}
 	}
+
 
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
@@ -126,6 +128,8 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 		animationOverlay.Animation.PlayRepeating("overlay");
 		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationOverlay));
+
+		productionQueue = init.Self.Trait<ElevatorProductionQueue>();
 	}
 
 	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo exitinfo, string productionType, TypeDictionary inits)
@@ -191,6 +195,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 				{
 					this.State = AnimationState.ElevatorDown;
 
+					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
 				}
 
@@ -209,6 +214,8 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 						this.State = AnimationState.Closed;
 
 						this.animation.Animation.PlayRepeating("closed");
+
+						this.productionQueue.UnitCompleted(this, this.lastProducedUnit!.Actor!);
 					}
 				);
 

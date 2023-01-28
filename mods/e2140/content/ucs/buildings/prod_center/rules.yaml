@@ -21,7 +21,7 @@ ucs_buildings_prod_center:
 		Position: 16, 1024, 0
 		Produces: Building.UCS
 		RequiresCondition: !Transforming
-	ProductionQueue:
+	ElevatorProductionQueue:
 		Type: Building.UCS
 		Group: Building
 	ProductionBar:

@@ -23,7 +23,7 @@ ucs_buildings_heavy_tech:
 		Position: -960, 96, 0
 		Produces: Vehicle.UCS
 		RequiresCondition: !Transforming
-	ProductionQueue:
+	ElevatorProductionQueue:
 		Type: Vehicle.UCS
 		Group: Vehicle
 	ProductionBar:
