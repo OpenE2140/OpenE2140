@@ -80,17 +80,14 @@ Actors:
 	Actor17: shared_buildings_power_plant
 		Location: 18,8
 		Owner: UCS_Player
-	Actor18: ucs_buildings_heavy_tech
-		Location: 22,8
-		Owner: UCS_Player
 	Actor19: ucs_vehicles_tiger_assault
 		Owner: UCS_AI
-		Facing: 384
 		Location: 5,22
+		Facing: 256
 	Actor20: ucs_vehicles_tiger_assault
 		Owner: UCS_AI
-		Facing: 384
 		Location: 6,24
+		Facing: 256
 	Actor21: ucs_vehicles_raptor_es
 		Owner: UCS_AI
 		Facing: 384
@@ -103,5 +100,14 @@ Actors:
 		Owner: UCS_AI
 		Facing: 384
 		Location: 5,20
+	Actor24: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 8,24
+		Facing: 620
+		TurretFacing: 0
+	Actor25: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 6,21
+		Facing: 768
 
 Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
