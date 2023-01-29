@@ -6,6 +6,7 @@
 		Offset: -1, -1
 		DeployBlockedCursor: generic-blocked
 		Facing: 512
+		Voice: Unload
 	Health:
 		HP: 1000
 	Mobile:

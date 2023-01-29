@@ -209,6 +209,9 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
+	# Unit produces voice
+	Voiced:
+		VoiceSet: VehicleVoice
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle
