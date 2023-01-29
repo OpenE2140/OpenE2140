@@ -141,14 +141,14 @@ Container@PLAYER_WIDGETS:
 							Width: PARENT_RIGHT
 							Height: 21
 							Align: Center
-							Font: TinyBold
+							Font: Small
 						IngamePower@POWER:
 							Logic: IngamePowerLogic
 							X: 18
 							Y: 0
 							Width: 68
 							Height: 21
-							Font: Bold
+							Font: Small
 							NormalPowerColor: ad7131
 							CriticalPowerColor: ffff00
 							Children:
@@ -165,7 +165,7 @@ Container@PLAYER_WIDGETS:
 							Width: 68
 							Height: 21
 							Align: Right
-							Font: Bold
+							Font: Small
 							TextColor: ad7131
 							Text: {0}
 							Children:
