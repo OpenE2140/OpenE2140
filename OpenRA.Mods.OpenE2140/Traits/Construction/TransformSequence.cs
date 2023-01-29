@@ -13,6 +13,7 @@
 
 using JetBrains.Annotations;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
@@ -32,6 +33,11 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 
 	[Desc("Time it takes for the building to construct under the pyramid.")]
 	public readonly int ConstructionTime = 100;
+
+	[NotificationReference("Sounds")]
+	[Desc("Sound played when actor starts transforming.",
+		"The filename of the audio is defined per faction in notifications.yaml.")]
+	public readonly string? TransformSound = null;
 
 	public override object Create(ActorInitializer init)
 	{
@@ -61,6 +67,8 @@ public class TransformSequence : ITick
 
 		var animationDeploy = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
 		self.World.AddFrameEndTask(_ => this.renderSprites.Add(animationDeploy));
+
+		Game.Sound.PlayToPlayer(SoundType.World, self.Owner, this.info.TransformSound, self.CenterPosition);
 
 		animationDeploy.Animation.PlayThen(
 			"deploy",

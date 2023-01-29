@@ -118,6 +118,7 @@
 		Image: core_buildingsequence_large
 		Condition: Transforming
 		ConstructionTime: 30
+		TransformSound: 78.smp
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 
@@ -151,6 +152,7 @@
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Condition: Transforming
+		TransformSound: 78.smp
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 
