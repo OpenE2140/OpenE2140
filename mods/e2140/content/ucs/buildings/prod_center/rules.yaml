@@ -1,5 +1,5 @@
 ucs_buildings_prod_center:
-	Inherits: ^CoreBuilding
+	Inherits: ^UcsElevatorFactory
 	Tooltip:
 		Name: Prod. Center
 	Health:

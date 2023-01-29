@@ -17,6 +17,12 @@ World:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
 
+^UcsElevatorFactory:
+	Inherits: ^CoreBuilding
+	ElevatorProductionQueue:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
 	RenderSprites:

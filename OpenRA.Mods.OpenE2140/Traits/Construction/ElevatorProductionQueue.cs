@@ -98,6 +98,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.Construction
 			if (done != null)
 			{
 				EndProduction(done);
+
+				var rules = Actor.World.Map.Rules;
+				Game.Sound.PlayNotification(rules, Actor.Owner, "Speech", Info.ReadyAudio, Actor.Owner.Faction.InternalName);
+				TextNotificationsManager.AddTransientLine(Info.ReadyTextNotification, Actor.Owner);
 			}
 		}
 

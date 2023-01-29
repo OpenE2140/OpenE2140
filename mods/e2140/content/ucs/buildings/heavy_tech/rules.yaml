@@ -1,5 +1,5 @@
 ucs_buildings_heavy_tech:
-	Inherits: ^CoreBuilding
+	Inherits: ^UcsElevatorFactory
 	Tooltip:
 		Name: Heavy Tech
 	Health:
