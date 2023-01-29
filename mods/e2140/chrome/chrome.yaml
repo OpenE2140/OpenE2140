@@ -418,40 +418,64 @@ production-icons:
 		ship-alert: 187, 102, 16, 16
 
 
+
+# Main sidebar artwork:
 sidebar-ucs:
 	Inherits: ^Sidebar
 	Regions:
-		background-sidebar: 52, 0, 214, 587
+		background-sidebar: 52, 0, 214, 566
 
+# Main buttons:
 sidebar-production-tab:
 	Regions:
 		production-tab: 23, 281, 23, 21
 
-		
+sidebar-production-tab-hover:
+	Regions:
+		production-tab: 23, 231, 23, 21
+
+sidebar-production-tab-pressed:
+	Regions:
+		production-tab: 23, 306, 23, 21
+
+sidebar-production-tab-pressed-hover:
+	Regions:
+		production-tab: 23, 256, 23, 21
+
+# Sub buttons:
 sidebar-production-tab-button:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 24, 380, 3, 3, 22, 15, 3, 3
 
 sidebar-production-tab-button-highlighted:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
 	
+sidebar-production-tab-button-highlighted-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
+
+# Unit production buttons:
 production-palette-button:
 	Inherits: ^Sidebar
 	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
-
-production-palette-button-ucs:
-	Inherits: production-palette-button
 
 production-palette-button-pressed:
 	Inherits: ^Sidebar
 	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
 
+production-palette-button-ucs:
+	Inherits: production-palette-button
 
+# Arrow buttons:
 production-tabs-decorations:
 	Inherits: ^Sidebar
 	Regions:
-		right: 236, 330, 20, 20
+		right: 0, 356, 20, 20
 		right-hover: 0, 333, 20, 20
-		left: 61, 330, 20, 20
+		left: 0, 282, 20, 20
 		left-hover: 0, 307, 20, 20
