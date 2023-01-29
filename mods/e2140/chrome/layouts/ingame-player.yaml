@@ -120,8 +120,8 @@ Container@PLAYER_WIDGETS:
 			Children:
 				Container@RADAR:
 					Logic: IngameRadarDisplayLogic
-					X: 12
-					Y: 42
+					X: 11
+					Y: 31
 					Children:
 						LogicTicker@RADAR_TICKER:
 						Radar@RADAR_MINIMAP:
@@ -130,7 +130,7 @@ Container@PLAYER_WIDGETS:
 							Height: 216
 				Container@SIDEBAR_MONEYBIN:
 					X: 23
-					Y: 271
+					Y: 250
 					Width: 169
 					Height: 21
 					Children:
@@ -176,7 +176,7 @@ Container@PLAYER_WIDGETS:
 									ImageName: cash-normal
 				Container@PRODUCTION_TYPES:
 					X: 25
-					Y: 306
+					Y: 285
 					Width: 170
 					Height: 23
 					Children:
@@ -210,7 +210,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
 					X: 17
-					Y: 353
+					Y: 332
 					Children:
 						Background@ICON_TEMPLATE:
 							Background: production-palette-button
@@ -218,7 +218,7 @@ Container@PLAYER_WIDGETS:
 							Height: 41
 				ProductionPalette@PRODUCTION_PALETTE:
 					X: 17
-					Y: 353
+					Y: 332
 					Columns: 3
 					Width: 200
 					IconSize: 59, 41
@@ -239,8 +239,8 @@ Container@PLAYER_WIDGETS:
 					TabButton: sidebar-production-tab-button
 					Decorations: production-tabs-decorations
 					X: 9
-					Y: 330
-					Width: 196
+					Y: 309
+					Width: 195
 					Height: 21
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
