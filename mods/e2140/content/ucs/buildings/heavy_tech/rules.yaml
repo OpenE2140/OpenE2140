@@ -16,6 +16,8 @@ ucs_buildings_heavy_tech:
 		Bounds: 2064, 1984, -513, -495
 	-RenderSprites:
 	RenderElevatorSprites:
+	Power:
+		Amount: -400
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: -960, 96, 0
