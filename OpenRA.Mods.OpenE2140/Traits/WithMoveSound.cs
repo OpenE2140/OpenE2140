@@ -30,7 +30,7 @@ public class WithMoveSoundInfo : TraitInfo
 	}
 }
 
-public class WithMoveSound : INotifyMoving, ITick
+public class WithMoveSound : INotifyMoving, ITick, INotifyRemovedFromWorld
 {
 	private readonly WithMoveSoundInfo info;
 	private ISound? sound;
@@ -54,5 +54,11 @@ public class WithMoveSound : INotifyMoving, ITick
 	void ITick.Tick(Actor self)
 	{
 		this.sound?.SetPosition(self.CenterPosition);
+	}
+
+	void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
+	{
+		Game.Sound.EndLoop(this.sound);
+		this.sound = null;
 	}
 }
