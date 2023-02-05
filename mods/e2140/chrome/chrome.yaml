@@ -429,17 +429,18 @@ command-button-ucs:
 	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
 command-button-ucs-hover:
 	Inherits: ^Sidebar
-	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-pressed:
-	Inherits: command-button-ucs
-command-button-ucs-highlighted:
-	Inherits: ^Sidebar
 	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-highlighted-hover:
+command-button-ucs-pressed:
 	Inherits: ^Sidebar
 	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-highlighted-pressed:
+command-button-ucs-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-highlighted-hover:
 	Inherits: command-button-ucs-highlighted
+command-button-ucs-highlighted-pressed:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
 command-button-ucs-disabled:
 	Inherits: command-button-ucs
 command-button-ucs-highlighted-disabled:
