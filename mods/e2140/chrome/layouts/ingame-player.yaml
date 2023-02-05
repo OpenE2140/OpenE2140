@@ -145,7 +145,6 @@ Container@PLAYER_WIDGETS:
 					Width: 34
 					Height: 26
 					Background: command-button
-					Key: Stop
 					DisableKeySound: true
 					Children:
 						Image@ICON:
