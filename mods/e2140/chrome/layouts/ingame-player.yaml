@@ -17,78 +17,212 @@ Container@PLAYER_WIDGETS:
 			CombineWithGroupKeyPrefix: ControlGroupCombineWith
 			JumpToGroupKeyPrefix: ControlGroupJumpTo
 		LogicTicker@SIDEBAR_TICKER:
-		# TODO we need this for hotkeys to work!
-		#Container@COMMAND_BAR:
-		#	Logic: CommandBarLogic
-		#	Children:
-		#		LogicKeyListener@MODIFIER_OVERRIDES:
-		#		Button@ATTACK_MOVE:
-		#			Key: AttackMove
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@FORCE_MOVE:
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@FORCE_ATTACK:
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@GUARD:
-		#			Key: Guard
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@DEPLOY:
-		#			Key: Deploy
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@SCATTER:
-		#			Key: Scatter
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@STOP:
-		#			Key: Stop
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@QUEUE_ORDERS:
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#Container@STANCE_BAR:
-		#	Logic: StanceSelectorLogic
-		#	Children:
-		#		Button@STANCE_ATTACKANYTHING:
-		#			Key: StanceAttackAnything
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@STANCE_DEFEND:
-		#			Key: StanceDefend
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@STANCE_RETURNFIRE:
-		#			Key: StanceReturnFire
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
-		#		Button@STANCE_HOLDFIRE:
-		#			Key: StanceHoldFire
-		#			DisableKeyRepeat: true
-		#			DisableKeySound: true
-		#			Children:
-		#				Image@ICON:
+		Image@COMMAND_BAR_BACKGROUND:
+			X: 5
+			Y: WINDOW_BOTTOM - HEIGHT - 5
+			Width: 416
+			Height: 44
+			ImageCollection: commandbar
+			ImageName: background
+		Container@COMMAND_BAR:
+			Logic: CommandBarLogic
+			X: 14
+			Y: WINDOW_BOTTOM - HEIGHT - 13
+			Width: 311
+			Height: 26
+			Children:
+				LogicKeyListener@MODIFIER_OVERRIDES:
+				Button@ATTACK_MOVE:
+					Logic: AddFactionSuffixLogic
+					X: 0
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: AttackMove
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: attack-move
+				Button@FORCE_MOVE:
+					Logic: AddFactionSuffixLogic
+					X: 34
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: force-move
+				Button@FORCE_ATTACK:
+					Logic: AddFactionSuffixLogic
+					X: 68
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: force-attack
+				Button@GUARD:
+					Logic: AddFactionSuffixLogic
+					X: 102
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: Guard
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: guard
+				Button@DEPLOY:
+					Logic: AddFactionSuffixLogic
+					X: 136
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: Deploy
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: deploy
+				Button@SCATTER:
+					Logic: AddFactionSuffixLogic
+					X: 170
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: Scatter
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: scatter
+				Button@STOP:
+					Logic: AddFactionSuffixLogic
+					X: 204
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: Stop
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: stop
+				Button@QUEUE_ORDERS:
+					Logic: AddFactionSuffixLogic
+					X: 238
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: Stop
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 5
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: queue-orders
+		Container@STANCE_BAR:
+			Logic: StanceSelectorLogic
+			X: 294
+			Y: WINDOW_BOTTOM - HEIGHT - 14
+			Width: 138
+			Height: 26
+			Children:
+				Button@STANCE_ATTACKANYTHING:
+					Logic: AddFactionSuffixLogic
+					Width: 34
+					Height: 26
+					VisualHeight: 0
+					Background: command-button
+					Key: StanceAttackAnything
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 9
+							Y: 5
+							ImageCollection: stance-icons
+							ImageName: attack-anything
+				Button@STANCE_DEFEND:
+					Logic: AddFactionSuffixLogic
+					X: 34
+					Width: 34
+					Height: 26
+					VisualHeight: 0
+					Background: command-button
+					Key: StanceDefend
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 9
+							Y: 5
+							ImageCollection: stance-icons
+							ImageName: defend
+				Button@STANCE_RETURNFIRE:
+					Logic: AddFactionSuffixLogic
+					X: 68
+					Width: 34
+					Height: 26
+					VisualHeight: 0
+					Background: command-button
+					Key: StanceReturnFire
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 9
+							Y: 5
+							ImageCollection: stance-icons
+							ImageName: return-fire
+				Button@STANCE_HOLDFIRE:
+					Logic: AddFactionSuffixLogic
+					X: 102
+					Width: 34
+					Height: 26
+					VisualHeight: 0
+					Background: command-button
+					Key: StanceHoldFire
+					DisableKeyRepeat: true
+					DisableKeySound: true
+					Children:
+						Image@ICON:
+							X: 9
+							Y: 5
+							ImageCollection: stance-icons
+							ImageName: hold-fire
 		Container@MUTE_INDICATOR:
 			Logic: MuteIndicatorLogic
 			X: WINDOW_RIGHT - WIDTH - 260

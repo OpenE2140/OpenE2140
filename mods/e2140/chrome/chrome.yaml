@@ -418,6 +418,75 @@ production-icons:
 		ship-alert: 187, 102, 16, 16
 
 
+# Command bar
+commandbar:
+	Inherits: ^Sidebar
+	Regions:
+		background: 0, 596, 434, 44
+
+command-button-ucs:
+	Inherits: ^Sidebar
+	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-pressed:
+	Inherits: command-button-ucs
+command-button-ucs-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-highlighted-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-highlighted-pressed:
+	Inherits: command-button-ucs-highlighted
+command-button-ucs-disabled:
+	Inherits: command-button-ucs
+command-button-ucs-highlighted-disabled:
+	Inherits: command-button-ucs-highlighted
+
+command-icons:
+	Inherits: ^Glyphs
+	Regions:
+		attack-move: 0, 207, 24, 24
+		attack-move-disabled: 0, 232, 24, 24
+		force-move: 25, 207, 24, 24
+		force-move-disabled: 25, 232, 24, 24
+		force-attack: 50, 207, 24, 24
+		force-attack-disabled: 50, 232, 24, 24
+		guard: 75, 207, 24, 24
+		guard-disabled: 75, 232, 24, 24
+		deploy: 100, 207, 24, 24
+		deploy-disabled: 100, 232, 24, 24
+		scatter: 125, 207, 24, 24
+		scatter-disabled: 125, 232, 24, 24
+		stop: 150, 207, 24, 24
+		stop-disabled: 150, 232, 24, 24
+		queue-orders: 175, 207, 24, 24
+		queue-orders-disabled: 175, 232, 24, 24
+
+command-icons-highlighted:
+	Inherits: command-icons
+
+stance-icons:
+	Inherits: ^Glyphs
+	Regions:
+		attack-anything: 0, 119, 16, 16
+		attack-anything-disabled: 0, 136, 16, 16
+		defend: 17, 119, 16, 16
+		defend-disabled: 17, 136, 16, 16
+		return-fire: 34, 119, 16, 16
+		return-fire-disabled: 34, 136, 16, 16
+		hold-fire: 51, 119, 16, 16
+		hold-fire-disabled: 51, 136, 16, 16
+
+stance-icons-highlighted:
+	Inherits: stance-icons
+	Regions:
+		attack-anything: 0, 153, 16, 16
+		defend: 17, 153, 16, 16
+		return-fire: 34, 153, 16, 16
+		hold-fire: 51, 153, 16, 16
 
 # Main sidebar artwork:
 sidebar-ucs:
