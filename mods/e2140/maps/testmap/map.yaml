@@ -19,8 +19,8 @@ Categories: Maps
 Players:
 	PlayerReference@UCS_Player:
 		Name: UCS_Player
-		Playable: True
 		AllowBots: False
+		Playable: True
 		Required: True
 		LockFaction: True
 		Faction: ucs
@@ -74,12 +74,6 @@ Actors:
 	Actor16: neutral_tree04
 		Owner: Neutral
 		Location: 17,11
-	Actor15: ucs_buildings_prod_center
-		Location: 18,4
-		Owner: UCS_Player
-	Actor17: shared_buildings_power_plant
-		Location: 18,8
-		Owner: UCS_Player
 	Actor19: ucs_vehicles_tiger_assault
 		Owner: UCS_AI
 		Location: 5,22
@@ -109,5 +103,30 @@ Actors:
 		Owner: UCS_AI
 		Location: 6,21
 		Facing: 768
+	Actor26: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Location: 20,11
+		Facing: 384
+	Actor27: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Facing: 384
+		Location: 21,11
+	Actor28: ucs_vehicles_raptor_es
+		Owner: UCS_Player
+		Facing: 384
+		Location: 24,10
+	Actor29: ucs_vehicles_raptor_es
+		Owner: UCS_Player
+		Facing: 384
+		Location: 23,10
+	Actor30: shared_buildings_power_plant
+		Owner: UCS_Player
+		Location: 28,2
+	Actor31: ucs_buildings_heavy_tech
+		Owner: UCS_Player
+		Location: 25,3
+	Actor32: ucs_buildings_prod_center
+		Owner: UCS_Player
+		Location: 21,2
 
 Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
