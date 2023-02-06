@@ -2,3 +2,12 @@
 projectile_rocket:
 	idle: 62-70 16
 	explode: 47-55
+	
+projectile_heavy_rocket:
+	idle: 88-96 16
+	explode: 8-15
+
+projectile_plasma:
+	idle: 81
+	trail: 79-80
+	explode: 106-110

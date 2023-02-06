@@ -1,0 +1,36 @@
+ucs_vehicles_spider:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: SPIDER
+	Valued:
+		Cost: 1500
+	Buildable:
+		Queue: Vehicle.UCS
+		BuildDuration: 90
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 70
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 6c0
+	Turreted:
+		TurnSpeed: 20
+		Offset: 0,0,200
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_spider
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 300,-384,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ucs_vehicles_spider
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 300,384,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	WithMoveSound:
+		Sound: 28.smp

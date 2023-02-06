@@ -1,0 +1,27 @@
+ucs_vehicles_spider:
+	ReloadDelay: 40
+	Range: 4c0
+	MinRange: 0c512
+	Report: 9.smp
+	ValidTargets: Ground
+	Burst: 12
+	BurstDelays: 7
+	Projectile: Bullet
+		Speed: 650
+		Blockable: false
+		Image: projectile_plasma
+		Palette:
+		TrailImage: projectile_plasma
+		TrailSequences: trail
+		TrailPalette:
+		Shadow: False
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 30
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_plasma
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 22.smp
+		ValidTargets: Ground
