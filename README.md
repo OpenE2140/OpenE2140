@@ -8,9 +8,15 @@ Work in progress. Most recent video preview is here: [OpenE2140 - preview #2](ht
 
 - [michaeldgg2](https://github.com/michaeldgg2)
 - [IceReaper](https://github.com/IceReaper)
-- [Dzierzan](https://github.com/Dzierzan)
 
-## Credits
+## Contributors
+
+- [Dzierzan](https://github.com/Dzierzan)
+	* Custom artwork for faction sidebars and command bars,
+	* main menu artwork (in progress),
+	* custom resource sprites (in progress).
+
+## Special thanks!
 
 Huge thanks for OpenRA devs and contributors for all the great work done on OpenRA.
 
