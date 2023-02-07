@@ -1,0 +1,30 @@
+ucs_vehicles_spider_ii:
+	ReloadDelay: 50
+	Range: 6c0
+	MinRange: 1c512
+	Report: 4.smp
+	ValidTargets: Ground
+	Burst: 4
+	BurstDelays: 11
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		ContrailLength: 10
+		Inaccuracy: 128
+		Image: projectile_heavy_rocket
+		Palette:
+		TrailPalette:
+		Shadow: True
+		HorizontalRateOfTurn: 20
+		RangeLimit: 6c0
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 80
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_heavy_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground

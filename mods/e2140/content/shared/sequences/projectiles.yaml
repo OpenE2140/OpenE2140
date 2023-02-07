@@ -1,3 +1,7 @@
 projectile_rocket: projectile_rocket.vspr
 	explode:
 		BlendMode: Additive
+
+projectile_heavy_rocket: projectile_heavy_rocket.vspr
+	explode:
+		BlendMode: Additive
