@@ -1,6 +1,6 @@
 # Base building
 
-https://dalek.zone/w/vB2A6k1wmUaEF3mAi3MFgf
+[VIDEO: building construction](https://dalek.zone/w/vB2A6k1wmUaEF3mAi3MFgf)
 
 Buildings are not constructed and deployed directly (like in C&C or RA), but instead MCU's (Mobile Construction Unit) are built from Production/Construction Center and these are deployed.
 
@@ -28,7 +28,7 @@ Naval base requires extra tile for dock built on water. Ground part has to be ne
 
 # Building destruction
 
-https://dalek.zone/w/sshYfFD5CQUkzsTWaadRVL
+[VIDEO: building destruction](https://dalek.zone/w/sshYfFD5CQUkzsTWaadRVL)
 
 When building health gets into red:
 - crew starts to evacuate, one after another
@@ -51,14 +51,15 @@ https://dalek.zone/w/crE4H6s1fTn92hhRmVkYRx
 If building is producing unit and is destroyed, when elevator with unit is still below ground level, the unit disappears
 and building starts to play explosion animation
 
-https://dalek.zone/w/o7tasdzVsjjG9TUnPi5VbU
-https://dalek.zone/w/qY2fDsg1NxRssfJ9LJXAKB
+VIDEO: building production vs unit production:
+- [building destroyed before elevator is up](https://dalek.zone/w/o7tasdzVsjjG9TUnPi5VbU)
+- [building destroyed after elevator is up](https://dalek.zone/w/qY2fDsg1NxRssfJ9LJXAKB)
 
 
 
 # Unit production
 
-https://dalek.zone/w/pWk4kAinss2zGS817zKmUt
+[VIDEO: unit production](https://dalek.zone/w/pWk4kAinss2zGS817zKmUt)
 
 
 When unit production is completed:
@@ -143,7 +144,31 @@ Internally mining works like this:
 - the process repeats until 5x5 ore tiles are extracted and all containers are harvested
 - at this point Mine is depleted and will no longer produce any containers
 
-[Timelapse of Mine depletion](https://dalek.zone/w/6xh8NRRnb6AAo4EXoknjDr)
+[VIDEO: Timelapse of Mine depletion](https://dalek.zone/w/6xh8NRRnb6AAo4EXoknjDr)
 
 One container of ore provides 200 cash (cheats can increase this). How much resources is extracted from one row of ore tiles is currently unknown.
+
+# Power management
+
+Standard behavior of power management applies:
+- power plant generates power
+- other buildings drain power
+
+When there's excess power, everything works normally:
+- lights of buildings are on
+- unit/building production
+- research
+- turrets
+- superweapons
+
+However, when there's insufficient amount of power, the behavior is different compared to CNC/RA games:
+- lights of buildings flicker (i.e. black and dark blue colors)
+- when the light is on, unit/building production and research advance
+- when the light is off, unit/building production and research are halted
+- turrets don't flicker, but the movement is jerky and firing is slowed down and synced to light flickering
+- superweapons recharge is also slowed down and works like production and research (i.e. countdown is synced with light flickering, production and research)
+
+Also, not all buildings start getting insufficient power, when state of low power occurs. Only those buildings that cause low power state are switched to low power mode (in ascending order of time when they were constructed).
+
+[VIDEO: Production at low power](https://dalek.zone/w/7Yr8ANm3agCor5U2fANnsn)
 
