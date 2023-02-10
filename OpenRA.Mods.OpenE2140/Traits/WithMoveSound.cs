@@ -19,30 +19,32 @@ namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Makes an actor play a sound while moving.")]
-public class WithMoveSoundInfo : TraitInfo
+public class WithMoveSoundInfo : TraitInfo, Requires<MobileInfo>
 {
 	[FieldLoader.RequireAttribute]
 	public readonly string Sound = "";
 
 	public override object Create(ActorInitializer init)
 	{
-		return new WithMoveSound(this);
+		return new WithMoveSound(this, init);
 	}
 }
 
 public class WithMoveSound : INotifyMoving, ITick, INotifyRemovedFromWorld
 {
 	private readonly WithMoveSoundInfo info;
+	private readonly Mobile mobile;
 	private ISound? sound;
 
-	public WithMoveSound(WithMoveSoundInfo info)
+	public WithMoveSound(WithMoveSoundInfo info, ActorInitializer init)
 	{
 		this.info = info;
+		this.mobile = init.Self.Trait<Mobile>();
 	}
 
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
-		if (type != MovementType.None)
+		if (type != MovementType.None && mobile.IsMovingBetweenCells)
 			this.sound ??= Game.Sound.PlayLooped(SoundType.World, this.info.Sound, self.CenterPosition);
 		else
 		{
