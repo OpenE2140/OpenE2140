@@ -1,14 +1,14 @@
 ﻿using System.Reflection;
 
-namespace OpenRA.Mods.OpenE2140.Helpers
+namespace OpenRA.Mods.OpenE2140.Helpers.Reflection
 {
-	public class FieldHelper<T>
+	public class ObjectFieldHelper<T>
 	{
 		public object ThisObject { get; }
 
 		public FieldInfo FieldInfo { get; }
 
-		public FieldHelper(FieldInfo fieldInfo, object thisObject)
+		public ObjectFieldHelper(FieldInfo fieldInfo, object thisObject)
 		{
 			this.FieldInfo = fieldInfo;
 			this.ThisObject = thisObject;

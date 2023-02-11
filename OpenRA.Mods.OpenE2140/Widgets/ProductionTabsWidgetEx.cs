@@ -1,6 +1,7 @@
 ﻿using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Helpers;
+using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
@@ -17,16 +18,16 @@ namespace OpenRA.Mods.OpenE2140.Widgets
 		public string ArrowButton = "button";
 		public string TabButton = "button";
 
-		private readonly FieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
-		private readonly FieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
+		private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
+		private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
 
-		private readonly FieldHelper<int> contentWidth;
-		private readonly FieldHelper<float> listOffset;
-		private readonly FieldHelper<bool> leftPressed;
-		private readonly FieldHelper<bool> rightPressed;
-		private readonly FieldHelper<SpriteFont> font;
-		private readonly FieldHelper<Rectangle> leftButtonRect;
-		private readonly FieldHelper<Rectangle> rightButtonRect;
+		private readonly ObjectFieldHelper<int> contentWidth;
+		private readonly ObjectFieldHelper<float> listOffset;
+		private readonly ObjectFieldHelper<bool> leftPressed;
+		private readonly ObjectFieldHelper<bool> rightPressed;
+		private readonly ObjectFieldHelper<SpriteFont> font;
+		private readonly ObjectFieldHelper<Rectangle> leftButtonRect;
+		private readonly ObjectFieldHelper<Rectangle> rightButtonRect;
 
 
 		[ObjectCreator.UseCtor]
