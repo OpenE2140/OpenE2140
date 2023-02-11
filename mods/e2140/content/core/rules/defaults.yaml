@@ -121,6 +121,10 @@
 		TransformSound: 78.smp
 	WithSpriteBody:
 		RequiresCondition: !Transforming
+	WithSpriteBody@light:
+		Name: light
+		Sequence: idle_light
+		RequiresCondition: !Transforming
 
 # Base for all towers.
 ^CoreTower:
