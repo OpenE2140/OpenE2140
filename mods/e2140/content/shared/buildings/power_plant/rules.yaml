@@ -6,13 +6,13 @@ shared_buildings_power_plant:
 		HP: 1000
 	Building:
 		Dimensions: 3,3
-		Footprint: xxx xxx xxx
+		Footprint: xx= xx= ===
 	HitShape:
 		Type: Rectangle
 			TopLeft: -1536, -1024
 			BottomRight: 1536, 1024
 	Selectable:
-		Bounds: 3072, 2048, 0, 0
+		Bounds: 2080, 2208, -228, -275
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Power:
