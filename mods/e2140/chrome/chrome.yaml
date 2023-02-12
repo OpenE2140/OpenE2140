@@ -12,18 +12,18 @@
 
 observer-scrollpanel-button:
 	Inherits: ^Dialog
-	PanelRegion: 769, 257, 2, 2, 122, 122, 2, 2
+	PanelRegion: 769, 257, 3, 3, 120, 120, 3, 3
 
 observer-scrollpanel-button-hover:
 	Inherits: observer-scrollpanel-button
 
 observer-scrollpanel-button-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 897, 257, 2, 2, 122, 122, 2, 2
+	PanelRegion: 897, 257, 3, 3, 120, 120, 3, 3
 
 observer-scrollpanel-button-disabled:
 	Inherits: ^Dialog
-	PanelRegion: 769, 385, 2, 2, 122, 122, 2, 2
+	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
 
 observer-scrollheader:
 	Inherits: observer-scrollpanel-button-disabled
@@ -62,7 +62,8 @@ dialog2:
 
 # It's a Container, used in various places, like Hotkeys, ColorPicker, Asset Browser frames (looks like a pressed button)
 dialog3:
-	Inherits: button-pressed
+	Inherits: ^Dialog
+	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
 
 # Used for tooltips and the video player
 dialog4:
@@ -122,10 +123,10 @@ strategic:
 flags:
 	Inherits: ^Glyphs
 	Regions:
-		ed: 226, 241, 30, 15
-		ucs: 226, 241, 30, 15
-		Random: 226, 241, 30, 15
-		spectator: 226, 241, 30, 15
+		ed: 227, 208, 29, 16
+		ucs: 227, 224, 29, 16
+		Random: 227, 240, 29, 16
+		spectator: 226, 240, 29, 16
 
 music:
 	Inherits: ^Glyphs
@@ -138,39 +139,39 @@ music:
 		fastforward: 85, 0, 16, 16
 
 progressbar-bg:
-	Inherits: button-pressed
+	Inherits: dialog3
 
 progressbar-thumb:
 	Inherits: button
 
 button:
 	Inherits: ^Dialog
-	PanelRegion: 513, 1, 2, 2, 122, 122, 2, 2
+	PanelRegion: 513, 1, 3, 3, 120, 120, 3, 3
 
 # 5% lighter than a normal button (mouseover)
 button-hover:
 	Inherits: ^Dialog
-	PanelRegion: 513, 129, 2, 2, 122, 122, 2, 2
+	PanelRegion: 513, 129, 3, 3, 120, 120, 3, 3
 
 button-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 641, 1, 2, 2, 122, 122, 2, 2
+	PanelRegion: 641, 1, 3, 3, 120, 120, 3, 3
 
 # 50% grey (disabled button)
 button-disabled:
 	Inherits: ^Dialog
-	PanelRegion: 513, 257, 2, 2, 122, 122, 2, 2
+	PanelRegion: 513, 257, 3, 3, 120, 120, 3, 3
 
 button-highlighted:
 	Inherits: ^Dialog
-	PanelRegion: 769, 129, 2, 2, 122, 122, 2, 2
+	PanelRegion: 769, 257, 3, 3, 120, 120, 3, 3
 
 button-highlighted-hover:
 	Inherits: button-highlighted
 
 button-highlighted-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 897, 129, 2, 2, 122, 122, 2, 2
+	PanelRegion: 897, 257, 3, 3, 120, 120, 3, 3
 
 button-highlighted-disabled:
 	Inherits: button-highlighted
@@ -179,11 +180,10 @@ newsbutton:
 	Inherits: button
 
 newsbutton-hover:
-	Inherits: button
+	Inherits: button-hover
 
 newsbutton-highlighted:
-	Inherits: ^Dialog
-	PanelRegion: 769, 1, 2, 2, 122, 122, 2, 2
+	Inherits: button-hover
 
 newsbutton-highlighted-hover:
 	Inherits: newsbutton-highlighted
@@ -195,19 +195,22 @@ newsbutton-pressed:
 	Inherits: button-pressed
 
 textfield:
-	Inherits: button-pressed
+	Inherits: ^Dialog
+	PanelRegion: 769, 1, 3, 3, 120, 120, 3, 3
 
 textfield-hover:
-	Inherits: checkbox-hover
+	Inherits: ^Dialog
+	PanelRegion: 897, 1, 3, 3, 120, 120, 3, 3
 
 textfield-disabled:
-	Inherits: checkbox-disabled
+	Inherits: textfield
 
 textfield-focused:
-	Inherits: button-pressed
+	Inherits: textfield-hover
 
 scrollpanel-bg:
-	Inherits: button-pressed
+	Inherits: ^Dialog
+	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
 
 scrollpanel-button:
 	Inherits: button
@@ -219,7 +222,7 @@ scrollpanel-button-pressed:
 	Inherits: button-pressed
 
 scrollpanel-button-disabled:
-	Inherits: button
+	Inherits: button-disabled
 
 slider:
 	Inherits: ^Dialog
@@ -242,7 +245,7 @@ slider-thumb-disabled:
 	Inherits: button-disabled
 
 checkbox:
-	Inherits: button-pressed
+	Inherits: dialog3
 
 checkmark-tick:
 	Inherits: ^Glyphs
@@ -279,18 +282,16 @@ checkmark-mute-highlighted:
 
 checkbox-hover:
 	Inherits: ^Dialog
-	PanelRegion: 641, 129, 2, 2, 122, 122, 2, 2
+	PanelRegion: 897, 385, 3, 3, 120, 120, 3, 3
 
 checkbox-pressed:
 	Inherits: checkbox-hover
 
 checkbox-disabled:
-	Inherits: ^Dialog
-	PanelRegion: 641, 257, 2, 2, 122, 122, 2, 2
+	Inherits: dialog3
 
 checkbox-highlighted:
-	Inherits: ^Dialog
-	PanelRegion: 897, 1, 2, 2, 122, 122, 2, 2
+	Inherits: checkbox-hover
 
 checkbox-highlighted-hover:
 	Inherits: checkbox-highlighted
@@ -320,13 +321,15 @@ checkbox-toggle-highlighted-pressed:
 scrollitem:
 
 scrollitem-hover:
-	Inherits: button
+	Inherits: ^Dialog
+	PanelRegion: 769, 129, 3, 3, 120, 120, 3, 3
 
 scrollitem-pressed:
-	Inherits: button
+	Inherits: ^Dialog
+	PanelRegion: 897, 129, 3, 3, 120, 120, 3, 3
 
 scrollitem-highlighted:
-	Inherits: button-pressed
+	Inherits: scrollitem-hover
 
 scrollitem-nohover:
 
@@ -336,7 +339,12 @@ scrollheader:
 	Inherits: button
 
 scrollheader-highlighted:
-	Inherits: button
+	Inherits: button-hover
+
+mainmenu-border:
+	Inherits: ^Dialog
+	PanelRegion: 650, 389, 39, 39, 38, 38, 39, 39
+	PanelSides: Edges
 
 logos:
 	Inherits: ^LoadScreen
@@ -347,11 +355,6 @@ loadscreen-stripe:
 	Inherits: ^LoadScreen
 	PanelRegion: 258, 0, 0, 0, 253, 256, 0, 0
 	PanelSides: Center
-
-mainmenu-border:
-	Inherits: ^Dialog
-	PanelRegion: 650, 389, 39, 39, 38, 38, 39, 39
-	PanelSides: Edges
 
 scrollpanel-decorations:
 	Inherits: ^Glyphs

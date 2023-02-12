@@ -13,7 +13,8 @@ Work in progress. Most recent video preview is here: [OpenE2140 - preview #2](ht
 
 - [Dzierzan](https://github.com/Dzierzan)
 	* Custom artwork for faction sidebars and command bars,
-	* main menu artwork (in progress),
+	* main menu artwork,
+	* reskinned glyphs,
 	* custom resource sprites (in progress).
 
 ## Special thanks!
