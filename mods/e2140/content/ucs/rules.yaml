@@ -16,6 +16,10 @@ World:
 	Mobile:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
+	WithTurretShadow:
+		ShadowColor: 00000046
+		Offset: 0,115,-200
+		ZOffset: 70
 
 ^UcsElevatorFactory:
 	Inherits: ^CoreBuilding
