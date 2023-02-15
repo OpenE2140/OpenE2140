@@ -21,7 +21,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering
 		[Desc("Turret names.")]
 		public readonly string[] Turrets = { "primary" };
 
-		public override object Create(ActorInitializer init) { return new WithTurretShadow(this, init); }
+		public override object Create(ActorInitializer init) { return new WithTurretShadow(this); }
 	}
 
 	public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderModifier
@@ -30,7 +30,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering
 		private readonly float3 shadowColor;
 		private readonly float shadowAlpha;
 
-		public WithTurretShadow(WithTurretShadowInfo info, ActorInitializer init)
+		public WithTurretShadow(WithTurretShadowInfo info)
 			: base(info)
 		{
 			this.info = info;
@@ -43,15 +43,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering
 			if (IsTraitDisabled)
 				return r;
 
-
 			var height = self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length;
 
-			var spriteTurrets = self.TraitsImplementing<WithSpriteTurret>()
-				.Where(wst => info.Turrets.Contains(wst.Info.Turret))
-				.ToHashSet();
-
-			var activeAnimations = spriteTurrets
-				.Where(wst => !wst.IsTraitDisabled)
+			var activeAnimations = self.TraitsImplementing<WithSpriteTurret>()
+				.Where(wst => !wst.IsTraitDisabled && info.Turrets.Contains(wst.Info.Turret))
 				.Select(wst => wst.DefaultAnimation)
 				.ToHashSet();
 
