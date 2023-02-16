@@ -1,7 +1,11 @@
 projectile_rocket: projectile_rocket.vspr
+	idle:
+		InterpolatedFacings: 64
 	explode:
 		BlendMode: Additive
 
 projectile_heavy_rocket: projectile_heavy_rocket.vspr
+	idle:
+		InterpolatedFacings: 64
 	explode:
 		BlendMode: Additive
