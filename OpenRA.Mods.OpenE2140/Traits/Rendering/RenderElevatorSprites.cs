@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Collections;
 using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
@@ -33,46 +32,23 @@ public class RenderElevatorSpritesInfo : RenderSpritesInfo
 
 public class RenderElevatorSprites : RenderSprites
 {
+	private readonly RenderSpritesReflectionHelper reflectionHelper;
+
 	public RenderElevatorSprites(ActorInitializer init, RenderSpritesInfo info)
 		: base(init, info)
 	{
+		this.reflectionHelper = new RenderSpritesReflectionHelper(this);
 	}
 
 	public override IEnumerable<IRenderable> Render(Actor self, WorldRenderer worldRenderer)
 	{
-		// TODO Hack: this.Anims is private.
-		if (typeof(RenderSprites).GetField("anims", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(this) is not IEnumerable anims)
-			yield break;
-
-		foreach (var animationWrapper in anims)
-		{
-			// TODO Hack: the whole class is a private class, so we need to access this via reflection...
-			if (animationWrapper.GetType().GetProperty("IsVisible")?.GetValue(animationWrapper) is not true)
-				continue;
-
-			var paletteReferenceProperty = animationWrapper.GetType().GetProperty("PaletteReference");
-
-			if (paletteReferenceProperty?.GetValue(animationWrapper) == null)
+		var renderables = this.reflectionHelper.RenderAnimations(self, worldRenderer, this.reflectionHelper.GetVisibleAnimations(),
+			(anim, renderables) =>
 			{
-				animationWrapper.GetType()
-					.GetMethod("CachePalette")
-					?.Invoke(
-						animationWrapper,
-						new object[] { worldRenderer, self.EffectiveOwner is { Disguised: true } ? self.EffectiveOwner.Owner : self.Owner }
-					);
-			}
-
-			if (animationWrapper.GetType().GetField("Animation")?.GetValue(animationWrapper) is not AnimationWithOffset animation)
-				continue;
-
-			var renderables = animation.Render(self, paletteReferenceProperty?.GetValue(animationWrapper) as PaletteReference);
-
-			if (animation is CutOffAnimationWithOffset elevatorAnimation)
-				RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.Bottom());
-
-			foreach (var renderable in renderables)
-				yield return renderable;
-		}
+				if (anim is CutOffAnimationWithOffset elevatorAnimation)
+					RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.Bottom());
+			});
+		return renderables;
 	}
 
 	public static void PostProcess(IEnumerable<IRenderable> renderables, int bottom)
