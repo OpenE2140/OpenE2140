@@ -5,7 +5,7 @@ ucs_vehicles_spider_ii:
 	Report: 4.smp
 	ValidTargets: Ground
 	Burst: 4
-	BurstDelays: 11
+	BurstDelays: 10
 	Projectile: Missile
 		Speed: 260
 		Arm: 2

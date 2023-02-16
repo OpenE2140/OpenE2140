@@ -5,6 +5,7 @@ ucs_vehicles_tiger_assault:
 	Report: 5.smp
 	ValidTargets: Ground
 	Burst: 4
+	BurstDelays: 10
 	Projectile: Missile
 		Speed: 260
 		Arm: 2

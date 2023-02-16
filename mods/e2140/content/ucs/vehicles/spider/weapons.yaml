@@ -5,7 +5,7 @@ ucs_vehicles_spider:
 	Report: 9.smp
 	ValidTargets: Ground
 	Burst: 12
-	BurstDelays: 7
+	BurstDelays: 5
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
