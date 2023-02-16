@@ -33,7 +33,7 @@ namespace OpenRA.Mods.OpenE2140.Helpers.Reflection
 			if (string.IsNullOrEmpty(fieldName))
 				throw new ArgumentException($"'{nameof(fieldName)}' cannot be null or empty.", nameof(fieldName));
 
-			var fieldInfo = thisObject.GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+			var fieldInfo = thisObject.GetType().GetAllInstanceFields()
 				.Single(f => f.Name == fieldName);
 			return new ObjectFieldHelper<T>(fieldInfo, thisObject);
 		}
@@ -41,6 +41,18 @@ namespace OpenRA.Mods.OpenE2140.Helpers.Reflection
 		public static ObjectFieldHelper<T> GetFieldHelper<T>(object thisObject, ObjectFieldHelper<T>? _, string fieldName)
 		{
 			return GetFieldHelper<T>(thisObject, fieldName);
+		}
+
+		public static TypeFieldHelper<T> GetTypeFieldHelper<T>(Type thisObjectType, string fieldName)
+		{
+			if (thisObjectType is null)
+				throw new ArgumentNullException(nameof(thisObjectType));
+			if (string.IsNullOrEmpty(fieldName))
+				throw new ArgumentException($"'{nameof(fieldName)}' cannot be null or empty.", nameof(fieldName));
+
+			var fieldInfo = thisObjectType.GetAllInstanceFields()
+				.Single(f => f.Name == fieldName);
+			return new TypeFieldHelper<T>(fieldInfo);
 		}
 	}
 }

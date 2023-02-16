@@ -15,5 +15,10 @@ namespace OpenRA.Mods.OpenE2140.Helpers.Reflection
 		{
 			return (T?)this.FieldInfo.GetValue(thisObject);
 		}
+
+		public void SetValue(object thisObject, T? value)
+		{
+			this.FieldInfo.SetValue(thisObject, value);
+		}
 	}
 }

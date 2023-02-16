@@ -11,11 +11,11 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Graphics;
+using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
@@ -32,6 +32,8 @@ public class RenderElevatorSpritesInfo : RenderSpritesInfo
 
 public class RenderElevatorSprites : RenderSprites
 {
+	private static readonly TypeFieldHelper<Sprite> SpriteFieldHelper = ReflectionHelper.GetTypeFieldHelper<Sprite>(typeof(SpriteRenderable), "sprite");
+
 	private readonly RenderSpritesReflectionHelper reflectionHelper;
 
 	public RenderElevatorSprites(ActorInitializer init, RenderSpritesInfo info)
@@ -55,13 +57,11 @@ public class RenderElevatorSprites : RenderSprites
 	{
 		foreach (var renderable in renderables.OfType<SpriteRenderable>())
 		{
-			// TODO Hack: SpriteRenderable.Sprite is private.
-			var spriteField = renderable.GetType().GetField("sprite", BindingFlags.Instance | BindingFlags.NonPublic);
-
-			if (spriteField?.GetValue(renderable) is not Sprite sprite)
+			var sprite = SpriteFieldHelper.GetValue(renderable);
+			if (sprite == null)
 				continue;
 
-			spriteField.SetValue(
+			SpriteFieldHelper.SetValue(
 				renderable,
 				new Sprite(
 					sprite.Sheet,
