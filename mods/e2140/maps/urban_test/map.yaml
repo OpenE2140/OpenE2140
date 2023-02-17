@@ -1,0 +1,224 @@
+MapFormat: 12
+
+RequiresMod: e2140
+
+Title: Urban Test Map
+
+Author: author
+
+Tileset: URBAN
+
+MapSize: 34,34
+
+Bounds: 1,1,32,32
+
+Visibility: Lobby
+
+Categories: Maps
+
+Players:
+	PlayerReference@UCS_Player:
+		Name: UCS_Player
+		AllowBots: False
+		Playable: True
+		Required: True
+		LockFaction: True
+		Faction: ucs
+		LockColor: True
+		Color: F20F0F
+		LockSpawn: True
+		LockTeam: True
+		Enemies: UCS_AI
+	PlayerReference@UCS_AI:
+		Name: UCS_AI
+		Bot: campaign
+		Faction: ucs
+		Enemies: UCS_Player
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+
+Actors:
+	Actor0: neutral_tree02
+		Owner: Neutral
+		Location: 20,24
+	Actor1: neutral_tree04
+		Owner: Neutral
+		Location: 18,26
+	Actor2: neutral_tree03
+		Owner: Neutral
+		Location: 21,30
+	Actor3: neutral_tree05
+		Owner: Neutral
+		Location: 12,27
+	Actor4: neutral_tree05
+		Owner: Neutral
+		Location: 5,23
+	Actor5: neutral_tree06
+		Owner: Neutral
+		Location: 4,29
+	Actor6: neutral_tree06
+		Owner: Neutral
+		Location: 8,32
+	Actor7: neutral_tree03
+		Owner: Neutral
+		Location: 4,31
+	Actor8: neutral_tree03
+		Owner: Neutral
+		Location: 1,23
+	Actor9: neutral_tree03
+		Owner: Neutral
+		Location: 10,10
+	Actor10: neutral_tree04
+		Owner: Neutral
+		Location: 9,12
+	Actor11: neutral_tree05
+		Owner: Neutral
+		Location: 13,8
+	Actor12: neutral_tree01
+		Owner: Neutral
+		Location: 4,10
+	Actor13: neutral_tree01
+		Owner: Neutral
+		Location: 6,17
+	Actor14: neutral_tree01
+		Owner: Neutral
+		Location: 10,15
+	Actor15: neutral_tree04
+		Owner: Neutral
+		Location: 9,17
+	Actor16: neutral_tree04
+		Owner: Neutral
+		Location: 26,14
+	Actor17: neutral_tree03
+		Owner: Neutral
+		Location: 29,11
+	Actor18: neutral_tree06
+		Owner: Neutral
+		Location: 31,10
+	Actor19: neutral_tree04
+		Owner: Neutral
+		Location: 29,10
+	Actor20: neutral_tree05
+		Owner: Neutral
+		Location: 30,10
+	Actor21: neutral_tree02
+		Owner: Neutral
+		Location: 31,12
+	Actor22: neutral_tree01
+		Owner: Neutral
+		Location: 30,17
+	Actor23: neutral_tree01
+		Owner: Neutral
+		Location: 29,21
+	Actor24: neutral_tree04
+		Owner: Neutral
+		Location: 31,31
+	Actor25: neutral_tree03
+		Owner: Neutral
+		Location: 2,2
+	Actor26: ucs_buildings_prod_center
+		Owner: UCS_Player
+		Location: 4,2
+	Actor27: shared_buildings_power_plant
+		Owner: UCS_Player
+		Location: 2,6
+	Actor28: ucs_buildings_heavy_tech
+		Owner: UCS_Player
+		Location: 9,3
+	Actor29: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Location: 7,7
+		Facing: 768
+	Actor30: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Facing: 768
+		Location: 7,6
+	Actor31: ucs_vehicles_spider
+		Owner: UCS_Player
+		Location: 9,7
+		Facing: 640
+	Actor32: ucs_vehicles_spider
+		Owner: UCS_Player
+		Facing: 640
+		Location: 9,6
+	Actor33: ucs_vehicles_spider_ii
+		Owner: UCS_Player
+		Facing: 384
+		Location: 6,9
+	Actor34: ucs_vehicles_spider_ii
+		Owner: UCS_Player
+		Facing: 384
+		Location: 7,9
+	Actor35: ucs_vehicles_raptor_es
+		Owner: UCS_Player
+		Location: 9,9
+		Facing: 128
+	Actor36: ucs_vehicles_raptor_es
+		Owner: UCS_Player
+		Facing: 128
+		Location: 10,9
+	Actor37: ucs_vehicles_spider
+		Owner: UCS_AI
+		Facing: 384
+		Location: 22,25
+	Actor38: ucs_vehicles_spider
+		Owner: UCS_AI
+		Facing: 384
+		Location: 22,24
+	Actor39: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 23,30
+	Actor40: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 24,30
+	Actor41: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 384
+		Location: 23,31
+	Actor42: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 384
+		Location: 24,31
+	Actor43: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 19,26
+	Actor44: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 19,27
+	Actor45: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 24,15
+	Actor46: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 24,14
+	Actor47: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Location: 5,29
+		Facing: 256
+		Stance: AttackAnything
+	Actor48: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 256
+		Stance: AttackAnything
+		Location: 6,29
+	Actor49: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 256
+		Stance: AttackAnything
+		Location: 5,30
+	Actor50: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 256
+		Stance: AttackAnything
+		Location: 6,30
+
+Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
