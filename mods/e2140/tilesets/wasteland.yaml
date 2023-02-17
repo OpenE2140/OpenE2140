@@ -1,0 +1,1211 @@
+General:
+	Name: Wasteland
+	Id: WASTELAND
+	EditorTemplateOrder: Terrain, Cliffs, Shore
+	Palette:
+
+Terrain:
+	TerrainType@Shore:
+		Type: Shore
+		TargetTypes: Ground
+		Color: B09C78
+	TerrainType@Clear:
+		Type: Clear
+		TargetTypes: Ground
+		Color: 293808
+	TerrainType@Sand:
+		Type: Sand
+		TargetTypes: Ground
+		Color: C6AE76
+	TerrainType@Rock:
+		Type: Rock
+		TargetTypes: Ground
+		Color: 44443C
+	TerrainType@Road:
+		Type: Road
+		TargetTypes: Ground
+		Color: 5E430D
+	TerrainType@Water:
+		Type: Water
+		TargetTypes: Water
+		Color: 5C74A4
+		RestrictPlayerColor: true
+
+Templates:
+	# Clear tiles
+	Template@255:
+		Id: 255
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1, 2, 3, 4
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+
+	# Large, unpassable rocks
+	Template@1:
+		Id: 1
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 199, 200, 201, 202, 203, 204
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
+
+	# Small, passable rocks
+	Template@10:
+		Id: 10
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 223, 224, 225, 226, 227, 228
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+			5: Clear
+
+	# Large crater made by destruction of Power Plant
+	Template@30:
+		Id: 30
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 193, 194, 195, 196
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Unknown large crater
+	Template@31:
+		Id: 31
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 205, 206, 207, 208
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Sand tiles
+	Template@60:
+		Id: 60
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 101, 102
+		Tiles:
+			0: Sand
+			1: Sand
+	Template@61:
+		Id: 61
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 104
+		Tiles:
+			0: Sand
+	Template@62:
+		Id: 62
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 105
+		Tiles:
+			0: Sand
+	Template@63:
+		Id: 63
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 106
+		Tiles:
+			0: Sand
+	Template@64:
+		Id: 64
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 107
+		Tiles:
+			0: Sand
+	Template@65:
+		Id: 65
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 108
+		Tiles:
+			0: Sand
+	Template@66:
+		Id: 66
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 109
+		Tiles:
+			0: Sand
+	Template@67:
+		Id: 67
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 110
+		Tiles:
+			0: Sand
+	Template@68:
+		Id: 68
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 111
+		Tiles:
+			0: Sand
+	Template@69:
+		Id: 69
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 112
+		Tiles:
+			0: Sand
+	Template@70:
+		Id: 70
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 113
+		Tiles:
+			0: Sand
+	Template@71:
+		Id: 71
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 114
+		Tiles:
+			0: Sand
+	Template@72:
+		Id: 72
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 115
+		Tiles:
+			0: Sand
+	Template@73:
+		Id: 73
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 116
+		Tiles:
+			0: Sand
+	Template@74:
+		Id: 74
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 117
+		Tiles:
+			0: Sand
+	Template@75:
+		Id: 75
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 118
+		Tiles:
+			0: Sand
+	Template@76:
+		Id: 76
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 113
+		Tiles:
+			0: Sand
+	Template@77:
+		Id: 77
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 114
+		Tiles:
+			0: Sand
+	Template@78:
+		Id: 78
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 115
+		Tiles:
+			0: Sand
+	Template@79:
+		Id: 79
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 116
+		Tiles:
+			0: Sand
+	Template@80:
+		Id: 80
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 117
+		Tiles:
+			0: Sand
+	Template@81:
+		Id: 81
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 118
+		Tiles:
+			0: Sand
+	Template@82:
+		Id: 82
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 119
+		Tiles:
+			0: Sand
+	Template@83:
+		Id: 83
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 120
+		Tiles:
+			0: Sand
+	Template@84:
+		Id: 84
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 121
+		Tiles:
+			0: Sand
+	Template@85:
+		Id: 85
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 122
+		Tiles:
+			0: Sand
+	Template@86:
+		Id: 86
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 123
+		Tiles:
+			0: Sand
+	Template@87:
+		Id: 87
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 124
+		Tiles:
+			0: Sand
+	Template@88:
+		Id: 88
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 125
+		Tiles:
+			0: Sand
+	Template@89:
+		Id: 89
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 126
+		Tiles:
+			0: Sand
+	Template@90:
+		Id: 90
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 127
+		Tiles:
+			0: Sand
+	Template@91:
+		Id: 91
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 128
+		Tiles:
+			0: Sand
+	Template@92:
+		Id: 92
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 129
+		Tiles:
+			0: Sand
+	Template@93:
+		Id: 93
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 130
+		Tiles:
+			0: Sand
+	Template@94:
+		Id: 94
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 131
+		Tiles:
+			0: Sand
+	Template@95:
+		Id: 95
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 132
+		Tiles:
+			0: Sand
+
+	# Water tiles
+	Template@100:
+		Id: 100
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 189, 190, 191, 192
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+	Template@101:
+		Id: 101
+		Images: SPRT0.MIX
+		Size: 2,2
+		PickAny: True
+		Categories: Terrain
+		Frames: 191, 190, 192, 189
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+
+	# Shore tiles
+	Template@105:
+		Id: 105
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Shore
+		Frames: 133
+		Tiles:
+			0: Clear
+	Template@106:
+		Id: 106
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Shore
+		Frames: 134
+		Tiles:
+			0: Clear
+	Template@107:
+		Id: 107
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 135, 136, 137, 138
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@108:
+		Id: 108
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 139, 140, 141, 142
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@109:
+		Id: 109
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 175, 176, 182
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@110:
+		Id: 110
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 177, 178, 181
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@111:
+		Id: 111
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 179, 186
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@112:
+		Id: 112
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 180, 185
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@113:
+		Id: 113
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 184, 187
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@114:
+		Id: 114
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 183, 188
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@115:
+		Id: 115
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 143, 144
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@116:
+		Id: 116
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 145, 146
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@117:
+		Id: 117
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 147, 148
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@118:
+		Id: 118
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 149, 150
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@119:
+		Id: 119
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 151, 152
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@120:
+		Id: 120
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 153, 154
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@121:
+		Id: 121
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 155, 156
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@122:
+		Id: 122
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 157, 158
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@123:
+		Id: 123
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 159, 160
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@124:
+		Id: 124
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 161, 162
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@125:
+		Id: 125
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 163, 164
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@126:
+		Id: 126
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Shore
+		Frames: 165, 166
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@127:
+		Id: 127
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 167, 173
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@128:
+		Id: 128
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 168, 171
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@129:
+		Id: 129
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 169, 172
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@130:
+		Id: 130
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 170, 174
+		Tiles:
+			0: Shore
+			1: Shore
+
+	# Road tiles
+	Template@200:
+		Id: 200
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 234
+		Tiles:
+			0: Road
+	Template@201:
+		Id: 201
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 235
+		Tiles:
+			0: Road
+	Template@202:
+		Id: 202
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 236
+		Tiles:
+			0: Road
+	Template@203:
+		Id: 203
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 237
+		Tiles:
+			0: Road
+	Template@204:
+		Id: 204
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 238
+		Tiles:
+			0: Road
+	Template@205:
+		Id: 205
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 239
+		Tiles:
+			0: Road
+	Template@206:
+		Id: 206
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 240
+		Tiles:
+			0: Road
+	Template@207:
+		Id: 207
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 241
+		Tiles:
+			0: Road
+	Template@208:
+		Id: 208
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 242
+		Tiles:
+			0: Road
+	Template@209:
+		Id: 209
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 243
+		Tiles:
+			0: Road
+	Template@210:
+		Id: 210
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 244
+		Tiles:
+			0: Road
+	Template@211:
+		Id: 211
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 245
+		Tiles:
+			0: Road
+	Template@212:
+		Id: 212
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 246
+		Tiles:
+			0: Road
+	Template@213:
+		Id: 213
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 247
+		Tiles:
+			0: Road
+	Template@214:
+		Id: 214
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 248
+		Tiles:
+			0: Road
+	Template@215:
+		Id: 215
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 249
+		Tiles:
+			0: Road
+	Template@216:
+		Id: 216
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 250
+		Tiles:
+			0: Road
+	Template@217:
+		Id: 217
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 251
+		Tiles:
+			0: Road
+
+	# Cliff tiles
+	Template@300:
+		Id: 300
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 5, 6
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@301:
+		Id: 301
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 7, 8
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@302:
+		Id: 302
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 9, 10
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@303:
+		Id: 303
+		Images: SPRT0.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 11, 12
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@304:
+		Id: 304
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 14, 15, 13
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@305:
+		Id: 305
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 15, 18, 16, 17
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@306:
+		Id: 306
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 20, 21, 19
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@307:
+		Id: 307
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 0, 24, 22, 23
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@308:
+		Id: 308
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 27, 26, 0, 25
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@309:
+		Id: 309
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 30, 0, 29, 28
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@310:
+		Id: 310
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 33, 32, 0, 31
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@311:
+		Id: 311
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 36, 0, 35, 34
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@312:
+		Id: 312
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 37, 38
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@313:
+		Id: 313
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 39, 40
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@314:
+		Id: 314
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 42, 41
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@315:
+		Id: 315
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 44, 43
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@316:
+		Id: 316
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 45, 46
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@317:
+		Id: 317
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 47, 48
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@318:
+		Id: 318
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 49, 50
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@319:
+		Id: 319
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 51, 52
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@320:
+		Id: 320
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 53, 54
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@321:
+		Id: 321
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 55, 56
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@322:
+		Id: 322
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 58, 57
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@323:
+		Id: 323
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 60, 59
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@324:
+		Id: 324
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 62, 61
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@325:
+		Id: 325
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 64, 63
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@326:
+		Id: 326
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 66, 65
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@327:
+		Id: 327
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 68, 67
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@328:
+		Id: 328
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Cliffs
+		Frames: 69, 70, 71, 72, 73, 74
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
+	Template@329:
+		Id: 329
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 75, 76
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@330:
+		Id: 330
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 78, 77
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@331:
+		Id: 331
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 80, 79
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@332:
+		Id: 332
+		Images: SPRT0.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 81, 82
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@333:
+		Id: 333
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 84, 83, 86, 85
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@334:
+		Id: 334
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 87, 88, 89, 90
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@335:
+		Id: 335
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 91
+		Tiles:
+			0: Rock
+	Template@336:
+		Id: 336
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 92
+		Tiles:
+			0: Rock
+	Template@337:
+		Id: 337
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 94, 93, 96, 95
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@338:
+		Id: 338
+		Images: SPRT0.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 97, 98, 99, 100
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@339:
+		Id: 339
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 229
+		Tiles:
+			0: Rock
+	Template@340:
+		Id: 340
+		Images: SPRT0.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 230
+		Tiles:
+			0: Rock
+

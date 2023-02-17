@@ -45,6 +45,7 @@ AssetBrowser:
 ModelSequenceFormat: PlaceholderModelSequence
 SpriteSequenceFormat: OpenE2140SpriteSequence
 	TilesetOverrides:
+		UNKNOWN: SPRO0.MIX
 		DESERT: SPRO1.MIX
 		SANDY: SPRO2.MIX
 		TEMPERATE: SPRO3.MIX
