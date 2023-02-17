@@ -1,7 +1,7 @@
 General:
 	Name: Sandy
 	Id: SANDY
-	EditorTemplateOrder: Terrain, Cliffs, Shore
+	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 
 Terrain:
