@@ -1,0 +1,972 @@
+General:
+	Name: Urban
+	Id: URBAN
+	EditorTemplateOrder: Terrain, Road, Asphalt Road, Buildings
+	Palette:
+
+Terrain:
+	TerrainType@Building:
+		Type: Building
+		TargetTypes: Ground
+		Color: 554d25
+	TerrainType@Clear:
+		Type: Clear
+		TargetTypes: Ground
+		Color: 352608
+	TerrainType@Sand:
+		Type: Sand
+		TargetTypes: Ground
+		Color: 3f2d09
+	TerrainType@Rock:
+		Type: Rock
+		TargetTypes: Ground
+		Color: 44443C
+	TerrainType@Road:
+		Type: Road
+		TargetTypes: Ground
+		Color: 5E430D
+	TerrainType@AsphaltRoad:
+		Type: AsphaltRoad
+		TargetTypes: Ground
+		Color: 0e0d00
+
+Templates:
+	# Clear tiles
+	Template@1:
+		Id: 1
+		Images: SPRT5.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1, 2, 3, 4
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+
+	# Small buildings
+	Template@3:
+		Id: 3
+		Images: SPRT5.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Buildings
+		Frames: 199, 200, 201, 202, 203, 204
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+
+	# Small, passable debris
+	Template@10:
+		Id: 10
+		Images: SPRT5.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 223, 224, 225, 226, 227, 228
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+			5: Clear
+
+	# Large crater made by destruction of Power Plant
+	Template@30:
+		Id: 30
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 193, 194, 195, 196
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Unknown large crater
+	Template@31:
+		Id: 31
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 205, 206, 207, 208
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Sand tiles
+	Template@60:
+		Id: 60
+		Images: SPRT5.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 101, 102
+		Tiles:
+			0: Sand
+			1: Sand
+	Template@61:
+		Id: 61
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 104
+		Tiles:
+			0: Sand
+	Template@62:
+		Id: 62
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 105
+		Tiles:
+			0: Sand
+	Template@63:
+		Id: 63
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 106
+		Tiles:
+			0: Sand
+	Template@64:
+		Id: 64
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 107
+		Tiles:
+			0: Sand
+	Template@65:
+		Id: 65
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 108
+		Tiles:
+			0: Sand
+	Template@66:
+		Id: 66
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 109
+		Tiles:
+			0: Sand
+	Template@67:
+		Id: 67
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 110
+		Tiles:
+			0: Sand
+	Template@68:
+		Id: 68
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 111
+		Tiles:
+			0: Sand
+	Template@69:
+		Id: 69
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 112
+		Tiles:
+			0: Sand
+	Template@70:
+		Id: 70
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 113
+		Tiles:
+			0: Sand
+	Template@71:
+		Id: 71
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 114
+		Tiles:
+			0: Sand
+	Template@72:
+		Id: 72
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 115
+		Tiles:
+			0: Sand
+	Template@73:
+		Id: 73
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 116
+		Tiles:
+			0: Sand
+	Template@74:
+		Id: 74
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 117
+		Tiles:
+			0: Sand
+	Template@75:
+		Id: 75
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 118
+		Tiles:
+			0: Sand
+	Template@76:
+		Id: 76
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 113
+		Tiles:
+			0: Sand
+	Template@77:
+		Id: 77
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 114
+		Tiles:
+			0: Sand
+	Template@78:
+		Id: 78
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 115
+		Tiles:
+			0: Sand
+	Template@79:
+		Id: 79
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 116
+		Tiles:
+			0: Sand
+	Template@80:
+		Id: 80
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 117
+		Tiles:
+			0: Sand
+	Template@81:
+		Id: 81
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 118
+		Tiles:
+			0: Sand
+	Template@82:
+		Id: 82
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 119
+		Tiles:
+			0: Sand
+	Template@83:
+		Id: 83
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 120
+		Tiles:
+			0: Sand
+	Template@84:
+		Id: 84
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 121
+		Tiles:
+			0: Sand
+	Template@85:
+		Id: 85
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 122
+		Tiles:
+			0: Sand
+	Template@86:
+		Id: 86
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 123
+		Tiles:
+			0: Sand
+	Template@87:
+		Id: 87
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 124
+		Tiles:
+			0: Sand
+	Template@88:
+		Id: 88
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 125
+		Tiles:
+			0: Sand
+	Template@89:
+		Id: 89
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 126
+		Tiles:
+			0: Sand
+	Template@90:
+		Id: 90
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 127
+		Tiles:
+			0: Sand
+	Template@91:
+		Id: 91
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 128
+		Tiles:
+			0: Sand
+	Template@92:
+		Id: 92
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 129
+		Tiles:
+			0: Sand
+	Template@93:
+		Id: 93
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 130
+		Tiles:
+			0: Sand
+	Template@94:
+		Id: 94
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 131
+		Tiles:
+			0: Sand
+	Template@95:
+		Id: 95
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Terrain
+		Frames: 132
+		Tiles:
+			0: Sand
+
+	# Road tiles
+	Template@200:
+		Id: 200
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 234
+		Tiles:
+			0: Road
+	Template@201:
+		Id: 201
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 235
+		Tiles:
+			0: Road
+	Template@202:
+		Id: 202
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 236
+		Tiles:
+			0: Road
+	Template@203:
+		Id: 203
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 237
+		Tiles:
+			0: Road
+	Template@204:
+		Id: 204
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 238
+		Tiles:
+			0: Road
+	Template@205:
+		Id: 205
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 239
+		Tiles:
+			0: Road
+	Template@206:
+		Id: 206
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 240
+		Tiles:
+			0: Road
+	Template@207:
+		Id: 207
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 241
+		Tiles:
+			0: Road
+	Template@208:
+		Id: 208
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 242
+		Tiles:
+			0: Road
+	Template@209:
+		Id: 209
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 243
+		Tiles:
+			0: Road
+	Template@210:
+		Id: 210
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 244
+		Tiles:
+			0: Road
+	Template@211:
+		Id: 211
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 245
+		Tiles:
+			0: Road
+	Template@212:
+		Id: 212
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 246
+		Tiles:
+			0: Road
+	Template@213:
+		Id: 213
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 247
+		Tiles:
+			0: Road
+	Template@214:
+		Id: 214
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 248
+		Tiles:
+			0: Road
+	Template@215:
+		Id: 215
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 249
+		Tiles:
+			0: Road
+	Template@216:
+		Id: 216
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 250
+		Tiles:
+			0: Road
+	Template@217:
+		Id: 217
+		Images: SPRT5.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 251
+		Tiles:
+			0: Road
+
+	# Asphalt roads
+	Template@250:
+		Id: 250
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 133, 134, 135, 136
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@251:
+		Id: 251
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 137, 138, 139, 140
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@252:
+		Id: 252
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 141, 142, 143, 144
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@253:
+		Id: 253
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 145, 146, 147, 148
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@254:
+		Id: 254
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 149, 150, 151, 152
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@255:
+		Id: 255
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 153, 154, 155, 156
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@256:
+		Id: 256
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 157, 158, 159, 160
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@257:
+		Id: 257
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 161, 162, 163, 164
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@258:
+		Id: 258
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 165, 166
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@259:
+		Id: 259
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 167, 168
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@260:
+		Id: 260
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 169, 170
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@261:
+		Id: 261
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 171, 172
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@262:
+		Id: 262
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 173, 174
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@263:
+		Id: 263
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 175, 176
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@264:
+		Id: 264
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 177, 178
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@265:
+		Id: 265
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 179, 180
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@266:
+		Id: 266
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 181, 182
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@267:
+		Id: 267
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 183, 184
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@268:
+		Id: 269
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 185, 186, 187, 188
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	
+	# Building tiles
+	Template@300:
+		Id: 300
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 5, 6, 7, 8
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@301:
+		Id: 301
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 9, 10, 11, 12
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@302:
+		Id: 302
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 13, 14, 15, 16
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@303:
+		Id: 303
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 17, 18, 19, 20
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@304:
+		Id: 304
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 21, 22, 23, 24
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@305:
+		Id: 305
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 25, 26, 27, 28
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@306:
+		Id: 306
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 29, 30, 31, 32
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@307:
+		Id: 307
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 33, 34, 35, 36
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@308:
+		Id: 308
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 37, 38, 39, 40
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@309:
+		Id: 309
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 41, 42, 43, 44
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@310:
+		Id: 310
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 45, 46, 47, 48
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@311:
+		Id: 311
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 49, 50, 51, 52, 53, 54
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@312:
+		Id: 312
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 55, 56, 57, 58, 59, 60
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@313:
+		Id: 313
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 61, 62, 63, 64, 65, 66
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@314:
+		Id: 314
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 67, 68, 69, 70, 71, 72
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@315:
+		Id: 315
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 73, 74, 75, 76, 77, 78
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@316:
+		Id: 316
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 79, 80, 81, 82, 83, 84
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@317:
+		Id: 317
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 85, 86, 87, 88, 89, 90
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@318:
+		Id: 318
+		Images: SPRT5.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 91, 92, 93, 94, 95, 96
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@319:
+		Id: 319
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 97, 98, 99, 100
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
