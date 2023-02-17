@@ -30,11 +30,11 @@ public class WithMoveSoundInfo : TraitInfo, Requires<MobileInfo>
 	}
 }
 
-public class WithMoveSound : INotifyMoving, ITick, INotifyRemovedFromWorld
+public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWorld
 {
 	private readonly WithMoveSoundInfo info;
 	private readonly Mobile mobile;
-	private ISound? sound;
+	private WithWorldMoveSound? worldTrait;
 
 	public WithMoveSound(WithMoveSoundInfo info, ActorInitializer init)
 	{
@@ -42,25 +42,21 @@ public class WithMoveSound : INotifyMoving, ITick, INotifyRemovedFromWorld
 		this.mobile = init.Self.Trait<Mobile>();
 	}
 
+	void INotifyCreated.Created(Actor self)
+	{
+		this.worldTrait = self.World.WorldActor.TraitOrDefault<WithWorldMoveSound>();
+	}
+
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
 		if (type != MovementType.None && this.mobile.IsMovingBetweenCells)
-			this.sound ??= Game.Sound.PlayLooped(SoundType.World, this.info.Sound, self.CenterPosition);
+			this.worldTrait?.Enable(self, this.info.Sound);
 		else
-		{
-			Game.Sound.EndLoop(this.sound);
-			this.sound = null;
-		}
-	}
-
-	void ITick.Tick(Actor self)
-	{
-		this.sound?.SetPosition(self.CenterPosition);
+			this.worldTrait?.Disable(self, this.info.Sound);
 	}
 
 	void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
 	{
-		Game.Sound.EndLoop(this.sound);
-		this.sound = null;
+		this.worldTrait?.Disable(self, this.info.Sound);
 	}
 }

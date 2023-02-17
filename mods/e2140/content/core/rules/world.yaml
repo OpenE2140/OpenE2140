@@ -79,6 +79,8 @@ World:
 	PlayerCommands:
 	DevCommands:
 	DebugVisualizationCommands:
+	# Used for the looping sounds.
+	WithWorldMoveSound:
 
 # Map editor specific world setup.
 EditorWorld:
