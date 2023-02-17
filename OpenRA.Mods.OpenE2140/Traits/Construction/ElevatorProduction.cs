@@ -90,7 +90,6 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		}
 	}
 
-
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
 	{
@@ -129,7 +128,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		animationOverlay.Animation.PlayRepeating("overlay");
 		init.Self.World.AddFrameEndTask(_ => this.renderSprites?.Add(animationOverlay));
 
-		productionQueue = init.Self.Trait<ElevatorProductionQueue>();
+		this.productionQueue = init.Self.Trait<ElevatorProductionQueue>();
 	}
 
 	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo exitinfo, string productionType, TypeDictionary inits)

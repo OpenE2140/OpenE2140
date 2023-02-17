@@ -1,8 +1,11 @@
 overlay:
-	build-invalid: content/core/assets/mapeditor.png
+	build-invalid:
+		Filename: content/core/assets/mapeditor.png
 		Start: 1
 
 editor-overlay:
-	copy: content/core/assets/mapeditor.png
-	paste: content/core/assets/mapeditor.png
+	copy:
+		Filename: content/core/assets/mapeditor.png
+	paste:
+		Filename: content/core/assets/mapeditor.png
 		Start: 1

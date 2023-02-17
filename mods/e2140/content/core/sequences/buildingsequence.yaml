@@ -1,24 +1,32 @@
 # TODO refactor!
 core_buildingsequence_small:
-	deploy: SPRU0.MIX
+	deploy:
+		Filename: SPRU0.MIX
 		Frames: 9, 10, 11, 12, 13, 14, 15
 		Length: 7
-	deployed: SPRU0.MIX
+	deployed:
+		Filename: SPRU0.MIX
 		Frames: 15
-	cover: SPRU0.MIX
+	cover:
+		Filename: SPRU0.MIX
 		Frames: 31, 30, 29, 28, 27, 26
 		Length: 6
-	covered: SPRU0.MIX
+	covered:
+		Filename: SPRU0.MIX
 		Frames: 31
 
 # TODO refactor!
 core_buildingsequence_large:
-	deploy: SPRU0.MIX
+	deploy:
+		Filename: SPRU0.MIX
 		Frames: 22, 21, 20, 19, 18, 17, 16
 		Length: 7
-	deployed: SPRU0.MIX
+	deployed:
+		Filename: SPRU0.MIX
 		Frames: 16
-	cover: content/core/assets/construction_pyramid.png
+	cover:
+		Filename: content/core/assets/construction_pyramid.png
 		Length: 6
-	covered: content/core/assets/construction_pyramid.png
+	covered:
+		Filename: content/core/assets/construction_pyramid.png
 		Start: 6

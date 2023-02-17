@@ -1,2 +1,3 @@
 mpspawn:
-	idle: content/core/assets/mpspawn.png
+	idle:
+		Filename: content/core/assets/mpspawn.png

@@ -1,3 +1,4 @@
 beacon:
-	x: spri1.mix
+	x:
+		Filename: SPRI1.MIX
 		Start: 100

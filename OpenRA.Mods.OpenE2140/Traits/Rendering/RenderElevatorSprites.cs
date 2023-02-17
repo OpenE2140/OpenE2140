@@ -44,12 +44,17 @@ public class RenderElevatorSprites : RenderSprites
 
 	public override IEnumerable<IRenderable> Render(Actor self, WorldRenderer worldRenderer)
 	{
-		var renderables = this.reflectionHelper.RenderAnimations(self, worldRenderer, this.reflectionHelper.GetVisibleAnimations(),
+		var renderables = this.reflectionHelper.RenderAnimations(
+			self,
+			worldRenderer,
+			this.reflectionHelper.GetVisibleAnimations(),
 			(anim, renderables) =>
 			{
 				if (anim is CutOffAnimationWithOffset elevatorAnimation)
 					RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.Bottom());
-			});
+			}
+		);
+
 		return renderables;
 	}
 
@@ -57,11 +62,12 @@ public class RenderElevatorSprites : RenderSprites
 	{
 		foreach (var renderable in renderables.OfType<SpriteRenderable>())
 		{
-			var sprite = SpriteFieldHelper.GetValue(renderable);
+			var sprite = RenderElevatorSprites.SpriteFieldHelper.GetValue(renderable);
+
 			if (sprite == null)
 				continue;
 
-			SpriteFieldHelper.SetValue(
+			RenderElevatorSprites.SpriteFieldHelper.SetValue(
 				renderable,
 				new Sprite(
 					sprite.Sheet,

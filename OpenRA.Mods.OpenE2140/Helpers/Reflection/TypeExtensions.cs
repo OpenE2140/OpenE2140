@@ -23,9 +23,7 @@ public static class TypeExtensions
 			throw new ArgumentNullException(nameof(type));
 
 		foreach (var item in type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic))
-		{
 			yield return item;
-		}
 
 		var currentType = type.BaseType;
 
@@ -35,9 +33,7 @@ public static class TypeExtensions
 			{
 				// Ignore non-private fields
 				if (item.IsPrivate)
-				{
 					yield return item;
-				}
 			}
 
 			currentType = currentType.BaseType;

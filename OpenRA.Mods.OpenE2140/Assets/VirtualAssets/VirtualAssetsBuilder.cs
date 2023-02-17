@@ -136,9 +136,10 @@ public static class VirtualAssetsBuilder
 			var sequenceNode = node.Value.Nodes.FirstOrDefault(n => n.Key == animation.Name);
 
 			if (sequenceNode == null)
-				node.Value.Nodes.Add(sequenceNode = new MiniYamlNode(animation.Name, node.Value.Value));
-			else if (sequenceNode.Value.Value == null)
-				sequenceNode.Value.Value = node.Value.Value;
+				node.Value.Nodes.Add(sequenceNode = new MiniYamlNode(animation.Name, ""));
+
+			if (sequenceNode.Value.Nodes.All(n => n.Key != "Filename"))
+				sequenceNode.AddNode("Filename", node.Value.Value);
 
 			if (sequenceNode.Value.Nodes.All(n => n.Key != "Start"))
 				sequenceNode.AddNode("Start", offset);

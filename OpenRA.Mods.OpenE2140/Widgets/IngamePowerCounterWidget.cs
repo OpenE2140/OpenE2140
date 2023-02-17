@@ -21,7 +21,7 @@ public class IngamePowerWidget : WorldLabelWithTooltipWidget
 	public Color NormalPowerColor = Color.White;
 	public Color CriticalPowerColor = Color.Red;
 
-	[ObjectCreator.UseCtor]
+	[ObjectCreator.UseCtorAttribute]
 	public IngamePowerWidget(World world)
 		: base(world)
 	{

@@ -20,12 +20,12 @@ namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 public class IngamePowerLogic : ChromeLogic
 {
 	[TranslationReference("usage", "capacity")]
-	const string PowerUsage = "label-power-usage";
+	private const string PowerUsage = "label-power-usage";
 
 	[TranslationReference]
-	const string Infinite = "label-infinite-power";
+	private const string Infinite = "label-infinite-power";
 
-	[ObjectCreator.UseCtor]
+	[ObjectCreator.UseCtorAttribute]
 	public IngamePowerLogic(Widget widget, ModData modData, World world)
 	{
 		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
@@ -33,18 +33,18 @@ public class IngamePowerLogic : ChromeLogic
 		var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManager>();
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
-		var unlimitedCapacity = modData.Translation.GetString(Infinite);
+		var unlimitedCapacity = modData.Translation.GetString(IngamePowerLogic.Infinite);
 
 		powerIcon.GetImageName = () => powerManager.ExcessPower < 0 ? "power-critical" : "power-normal";
 		power.GetColor = () => powerManager.ExcessPower < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
 		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.ExcessPower.ToString();
 
-		var tooltipTextCached = new CachedTransform<(string, string), string>(((string usage, string capacity) args) =>
-		{
-			return modData.Translation.GetString(
-				PowerUsage,
-				Translation.Arguments("usage", args.usage, "capacity", args.capacity));
-		});
+		var tooltipTextCached = new CachedTransform<(string, string), string>(
+			((string usage, string capacity) args) =>
+			{
+				return modData.Translation.GetString(IngamePowerLogic.PowerUsage, Translation.Arguments("usage", args.usage, "capacity", args.capacity));
+			}
+		);
 
 		power.GetTooltipText = () =>
 		{

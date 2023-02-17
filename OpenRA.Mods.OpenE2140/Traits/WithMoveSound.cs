@@ -44,7 +44,7 @@ public class WithMoveSound : INotifyMoving, ITick, INotifyRemovedFromWorld
 
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
-		if (type != MovementType.None && mobile.IsMovingBetweenCells)
+		if (type != MovementType.None && this.mobile.IsMovingBetweenCells)
 			this.sound ??= Game.Sound.PlayLooped(SoundType.World, this.info.Sound, self.CenterPosition);
 		else
 		{

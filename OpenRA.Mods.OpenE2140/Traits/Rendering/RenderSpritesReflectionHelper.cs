@@ -29,7 +29,7 @@ public class RenderSpritesReflectionHelper
 	{
 		this.rs = rs ?? throw new ArgumentNullException(nameof(rs));
 
-		this.animField = ReflectionHelper.GetFieldHelper(rs, animField, "anims");
+		this.animField = ReflectionHelper.GetFieldHelper(rs, this.animField, "anims");
 		this.animWrapperHelper = new AnimWrapperHelper();
 	}
 
@@ -37,24 +37,25 @@ public class RenderSpritesReflectionHelper
 	{
 		var anims = this.animField.Value!.Cast<object>();
 
-		return anims.Where(anim => this.animWrapperHelper.IsVisible(anim))
-			.Select(s => this.animWrapperHelper.GetAnimation(s));
+		return anims.Where(anim => this.animWrapperHelper.IsVisible(anim)).Select(s => this.animWrapperHelper.GetAnimation(s));
 	}
 
-	public IEnumerable<IRenderable> RenderAnimations(Actor self, WorldRenderer worldRenderer, IEnumerable<AnimationWithOffset> animations,
-		Action<AnimationWithOffset, IEnumerable<IRenderable>>? renderablePostProcess = null)
+	public IEnumerable<IRenderable> RenderAnimations(
+		Actor self,
+		WorldRenderer worldRenderer,
+		IEnumerable<AnimationWithOffset> animations,
+		Action<AnimationWithOffset, IEnumerable<IRenderable>>? renderablePostProcess = null
+	)
 	{
 		var animLookup = this.animField.Value!.Cast<object>().ToDictionary(wrapper => this.animWrapperHelper.GetAnimation(wrapper));
 
 		foreach (var animation in animations)
 		{
-			if (!animLookup.TryGetValue(animation, out var animWrapper) ||
-				this.animWrapperHelper.GetAnimation(animWrapper) != animation)
-			{
+			if (!animLookup.TryGetValue(animation, out var animWrapper) || this.animWrapperHelper.GetAnimation(animWrapper) != animation)
 				throw new InvalidOperationException($"Unknown animation passed to {nameof(RenderSpritesReflectionHelper)}");
-			}
 
 			var paletteReference = this.animWrapperHelper.GetPaletteReference(animWrapper);
+
 			if (paletteReference == null)
 			{
 				var owner = self.EffectiveOwner is { Disguised: true } ? self.EffectiveOwner.Owner : self.Owner;
@@ -79,24 +80,37 @@ public class RenderSpritesReflectionHelper
 		public AnimWrapperHelper()
 		{
 			var animWrapperType = typeof(RenderSprites).GetNestedType("AnimationWrapper", BindingFlags.Instance | BindingFlags.NonPublic)!;
-			this.isVisible = new TypePropertyHelper<bool>(animWrapperType.GetProperty("IsVisible", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!);
+
+			this.isVisible = new TypePropertyHelper<bool>(
+				animWrapperType.GetProperty("IsVisible", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)!
+			);
+
 			this.animation = new TypeFieldHelper<AnimationWithOffset>(animWrapperType.GetField("Animation", BindingFlags.Instance | BindingFlags.Public)!);
-			this.paletteReference = new TypePropertyHelper<PaletteReference>(animWrapperType.GetProperty("PaletteReference", BindingFlags.Instance | BindingFlags.Public)!);
+
+			this.paletteReference =
+				new TypePropertyHelper<PaletteReference>(animWrapperType.GetProperty("PaletteReference", BindingFlags.Instance | BindingFlags.Public)!);
+
 			this.cachePalette = animWrapperType.GetMethod("CachePalette", BindingFlags.Instance | BindingFlags.Public)!;
 		}
 
-		public bool IsVisible(object animWrapper) => this.isVisible.GetValue(animWrapper);
+		public bool IsVisible(object animWrapper)
+		{
+			return this.isVisible.GetValue(animWrapper);
+		}
 
-		public AnimationWithOffset GetAnimation(object animWrapper) => this.animation.GetValue(animWrapper)!;
+		public AnimationWithOffset GetAnimation(object animWrapper)
+		{
+			return this.animation.GetValue(animWrapper)!;
+		}
 
-		public PaletteReference? GetPaletteReference(object animWrapper) => this.paletteReference.GetValue(animWrapper);
+		public PaletteReference? GetPaletteReference(object animWrapper)
+		{
+			return this.paletteReference.GetValue(animWrapper);
+		}
 
 		public void CachePalette(object animWrapper, WorldRenderer worldRenderer, Player owner)
 		{
-			this.cachePalette?.Invoke(
-					animWrapper,
-					new object[] { worldRenderer, owner }
-				);
+			this.cachePalette?.Invoke(animWrapper, new object[] { worldRenderer, owner });
 		}
 	}
 }

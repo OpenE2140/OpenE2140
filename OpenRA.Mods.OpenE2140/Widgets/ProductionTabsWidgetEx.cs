@@ -41,8 +41,7 @@ public class ProductionTabsExWidget : ProductionTabsWidget
 	private readonly ObjectFieldHelper<Rectangle> leftButtonRect;
 	private readonly ObjectFieldHelper<Rectangle> rightButtonRect;
 
-
-	[ObjectCreator.UseCtor]
+	[ObjectCreator.UseCtorAttribute]
 	public ProductionTabsExWidget(World world)
 		: base(world)
 	{
@@ -64,52 +63,70 @@ public class ProductionTabsExWidget : ProductionTabsWidget
 	{
 		base.Initialize(args);
 
-		getLeftArrowImage.Value = WidgetUtils.GetCachedStatefulImage(Decorations, DecorationScrollLeft);
-		getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(Decorations, DecorationScrollRight);
+		this.getLeftArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollLeft);
+		this.getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollRight);
 	}
 
 	public override void Draw()
 	{
-		var tabs = Groups[QueueGroup].Tabs.Where(t => t.Queue.BuildableItems().Any());
+		var tabs = this.Groups[this.QueueGroup].Tabs.Where(t => t.Queue.BuildableItems().Any());
 
 		if (!tabs.Any())
 			return;
 
-		var rb = RenderBounds;
+		var rb = this.RenderBounds;
 
-		var leftDisabled = listOffset.Value >= 0;
-		var leftHover = Ui.MouseOverWidget == this && leftButtonRect.Value.Contains(Viewport.LastMousePos);
-		var rightDisabled = listOffset.Value <= Bounds.Width - rightButtonRect.Value.Width - leftButtonRect.Value.Width - contentWidth.Value;
-		var rightHover = Ui.MouseOverWidget == this && rightButtonRect.Value.Contains(Viewport.LastMousePos);
+		var leftDisabled = this.listOffset.Value >= 0;
+		var leftHover = Ui.MouseOverWidget == this && this.leftButtonRect.Value.Contains(Viewport.LastMousePos);
 
-		WidgetUtils.DrawPanel(Background, rb);
-		ButtonWidget.DrawBackground(ArrowButton, leftButtonRect.Value, leftDisabled, leftPressed.Value, leftHover, false);
-		ButtonWidget.DrawBackground(ArrowButton, rightButtonRect.Value, rightDisabled, rightPressed.Value, rightHover, false);
+		var rightDisabled = this.listOffset.Value
+			<= this.Bounds.Width - this.rightButtonRect.Value.Width - this.leftButtonRect.Value.Width - this.contentWidth.Value;
 
-		var leftArrowImage = getLeftArrowImage.Value!.Update((leftDisabled, this.leftPressed.Value, leftHover, false, false));
-		WidgetUtils.DrawSprite(leftArrowImage,
-			new float2(leftButtonRect.Value.Left + (int)((leftButtonRect.Value.Width - leftArrowImage.Size.X) / 2), leftButtonRect.Value.Top + (int)((leftButtonRect.Value.Height - leftArrowImage.Size.Y) / 2)));
+		var rightHover = Ui.MouseOverWidget == this && this.rightButtonRect.Value.Contains(Viewport.LastMousePos);
 
-		var rightArrowImage = getRightArrowImage.Value!.Update((rightDisabled, rightPressed.Value, rightHover, false, false));
-		WidgetUtils.DrawSprite(rightArrowImage,
-			new float2(rightButtonRect.Value.Left + (int)((rightButtonRect.Value.Width - rightArrowImage.Size.X) / 2), rightButtonRect.Value.Top + (int)((rightButtonRect.Value.Height - rightArrowImage.Size.Y) / 2)));
+		WidgetUtils.DrawPanel(this.Background, rb);
+		ButtonWidget.DrawBackground(this.ArrowButton, this.leftButtonRect.Value, leftDisabled, this.leftPressed.Value, leftHover, false);
+		ButtonWidget.DrawBackground(this.ArrowButton, this.rightButtonRect.Value, rightDisabled, this.rightPressed.Value, rightHover, false);
+
+		var leftArrowImage = this.getLeftArrowImage.Value!.Update((leftDisabled, this.leftPressed.Value, leftHover, false, false));
+
+		WidgetUtils.DrawSprite(
+			leftArrowImage,
+			new float2(
+				this.leftButtonRect.Value.Left + (int)((this.leftButtonRect.Value.Width - leftArrowImage.Size.X) / 2),
+				this.leftButtonRect.Value.Top + (int)((this.leftButtonRect.Value.Height - leftArrowImage.Size.Y) / 2)
+			)
+		);
+
+		var rightArrowImage = this.getRightArrowImage.Value!.Update((rightDisabled, this.rightPressed.Value, rightHover, false, false));
+
+		WidgetUtils.DrawSprite(
+			rightArrowImage,
+			new float2(
+				this.rightButtonRect.Value.Left + (int)((this.rightButtonRect.Value.Width - rightArrowImage.Size.X) / 2),
+				this.rightButtonRect.Value.Top + (int)((this.rightButtonRect.Value.Height - rightArrowImage.Size.Y) / 2)
+			)
+		);
 
 		// Draw tab buttons
-		Game.Renderer.EnableScissor(new Rectangle(leftButtonRect.Value.Right, rb.Y + 1, rightButtonRect.Value.Left - leftButtonRect.Value.Right - 1, rb.Height));
-		var origin = new int2(leftButtonRect.Value.Right - 1 + (int)listOffset.Value, leftButtonRect.Value.Y);
-		contentWidth.Value = 0;
+		Game.Renderer.EnableScissor(
+			new Rectangle(this.leftButtonRect.Value.Right, rb.Y + 1, this.rightButtonRect.Value.Left - this.leftButtonRect.Value.Right - 1, rb.Height)
+		);
+
+		var origin = new int2(this.leftButtonRect.Value.Right - 1 + (int)this.listOffset.Value, this.leftButtonRect.Value.Y);
+		this.contentWidth.Value = 0;
 
 		foreach (var tab in tabs)
 		{
-			var rect = new Rectangle(origin.X + contentWidth.Value, origin.Y, TabWidth, rb.Height);
+			var rect = new Rectangle(origin.X + this.contentWidth.Value, origin.Y, this.TabWidth, rb.Height);
 			var hover = !leftHover && !rightHover && Ui.MouseOverWidget == this && rect.Contains(Viewport.LastMousePos);
-			var highlighted = tab.Queue == CurrentQueue;
-			ButtonWidget.DrawBackground(TabButton, rect, false, false, hover, highlighted);
-			contentWidth.Value += TabWidth - 1;
+			var highlighted = tab.Queue == this.CurrentQueue;
+			ButtonWidget.DrawBackground(this.TabButton, rect, false, false, hover, highlighted);
+			this.contentWidth.Value += this.TabWidth - 1;
 
-			var textSize = font.Value!.Measure(tab.Name);
+			var textSize = this.font.Value!.Measure(tab.Name);
 			var position = new int2(rect.X + (rect.Width - textSize.X) / 2, rect.Y + (rect.Height - textSize.Y) / 2);
-			font.Value.DrawTextWithContrast(tab.Name, position, tab.Queue.AllQueued().Any(i => i.Done) ? Color.Gold : Color.White, Color.Black, 1);
+			this.font.Value.DrawTextWithContrast(tab.Name, position, tab.Queue.AllQueued().Any(i => i.Done) ? Color.Gold : Color.White, Color.Black, 1);
 		}
 
 		Game.Renderer.DisableScissor();

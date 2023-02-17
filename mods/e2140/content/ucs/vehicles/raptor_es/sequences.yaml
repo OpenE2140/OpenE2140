@@ -1,3 +1,4 @@
 ucs_vehicles_raptor_es: vehicle_raptor_es.vspr
-	icon: SPRI1.MIX
+	icon:
+		Filename: SPRI1.MIX
 		Start: 129

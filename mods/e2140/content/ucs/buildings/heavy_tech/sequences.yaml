@@ -3,5 +3,6 @@ ucs_buildings_heavy_tech: building_heavy_tech.vspr
 		Offset: -22, -54, 0
 
 ucs_mcu_heavy_tech: vehicle_mcu.vspr
-	icon: SPRI1.MIX
+	icon:
+		Filename: SPRI1.MIX
 		Start: 168

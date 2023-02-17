@@ -19,7 +19,7 @@ using OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 namespace OpenRA.Mods.OpenE2140.Graphics;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class OpenE2140SpriteSequenceLoader : DefaultSpriteSequenceLoader, ISpriteSequenceLoader
+public class OpenE2140SpriteSequenceLoader : TilesetSpecificSpriteSequenceLoader, ISpriteSequenceLoader
 {
 	[Desc("Dictionary of <string: string> with tileset name to override -> sprite name to use instead.")]
 	public readonly Dictionary<string, string> TilesetOverrides = new Dictionary<string, string>();
@@ -41,14 +41,14 @@ public class OpenE2140SpriteSequenceLoader : DefaultSpriteSequenceLoader, ISprit
 		return base.ParseSequences(modData, tileSet, cache, node);
 	}
 
-	public override ISpriteSequence CreateSequence(ModData modData, string tileSet, SpriteCache cache, string sequence, string animation, MiniYaml info)
+	public override ISpriteSequence CreateSequence(ModData modData, string tileset, SpriteCache cache, string image, string sequence, MiniYaml data, MiniYaml defaults)
 	{
-		var tilesetSpecific = info.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
+		var tilesetSpecific = data.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
 
 		if (tilesetSpecific != null)
-			info = OpenE2140SpriteSequenceLoader.ChangeSpritesForTileset(tileSet, this, info);
+			data = OpenE2140SpriteSequenceLoader.ChangeSpritesForTileset(tileset, this, data);
 
-		return new DefaultSpriteSequence(modData, tileSet, cache, this, sequence, animation, info);
+		return new TilesetSpecificSpriteSequence(modData, tileset, cache, this, image, sequence, data, defaults);
 	}
 
 	private static MiniYaml ChangeSpritesForTileset(string tileSet, OpenE2140SpriteSequenceLoader loader, MiniYaml info)

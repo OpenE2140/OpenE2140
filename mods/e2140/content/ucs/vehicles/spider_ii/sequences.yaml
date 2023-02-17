@@ -1,5 +1,7 @@
 ucs_vehicles_spider_ii: vehicle_mech.vspr
-	turret: turret_spider_ii.vspr
+	turret:
+		Filename: turret_spider_ii.vspr
 		Facings: -16
-	icon: SPRI1.MIX
+	icon:
+		Filename: SPRI1.MIX
 		Start: 138

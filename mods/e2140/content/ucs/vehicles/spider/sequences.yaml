@@ -1,7 +1,9 @@
 ucs_vehicles_spider: vehicle_mech.vspr
-	turret: turret_spider.vspr
+	turret:
+		Filename: turret_spider.vspr
 		Facings: -16
-	icon: SPRI1.MIX
+	icon:
+		Filename: SPRI1.MIX
 		Start: 137
 
 projectile_plasma: projectile_plasma.vspr

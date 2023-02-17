@@ -37,14 +37,24 @@ public class ElevatorProductionQueue : ProductionQueue
 	{
 		var unit = this.Actor.World.Map.Rules.Actors[item.Item];
 		var playerPower = this.Actor.Owner.PlayerActor.TraitOrDefault<PowerManager>();
-		var currentItem = new ProductionItem(this, item.Item, item.TotalCost, playerPower, () => this.Actor.World.AddFrameEndTask(_ =>
-		{
-			// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
-			if (!this.Queue.Any(i => i.Done && i.Item == unit.Name))
-				return;
 
-			this.BuildUnit(unit);
-		}));
+		var currentItem = new ProductionItem(
+			this,
+			item.Item,
+			item.TotalCost,
+			playerPower,
+			() => this.Actor.World.AddFrameEndTask(
+				_ =>
+				{
+					// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
+					if (!this.Queue.Any(i => i.Done && i.Item == unit.Name))
+						return;
+
+					this.BuildUnit(unit);
+				}
+			)
+		);
+
 		base.BeginProduction(currentItem, hasPriority);
 	}
 
@@ -56,24 +66,20 @@ public class ElevatorProductionQueue : ProductionQueue
 		if (!this.Actor.IsInWorld || this.Actor.IsDead || mostLikelyProducerTrait == null)
 		{
 			this.CancelProduction(unit.Name, 1);
+
 			return false;
 		}
 
 		if (mostLikelyProducerTrait.State == ElevatorProduction.AnimationState.Closed)
 		{
-			var inits = new TypeDictionary
-			{
-				new OwnerInit(this.Actor.Owner),
-				new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction))
-			};
+			var inits = new TypeDictionary { new OwnerInit(this.Actor.Owner), new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction)) };
 
 			var bi = unit.TraitInfo<BuildableInfo>();
-			var type = this.developerMode.AllTech ? this.Info.Type : (bi.BuildAtProductionType ?? this.Info.Type);
+			var type = this.developerMode.AllTech ? this.Info.Type : bi.BuildAtProductionType ?? this.Info.Type;
 			var item = this.Queue.First(i => i.Done && i.Item == unit.Name);
+
 			if (!mostLikelyProducerTrait.IsTraitPaused && mostLikelyProducerTrait.Produce(this.Actor, unit, type, inits, item.TotalCost))
-			{
 				return true;
-			}
 
 			return false;
 		}
@@ -85,11 +91,13 @@ public class ElevatorProductionQueue : ProductionQueue
 	{
 		if (elevatorProduction is null)
 			throw new ArgumentNullException(nameof(elevatorProduction));
+
 		if (actor is null)
 			throw new ArgumentNullException(nameof(actor));
-		
+
 		// Question: can there actually be production items that don't match produced actor? (maybe for ParallelProductionQueue?)
 		var done = this.Queue.FirstOrDefault(p => p.Done && p.Item == actor.Info.Name);
+
 		if (done != null)
 		{
 			this.EndProduction(done);
@@ -102,13 +110,10 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void TickInner(Actor self, bool allProductionPaused)
 	{
-		var traits = this.productionTraits
-			.OfType<ElevatorProduction>()
-			.Where(p => !p.IsTraitDisabled && p.Info.Produces.Contains(this.Info.Type));
+		var traits = this.productionTraits.OfType<ElevatorProduction>().Where(p => !p.IsTraitDisabled && p.Info.Produces.Contains(this.Info.Type));
 		var unpaused = traits.Where(a => !a.IsTraitPaused && a.State == ElevatorProduction.AnimationState.Closed);
+
 		if (unpaused.Any())
-		{
 			base.TickInner(self, allProductionPaused);
-		}
 	}
 }

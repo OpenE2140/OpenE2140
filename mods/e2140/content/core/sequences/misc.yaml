@@ -1,13 +1,18 @@
 shroud:
-	shroud: content/core/assets/shroud.png
+	shroud:
+		Filename: content/core/assets/shroud.png
 		Length: 16
-	fog: content/core/assets/fog.png
+	fog:
+		Filename: content/core/assets/fog.png
 		Length: 16
-	shroudfull: content/core/assets/shroud.png
+	shroudfull:
+		Filename: content/core/assets/shroud.png
 		Start: 1
-	fogfull: content/core/assets/fog.png
+	fogfull:
+		Filename: content/core/assets/fog.png
 		Start: 1
 
 clock:
-	idle: chrome/assets/clock-ucs.png
+	idle:
+		Filename: chrome/assets/clock-ucs.png
 		Length: 30

@@ -53,13 +53,13 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 
 	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> r)
 	{
-		if (IsTraitDisabled)
+		if (this.IsTraitDisabled)
 			return r;
 
 		var height = self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length;
 
 		var activeAnimations = self.TraitsImplementing<WithSpriteTurret>()
-			.Where(wst => !wst.IsTraitDisabled && info.Turrets.Contains(wst.Info.Turret))
+			.Where(wst => !wst.IsTraitDisabled && this.info.Turrets.Contains(wst.Info.Turret))
 			.Select(wst => wst.DefaultAnimation)
 			.ToHashSet();
 
@@ -70,11 +70,13 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 		var renderables = helper.RenderAnimations(self, wr, anims);
 
 		var shadowSprites = renderables.Where(s => !s.IsDecoration && s is IModifyableRenderable)
-			.Select(ma => ((IModifyableRenderable)ma).WithTint(shadowColor, ((IModifyableRenderable)ma).TintModifiers | TintModifiers.ReplaceColor)
-				.WithAlpha(shadowAlpha)
-				.OffsetBy(info.Offset - new WVec(0, 0, height))
-				.WithZOffset(ma.ZOffset + (height + info.ZOffset))
-				.AsDecoration());
+			.Select(
+				ma => ((IModifyableRenderable)ma).WithTint(this.shadowColor, ((IModifyableRenderable)ma).TintModifiers | TintModifiers.ReplaceColor)
+					.WithAlpha(this.shadowAlpha)
+					.OffsetBy(this.info.Offset - new WVec(0, 0, height))
+					.WithZOffset(ma.ZOffset + height + this.info.ZOffset)
+					.AsDecoration()
+			);
 
 		return shadowSprites.Concat(r);
 	}
@@ -84,11 +86,12 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 		foreach (var r in bounds)
 			yield return r;
 
-		if (IsTraitDisabled)
+		if (this.IsTraitDisabled)
 			yield break;
 
 		var height = self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length;
-		var offset = wr.ScreenPxOffset(info.Offset - new WVec(0, 0, height));
+		var offset = wr.ScreenPxOffset(this.info.Offset - new WVec(0, 0, height));
+
 		foreach (var r in bounds)
 			yield return new Rectangle(r.X + offset.X, r.Y + offset.Y, r.Width, r.Height);
 	}
