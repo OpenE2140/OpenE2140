@@ -98,8 +98,8 @@ public static class VirtualAssetsBuilder
 		VirtualAssetsBuilder.PlayerPalette[252] = Color.FromArgb(0xffaa00aa);
 
 		VirtualAssetsBuilder.ShadowsPalette = new Color[256];
-		VirtualAssetsBuilder.ShadowsPalette[253] = Color.FromArgb(0x40000000);
-		VirtualAssetsBuilder.ShadowsPalette[254] = Color.FromArgb(0x80000000);
+		VirtualAssetsBuilder.ShadowsPalette[253] = Color.FromArgb(0x20000000);
+		VirtualAssetsBuilder.ShadowsPalette[254] = Color.FromArgb(0x40000000);
 	}
 
 	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name, IReadOnlyPackage package)
