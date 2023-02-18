@@ -361,7 +361,7 @@ Container@PLAYER_WIDGETS:
 					HoldText: On Hold
 					ClockPalette: chrome
 					NotBuildablePalette: chrome
-				ProductionTabsEx@PRODUCTION_TABS:
+				ProductionTabs@PRODUCTION_TABS:
 					Logic: ProductionTabsLogic
 					PaletteWidget: PRODUCTION_PALETTE
 					TypesContainer: PRODUCTION_TYPES
