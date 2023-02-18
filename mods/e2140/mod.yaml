@@ -101,7 +101,7 @@ ModContent:
 	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
 		base: Base Game Files
-			TestFiles: ^SupportDir|Content/e2140/MIX.wd
+			TestFiles: ^SupportDir|Content/e2140/MIX.WD
 			Sources: gog, steam
 			Required: true
 		music: Base Game Music
