@@ -1,0 +1,872 @@
+General:
+	Name: Urban 2 (MP2)
+	Id: URBAN2
+	EditorTemplateOrder: Terrain, Cliffs, Buildings, Road
+	Palette:
+
+Terrain:
+	TerrainType@Building:
+		Type: Building
+		TargetTypes: Ground
+		Color: B09C78
+	TerrainType@Clear:
+		Type: Clear
+		TargetTypes: Ground
+		Color: 504122
+	TerrainType@Sand:
+		Type: Sand
+		TargetTypes: Ground
+		Color: C6AE76
+	TerrainType@Rock:
+		Type: Rock
+		TargetTypes: Ground
+		Color: 44443C
+	TerrainType@Road:
+		Type: Road
+		TargetTypes: Ground
+		Color: 5E430D
+
+Templates:
+	# Clear tiles
+	Template@255:
+		Id: 255
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1, 2, 3, 4
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+
+	# Large, unpassable rocks
+	Template@1:
+		Id: 1
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 199, 200, 201, 202, 203, 204
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
+
+	# Small, passable rocks
+	Template@10:
+		Id: 10
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 223, 224, 225, 226, 227, 228
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+			5: Clear
+			
+	# Small buildings
+	Template@4:
+		Id: 4
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Buildings
+		Frames: 197, 198, 231, 232, 233, 234
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+
+	# Large crater made by destruction of Power Plant
+	Template@30:
+		Id: 30
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 193, 194, 195, 196
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Unknown large crater
+	Template@31:
+		Id: 31
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Terrain
+		Frames: 205, 206, 207, 208
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+
+	# Sand tiles
+	# There are no standard sand tiles, just tiles with smudges (221-222) and craters (215-218) numbered like in other tilesets.
+
+	# Building tiles
+	Template@100:
+		Id: 100
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 101, 102, 103, 104
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@101:
+		Id: 101
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 105, 106, 107, 108
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@102:
+		Id: 102
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 109, 110, 111, 112
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@103:
+		Id: 103
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 113, 114, 115, 116
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@104:
+		Id: 104
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 117, 118, 119, 120
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@105:
+		Id: 105
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 121, 122, 123, 124
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@106:
+		Id: 106
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 125, 126, 127, 128
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@107:
+		Id: 107
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 129, 130, 131, 132
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@108:
+		Id: 108
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 133, 134, 135, 136
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@109:
+		Id: 109
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 137, 138, 139, 140
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@110:
+		Id: 110
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 141, 142, 143, 144
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@111:
+		Id: 111
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 145, 146, 147, 148
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@112:
+		Id: 112
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 149, 150, 151, 152, 153, 154
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@113:
+		Id: 113
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 155, 156, 157, 158, 159, 160
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@114:
+		Id: 114
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 161, 162, 163, 164, 165, 166
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@115:
+		Id: 115
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 167, 168, 169, 170, 171, 172
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@116:
+		Id: 116
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 173, 174, 175, 176, 177, 178
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@117:
+		Id: 117
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 179, 180, 181, 182, 183, 184
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@118:
+		Id: 118
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 185, 186, 187, 188, 189, 190
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+
+	# Road tiles
+	Template@201:
+		Id: 201
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 235
+		Tiles:
+			0: Road
+	Template@202:
+		Id: 202
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 236
+		Tiles:
+			0: Road
+	Template@203:
+		Id: 203
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 237
+		Tiles:
+			0: Road
+	Template@204:
+		Id: 204
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 238
+		Tiles:
+			0: Road
+	Template@205:
+		Id: 205
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 239
+		Tiles:
+			0: Road
+	Template@206:
+		Id: 206
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 240
+		Tiles:
+			0: Road
+	Template@207:
+		Id: 207
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 241
+		Tiles:
+			0: Road
+	Template@208:
+		Id: 208
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 242
+		Tiles:
+			0: Road
+	Template@209:
+		Id: 209
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 243
+		Tiles:
+			0: Road
+	Template@210:
+		Id: 210
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 244
+		Tiles:
+			0: Road
+	Template@211:
+		Id: 211
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 245
+		Tiles:
+			0: Road
+	Template@212:
+		Id: 212
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 246
+		Tiles:
+			0: Road
+	Template@213:
+		Id: 213
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 247
+		Tiles:
+			0: Road
+	Template@214:
+		Id: 214
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 248
+		Tiles:
+			0: Road
+	Template@215:
+		Id: 215
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 249
+		Tiles:
+			0: Road
+	Template@216:
+		Id: 216
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 250
+		Tiles:
+			0: Road
+	Template@217:
+		Id: 217
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Road
+		Frames: 251
+		Tiles:
+			0: Road
+
+	# Cliff tiles
+	Template@300:
+		Id: 300
+		Images: SPRT6.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 5, 6
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@301:
+		Id: 301
+		Images: SPRT6.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 7, 8
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@302:
+		Id: 302
+		Images: SPRT6.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 9, 10
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@303:
+		Id: 303
+		Images: SPRT6.MIX
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 11, 12
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@304:
+		Id: 304
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 14, 15, 13
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@305:
+		Id: 305
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 15, 18, 16, 17
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@306:
+		Id: 306
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 20, 21, 19
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@307:
+		Id: 307
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 0, 24, 22, 23
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@308:
+		Id: 308
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 27, 26, 0, 25
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@309:
+		Id: 309
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 30, 0, 29, 28
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@310:
+		Id: 310
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 33, 32, 0, 31
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@311:
+		Id: 311
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 36, 0, 35, 34
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@312:
+		Id: 312
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 37, 38
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@313:
+		Id: 313
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 39, 40
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@314:
+		Id: 314
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 42, 41
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@315:
+		Id: 315
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 44, 43
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@316:
+		Id: 316
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 45, 46
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@317:
+		Id: 317
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 47, 48
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@318:
+		Id: 318
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 49, 50
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@319:
+		Id: 319
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 51, 52
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@320:
+		Id: 320
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 53, 54
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@321:
+		Id: 321
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 55, 56
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@322:
+		Id: 322
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 58, 57
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@323:
+		Id: 323
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 60, 59
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@324:
+		Id: 324
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 62, 61
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@325:
+		Id: 325
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 64, 63
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@326:
+		Id: 326
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 66, 65
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@327:
+		Id: 327
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 68, 67
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@328:
+		Id: 328
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Cliffs
+		Frames: 69, 70, 71, 72, 73, 74
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
+	Template@329:
+		Id: 329
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 75, 76
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@330:
+		Id: 330
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 78, 77
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@331:
+		Id: 331
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 80, 79
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@332:
+		Id: 332
+		Images: SPRT6.MIX
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 81, 82
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@333:
+		Id: 333
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 84, 83, 86, 85
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@334:
+		Id: 334
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 87, 88, 89, 90
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@335:
+		Id: 335
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 91
+		Tiles:
+			0: Rock
+	Template@336:
+		Id: 336
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 92
+		Tiles:
+			0: Rock
+	Template@337:
+		Id: 337
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 94, 93, 96, 95
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@338:
+		Id: 338
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 97, 98, 99, 100
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@339:
+		Id: 339
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 229
+		Tiles:
+			0: Rock
+	Template@340:
+		Id: 340
+		Images: SPRT6.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 230
+		Tiles:
+			0: Rock
+

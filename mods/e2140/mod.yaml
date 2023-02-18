@@ -51,6 +51,7 @@ SpriteSequenceFormat: OpenE2140SpriteSequence
 		TEMPERATE: SPRO3.MIX
 		SNOW: SPRO4.MIX
 		URBAN: SPRO5.MIX
+		URBAN2: SPRO6.MIX
 
 DefaultOrderGenerator: UnitOrderGenerator
 
@@ -125,6 +126,7 @@ TileSets:
 	e2140|tilesets/snow.yaml
 	e2140|tilesets/temperate.yaml
 	e2140|tilesets/urban.yaml
+	e2140|tilesets/urban2.yaml
 
 Include: content/core/mod.yaml
 Include: content/shared/mod.yaml
