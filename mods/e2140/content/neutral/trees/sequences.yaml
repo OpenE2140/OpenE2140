@@ -1,12 +1,13 @@
 ^Tree:
 	Defaults:
 		TilesetFilenames:
-			UNKNOWN: SPRO0.MIX
+			WASTELAND: SPRO0.MIX
 			DESERT: SPRO1.MIX
 			SANDY: SPRO2.MIX
 			TEMPERATE: SPRO3.MIX
 			SNOW: SPRO4.MIX
 			URBAN: SPRO5.MIX
+			URBAN2: SPRO6.MIX
 
 neutral_tree01:
 	Inherits: ^Tree
