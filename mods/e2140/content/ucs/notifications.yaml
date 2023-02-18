@@ -3,9 +3,3 @@ Speech:
 	Notifications:
 		ProductionStarted: 119.smp
 		ProductionComplete: 99.smp
-
-Sounds:
-	Notifications:
-		ChatLine:
-		ClickDisabledSound:
-		ClickSound:
