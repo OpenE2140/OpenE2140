@@ -53,7 +53,7 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 
 	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> r)
 	{
-		if (this.IsTraitDisabled)
+		if (this.IsTraitDisabled || self.World.FogObscures(self) || self.World.ShroudObscures(self.CenterPosition))
 			return r;
 
 		var height = self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length;
