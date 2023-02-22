@@ -30,6 +30,7 @@ Player:
 	PowerManager:
 	# Tech
 	TechTree:
+	PlayerRadarTerrain:
 
 # Map editor specific player setup.
 EditorPlayer:
