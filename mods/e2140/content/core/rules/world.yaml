@@ -14,10 +14,8 @@
 	TerrainRenderer:
 	# Shroud rendering setup.
 	ShroudRenderer:
-		OverrideFullShroud: shroudfull
-		OverrideFullFog: fogfull
-		ShroudBlend: Multiply
-		Index: 0, 15, 3, 6, 12, 9, 11, 7, 14, 13, 1, 2, 4, 8, 5, 10
+		Index: 0, 240, 16, 32, 64, 128, 144, 48, 96, 192, 1, 2, 4, 8, 5, 10, 9, 3, 6, 12 , 176, 112, 224, 208
+		UseExtendedIndex: true
 		ShroudPalette:
 		FogPalette:
 	# Random faction setup.
