@@ -71,8 +71,11 @@ World:
 	# Required for the color picker.
 	ColorPickerManager:
 		PreviewActor: colorpicker
+		PresetHues: 0, 0.30
+		PresetSaturations: 0.94, 0.95
 		FactionPreviewActors:
 			ucs: ucs_colorpicker
+			ed: ed_colorpicker
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:
@@ -81,6 +84,13 @@ World:
 	DebugVisualizationCommands:
 	# Used for the looping sounds.
 	WithWorldMoveSound:
+	# Select proper production tab when production building is selected
+	ProductionQueueFromSelection:
+		ProductionTabsWidget: PRODUCTION_TABS
+	# Renders an effect at the order target locations. 
+	OrderEffects:
+		TerrainFlashImage: moveflash
+		TerrainFlashSequence: idle
 
 # Map editor specific world setup.
 EditorWorld:

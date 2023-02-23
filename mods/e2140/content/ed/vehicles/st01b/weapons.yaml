@@ -1,0 +1,26 @@
+ed_vehicles_st01b:
+	ReloadDelay: 40
+	Range: 3c768
+	MinRange: 0c512
+	Report: 3.smp
+	ValidTargets: Ground
+	Burst: 4
+	BurstDelays: 20
+	Projectile: Bullet
+		Speed: 650
+		Blockable: false
+		Image: projectile_cannon
+		Palette:
+		TrailPalette:
+		Shadow: False
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 15
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		# TODO explosion?
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Ground

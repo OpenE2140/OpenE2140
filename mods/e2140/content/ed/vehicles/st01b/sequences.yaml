@@ -1,0 +1,12 @@
+ed_vehicles_st01b: vehicle_tank_small.vspr
+	turret:
+		Filename: turret_st_01b.vspr
+		Facings: -16
+		Offset: 0, 5, 0
+	icon:
+		Filename: SPRI0.MIX
+		Start: 131
+
+projectile_cannon: projectile_cannon.vspr
+	explode:
+		BlendMode: Additive

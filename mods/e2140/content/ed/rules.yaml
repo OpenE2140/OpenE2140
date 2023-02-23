@@ -1,0 +1,29 @@
+^CoreWorld:
+	Faction@ED:
+		Name: ED
+		InternalName: ed
+		Description: Eurasian Dynasty
+
+World:
+	StartingUnits@ed_default:
+		Class: default
+		ClassName: options-starting-units.default
+		BaseActor: ucs_mcu_prod_center
+		SupportActors: ed_vehicles_st01b
+		Factions: ed
+
+# Base for all ED vehicles.
+^EdVehicle:
+	Inherits: ^CoreVehicle
+	# Unit produces voice.
+	Voiced:
+		VoiceSet: EdVehicleVoice
+
+ed_colorpicker:
+	Inherits: ed_vehicles_st01b
+	-FactionRenderSprites:
+	RenderSprites:
+		Image: ed_vehicles_st01b
+		Palette: colorpicker
+	-MapEditorData:
+	-Buildable:

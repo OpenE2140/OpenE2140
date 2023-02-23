@@ -11,8 +11,24 @@ shroud:
 	fogfull:
 		Filename: content/core/assets/fog.png
 		Start: 1
-
+		
 clock:
+	idle:
+		Filename: chrome/assets/clock.png
+
+clock-ucs:
 	idle:
 		Filename: chrome/assets/clock-ucs.png
 		Length: 30
+		
+clock-ed:
+	idle:
+		Filename: chrome/assets/clock-ed.png
+		Length: 30
+
+moveflash:
+	idle:
+		Filename: content/core/assets/moveflash.png
+		Length: 6
+		Tick: 60
+		ZOffset: 2048

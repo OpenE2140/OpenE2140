@@ -58,6 +58,7 @@ ChromeLayout:
 
 ChromeMetrics:
 	common|metrics.yaml
+	e2140|chrome/metrics.yaml
 
 Cursors:
 	e2140|chrome/cursors.yaml
@@ -95,6 +96,9 @@ Fonts:
 		Font: common|FreeSansBold.ttf
 		Size: 32
 		Ascender: 24
+	SourceSansProSmall:
+		Font: e2140|chrome/uibits/source-sans-pro.regular.ttf
+		Size: 12
 
 Hotkeys:
 	common|hotkeys/game.yaml
@@ -106,6 +110,7 @@ Hotkeys:
 	common|hotkeys/chat.yaml
 	common|hotkeys/editor.yaml
 	common|hotkeys/control-groups.yaml
+	e2140|chrome/hotkeys/production.yaml
 
 Translations:
 	common|languages/en.ftl

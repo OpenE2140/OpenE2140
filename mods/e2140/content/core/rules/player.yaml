@@ -28,8 +28,20 @@ Player:
 	ProvidesRadar:
 	# Manage power for buildings
 	PowerManager:
+		SpeechNotification: LowPower
+		TextNotification: Low power.
+	# Player can repair own and ally buildings.
+	AllyRepair:
+	# Player resources
+	PlayerResources:
+		InsufficientFundsNotification: InsufficientCash
+		InsufficientFundsTextNotification: Insufficient cash.
+	# Notifications
+	BaseAttackNotifier:
+		TextNotification: Base under attack.
 	# Tech
 	TechTree:
+	# Render terrain on Radar widget (minimap).
 	PlayerRadarTerrain:
 
 # Map editor specific player setup.

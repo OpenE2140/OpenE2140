@@ -1,6 +1,9 @@
 ^Sidebar:
 	Image: chrome/assets/ucs_sidebar.png
-	
+
+^SidebarEd:
+	Image: chrome/assets/ed_sidebar.png
+
 ^Dialog:
 	Image: chrome/assets/dialog.png
 
@@ -386,6 +389,30 @@ dropdown-separators:
 separator:
 	Inherits: button
 
+sidebar-bits:
+	Inherits: ^Glyphs
+	Regions:
+		production-tooltip-time: 136, 51, 16, 16
+		production-tooltip-power: 102, 51, 16, 16
+		production-tooltip-cost: 68, 51, 16, 16
+		indicator-muted: 221, 17, 26, 24
+
+order-icons:
+	Inherits: ^Glyphs
+	Regions:
+		repair: 136, 68, 16, 16
+		repair-disabled: 136, 85, 16, 16
+		repair-active: 136, 102, 16, 16
+		sell: 119, 68, 16, 16
+		sell-disabled: 119, 85, 16, 16
+		sell-active: 119, 102, 16, 16
+		options: 102, 68, 16, 16
+		options-disabled: 102, 85, 16, 16
+		options-active: 102, 102, 16, 16
+		beacon: 153, 68, 16, 16
+		beacon-disabled: 153, 85, 16, 16
+		beacon-active: 153, 102, 16, 16
+
 power-icons:
 	Inherits: ^Glyphs
 	Regions:
@@ -420,34 +447,6 @@ production-icons:
 		ship-disabled: 187, 85, 16, 16
 		ship-alert: 187, 102, 16, 16
 
-
-# Command bar
-commandbar:
-	Inherits: ^Sidebar
-	Regions:
-		background: 0, 596, 434, 44
-
-command-button-ucs:
-	Inherits: ^Sidebar
-	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-hover:
-	Inherits: ^Sidebar
-	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-pressed:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-highlighted:
-	Inherits: ^Sidebar
-	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-highlighted-hover:
-	Inherits: command-button-ucs-highlighted
-command-button-ucs-highlighted-pressed:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
-command-button-ucs-disabled:
-	Inherits: command-button-ucs
-command-button-ucs-highlighted-disabled:
-	Inherits: command-button-ucs-highlighted
 
 command-icons:
 	Inherits: ^Glyphs
@@ -492,6 +491,39 @@ stance-icons-highlighted:
 		return-fire: 34, 153, 16, 16
 		hold-fire: 51, 153, 16, 16
 
+##########################
+# Faction-specific stuff
+
+# UCS #
+
+# Command bar:
+commandbar-ucs:
+	Inherits: ^Sidebar
+	Regions:
+		background: 0, 596, 434, 44
+
+command-button-ucs:
+	Inherits: ^Sidebar
+	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-pressed:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-highlighted-hover:
+	Inherits: command-button-ucs-highlighted
+command-button-ucs-highlighted-pressed:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ucs-disabled:
+	Inherits: command-button-ucs
+command-button-ucs-highlighted-disabled:
+	Inherits: command-button-ucs-highlighted
+
 # Main sidebar artwork:
 sidebar-ucs:
 	Inherits: ^Sidebar
@@ -499,54 +531,140 @@ sidebar-ucs:
 		background-sidebar: 52, 0, 214, 566
 
 # Main buttons:
-sidebar-production-tab:
+sidebar-production-tab-ucs:
 	Regions:
 		production-tab: 23, 281, 23, 21
 
-sidebar-production-tab-hover:
+sidebar-production-tab-ucs-hover:
 	Regions:
 		production-tab: 23, 231, 23, 21
 
-sidebar-production-tab-pressed:
+sidebar-production-tab-ucs-pressed:
 	Regions:
 		production-tab: 23, 306, 23, 21
 
-sidebar-production-tab-pressed-hover:
+sidebar-production-tab-ucs-pressed-hover:
 	Regions:
 		production-tab: 23, 256, 23, 21
 
 # Sub buttons:
-sidebar-production-tab-button:
+sidebar-production-tab-button-ucs:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
 
-sidebar-production-tab-button-hover:
+sidebar-production-tab-button-ucs-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 380, 3, 3, 22, 15, 3, 3
 
-sidebar-production-tab-button-highlighted:
+sidebar-production-tab-button-ucs-highlighted:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
 	
-sidebar-production-tab-button-highlighted-hover:
+sidebar-production-tab-button-ucs-highlighted-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
 
 # Unit production buttons:
-production-palette-button:
+production-palette-button-ucs:
 	Inherits: ^Sidebar
 	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
 
-production-palette-button-pressed:
+production-palette-button-ucs-pressed:
 	Inherits: ^Sidebar
 	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
 
-production-palette-button-ucs:
-	Inherits: production-palette-button
+# Arrow buttons:
+production-tabs-decorations-ucs:
+	Inherits: ^Sidebar
+	Regions:
+		right: 0, 356, 20, 20
+		right-hover: 0, 333, 20, 20
+		left: 0, 282, 20, 20
+		left-hover: 0, 307, 20, 20
+
+# ED
+
+# Command bar:
+
+commandbar-ed:
+	Inherits: ^SidebarEd
+	Regions:
+		background: 0, 596, 434, 44
+
+command-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-highlighted-hover:
+	Inherits: command-button-ed-highlighted
+command-button-ed-highlighted-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-disabled:
+	Inherits: command-button-ed
+command-button-ed-highlighted-disabled:
+	Inherits: command-button-ed-highlighted
+
+# Main sidebar artwork:
+sidebar-ed:
+	Inherits: ^SidebarEd
+	Regions:
+		background-sidebar: 52, 0, 214, 566
+
+# Main buttons:
+sidebar-production-tab-ed:
+	Regions:
+		production-tab: 23, 281, 23, 21
+
+sidebar-production-tab-ed-hover:
+	Regions:
+		production-tab: 23, 231, 23, 21
+
+sidebar-production-tab-ed-pressed:
+	Regions:
+		production-tab: 23, 306, 23, 21
+
+sidebar-production-tab-ed-pressed-hover:
+	Regions:
+		production-tab: 23, 256, 23, 21
+
+# Sub buttons:
+sidebar-production-tab-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-ed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 380, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
+	
+sidebar-production-tab-button-ed-highlighted-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
+
+# Unit production buttons:
+production-palette-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
+
+production-palette-button-ed-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
 
 # Arrow buttons:
-production-tabs-decorations:
-	Inherits: ^Sidebar
+production-tabs-decorations-ed:
+	Inherits: ^SidebarEd
 	Regions:
 		right: 0, 356, 20, 20
 		right-hover: 0, 333, 20, 20

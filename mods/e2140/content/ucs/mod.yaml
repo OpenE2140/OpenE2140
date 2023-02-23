@@ -4,9 +4,6 @@ MapFolders:
 Missions:
 	e2140|content/ucs/missions.yaml
 
-Notifications:
-	e2140|content/ucs/notifications.yaml
-
 Rules:
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml
@@ -24,6 +21,10 @@ Sequences:
 	e2140|content/ucs/vehicles/spider/sequences.yaml
 	e2140|content/ucs/vehicles/spider_ii/sequences.yaml
 	e2140|content/ucs/sequences.yaml
+
+Translations:
+	common|languages/en.ftl
+	e2140|content/ucs/languages/rules/en.ftl
 
 Voices:
 	e2140|content/ucs/voices.yaml

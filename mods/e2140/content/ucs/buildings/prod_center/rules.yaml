@@ -1,5 +1,5 @@
 ucs_buildings_prod_center:
-	Inherits: ^UcsElevatorFactory
+	Inherits: ^CoreElevatorFactory
 	Tooltip:
 		Name: Prod. Center
 	Health:
@@ -14,8 +14,6 @@ ucs_buildings_prod_center:
 			BottomRight: 768, 1536
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
-	-RenderSprites:
-	RenderElevatorSprites:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: 16, 1024, 0

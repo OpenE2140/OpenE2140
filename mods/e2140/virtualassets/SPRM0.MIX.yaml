@@ -10,3 +10,7 @@ projectile_heavy_rocket:
 projectile_plasma:
 	idle: 82
 	explode: 106-110
+
+projectile_cannon:
+	idle: 83
+	explode: 0-4

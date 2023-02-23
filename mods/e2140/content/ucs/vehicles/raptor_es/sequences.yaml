@@ -2,3 +2,14 @@ ucs_vehicles_raptor_es: vehicle_raptor_es.vspr
 	icon:
 		Filename: SPRI1.MIX
 		Start: 129
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 129
+
+# TODO: remove after PR #20705
+ucs_vehicles_raptor_es.ed: vehicle_mech.vspr
+	Inherits: ucs_vehicles_raptor_es
+	icon:
+		Filename: SPRI0.MIX
+		Start: 129

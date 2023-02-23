@@ -1,9 +1,22 @@
 ucs_vehicles_spider: vehicle_mech.vspr
+	Defaults:
+		Tick: 70
 	turret:
 		Filename: turret_spider.vspr
 		Facings: -16
 	icon:
 		Filename: SPRI1.MIX
+		Start: 137
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 137
+
+# TODO: remove after PR #20705
+ucs_vehicles_spider.ed: vehicle_mech.vspr
+	Inherits: ucs_vehicles_spider
+	icon:
+		Filename: SPRI0.MIX
 		Start: 137
 
 projectile_plasma: projectile_plasma.vspr

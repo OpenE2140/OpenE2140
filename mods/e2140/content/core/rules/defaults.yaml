@@ -33,6 +33,11 @@
 # Base for all movable units.
 ^CoreUnit:
 	Inherits: ^CoreVisibleActor
+	# Use custom RenderSprites trait for generating names of images for each faction
+	-RenderSprites:
+	FactionRenderSprites:
+		FactionImages:
+		Factions: ucs, ed
 	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
 	HitShape:
 		Type: Circle
@@ -65,6 +70,9 @@
 	ActorRadarColor:
 		DeltaS: -0.2
 		DeltaV: -0.1
+	# Play sound notification on destruction
+	ActorLostNotification:
+		TextNotification: Unit lost.
 
 # Base for all buildings and towers.
 ^CoreConstruction:
@@ -94,6 +102,10 @@
 	BlocksProjectiles:
 	# Buildings have healthbars.
 	SelectionDecorations:
+	# Play sound notification on destruction
+	ActorLostNotification:
+		Notification: BuildingLost
+		TextNotification: Structure lost.
 
 # Base for all buildings.
 ^CoreBuilding:
@@ -101,6 +113,12 @@
 	# Enemy buildings have to be destroyed to win, even when short game option is used.
 	MustBeDestroyed:
 		RequiredForShortGame: true
+	# Buildings can be repaired.
+	RepairableBuilding:
+		RepairInterval: 1
+		RepairPercent: 40
+		RepairStep: 10
+		RepairingNotification: Repairing
 	# The view radius of buildings.
 	RevealsShroud:
 		Range: 5c0
@@ -125,6 +143,18 @@
 		Name: light
 		Sequence: idle_light
 		RequiresCondition: !Transforming
+
+# Base for all factories using elevator production.
+^CoreElevatorFactory:
+	Inherits: ^CoreBuilding
+	# Use custom RenderSprites trait for rendering elevator.
+	-RenderSprites:
+	RenderElevatorSprites:
+	# Elevator production needs custom production queue.
+	ElevatorProductionQueue:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		InfiniteBuildLimit: 10
 
 # Base for all towers.
 ^CoreTower:
@@ -188,6 +218,9 @@
 	# Group all infantry in the map editor.
 	MapEditorData:
 		Categories: Infantry
+	# Can guard and be guarded
+	Guard:
+	Guardable:
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -214,12 +247,14 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
-	# Unit produces voice
-	Voiced:
-		VoiceSet: VehicleVoice
+	# Voiced trait is defined per faction
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle
+	# Can guard and be guarded
+	Guard:
+		Voice: Escort
+	Guardable:
 
 # Add locomotor to world...
 ^CoreWorld:

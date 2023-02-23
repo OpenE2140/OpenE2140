@@ -8,10 +8,14 @@ Notifications:
 	e2140|content/ed/notifications.yaml
 
 Rules:
+	e2140|content/ed/rules.yaml
+	e2140|content/ed/vehicles/st01b/rules.yaml
 
 Sequences:
+	e2140|content/ed/vehicles/st01b/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
 
 Weapons:
+	e2140|content/ed/vehicles/st01b/weapons.yaml

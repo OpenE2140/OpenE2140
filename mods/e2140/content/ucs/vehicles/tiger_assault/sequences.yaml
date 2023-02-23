@@ -1,7 +1,20 @@
 ucs_vehicles_tiger_assault: vehicle_mech.vspr
+	Defaults:
+		Tick: 70
 	turret:
 		Filename: turret_tiger_assault.vspr
 		Facings: -16
 	icon:
 		Filename: SPRI1.MIX
+		Start: 133
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 133
+
+# TODO: remove after PR #20705
+ucs_vehicles_tiger_assault.ed: vehicle_mech.vspr
+	Inherits: ucs_vehicles_tiger_assault
+	icon:
+		Filename: SPRI0.MIX
 		Start: 133

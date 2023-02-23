@@ -2,17 +2,33 @@
 	Faction@UCS:
 		Name: UCS
 		InternalName: ucs
+		Description: United Civilized States
 
 World:
 	StartingUnits@ucs_default:
 		Class: default
-		ClassName: Default
+		ClassName: options-starting-units.default
 		BaseActor: ucs_mcu_prod_center
 		SupportActors: ucs_vehicles_tiger_assault
 		Factions: ucs
 
-^UcsMech:
+# Base for all UCS mechs with turrets.
+^UcsTurretedMech:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreTurret
+	-WithSpriteTurret:
+	WithMovingSpriteTurret:
+
+# Base for all UCS vehicles.
+^UcsVehicle:
 	Inherits: ^CoreVehicle
+	# Unit produces voice
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+
+# Base for all UCS mechs.
+^UcsMech:
+	Inherits: ^UcsVehicle
 	Mobile:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
@@ -21,14 +37,9 @@ World:
 		Offset: 0,115,-200
 		ZOffset: 70
 
-^UcsElevatorFactory:
-	Inherits: ^CoreBuilding
-	ElevatorProductionQueue:
-		QueuedAudio: ProductionStarted
-		ReadyAudio: ProductionComplete
-
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
+	-FactionRenderSprites:
 	RenderSprites:
 		Image: ucs_vehicles_tiger_assault
 		Palette: colorpicker

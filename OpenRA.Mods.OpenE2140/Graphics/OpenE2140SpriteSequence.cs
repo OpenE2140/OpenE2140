@@ -21,16 +21,9 @@ namespace OpenRA.Mods.OpenE2140.Graphics;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class OpenE2140SpriteSequenceLoader : TilesetSpecificSpriteSequenceLoader, ISpriteSequenceLoader
 {
-	[Desc("Dictionary of <string: string> with tileset name to override -> sprite name to use instead.")]
-	public readonly Dictionary<string, string> TilesetOverrides = new Dictionary<string, string>();
-
 	public OpenE2140SpriteSequenceLoader(ModData modData)
 		: base(modData)
 	{
-		var metadata = modData.Manifest.Get<SpriteSequenceFormat>().Metadata;
-
-		if (metadata.TryGetValue("TilesetOverrides", out var yaml))
-			this.TilesetOverrides = yaml.ToDictionary(kv => kv.Value);
 	}
 
 	public new IReadOnlyDictionary<string, ISpriteSequence> ParseSequences(ModData modData, string tileSet, SpriteCache cache, MiniYamlNode node)
@@ -43,19 +36,6 @@ public class OpenE2140SpriteSequenceLoader : TilesetSpecificSpriteSequenceLoader
 
 	public override ISpriteSequence CreateSequence(ModData modData, string tileset, SpriteCache cache, string image, string sequence, MiniYaml data, MiniYaml defaults)
 	{
-		var tilesetSpecific = data.Nodes.FirstOrDefault(node => node.Key == "TilesetSpecific");
-
-		if (tilesetSpecific != null)
-			data = OpenE2140SpriteSequenceLoader.ChangeSpritesForTileset(tileset, this, data);
-
 		return new TilesetSpecificSpriteSequence(modData, tileset, cache, this, image, sequence, data, defaults);
-	}
-
-	private static MiniYaml ChangeSpritesForTileset(string tileSet, OpenE2140SpriteSequenceLoader loader, MiniYaml info)
-	{
-		if (!loader.TilesetOverrides.TryGetValue(tileSet, out var spriteName))
-			throw new Exception($"Unknown tileset '{tileSet}', cannot determine sprite name");
-
-		return new MiniYaml(spriteName, info.Nodes);
 	}
 }
