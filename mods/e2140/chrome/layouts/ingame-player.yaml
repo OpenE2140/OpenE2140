@@ -396,7 +396,6 @@ Container@PLAYER_WIDGETS:
 				ProductionPalette@PRODUCTION_PALETTE:
 					X: 17
 					Y: 332
-					TooltipContainer: TOOLTIP_CONTAINER
 					Columns: 3
 					Width: 200
 					IconSize: 59, 41
