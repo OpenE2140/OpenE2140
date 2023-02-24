@@ -81,6 +81,9 @@ World:
 	DebugVisualizationCommands:
 	# Used for the looping sounds.
 	WithWorldMoveSound:
+	# Select proper production tab when production building is selected
+	ProductionQueueFromSelection:
+		ProductionTabsWidget: PRODUCTION_TABS
 
 # Map editor specific world setup.
 EditorWorld:
