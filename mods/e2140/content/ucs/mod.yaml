@@ -4,9 +4,6 @@ MapFolders:
 Missions:
 	e2140|content/ucs/missions.yaml
 
-Notifications:
-	e2140|content/ucs/notifications.yaml
-
 Rules:
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml

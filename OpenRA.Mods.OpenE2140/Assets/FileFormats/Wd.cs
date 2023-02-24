@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.FileSystem;
+using OpenRA.Mods.OpenE2140.Assets.Audio;
 using OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 using OpenRA.Primitives;
 
@@ -34,6 +35,7 @@ public class Wd : IReadOnlyPackage
 
 		if (numFiles == 0)
 		{
+			var audioClassifier = new AudioClassifier(fileSystem!);
 			var lastOffset = 0u;
 
 			for (var i = 0; i < 255; i++)
@@ -41,7 +43,10 @@ public class Wd : IReadOnlyPackage
 				var offset = stream.ReadUInt32();
 
 				if (offset > lastOffset)
-					this.index.Add($"{i}.smp", new WdEntry(stream, lastOffset + 0x400, offset - lastOffset));
+				{
+					var audioFilename = audioClassifier.ClassifyFilename(filename, $"{i}.smp");
+					this.index.Add(audioFilename, new WdEntry(stream, lastOffset + 0x400, offset - lastOffset));
+				}
 
 				lastOffset = offset;
 			}

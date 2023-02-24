@@ -1,0 +1,5 @@
+AudioClassifications:
+	SoundFilePrefixes:
+		SMP0.WD: ed
+		SMP1.WD: ucs
+	FactionVariantSounds: 94-110, 113-127

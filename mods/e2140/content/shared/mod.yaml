@@ -1,3 +1,6 @@
+Notifications:
+	e2140|content/shared/notifications.yaml
+
 Rules:
 	e2140|content/shared/campaign-maprules.yaml
 	e2140|content/shared/buildings/power_plant/rules.yaml
