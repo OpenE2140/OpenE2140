@@ -1,5 +1,8 @@
 Speech:
 	DefaultVariant:
 	Notifications:
+		BaseAttack: 127.smp
+		InsufficientCash: 109.smp
+		LowPower: 110.smp
 		ProductionStarted: 119.smp
 		ProductionComplete: 99.smp

@@ -28,6 +28,15 @@ Player:
 	ProvidesRadar:
 	# Manage power for buildings
 	PowerManager:
+		SpeechNotification: LowPower
+		TextNotification: Low power.
+	# Player resources
+	PlayerResources:
+		InsufficientFundsNotification: InsufficientCash
+		InsufficientFundsTextNotification: Insufficient cash.
+	# Notifications
+	BaseAttackNotifier:
+		TextNotification: Base under attack.
 	# Tech
 	TechTree:
 	PlayerRadarTerrain:
