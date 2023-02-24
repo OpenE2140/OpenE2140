@@ -188,6 +188,9 @@
 	# Group all infantry in the map editor.
 	MapEditorData:
 		Categories: Infantry
+	# Can guard and be guarded
+	Guard:
+	Guardable:
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -220,6 +223,10 @@
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle
+	# Can guard and be guarded
+	Guard:
+		Voice: Escort
+	Guardable:
 
 # Add locomotor to world...
 ^CoreWorld:

@@ -16,6 +16,9 @@ Cursors:
 		move:
 			Start: 12
 			Length: 4
+		move-blocked:
+			Start: 24
+			Length: 4
 
 		attack:
 			Start: 0
@@ -43,7 +46,7 @@ Cursors:
 			Start: 20
 			Length: 4
 
-		escort:
+		guard:
 			Start: 28
 			Length: 4
 		pickup:

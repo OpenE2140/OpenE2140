@@ -4,4 +4,5 @@ VehicleVoice:
 		Select: 81.smp, 82.smp
 		Action: 83.smp, 84.smp
 		Attack: 87.smp, 88.smp
+		Escort: 86.smp
 		Unload: 90.smp
