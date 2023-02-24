@@ -65,6 +65,9 @@
 	ActorRadarColor:
 		DeltaS: -0.2
 		DeltaV: -0.1
+	# Play sound notification on destruction
+	ActorLostNotification:
+		TextNotification: Unit lost.
 
 # Base for all buildings and towers.
 ^CoreConstruction:
@@ -94,6 +97,10 @@
 	BlocksProjectiles:
 	# Buildings have healthbars.
 	SelectionDecorations:
+	# Play sound notification on destruction
+	ActorLostNotification:
+		Notification: BuildingLost
+		TextNotification: Structure lost.
 
 # Base for all buildings.
 ^CoreBuilding:
