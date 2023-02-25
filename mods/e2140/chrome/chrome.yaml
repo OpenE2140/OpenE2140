@@ -386,6 +386,13 @@ dropdown-separators:
 separator:
 	Inherits: button
 
+sidebar-bits:
+	Inherits: ^Glyphs
+	Regions:
+		production-tooltip-time: 136, 51, 16, 16
+		production-tooltip-power: 102, 51, 16, 16
+		production-tooltip-cost: 68, 51, 16, 16
+
 power-icons:
 	Inherits: ^Glyphs
 	Regions:
