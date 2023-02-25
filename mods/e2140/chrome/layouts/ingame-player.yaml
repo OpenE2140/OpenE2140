@@ -393,7 +393,7 @@ Container@PLAYER_WIDGETS:
 							Background: production-palette-button
 							Width: 59
 							Height: 41
-				ProductionPalette@PRODUCTION_PALETTE:
+				ProductionPaletteEx@PRODUCTION_PALETTE:
 					X: 17
 					Y: 332
 					TooltipContainer: TOOLTIP_CONTAINER
