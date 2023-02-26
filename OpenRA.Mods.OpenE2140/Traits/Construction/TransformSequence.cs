@@ -13,7 +13,6 @@
 
 using JetBrains.Annotations;
 using OpenRA.Graphics;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
@@ -34,7 +33,6 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	[Desc("Time it takes for the building to construct under the pyramid.")]
 	public readonly int ConstructionTime = 100;
 
-	[NotificationReference("Sounds")]
 	[Desc("Sound played when actor starts transforming.", "The filename of the audio is defined per faction in notifications.yaml.")]
 	public readonly string? TransformSound = null;
 
