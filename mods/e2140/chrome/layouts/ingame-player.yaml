@@ -291,6 +291,26 @@ Container@PLAYER_WIDGETS:
 			ImageName: background-sidebar
 			ClickThrough: false
 			Children:
+				Container@TOP_BUTTONS:
+					Logic: MenuButtonsChromeLogic
+					X: 11
+					Y: 6
+					Children:
+						WorldButton@REPAIR_BUTTON:
+							Logic: RepairOrderButtonLogic, AddFactionSuffixLogic
+							X: 1
+							Width: 28
+							Height: 26
+							Background: chrome-button-background
+							Key: Repair
+							TooltipText: Repair
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 6
+									Y: 5
+									ImageCollection: order-icons
 				Container@RADAR:
 					Logic: IngameRadarDisplayLogic
 					X: 11
