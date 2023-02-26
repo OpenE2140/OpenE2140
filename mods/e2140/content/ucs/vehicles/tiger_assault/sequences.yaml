@@ -5,3 +5,13 @@ ucs_vehicles_tiger_assault: vehicle_mech.vspr
 	icon:
 		Filename: SPRI1.MIX
 		Start: 133
+	# Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 133
+
+ucs_vehicles_tiger_assault.ed: vehicle_mech.vspr
+	Inherits: ucs_vehicles_tiger_assault
+	icon:
+		Filename: SPRI0.MIX
+		Start: 133
