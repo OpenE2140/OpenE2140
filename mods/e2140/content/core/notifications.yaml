@@ -4,3 +4,5 @@ Sounds:
 		ChatLine:
 		ClickDisabledSound:
 		ClickSound: 33.smp
+		Beacon: 40.smp
+			InterruptType: Interrupt
