@@ -394,6 +394,22 @@ sidebar-bits:
 		production-tooltip-cost: 68, 51, 16, 16
 		indicator-muted: 221, 17, 26, 24
 
+order-icons:
+	Inherits: ^Glyphs
+	Regions:
+		repair: 136, 68, 16, 16
+		repair-disabled: 136, 85, 16, 16
+		repair-active: 136, 102, 16, 16
+		sell: 119, 68, 16, 16
+		sell-disabled: 119, 85, 16, 16
+		sell-active: 119, 102, 16, 16
+		options: 102, 68, 16, 16
+		options-disabled: 102, 85, 16, 16
+		options-active: 102, 102, 16, 16
+		beacon: 153, 68, 16, 16
+		beacon-disabled: 153, 85, 16, 16
+		beacon-active: 153, 102, 16, 16
+
 power-icons:
 	Inherits: ^Glyphs
 	Regions:
