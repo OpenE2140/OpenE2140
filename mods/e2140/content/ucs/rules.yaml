@@ -6,7 +6,7 @@
 World:
 	StartingUnits@ucs_default:
 		Class: default
-		ClassName: Default
+		ClassName: options-starting-units.default
 		BaseActor: ucs_mcu_prod_center
 		SupportActors: ucs_vehicles_tiger_assault
 		Factions: ucs
