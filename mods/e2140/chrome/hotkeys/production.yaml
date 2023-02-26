@@ -1,0 +1,29 @@
+ProductionTypeBuilding: E
+	Description: Building Tab
+	Types: Production
+	Contexts: Player
+
+ProductionTypeDefense: R
+	Description: Defense Tab
+	Types: Production
+	Contexts: Player
+
+ProductionTypeInfantry: T
+	Description: Infantry Tab
+	Types: Production
+	Contexts: Player
+
+ProductionTypeVehicle: Y
+	Description: Vehicle Tab
+	Types: Production
+	Contexts: Player
+
+ProductionTypeAircraft: U
+	Description: Aircraft Tab
+	Types: Production
+	Contexts: Player
+
+ProductionTypeNaval: I
+	Description: Naval Tab
+	Types: Production
+	Contexts: Player
