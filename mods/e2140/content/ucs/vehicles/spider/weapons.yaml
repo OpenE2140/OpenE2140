@@ -11,6 +11,7 @@ ucs_vehicles_spider:
 		Blockable: false
 		Image: projectile_plasma
 		Palette:
+		TrailPalette:
 		Shadow: False
 	Warhead@Damage: SpreadDamage
 		Spread: 128
