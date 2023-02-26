@@ -29,6 +29,7 @@ World:
 
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
+	-FactionRenderSprites:
 	RenderSprites:
 		Image: ucs_vehicles_tiger_assault
 		Palette: colorpicker

@@ -33,6 +33,12 @@
 # Base for all movable units.
 ^CoreUnit:
 	Inherits: ^CoreVisibleActor
+	# Use custom RenderSprites trait for generating names of images for each faction
+	-RenderSprites:
+	FactionRenderSprites:
+		FactionImages:
+		# TODO: add ED
+		Factions: ucs
 	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
 	HitShape:
 		Type: Circle
