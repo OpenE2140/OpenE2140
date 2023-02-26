@@ -61,6 +61,9 @@ Cursors:
 		repair:
 			Start: 72
 			Length: 4
+		repair-blocked:
+			Start: 24
+			Length: 4
 		deploy:
 			Start: 76
 			Length: 4

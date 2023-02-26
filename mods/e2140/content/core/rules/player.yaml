@@ -30,6 +30,7 @@ Player:
 	PowerManager:
 		SpeechNotification: LowPower
 		TextNotification: Low power.
+	AllyRepair:
 	# Player resources
 	PlayerResources:
 		InsufficientFundsNotification: InsufficientCash

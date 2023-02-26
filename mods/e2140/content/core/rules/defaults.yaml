@@ -114,6 +114,12 @@
 	# Enemy buildings have to be destroyed to win, even when short game option is used.
 	MustBeDestroyed:
 		RequiredForShortGame: true
+	# Buildings can be repaired.
+	RepairableBuilding:
+		RepairInterval: 1
+		RepairPercent: 40
+		RepairStep: 10
+		RepairingNotification: Repairing
 	# The view radius of buildings.
 	RevealsShroud:
 		Range: 5c0
