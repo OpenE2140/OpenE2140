@@ -58,6 +58,7 @@ ChromeLayout:
 
 ChromeMetrics:
 	common|metrics.yaml
+	e2140|chrome/metrics.yaml
 
 Cursors:
 	e2140|chrome/cursors.yaml
