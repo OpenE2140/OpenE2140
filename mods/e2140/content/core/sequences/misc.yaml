@@ -25,3 +25,10 @@ clock-ed:
 	idle:
 		Filename: chrome/assets/clock-ed.png
 		Length: 30
+
+moveflash:
+	idle:
+		Filename: content/core/assets/moveflash.png
+		Length: 6
+		Tick: 60
+		ZOffset: 2048
