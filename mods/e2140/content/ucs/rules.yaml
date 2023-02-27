@@ -26,6 +26,7 @@ World:
 	ElevatorProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
+		InfiniteBuildLimit: 10
 
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
