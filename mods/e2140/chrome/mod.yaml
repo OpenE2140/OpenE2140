@@ -95,6 +95,9 @@ Fonts:
 		Font: common|FreeSansBold.ttf
 		Size: 32
 		Ascender: 24
+	SourceSansProSmall:
+		Font: e2140|chrome/uibits/source-sans-pro.regular.ttf
+		Size: 12
 
 Hotkeys:
 	common|hotkeys/game.yaml
