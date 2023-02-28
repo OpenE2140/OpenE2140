@@ -48,7 +48,7 @@
 		# Make the default priority higher, so units are prefered over constructions.
 		Priority: 20
 	# Units have a healthbar when selected or hovered.
-	SelectionDecorations:
+	SelectionDecorationsVehicle:
 	# Enemy units must be destroyed to win a game.
 	MustBeDestroyed:
 	# Units sequences should always use facings.
@@ -101,7 +101,7 @@
 	# No projectiles can pass through a construction.
 	BlocksProjectiles:
 	# Buildings have healthbars.
-	SelectionDecorations:
+	SelectionDecorationsBuilding:
 	# Play sound notification on destruction
 	ActorLostNotification:
 		Notification: BuildingLost
