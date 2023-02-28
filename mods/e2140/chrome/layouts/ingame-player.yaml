@@ -18,6 +18,7 @@ Container@PLAYER_WIDGETS:
 			JumpToGroupKeyPrefix: ControlGroupJumpTo
 		LogicTicker@SIDEBAR_TICKER:
 		Image@COMMAND_BAR_BACKGROUND:
+			Logic: AddFactionSuffixLogic
 			X: 5
 			Y: WINDOW_BOTTOM - HEIGHT - 5
 			Width: 416
@@ -283,11 +284,12 @@ Container@PLAYER_WIDGETS:
 					Text: Audio Muted
 					Contrast: true
 		Image@SIDEBAR_BACKGROUND:
+			Logic: AddFactionSuffixLogic
 			X: WINDOW_RIGHT - WIDTH
 			Y: 0
 			Width: 214
 			Height: 587
-			ImageCollection: sidebar-ucs
+			ImageCollection: sidebar
 			ImageName: background-sidebar
 			ClickThrough: false
 			Children:

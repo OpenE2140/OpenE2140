@@ -446,7 +446,7 @@ production-icons:
 
 
 # Command bar
-commandbar:
+commandbar-ucs:
 	Inherits: ^Sidebar
 	Regions:
 		background: 0, 596, 434, 44
