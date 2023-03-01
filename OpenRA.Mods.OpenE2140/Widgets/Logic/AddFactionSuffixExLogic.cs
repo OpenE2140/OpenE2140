@@ -49,6 +49,15 @@ public class AddFactionSuffixExLogic : ChromeLogic
 		{
 			ppw.Parent.Get<BackgroundWidget>("ICON_TEMPLATE").Background += suffix;
 		}
+		else if (widget is ProductionTabsExWidget ptw)
+		{
+			if (ptw.ArrowButton != null)
+				ptw.ArrowButton += suffix;
+			if (ptw.TabButton != null)
+				ptw.TabButton += suffix;
+			ptw.Decorations += suffix;
+			ptw.RefreshCaches();
+		}
 		else
 			throw new InvalidOperationException("AddFactionSuffixExLogic only supports IFactionSpecificWidget");
 	}

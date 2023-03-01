@@ -428,8 +428,8 @@ Container@PLAYER_WIDGETS:
 					ClockPalette: chrome
 					NotBuildablePalette: chrome
 					SymbolsFont: SourceSansProSmall
-				ProductionTabs@PRODUCTION_TABS:
-					Logic: ProductionTabsLogic
+				ProductionTabsEx@PRODUCTION_TABS:
+					Logic: ProductionTabsLogic, AddFactionSuffixExLogic
 					PaletteWidget: PRODUCTION_PALETTE
 					TypesContainer: PRODUCTION_TYPES
 					BackgroundContainer: PRODUCTION_BACKGROUND
