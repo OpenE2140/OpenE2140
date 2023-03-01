@@ -24,26 +24,6 @@ public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 		"(e.g. 'ucs_vehicles_tiger_assault' is UCS unit by default, so it's considered as default.)")]
 	public readonly List<string> Factions = new List<string>();
 
-	public override object Create(ActorInitializer init)
-	{
-		foreach (var faction in this.Factions)
-		{
-			if (init.Self.Info.Name.StartsWith(faction))
-				continue;
-
-			if (this.FactionImages.ContainsKey(faction))
-				continue;
-
-			var factionImageName = $"{init.Self.Info.Name}.{faction}";
-			if (!init.World.Map.Rules.Sequences.HasSequence(factionImageName))
-				continue;
-
-			this.FactionImages.TryAdd(faction, factionImageName);
-		}
-
-		return base.Create(init);
-	}
-
 	public void RulesetLoaded(Ruleset rules, ActorInfo info)
 	{
 		if (this.FactionImages == null)
@@ -53,5 +33,23 @@ public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 		var unknownFactions = this.Factions.Where(f => !existingFactions.Contains(f)).ToArray();
 		if (unknownFactions.Any())
 			throw new YamlException($"Unknown factions: {string.Join(", ", unknownFactions)}");
+
+		if (rules.Sequences == null)
+			return;
+
+		foreach (var faction in this.Factions)
+		{
+			if (info.Name.StartsWith(faction))
+				continue;
+
+			if (this.FactionImages.ContainsKey(faction))
+				continue;
+
+			var factionImageName = $"{info.Name}.{faction}";
+			if (!rules.Sequences.HasSequence(factionImageName))
+				continue;
+
+			this.FactionImages.TryAdd(faction, factionImageName);
+		}
 	}
 }
