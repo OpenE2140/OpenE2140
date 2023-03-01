@@ -61,9 +61,6 @@ Cursors:
 		repair:
 			Start: 72
 			Length: 4
-		repair-blocked:
-			Start: 24
-			Length: 4
 		deploy:
 			Start: 76
 			Length: 4
@@ -92,3 +89,7 @@ Cursors:
 			Start: 46
 		scroll-b:
 			Start: 47
+
+	content/core/assets/repairblocked.png:
+		repair-blocked:
+			Start: 0
