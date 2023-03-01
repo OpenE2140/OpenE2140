@@ -338,14 +338,12 @@ Container@PLAYER_WIDGETS:
 							Align: Center
 							Font: Small
 						IngamePower@POWER:
-							Logic: IngamePowerLogic
+							Logic: IngamePowerLogic, AddFactionSuffixExLogic
 							X: 18
 							Y: 0
 							Width: 68
 							Height: 21
 							Font: Small
-							NormalPowerColor: ad7131
-							CriticalPowerColor: ffff00
 							TooltipContainer: TOOLTIP_CONTAINER
 							TooltipTemplate: SIMPLE_TOOLTIP
 							Children:
@@ -354,11 +352,11 @@ Container@PLAYER_WIDGETS:
 									Y: 3
 									ImageCollection: power-icons
 									ImageName: power-normal
-						LabelWithTooltip@CASH:
-							Logic: IngameCashCounterLogic
+						FactionLabel@CASH:
+							Logic: IngameCashCounterLogic, AddFactionSuffixExLogic
+							Identifier: CashCounterLabel
 							X: PARENT_RIGHT - WIDTH - 18
 							Y: 0
-							# ED: TextColor: 009e00
 							Width: 68
 							Height: 21
 							Align: Right

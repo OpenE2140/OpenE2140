@@ -11,19 +11,11 @@
 
 #endregion
 
-using OpenRA.Mods.Common.Widgets;
-using OpenRA.Primitives;
-
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-public class IngamePowerWidget : WorldLabelWithTooltipWidget
+public interface IFactionSpecificWidget
 {
-	public Color NormalPowerColor = Color.White;
-	public Color CriticalPowerColor = Color.Red;
+	string[] FieldsToOverride { get; }
 
-	[ObjectCreator.UseCtorAttribute]
-	public IngamePowerWidget(World world)
-		: base(world)
-	{
-	}
+	string Identifier { get; }
 }
