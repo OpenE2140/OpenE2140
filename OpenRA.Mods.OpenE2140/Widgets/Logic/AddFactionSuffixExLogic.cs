@@ -12,6 +12,7 @@
 #endregion
 
 using System.Reflection;
+using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
@@ -43,6 +44,10 @@ public class AddFactionSuffixExLogic : ChromeLogic
 					fieldInfo.SetValue(fsw, result);
 				}
 			}
+		}
+		else if (widget is ProductionPaletteWidget ppw)
+		{
+			ppw.Parent.Get<BackgroundWidget>("ICON_TEMPLATE").Background += suffix;
 		}
 		else
 			throw new InvalidOperationException("AddFactionSuffixExLogic only supports IFactionSpecificWidget");

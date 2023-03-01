@@ -414,6 +414,7 @@ Container@PLAYER_WIDGETS:
 							Width: 59
 							Height: 41
 				ProductionPaletteEx@PRODUCTION_PALETTE:
+					Logic: AddFactionSuffixExLogic
 					X: 17
 					Y: 332
 					TooltipContainer: TOOLTIP_CONTAINER
