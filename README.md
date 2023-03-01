@@ -15,7 +15,8 @@ Work in progress. Most recent video preview is here: [OpenE2140 - preview #2](ht
 	* Custom artwork for faction sidebars and command bars,
 	* main menu artwork,
 	* reskinned glyphs,
-	* custom resource sprites (in progress).
+	* repair blocked cursor,
+	* custom resources sprites (work in progress).
 
 ## Special thanks!
 
