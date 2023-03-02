@@ -30,6 +30,7 @@ Player:
 	PowerManager:
 		SpeechNotification: LowPower
 		TextNotification: Low power.
+	# Player can repair own and ally buildings.
 	AllyRepair:
 	# Player resources
 	PlayerResources:
@@ -40,6 +41,7 @@ Player:
 		TextNotification: Base under attack.
 	# Tech
 	TechTree:
+	# Render terrain on Radar widget (minimap).
 	PlayerRadarTerrain:
 
 # Map editor specific player setup.

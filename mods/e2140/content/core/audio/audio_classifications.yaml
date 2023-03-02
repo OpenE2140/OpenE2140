@@ -1,5 +1,8 @@
+# Custom preprocessing for audio files in SMP#.WD files.
 AudioClassifications:
+	# Prefixes to add to audio file names for each SMP#.WD files.
 	SoundFilePrefixes:
 		SMP0.WD: ed
 		SMP1.WD: ucs
+	# These sounds are different in each SMP#.WD, add prefix to their filenames.
 	FactionVariantSounds: 94-110, 113-127

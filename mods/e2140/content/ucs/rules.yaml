@@ -11,12 +11,14 @@ World:
 		SupportActors: ucs_vehicles_tiger_assault
 		Factions: ucs
 
+# Base for all UCS vehicles.
 ^UcsVehicle:
 	Inherits: ^CoreVehicle
 	# Unit produces voice
 	Voiced:
 		VoiceSet: UcsVehicleVoice
 
+# Base for all UCS mechs.
 ^UcsMech:
 	Inherits: ^UcsVehicle
 	Mobile:
