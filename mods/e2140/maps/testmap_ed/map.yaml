@@ -1,0 +1,135 @@
+MapFormat: 12
+
+RequiresMod: e2140
+
+Title: Test Map (ED)
+
+Author: author
+
+Tileset: TEMPERATE
+
+MapSize: 34,34
+
+Bounds: 1,1,32,32
+
+Visibility: Lobby
+
+Categories: Maps
+
+Players:
+	PlayerReference@ED_Player:
+		Name: ED_Player
+		AllowBots: False
+		Playable: True
+		Required: True
+		LockFaction: True
+		Faction: ed
+		LockColor: True
+		Color: 273C0A
+		LockSpawn: True
+		LockTeam: True
+		Enemies: UCS_AI
+	PlayerReference@UCS_AI:
+		Name: UCS_AI
+		Bot: campaign
+		Faction: ucs
+		LockColor: True
+		Color: F20F0F
+		Enemies: ED_Player
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+
+Actors:
+	Actor3: neutral_tree01
+		Owner: Neutral
+		Location: 4,9
+	Actor4: neutral_tree04
+		Owner: Neutral
+		Location: 12,5
+	Actor5: neutral_tree03
+		Owner: Neutral
+		Location: 18,24
+	Actor6: neutral_tree04
+		Owner: Neutral
+		Location: 13,23
+	Actor7: neutral_tree06
+		Owner: Neutral
+		Location: 15,21
+	Actor8: neutral_tree05
+		Owner: Neutral
+		Location: 16,22
+	Actor10: neutral_tree01
+		Owner: Neutral
+		Location: 29,8
+	Actor12: neutral_tree05
+		Owner: Neutral
+		Location: 31,24
+	Actor13: neutral_tree04
+		Owner: Neutral
+		Location: 2,31
+	Actor14: neutral_tree06
+		Owner: Neutral
+		Location: 2,18
+	Actor16: neutral_tree04
+		Owner: Neutral
+		Location: 17,11
+	Actor19: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 5,22
+		Facing: 256
+	Actor20: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 6,24
+		Facing: 256
+	Actor21: ucs_vehicles_raptor_es
+		Owner: UCS_AI
+		Facing: 384
+		Location: 7,22
+	Actor22: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 4,23
+	Actor23: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 5,20
+	Actor24: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 8,24
+		Facing: 620
+		TurretFacing: 0
+	Actor25: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Location: 6,21
+		Facing: 768
+	Actor18: ed_vehicles_st01b
+		Owner: ED_Player
+		Location: 23,6
+		Facing: 512
+	Actor26: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 22,6
+	Actor27: ed_vehicles_st01b
+		Owner: ED_Player
+		Location: 24,7
+		Facing: 256
+	Actor28: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 16,18
+	Actor29: ed_vehicles_st01b
+		Owner: ED_Player
+		Location: 17,18
+		Facing: 896
+	Actor30: ucs_buildings_heavy_tech
+		Owner: ED_Player
+		Location: 27,3
+	Actor31: shared_buildings_power_plant
+		Owner: ED_Player
+		Location: 21,2
+
+Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
