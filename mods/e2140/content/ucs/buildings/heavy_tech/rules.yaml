@@ -1,5 +1,5 @@
 ucs_buildings_heavy_tech:
-	Inherits: ^UcsElevatorFactory
+	Inherits: ^CoreElevatorFactory
 	Tooltip:
 		Name: Heavy Tech
 	Health:
@@ -14,8 +14,6 @@ ucs_buildings_heavy_tech:
 			BottomRight: 512, 512
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
-	-RenderSprites:
-	RenderElevatorSprites:
 	Power:
 		Amount: -400
 	ElevatorProduction:

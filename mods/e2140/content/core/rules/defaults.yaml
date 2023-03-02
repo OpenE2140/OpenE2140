@@ -145,6 +145,18 @@
 		Sequence: idle_light
 		RequiresCondition: !Transforming
 
+# Base for all factories using elevator production.
+^CoreElevatorFactory:
+	Inherits: ^CoreBuilding
+	# Use custom RenderSprites trait for rendering elevator.
+	-RenderSprites:
+	RenderElevatorSprites:
+	# Elevator production needs custom production queue.
+	ElevatorProductionQueue:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		InfiniteBuildLimit: 10
+
 # Base for all towers.
 ^CoreTower:
 	Inherits@1: ^CoreConstruction
