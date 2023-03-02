@@ -1,0 +1,21 @@
+^CoreWorld:
+	Faction@ED:
+		Name: ED
+		InternalName: ed
+		Description: Eurasian Dynasty
+
+World:
+	StartingUnits@ed_default:
+		Class: default
+		ClassName: options-starting-units.default
+		BaseActor: ucs_mcu_prod_center
+		Factions: ed
+
+ed_colorpicker:
+	Inherits: ed_vehicles_st01b
+	-FactionRenderSprites:
+	RenderSprites:
+		Image: ed_vehicles_st01b
+		Palette: colorpicker
+	-MapEditorData:
+	-Buildable:

@@ -37,8 +37,7 @@
 	-RenderSprites:
 	FactionRenderSprites:
 		FactionImages:
-		# TODO: add ED
-		Factions: ucs
+		Factions: ucs, ed
 	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
 	HitShape:
 		Type: Circle

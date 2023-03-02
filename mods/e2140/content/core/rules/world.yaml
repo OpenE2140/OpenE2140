@@ -73,6 +73,7 @@ World:
 		PreviewActor: colorpicker
 		FactionPreviewActors:
 			ucs: ucs_colorpicker
+			ed: ed_colorpicker
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:

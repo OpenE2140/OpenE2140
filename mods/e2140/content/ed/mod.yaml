@@ -8,6 +8,7 @@ Notifications:
 	e2140|content/ed/notifications.yaml
 
 Rules:
+	e2140|content/ed/rules.yaml
 
 Sequences:
 
