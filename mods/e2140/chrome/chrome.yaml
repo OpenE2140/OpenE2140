@@ -1,6 +1,9 @@
 ^Sidebar:
 	Image: chrome/assets/ucs_sidebar.png
-	
+
+^SidebarEd:
+	Image: chrome/assets/ed_sidebar.png
+
 ^Dialog:
 	Image: chrome/assets/dialog.png
 
@@ -579,9 +582,89 @@ production-tabs-decorations-ucs:
 		left: 0, 282, 20, 20
 		left-hover: 0, 307, 20, 20
 
+# ED
+
+# Command bar:
+
+commandbar-ed:
+	Inherits: ^SidebarEd
+	Regions:
+		background: 0, 596, 434, 44
+
+command-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-highlighted-hover:
+	Inherits: command-button-ed-highlighted
+command-button-ed-highlighted-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+command-button-ed-disabled:
+	Inherits: command-button-ed
+command-button-ed-highlighted-disabled:
+	Inherits: command-button-ed-highlighted
+
+# Main sidebar artwork:
+sidebar-ed:
+	Inherits: ^SidebarEd
+	Regions:
+		background-sidebar: 52, 0, 214, 566
+
+# Main buttons:
+sidebar-production-tab-ed:
+	Regions:
+		production-tab: 23, 281, 23, 21
+
+sidebar-production-tab-ed-hover:
+	Regions:
+		production-tab: 23, 231, 23, 21
+
+sidebar-production-tab-ed-pressed:
+	Regions:
+		production-tab: 23, 306, 23, 21
+
+sidebar-production-tab-ed-pressed-hover:
+	Regions:
+		production-tab: 23, 256, 23, 21
+
+# Sub buttons:
+sidebar-production-tab-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-ed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 380, 3, 3, 22, 15, 3, 3
+
+sidebar-production-tab-button-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
+	
+sidebar-production-tab-button-ed-highlighted-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
+
+# Unit production buttons:
+production-palette-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
+
+production-palette-button-ed-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
+
 # Arrow buttons:
-production-tabs-decorations:
-	Inherits: ^Sidebar
+production-tabs-decorations-ed:
+	Inherits: ^SidebarEd
 	Regions:
 		right: 0, 356, 20, 20
 		right-hover: 0, 333, 20, 20
