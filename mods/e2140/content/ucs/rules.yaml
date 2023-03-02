@@ -2,6 +2,7 @@
 	Faction@UCS:
 		Name: UCS
 		InternalName: ucs
+		Description: United Civilized States
 
 World:
 	StartingUnits@ucs_default:
