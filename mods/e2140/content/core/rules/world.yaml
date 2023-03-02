@@ -71,6 +71,8 @@ World:
 	# Required for the color picker.
 	ColorPickerManager:
 		PreviewActor: colorpicker
+		PresetHues: 0, 0.30
+		PresetSaturations: 0.94, 0.95
 		FactionPreviewActors:
 			ucs: ucs_colorpicker
 			ed: ed_colorpicker
