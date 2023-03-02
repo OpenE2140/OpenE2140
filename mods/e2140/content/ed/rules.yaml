@@ -9,7 +9,14 @@ World:
 		Class: default
 		ClassName: options-starting-units.default
 		BaseActor: ucs_mcu_prod_center
+		SupportActors: ed_vehicles_st01b
 		Factions: ed
+
+^EdVehicle:
+	Inherits: ^CoreVehicle
+	# Unit produces voice
+	Voiced:
+		VoiceSet: EdVehicleVoice
 
 ed_colorpicker:
 	Inherits: ed_vehicles_st01b

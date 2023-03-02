@@ -1,0 +1,27 @@
+ed_vehicles_st01b:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: ST 01B
+	Valued:
+		Cost: 300
+	Buildable:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 120
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 3c768
+	Turreted:
+		TurnSpeed: 20
+		Offset: 0,0,200
+	Armament@PRIMARY:
+		Weapon: ed_vehicles_st01b
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 750,-50,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
