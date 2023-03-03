@@ -12,6 +12,13 @@ World:
 		SupportActors: ucs_vehicles_tiger_assault
 		Factions: ucs
 
+# Base for all UCS mechs with turrets.
+^UcsTurretedMech:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreTurret
+	-WithSpriteTurret:
+	WithMovingSpriteTurret:
+
 # Base for all UCS vehicles.
 ^UcsVehicle:
 	Inherits: ^CoreVehicle

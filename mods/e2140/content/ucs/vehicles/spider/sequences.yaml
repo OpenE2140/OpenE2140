@@ -1,4 +1,6 @@
 ucs_vehicles_spider: vehicle_mech.vspr
+	Defaults:
+		Tick: 70
 	turret:
 		Filename: turret_spider.vspr
 		Facings: -16

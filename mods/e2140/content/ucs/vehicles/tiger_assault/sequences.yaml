@@ -1,4 +1,6 @@
 ucs_vehicles_tiger_assault: vehicle_mech.vspr
+	Defaults:
+		Tick: 70
 	turret:
 		Filename: turret_tiger_assault.vspr
 		Facings: -16
