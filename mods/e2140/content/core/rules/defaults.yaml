@@ -110,6 +110,11 @@
 # Base for all buildings.
 ^CoreBuilding:
 	Inherits: ^CoreConstruction
+	# Use custom RenderSprites trait for generating names of images for each faction
+	-RenderSprites:
+	FactionRenderSprites:
+		FactionImages:
+		Factions: ucs, ed
 	# Enemy buildings have to be destroyed to win, even when short game option is used.
 	MustBeDestroyed:
 		RequiredForShortGame: true
@@ -148,7 +153,7 @@
 ^CoreElevatorFactory:
 	Inherits: ^CoreBuilding
 	# Use custom RenderSprites trait for rendering elevator.
-	-RenderSprites:
+	-FactionRenderSprites:
 	RenderElevatorSprites:
 	# Elevator production needs custom production queue.
 	ElevatorProductionQueue:
