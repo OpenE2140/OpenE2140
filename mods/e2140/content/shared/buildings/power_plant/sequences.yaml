@@ -6,3 +6,8 @@ shared_mcu_power_plant: vehicle_mcu.vspr
 	icon:
 		Filename: SPRI1.MIX
 		Start: 183
+
+shared_mcu_power_plant.ed: vehicle_mcu.vspr
+	icon:
+		Filename: SPRI0.MIX
+		Start: 183
