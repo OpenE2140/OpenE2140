@@ -1,0 +1,9 @@
+ed_elevator: elevator_ed.vspr
+	opening:
+		Tick: 500
+	open:
+		Offset: 0, 0
+	overlay:
+		Offset: 2, 17
+	elevator:
+		Offset: 0, 1

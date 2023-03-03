@@ -1,0 +1,69 @@
+ed_buildings_constr_center:
+	Inherits: ^CoreElevatorFactory
+	Tooltip:
+		Name: Constr. Center
+	Health:
+		HP: 1500
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xxx ==x
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1536, -1536
+			BottomRight: 768, 1536
+	Selectable:
+		Bounds: 3088, 1950, -1, -416
+	ElevatorProduction:
+		Image: ed_elevator
+		Position: 1088, 1072, 0
+		Produces: Building.ED
+		RequiresCondition: !Transforming
+	ElevatorProductionQueue:
+		Type: Building.ED
+		Group: Building
+	ProductionBar:
+		ProductionType: Building.ED
+	RallyPoint:
+		Image:
+		FlagSequence:
+		CirclesSequence:
+		Cursor: move
+		Palette:
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 1,2
+		Facing: 256
+	Exit@Exit2:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 1,3
+		Facing: 384
+	Exit@Exit3:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 2,3
+		Facing: 512
+	Exit@Exit4:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 3,3
+		Facing: 640
+	Exit@Exit5:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 3,2
+		Facing: 768
+	Exit@Exit6:
+		SpawnOffset: 1088, 1072, 0
+		ExitCell: 3,1
+		Facing: 896
+
+ed_mcu_constr_center:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Construction Center
+	Transforms:
+		IntoActor: ed_buildings_constr_center
+	Valued:
+		Cost: 2500
+	Buildable:
+		Queue: Building.ED
+		BuildDuration: 40

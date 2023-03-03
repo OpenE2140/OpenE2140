@@ -1,0 +1,8 @@
+ed_buildings_constr_center: building_constr_center.vspr
+	Defaults:
+		Offset: 6, -25, 0
+
+ed_mcu_constr_center: vehicle_mcu.vspr
+	icon:
+		Filename: SPRI0.MIX
+		Start: 165
