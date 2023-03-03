@@ -128,8 +128,12 @@ Actors:
 	Actor30: ucs_buildings_heavy_tech
 		Owner: ED_Player
 		Location: 27,3
-	Actor31: shared_buildings_power_plant
+	Actor31: ed_buildings_constr_center
 		Owner: ED_Player
-		Location: 21,2
+		Location: 17,2
+	Actor32: shared_buildings_power_plant
+		Owner: ED_Player
+		Location: 22,3
+		Health: 31
 
 Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
