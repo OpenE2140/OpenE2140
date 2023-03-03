@@ -1,0 +1,34 @@
+ucs_vehicles_raptor_ad:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: RAPTOR AD
+	Valued:
+		Cost: 300
+	Buildable:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 3c0
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_raptor_ad
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 100,-200,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ucs_vehicles_raptor_ad
+		FireDelay: 20
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 100,200,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	WithMoveSound:
+		Sound: 32.smp
