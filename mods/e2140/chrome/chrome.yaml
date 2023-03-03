@@ -400,18 +400,24 @@ sidebar-bits:
 order-icons:
 	Inherits: ^Glyphs
 	Regions:
-		repair: 136, 68, 16, 16
-		repair-disabled: 136, 85, 16, 16
-		repair-active: 136, 102, 16, 16
-		sell: 119, 68, 16, 16
-		sell-disabled: 119, 85, 16, 16
-		sell-active: 119, 102, 16, 16
-		options: 102, 68, 16, 16
-		options-disabled: 102, 85, 16, 16
-		options-active: 102, 102, 16, 16
-		beacon: 153, 68, 16, 16
-		beacon-disabled: 153, 85, 16, 16
-		beacon-active: 153, 102, 16, 16
+		repair: 272, 0, 26, 26
+		repair-disabled: 272, 26, 26, 26
+		repair-active: 272, 52, 26, 26
+		sell: 402, 0, 26, 26
+		sell-disabled: 402, 26, 26, 26
+		sell-active: 402, 52, 26, 26
+		options: 350, 0, 26, 26
+		options-disabled: 350, 26, 26, 26
+		options-active: 350, 52, 26, 26
+		beacon: 376, 0, 26, 26
+		beacon-disabled: 376, 26, 26, 26
+		beacon-active: 376, 52, 26, 26
+		power: 298, 0, 26, 26
+		power-disabled: 298, 26, 26, 26
+		power-active: 298, 52, 26, 26
+		selfdestruct: 324, 0, 26, 26
+		selfdestruct-disabled: 324, 26, 26, 26
+		selfdestruct-active: 324, 52, 26, 26
 
 power-icons:
 	Inherits: ^Glyphs
@@ -582,6 +588,32 @@ production-tabs-decorations-ucs:
 		left: 0, 282, 20, 20
 		left-hover: 0, 307, 20, 20
 
+# Order buttons:
+
+sidebar-order-button-ucs:
+	Inherits: ^Sidebar
+	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ucs-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 72, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ucs-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	
+sidebar-order-button-ucs-highlighted-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ucs-pressed:
+	Inherits: ^Sidebar
+	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	
+sidebar-order-button-ucs-pressed-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+
 # ED
 
 # Command bar:
@@ -670,3 +702,29 @@ production-tabs-decorations-ed:
 		right-hover: 0, 333, 20, 20
 		left: 0, 282, 20, 20
 		left-hover: 0, 307, 20, 20
+
+# Order buttons:
+
+sidebar-order-button-ed:
+	Inherits: ^SidebarEd
+	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 72, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	
+sidebar-order-button-ed-highlighted-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+
+sidebar-order-button-ed-pressed:
+	Inherits: ^SidebarEd
+	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	
+sidebar-order-button-ed-pressed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
