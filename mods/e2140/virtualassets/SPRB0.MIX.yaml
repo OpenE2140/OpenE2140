@@ -1,16 +1,16 @@
 building_power_plant: Shadow Player Light
 	idle: 0
 	idle_light: 0
-	idle_damaged: 1
-	idle_damaged_light: 1
+	damaged-idle: 1
+	damaged-idle_light: 1
 	addon: 2
 	addon_damaged: 3
 
 building_teleport: Shadow Player Light
 	idle: 4
 	idle_light: 4
-	idle_damaged: 5
-	idle_damaged_light: 5
+	damaged-idle: 5
+	damaged-idle_light: 5
 
 belt: Shadow Light
 	idle: 8
@@ -21,20 +21,20 @@ belt: Shadow Light
 building_refinery: Shadow Player Light
 	idle: 6
 	idle_light: 6
-	idle_damaged: 7
-	idle_damaged_light: 7
+	damaged-idle: 7
+	damaged-idle_light: 7
 
 building_research_center: Shadow Player Light
 	idle: 12
 	idle_light: 12
-	idle_damaged: 13
-	idle_damaged_light: 13
+	damaged-idle: 13
+	damaged-idle_light: 13
 
 building_air_base: Shadow Player Light AddonLight
 	idle: 14
 	idle_light: 14
-	idle_damaged: 15
-	idle_damaged_light: 15
+	damaged-idle: 15
+	damaged-idle_light: 15
 	addon_left: 16
 	addon_left_light: 16
 	addon_right: 17
@@ -42,13 +42,13 @@ building_air_base: Shadow Player Light AddonLight
 
 building_water_base: Shadow Player
 	idle: 18
-	idle_damaged: 19
+	damaged-idle: 19
 	addon: 88
 	addon_damaged: 89
 
 building_shelter: Shadow Player
 	idle: 20
-	idle_damaged: 21
+	damaged-idle: 21
 	lower: 22
 	lower_damaged: 23
 	door: 24
@@ -57,21 +57,21 @@ building_shelter: Shadow Player
 building_mine: Shadow Player Light
 	idle: 26
 	idle_light: 26
-	idle_damaged: 27
-	idle_damaged_light: 27
+	damaged-idle: 27
+	damaged-idle_light: 27
 	rotor: 28-32
 
 building_tech_house: Shadow Player Light
 	idle: 33
 	idle_light: 33
-	idle_damaged: 34
-	idle_damaged_light: 34
+	damaged-idle: 34
+	damaged-idle_light: 34
 
 building_bio_center: Shadow Player Light
 	idle: 35
 	idle_light: 35
-	idle_damaged: 36
-	idle_damaged_light: 36
+	damaged-idle: 36
+	damaged-idle_light: 36
 	opening: 37-38
 	opened: 38
 	closing: 38-37
@@ -79,18 +79,18 @@ building_bio_center: Shadow Player Light
 building_constr_center: Shadow Player Light
 	idle: 39
 	idle_light: 39
-	idle_damaged: 40
-	idle_damaged_light: 40
+	damaged-idle: 40
+	damaged-idle_light: 40
 
 building_bcc: Shadow Player Light
 	idle: 41
 	idle_light: 41
-	idle_damaged: 42
-	idle_damaged_light: 42
+	damaged-idle: 42
+	damaged-idle_light: 42
 
 building_silo: Shadow Player
 	idle: 43
-	idle_damaged: 48
+	damaged-idle: 48
 	lower: 46
 	upper: 47
 	opening: 43-45
@@ -99,27 +99,27 @@ building_silo: Shadow Player
 
 building_pillbox: Shadow
 	idle: 49
-	idle_damaged: 50
+	damaged-idle: 50
 
 building_defend_tower: Shadow
 	idle: 51
-	idle_damaged: 52
+	damaged-idle: 52
 
 building_heavy_def_tower: Shadow
 	idle: 53
-	idle_damaged: 54
+	damaged-idle: 54
 
 building_heavy_tech: Shadow Player Light
 	idle: 55
 	idle_light: 55
-	idle_damaged: 56
-	idle_damaged_light: 56
+	damaged-idle: 56
+	damaged-idle_light: 56
 
 building_robot_factory: Shadow Player Light
 	idle: 57
 	idle_light: 57
-	idle_damaged: 58
-	idle_damaged_light: 58
+	damaged-idle: 58
+	damaged-idle_light: 58
 	opening: 59-60
 	opened: 60
 	closing: 60-59
@@ -127,27 +127,27 @@ building_robot_factory: Shadow Player Light
 building_prod_center: Shadow Player Light
 	idle: 61
 	idle_light: 61
-	idle_damaged: 62
-	idle_damaged_light: 62
+	damaged-idle: 62
+	damaged-idle_light: 62
 
 building_pb_control: Shadow Player Light
 	idle: 63
 	idle_light: 63
-	idle_damaged: 64
-	idle_damaged_light: 64
+	damaged-idle: 64
+	damaged-idle_light: 64
 
 building_pb_cannon: Shadow Player
 	idle: 65
-	idle_damaged: 66
+	damaged-idle: 66
 	firing: 67-71,70-67
 
 building_little_eye: Shadow
 	idle: 72
-	idle_damaged: 73
+	damaged-idle: 73
 
 building_big_eye: Shadow
 	idle: 74
-	idle_damaged: 75
+	damaged-idle: 75
 
 elevator_ed: Player
 	closed: 76
@@ -167,36 +167,36 @@ elevator_ucs: Player
 
 building_civ_building_1: Shadow
 	idle: 90
-	idle_damaged: 91
+	damaged-idle: 91
 
 building_civ_building_2: Shadow
 	idle: 92
-	idle_damaged: 93
+	damaged-idle: 93
 
 building_civ_building_3: Shadow
 	idle: 94
-	idle_damaged: 95
+	damaged-idle: 95
 
 building_civ_building_4: Shadow
 	idle: 96
-	idle_damaged: 97
+	damaged-idle: 97
 
 building_civ_building_5: Shadow
 	idle: 98
-	idle_damaged: 99
+	damaged-idle: 99
 
 building_civ_building_6: Shadow
 	idle: 100
-	idle_damaged: 101
+	damaged-idle: 101
 
 building_sdi_defence: Shadow Player Light
 	idle: 102
 	idle_light: 102
-	idle_damaged: 103
-	idle_damaged_light: 103
+	damaged-idle: 103
+	damaged-idle_light: 103
 
 building_an_center: Shadow Player Light
 	idle: 104
 	idle_light: 104
-	idle_damaged: 105
-	idle_damaged_light: 105
+	damaged-idle: 105
+	damaged-idle_light: 105
