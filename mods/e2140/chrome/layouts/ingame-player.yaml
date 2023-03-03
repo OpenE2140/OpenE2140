@@ -296,23 +296,85 @@ Container@PLAYER_WIDGETS:
 				Container@TOP_BUTTONS:
 					Logic: MenuButtonsChromeLogic
 					X: 11
-					Y: 6
+					Y: 8
 					Children:
 						WorldButton@REPAIR_BUTTON:
 							Logic: RepairOrderButtonLogic, AddFactionSuffixLogic
 							X: 1
-							Width: 28
+							Width: 26
 							Height: 26
-							Background: chrome-button-background
+							Background: sidebar-order-button
 							Key: Repair
 							TooltipText: Repair
 							TooltipContainer: TOOLTIP_CONTAINER
 							VisualHeight: 0
 							Children:
 								Image@ICON:
-									X: 6
-									Y: 5
+									X: 0
+									Y: 0
 									ImageCollection: order-icons
+						WorldButton@SELL_BUTTON:
+							Logic: SellOrderButtonLogic, AddFactionSuffixLogic
+							X: 28
+							Width: 26
+							Height: 26
+							Background: sidebar-order-button
+							Key: Sell
+							TooltipText: Sell
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 0
+									Y: 0
+									ImageCollection: order-icons
+						WorldButton@BEACON_BUTTON:
+							Logic: BeaconOrderButtonLogic, AddFactionSuffixLogic
+							X: 55
+							Width: 26
+							Height: 26
+							Background: sidebar-order-button
+							Key: PlaceBeacon
+							TooltipText: Place Beacon
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 0
+									Y: 0
+									ImageCollection: order-icons
+						WorldButton@POWER_BUTTON:
+							Logic: PowerdownOrderButtonLogic, AddFactionSuffixLogic
+							X: 82
+							Width: 26
+							Height: 26
+							Background: sidebar-order-button
+							Key: PowerDown
+							TooltipText: Power Down
+							TooltipContainer: TOOLTIP_CONTAINER
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 0
+									Y: 0
+									ImageCollection: order-icons
+						MenuButton@OPTIONS_BUTTON:
+							Logic: AddFactionSuffixLogic
+							X: 118
+							Width: 26
+							Height: 26
+							Background: sidebar-order-button
+							Key: escape
+							TooltipText: Options
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: true
+							VisualHeight: 0
+							Children:
+								Image@ICON:
+									X: 0
+									Y: 0
+									ImageCollection: order-icons
+									ImageName: options
 				Container@RADAR:
 					Logic: IngameRadarDisplayLogic
 					X: 11
