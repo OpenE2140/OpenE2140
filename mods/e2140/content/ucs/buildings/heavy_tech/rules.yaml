@@ -55,7 +55,7 @@ ucs_mcu_heavy_tech:
 	Transforms:
 		IntoActor: ucs_buildings_heavy_tech
 	Valued:
-		Cost: 2500
+		Cost: 1450
 	Buildable:
 		Queue: Building.UCS
 		BuildDuration: 40
