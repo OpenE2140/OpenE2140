@@ -48,7 +48,7 @@ ucs_buildings_prod_center:
 	Exit@Exit6:
 		SpawnOffset: 16, 1024, 0
 		ExitCell: 2,1
-		Facing: 768
+		Facing: 896
 
 ucs_mcu_prod_center:
 	Inherits@1: ^SharedVehicleMcu
