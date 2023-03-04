@@ -125,7 +125,7 @@ Actors:
 		Owner: ED_Player
 		Location: 17,18
 		Facing: 896
-	Actor30: ucs_buildings_heavy_tech
+	Actor30: ed_buildings_tech_house
 		Owner: ED_Player
 		Location: 27,3
 	Actor31: ed_buildings_constr_center
