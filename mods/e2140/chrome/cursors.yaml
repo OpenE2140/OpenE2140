@@ -93,3 +93,10 @@ Cursors:
 	content/core/assets/repairblocked.png:
 		repair-blocked:
 			Start: 0
+
+	content/core/assets/power.png:
+		powerdown-blocked:
+			Start: 5
+		powerdown:
+			Start: 0
+			Length: 5
