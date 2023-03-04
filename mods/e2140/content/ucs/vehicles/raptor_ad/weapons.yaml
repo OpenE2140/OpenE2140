@@ -1,0 +1,30 @@
+ucs_vehicles_raptor_ad:
+	ReloadDelay: 40
+	Range: 5c0
+	MinRange: 0c512
+	Report: 5.smp
+	ValidTargets: Ground
+	Burst: 0
+	BurstDelays: 0
+	Projectile: Missile
+		Speed: 260
+		Arm: 1
+		Blockable: false
+		ContrailLength: 10
+		Inaccuracy: 128
+		Image: projectile_rocket
+		Palette:
+		TrailPalette:
+		Shadow: True
+		HorizontalRateOfTurn: 20
+		RangeLimit: 6c0
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 15
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
