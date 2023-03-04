@@ -1,6 +1,6 @@
 ed_elevator: elevator_ed.vspr
 	opening:
-		Tick: 500
+		Tick: 100
 	open:
 		Offset: 0, 0
 	overlay:
