@@ -247,6 +247,7 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Turn
 	# Voiced trait is defined per faction
 	# Group all vehicles in the map editor.
 	MapEditorData:
