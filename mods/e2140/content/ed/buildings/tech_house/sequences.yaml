@@ -1,0 +1,9 @@
+ed_buildings_tech_house: building_tech_house.vspr
+	Defaults:
+		# Offset: -22, -54, 0
+		Offset: -36, -54, 0
+
+ed_mcu_tech_house: vehicle_mcu.vspr
+	icon:
+		Filename: SPRI0.MIX
+		Start: 167

@@ -1,0 +1,65 @@
+ed_buildings_tech_house:
+	Inherits: ^CoreElevatorFactory
+	Tooltip:
+		Name: Tech House
+	Health:
+		HP: 1000
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xxx ===
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1535,-1948
+			BottomRight: 512, 512
+	Selectable:
+		Bounds: 2064, 1984, -513, -495
+	Power:
+		Amount: -400
+	ElevatorProduction:
+		Image: ed_elevator
+		Position: 992, -104, 0
+		Produces: Vehicle.ED
+		RequiresCondition: !Transforming
+	ElevatorProductionQueue:
+		Type: Vehicle.ED
+		Group: Vehicle
+	ProductionBar:
+		ProductionType: Vehicle.ED
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 1,2
+		Facing: 384
+	Exit@Exit2:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 2,2
+		Facing: 512
+	Exit@Exit3:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 3,2
+		Facing: 640
+	Exit@Exit4:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 3,1
+		Facing: 768
+	Exit@Exit5:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 3,0
+		Facing: 896
+	Exit@Exit6:
+		SpawnOffset: 992, -104, 0
+		ExitCell: 2,0
+		Facing: 0
+
+ed_mcu_tech_house:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Tech House
+	Transforms:
+		IntoActor: ed_buildings_tech_house
+	Valued:
+		Cost: 1500
+	Buildable:
+		Queue: Building.ED
+		BuildDuration: 40
