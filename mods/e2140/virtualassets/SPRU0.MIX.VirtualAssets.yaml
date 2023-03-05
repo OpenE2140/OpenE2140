@@ -4,11 +4,9 @@ vehicle_mcu: Shadow Player Tracks
 
 vehicle_mcu_deploy_large: Shadow Player
 	deploy: 22-16
-	deployed: 16
 	
 vehicle_mcu_deploy_small: Shadow Player
 	deploy: 9-15
-	deployed: 15
 
 vehicle_mech: Shadow
 	idle: 37-81[8:1:0] 8

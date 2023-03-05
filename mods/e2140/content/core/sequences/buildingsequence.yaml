@@ -11,18 +11,22 @@ core_buildingsequence_small:
 		Length: 7
 	deployed:
 		Filename: vehicle_mcu_deploy_small.vspr
-		Start: 7
+		Start: 6
 
 core_buildingsequence_large:
-	cover:
-		Filename: content/core/assets/construction_pyramid.png
-		Length: 6
-	covered:
-		Filename: content/core/assets/construction_pyramid.png
-		Start: 6
 	deploy:
 		Filename: vehicle_mcu_deploy_large.vspr
 		Length: 7
 	deployed:
 		Filename: vehicle_mcu_deploy_large.vspr
-		Start: 7
+		Start: 6
+	cover:
+		Filename: content/core/assets/construction_pyramid.png
+		Length: 7
+	covered:
+		Filename: content/core/assets/construction_pyramid.png
+		Frames: 6
+	uncover:
+		Filename: content/core/assets/construction_pyramid.png
+		Length: 6
+		Frames: 5, 4, 3, 2, 1, 0

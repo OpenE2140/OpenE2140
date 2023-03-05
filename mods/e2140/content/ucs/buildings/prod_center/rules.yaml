@@ -7,6 +7,9 @@ ucs_buildings_prod_center:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= =x=
+	# Use custom MCU deploy and pyramid uncover animations
+	TransformSequence:
+		Image: ucs_buildings_prod_center
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle

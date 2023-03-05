@@ -46,46 +46,58 @@ public class TransformSequence : ITick
 {
 	private readonly TransformSequenceInfo info;
 	private readonly RenderSprites renderSprites;
-
+	private readonly AnimationWithOffset animationCover;
+	private readonly AnimationWithOffset animationDeploy;
 	private int token = Actor.InvalidConditionToken;
 	private int remainingTime = -1;
-	private AnimationWithOffset? animationCover;
 
 	public TransformSequence(ActorInitializer init, TransformSequenceInfo info)
 	{
 		this.info = info;
 
 		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
+		this.animationCover = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+		this.animationDeploy = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
 	}
 
 	public void Run(Actor self)
 	{
 		this.token = self.GrantCondition(this.info.Condition);
 
-		var animationDeploy = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		self.World.AddFrameEndTask(_ => this.renderSprites.Add(animationDeploy));
+		self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animationDeploy));
 
 		Game.Sound.PlayToPlayer(SoundType.World, self.Owner, this.info.TransformSound, self.CenterPosition);
 
-		animationDeploy.Animation.PlayThen(
+		this.animationDeploy.Animation.PlayThen(
 			"deploy",
 			() =>
 			{
-				animationDeploy.Animation.PlayRepeating("deployed");
+				self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animationCover));
 
-				this.animationCover = new AnimationWithOffset(new Animation(self.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-				self.World.AddFrameEndTask(_ => this.renderSprites?.Add(this.animationCover));
+				// Original construction animation has separate sprites for deploy and pyramid cover animations
+				// If building is using original construction animation, we need to play cover animation
+				if (this.animationCover.Animation.HasSequence("cover"))
+				{
+					this.animationCover.Animation.PlayThen(
+						"cover",
+						() =>
+						{
+							self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationDeploy));
 
-				this.animationCover.Animation.PlayThen(
-					"cover",
-					() =>
-					{
-						self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(animationDeploy));
+							this.animationCover.Animation.PlayRepeating("covered");
 
-						this.animationCover.Animation.PlayRepeating("covered");
-						this.remainingTime = this.info.ConstructionTime;
-					}
-				);
+							this.remainingTime = this.info.ConstructionTime;
+						});
+				}
+				else
+				{
+					// New cover animations have both MCU deployment and construction pyramid baked into single animation.
+					// So we just render fully covered pyramid and run construction timer here.
+
+					self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationDeploy));
+					this.animationCover.Animation.PlayRepeating("covered");
+					this.remainingTime = this.info.ConstructionTime;
+				}
 			}
 		);
 	}
@@ -103,6 +115,8 @@ public class TransformSequence : ITick
 		self.RevokeCondition(this.token);
 		this.token = Actor.InvalidConditionToken;
 
-		this.animationCover?.Animation.PlayBackwardsThen("cover", () => self.World.AddFrameEndTask(_ => this.renderSprites?.Remove(this.animationCover)));
+		this.renderSprites.Remove(this.animationDeploy);
+
+		this.animationCover.Animation.PlayThen("uncover", () => self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationCover)));
 	}
 }

@@ -9,6 +9,21 @@ ucs_buildings_prod_center:
 		Start: 2
 	damaged-idle_light:
 		Start: 3
+	deploy:
+		Filename: content/ucs/buildings/prod_center/assets/mcu_deploy.png
+		Offset: -28, -4
+		Length: 30
+		Tick: 30
+	covered:
+		Filename: content/ucs/buildings/prod_center/assets/mcu_deploy.png
+		Offset: -28, -4
+		Start: 29
+		Length: 1
+	uncover:
+		Filename: content/ucs/buildings/prod_center/assets/pyramid_uncover.png
+		Offset: -28, -4
+		Length: 8
+		Tick: 30
 
 ucs_mcu_prod_center:
 	Inherits: shared_mcu
