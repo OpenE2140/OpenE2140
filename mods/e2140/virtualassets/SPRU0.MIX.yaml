@@ -1,18 +1,14 @@
 vehicle_mcu: Shadow Player Tracks
 	idle: 0-8 16
 	move: 0-8 16 4
-	deploy_small: 9-15
-	deployed_small: 15
-	deploy_large: 22-16
-	deployed_large: 16
 
-pyramid: Shadow
-	construct_small: 31,30,29,28,27,26
-	constructed_small: 26
-	deconstruct_small: 26,27,28,29,30,31
-	construct_large: 25,24,23,35,34,33,32
-	constructed_large: 32
-	deconstruct_large: 32,33,34,35,23,24,25
+vehicle_mcu_deploy_large: Shadow Player
+	deploy: 22-16
+	deployed: 16
+	
+vehicle_mcu_deploy_small: Shadow Player
+	deploy: 9-15
+	deployed: 15
 
 vehicle_mech: Shadow
 	idle: 37-81[8:1:0] 8

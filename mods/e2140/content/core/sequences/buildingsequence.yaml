@@ -1,12 +1,5 @@
 # TODO refactor!
-core_buildingsequence_small:
-	deploy:
-		Filename: SPRU0.MIX
-		Frames: 9, 10, 11, 12, 13, 14, 15
-		Length: 7
-	deployed:
-		Filename: SPRU0.MIX
-		Frames: 15
+core_buildingsequence_small: vehicle_mcu_deploy_small.vspr
 	cover:
 		Filename: SPRU0.MIX
 		Frames: 31, 30, 29, 28, 27, 26
@@ -16,14 +9,7 @@ core_buildingsequence_small:
 		Frames: 31
 
 # TODO refactor!
-core_buildingsequence_large:
-	deploy:
-		Filename: SPRU0.MIX
-		Frames: 22, 21, 20, 19, 18, 17, 16
-		Length: 7
-	deployed:
-		Filename: SPRU0.MIX
-		Frames: 16
+core_buildingsequence_large: vehicle_mcu_deploy_large.vspr
 	cover:
 		Filename: content/core/assets/construction_pyramid.png
 		Length: 6
