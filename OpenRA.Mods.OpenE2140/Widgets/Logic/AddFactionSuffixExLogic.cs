@@ -59,7 +59,7 @@ public class AddFactionSuffixExLogic : ChromeLogic
 			ptw.RefreshCaches();
 		}
 		else
-			throw new InvalidOperationException("AddFactionSuffixExLogic only supports IFactionSpecificWidget, ProductionPaletteWidget and ProductionTabsExWidget." +
+			Log.Write("debug", "AddFactionSuffixExLogic only supports IFactionSpecificWidget, ProductionPaletteWidget and ProductionTabsExWidget. " +
 				$"Type: {widget.GetType().FullName}");
 	}
 
