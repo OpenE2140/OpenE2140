@@ -59,7 +59,8 @@ public class AddFactionSuffixExLogic : ChromeLogic
 			ptw.RefreshCaches();
 		}
 		else
-			throw new InvalidOperationException("AddFactionSuffixExLogic only supports IFactionSpecificWidget");
+			throw new InvalidOperationException("AddFactionSuffixExLogic only supports IFactionSpecificWidget, ProductionPaletteWidget and ProductionTabsExWidget." +
+				$"Type: {widget.GetType().FullName}");
 	}
 
 	private static class ChromeMetricsHelper
