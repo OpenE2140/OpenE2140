@@ -110,10 +110,6 @@ reload-icon:
 		disabled-5: 102, 34, 16, 16
 		disabled-6: 119, 34, 16, 16
 		disabled-7: 136, 34, 16, 16
-		disabled-8: 153, 34, 16, 16
-		disabled-9: 170, 34, 16, 16
-		disabled-10: 187, 34, 16, 16
-		disabled-11: 204, 34, 16, 16
 
 strategic:
 	Inherits: ^Glyphs
@@ -449,10 +445,9 @@ production-icons:
 		aircraft: 68, 68, 16, 16
 		aircraft-disabled: 68, 85, 16, 16
 		aircraft-alert: 68, 102, 16, 16
-		ship: 187, 68, 16, 16
-		ship-disabled: 187, 85, 16, 16
-		ship-alert: 187, 102, 16, 16
-
+		ship: 85, 68, 16, 16
+		ship-disabled: 85, 85, 16, 16
+		ship-alert: 85, 102, 16, 16
 
 command-icons:
 	Inherits: ^Glyphs
