@@ -2,6 +2,9 @@
 	Inherits@1: ^CoreVehicle
 	MustBeDestroyed:
 		RequiredForShortGame: true
+	# MCU has "robotic" voice for both factions
+	Voiced:
+		VoiceSet: UcsVehicleVoice
 	Transforms:
 		Offset: -1, -1
 		DeployBlockedCursor: generic-blocked
