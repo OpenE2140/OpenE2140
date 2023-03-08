@@ -39,6 +39,7 @@ public static class VirtualAssetsBuilder
 	private static readonly Color[] LightOffPalette;
 	private static readonly Color[] PlayerPalette;
 	private static readonly Color[] ShadowsPalette;
+	private static readonly Color[] SmokePalette;
 
 	static VirtualAssetsBuilder()
 	{
@@ -100,6 +101,12 @@ public static class VirtualAssetsBuilder
 		VirtualAssetsBuilder.ShadowsPalette = new Color[256];
 		VirtualAssetsBuilder.ShadowsPalette[253] = Color.FromArgb(0x20000000);
 		VirtualAssetsBuilder.ShadowsPalette[254] = Color.FromArgb(0x40000000);
+
+		VirtualAssetsBuilder.SmokePalette = new Color[256];
+
+		// TODO find right colors
+		for (var i = 0; i < 10; i++)
+			VirtualAssetsBuilder.SmokePalette[i + 1] = Color.FromArgb(i * 8, i * 8, i * 8);
 	}
 
 	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name, IReadOnlyPackage package)
@@ -209,6 +216,9 @@ public static class VirtualAssetsBuilder
 
 							if (sheetFlags.Contains("Shadow"))
 								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.ShadowsPalette, 253, 2, palette, 253, 2, 0, false);
+
+							if (sheetFlags.Contains("Smoke"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.SmokePalette, 0, 256, palette, 0, 256, 0, false);
 
 							if (sheetFlags.Contains("Muzzle"))
 							{

@@ -12,3 +12,6 @@ projectile_heavy_rocket: projectile_heavy_rocket.vspr
 		BlendMode: Additive
 
 missile_trail: missile_trail.vspr
+	idle:
+		Tick: 70
+		BlendMode: Additive

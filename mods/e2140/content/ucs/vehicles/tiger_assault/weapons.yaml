@@ -10,11 +10,10 @@ ucs_vehicles_tiger_assault:
 		Speed: 260
 		Arm: 2
 		Blockable: false
-		ContrailLength: 10
 		Inaccuracy: 128
 		Image: projectile_rocket
 		Palette:
-		#TrailImage: missile_trail
+		TrailImage: missile_trail
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
