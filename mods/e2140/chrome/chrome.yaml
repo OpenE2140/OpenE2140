@@ -495,20 +495,24 @@ sidebar-ucs:
 
 # Main buttons:
 sidebar-production-tab-ucs:
-	Regions:
-		production-tab: 23, 281, 23, 21
+	Inherits: ^Sidebar
+	PanelRegion: 23, 281, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ucs-hover:
-	Regions:
-		production-tab: 23, 231, 23, 21
+	Inherits: ^Sidebar
+	PanelRegion: 23, 231, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ucs-pressed:
-	Regions:
-		production-tab: 23, 306, 23, 21
+	Inherits: ^Sidebar
+	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ucs-pressed-hover:
-	Regions:
-		production-tab: 23, 256, 23, 21
+	Inherits: ^Sidebar
+	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 # Sub buttons:
 sidebar-production-tab-button-ucs:
@@ -651,20 +655,24 @@ sidebar-ed:
 
 # Main buttons:
 sidebar-production-tab-ed:
-	Regions:
-		production-tab: 23, 281, 23, 21
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 281, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ed-hover:
-	Regions:
-		production-tab: 23, 231, 23, 21
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 231, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ed-pressed:
-	Regions:
-		production-tab: 23, 306, 23, 21
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 sidebar-production-tab-ed-pressed-hover:
-	Regions:
-		production-tab: 23, 256, 23, 21
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
 
 # Sub buttons:
 sidebar-production-tab-button-ed:

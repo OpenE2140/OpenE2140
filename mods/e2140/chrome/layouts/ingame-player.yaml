@@ -441,6 +441,7 @@ Container@PLAYER_WIDGETS:
 					Height: 23
 					Children:
 						ProductionTypeButton@Building:
+							Logic: AddFactionSuffixLogic
 							X: 0
 							Y: 0
 							Width: 23
@@ -457,6 +458,7 @@ Container@PLAYER_WIDGETS:
 									Y: 3
 									ImageCollection: production-icons
 						ProductionTypeButton@Vehicle:
+							Logic: AddFactionSuffixLogic
 							X: 87
 							Y: 0
 							Width: 23
