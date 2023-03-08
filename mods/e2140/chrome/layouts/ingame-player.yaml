@@ -453,7 +453,7 @@ Container@PLAYER_WIDGETS:
 							Children:
 								Image@ICON:
 									Logic: AddFactionSuffixLogic
-									X: 3
+									X: 2
 									Y: 3
 									ImageCollection: production-icons
 						ProductionTypeButton@Vehicle:
@@ -469,7 +469,7 @@ Container@PLAYER_WIDGETS:
 							Children:
 								Image@ICON:
 									Logic: AddFactionSuffixLogic
-									X: 3
+									X: 2
 									Y: 3
 									ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
