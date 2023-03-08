@@ -14,6 +14,8 @@ ucs_vehicles_tiger_assault:
 		Inaccuracy: 128
 		Image: projectile_rocket
 		Palette:
+		#TrailImage: missile_trail
+		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
 		HorizontalRateOfTurn: 20

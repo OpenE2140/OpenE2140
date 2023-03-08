@@ -10,3 +10,5 @@ projectile_heavy_rocket: projectile_heavy_rocket.vspr
 		InterpolatedFacings: 64
 	explode:
 		BlendMode: Additive
+
+missile_trail: missile_trail.vspr
