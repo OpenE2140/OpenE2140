@@ -23,10 +23,12 @@ namespace OpenRA.Mods.OpenE2140.Widgets;
 /// Modifies <see cref="ProductionPaletteWidget"/> to make it possible to change <see cref="ProductionPaletteWidget.ClockAnimation"/>
 /// based on local player's faction.
 /// </summary>
-public class ProductionPaletteExWidget : ProductionPaletteWidget
+public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecificWidget
 {
 	private readonly World world;
 	private readonly ObjectFieldHelper<string> clockAnimationField;
+
+	public string Identifier = "";
 
 	[ObjectCreator.UseCtorAttribute]
 	public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)
@@ -47,4 +49,10 @@ public class ProductionPaletteExWidget : ProductionPaletteWidget
 
 		base.Initialize(args);
 	}
+
+	// TODO swap after switching to https://github.com/OpenRA/OpenRA/pull/20735
+	//string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TextColor), nameof(this.ReadyTextAltColor) };
+	string[] IFactionSpecificWidget.FieldsToOverride => Array.Empty<string>();
+
+	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

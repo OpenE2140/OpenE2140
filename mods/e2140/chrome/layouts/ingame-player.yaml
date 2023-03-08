@@ -485,6 +485,7 @@ Container@PLAYER_WIDGETS:
 					X: 17
 					Y: 332
 					TooltipContainer: TOOLTIP_CONTAINER
+					Identifier: ProductionText
 					Columns: 3
 					Width: 200
 					IconSize: 59, 41
