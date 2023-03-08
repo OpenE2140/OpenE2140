@@ -54,7 +54,7 @@ ChromeLayout:
 	common|chrome/settings-hotkeys.yaml
 	common|chrome/settings-input.yaml
 	common|chrome/text-notifications.yaml
-	common|chrome/tooltips.yaml
+	e2140|chrome/layouts/tooltips.yaml
 
 ChromeMetrics:
 	common|metrics.yaml

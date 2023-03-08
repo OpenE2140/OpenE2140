@@ -389,14 +389,6 @@ dropdown-separators:
 separator:
 	Inherits: button
 
-sidebar-bits:
-	Inherits: ^Glyphs
-	Regions:
-		production-tooltip-time: 136, 51, 16, 16
-		production-tooltip-power: 102, 51, 16, 16
-		production-tooltip-cost: 68, 51, 16, 16
-		indicator-muted: 221, 17, 26, 24
-
 order-icons:
 	Inherits: ^Glyphs
 	Regions:
@@ -613,6 +605,14 @@ production-icons-ucs:
 		ship-disabled: 187, 85, 16, 16
 		ship-alert: 187, 102, 16, 16
 
+sidebar-bits-ucs:
+	Inherits: ^Glyphs
+	Regions:
+		production-tooltip-time: 187, 51, 16, 16
+		production-tooltip-power: 153, 51, 16, 16
+		production-tooltip-cost: 137, 51, 16, 16
+		indicator-muted: 221, 17, 26, 24
+
 # ED
 
 # Command bar:
@@ -760,3 +760,11 @@ production-icons-ed:
 		ship: 85, 68, 16, 16
 		ship-disabled: 85, 85, 16, 16
 		ship-alert: 85, 102, 16, 16
+
+sidebar-bits-ed:
+	Inherits: ^Glyphs
+	Regions:
+		production-tooltip-time: 170, 51, 16, 16
+		production-tooltip-power: 102, 51, 16, 16
+		production-tooltip-cost: 68, 51, 16, 16
+		indicator-muted: 221, 17, 26, 24
