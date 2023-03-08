@@ -34,7 +34,15 @@ public class OpenE2140SpriteSequenceLoader : TilesetSpecificSpriteSequenceLoader
 		return base.ParseSequences(modData, tileSet, cache, node);
 	}
 
-	public override ISpriteSequence CreateSequence(ModData modData, string tileset, SpriteCache cache, string image, string sequence, MiniYaml data, MiniYaml defaults)
+	public override ISpriteSequence CreateSequence(
+		ModData modData,
+		string tileset,
+		SpriteCache cache,
+		string image,
+		string sequence,
+		MiniYaml data,
+		MiniYaml defaults
+	)
 	{
 		return new TilesetSpecificSpriteSequence(modData, tileset, cache, this, image, sequence, data, defaults);
 	}

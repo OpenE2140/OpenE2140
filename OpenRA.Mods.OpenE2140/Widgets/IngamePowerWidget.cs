@@ -29,7 +29,7 @@ public class IngamePowerWidget : WorldLabelWithTooltipWidget, IFactionSpecificWi
 	{
 	}
 
-	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.NormalPowerColor), nameof(this.CriticalPowerColor), nameof(TextColor) };
+	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.NormalPowerColor), nameof(this.CriticalPowerColor), nameof(LabelWidget.TextColor) };
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

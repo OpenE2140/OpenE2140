@@ -22,7 +22,8 @@ public class AudioClassifier
 
 	public AudioClassifier(IReadOnlyFileSystem fileSystem)
 	{
-		if (fileSystem is null) throw new ArgumentNullException(nameof(fileSystem));
+		if (fileSystem is null)
+			throw new ArgumentNullException(nameof(fileSystem));
 
 		var yamlConfig = MiniYaml.FromStream(fileSystem.Open($"content/core/audio/audio_classifications.yaml")).First().Value;
 		this.audioClassifications = new AudioClassifications(yamlConfig);
@@ -47,7 +48,7 @@ public class AudioClassifier
 		public AudioClassifications(MiniYaml yaml)
 		{
 			FieldLoader.Load(this, yaml);
-			FactionVariantSounds = ExpandFactionVariantSounds(FactionVariantSounds).ToHashSet();
+			this.FactionVariantSounds = AudioClassifications.ExpandFactionVariantSounds(this.FactionVariantSounds).ToHashSet();
 		}
 
 		private static IEnumerable<string> ExpandFactionVariantSounds(IEnumerable<string> factionVariantSounds)
@@ -63,9 +64,7 @@ public class AudioClassifier
 				var lastSound = match.Groups[2].Success ? int.Parse(match.Groups[2].Value) : firstSound;
 
 				for (var i = firstSound; i <= lastSound; i++)
-				{
 					yield return $"{i}.smp";
-				}
 			}
 		}
 	}

@@ -14,7 +14,6 @@
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
-using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;

@@ -11,7 +11,6 @@
 
 #endregion
 
-
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
@@ -20,8 +19,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 [Desc("Custom trait based on RenderSprites that generates FactionImages from actor name")]
 public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 {
-	[Desc("List of factions to generate faction images for. Faction image is not generated for faction, which name is prefix of actor's name" +
-		"(e.g. 'ucs_vehicles_tiger_assault' is UCS unit by default, so it's considered as default.)")]
+	[Desc(
+		"List of factions to generate faction images for. Faction image is not generated for faction, which name is prefix of actor's name"
+		+ "(e.g. 'ucs_vehicles_tiger_assault' is UCS unit by default, so it's considered as default.)"
+	)]
 	public readonly List<string> Factions = new List<string>();
 
 	public void RulesetLoaded(Ruleset rules, ActorInfo info)
@@ -31,6 +32,7 @@ public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 
 		var existingFactions = rules.Actors[SystemActors.World].TraitInfos<FactionInfo>().Select(f => f.InternalName);
 		var unknownFactions = this.Factions.Where(f => !existingFactions.Contains(f)).ToArray();
+
 		if (unknownFactions.Any())
 			throw new YamlException($"Unknown factions: {string.Join(", ", unknownFactions)}");
 
@@ -46,6 +48,7 @@ public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 				continue;
 
 			var factionImageName = $"{info.Name}.{faction}";
+
 			if (!rules.Sequences.HasSequence(factionImageName))
 				continue;
 

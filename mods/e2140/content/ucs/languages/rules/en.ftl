@@ -1,3 +1,3 @@
 ## World
 options-starting-units =
-    .default = Default
+	.default = Default

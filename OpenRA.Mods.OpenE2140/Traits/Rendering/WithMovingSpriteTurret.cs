@@ -34,12 +34,13 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 	private int current;
 	private int frequency;
 
-	public WithMovingSpriteTurret(Actor self, WithMovingSpriteTurretInfo info) : base(self, info)
+	public WithMovingSpriteTurret(Actor self, WithMovingSpriteTurretInfo info)
+		: base(self, info)
 	{
 		this.info = info;
 		this.mobile = self.Trait<Mobile>();
 		this.body = self.Trait<BodyOrientation>();
-		this.turreted = self.TraitsImplementing<Turreted>().First(turreted  => turreted.Name == this.info.Turret);
+		this.turreted = self.TraitsImplementing<Turreted>().First(turreted => turreted.Name == this.info.Turret);
 		this.frequency = info.Frequency;
 	}
 
