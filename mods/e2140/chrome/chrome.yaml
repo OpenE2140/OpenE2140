@@ -415,40 +415,6 @@ order-icons:
 		selfdestruct-disabled: 324, 26, 26, 26
 		selfdestruct-active: 324, 52, 26, 26
 
-power-icons:
-	Inherits: ^Glyphs
-	Regions:
-		power-normal: 102, 51, 16, 16
-		power-critical: 119, 51, 16, 16
-
-cash-icons:
-	Inherits: ^Glyphs
-	Regions:
-		cash-normal: 68, 51, 16, 16
-		cash-critical: 85, 51, 16, 16
-
-production-icons:
-	Inherits: ^Glyphs
-	Regions:
-		building: 0, 68, 16, 16
-		building-disabled: 0, 85, 16, 16
-		building-alert: 0, 102, 16, 16
-		defense: 17, 68, 16, 16
-		defense-disabled: 17, 85, 16, 16
-		defense-alert: 17, 102, 16, 16
-		infantry: 34, 68, 16, 16
-		infantry-disabled: 34, 85, 16, 16
-		infantry-alert: 34, 102, 16, 16
-		vehicle: 51, 68, 16, 16
-		vehicle-disabled: 51, 85, 16, 16
-		vehicle-alert: 51, 102, 16, 16
-		aircraft: 68, 68, 16, 16
-		aircraft-disabled: 68, 85, 16, 16
-		aircraft-alert: 68, 102, 16, 16
-		ship: 85, 68, 16, 16
-		ship-disabled: 85, 85, 16, 16
-		ship-alert: 85, 102, 16, 16
-
 command-icons:
 	Inherits: ^Glyphs
 	Regions:
@@ -584,7 +550,6 @@ production-tabs-decorations-ucs:
 		left-hover: 0, 307, 20, 20
 
 # Order buttons:
-
 sidebar-order-button-ucs:
 	Inherits: ^Sidebar
 	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
@@ -609,10 +574,44 @@ sidebar-order-button-ucs-pressed-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
 
+# Miscellaneous:
+power-icons-ucs:
+	Inherits: ^Glyphs
+	Regions:
+		power-normal: 153, 51, 16, 16
+		power-critical: 119, 51, 16, 16
+
+cash-icons-ucs:
+	Inherits: ^Glyphs
+	Regions:
+		cash-normal: 136, 51, 16, 16
+		cash-critical: 85, 51, 16, 16
+
+production-icons-ucs:
+	Inherits: ^Glyphs
+	Regions:
+		building: 102, 68, 16, 16
+		building-disabled: 102, 85, 16, 16
+		building-alert: 102, 102, 16, 16
+		defense: 119, 68, 16, 16
+		defense-disabled: 119, 85, 16, 16
+		defense-alert: 119, 102, 16, 16
+		infantry: 136, 68, 16, 16
+		infantry-disabled: 136, 85, 16, 16
+		infantry-alert: 136, 102, 16, 16
+		vehicle: 153, 68, 16, 16
+		vehicle-disabled: 153, 85, 16, 16
+		vehicle-alert: 153, 102, 16, 16
+		aircraft: 170, 68, 16, 16
+		aircraft-disabled: 170, 85, 16, 16
+		aircraft-alert: 170, 102, 16, 16
+		ship: 187, 68, 16, 16
+		ship-disabled: 187, 85, 16, 16
+		ship-alert: 187, 102, 16, 16
+
 # ED
 
 # Command bar:
-
 commandbar-ed:
 	Inherits: ^SidebarEd
 	Regions:
@@ -699,7 +698,6 @@ production-tabs-decorations-ed:
 		left-hover: 0, 307, 20, 20
 
 # Order buttons:
-
 sidebar-order-button-ed:
 	Inherits: ^SidebarEd
 	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
@@ -723,3 +721,38 @@ sidebar-order-button-ed-pressed:
 sidebar-order-button-ed-pressed-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+
+# Miscellaneous:
+power-icons-ed:
+	Inherits: ^Glyphs
+	Regions:
+		power-normal: 102, 51, 16, 16
+		power-critical: 119, 51, 16, 16
+
+cash-icons-ed:
+	Inherits: ^Glyphs
+	Regions:
+		cash-normal: 68, 51, 16, 16
+		cash-critical: 85, 51, 16, 16
+
+production-icons-ed:
+	Inherits: ^Glyphs
+	Regions:
+		building: 0, 68, 16, 16
+		building-disabled: 0, 85, 16, 16
+		building-alert: 0, 102, 16, 16
+		defense: 17, 68, 16, 16
+		defense-disabled: 17, 85, 16, 16
+		defense-alert: 17, 102, 16, 16
+		infantry: 34, 68, 16, 16
+		infantry-disabled: 34, 85, 16, 16
+		infantry-alert: 34, 102, 16, 16
+		vehicle: 51, 68, 16, 16
+		vehicle-disabled: 51, 85, 16, 16
+		vehicle-alert: 51, 102, 16, 16
+		aircraft: 68, 68, 16, 16
+		aircraft-disabled: 68, 85, 16, 16
+		aircraft-alert: 68, 102, 16, 16
+		ship: 85, 68, 16, 16
+		ship-disabled: 85, 85, 16, 16
+		ship-alert: 85, 102, 16, 16

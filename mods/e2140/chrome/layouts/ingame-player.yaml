@@ -410,6 +410,7 @@ Container@PLAYER_WIDGETS:
 							TooltipTemplate: SIMPLE_TOOLTIP
 							Children:
 								Image@POWER_ICON:
+									Logic: AddFactionSuffixLogic
 									X: 0 - 18
 									Y: 3
 									ImageCollection: power-icons
@@ -427,6 +428,7 @@ Container@PLAYER_WIDGETS:
 							Text: {0}
 							Children:
 								Image@CASH_ICON:
+									Logic: AddFactionSuffixLogic
 									X: PARENT_RIGHT
 									Y: 3
 									ImageCollection: cash-icons
@@ -449,6 +451,7 @@ Container@PLAYER_WIDGETS:
 							Key: ProductionTypeBuilding
 							Children:
 								Image@ICON:
+									Logic: AddFactionSuffixLogic
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
@@ -464,6 +467,7 @@ Container@PLAYER_WIDGETS:
 							Key: ProductionTypeVehicle
 							Children:
 								Image@ICON:
+									Logic: AddFactionSuffixLogic
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
