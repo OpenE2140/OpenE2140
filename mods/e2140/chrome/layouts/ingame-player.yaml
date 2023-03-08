@@ -500,7 +500,8 @@ Container@PLAYER_WIDGETS:
 					PaletteWidget: PRODUCTION_PALETTE
 					TypesContainer: PRODUCTION_TYPES
 					BackgroundContainer: PRODUCTION_BACKGROUND
-					ArrowButton: 
+					Identifier: TabNumber
+					ArrowButton:
 					TabWidth: 28
 					ArrowWidth: 20
 					TabButton: sidebar-production-tab-button

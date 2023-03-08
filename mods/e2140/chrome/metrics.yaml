@@ -5,3 +5,7 @@ Metrics:
 	MoneyBinCriticalPowerColor: ffff00
 	MoneyBinNormalPowerColor-ucs: ad7131
 	MoneyBinNormalPowerColor-ed: 009e00
+	TabNumberColor-ucs: ad7131
+	TabNumberDoneColor-ucs: fdc181
+	TabNumberColor-ed: 009e00
+	TabNumberDoneColor-ed: 50ee50

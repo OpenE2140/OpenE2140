@@ -45,9 +45,11 @@ public class AddFactionSuffixExLogic : ChromeLogic
 					fieldInfo.SetValue(fsw, result);
 			}
 		}
-		else if (widget is ProductionPaletteWidget ppw)
+
+		if (widget is ProductionPaletteWidget ppw)
 			ppw.Parent.Get<BackgroundWidget>("ICON_TEMPLATE").Background += suffix;
-		else if (widget is ProductionTabsExWidget ptw)
+
+		if (widget is ProductionTabsExWidget ptw)
 		{
 			if (ptw.ArrowButton != null)
 				ptw.ArrowButton += suffix;
@@ -57,14 +59,6 @@ public class AddFactionSuffixExLogic : ChromeLogic
 
 			ptw.Decorations += suffix;
 			ptw.RefreshCaches();
-		}
-		else
-		{
-			Log.Write(
-				"debug",
-				"AddFactionSuffixExLogic only supports IFactionSpecificWidget, ProductionPaletteWidget and ProductionTabsExWidget. "
-				+ $"Type: {widget.GetType().FullName}"
-			);
 		}
 	}
 
