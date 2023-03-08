@@ -15,3 +15,9 @@ ucs_mcu_heavy_tech:
 	icon:
 		Filename: SPRI1.MIX
 		Start: 168
+
+ucs_mcu_heavy_tech.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 168

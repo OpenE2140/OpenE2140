@@ -15,3 +15,9 @@ ucs_mcu_prod_center:
 	icon:
 		Filename: SPRI1.MIX
 		Start: 166
+
+ucs_mcu_prod_center.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 166
