@@ -15,20 +15,12 @@ ucs_vehicles_raptor_ad:
 		Speed: 90
 		TurnSpeed: 32
 	RevealsShroud:
-		Range: 3c0
+		Range: 3c768
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_ad
 		Recoil: 0
 		RecoilRecovery: 0
-		LocalOffset: 100,-200,0
-		LocalYaw: 0, 0
-		MuzzlePalette:
-	Armament@SECONDARY:
-		Weapon: ucs_vehicles_raptor_ad
-		FireDelay: 20
-		Recoil: 0
-		RecoilRecovery: 0
-		LocalOffset: 100,200,0
+		LocalOffset: 100,-200,0, 100,200,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
 	WithMoveSound:
