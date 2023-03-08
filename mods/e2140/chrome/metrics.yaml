@@ -1,7 +1,7 @@
 Metrics:
 	InfiniteOffset: 0, -2
-	CashCounterLabelTextColor-ed: 009e00
-	CashCounterLabelTextColor-ucs: ad7131
-	CriticalPowerColor: ffff00
-	NormalPowerColor-ucs: ad7131
-	NormalPowerColor-ed: 009e00
+	MoneyBinTextColor-ed: 009e00
+	MoneyBinTextColor-ucs: ad7131
+	MoneyBinCriticalPowerColor: ffff00
+	MoneyBinNormalPowerColor-ucs: ad7131
+	MoneyBinNormalPowerColor-ed: 009e00

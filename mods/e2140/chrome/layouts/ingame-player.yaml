@@ -391,8 +391,9 @@ Container@PLAYER_WIDGETS:
 					Width: 169
 					Height: 21
 					Children:
-						LabelWithTooltip@GAME_TIMER:
-							Logic: GameTimerLogic
+						FactionLabel@GAME_TIMER:
+							Logic: GameTimerLogic, AddFactionSuffixExLogic
+							Identifier: MoneyBin
 							X: 0
 							Y: 0
 							Width: PARENT_RIGHT
@@ -401,6 +402,7 @@ Container@PLAYER_WIDGETS:
 							Font: Small
 						IngamePower@POWER:
 							Logic: IngamePowerLogic, AddFactionSuffixExLogic
+							Identifier: MoneyBin
 							X: 18
 							Y: 0
 							Width: 68
@@ -417,14 +419,13 @@ Container@PLAYER_WIDGETS:
 									ImageName: power-normal
 						FactionLabel@CASH:
 							Logic: IngameCashCounterLogic, AddFactionSuffixExLogic
-							Identifier: CashCounterLabel
+							Identifier: MoneyBin
 							X: PARENT_RIGHT - WIDTH - 18
 							Y: 0
 							Width: 68
 							Height: 21
 							Align: Right
 							Font: Small
-							TextColor: ad7131
 							Text: {0}
 							Children:
 								Image@CASH_ICON:
