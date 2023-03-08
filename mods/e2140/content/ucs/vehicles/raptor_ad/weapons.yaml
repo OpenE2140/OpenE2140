@@ -10,11 +10,12 @@ ucs_vehicles_raptor_ad:
 		Speed: 260
 		Arm: 1
 		Blockable: false
-		ContrailLength: 10
 		Inaccuracy: 128
 		Image: projectile_rocket
 		Palette:
-		TrailPalette:
+        TrailImage: missile_trail
+        TrailInterval: 0
+        TrailPalette:
 		Shadow: True
 		HorizontalRateOfTurn: 20
 		RangeLimit: 6c0
