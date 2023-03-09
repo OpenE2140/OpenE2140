@@ -2,7 +2,9 @@
 
 Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on [OpenRA Mod SDK](https://github.com/OpenRA/OpenRAModSDK).
 
-Work in progress. Most recent video preview is here: [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h).
+Work in progress. Video previews showcasing latest development:
+- [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h)
+- [OpenE2140 - preview #3 (big battle)](https://dalek.zone/w/oY9zfn6UowchnsuSsT96Fn)
 
 ## Development team
 
@@ -12,11 +14,13 @@ Work in progress. Most recent video preview is here: [OpenE2140 - preview #2](ht
 ## Contributors
 
 - [Dzierzan](https://github.com/Dzierzan)
-	* Custom artwork for faction sidebars and command bars,
+	* custom artwork for faction sidebars and command bars,
 	* main menu artwork,
 	* reskinned glyphs,
 	* repair blocked cursor,
 	* custom resources sprites (work in progress).
+- Disembo
+	* brand new assets (animations mostly)
 
 ## Special thanks!
 
@@ -27,7 +31,6 @@ Special thanks to original development team at Reality Pump Studios for making E
 ## Contributing
 
 At the moment, we're looking for these people:
-- an artist (mostly for new UI stuff)
-- video editor (for occasional preview videos)
+- video editor (for occasional preview videos like the ones above)
 
 Contact us over at [OpenRA's Discord server](https://discord.openra.net/).
