@@ -100,3 +100,7 @@ Cursors:
 		powerdown:
 			Start: 0
 			Length: 5
+
+	content/core/assets/guardblocked.png:
+		guard-blocked:
+			Start: 0
