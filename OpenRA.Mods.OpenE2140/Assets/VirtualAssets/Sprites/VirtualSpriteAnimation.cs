@@ -11,18 +11,18 @@
 
 #endregion
 
-using OpenRA.Primitives;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets.Sprites;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
-
-public class VirtualSpriteFrame
+public class VirtualSpriteAnimation
 {
-	public readonly Rectangle Bounds;
-	public readonly byte[] Pixels;
+	public readonly string Name;
+	public readonly byte Facings;
+	public readonly VirtualSpriteFrame[] Frames;
 
-	public VirtualSpriteFrame(Rectangle bounds, byte[] pixels)
+	public VirtualSpriteAnimation(string name, byte facings, VirtualSpriteFrame[] frames)
 	{
-		this.Bounds = bounds;
-		this.Pixels = pixels;
+		this.Name = name;
+		this.Facings = facings;
+		this.Frames = frames;
 	}
 }

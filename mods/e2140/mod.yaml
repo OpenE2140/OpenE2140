@@ -46,7 +46,7 @@ AssetBrowser:
 	VideoExtensions: .flc
 
 ModelSequenceFormat: PlaceholderModelSequence
-SpriteSequenceFormat: OpenE2140SpriteSequence
+SpriteSequenceFormat: TilesetSpecificSpriteSequence
 
 DefaultOrderGenerator: UnitOrderGenerator
 

@@ -1,9 +1,24 @@
-ucs_elevator: elevator_ucs.vspr
+ucs_elevator:
 	opening:
 		Tick: 100
+		Filename: elevator_ucs.vspr
+		Start: 1
+		Length: 2
 	open:
 		Offset: 0, -8
+		Filename: elevator_ucs.vspr
+		Start: 3
 	overlay:
 		Offset: 0, 22
+		Filename: elevator_ucs.vspr
+		Start: 4
 	elevator:
 		Offset: -3, -1
+		Filename: elevator_ucs.vspr
+		Start: 7
+	closed:
+		Filename: elevator_ucs.vspr
+	closing:
+		Filename: elevator_ucs.vspr
+		Start: 5
+		Length: 2

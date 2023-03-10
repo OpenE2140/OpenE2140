@@ -1,9 +1,17 @@
-ed_buildings_tech_house: building_tech_house.vspr
+ed_buildings_tech_house:
 	Defaults:
-		# Offset: -22, -54, 0
+		Filename: building_tech_house.vspr
 		Offset: -36, -54, 0
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
 
-ed_mcu_tech_house: vehicle_mcu.vspr
+ed_mcu_tech_house:
+	Inherits: shared_mcu
 	icon:
 		Filename: SPRI0.MIX
 		Start: 167

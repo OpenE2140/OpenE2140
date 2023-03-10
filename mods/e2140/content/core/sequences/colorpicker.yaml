@@ -1,1 +1,4 @@
-colorpicker: vehicle_mcu.vspr
+colorpicker:
+	idle:
+		Filename: vehicle_mcu.vspr
+		Facings: -16

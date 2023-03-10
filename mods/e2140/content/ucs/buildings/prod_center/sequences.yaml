@@ -1,8 +1,17 @@
-ucs_buildings_prod_center: building_prod_center.vspr
+ucs_buildings_prod_center:
 	Defaults:
+		Filename: building_prod_center.vspr
 		Offset: -32, -22, 0
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
 
-ucs_mcu_prod_center: vehicle_mcu.vspr
+ucs_mcu_prod_center:
+	Inherits: shared_mcu
 	icon:
 		Filename: SPRI1.MIX
 		Start: 166

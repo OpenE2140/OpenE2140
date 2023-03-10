@@ -1,8 +1,17 @@
-ucs_buildings_heavy_tech: building_heavy_tech.vspr
+ucs_buildings_heavy_tech:
 	Defaults:
+		Filename: building_heavy_tech.vspr
 		Offset: -22, -54, 0
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
 
-ucs_mcu_heavy_tech: vehicle_mcu.vspr
+ucs_mcu_heavy_tech:
+	Inherits: shared_mcu
 	icon:
 		Filename: SPRI1.MIX
 		Start: 168

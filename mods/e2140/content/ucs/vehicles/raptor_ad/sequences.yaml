@@ -1,4 +1,12 @@
-ucs_vehicles_raptor_ad: vehicle_raptor_ad.vspr
+ucs_vehicles_raptor_ad:
+	idle:
+		Filename: vehicle_raptor_ad.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_raptor_ad.vspr
+		Start: 16
+		Length: 6
+		Facings: -8
 	icon:
 		Filename: SPRI1.MIX
 		Start: 130
@@ -8,7 +16,7 @@ ucs_vehicles_raptor_ad: vehicle_raptor_ad.vspr
 	#	Start: 130
 
 # TODO: remove after PR #20705
-ucs_vehicles_raptor_ad.ed: vehicle_mech.vspr
+ucs_vehicles_raptor_ad.ed:
 	Inherits: ucs_vehicles_raptor_ad
 	icon:
 		Filename: SPRI0.MIX

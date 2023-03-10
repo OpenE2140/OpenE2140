@@ -1,9 +1,20 @@
-ed_elevator: elevator_ed.vspr
+ed_elevator:
+	Defaults:
+		Filename: elevator_ed.vspr
 	opening:
 		Tick: 100
+		Start: 1
+		Length: 2
 	open:
 		Offset: 0, 0
+		Start: 3
 	overlay:
 		Offset: 2, 17
+		Start: 4
 	elevator:
 		Offset: 0, 1
+		Start: 7
+	closed:
+	closing:
+		Start: 5
+		Length: 2

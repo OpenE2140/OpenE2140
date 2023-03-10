@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets.Sprites;
 
 [UsedImplicitly]
 public class VirtualSpriteLoader : ISpriteLoader

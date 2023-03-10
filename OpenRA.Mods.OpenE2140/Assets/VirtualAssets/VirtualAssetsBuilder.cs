@@ -14,8 +14,8 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using OpenRA.FileSystem;
-using OpenRA.Mods.Common.UpdateRules;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
+using OpenRA.Mods.OpenE2140.Assets.VirtualAssets.Sprites;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
@@ -25,6 +25,7 @@ public static class VirtualAssetsBuilder
 {
 	public const string Identifier = "VirtualSpriteSheet";
 	private const string Extension = ".vspr";
+
 	public static readonly Dictionary<string, VirtualSpriteSheet> Cache = new Dictionary<string, VirtualSpriteSheet>();
 
 	private record FrameInfo(int Frame, bool FlipX);
@@ -109,13 +110,14 @@ public static class VirtualAssetsBuilder
 			VirtualAssetsBuilder.SmokePalette[i + 1] = Color.FromArgb(i * 8, i * 8, i * 8);
 	}
 
-	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name, IReadOnlyPackage package)
+	public static Dictionary<string, Stream> BuildAssets(IReadOnlyFileSystem? fileSystem, string name)
 	{
 		var virtualAssets = new Dictionary<string, Stream>();
 
 		if (fileSystem == null || !fileSystem.TryOpen(name, out var yamlStream))
 			return virtualAssets;
 
+		// TODO unhardcode .MIX
 		var mixName = Path.GetFileName(name[..^VirtualAssetsPackage.Extension.Length]);
 
 		if (mixName.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
@@ -129,38 +131,6 @@ public static class VirtualAssetsBuilder
 			throw new Exception("Not supported!");
 
 		return virtualAssets;
-	}
-
-	public static void BuildSequences(MiniYamlNode node)
-	{
-		if (node.Value.Value == null || !node.Value.Value.EndsWith(VirtualAssetsBuilder.Extension))
-			return;
-
-		var spriteSheet = VirtualAssetsBuilder.Cache[node.Value.Value[..^VirtualAssetsBuilder.Extension.Length]];
-
-		var offset = 0;
-
-		foreach (var animation in spriteSheet.Animations)
-		{
-			var sequenceNode = node.Value.Nodes.FirstOrDefault(n => n.Key == animation.Name);
-
-			if (sequenceNode == null)
-				node.Value.Nodes.Add(sequenceNode = new MiniYamlNode(animation.Name, ""));
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Filename"))
-				sequenceNode.AddNode("Filename", node.Value.Value);
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Start"))
-				sequenceNode.AddNode("Start", offset);
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Length"))
-				sequenceNode.AddNode("Length", animation.Frames.Length / animation.Facings);
-
-			if (sequenceNode.Value.Nodes.All(n => n.Key != "Facings"))
-				sequenceNode.AddNode("Facings", -animation.Facings);
-
-			offset += animation.Frames.Length;
-		}
 	}
 
 	private static byte[] BuildSpriteSheet(Mix mix, MiniYamlNode sheetNode)

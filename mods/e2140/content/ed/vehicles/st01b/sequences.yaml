@@ -1,4 +1,12 @@
-ed_vehicles_st01b: vehicle_tank_small.vspr
+ed_vehicles_st01b:
+	idle:
+		Filename: vehicle_tank_small.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_tank_small.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
 	turret:
 		Filename: turret_st_01b.vspr
 		Facings: -16
@@ -6,7 +14,3 @@ ed_vehicles_st01b: vehicle_tank_small.vspr
 	icon:
 		Filename: SPRI0.MIX
 		Start: 131
-
-projectile_cannon: projectile_cannon.vspr
-	explode:
-		BlendMode: Additive

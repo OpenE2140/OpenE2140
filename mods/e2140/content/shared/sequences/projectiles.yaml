@@ -1,17 +1,47 @@
-projectile_rocket: projectile_rocket.vspr
+projectile_rocket:
+	Defaults:
+		Filename: projectile_rocket.vspr
 	idle:
 		InterpolatedFacings: 64
+		Facings: -16
 	explode:
 		BlendMode: Additive
 		Offset: 0, -16, 0
+		Start: 16
+		Length: 9
 
-projectile_heavy_rocket: projectile_heavy_rocket.vspr
+projectile_cannon:
+	Defaults:
+		Filename: projectile_cannon.vspr
 	idle:
-		InterpolatedFacings: 64
 	explode:
 		BlendMode: Additive
+		Start: 1
+		Length: 5
 
-missile_trail: missile_trail.vspr
+projectile_heavy_rocket:
+	Defaults:
+		Filename: projectile_heavy_rocket.vspr
+	idle:
+		InterpolatedFacings: 64
+		Facings: -16
+	explode:
+		BlendMode: Additive
+		Start: 16
+		Length: 8
+
+missile_trail:
 	idle:
 		Tick: 70
 		BlendMode: Additive
+		Filename: missile_trail.vspr
+		Length: 3
+
+projectile_plasma:
+	Defaults:
+		Filename: projectile_plasma.vspr
+	idle:
+	explode:
+		BlendMode: Additive
+		Start: 1
+		Length: 5

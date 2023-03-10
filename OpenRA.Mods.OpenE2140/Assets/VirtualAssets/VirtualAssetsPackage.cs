@@ -29,7 +29,7 @@ public class VirtualAssetsPackage : IReadOnlyPackage
 	{
 		this.Name = name;
 
-		this.contents = VirtualAssetsBuilder.BuildAssets(fileSystem, name, this);
+		this.contents = VirtualAssetsBuilder.BuildAssets(fileSystem, name);
 	}
 
 	public Stream? GetStream(string filename)

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="OpenE2140 Code Style" ToolsVersion="14.0">
+
+    <IncludeAll Action="Warning" />
+
+    <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp" RuleNamespace="Microsoft.CodeAnalysis.CSharp">
+        <Rule Id="CS1591" Action="None" /><!-- Missing XML comment for publicly visible type or member. -->
+        <Rule Id="IDE0040" Action="None" /><!-- Accessibility modifiers required -->
+    </Rules>
+</RuleSet>

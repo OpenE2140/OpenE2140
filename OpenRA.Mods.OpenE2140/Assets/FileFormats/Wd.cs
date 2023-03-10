@@ -25,7 +25,7 @@ public class Wd : IReadOnlyPackage
 
 	private readonly Dictionary<string, WdEntry> index = new Dictionary<string, WdEntry>();
 
-	public Wd(Stream stream, string filename, IReadOnlyFileSystem? fileSystem)
+	public Wd(Stream stream, string filename)
 	{
 		this.Name = filename;
 

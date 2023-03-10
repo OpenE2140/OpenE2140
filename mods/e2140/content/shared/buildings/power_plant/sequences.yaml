@@ -1,13 +1,22 @@
-shared_buildings_power_plant: building_power_plant.vspr
+shared_buildings_power_plant:
 	Defaults:
+		Filename: building_power_plant.vspr
 		Offset: -10, -20, 0
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
+	addon:
+		Start: 4
+	addon_damaged:
+		Start: 5
 
-shared_mcu_power_plant: vehicle_mcu.vspr
+shared_mcu_power_plant:
+	Inherits: shared_mcu
+	# TODO remove this!!! We only need faction specific variants!
 	icon:
 		Filename: SPRI1.MIX
-		Start: 183
-
-shared_mcu_power_plant.ed: vehicle_mcu.vspr
-	icon:
-		Filename: SPRI0.MIX
 		Start: 183

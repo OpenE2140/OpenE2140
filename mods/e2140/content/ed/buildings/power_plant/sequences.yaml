@@ -1,0 +1,5 @@
+﻿shared_mcu_power_plant.ed:
+	Inherits: shared_mcu_power_plant
+	icon:
+		Filename: SPRI0.MIX
+		Start: 183
