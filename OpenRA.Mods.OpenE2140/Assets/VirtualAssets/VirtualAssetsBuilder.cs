@@ -113,12 +113,14 @@ public static class VirtualAssetsBuilder
 	{
 		var virtualAssets = new Dictionary<string, Stream>();
 
-		if (fileSystem == null || !fileSystem.TryOpen($"virtualassets/{name}.yaml", out var yamlStream))
+		if (fileSystem == null || !fileSystem.TryOpen(name, out var yamlStream))
 			return virtualAssets;
 
-		if (name.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
+		var mixName = Path.GetFileName(name[..^VirtualAssetsPackage.Extension.Length]);
+
+		if (mixName.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
 		{
-			var mix = new Mix(package.GetStream(name));
+			var mix = new Mix(fileSystem.Open(mixName));
 
 			foreach (var node in MiniYaml.FromStream(yamlStream))
 				virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(mix, node)));

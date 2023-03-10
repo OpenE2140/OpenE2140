@@ -5,7 +5,7 @@ Metadata:
 	Website: https://github.com/michaeldgg2/OpenE2140
 	WebIcon32: https://raw.githubusercontent.com/michaeldgg2/OpenE2140/master/packaging/artwork/icon_32x32.png
 
-PackageFormats: Wd
+PackageFormats: Wd, VirtualAssets
 
 Packages:
 	~^SupportDir|Content/e2140/: game
@@ -19,6 +19,9 @@ Packages:
 	~game|PIRO.WD: piro
 	~game|SMP0.WD: smp0
 	~game|SMP1.WD: smp1
+	e2140|virtualassets/SPRB0.MIX.VirtualAssets.yaml:
+	e2140|virtualassets/SPRM0.MIX.VirtualAssets.yaml:
+	e2140|virtualassets/SPRU0.MIX.VirtualAssets.yaml:
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS

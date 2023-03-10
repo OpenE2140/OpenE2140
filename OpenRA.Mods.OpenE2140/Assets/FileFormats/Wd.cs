@@ -12,7 +12,6 @@
 #endregion
 
 using OpenRA.FileSystem;
-using OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
@@ -63,10 +62,6 @@ public class Wd : IReadOnlyPackage
 				var name = stream.ReadASCIIZ();
 				this.index.Add(name, entry);
 				stream.Position = originalPosition;
-
-				// Virtual assets implementation
-				foreach (var (virtualName, virtualStream) in VirtualAssetsBuilder.BuildAssets(fileSystem, name, this))
-					this.index.Add(virtualName, new WdEntry(virtualStream, 0, (uint)virtualStream.Length));
 			}
 		}
 	}
