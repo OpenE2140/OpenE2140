@@ -12,10 +12,8 @@ World:
 		SupportActors: ed_vehicles_st01b
 		Factions: ed
 
-# Base for all ED vehicles.
 ^EdVehicle:
 	Inherits: ^CoreVehicle
-	# Unit produces voice.
 	Voiced:
 		VoiceSet: EdVehicleVoice
 

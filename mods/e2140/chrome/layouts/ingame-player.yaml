@@ -493,8 +493,8 @@ Container@PLAYER_WIDGETS:
 					MaxIconRowOffset: 5
 					ReadyText: Ready
 					HoldText: On Hold
-					ClockPalette: chrome
-					NotBuildablePalette: chrome
+					ClockPalette:
+					NotBuildablePalette:
 					SymbolsFont: SourceSansProSmall
 				ProductionTabsEx@PRODUCTION_TABS:
 					Logic: ProductionTabsLogic, AddFactionSuffixExLogic

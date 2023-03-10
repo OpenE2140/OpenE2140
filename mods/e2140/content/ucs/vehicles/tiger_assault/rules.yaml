@@ -5,6 +5,7 @@ ucs_vehicles_tiger_assault:
 	Valued:
 		Cost: 700
 	Buildable:
+		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
 	Health:
@@ -33,4 +34,3 @@ ucs_vehicles_tiger_assault:
 		MuzzlePalette:
 	WithMoveSound:
 		Sound: 28.smp
-	

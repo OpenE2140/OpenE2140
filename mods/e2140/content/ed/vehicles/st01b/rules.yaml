@@ -6,6 +6,7 @@ ed_vehicles_st01b:
 	Valued:
 		Cost: 300
 	Buildable:
+		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Health:

@@ -1,17 +1,9 @@
 ^Palettes:
-	# Palette to use for generated shadow. Its basicaly just half-transparent black.
 	PaletteFromRGBA@shadow:
 		Name: shadow
 		R: 0
 		G: 0
 		B: 0
-		A: 128
-	# Palette to use when issueing an order on an actor.
-	PaletteFromRGBA@highlight: # TODO can we remove this?
-		Name: highlight
-		R: 255
-		G: 255
-		B: 255
 		A: 128
 	PaletteFromGrayscale@greyscale:
 		Name: greyscale
@@ -25,10 +17,3 @@
 		AllowModifiers: false
 	ColorPickerColorShift:
 		BasePalette: colorpicker
-
-	PaletteFromRGBA@chrome: # just to satisfy widgets, can we remove this?
-		Name: chrome
-		R: 255
-		G: 255
-		B: 255
-		A: 255

@@ -1,8 +1,8 @@
 Speech:
 	DefaultVariant:
 	Prefixes:
-		ed: ed
-		ucs: ucs
+		ed: smp0|
+		ucs: smp1|
 	Notifications:
 		BaseAttack: 127.smp
 		BuildingLost: 97.smp

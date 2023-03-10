@@ -13,9 +13,9 @@ ucs_vehicles_raptor_ad:
 		Inaccuracy: 128
 		Image: projectile_rocket
 		Palette:
-        TrailImage: missile_trail
-        TrailInterval: 0
-        TrailPalette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
 		Shadow: True
 		HorizontalRateOfTurn: 20
 		RangeLimit: 6c0

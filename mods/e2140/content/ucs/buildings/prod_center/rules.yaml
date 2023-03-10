@@ -59,5 +59,6 @@ ucs_mcu_prod_center:
 	Valued:
 		Cost: 2500
 	Buildable:
+		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40

@@ -32,7 +32,7 @@ public class ReflectionHelper<T>
 
 		var fieldInfo = typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).Single(f => f.Name == fieldName);
 
-		return new ObjectFieldHelper<TField>(fieldInfo, this.ThisObject!);
+		return new ObjectFieldHelper<TField>(fieldInfo, this.ThisObject);
 	}
 }
 

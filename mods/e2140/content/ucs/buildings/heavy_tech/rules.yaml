@@ -57,5 +57,6 @@ ucs_mcu_heavy_tech:
 	Valued:
 		Cost: 1450
 	Buildable:
+		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40

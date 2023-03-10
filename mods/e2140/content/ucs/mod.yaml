@@ -15,6 +15,7 @@ Rules:
 	e2140|content/ucs/vehicles/spider_ii/rules.yaml
 
 Sequences:
+	e2140|content/ucs/sequences.yaml
 	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
 	e2140|content/ucs/buildings/prod_center/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
@@ -22,11 +23,6 @@ Sequences:
 	e2140|content/ucs/vehicles/tiger_assault/sequences.yaml
 	e2140|content/ucs/vehicles/spider/sequences.yaml
 	e2140|content/ucs/vehicles/spider_ii/sequences.yaml
-	e2140|content/ucs/sequences.yaml
-
-Translations:
-	common|languages/en.ftl
-	e2140|content/ucs/languages/rules/en.ftl
 
 Voices:
 	e2140|content/ucs/voices.yaml

@@ -65,5 +65,6 @@ ed_mcu_constr_center:
 	Valued:
 		Cost: 2500
 	Buildable:
+		IconPalette:
 		Queue: Building.ED
 		BuildDuration: 40

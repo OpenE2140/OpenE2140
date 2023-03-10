@@ -61,5 +61,6 @@ ed_mcu_tech_house:
 	Valued:
 		Cost: 1500
 	Buildable:
+		IconPalette:
 		Queue: Building.ED
 		BuildDuration: 40

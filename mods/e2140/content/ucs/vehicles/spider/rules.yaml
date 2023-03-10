@@ -5,6 +5,7 @@ ucs_vehicles_spider:
 	Valued:
 		Cost: 1500
 	Buildable:
+		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 90
 	Health:

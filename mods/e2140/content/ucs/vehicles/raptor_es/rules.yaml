@@ -6,6 +6,7 @@ ucs_vehicles_raptor_es:
 	Valued:
 		Cost: 250
 	Buildable:
+		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
 	Health:

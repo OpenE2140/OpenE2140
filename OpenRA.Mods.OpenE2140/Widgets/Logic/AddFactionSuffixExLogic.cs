@@ -64,10 +64,10 @@ public class AddFactionSuffixExLogic : ChromeLogic
 
 	private static class ChromeMetricsHelper
 	{
-		private static readonly MethodInfo TryGetMethod = typeof(ChromeMetrics).GetMethod(
+		private static readonly MethodInfo? TryGetMethod = typeof(ChromeMetrics).GetMethod(
 			nameof(ChromeMetrics.TryGet),
 			BindingFlags.Default | BindingFlags.Static | BindingFlags.Public
-		)!;
+		);
 
 		private static readonly Cache<Type, Func<string, (bool, object?)>> Cache =
 			new Cache<Type, Func<string, (bool, object?)>>(ChromeMetricsHelper.TryGetCore);
@@ -85,7 +85,7 @@ public class AddFactionSuffixExLogic : ChromeLogic
 			return key =>
 			{
 				var args = new object?[] { key, null };
-				var success = (bool)ChromeMetricsHelper.TryGetMethod.MakeGenericMethod(type).Invoke(null, args)!;
+				var success = (bool)(ChromeMetricsHelper.TryGetMethod?.MakeGenericMethod(type).Invoke(null, args) ?? false);
 
 				return (success, args[1]);
 			};
