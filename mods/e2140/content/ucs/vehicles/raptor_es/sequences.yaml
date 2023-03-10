@@ -1,11 +1,11 @@
 ucs_vehicles_raptor_es:
 	idle:
 		Filename: vehicle_raptor_es.vspr
-		Facings: -8
+		Facings: -16
 	move:
 		Filename: vehicle_raptor_es.vspr
-		Start: 8
-		Length: 8
+		Start: 16
+		Length: 6
 		Facings: -8
 	muzzle:
 		Filename: vehicle_raptor_es.vspr

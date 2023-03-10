@@ -34,7 +34,7 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	public readonly int ConstructionTime = 100;
 
 	[Desc("Sound played when actor starts transforming.", "The filename of the audio is defined per faction in notifications.yaml.")]
-	public readonly string? TransformSound = null;
+	public readonly string? TransformSound;
 
 	public override object Create(ActorInitializer init)
 	{
