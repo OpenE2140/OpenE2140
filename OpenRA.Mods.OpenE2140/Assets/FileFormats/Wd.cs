@@ -53,7 +53,7 @@ public class Wd : IReadOnlyPackage
 
 				stream.ReadUInt32(); // 0x00
 				stream.ReadUInt32(); // 0x00
-				stream.ReadUInt32(); // TODO has a value in MIX.WD
+				stream.ReadBytes(4); // TODO FLC, GRAPH, MENU, MIX, PIRO
 
 				var filePathOffset = stream.ReadUInt32();
 

@@ -50,51 +50,60 @@ public class MixSpriteLoader : ISpriteLoader
 		frames = null;
 		metadata = null;
 
-		// This happens on MIXMAX files, which are simply 1x1, 2x2 and 4x4 minimap variants of the tiles.
-		if (identifier != "MIX FILE  ")
-			return false;
-
-		var mix = new Mix(stream);
-
-		if (mix.Frames.Length == 0)
-			return false;
-
 		var framesList = new List<ISpriteFrame>();
 
-		var hasTransparency =
-			new[] { "spro0.mix", "spro1.mix", "spro2.mix", "spro3.mix", "spro4.mix", "spro5.mix", "spro6.mix" }.Any(
-				f => filename.EndsWith(f, StringComparison.OrdinalIgnoreCase)
+		if (identifier != "MIX FILE  ")
+		{
+			if (filename.Contains("MIXMAX", StringComparison.OrdinalIgnoreCase))
+			{
+				var mixMax = new MixMax(stream);
+				framesList.AddRange(mixMax.Frames.Select(frame => new MixSpriteFrame(SpriteFrameType.Rgba32, frame.Size, frame.Pixels)));
+			}
+			else
+				return false;
+		}
+		else
+		{
+			var mix = new Mix(stream);
+
+			if (mix.Frames.Length == 0)
+				return false;
+
+			// TODO we should do this using VirtualAssets and remove this hack here!
+			var hasShadow = new[] { "spro0.mix", "spro1.mix", "spro2.mix", "spro3.mix", "spro4.mix", "spro5.mix", "spro6.mix" }.Any(
+				file => filename.EndsWith(file, StringComparison.OrdinalIgnoreCase)
 			);
 
-		foreach (var frame in mix.Frames)
-		{
-			var size = new Size(frame.Width, frame.Height);
-
-			if (frame.Is32Bpp)
-				framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, frame.Pixels));
-			else
+			foreach (var frame in mix.Frames)
 			{
-				var argbImage = new byte[frame.Pixels.Length * 4];
-				var indexedImage = new byte[frame.Pixels.Length];
-				var palette = mix.Palettes[frame.Palette].Colors;
+				var size = new Size(frame.Width, frame.Height);
 
-				for (var i = 0; i < frame.Pixels.Length; i++)
+				if (frame.Is32Bpp)
+					framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, frame.Pixels));
+				else
 				{
-					var index = frame.Pixels[i];
-					var color = palette[index];
+					var argbImage = new byte[frame.Pixels.Length * 4];
+					var indexedImage = new byte[frame.Pixels.Length];
+					var palette = mix.Palettes[frame.Palette].Colors;
 
-					if (hasTransparency && index == 254)
-						color = Color.FromArgb(0x80000000);
+					for (var i = 0; i < frame.Pixels.Length; i++)
+					{
+						var index = frame.Pixels[i];
+						var color = palette[index];
 
-					indexedImage[i] = index;
+						if (hasShadow && index == 254)
+							color = Color.FromArgb(0x80000000);
 
-					argbImage[i * 4 + 0] = color.R;
-					argbImage[i * 4 + 1] = color.G;
-					argbImage[i * 4 + 2] = color.B;
-					argbImage[i * 4 + 3] = color.A;
+						indexedImage[i] = index;
+
+						argbImage[i * 4 + 0] = color.R;
+						argbImage[i * 4 + 1] = color.G;
+						argbImage[i * 4 + 2] = color.B;
+						argbImage[i * 4 + 3] = color.A;
+					}
+
+					framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
 				}
-
-				framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
 			}
 		}
 
