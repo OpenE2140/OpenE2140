@@ -18,7 +18,18 @@ namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
 public class Wd : IReadOnlyPackage
 {
-	private record WdEntry(Stream Stream, uint Offset, uint Length);
+	public class WdStream : SegmentStream
+	{
+		public readonly Wd Wd;
+
+		public WdStream(Wd wd, Stream stream)
+			: base(stream, 0, stream.Length)
+		{
+			this.Wd = wd;
+		}
+	}
+
+	public record WdEntry(Stream Stream, uint Offset, uint Length);
 
 	public string Name { get; }
 	public IEnumerable<string> Contents => this.index.Keys;
@@ -68,7 +79,9 @@ public class Wd : IReadOnlyPackage
 
 	public Stream? GetStream(string filename)
 	{
-		return this.index.TryGetValue(filename, out var entry) ? SegmentStream.CreateWithoutOwningStream(entry.Stream, entry.Offset, (int)entry.Length) : null;
+		return this.index.TryGetValue(filename, out var entry)
+			? new WdStream(this, SegmentStream.CreateWithoutOwningStream(entry.Stream, entry.Offset, (int)entry.Length))
+			: null;
 	}
 
 	public bool Contains(string filename)

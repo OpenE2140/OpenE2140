@@ -50,13 +50,7 @@ public class DatSpriteLoader : ISpriteLoader
 			return false;
 
 		var datImage = new DatImage(stream);
-
-		// We have no access to the parent container, so we need to re-parse it here :/
-		var baseStream = ((SegmentStream)stream).BaseStream;
-		baseStream.Position = 0;
-		var wd = new Wd(baseStream, "HACK");
-
-		var palPalette = new PalPalette(wd.GetStream(filename[..^4].Split('|').Last() + ".PAL") ?? throw new FileNotFoundException());
+		var palPalette = new PalPalette(((Wd.WdStream)stream).Wd.GetStream(filename[..^4].Split('|').Last() + ".PAL") ?? throw new FileNotFoundException());
 
 		frames = new ISpriteFrame[]
 		{
