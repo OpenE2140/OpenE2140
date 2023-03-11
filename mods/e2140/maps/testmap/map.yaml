@@ -128,5 +128,17 @@ Actors:
 	Actor32: ucs_buildings_prod_center
 		Owner: UCS_Player
 		Location: 21,2
+	Actor33: ucs_mcu_prod_center
+		Owner: UCS_Player
+		Facing: 384
+		Location: 24,13
+	Actor34: shared_mcu_power_plant
+		Owner: UCS_Player
+		Facing: 384
+		Location: 24,17
+	Actor35: ucs_mcu_heavy_tech
+		Owner: UCS_Player
+		Facing: 384
+		Location: 29,12
 
 Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
