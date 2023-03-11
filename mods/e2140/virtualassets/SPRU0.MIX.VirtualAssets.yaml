@@ -25,6 +25,7 @@ vehicle_raptor_es: Player Muzzle Raptor
 	idle: 115,144,122,145,129,146,136,147,143 16
 	move: 109-143[0:6:1] 8
 	muzzle: 115,144,122,145,129,146,136,147,143 16 3
+	move.turn: 115,111,115,122,118,122,129,125,129,136,132,136,143,139,143 8
 
 vehicle_raptor_ad: Player Raptor
 	idle: 154,184,161,183,168,185,175,186,182 16
@@ -268,23 +269,23 @@ infantry_silver_t: Player Infantry
 	idle2: 655-684[5:1:0] 8
 	move: 655-684[0:4:2] 8
 
-infantry_silver_one: Player Infantry
+infantry_silver_one: Player Muzzle Infantry
 	idle: 691-720[5:1:0] 8
 	idle2: 691-720[5:1:0] 8
 	move: 691-720[0:4:2] 8
-	Muzzle: 721-730 8
+	muzzle: 721-730 8
 
 infantry_silver_max: Player Infantry
 	idle: 731-760[4:1:1] 8
 	idle2: 731-760[5:1:0] 8
 	move: 731-760[0:4:2] 8
-	Muzzle: 761-770 8
+	muzzle: 761-770 8
 
 infantry_silver_r: Player Infantry
 	idle: 771-800[4:1:1] 8
 	idle2: 771-800[5:1:0] 8
 	move: 771-800[0:4:2] 8
-	Muzzle: 801-810 8
+	muzzle: 801-810 8
 
 infantry_android_a04: Player Infantry
 	idle: 811-840[4:1:1] 8

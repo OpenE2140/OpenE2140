@@ -27,3 +27,6 @@ ucs_vehicles_raptor_es:
 	WithMuzzleOverlay@muzzle:
 	WithMoveSound:
 		Sound: 32.smp
+	WithMoveAnimation@turn:
+		ValidMovementTypes: Turn
+		MoveSequence: move.turn
