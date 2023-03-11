@@ -514,6 +514,16 @@ sidebar-production-tab-ucs-pressed-hover:
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
+sidebar-production-tab-ucs-highlighted:
+	Inherits: ^Sidebar
+	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
+	
+sidebar-production-tab-ucs-highlighted-hover:
+	Inherits: ^Sidebar
+	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
+
 # Sub buttons:
 sidebar-production-tab-button-ucs:
 	Inherits: ^Sidebar
@@ -670,6 +680,16 @@ sidebar-production-tab-ed-pressed:
 	PanelSides: Center
 
 sidebar-production-tab-ed-pressed-hover:
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
+
+sidebar-production-tab-ed-highlighted:
+	Inherits: ^SidebarEd
+	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
+	PanelSides: Center
+	
+sidebar-production-tab-ed-highlighted-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
