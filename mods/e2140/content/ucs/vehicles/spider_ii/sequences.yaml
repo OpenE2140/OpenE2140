@@ -9,6 +9,12 @@ ucs_vehicles_spider_ii:
 		Start: 8
 		Length: 8
 		Facings: -8
+	move.turn:
+		Filename: vehicle_mech.vspr
+		Start: 72
+		Length: 2
+		Facings: -8
+		Tick: 140
 	turret:
 		Filename: turret_spider_ii.vspr
 		Facings: -16

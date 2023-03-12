@@ -12,7 +12,7 @@ ucs_vehicles_raptor_ad:
 	Health:
 		HP: 200
 	Mobile:
-		Speed: 90
+		Speed: 68
 		TurnSpeed: 32
 	RevealsShroud:
 		Range: 3c768
@@ -25,3 +25,6 @@ ucs_vehicles_raptor_ad:
 		MuzzlePalette:
 	WithMoveSound:
 		Sound: 32.smp
+	WithMoveAnimation@turn:
+		ValidMovementTypes: Turn
+		MoveSequence: move.turn
