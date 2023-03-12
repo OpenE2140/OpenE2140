@@ -11,13 +11,17 @@
 
 #endregion
 
+using System.Reflection;
+using JetBrains.Annotations;
+using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
-[Desc("Custom trait based on RenderSprites that generates FactionImages from actor name")]
-public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[Desc("Custom trait that generates FactionImages from actor name")]
+public class FactionRenderSpritesInfo : TraitInfo
 {
 	[Desc(
 		"List of factions to generate faction images for. Faction image is not generated for faction, which name is prefix of actor's name"
@@ -25,34 +29,52 @@ public class FactionRenderSpritesInfo : RenderSpritesInfo, IRulesetLoaded
 	)]
 	public readonly List<string> Factions = new List<string>();
 
-	public void RulesetLoaded(Ruleset rules, ActorInfo info)
+	public override object Create(ActorInitializer init)
 	{
-		if (this.FactionImages == null)
-			throw new YamlException("Please initialize FactionImages");
+		return new FactionRenderSprites(this);
+	}
+}
 
-		var existingFactions = rules.Actors[SystemActors.World].TraitInfos<FactionInfo>().Select(f => f.InternalName);
-		var unknownFactions = this.Factions.Where(f => !existingFactions.Contains(f)).ToArray();
+public class FactionRenderSprites : IWorldLoaded
+{
+	private readonly FactionRenderSpritesInfo info;
 
-		if (unknownFactions.Any())
-			throw new YamlException($"Unknown factions: {string.Join(", ", unknownFactions)}");
+	public FactionRenderSprites(FactionRenderSpritesInfo info)
+	{
+		this.info = info;
+	}
 
-		if (rules.Sequences == null)
-			return;
-
-		foreach (var faction in this.Factions)
+	public void WorldLoaded(World world, WorldRenderer worldRenderer)
+	{
+		foreach (var actorInfo in world.Map.Rules.Actors.Values)
 		{
-			if (info.Name.StartsWith(faction))
+			var renderSpritesInfo = actorInfo.TraitInfoOrDefault<RenderSpritesInfo>();
+
+			if (renderSpritesInfo == null)
 				continue;
 
-			if (this.FactionImages.ContainsKey(faction))
-				continue;
+			if (renderSpritesInfo.FactionImages == null)
+			{
+				renderSpritesInfo.GetType()
+					.GetField("FactionImages", BindingFlags.Instance | BindingFlags.Public)
+					?.SetValue(renderSpritesInfo, new Dictionary<string, string>());
+			}
 
-			var factionImageName = $"{info.Name}.{faction}";
+			foreach (var faction in this.info.Factions)
+			{
+				var factionImageName = $"{actorInfo.Name}.{faction}";
 
-			if (!rules.Sequences.HasSequence(factionImageName))
-				continue;
+				try
+				{
+					world.Map.Sequences.Sequences(factionImageName);
+				}
+				catch
+				{
+					continue;
+				}
 
-			this.FactionImages.TryAdd(faction, factionImageName);
+				renderSpritesInfo.FactionImages?.TryAdd(faction, factionImageName);
+			}
 		}
 	}
 }

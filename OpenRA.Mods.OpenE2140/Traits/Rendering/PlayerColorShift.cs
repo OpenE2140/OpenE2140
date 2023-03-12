@@ -54,12 +54,13 @@ public class PlayerColorShift : ILoadsPlayerPalettes
 
 	public void LoadPlayerPalettes(WorldRenderer worldRenderer, string playerName, Color color, bool replaceExisting)
 	{
-		var (_, hue, saturation, _) = color.ToAhsv();
+		var (_, hue, saturation, value) = color.ToAhsv();
 
 		worldRenderer.SetPaletteColorShift(
 			this.info.BasePalette + playerName,
 			hue - this.info.ReferenceHue,
 			saturation - this.info.ReferenceSaturation,
+			value,
 			this.info.MinHue,
 			this.info.MaxHue
 		);

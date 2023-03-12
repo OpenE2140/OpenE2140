@@ -33,11 +33,6 @@
 # Base for all movable units.
 ^CoreUnit:
 	Inherits: ^CoreVisibleActor
-	# Use custom RenderSprites trait for generating names of images for each faction
-	-RenderSprites:
-	FactionRenderSprites:
-		FactionImages:
-		Factions: ucs, ed
 	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
 	HitShape:
 		Type: Circle
@@ -110,11 +105,6 @@
 # Base for all buildings.
 ^CoreBuilding:
 	Inherits: ^CoreConstruction
-	# Use custom RenderSprites trait for generating names of images for each faction
-	-RenderSprites:
-	FactionRenderSprites:
-		FactionImages:
-		Factions: ucs, ed
 	# Enemy buildings have to be destroyed to win, even when short game option is used.
 	MustBeDestroyed:
 		RequiredForShortGame: true
@@ -153,7 +143,7 @@
 ^CoreElevatorFactory:
 	Inherits: ^CoreBuilding
 	# Use custom RenderSprites trait for rendering elevator.
-	-FactionRenderSprites:
+	-RenderSprites:
 	RenderElevatorSprites:
 	# Elevator production needs custom production queue.
 	ElevatorProductionQueue:
@@ -252,7 +242,6 @@
 		TargetTypes: Ground
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
-	# Voiced trait is defined per faction
 	# Group all vehicles in the map editor.
 	MapEditorData:
 		Categories: Vehicle

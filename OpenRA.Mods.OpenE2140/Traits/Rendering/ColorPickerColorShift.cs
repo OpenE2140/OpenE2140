@@ -59,12 +59,13 @@ public class ColorPickerColorShift : ILoadsPalettes, ITickRender
 	void ILoadsPalettes.LoadPalettes(WorldRenderer worldRenderer)
 	{
 		this.color = this.colorManager.Color;
-		var (_, hue, saturation, _) = this.color.ToAhsv();
+		var (_, hue, saturation, value) = this.color.ToAhsv();
 
 		worldRenderer.SetPaletteColorShift(
 			this.info.BasePalette,
 			hue - this.info.ReferenceHue,
 			saturation - this.info.ReferenceSaturation,
+			value,
 			this.info.MinHue,
 			this.info.MaxHue
 		);
@@ -76,12 +77,13 @@ public class ColorPickerColorShift : ILoadsPalettes, ITickRender
 			return;
 
 		this.color = this.colorManager.Color;
-		var (_, hue, saturation, _) = this.color.ToAhsv();
+		var (_, hue, saturation, value) = this.color.ToAhsv();
 
 		worldRenderer.SetPaletteColorShift(
 			this.info.BasePalette,
 			hue - this.info.ReferenceHue,
 			saturation - this.info.ReferenceSaturation,
+			value,
 			this.info.MinHue,
 			this.info.MaxHue
 		);

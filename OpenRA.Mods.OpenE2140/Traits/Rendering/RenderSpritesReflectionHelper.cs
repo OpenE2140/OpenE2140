@@ -21,14 +21,11 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 public class RenderSpritesReflectionHelper
 {
-	private readonly RenderSprites rs;
 	private readonly ObjectFieldHelper<IList> animField;
 	private readonly AnimWrapperHelper animWrapperHelper;
 
 	public RenderSpritesReflectionHelper(RenderSprites rs)
 	{
-		this.rs = rs ?? throw new ArgumentNullException(nameof(rs));
-
 		this.animField = ReflectionHelper.GetFieldHelper(rs, this.animField, "anims");
 		this.animWrapperHelper = new AnimWrapperHelper();
 	}

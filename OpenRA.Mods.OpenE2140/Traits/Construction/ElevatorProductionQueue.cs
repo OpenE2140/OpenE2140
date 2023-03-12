@@ -11,12 +11,14 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Attach to all production buildings with elevator production instead of default ProductionQueue")]
 public class ElevatorProductionQueueInfo : ProductionQueueInfo
 {

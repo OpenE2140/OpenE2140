@@ -91,6 +91,9 @@ World:
 	OrderEffects:
 		TerrainFlashImage: moveflash
 		TerrainFlashSequence: idle
+	# Implementation for faction specific sprites.
+	FactionRenderSprites:
+		Factions: ucs, ed
 
 # Map editor specific world setup.
 EditorWorld:

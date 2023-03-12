@@ -19,7 +19,6 @@ World:
 
 ed_colorpicker:
 	Inherits: ed_vehicles_st01b
-	-FactionRenderSprites:
 	RenderSprites:
 		Image: ed_vehicles_st01b
 		Palette: colorpicker
