@@ -9,15 +9,18 @@ Rules:
 	e2140|content/ed/buildings/constr_center/rules.yaml
 	e2140|content/ed/buildings/tech_house/rules.yaml
 	e2140|content/ed/vehicles/st01b/rules.yaml
+	e2140|content/ed/vehicles/st02/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
 	e2140|content/ed/buildings/constr_center/sequences.yaml
 	e2140|content/ed/buildings/tech_house/sequences.yaml
 	e2140|content/ed/vehicles/st01b/sequences.yaml
+	e2140|content/ed/vehicles/st02/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
 
 Weapons:
 	e2140|content/ed/vehicles/st01b/weapons.yaml
+	e2140|content/ed/vehicles/st02/weapons.yaml
