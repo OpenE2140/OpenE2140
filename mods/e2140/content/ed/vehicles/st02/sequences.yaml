@@ -1,0 +1,16 @@
+ed_vehicles_st02:
+	idle:
+		Filename: vehicle_tank_small.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_tank_small.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	turret:
+		Filename: turret_st_02.vspr
+		Facings: -16
+		Offset: 0, 5, 0
+	icon:
+		Filename: SPRI0.MIX
+		Start: 132
