@@ -1,0 +1,36 @@
+smoke_damage:
+	Defaults:
+		Filename: smoke_damage.vspr
+	idle:
+		BlendMode: Subtractive
+		Length: 4
+		Tick: 120
+		ZOffset: 512
+	loop:
+		BlendMode: Subtractive
+		Length: 52
+		Tick: 120
+		ZOffset: 512
+	end:
+		BlendMode: Subtractive
+		Length: 5
+		Tick: 120
+		ZOffset: 512
+
+smoke_damage_tank:
+	Inherits: smoke_damage
+	idle:
+		Offset: 5, -20
+	loop:
+		Offset: 5, -20
+	end:
+		Offset: 5, -20
+
+smoke_damage_mech:
+	Inherits: smoke_damage
+	idle:
+		Offset: 5, -35
+	loop:
+		Offset: 5, -35
+	end:
+		Offset: 5, -35

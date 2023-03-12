@@ -26,3 +26,5 @@ ed_vehicles_st02:
 		LocalOffset: 100,-100,0, 100,100,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+	WithDamageOverlay:
+		Image: smoke_damage_tank

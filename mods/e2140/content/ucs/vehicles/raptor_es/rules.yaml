@@ -30,3 +30,5 @@ ucs_vehicles_raptor_es:
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	WithDamageOverlay:
+		Image: smoke_damage_tank

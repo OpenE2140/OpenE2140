@@ -37,3 +37,5 @@ ucs_vehicles_spider:
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	WithDamageOverlay:
+		Image: smoke_damage_mech

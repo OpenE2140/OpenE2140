@@ -18,3 +18,5 @@
 	RevealsShroud:
 		Range: 6c0
 	TriggerTransformSequence:
+	WithDamageOverlay:
+		Image: smoke_damage_tank
