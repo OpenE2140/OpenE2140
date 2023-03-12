@@ -7,6 +7,13 @@ ucs_vehicles_raptor_ad:
 		Start: 16
 		Length: 6
 		Facings: -8
+		Tick: 100
+	move.turn:
+		Filename: vehicle_raptor_ad.vspr
+		Start: 64
+		Length: 2
+		Facings: -8
+		Tick: 80
 	icon:
 		Filename: SPRI1.MIX
 		Start: 130

@@ -13,8 +13,8 @@
 	Health:
 		HP: 1000
 	Mobile:
-		Speed: 35
-		TurnSpeed: 8
+		Speed: 28
+		TurnSpeed: 25
 	RevealsShroud:
 		Range: 6c0
 	TriggerTransformSequence:

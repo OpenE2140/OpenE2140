@@ -12,16 +12,16 @@ ed_vehicles_st01b:
 	Health:
 		HP: 200
 	Mobile:
-		Speed: 120
-		TurnSpeed: 32
+		Speed: 91
+		TurnSpeed: 50
 	RevealsShroud:
 		Range: 3c768
 	Turreted:
-		TurnSpeed: 20
+		TurnSpeed: 30
 		Offset: 0,0,200
 	Armament@PRIMARY:
 		Weapon: ed_vehicles_st01b
-		Recoil: 64
+		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 750,-50,0
 		LocalYaw: 0, 0

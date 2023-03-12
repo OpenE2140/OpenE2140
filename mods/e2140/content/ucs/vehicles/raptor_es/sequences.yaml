@@ -7,11 +7,13 @@ ucs_vehicles_raptor_es:
 		Start: 16
 		Length: 6
 		Facings: -8
+		Tick: 100
 	move.turn:
 		Filename: vehicle_raptor_es.vspr
 		Start: 112
-		Length: 3
+		Length: 2
 		Facings: -8
+		Tick: 80
 	muzzle:
 		Filename: vehicle_raptor_es.vspr
 		Start: 64
