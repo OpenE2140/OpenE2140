@@ -17,6 +17,7 @@ Rules:
 Sequences:
 	e2140|content/ucs/sequences.yaml
 	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
+	e2140|content/ucs/buildings/power_plant/sequences.yaml
 	e2140|content/ucs/buildings/prod_center/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_ad/sequences.yaml

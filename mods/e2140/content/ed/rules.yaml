@@ -8,7 +8,7 @@ World:
 	StartingUnits@ed_default:
 		Class: default
 		ClassName: options-starting-units.default
-		BaseActor: ucs_mcu_prod_center
+		BaseActor: ed_mcu_constr_center
 		SupportActors: ed_vehicles_st01b
 		Factions: ed
 
