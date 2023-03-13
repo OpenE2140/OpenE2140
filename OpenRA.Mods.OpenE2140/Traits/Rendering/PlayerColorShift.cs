@@ -52,7 +52,7 @@ public class PlayerColorShift : ILoadsPlayerPalettes
 		this.info = info;
 	}
 
-	public void LoadPlayerPalettes(WorldRenderer worldRenderer, string playerName, Color color, bool replaceExisting)
+	void ILoadsPlayerPalettes.LoadPlayerPalettes(WorldRenderer worldRenderer, string playerName, Color color, bool replaceExisting)
 	{
 		var (_, hue, saturation, value) = color.ToAhsv();
 

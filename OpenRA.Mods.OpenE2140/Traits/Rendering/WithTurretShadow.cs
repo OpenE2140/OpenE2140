@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
@@ -20,7 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [Desc("Clones the actor's turret sprite with another palette below it.")]
-public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSpritesInfo>
+public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSpritesInfo>, IRenderActorPreviewSpritesInfo
 {
 	[Desc("Color to draw shadow.")]
 	public readonly Color ShadowColor = Color.FromArgb(140, 0, 0, 0);
@@ -35,6 +36,25 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 	public readonly string[] Turrets = { "primary" };
 
 	public override object Create(ActorInitializer init) { return new WithTurretShadow(this); }
+
+	IEnumerable<IActorPreview> IRenderActorPreviewSpritesInfo.RenderPreviewSprites(ActorPreviewInitializer init, string image, int facings, PaletteReference p)
+	{
+		if (!this.EnabledByDefault)
+			yield break;
+
+		foreach (var turret in this.Turrets)
+		{
+			var t = init.Actor.TraitInfos<TurretedInfo>().First(tt => tt.Turret == turret);
+			var w = init.Actor.TraitInfos<WithSpriteTurretInfo>().First(tt => tt.Turret == turret);
+
+			var turretFacing = t.WorldFacingFromInit(init);
+			var anim = new Animation(init.World, image, turretFacing);
+			anim.Play(RenderSprites.NormalizeSequence(anim, init.GetDamageState(), w.Sequence));
+
+			// TODO Does not support the rgba tint method!
+			//yield return new SpriteActorPreview(anim, () => this.Offset, () => -(this.Offset.Y + this.Offset.Z) + 1, init.WorldRenderer.Palette(this.Palette));
+		}
+	}
 }
 
 public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderModifier

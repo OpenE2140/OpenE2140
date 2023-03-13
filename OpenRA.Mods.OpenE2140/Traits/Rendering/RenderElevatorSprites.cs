@@ -67,13 +67,23 @@ public class RenderElevatorSprites : RenderSprites
 			if (sprite == null)
 				continue;
 
+			var height = sprite.Bounds.Height;
+			var offset = sprite.Offset.Y;
+			var current = renderable.Pos.Y - renderable.Pos.Z * 2 + height / 2 - (int)sprite.Offset.Y;
+
+			if (current > bottom)
+			{
+				height = Math.Max(height - (current - bottom) / 32, 0);
+				offset -= (sprite.Bounds.Height - height) / 2f;
+			}
+
 			RenderElevatorSprites.SpriteFieldHelper.SetValue(
 				renderable,
 				new Sprite(
 					sprite.Sheet,
-					new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, sprite.Bounds.Width, sprite.Bounds.Height + bottom),
+					new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, sprite.Bounds.Width, height),
 					sprite.ZRamp,
-					sprite.Offset + new float3(0, bottom / 2f, 0),
+					new float3(sprite.Offset.X, offset, sprite.Offset.Z),
 					sprite.Channel,
 					sprite.BlendMode
 				)

@@ -44,7 +44,7 @@ public class FactionRenderSprites : IWorldLoaded
 		this.info = info;
 	}
 
-	public void WorldLoaded(World world, WorldRenderer worldRenderer)
+	void IWorldLoaded.WorldLoaded(World world, WorldRenderer worldRenderer)
 	{
 		foreach (var actorInfo in world.Map.Rules.Actors.Values)
 		{

@@ -36,6 +36,9 @@ public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSprites
 	[Desc("Elevator Position.")]
 	public readonly WVec Position;
 
+	[Desc("Ensure the elevator is beneath everything.")]
+	public readonly int ZOffset = -1024;
+
 	[Desc("Elevator height.")]
 	public readonly int Height = 1024;
 
@@ -101,7 +104,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			new Animation(init.Self.World, this.info.Image),
 			() => this.info.Position,
 			() => this.IsTraitDisabled,
-			_ => -this.info.Height - this.info.Position.Y - 1
+			_ => this.info.ZOffset - this.info.Height
 		);
 
 		this.animation.Animation.PlayRepeating("closed");
@@ -111,8 +114,8 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			new Animation(init.Self.World, this.info.Image),
 			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight()),
 			() => this.IsTraitDisabled || this.State is AnimationState.Closed or AnimationState.Opening or AnimationState.Closing,
-			_ => -this.info.Position.Y - 1,
-			() => this.GetElevatorHeight() / 16
+			_ => this.info.ZOffset,
+			() => init.Self.CenterPosition.Y + this.info.Position.Y
 		);
 
 		animationElevator.Animation.PlayRepeating("elevator");
@@ -122,7 +125,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			new Animation(init.Self.World, this.info.Image),
 			() => this.info.Position,
 			() => this.IsTraitDisabled,
-			_ => -this.info.Position.Y - 1
+			_ => this.info.ZOffset
 		);
 
 		animationOverlay.Animation.PlayRepeating("overlay");
@@ -156,7 +159,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		return this.State switch
 		{
 			AnimationState.ElevatorUp => -(this.info.Height - this.stateAge * this.info.Height / this.info.Duration),
-			AnimationState.ElevatorDown => -this.stateAge * this.info.Height / this.info.Duration,
+			AnimationState.ElevatorDown => -(this.stateAge * this.info.Height / this.info.Duration),
 			_ => 0
 		};
 	}
@@ -265,9 +268,12 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 		// TODO Hack: SpriteRenderable.zOffset is private.
 		foreach (var renderable in renderables.OfType<SpriteRenderable>())
-			renderable.GetType().GetField("zOffset", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(renderable, -this.info.Position.Y - 1);
+		{
+			var field = renderable.GetType().GetField("zOffset", BindingFlags.Instance | BindingFlags.NonPublic);
+			field?.SetValue(renderable, (field.GetValue(renderable) is int v ? v : 0) + this.info.ZOffset);
+		}
 
-		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() / 16);
+		RenderElevatorSprites.PostProcess(renderables, self.CenterPosition.Y + this.info.Position.Y);
 
 		return renderables;
 	}

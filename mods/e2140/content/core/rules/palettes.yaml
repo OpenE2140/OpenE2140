@@ -1,10 +1,4 @@
 ^Palettes:
-	PaletteFromRGBA@shadow:
-		Name: shadow
-		R: 0
-		G: 0
-		B: 0
-		A: 128
 	PaletteFromGrayscale@greyscale:
 		Name: greyscale
 	PlayerColorPalette@player:

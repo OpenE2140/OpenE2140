@@ -46,7 +46,7 @@ public class ActorRadarColor : IRadarColorModifier
 		this.info = info;
 	}
 
-	public Color RadarColorOverride(Actor self, Color color)
+	Color IRadarColorModifier.RadarColorOverride(Actor self, Color color)
 	{
 		var (a, h, s, v) = color.ToAhsv();
 
