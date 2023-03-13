@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: e2140
 
-Title: Test Map
+Title: Test Map (UCS)
 
 Author: author
 
@@ -141,4 +141,4 @@ Actors:
 		Facing: 384
 		Location: 29,12
 
-Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
+Rules: rules.yaml

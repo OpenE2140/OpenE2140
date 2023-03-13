@@ -136,4 +136,4 @@ Actors:
 		Location: 22,3
 		Health: 31
 
-Rules: e2140|content/shared/campaign-maprules.yaml, rules.yaml
+Rules: rules.yaml

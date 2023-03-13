@@ -58,7 +58,6 @@ World:
 	CreateMapPlayers:
 	# Required to spawn player units at spawnpoint.
 	SpawnStartingUnits:
-		DropdownLabel: Units
 		StartingUnitsClass: default
 	# Cheat protection.
 	ValidateOrder:
