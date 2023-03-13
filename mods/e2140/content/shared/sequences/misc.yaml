@@ -1,0 +1,8 @@
+smoke:
+	Defaults:
+		Filename: smoke.vspr
+	idle:
+		BlendMode: Additive
+		Length: 8
+		Tick: 60
+		ZOffset: 512

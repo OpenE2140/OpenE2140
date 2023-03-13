@@ -1,0 +1,22 @@
+ed_vehicles_mt200:
+	idle:
+		Filename: vehicle_tank_medium.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_tank_medium.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	turret:
+		Filename: turret_mt_200.vspr
+		Facings: -16
+		Offset: -1, 6, 0
+	muzzle:
+		Filename: turret_mt_200.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Offset: -1, 6, 0
+	icon:
+		Filename: SPRI0.MIX
+		Start: 135

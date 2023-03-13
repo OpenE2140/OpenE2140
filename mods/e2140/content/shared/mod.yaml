@@ -7,5 +7,6 @@ Rules:
 
 Sequences:
 	e2140|content/shared/sequences/projectiles.yaml
+	e2140|content/shared/sequences/misc.yaml
 	e2140|content/shared/vehicles/mcu/sequences.yaml
 	e2140|content/shared/buildings/power_plant/sequences.yaml

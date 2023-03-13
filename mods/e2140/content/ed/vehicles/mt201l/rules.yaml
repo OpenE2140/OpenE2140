@@ -1,0 +1,28 @@
+ed_vehicles_mt201l:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: MT 201L
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 91
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 3c768
+	Turreted:
+		TurnSpeed: 30
+		Offset: 0,0,0
+	Armament@PRIMARY:
+		Weapon: ed_vehicles_mt201l
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 350,0,50
+		LocalYaw: 0, 0
+		MuzzlePalette:
