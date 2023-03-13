@@ -117,18 +117,22 @@ public static class VirtualAssetsBuilder
 		if (fileSystem == null || !fileSystem.TryOpen(name, out var yamlStream))
 			return virtualAssets;
 
+		var yaml = MiniYaml.FromStream(yamlStream);
+
+		var source = yaml.FirstOrDefault(e => e.Key == "Source")?.Value.Value;
+		var generate = yaml.FirstOrDefault(e => e.Key == "Generate")?.Value;
+
+		if (source == null || generate == null)
+			return virtualAssets;
+
+		if (!fileSystem.TryOpen(source, out var stream))
+			return virtualAssets;
+
 		// TODO unhardcode .MIX
-		var mixName = Path.GetFileName(name[..^VirtualAssetsPackage.Extension.Length]);
+		var mix = new Mix(stream);
 
-		if (mixName.EndsWith(".mix", StringComparison.OrdinalIgnoreCase))
-		{
-			var mix = new Mix(fileSystem.Open(mixName));
-
-			foreach (var node in MiniYaml.FromStream(yamlStream))
-				virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(mix, node)));
-		}
-		else
-			throw new Exception("Not supported!");
+		foreach (var node in generate.Nodes)
+			virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(mix, node)));
 
 		return virtualAssets;
 	}

@@ -19,9 +19,9 @@ Packages:
 	~game|PIRO.WD: piro
 	~game|SMP0.WD: smp0
 	~game|SMP1.WD: smp1
-	e2140|virtualassets/SPRB0.MIX.VirtualAssets.yaml:
-	e2140|virtualassets/SPRM0.MIX.VirtualAssets.yaml:
-	e2140|virtualassets/SPRU0.MIX.VirtualAssets.yaml:
+	e2140|virtualassets/SPRB0.MIX.VirtualAssets.yaml: buildings
+	e2140|virtualassets/SPRM0.MIX.VirtualAssets.yaml: misc
+	e2140|virtualassets/SPRU0.MIX.VirtualAssets.yaml: units
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS

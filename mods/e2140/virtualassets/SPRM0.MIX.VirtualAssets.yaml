@@ -1,19 +1,21 @@
-# TODO map all stuff here!
-projectile_rocket:
-	idle: 62-70 16
-	explode: 47-55
+Source: SPRM0.MIX
+Generate:
+	# TODO map all stuff here!
+	projectile_rocket:
+		idle: 62-70 16
+		explode: 47-55
 
-missile_trail: Smoke
-	idle: 157-159
+	missile_trail: Smoke
+		idle: 157-159
 
-projectile_heavy_rocket:
-	idle: 88-96 16
-	explode: 8-15
+	projectile_heavy_rocket:
+		idle: 88-96 16
+		explode: 8-15
 
-projectile_plasma:
-	idle: 82
-	explode: 106-110
+	projectile_plasma:
+		idle: 82
+		explode: 106-110
 
-projectile_cannon:
-	idle: 83
-	explode: 0-4
+	projectile_cannon:
+		idle: 83
+		explode: 0-4

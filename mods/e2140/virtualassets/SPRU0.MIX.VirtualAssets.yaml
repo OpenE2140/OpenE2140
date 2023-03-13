@@ -1,376 +1,378 @@
-vehicle_mcu: Shadow Player Tracks
-	idle: 0-8 16
-	move: 0-8 16 4
-
-vehicle_mcu_deploy_large: Shadow Player
-	deploy: 22-16
-	
-vehicle_mcu_deploy_small: Shadow Player
-	deploy: 9-15
-
-vehicle_mech: Shadow
-	idle: 37-81[8:1:0] 8
-	move: 37-81[0:8:1] 8
-	move.turn: 45,42,54,51,63,60,72,69,81,78 8
-
-turret_tiger_assault: Player
-	idle: 82-90 16
-
-turret_tiger_hellmaker: Player
-	idle: 91-99 16
-
-turret_spider: Player
-	idle: 100-108 16
-
-vehicle_raptor_es: Player Muzzle Raptor
-	idle: 115,144,122,145,129,146,136,147,143 16
-	move: 109-143[0:6:1] 8
-	muzzle: 115,144,122,145,129,146,136,147,143 16 3
-	move.turn: 115,111,122,118,129,125,136,132,143,139 8
-
-vehicle_raptor_ad: Player Raptor
-	idle: 154,184,161,183,168,185,175,186,182 16
-	move: 148-182[0:6:1] 8
-	move.turn: 154,149,161,156,168,164,175,171,182,177 8
-
-vehicle_wtp_100: Player
-	idle: 187-195 16
-	open: 196-201 4
-	opened: 196-201[1:1:0] 4
-	close: 197-196,199-198,201-200 4
-
-vehicle_hcr_m: Shadow Player Tracks
-	idle: 202-210 16
-	move: 202-210 16 4
-
-turret_hcr_m: Shadow
-	idle: 211-219 16
-	repair: 230-234,225-229,220,224 4
-
-aircraft_heavy_lifter: Player
-	idle: 235-243 16
-	vertical: 244
-
-vehicle_bantha: Shadow Player Tracks
-	idle: 245-253 16
-	move: 245-253 16 4
-	extend: 254-255
-	extended: 255
-	retract: 255-256
-
-cargo: Shadow
-	idle: 257-265 16
-
-vehicle_bio: Shadow Player Tracks Flicker
-	idle: 266-274 16
-	move: 266-274 16 4
-	open: 275-276
-	opened: 276
-	close: 276-275
-	flicker: 266-274 16 2
-
-vehicle_tur: Shadow Player Tracks
-	idle: 277-285 16
-	move: 277-285 16 4
-	open: 286-287
-	opened: 287
-	close: 287-286
-
-vehicle_tank_small: Shadow Player Tracks
-	idle: 288-296 16
-	move: 288-296 16 4
-
-vehicle_btti: Shadow Player Tracks Muzzle
-	idle: 297-305 16
-	move: 297-305 16 4
-	muzzle: 297-305 16 3
+Source: SPRU0.MIX
+Generate:
+	vehicle_mcu: Shadow Player Tracks
+		idle: 0-8 16
+		move: 0-8 16 4
+
+	vehicle_mcu_deploy_large: Shadow Player
+		deploy: 22-16
+		
+	vehicle_mcu_deploy_small: Shadow Player
+		deploy: 9-15
+
+	vehicle_mech: Shadow
+		idle: 37-81[8:1:0] 8
+		move: 37-81[0:8:1] 8
+		move.turn: 45,42,54,51,63,60,72,69,81,78 8
+
+	turret_tiger_assault: Player
+		idle: 82-90 16
+
+	turret_tiger_hellmaker: Player
+		idle: 91-99 16
+
+	turret_spider: Player
+		idle: 100-108 16
+
+	vehicle_raptor_es: Player Muzzle Raptor
+		idle: 115,144,122,145,129,146,136,147,143 16
+		move: 109-143[0:6:1] 8
+		muzzle: 115,144,122,145,129,146,136,147,143 16 3
+		move.turn: 115,111,122,118,129,125,136,132,143,139 8
+
+	vehicle_raptor_ad: Player Raptor
+		idle: 154,184,161,183,168,185,175,186,182 16
+		move: 148-182[0:6:1] 8
+		move.turn: 154,149,161,156,168,164,175,171,182,177 8
+
+	vehicle_wtp_100: Player
+		idle: 187-195 16
+		open: 196-201 4
+		opened: 196-201[1:1:0] 4
+		close: 197-196,199-198,201-200 4
+
+	vehicle_hcr_m: Shadow Player Tracks
+		idle: 202-210 16
+		move: 202-210 16 4
+
+	turret_hcr_m: Shadow
+		idle: 211-219 16
+		repair: 230-234,225-229,220,224 4
+
+	aircraft_heavy_lifter: Player
+		idle: 235-243 16
+		vertical: 244
+
+	vehicle_bantha: Shadow Player Tracks
+		idle: 245-253 16
+		move: 245-253 16 4
+		extend: 254-255
+		extended: 255
+		retract: 255-256
+
+	cargo: Shadow
+		idle: 257-265 16
+
+	vehicle_bio: Shadow Player Tracks Flicker
+		idle: 266-274 16
+		move: 266-274 16 4
+		open: 275-276
+		opened: 276
+		close: 276-275
+		flicker: 266-274 16 2
+
+	vehicle_tur: Shadow Player Tracks
+		idle: 277-285 16
+		move: 277-285 16 4
+		open: 286-287
+		opened: 287
+		close: 287-286
+
+	vehicle_tank_small: Shadow Player Tracks
+		idle: 288-296 16
+		move: 288-296 16 4
+
+	vehicle_btti: Shadow Player Tracks Muzzle
+		idle: 297-305 16
+		move: 297-305 16 4
+		muzzle: 297-305 16 3
 
-vehicle_tank_medium: Shadow Player Tracks
-	idle: 306-314 16
-	move: 306-314 16 4
+	vehicle_tank_medium: Shadow Player Tracks
+		idle: 306-314 16
+		move: 306-314 16 4
 
-aircraft_storm: Player Muzzle
-	idle: 315-323 16
-	muzzle: 315-323 16 3
+	aircraft_storm: Player Muzzle
+		idle: 315-323 16
+		muzzle: 315-323 16 3
 
-aircraft_thunder: Player
-	idle: 324-332 16
-
-vehicle_tank_large: Shadow Player Tracks
-	idle: 333-341 16
-	move: 333-341 16 4
+	aircraft_thunder: Player
+		idle: 324-332 16
+
+	vehicle_tank_large: Shadow Player Tracks
+		idle: 333-341 16
+		move: 333-341 16 4
 
-turret_ht_33_r: Shadow Player
-	idle: 342-350 16
+	turret_ht_33_r: Shadow Player
+		idle: 342-350 16
 
-turret_mt_201l: Shadow Player
-	idle: 351-359 16
+	turret_mt_201l: Shadow Player
+		idle: 351-359 16
 
-turret_mt_200: Shadow Player Muzzle
-	idle: 360-368 16
-	muzzle: 360-368 16 3
+	turret_mt_200: Shadow Player Muzzle
+		idle: 360-368 16
+		muzzle: 360-368 16 3
 
-turret_st_01b: Shadow Player Muzzle
-	idle: 369-377 16
-	muzzle: 369-377 16 3
+	turret_st_01b: Shadow Player Muzzle
+		idle: 369-377 16
+		muzzle: 369-377 16 3
 
-turret_kt30:
-	idle: 378-386 16
+	turret_kt30:
+		idle: 378-386 16
 
-turret_ht_30_lr:
-	idle: 387-395 16
+	turret_ht_30_lr:
+		idle: 387-395 16
 
-turret_kt30_secondary:
-	idle: 387-395 16
+	turret_kt30_secondary:
+		idle: 387-395 16
 
-turret_thunder:
-	idle: 396-404 16
+	turret_thunder:
+		idle: 396-404 16
 
-turret_st_02:
-	idle: 396-404 16
+	turret_st_02:
+		idle: 396-404 16
 
-turret_little_eye:
-	idle: 396-404 16
+	turret_little_eye:
+		idle: 396-404 16
 
-turret_ht_30_lr_secondary: Player
-	idle: 405-413 16
+	turret_ht_30_lr_secondary: Player
+		idle: 405-413 16
 
-turret_ht_34_j: Shadow
-	idle: 414-422 16
+	turret_ht_34_j: Shadow
+		idle: 414-422 16
 
-turret_heavy_def_tower: Shadow
-	idle: 414-422 16
+	turret_heavy_def_tower: Shadow
+		idle: 414-422 16
 
-turret_android_a01: Shadow Muzzle #TODO unused?!
-	idle: 423-431 16
-	muzzle: 423-431 16 3
+	turret_android_a01: Shadow Muzzle #TODO unused?!
+		idle: 423-431 16
+		muzzle: 423-431 16 3
 
-turret_defend_tower: Shadow
-	idle: 432-440 16
+	turret_defend_tower: Shadow
+		idle: 432-440 16
 
-turret_big_eye: Player
-	idle: 441-449 16
+	turret_big_eye: Player
+		idle: 441-449 16
 
-turret_little_eye_secondary: Muzzle
-	idle: 450-458 16
-	muzzle: 450-458 16 3
+	turret_little_eye_secondary: Muzzle
+		idle: 450-458 16
+		muzzle: 450-458 16 3
 
-turret_defend_tower_secondary: Muzzle
-	idle: 450-458 16
-	muzzle: 450-458 16 3
+	turret_defend_tower_secondary: Muzzle
+		idle: 450-458 16
+		muzzle: 450-458 16 3
 
-turret_pillbox: Shadow Player Muzzle
-	idle: 459-467 16
-	muzzle: 459-467 16 3
+	turret_pillbox: Shadow Player Muzzle
+		idle: 459-467 16
+		muzzle: 459-467 16 3
 
-turret_atm_500: Shadow Muzzle
-	idle: 468-476 16
-	muzzle: 468-476 16 3
+	turret_atm_500: Shadow Muzzle
+		idle: 468-476 16
+		muzzle: 468-476 16 3
 
-turret_miner: Shadow Muzzle
-	idle: 468-476 16
-	muzzle: 468-476 16 3
+	turret_miner: Shadow Muzzle
+		idle: 468-476 16
+		muzzle: 468-476 16 3
 
-turret_miner_bt: Shadow Muzzle
-	idle: 468-476 16
-	muzzle: 468-476 16 3
+	turret_miner_bt: Shadow Muzzle
+		idle: 468-476 16
+		muzzle: 468-476 16 3
 
-turret_big_eye_secondary:
-	idle: 477-485 16
+	turret_big_eye_secondary:
+		idle: 477-485 16
 
-turret_heavy_def_tower_secondary:
-	idle: 477-485 16
+	turret_heavy_def_tower_secondary:
+		idle: 477-485 16
 
-ship_kt30: Shadow Player
-	idle: 486-494 16
+	ship_kt30: Shadow Player
+		idle: 486-494 16
 
-ship_russ3:
-	idle: 495-503 16
+	ship_russ3:
+		idle: 495-503 16
 
-aircraft_hell_wind: Player Engine
-	idle: 504-512 16
-	move: 504-512 16
+	aircraft_hell_wind: Player Engine
+		idle: 504-512 16
+		move: 504-512 16
 
-aircraft_gargoil: Player Engine Muzzle
-	idle: 513-521 16
-	move: 513-521 16
-	muzzle: 513-521 16 3
+	aircraft_gargoil: Player Engine Muzzle
+		idle: 513-521 16
+		move: 513-521 16
+		muzzle: 513-521 16 3
 
-vehicle_miner_bt: Shadow Player Tracks Flicker
-	idle: 522-530 16
-	move: 522-530 16 4
-	flicker: 522-530 16 2
+	vehicle_miner_bt: Shadow Player Tracks Flicker
+		idle: 522-530 16
+		move: 522-530 16 4
+		flicker: 522-530 16 2
 
-vehicle_hb_bike: Shadow Player
-	idle: 531-539 16
+	vehicle_hb_bike: Shadow Player
+		idle: 531-539 16
 
-vehicle_shadow: Shadow Player Tracks
-	idle: 540-548 16
-	move: 540-548 16 4
-
-vehicle_t100: Shadow Tracks
-	idle: 549-557 16
-	move: 549-557 16 4
-
-turret_t100: Shadow Player Muzzle
-	idle: 558-566 16
-	muzzle: 558-566 16 3
-
-vehicle_atm_500: Shadow Player Tracks
-	idle: 567-575 16
-	move: 567-575 16 4
-	open: 576-577
-	opened: 577
-	close: 577-576
-
-vehicle_screamer: Shadow Player Tracks
-	idle: 578-586 16
-	move: 578-586 16 4
-
-turret_screamer: Shadow
-	idle: 587-595 16
-
-turret_an_center: Shadow
-	idle: 587-595 16
-
-turret_heavy_tech: Shadow
-	idle: 587-595 16
-
-aircraft_hat: Player Rotors
-	idle: 596-604 16
-	move: 596-604 16 4 # TODO animation must be reversed on flip!
-	open: 605-606
-	opened: 606
-	close: 606-605
-
-vehicle_miner: Shadow Player Tracks Flicker
-	idle: 607-615 16
-	move: 607-615 16 4
-	flicker: 607-615 16 2
-
-ship_ttre_400: Shadow Player
-	idle: 616-624 16
-
-ship_shark: Shadow Player
-	idle: 625-633 16
-
-ship_wtrn: Shadow Player
-	idle: 634-642 16
-	open: 643-648 4
-	opened: 643-648[1:1:0] 4
-	close: 644-643,646-645,648-647 4
-
-rotor_slow:
-	idle: 649-652
-
-rotor_fast:
-	idle: 653-654
-
-infantry_silver_t: Player Infantry
-	idle: 655-684[4:1:1] 8
-	idle2: 655-684[5:1:0] 8
-	move: 655-684[0:4:2] 8
-
-infantry_silver_one: Player Muzzle Infantry
-	idle: 691-720[5:1:0] 8
-	idle2: 691-720[5:1:0] 8
-	move: 691-720[0:4:2] 8
-	muzzle: 721-730 8
-
-infantry_silver_max: Player Infantry
-	idle: 731-760[4:1:1] 8
-	idle2: 731-760[5:1:0] 8
-	move: 731-760[0:4:2] 8
-	muzzle: 761-770 8
-
-infantry_silver_r: Player Infantry
-	idle: 771-800[4:1:1] 8
-	idle2: 771-800[5:1:0] 8
-	move: 771-800[0:4:2] 8
-	muzzle: 801-810 8
-
-infantry_android_a04: Player Infantry
-	idle: 811-840[4:1:1] 8
-	idle2: 811-840[5:1:0] 8
-	move: 811-840[0:4:2] 8
-	Muzzle: 841-850 8
-
-infantry_android_a03: Player Infantry
-	idle: 851-880[4:1:1] 8
-	idle2: 851-880[5:1:0] 8
-	move: 851-880[0:4:2] 8
-	Muzzle: 881-890 8
-
-infantry_android_a01: Player Infantry
-	idle: 891-920[4:1:1] 8
-	idle2: 891-920[5:1:0] 8
-	move: 891-920[0:4:2] 8
-	Muzzle: 921-930 8
-	Muzzle2: 931-940 8
-
-infantry_android_a02: Player Infantry
-	idle: 941-970[4:1:1] 8
-	idle2: 941-970[5:1:0] 8
-	move: 941-970[0:4:2] 8
-	Muzzle: 971-980 8
-
-infantry_civil1: Player Infantry
-	idle: 981-1010[4:1:1] 8
-	idle2: 981-1010[5:1:0] 8
-	move: 981-1010[0:4:2] 8
-
-infantry_civil2: Player Infantry
-	idle: 1015-1044[4:1:1] 8
-	idle2: 1015-1044[5:1:0] 8
-	move: 1015-1044[0:4:2] 8
-
-infantry_civil3: Player Infantry
-	idle: 1049-1078[4:1:1] 8
-	idle2: 1049-1078[5:1:0] 8
-	move: 1049-1078[0:4:2] 8
-
-death: Shadow
-	civil1: 1011-1014
-	civil2: 1045-1048
-	civil3: 1079-1082
-	android_shot1: 1084-1090
-	android_shot2: 1091-1097
-	android_shot3: 1098-1104
-	android_shot4: 1104-1110
-	android_explode1: 1111-1117
-	android_explode2: 1118-1124
-	android_explode3: 1125-1131
-	android_explode4: 1132-1138
-	android_burn: 1139-1145
-	silver: 1146-1152
-
-turret_spider_ii: Player
-	idle: 1162-1170 16
-
-vehicle_big_meh: Shadow Player
-	idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
-	move: 1171-1205[0:6:1] 8
-	shadow: 1210-1214 8
-
-vehicle_goliat: Shadow Player
-	idle: 1215-1223 16
-
-aircraft_gargoil_ii: Player Engine
-	idle: 1224-1232 16
-	move: 1224-1232 16
-
-vehicle_warhammer: Shadow Player Tracks
-	idle: 1233-1241 16
-	move: 1233-1241 16 4
-
-turret_warhammer: Shadow Player Muzzle
-	idle: 1242-1250 16
-	muzzle: 1242-1250 16 3
-
-aircraft_vtol: Player Engine
-	idle: 1251-1259 16
-	move: 1251-1259 16
-
-aircraft_nemezis: Player Engine
-	idle: 1260-1268 16
-	move: 1260-1268 16
+	vehicle_shadow: Shadow Player Tracks
+		idle: 540-548 16
+		move: 540-548 16 4
+
+	vehicle_t100: Shadow Tracks
+		idle: 549-557 16
+		move: 549-557 16 4
+
+	turret_t100: Shadow Player Muzzle
+		idle: 558-566 16
+		muzzle: 558-566 16 3
+
+	vehicle_atm_500: Shadow Player Tracks
+		idle: 567-575 16
+		move: 567-575 16 4
+		open: 576-577
+		opened: 577
+		close: 577-576
+
+	vehicle_screamer: Shadow Player Tracks
+		idle: 578-586 16
+		move: 578-586 16 4
+
+	turret_screamer: Shadow
+		idle: 587-595 16
+
+	turret_an_center: Shadow
+		idle: 587-595 16
+
+	turret_heavy_tech: Shadow
+		idle: 587-595 16
+
+	aircraft_hat: Player Rotors
+		idle: 596-604 16
+		move: 596-604 16 4 # TODO animation must be reversed on flip!
+		open: 605-606
+		opened: 606
+		close: 606-605
+
+	vehicle_miner: Shadow Player Tracks Flicker
+		idle: 607-615 16
+		move: 607-615 16 4
+		flicker: 607-615 16 2
+
+	ship_ttre_400: Shadow Player
+		idle: 616-624 16
+
+	ship_shark: Shadow Player
+		idle: 625-633 16
+
+	ship_wtrn: Shadow Player
+		idle: 634-642 16
+		open: 643-648 4
+		opened: 643-648[1:1:0] 4
+		close: 644-643,646-645,648-647 4
+
+	rotor_slow:
+		idle: 649-652
+
+	rotor_fast:
+		idle: 653-654
+
+	infantry_silver_t: Player Infantry
+		idle: 655-684[4:1:1] 8
+		idle2: 655-684[5:1:0] 8
+		move: 655-684[0:4:2] 8
+
+	infantry_silver_one: Player Muzzle Infantry
+		idle: 691-720[5:1:0] 8
+		idle2: 691-720[5:1:0] 8
+		move: 691-720[0:4:2] 8
+		muzzle: 721-730 8
+
+	infantry_silver_max: Player Infantry
+		idle: 731-760[4:1:1] 8
+		idle2: 731-760[5:1:0] 8
+		move: 731-760[0:4:2] 8
+		muzzle: 761-770 8
+
+	infantry_silver_r: Player Infantry
+		idle: 771-800[4:1:1] 8
+		idle2: 771-800[5:1:0] 8
+		move: 771-800[0:4:2] 8
+		muzzle: 801-810 8
+
+	infantry_android_a04: Player Infantry
+		idle: 811-840[4:1:1] 8
+		idle2: 811-840[5:1:0] 8
+		move: 811-840[0:4:2] 8
+		Muzzle: 841-850 8
+
+	infantry_android_a03: Player Infantry
+		idle: 851-880[4:1:1] 8
+		idle2: 851-880[5:1:0] 8
+		move: 851-880[0:4:2] 8
+		Muzzle: 881-890 8
+
+	infantry_android_a01: Player Infantry
+		idle: 891-920[4:1:1] 8
+		idle2: 891-920[5:1:0] 8
+		move: 891-920[0:4:2] 8
+		Muzzle: 921-930 8
+		Muzzle2: 931-940 8
+
+	infantry_android_a02: Player Infantry
+		idle: 941-970[4:1:1] 8
+		idle2: 941-970[5:1:0] 8
+		move: 941-970[0:4:2] 8
+		Muzzle: 971-980 8
+
+	infantry_civil1: Player Infantry
+		idle: 981-1010[4:1:1] 8
+		idle2: 981-1010[5:1:0] 8
+		move: 981-1010[0:4:2] 8
+
+	infantry_civil2: Player Infantry
+		idle: 1015-1044[4:1:1] 8
+		idle2: 1015-1044[5:1:0] 8
+		move: 1015-1044[0:4:2] 8
+
+	infantry_civil3: Player Infantry
+		idle: 1049-1078[4:1:1] 8
+		idle2: 1049-1078[5:1:0] 8
+		move: 1049-1078[0:4:2] 8
+
+	death: Shadow
+		civil1: 1011-1014
+		civil2: 1045-1048
+		civil3: 1079-1082
+		android_shot1: 1084-1090
+		android_shot2: 1091-1097
+		android_shot3: 1098-1104
+		android_shot4: 1104-1110
+		android_explode1: 1111-1117
+		android_explode2: 1118-1124
+		android_explode3: 1125-1131
+		android_explode4: 1132-1138
+		android_burn: 1139-1145
+		silver: 1146-1152
+
+	turret_spider_ii: Player
+		idle: 1162-1170 16
+
+	vehicle_big_meh: Shadow Player
+		idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
+		move: 1171-1205[0:6:1] 8
+		shadow: 1210-1214 8
+
+	vehicle_goliat: Shadow Player
+		idle: 1215-1223 16
+
+	aircraft_gargoil_ii: Player Engine
+		idle: 1224-1232 16
+		move: 1224-1232 16
+
+	vehicle_warhammer: Shadow Player Tracks
+		idle: 1233-1241 16
+		move: 1233-1241 16 4
+
+	turret_warhammer: Shadow Player Muzzle
+		idle: 1242-1250 16
+		muzzle: 1242-1250 16 3
+
+	aircraft_vtol: Player Engine
+		idle: 1251-1259 16
+		move: 1251-1259 16
+
+	aircraft_nemezis: Player Engine
+		idle: 1260-1268 16
+		move: 1260-1268 16
