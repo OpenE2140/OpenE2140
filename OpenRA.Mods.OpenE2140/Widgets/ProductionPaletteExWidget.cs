@@ -50,9 +50,7 @@ public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecif
 		base.Initialize(args);
 	}
 
-	// TODO swap after switching to https://github.com/OpenRA/OpenRA/pull/20735
-	//string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TextColor), nameof(this.ReadyTextAltColor) };
-	string[] IFactionSpecificWidget.FieldsToOverride => Array.Empty<string>();
+	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TextColor), nameof(this.ReadyTextAltColor) };
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

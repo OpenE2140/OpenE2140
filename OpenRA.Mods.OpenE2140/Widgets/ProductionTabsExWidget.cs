@@ -56,9 +56,7 @@ public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidg
 		this.getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollRight);
 	}
 
-	// TODO swap after switching to https://github.com/OpenRA/OpenRA/pull/20735
-	//string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TabColor), nameof(this.TabColorDone) };
-	string[] IFactionSpecificWidget.FieldsToOverride => Array.Empty<string>();
+	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TabColor), nameof(this.TabColorDone) };
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 }
