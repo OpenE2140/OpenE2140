@@ -44,6 +44,11 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 		this.frequency = info.Frequency;
 	}
 
+	public WVec GetTurretOffset(Actor self)
+	{
+		return this.TurretOffset(self);
+	}
+
 	protected override WVec TurretOffset(Actor self)
 	{
 		var offset = base.TurretOffset(self);

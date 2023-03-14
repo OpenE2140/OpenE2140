@@ -16,7 +16,6 @@ using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Graphics;
-using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -88,23 +87,19 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 
 		var height = self.World.Map.DistanceAboveTerrain(self.CenterPosition).Length;
 
-		var activeAnimations = self.TraitsImplementing<WithSpriteTurret>()
-			.Where(wst => !wst.IsTraitDisabled && this.info.Turrets.Contains(wst.Info.Turret))
-			.Select(wst => wst.DefaultAnimation)
-			.ToHashSet();
-
-		var helper = new RenderSpritesReflectionHelper(self.Trait<RenderSprites>());
-
-		var anims = helper.GetVisibleAnimations().Where(a => activeAnimations.Contains(a.Animation));
-
-		var renderables = helper.RenderAnimations(self, wr, anims);
-
-		var shadowSprites = renderables.Where(s => !s.IsDecoration && s is IModifyableRenderable)
+		var shadowSprites = self.TraitsImplementing<WithMovingSpriteTurret>()
+			.SelectMany(
+				withMovingSpriteTurret => withMovingSpriteTurret.DefaultAnimation.Render(
+					self.CenterPosition + withMovingSpriteTurret.GetTurretOffset(self),
+					null
+				)
+			)
+			.OfType<IModifyableRenderable>()
 			.Select(
-				ma => ((IModifyableRenderable)ma).WithTint(this.shadowColor, ((IModifyableRenderable)ma).TintModifiers | TintModifiers.ReplaceColor)
+				modifyableRenderable => modifyableRenderable.WithTint(this.shadowColor, modifyableRenderable.TintModifiers | TintModifiers.ReplaceColor)
 					.WithAlpha(this.shadowAlpha)
 					.OffsetBy(this.info.Offset - new WVec(0, 0, height))
-					.WithZOffset(ma.ZOffset + height + this.info.ZOffset)
+					.WithZOffset(modifyableRenderable.ZOffset + height + this.info.ZOffset)
 					.AsDecoration()
 			);
 
