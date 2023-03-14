@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets.Sprites;
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 [UsedImplicitly]
 public class VirtualSpriteLoader : ISpriteLoader
@@ -54,9 +54,7 @@ public class VirtualSpriteLoader : ISpriteLoader
 			return false;
 		}
 
-		var spriteSheet = VirtualAssetsBuilder.Cache[stream.ReadASCII(stream.ReadInt32())];
-
-		frames = spriteSheet.Animations.SelectMany(animation => animation.Frames)
+		frames = VirtualAssetsBuilder.Cache[stream.ReadASCII(stream.ReadInt32())]
 			.Select(
 				frame => new SpriteFrame(
 					SpriteFrameType.Rgba32,

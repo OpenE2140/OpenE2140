@@ -15,7 +15,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using OpenRA.FileSystem;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
-using OpenRA.Mods.OpenE2140.Assets.VirtualAssets.Sprites;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
@@ -23,10 +22,22 @@ namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 // TODO there is a LOT of optimization/refactoring potential here!
 public static class VirtualAssetsBuilder
 {
+	public class Frame
+	{
+		public readonly Rectangle Bounds;
+		public readonly byte[] Pixels;
+
+		public Frame(Rectangle bounds, byte[] pixels)
+		{
+			this.Bounds = bounds;
+			this.Pixels = pixels;
+		}
+	}
+
 	public const string Identifier = "VirtualSpriteSheet";
 	private const string Extension = ".vspr";
 
-	public static readonly Dictionary<string, VirtualSpriteSheet> Cache = new Dictionary<string, VirtualSpriteSheet>();
+	public static readonly Dictionary<string, Frame[]> Cache = new Dictionary<string, Frame[]>();
 
 	private record FrameInfo(int Frame, bool FlipX);
 
@@ -142,7 +153,7 @@ public static class VirtualAssetsBuilder
 		if (!VirtualAssetsBuilder.Cache.ContainsKey(sheetNode.Key))
 		{
 			var sheetFlags = sheetNode.Value.Value == null ? Array.Empty<string>() : sheetNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-			var animations = new List<VirtualSpriteAnimation>();
+			var frames = new List<Frame>();
 
 			foreach (var animationNode in sheetNode.Value.Nodes)
 			{
@@ -154,8 +165,6 @@ public static class VirtualAssetsBuilder
 				var cycles = chunks.Length > 2 ? byte.Parse(chunks[2]) : (byte)1;
 				var facings = chunks.Length > 1 ? byte.Parse(chunks[1]) : (byte)1;
 				var frameInfos = VirtualAssetsBuilder.BuildFrameInfos(chunks[0], facings);
-
-				var frames = new List<VirtualSpriteFrame>();
 
 				foreach (var frameInfo in frameInfos)
 				{
@@ -237,7 +246,7 @@ public static class VirtualAssetsBuilder
 									VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.LightOffPalette, 244, 4, palette, 244, 4, 0, false);
 							}
 
-							var frame = new VirtualSpriteFrame(Rectangle.Empty, Array.Empty<byte>());
+							var frame = new Frame(Rectangle.Empty, Array.Empty<byte>());
 
 							if (sheetFlags.Contains("Infantry"))
 								frame = VirtualAssetsBuilder.Draw(frame, mix.Frames[685], VirtualAssetsBuilder.ShadowsPalette, false, new int2(3, 11));
@@ -254,11 +263,9 @@ public static class VirtualAssetsBuilder
 						}
 					}
 				}
-
-				animations.Add(new VirtualSpriteAnimation(animationNode.Key, facings, frames.ToArray()));
 			}
 
-			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, new VirtualSpriteSheet(animations.ToArray()));
+			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, frames.ToArray());
 		}
 
 		var stream = new MemoryStream();
@@ -329,7 +336,7 @@ public static class VirtualAssetsBuilder
 		return frameInfos;
 	}
 
-	private static VirtualSpriteFrame Draw(VirtualSpriteFrame frame, MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX, int2 offset)
+	private static Frame Draw(Frame frame, MixFrame mixFrame, IReadOnlyList<Color> palette, bool flipX, int2 offset)
 	{
 		var usedBounds = new Rectangle(mixFrame.Width, mixFrame.Height, 0, 0);
 		var pixels = new byte[mixFrame.Width * mixFrame.Height * 4];
@@ -394,7 +401,7 @@ public static class VirtualAssetsBuilder
 				);
 			}
 
-			frame = new VirtualSpriteFrame(newBounds, newPixels);
+			frame = new Frame(newBounds, newPixels);
 		}
 
 		for (var x = 0; x < usedBounds.Width; x++)
