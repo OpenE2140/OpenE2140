@@ -188,5 +188,21 @@ Actors:
 		Owner: ED_Player
 		Facing: 384
 		Location: 18,8
+	Actor49: ed_vehicles_btti
+		Owner: ED_Player
+		Facing: 384
+		Location: 23,10
+	Actor50: ed_vehicles_btti
+		Owner: ED_Player
+		Facing: 384
+		Location: 24,10
+	Actor51: ed_vehicles_btti
+		Owner: ED_Player
+		Facing: 384
+		Location: 23,11
+	Actor52: ed_vehicles_btti
+		Owner: ED_Player
+		Facing: 384
+		Location: 24,11
 
 Rules: rules.yaml

@@ -1,0 +1,27 @@
+ed_vehicles_btti:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: BTTI
+	Valued:
+		Cost: 200
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Health:
+		HP: 150
+	Mobile:
+		Speed: 100
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 3c768
+	Armament@PRIMARY:
+		Weapon: ed_vehicles_btti
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 0,0,0
+		LocalYaw: 0,0
+		MuzzleSequence: muzzle
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:

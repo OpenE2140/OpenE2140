@@ -1,0 +1,18 @@
+ed_vehicles_btti:
+	idle:
+		Filename: vehicle_btti.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_btti.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	muzzle:
+		Filename: vehicle_btti.vspr
+		Start: 80
+		Length: 3
+		Facings: -16
+		Tick: 60
+	icon:
+		Filename: SPRI0.MIX
+		Start: 146
