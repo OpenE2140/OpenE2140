@@ -1,5 +1,5 @@
 Metrics:
-	InfiniteOffset: 0, -2
+	InfiniteOffset: -10, -2
 	MoneyBinTextColor-ed: 009e00
 	MoneyBinTextColor-ucs: ad7131
 	MoneyBinCriticalPowerColor: ffff00

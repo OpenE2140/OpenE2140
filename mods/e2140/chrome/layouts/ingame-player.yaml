@@ -562,6 +562,8 @@ Container@PLAYER_WIDGETS:
 					ClockPalette:
 					NotBuildablePalette:
 					SymbolsFont: SourceSansProSmall
+					QueuedOffset: 55,4
+					QueuedTextAlign: Right
 				ProductionTabsEx@PRODUCTION_TABS:
 					Logic: ProductionTabsLogic, AddFactionSuffixExLogic
 					PaletteWidget: PRODUCTION_PALETTE
