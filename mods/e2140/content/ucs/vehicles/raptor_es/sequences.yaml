@@ -19,6 +19,7 @@ ucs_vehicles_raptor_es:
 		Start: 64
 		Length: 3
 		Facings: -16
+		Tick: 60
 	icon:
 		Filename: SPRI1.MIX
 		Start: 129
