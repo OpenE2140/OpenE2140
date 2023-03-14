@@ -20,7 +20,14 @@ projectile_cannon:
 	explode:
 		BlendMode: Additive
 		Start: 1
-		Length: 5
+		Length: 8
+		Tick: 50
+		ZOffset: 512
+	explode2:
+		BlendMode: Additive
+		Start: 9
+		Length: 8
+		Tick: 50
 		ZOffset: 512
 
 projectile_heavy_rocket:
@@ -33,6 +40,11 @@ projectile_heavy_rocket:
 	explode:
 		BlendMode: Additive
 		Start: 16
+		Length: 8
+		ZOffset: 512
+	explode2:
+		BlendMode: Additive
+		Start: 24
 		Length: 8
 		ZOffset: 512
 

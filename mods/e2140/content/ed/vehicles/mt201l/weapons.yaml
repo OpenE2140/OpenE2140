@@ -1,0 +1,27 @@
+ed_vehicles_mt201l:
+	ReloadDelay: 40
+	Range: 2c0
+	MinRange: 0c512
+	Report: 10.smp
+	ValidTargets: Ground
+	Burst: 10
+	BurstDelays: 3
+	Projectile: LaserZap
+		HitAnimPalette:
+		LaunchEffectPalette:
+		Duration: 5
+		ZOffset: 512
+		Width: 0c20
+		Color: FF4935
+		SecondaryBeam: True
+		SecondaryBeamWidth: 0c35
+		SecondaryBeamColor: FF4935
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 8
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: smoke
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground

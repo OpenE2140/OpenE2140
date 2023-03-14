@@ -1,6 +1,6 @@
-ed_vehicles_st01b:
+ed_vehicles_mt200:
 	ReloadDelay: 40
-	Range: 3c768
+	Range: 5c0
 	MinRange: 0c512
 	Report: 3.smp
 	ValidTargets: Ground
@@ -15,7 +15,7 @@ ed_vehicles_st01b:
 		Shadow: False
 	Warhead@Damage: SpreadDamage
 		Spread: 128
-		Damage: 15
+		Damage: 25
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon

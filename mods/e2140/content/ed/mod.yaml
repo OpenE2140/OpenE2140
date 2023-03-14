@@ -10,6 +10,8 @@ Rules:
 	e2140|content/ed/buildings/tech_house/rules.yaml
 	e2140|content/ed/vehicles/st01b/rules.yaml
 	e2140|content/ed/vehicles/st02/rules.yaml
+	e2140|content/ed/vehicles/mt200/rules.yaml
+	e2140|content/ed/vehicles/mt201l/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -18,6 +20,8 @@ Sequences:
 	e2140|content/ed/buildings/tech_house/sequences.yaml
 	e2140|content/ed/vehicles/st01b/sequences.yaml
 	e2140|content/ed/vehicles/st02/sequences.yaml
+	e2140|content/ed/vehicles/mt200/sequences.yaml
+	e2140|content/ed/vehicles/mt201l/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -25,3 +29,6 @@ Voices:
 Weapons:
 	e2140|content/ed/vehicles/st01b/weapons.yaml
 	e2140|content/ed/vehicles/st02/weapons.yaml
+	e2140|content/ed/vehicles/mt200/weapons.yaml
+	e2140|content/ed/vehicles/mt201l/weapons.yaml
+

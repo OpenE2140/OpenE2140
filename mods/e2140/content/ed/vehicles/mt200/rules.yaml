@@ -1,0 +1,30 @@
+ed_vehicles_mt200:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: MT 200
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 91
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 3c768
+	Turreted:
+		TurnSpeed: 30
+		Offset: 0,0,160
+	Armament@PRIMARY:
+		Weapon: ed_vehicles_mt200
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 0,0,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:

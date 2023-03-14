@@ -105,18 +105,6 @@ Actors:
 		Owner: UCS_AI
 		Location: 6,21
 		Facing: 768
-	Actor18: ed_vehicles_st01b
-		Owner: ED_Player
-		Location: 23,6
-		Facing: 512
-	Actor26: ed_vehicles_st01b
-		Owner: ED_Player
-		Facing: 384
-		Location: 22,6
-	Actor27: ed_vehicles_st01b
-		Owner: ED_Player
-		Location: 24,7
-		Facing: 256
 	Actor28: ed_vehicles_st01b
 		Owner: ED_Player
 		Facing: 384
@@ -135,5 +123,70 @@ Actors:
 		Owner: ED_Player
 		Location: 22,3
 		Health: 31
+	Actor33: ed_vehicles_mt201l
+		Owner: ED_Player
+		Location: 26,8
+		TurretFacing: 0
+		Facing: 384
+	Actor34: ed_vehicles_mt201l
+		Owner: ED_Player
+		Facing: 384
+		Location: 27,8
+	Actor35: ed_vehicles_mt201l
+		Owner: ED_Player
+		Facing: 384
+		Location: 26,7
+	Actor36: ed_vehicles_mt201l
+		Owner: ED_Player
+		Facing: 384
+		Location: 27,7
+	Actor37: ed_vehicles_st02
+		Owner: ED_Player
+		Facing: 384
+		Location: 24,7
+	Actor38: ed_vehicles_st02
+		Owner: ED_Player
+		Facing: 384
+		Location: 23,7
+	Actor39: ed_vehicles_st02
+		Owner: ED_Player
+		Facing: 384
+		Location: 23,8
+	Actor40: ed_vehicles_st02
+		Owner: ED_Player
+		Facing: 384
+		Location: 24,8
+	Actor41: ed_vehicles_mt200
+		Owner: ED_Player
+		Facing: 384
+		Location: 21,7
+	Actor42: ed_vehicles_mt200
+		Owner: ED_Player
+		Facing: 384
+		Location: 20,7
+	Actor43: ed_vehicles_mt200
+		Owner: ED_Player
+		Facing: 384
+		Location: 20,8
+	Actor44: ed_vehicles_mt200
+		Owner: ED_Player
+		Facing: 384
+		Location: 21,8
+	Actor45: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 18,7
+	Actor46: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 17,7
+	Actor47: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 17,8
+	Actor48: ed_vehicles_st01b
+		Owner: ED_Player
+		Facing: 384
+		Location: 18,8
 
 Rules: rules.yaml
