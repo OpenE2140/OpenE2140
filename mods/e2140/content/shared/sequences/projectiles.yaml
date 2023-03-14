@@ -53,7 +53,7 @@ missile_trail:
 		Tick: 70
 		BlendMode: Additive
 		Filename: missile_trail.vspr
-		Length: 3
+		Length: 4
 		ZOffset: 512
 
 projectile_plasma:

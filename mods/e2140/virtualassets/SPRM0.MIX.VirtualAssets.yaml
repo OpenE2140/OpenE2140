@@ -6,7 +6,7 @@ Generate:
 		explode: 47-55
 
 	missile_trail: Smoke
-		idle: 157-159
+		idle: 157-160
 
 	projectile_heavy_rocket:
 		idle: 88-96 16
