@@ -15,6 +15,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -52,8 +53,16 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 			var anim = new Animation(init.World, image, turretFacing);
 			anim.Play(RenderSprites.NormalizeSequence(anim, init.GetDamageState(), w.Sequence));
 
-			// TODO Does not support the rgba tint method!
-			//yield return new SpriteActorPreview(anim, () => this.Offset, () => -(this.Offset.Y + this.Offset.Z) + 1, init.WorldRenderer.Palette(this.Palette));
+			yield return new ModifyableSpriteActorPreview(
+				anim,
+				() => t.Offset + this.Offset,
+				() => this.ZOffset,
+				e => ((IModifyableRenderable)e).WithTint(
+						new float3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
+						((IModifyableRenderable)e).TintModifiers | TintModifiers.ReplaceColor
+					)
+					.WithAlpha(this.ShadowColor.A / 255f)
+			);
 		}
 	}
 }
