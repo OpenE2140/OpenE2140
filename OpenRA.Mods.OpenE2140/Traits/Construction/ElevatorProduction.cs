@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
@@ -264,17 +263,14 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			new ActorPreviewInitializer(new ActorReference(this.productionInfo.Producee.Name, previewInit), worldRenderer)
 		);
 
-		var renderables = actorPreviews.SelectMany(
-				actorPreview => actorPreview.Render(worldRenderer, self.CenterPosition + this.info.Position + new WVec(0, 0, this.GetElevatorHeight()))
+		var renderables = actorPreviews
+			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, self.CenterPosition + this.info.Position + new WVec(0, 0, this.GetElevatorHeight())))
+			.Select(
+				renderable => renderable is SpriteRenderable spriteRenderable
+					? spriteRenderable.WithZOffset(spriteRenderable.ZOffset + this.info.ZOffset)
+					: renderable
 			)
 			.ToArray();
-
-		// TODO Hack: SpriteRenderable.zOffset is private.
-		foreach (var renderable in renderables.OfType<SpriteRenderable>())
-		{
-			var field = renderable.GetType().GetField("zOffset", BindingFlags.Instance | BindingFlags.NonPublic);
-			field?.SetValue(renderable, (field.GetValue(renderable) is int v ? v : 0) + this.info.ZOffset);
-		}
 
 		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() + this.info.CutOff * 16);
 

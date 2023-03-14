@@ -51,7 +51,7 @@ public class RenderElevatorSprites : RenderSprites
 			(anim, renderables) =>
 			{
 				if (anim is CutOffAnimationWithOffset elevatorAnimation)
-					RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.Bottom());
+					RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.CutOff());
 			}
 		);
 

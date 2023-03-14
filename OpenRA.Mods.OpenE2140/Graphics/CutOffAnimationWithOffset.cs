@@ -17,11 +17,11 @@ namespace OpenRA.Mods.OpenE2140.Graphics;
 
 public class CutOffAnimationWithOffset : AnimationWithOffset
 {
-	public readonly Func<int> Bottom;
+	public readonly Func<int> CutOff;
 
-	public CutOffAnimationWithOffset(Animation a, Func<WVec> offset, Func<bool> disable, Func<WPos, int> zOffset, Func<int> bottom)
+	public CutOffAnimationWithOffset(Animation a, Func<WVec> offset, Func<bool> disable, Func<WPos, int> zOffset, Func<int> cutOff)
 		: base(a, offset, disable, zOffset)
 	{
-		this.Bottom = bottom;
+		this.CutOff = cutOff;
 	}
 }
