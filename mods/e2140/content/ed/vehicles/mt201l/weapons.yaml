@@ -7,6 +7,8 @@ ed_vehicles_mt201l:
 	Burst: 10
 	BurstDelays: 3
 	Projectile: LaserZap
+		HitAnimPalette:
+		LaunchEffectPalette:
 		Duration: 5
 		ZOffset: 512
 		Width: 0c20
