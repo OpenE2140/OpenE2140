@@ -21,6 +21,7 @@ ucs_buildings_prod_center:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: 16, 1024, 0
+		CutOff: 32
 		Produces: Building.UCS
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:

@@ -19,6 +19,7 @@ ed_buildings_tech_house:
 	ElevatorProduction:
 		Image: ed_elevator
 		Position: 992, -104, 0
+		CutOff: 32
 		Produces: Vehicle.ED
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:

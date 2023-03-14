@@ -42,6 +42,9 @@ public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSprites
 	[Desc("Elevator height.")]
 	public readonly int Height = 1024;
 
+	[Desc("Cut-Off row in pixels.")]
+	public readonly int CutOff;
+
 	[Desc("How long it takes the elevator to reach the top.")]
 	public readonly int Duration = 25;
 
@@ -115,7 +118,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight()),
 			() => this.IsTraitDisabled || this.State is AnimationState.Closed or AnimationState.Opening or AnimationState.Closing,
 			_ => this.info.ZOffset,
-			() => init.Self.CenterPosition.Y + this.info.Position.Y
+			() => this.info.Position.Y + this.info.CutOff * 16
 		);
 
 		animationElevator.Animation.PlayRepeating("elevator");
@@ -273,7 +276,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			field?.SetValue(renderable, (field.GetValue(renderable) is int v ? v : 0) + this.info.ZOffset);
 		}
 
-		RenderElevatorSprites.PostProcess(renderables, self.CenterPosition.Y + this.info.Position.Y);
+		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() + this.info.CutOff * 16);
 
 		return renderables;
 	}

@@ -69,11 +69,11 @@ public class RenderElevatorSprites : RenderSprites
 
 			var height = sprite.Bounds.Height;
 			var offset = sprite.Offset.Y;
-			var current = renderable.Pos.Y - renderable.Pos.Z * 2 + height / 2 - (int)sprite.Offset.Y;
+			var current = renderable.Offset.Y - renderable.Offset.Z + height * 16 / 2;
 
 			if (current > bottom)
 			{
-				height = Math.Max(height - (current - bottom) / 32, 0);
+				height = Math.Max(height - (current - bottom) / 16, 0);
 				offset -= (sprite.Bounds.Height - height) / 2f;
 			}
 

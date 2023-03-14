@@ -19,6 +19,7 @@ ucs_buildings_heavy_tech:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: -960, 96, 0
+		CutOff: 32
 		Produces: Vehicle.UCS
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:

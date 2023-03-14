@@ -17,6 +17,7 @@ ed_buildings_constr_center:
 	ElevatorProduction:
 		Image: ed_elevator
 		Position: 1088, 1072, 0
+		CutOff: 32
 		Produces: Building.ED
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:
