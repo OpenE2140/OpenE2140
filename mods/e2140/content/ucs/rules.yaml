@@ -18,6 +18,10 @@ World:
 	Inherits@2: ^CoreTurret
 	-WithSpriteTurret:
 	WithMovingSpriteTurret:
+	WithTurretShadow:
+		ShadowColor: 00000046
+		Offset: 0,115,-200
+		ZOffset: 70
 
 # Base for all UCS vehicles.
 ^UcsVehicle:
@@ -32,10 +36,6 @@ World:
 	Mobile:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
-	WithTurretShadow:
-		ShadowColor: 00000046
-		Offset: 0,115,-200
-		ZOffset: 70
 
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault

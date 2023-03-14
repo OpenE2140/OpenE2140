@@ -28,4 +28,3 @@ ucs_vehicles_raptor_ad:
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
-	-WithTurretShadow:
