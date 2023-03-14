@@ -15,9 +15,8 @@ using System.Collections;
 using System.Reflection;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
-using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Helpers.Reflection;
 
 public class RenderSpritesReflectionHelper
 {
@@ -107,7 +106,7 @@ public class RenderSpritesReflectionHelper
 
 		public void CachePalette(object animWrapper, WorldRenderer worldRenderer, Player owner)
 		{
-			this.cachePalette?.Invoke(animWrapper, new object[] { worldRenderer, owner });
+			this.cachePalette.Invoke(animWrapper, new object[] { worldRenderer, owner });
 		}
 	}
 }

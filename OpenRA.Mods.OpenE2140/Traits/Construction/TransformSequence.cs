@@ -87,7 +87,8 @@ public class TransformSequence : ITick
 							this.animationCover.Animation.PlayRepeating("covered");
 
 							this.remainingTime = this.info.ConstructionTime;
-						});
+						}
+					);
 				}
 				else
 				{
