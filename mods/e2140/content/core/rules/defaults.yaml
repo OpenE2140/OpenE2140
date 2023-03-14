@@ -2,6 +2,7 @@
 ^CoreVisibleActor:
 	# All our actors are sprite based and need to render sprites.
 	RenderSprites:
+        FactionImages:
 	# At default fog hides every actor.
 	HiddenUnderFog:
 	# Allow actors to rotate and use facings.

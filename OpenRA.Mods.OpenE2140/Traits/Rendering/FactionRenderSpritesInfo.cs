@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
@@ -53,27 +52,12 @@ public class FactionRenderSprites : IWorldLoaded
 			if (renderSpritesInfo == null)
 				continue;
 
-			if (renderSpritesInfo.FactionImages == null)
-			{
-				renderSpritesInfo.GetType()
-					.GetField("FactionImages", BindingFlags.Instance | BindingFlags.Public)
-					?.SetValue(renderSpritesInfo, new Dictionary<string, string>());
-			}
-
 			foreach (var faction in this.info.Factions)
 			{
 				var factionImageName = $"{actorInfo.Name}.{faction}";
 
-				try
-				{
-					world.Map.Sequences.Sequences(factionImageName);
-				}
-				catch
-				{
-					continue;
-				}
-
-				renderSpritesInfo.FactionImages?.TryAdd(faction, factionImageName);
+				if (world.Map.Sequences.Images.Contains(factionImageName))
+					renderSpritesInfo.FactionImages.TryAdd(faction, factionImageName);
 			}
 		}
 	}
