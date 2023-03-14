@@ -11,12 +11,14 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
+[UsedImplicitly]
 public class IngamePowerLogic : ChromeLogic
 {
 	[TranslationReference("usage", "capacity")]

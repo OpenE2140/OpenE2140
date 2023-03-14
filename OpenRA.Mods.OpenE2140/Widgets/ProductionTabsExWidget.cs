@@ -11,6 +11,7 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
@@ -18,18 +19,15 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-/// <summary>
-/// Modifies <see cref="ProductionTabsWidget"/> to make it possible to override <see cref="ProductionTabsWidget.Decorations"/>,
-/// <see cref="ProductionTabsWidget.DecorationScrollLeft"/> and <see cref="ProductionTabsWidget.DecorationScrollRight"/> fields.
-///
-/// Temporary solution until PR #20635 is merged in OpenRA.
-/// </summary>
+
+// TODO Temporary solution until PR #20635 is merged in OpenRA.
+[UsedImplicitly]
 public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidget
 {
 	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
 	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
 
-	public string Identifier = "";
+	public readonly string Identifier = "";
 
 	[ObjectCreator.UseCtorAttribute]
 	public ProductionTabsExWidget(World world)

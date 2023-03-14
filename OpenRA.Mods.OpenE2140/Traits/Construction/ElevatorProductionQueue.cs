@@ -48,7 +48,6 @@ public class ElevatorProductionQueue : ProductionQueue
 			() => this.Actor.World.AddFrameEndTask(
 				_ =>
 				{
-					// Make sure the item hasn't been invalidated between the ProductionItem ticking and this FrameEndTask running
 					if (!this.Queue.Any(i => i.Done && i.Item == unit.Name))
 						return;
 
@@ -64,7 +63,6 @@ public class ElevatorProductionQueue : ProductionQueue
 	{
 		var mostLikelyProducerTrait = this.MostLikelyProducer().Trait as ElevatorProduction;
 
-		// Cannot produce if I'm dead or trait is disabled
 		if (!this.Actor.IsInWorld || this.Actor.IsDead || mostLikelyProducerTrait == null)
 		{
 			this.CancelProduction(unit.Name, 1);
@@ -72,48 +70,39 @@ public class ElevatorProductionQueue : ProductionQueue
 			return false;
 		}
 
-		if (mostLikelyProducerTrait.State == ElevatorProduction.AnimationState.Closed)
-		{
-			var inits = new TypeDictionary { new OwnerInit(this.Actor.Owner), new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction)) };
-
-			var bi = unit.TraitInfo<BuildableInfo>();
-			var type = this.developerMode.AllTech ? this.Info.Type : bi.BuildAtProductionType ?? this.Info.Type;
-			var item = this.Queue.First(i => i.Done && i.Item == unit.Name);
-
-			if (!mostLikelyProducerTrait.IsTraitPaused && mostLikelyProducerTrait.Produce(this.Actor, unit, type, inits, item.TotalCost))
-				return true;
-
+		if (mostLikelyProducerTrait.State != ElevatorProduction.AnimationState.Closed)
 			return false;
-		}
 
-		return false;
+		var inits = new TypeDictionary { new OwnerInit(this.Actor.Owner), new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction)) };
+
+		var bi = unit.TraitInfo<BuildableInfo>();
+		var type = this.developerMode.AllTech ? this.Info.Type : bi.BuildAtProductionType ?? this.Info.Type;
+		var item = this.Queue.First(i => i.Done && i.Item == unit.Name);
+
+		return !mostLikelyProducerTrait.IsTraitPaused && mostLikelyProducerTrait.Produce(this.Actor, unit, type, inits, item.TotalCost);
 	}
 
-	public void UnitCompleted(ElevatorProduction elevatorProduction, Actor actor)
+	public void UnitCompleted(Actor actor)
 	{
-		if (elevatorProduction is null)
-			throw new ArgumentNullException(nameof(elevatorProduction));
-
 		if (actor is null)
 			throw new ArgumentNullException(nameof(actor));
 
-		// Question: can there actually be production items that don't match produced actor? (maybe for ParallelProductionQueue?)
 		var done = this.Queue.FirstOrDefault(p => p.Done && p.Item == actor.Info.Name);
 
-		if (done != null)
-		{
-			this.EndProduction(done);
+		if (done == null)
+			return;
 
-			var rules = this.Actor.World.Map.Rules;
-			Game.Sound.PlayNotification(rules, this.Actor.Owner, "Speech", this.Info.ReadyAudio, this.Actor.Owner.Faction.InternalName);
-			TextNotificationsManager.AddTransientLine(this.Info.ReadyTextNotification, this.Actor.Owner);
-		}
+		this.EndProduction(done);
+
+		var rules = this.Actor.World.Map.Rules;
+		Game.Sound.PlayNotification(rules, this.Actor.Owner, "Speech", this.Info.ReadyAudio, this.Actor.Owner.Faction.InternalName);
+		TextNotificationsManager.AddTransientLine(this.Info.ReadyTextNotification, this.Actor.Owner);
 	}
 
 	protected override void TickInner(Actor self, bool allProductionPaused)
 	{
 		var traits = this.productionTraits.OfType<ElevatorProduction>().Where(p => !p.IsTraitDisabled && p.Info.Produces.Contains(this.Info.Type));
-		var unpaused = traits.Where(a => !a.IsTraitPaused && a.State == ElevatorProduction.AnimationState.Closed);
+		var unpaused = traits.Where(a => a is { IsTraitPaused: false, State: ElevatorProduction.AnimationState.Closed });
 
 		if (unpaused.Any())
 			base.TickInner(self, allProductionPaused);

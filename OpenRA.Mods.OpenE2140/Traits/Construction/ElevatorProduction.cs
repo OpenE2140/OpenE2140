@@ -219,7 +219,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 						this.animation.Animation.PlayRepeating("closed");
 
-						this.productionQueue.UnitCompleted(this, this.lastProducedUnit!.Actor!);
+						this.productionQueue.UnitCompleted(this.lastProducedUnit!.Actor!);
 					}
 				);
 

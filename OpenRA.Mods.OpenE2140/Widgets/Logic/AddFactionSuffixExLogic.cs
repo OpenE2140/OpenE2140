@@ -12,12 +12,14 @@
 #endregion
 
 using System.Reflection;
+using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
+[UsedImplicitly]
 public class AddFactionSuffixExLogic : ChromeLogic
 {
 	[ObjectCreator.UseCtor]

@@ -11,6 +11,7 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
@@ -19,16 +20,13 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-/// <summary>
-/// Modifies <see cref="ProductionPaletteWidget"/> to make it possible to change <see cref="ProductionPaletteWidget.ClockAnimation"/>
-/// based on local player's faction.
-/// </summary>
+[UsedImplicitly]
 public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecificWidget
 {
 	private readonly World world;
 	private readonly ObjectFieldHelper<string> clockAnimationField;
 
-	public string Identifier = "";
+	public readonly string Identifier = "";
 
 	[ObjectCreator.UseCtorAttribute]
 	public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)

@@ -11,16 +11,18 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
+[UsedImplicitly]
 public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 {
-	public string[] FieldsToOverride = { "TextColor" };
+	public readonly string[] FieldsToOverride = { "TextColor" };
 
 	[FieldLoader.RequireAttribute]
-	public string Identifier = "";
+	public readonly string Identifier = "";
 
 	[ObjectCreator.UseCtorAttribute]
 	public FactionLabelWidget(World world)
