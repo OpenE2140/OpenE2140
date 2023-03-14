@@ -8,6 +8,7 @@ Rules:
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml
 	e2140|content/ucs/buildings/prod_center/rules.yaml
+	e2140|content/ucs/vehicles/t100/rules.yaml
 	e2140|content/ucs/vehicles/raptor_es/rules.yaml
 	e2140|content/ucs/vehicles/raptor_ad/rules.yaml
 	e2140|content/ucs/vehicles/tiger_assault/rules.yaml
@@ -19,6 +20,7 @@ Sequences:
 	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
 	e2140|content/ucs/buildings/power_plant/sequences.yaml
 	e2140|content/ucs/buildings/prod_center/sequences.yaml
+	e2140|content/ucs/vehicles/t100/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_ad/sequences.yaml
 	e2140|content/ucs/vehicles/tiger_assault/sequences.yaml
@@ -29,6 +31,7 @@ Voices:
 	e2140|content/ucs/voices.yaml
 
 Weapons:
+	e2140|content/ucs/vehicles/t100/weapons.yaml
 	e2140|content/ucs/vehicles/raptor_es/weapons.yaml
 	e2140|content/ucs/vehicles/raptor_ad/weapons.yaml
 	e2140|content/ucs/vehicles/tiger_assault/weapons.yaml

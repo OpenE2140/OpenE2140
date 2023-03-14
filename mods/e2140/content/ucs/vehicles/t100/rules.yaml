@@ -1,0 +1,31 @@
+ucs_vehicles_t100:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: T100
+	Valued:
+		Cost: 130
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Health:
+		HP: 80
+	Mobile:
+		Speed: 50
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 2c0
+	Turreted:
+		TurnSpeed: 30
+		Offset: 0,0,0
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_t100
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 0,0,0
+		LocalYaw: 0,0
+		MuzzleSequence: muzzle
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+		IgnoreOffset: True

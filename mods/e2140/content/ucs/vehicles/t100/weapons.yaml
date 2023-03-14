@@ -1,0 +1,11 @@
+ucs_vehicles_t100:
+	ReloadDelay: 40
+	Burst: 10
+	Range: 3c0
+	Report: 2.smp
+	ValidTargets: Ground
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 7
+		ValidTargets: Ground
