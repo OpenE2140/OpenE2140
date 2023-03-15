@@ -1,7 +1,7 @@
 ucs_vehicles_spider_ii:
 	ReloadDelay: 50
-	Range: 6c0
-	MinRange: 1c512
+	Range: 6c896
+	MinRange: 0c512
 	Report: 4.smp
 	ValidTargets: Ground
 	Burst: 4
@@ -18,7 +18,7 @@ ucs_vehicles_spider_ii:
 		TrailPalette:
 		Shadow: True
 		HorizontalRateOfTurn: 20
-		RangeLimit: 6c0
+		RangeLimit: 8c0
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 80

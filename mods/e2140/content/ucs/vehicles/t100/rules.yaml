@@ -28,4 +28,3 @@ ucs_vehicles_t100:
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
-		IgnoreOffset: True

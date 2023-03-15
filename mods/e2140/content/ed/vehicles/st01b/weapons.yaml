@@ -1,6 +1,6 @@
 ed_vehicles_st01b:
 	ReloadDelay: 40
-	Range: 3c768
+	Range: 3c896
 	MinRange: 0c512
 	Report: 3.smp
 	ValidTargets: Ground
