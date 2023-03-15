@@ -106,3 +106,23 @@ Cursors:
 		assaultmove-blocked:
 			Start: 0
 			Length: 4
+
+	content/core/assets/joystick.png:
+		joystick-all:
+			Start: 0
+		joystick-t-blocked:
+			Start: 0
+		joystick-tr-blocked:
+			Start: 0
+		joystick-r-blocked:
+			Start: 0
+		joystick-br-blocked:
+			Start: 0
+		joystick-b-blocked:
+			Start: 0
+		joystick-bl-blocked:
+			Start: 0
+		joystick-l-blocked:
+			Start: 0
+		joystick-tl-blocked:
+			Start: 0
