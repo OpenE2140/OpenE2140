@@ -1,6 +1,6 @@
 ucs_vehicles_spider:
 	ReloadDelay: 40
-	Range: 4c0
+	Range: 4c896
 	MinRange: 0c512
 	Report: 9.smp
 	ValidTargets: Ground

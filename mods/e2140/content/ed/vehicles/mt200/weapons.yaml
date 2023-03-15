@@ -1,6 +1,6 @@
 ed_vehicles_mt200:
 	ReloadDelay: 40
-	Range: 5c0
+	Range: 5c896
 	MinRange: 0c512
 	Report: 3.smp
 	ValidTargets: Ground
