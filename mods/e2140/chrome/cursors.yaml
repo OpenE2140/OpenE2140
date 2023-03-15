@@ -26,18 +26,6 @@ Cursors:
 		attackoutsiderange:
 			Start: 0
 			Length: 4
-		attackmove:
-			Start: 4
-			Length: 4
-		attackmove-blocked:
-			Start: 24
-			Length: 4
-		assaultmove:
-			Start: 92
-			Length: 4
-		assaultmove-blocked:
-			Start: 24
-			Length: 4
 
 		enter:
 			Start: 8
@@ -104,3 +92,17 @@ Cursors:
 	content/core/assets/guardblocked.png:
 		guard-blocked:
 			Start: 0
+
+	content/core/assets/attackmove.png:
+		attackmove:
+			Start: 0
+			Length: 4
+		attackmove-blocked:
+			Start: 0
+			Length: 4
+		assaultmove:
+			Start: 0
+			Length: 4
+		assaultmove-blocked:
+			Start: 0
+			Length: 4
