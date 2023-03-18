@@ -48,6 +48,8 @@ ucs_buildings_heavy_tech:
 		SpawnOffset: -960, 96, 0
 		ExitCell: 1,2
 		Facing: 640
+	WithIdleOverlay:
+		Palette:
 
 ucs_mcu_heavy_tech:
 	Inherits@1: ^SharedVehicleMcu

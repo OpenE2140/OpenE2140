@@ -3,6 +3,11 @@ ucs_buildings_heavy_tech:
 		Filename: building_heavy_tech.vspr
 		Offset: -22, -54, 0
 	idle:
+	idle-overlay:
+		Filename: turret_an_center.vspr
+		Offset: -20, -115
+		Length: 16
+		Tick: 50
 	idle_light:
 		Start: 1
 	damaged-idle:
