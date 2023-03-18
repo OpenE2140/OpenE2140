@@ -14,7 +14,7 @@ ucs_vehicles_spider_ii:
 		Speed: 51
 		TurnSpeed: 30
 	RevealsShroud:
-		Range: 6c0
+		Range: 6c896
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,300

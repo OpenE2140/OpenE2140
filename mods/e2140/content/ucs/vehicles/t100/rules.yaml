@@ -15,7 +15,7 @@ ucs_vehicles_t100:
 		Speed: 50
 		TurnSpeed: 50
 	RevealsShroud:
-		Range: 2c0
+		Range: 3c896
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,0
