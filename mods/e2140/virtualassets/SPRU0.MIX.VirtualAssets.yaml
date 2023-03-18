@@ -349,10 +349,11 @@ Generate:
 	turret_spider_ii: Player
 		idle: 1162-1170 16
 
-	vehicle_big_meh: Shadow Player
+	vehicle_big_mech: Shadow Player
 		idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
 		move: 1171-1205[0:6:1] 8
 		shadow: 1210-1214 8
+		move.turn: 1177,1171,1184,1178,1191,1185,1198,1192,1205,1199 8
 
 	vehicle_goliat: Shadow Player
 		idle: 1215-1223 16

@@ -1,0 +1,35 @@
+ucs_vehicles_big_mech:
+	idle:
+		Filename: vehicle_big_mech.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_big_mech.vspr
+		Start: 16
+		Length: 6
+		Facings: -8
+		Tick: 100
+	move.turn:
+		Filename: vehicle_big_mech.vspr
+		Start: 72
+		Length: 2
+		Facings: -8
+		Tick: 80
+	shadow:
+		Filename: vehicle_big_mech.vspr
+		Start: 64
+		Facings: -8	
+		ZOffset: -512
+	icon:
+		Filename: SPRI1.MIX
+		Start: 279
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 130
+
+# TODO: remove after PR #20705
+ucs_vehicles_big_mech.ed:
+	Inherits: ucs_vehicles_big_mech
+	icon:
+		Filename: SPRI0.MIX
+		Start: 279
