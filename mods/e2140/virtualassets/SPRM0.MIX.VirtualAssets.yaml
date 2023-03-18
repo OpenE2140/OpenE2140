@@ -24,3 +24,12 @@ Generate:
 
 	smoke:
 		idle: 169-176
+
+	rubble_small:
+		idle: 116-120
+
+	rubble_big:
+		idle: 137-144
+
+	water_splash:
+		idle: 149-156

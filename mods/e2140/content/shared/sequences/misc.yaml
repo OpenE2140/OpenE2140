@@ -6,3 +6,25 @@ smoke:
 		Length: 8
 		Tick: 60
 		ZOffset: 512
+
+rubble_small:
+	Defaults:
+		Filename: rubble_small.vspr
+	idle:
+		Length: 5
+		Tick: 80
+
+rubble_big:
+	Defaults:
+		Filename: rubble_big.vspr
+	idle:
+		Length: 8
+		Tick: 100
+		Offset: 0,-10
+
+water_splash:
+	Defaults:
+		Filename: water_splash.vspr
+	idle:
+		Length: 8
+		Offset: 0,-10

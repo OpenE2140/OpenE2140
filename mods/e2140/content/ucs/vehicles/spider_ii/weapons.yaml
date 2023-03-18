@@ -3,7 +3,7 @@ ucs_vehicles_spider_ii:
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Burst: 4
 	BurstDelays: 10
 	Projectile: Missile
@@ -29,3 +29,16 @@ ucs_vehicles_spider_ii:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_big
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure

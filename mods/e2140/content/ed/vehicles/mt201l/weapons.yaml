@@ -3,7 +3,7 @@ ed_vehicles_mt201l:
 	Range: 2c896
 	MinRange: 0c512
 	Report: 10.smp
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Burst: 10
 	BurstDelays: 3
 	Projectile: LaserZap
@@ -24,4 +24,4 @@ ed_vehicles_mt201l:
 		Image: smoke
 		Explosions: idle
 		ExplosionPalette:
-		ValidTargets: Ground
+		ValidTargets: Ground, Water
