@@ -15,7 +15,7 @@ ucs_vehicles_raptor_ad:
 		Speed: 68
 		TurnSpeed: 32
 	RevealsShroud:
-		Range: 3c768
+		Range: 4c896
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_ad
 		Recoil: 0

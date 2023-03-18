@@ -14,7 +14,7 @@ ucs_vehicles_tiger_assault:
 		Speed: 51
 		TurnSpeed: 30
 	RevealsShroud:
-		Range: 6c0
+		Range: 5c896
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,200

@@ -15,7 +15,7 @@ ucs_vehicles_big_mech:
 		Speed: 68
 		TurnSpeed: 32
 	RevealsShroud:
-		Range: 3c768
+		Range: 5c896
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_big_mech
 		Recoil: 0
