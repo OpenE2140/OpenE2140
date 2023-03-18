@@ -84,7 +84,7 @@
 		TerrainTypes: Clear, Road
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
-		TargetTypes: Ground
+		TargetTypes: Ground, Structure
 	# In general all constructions can be selected.
 	Selectable:
 	# Constructions have sprites but do not use facing for them.
@@ -124,9 +124,6 @@
 	# Should not be auto attacked.
 	Targetable@NoAutoAttack:
 		TargetTypes: NoAutoAttack
-	# Target "Structure" target for ai.
-	Targetable:
-		TargetTypes: Ground, Structure
 	# Construction animation.
 	TransformSequence:
 		Image: core_buildingsequence_large
@@ -240,7 +237,7 @@
 		BlockedCursor: generic-blocked
 	# Actor can be targeted by anything which attacks ground.
 	Targetable:
-		TargetTypes: Ground
+		TargetTypes: Ground, Vehicle
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
 	# Group all vehicles in the map editor.

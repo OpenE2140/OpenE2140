@@ -3,9 +3,9 @@ ucs_vehicles_t100:
 	Burst: 10
 	Range: 3c896
 	Report: 2.smp
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Projectile: InstantHit
 	Warhead@1Dam: SpreadDamage
-		Spread: 128
+		Spread: 24
 		Damage: 7
 		ValidTargets: Ground

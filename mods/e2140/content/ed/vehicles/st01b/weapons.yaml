@@ -3,7 +3,7 @@ ed_vehicles_st01b:
 	Range: 3c896
 	MinRange: 0c512
 	Report: 3.smp
-	ValidTargets: Ground
+	ValidTargets: Ground, Water
 	Burst: 4
 	BurstDelays: 20
 	Projectile: Bullet
@@ -23,3 +23,16 @@ ed_vehicles_st01b:
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_small
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure

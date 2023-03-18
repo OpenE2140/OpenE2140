@@ -6,6 +6,6 @@ ucs_vehicles_raptor_es:
 	ValidTargets: Ground
 	Projectile: InstantHit
 	Warhead@1Dam: SpreadDamage
-		Spread: 128
+		Spread: 24
 		Damage: 7
 		ValidTargets: Ground
