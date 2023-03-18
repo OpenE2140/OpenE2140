@@ -1,0 +1,31 @@
+ucs_vehicles_big_mech:
+	ReloadDelay: 100
+	Range: 5c896
+	MinRange: 0c512
+	Report: 5.smp
+	ValidTargets: Ground
+	Burst: 16
+	BurstDelays: 5
+	Projectile: Missile
+		Speed: 260
+		Arm: 1
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		HorizontalRateOfTurn: 20
+		RangeLimit: 8c0
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 30
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground

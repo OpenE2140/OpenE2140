@@ -1,0 +1,30 @@
+ucs_vehicles_big_mech:
+	Inherits@1: ^UcsMech
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: Big Mech
+	Valued:
+		Cost: 1500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Health:
+		HP: 800
+	Mobile:
+		Speed: 68
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 3c768
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_big_mech
+		Recoil: 0
+		RecoilRecovery: 0
+		LocalOffset: 200,-425,0, 200,425,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	WithMoveSound:
+		Sound: 32.smp
+	WithMoveAnimation@turn:
+		ValidMovementTypes: Turn
+		MoveSequence: move.turn

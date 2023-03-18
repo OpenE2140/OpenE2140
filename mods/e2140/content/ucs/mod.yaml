@@ -14,6 +14,7 @@ Rules:
 	e2140|content/ucs/vehicles/tiger_assault/rules.yaml
 	e2140|content/ucs/vehicles/spider/rules.yaml
 	e2140|content/ucs/vehicles/spider_ii/rules.yaml
+	e2140|content/ucs/vehicles/bigmech/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -26,6 +27,7 @@ Sequences:
 	e2140|content/ucs/vehicles/tiger_assault/sequences.yaml
 	e2140|content/ucs/vehicles/spider/sequences.yaml
 	e2140|content/ucs/vehicles/spider_ii/sequences.yaml
+	e2140|content/ucs/vehicles/bigmech/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
@@ -37,3 +39,4 @@ Weapons:
 	e2140|content/ucs/vehicles/tiger_assault/weapons.yaml
 	e2140|content/ucs/vehicles/spider/weapons.yaml
 	e2140|content/ucs/vehicles/spider_ii/weapons.yaml
+	e2140|content/ucs/vehicles/bigmech/weapons.yaml
