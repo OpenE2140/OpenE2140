@@ -13,6 +13,7 @@ Rules:
 	e2140|content/ed/vehicles/mt200/rules.yaml
 	e2140|content/ed/vehicles/mt201l/rules.yaml
 	e2140|content/ed/vehicles/btti/rules.yaml
+	e2140|content/ed/vehicles/ht33r/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -24,6 +25,7 @@ Sequences:
 	e2140|content/ed/vehicles/mt200/sequences.yaml
 	e2140|content/ed/vehicles/mt201l/sequences.yaml
 	e2140|content/ed/vehicles/btti/sequences.yaml
+	e2140|content/ed/vehicles/ht33r/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -34,3 +36,4 @@ Weapons:
 	e2140|content/ed/vehicles/mt200/weapons.yaml
 	e2140|content/ed/vehicles/mt201l/weapons.yaml
 	e2140|content/ed/vehicles/btti/weapons.yaml
+	e2140|content/ed/vehicles/ht33r/weapons.yaml

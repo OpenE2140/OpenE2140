@@ -1,0 +1,31 @@
+ed_vehicles_ht33r:
+	ReloadDelay: 40
+	Range: 6c896
+	MinRange: 0c512
+	Report: 4.smp
+	ValidTargets: Ground
+	Burst: 3
+	BurstDelays: 25
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_heavy_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		HorizontalRateOfTurn: 20
+		RangeLimit: 8c0
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 80
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp, 16.smp
+		ValidTargets: Ground
