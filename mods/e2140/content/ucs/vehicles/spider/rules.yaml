@@ -22,14 +22,14 @@ ucs_vehicles_spider:
 		Weapon: ucs_vehicles_spider
 		Recoil: 64
 		RecoilRecovery: 38
-		LocalOffset: 800,-320,0
+		LocalOffset: 500,-300,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
 	Armament@SECONDARY:
 		Weapon: ucs_vehicles_spider
 		Recoil: 64
 		RecoilRecovery: 38
-		LocalOffset: 800,320,0
+		LocalOffset: 500,300,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
 	WithMoveSound:
