@@ -33,3 +33,7 @@ Generate:
 
 	water_splash:
 		idle: 149-156
+
+	vehicle_explosion:
+		explode1: 32-39
+		explode2: 40-47

@@ -136,6 +136,11 @@
 		Name: light
 		Sequence: idle_light
 		RequiresCondition: !Transforming
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: BuildingExplosion
+		EmptyWeapon: BuildingExplosion
+
 
 # Base for all factories using elevator production.
 ^CoreElevatorFactory:
@@ -247,6 +252,10 @@
 	Guard:
 		Voice: Escort
 	Guardable:
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: VehicleExplosion
+		EmptyWeapon: VehicleExplosion
 
 # Add locomotor to world...
 ^CoreWorld:

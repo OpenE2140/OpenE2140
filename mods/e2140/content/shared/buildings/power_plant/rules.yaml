@@ -17,6 +17,9 @@ shared_buildings_power_plant:
 		Prerequisite: anypower
 	Power:
 		Amount: 2000
+	Explodes:
+		Weapon: PowerPlantExplosion
+		EmptyWeapon: PowerPlantExplosion
 
 shared_mcu_power_plant:
 	Inherits@1: ^SharedVehicleMcu
