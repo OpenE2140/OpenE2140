@@ -17,10 +17,12 @@ Work in progress. Video previews showcasing latest development:
 	* custom artwork for faction sidebars and command bars,
 	* main menu artwork,
 	* reskinned glyphs,
-	* repair blocked cursor,
-	* custom resources sprites (work in progress).
+	* custom cursors,
+	* custom effects,
+	* custom resource sprites (work in progress),
+	* yaml coding support.
 - Disembo
-	* brand new assets (animations mostly)
+	* custom transformations for MCUs.
 
 ## Special thanks!
 
