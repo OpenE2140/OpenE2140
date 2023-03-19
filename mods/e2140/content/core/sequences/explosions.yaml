@@ -1,0 +1,83 @@
+vehicle_explosion:
+	Defaults:
+		Filename: vehicle_explosion.vspr
+	explode1:
+		BlendMode: Additive
+		Length: 8
+		Tick: 60
+		ZOffset: 512
+	explode2:
+		BlendMode: Additive
+		Start: 8
+		Length: 8
+		Tick: 60
+		ZOffset: 512
+
+building_explosion:
+	idle:
+		Combine:
+			0:
+				Filename: GRAPH/SHCKV20.DAT
+			1:
+				Filename: GRAPH/SHCKV21.DAT
+			2:
+				Filename: GRAPH/SHCKV22.DAT
+			3:
+				Filename: GRAPH/SHCKV23.DAT
+			4:
+				Filename: GRAPH/SHCKV24.DAT
+		BlendMode: Additive
+		Length: 5
+		Offset: 0,-20
+
+power_plant_explosion:
+	idle:
+		Combine:
+			0:
+				Filename: GRAPH/SHCKV40.DAT
+			1:
+				Filename: GRAPH/SHCKV41.DAT
+			2:
+				Filename: GRAPH/SHCKV42.DAT
+			3:
+				Filename: GRAPH/SHCKV43.DAT
+			4:
+				Filename: GRAPH/SHCKV44.DAT
+			5:
+				Filename: GRAPH/SHCKV45.DAT
+			6:
+				Filename: GRAPH/SHCKV46.DAT
+			7:
+				Filename: GRAPH/SHCKV47.DAT
+			8:
+				Filename: GRAPH/SHCKV48.DAT
+			9:
+				Filename: GRAPH/SHCKV49.DAT
+			10:
+				Filename: GRAPH/SHCKV50.DAT
+			11:
+				Filename: GRAPH/SHCKV51.DAT
+			12:
+				Filename: GRAPH/SHCKV52.DAT
+			13:
+				Filename: GRAPH/SHCKV53.DAT
+			14:
+				Filename: GRAPH/SHCKV54.DAT
+			15:
+				Filename: GRAPH/SHCKV55.DAT
+			16:
+				Filename: GRAPH/SHCKV56.DAT
+			17:
+				Filename: GRAPH/SHCKV57.DAT
+			18:
+				Filename: GRAPH/SHCKV58.DAT
+			19:
+				Filename: GRAPH/SHCKV59.DAT
+			20:
+				Filename: GRAPH/SHCKV60.DAT
+			21:
+				Filename: GRAPH/SHCKV61.DAT
+		BlendMode: Additive
+		Length: 22
+		Tick: 60
+		Offset: 0,-40

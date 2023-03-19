@@ -1,0 +1,26 @@
+VehicleExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: vehicle_explosion
+		Explosions: explode1, explode2
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
+
+BuildingExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: building_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
+
+PowerPlantExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: power_plant_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
