@@ -50,6 +50,7 @@ ucs_buildings_heavy_tech:
 		Facing: 640
 	WithIdleOverlay:
 		Palette:
+		RequiresCondition: !Transforming
 
 ucs_mcu_heavy_tech:
 	Inherits@1: ^SharedVehicleMcu
