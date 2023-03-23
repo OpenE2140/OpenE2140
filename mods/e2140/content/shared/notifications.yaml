@@ -1,14 +1,16 @@
 Speech:
 	DefaultVariant:
 	Prefixes:
-		ed: smp0|
-		ucs: smp1|
+		ed: smp0_
+		ucs: smp1_
 	Notifications:
-		BaseAttack: 127.smp
-		BuildingLost: 97.smp
-		InsufficientCash: 109.smp
-		LowPower: 110.smp
-		Repairing: 100.smp
-		ProductionStarted: 119.smp
-		ProductionComplete: 99.smp
-		UnitLost: 105.smp
+		BaseAttack: base|127.smp
+		BuildingLost: base|97.smp
+		InsufficientCash: base|109.smp
+		LowPower: base|110.smp
+		Repairing: base|100.smp
+		ProductionStarted: base|119.smp
+		ProductionComplete: base|99.smp
+		UnitLost: base|105.smp
+		ProductionInterrupted: extra|interrupted.wav
+		ProductionCancelled: extra|cancelled.wav

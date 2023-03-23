@@ -152,6 +152,8 @@
 	ElevatorProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
 
 # Base for all towers.

@@ -17,8 +17,10 @@ Packages:
 	~game|MENU.WD: menu
 	~game|MIX.WD: mix
 	~game|PIRO.WD: piro
-	~game|SMP0.WD: smp0
-	~game|SMP1.WD: smp1
+	~game|SMP0.WD: smp0_base
+	~game|SMP1.WD: smp1_base
+	e2140|content/ed/sounds: smp0_extra
+	e2140|content/ucs/sounds: smp1_extra
 	e2140|virtualassets/SPRB0.MIX.VirtualAssets.yaml: buildings
 	e2140|virtualassets/SPRM0.MIX.VirtualAssets.yaml: misc
 	e2140|virtualassets/SPRU0.MIX.VirtualAssets.yaml: units
