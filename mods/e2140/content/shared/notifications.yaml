@@ -13,5 +13,8 @@ Speech:
 		ProductionComplete: base|99.smp
 		UnitLost: base|105.smp
 		RepairsInterrupted: base|120.smp
+		GameSaved: base|113.smp
+		GameLoaded: base|114.smp
+		RestartGame: base|115.smp
 		ProductionInterrupted: extra|interrupted.wav
 		ProductionCancelled: extra|cancelled.wav

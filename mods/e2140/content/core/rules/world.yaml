@@ -34,6 +34,10 @@
 	Selection:
 	# Required for control groups support.
 	ControlGroups:
+	# Play notification for game load/save
+	StartGameNotification:
+		# Disable notification for game start (don't have any notification sound for that)
+		Notification:
 
 # Ingame specific world setup.
 World:
