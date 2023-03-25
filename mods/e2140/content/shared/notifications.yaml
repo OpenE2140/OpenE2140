@@ -12,5 +12,6 @@ Speech:
 		ProductionStarted: base|119.smp
 		ProductionComplete: base|99.smp
 		UnitLost: base|105.smp
+		RepairsInterrupted: base|120.smp
 		ProductionInterrupted: extra|interrupted.wav
 		ProductionCancelled: extra|cancelled.wav

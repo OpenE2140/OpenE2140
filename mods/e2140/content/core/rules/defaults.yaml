@@ -115,6 +115,7 @@
 		RepairPercent: 40
 		RepairStep: 10
 		RepairingNotification: Repairing
+		RepairingStoppedNotification: RepairsInterrupted
 	# The view radius of buildings.
 	RevealsShroud:
 		Range: 5c0
