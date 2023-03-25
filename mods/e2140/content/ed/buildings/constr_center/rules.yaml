@@ -16,7 +16,7 @@ ed_buildings_constr_center:
 		Bounds: 3088, 1950, -1, -416
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 1088, 1072, 0
+		Position: 992, 1056, 0
 		CutOff: 32
 		Produces: Building.ED
 		RequiresCondition: !Transforming
