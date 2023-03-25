@@ -56,7 +56,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 
 			if (!entry.Actors.Any())
 			{
-				if (entry.Sound.Complete)
+				if (entry.Sound == null || entry.Sound.Complete == true)
 					this.playing.Remove(sound);
 			}
 			else if (this.worldRenderer != null)
