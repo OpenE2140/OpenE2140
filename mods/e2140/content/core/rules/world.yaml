@@ -34,10 +34,6 @@
 	Selection:
 	# Required for control groups support.
 	ControlGroups:
-	# Play notification for game load/save
-	StartGameNotification:
-		# Disable notification for game start (don't have any notification sound for that)
-		Notification:
 
 # Ingame specific world setup.
 World:
@@ -98,6 +94,11 @@ World:
 	# Implementation for faction specific sprites.
 	FactionRenderSprites:
 		Factions: ucs, ed
+	# Play notification for game load/save
+	StartGameNotification:
+		# Disable notification for game start (don't have any notification sound for that)
+		Notification:
+
 
 # Map editor specific world setup.
 EditorWorld:
