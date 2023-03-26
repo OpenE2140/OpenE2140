@@ -23,6 +23,8 @@ ed_vehicles_st01b:
 		Weapon: ed_vehicles_st01b
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 750,-50,0
+		LocalOffset: 600,0,-125
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:

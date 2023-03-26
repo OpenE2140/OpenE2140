@@ -11,6 +11,12 @@ ed_vehicles_st01b:
 		Filename: turret_st_01b.vspr
 		Facings: -16
 		Offset: 0, 5, 0
+	muzzle:
+		Filename: turret_st_01b.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Offset: 0, 5, 0
 	icon:
 		Filename: SPRI0.MIX
 		Start: 131
