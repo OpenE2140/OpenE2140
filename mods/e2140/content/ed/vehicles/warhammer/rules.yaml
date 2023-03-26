@@ -1,0 +1,51 @@
+ed_vehicles_warhammer:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: Warhammer
+	Valued:
+		Cost: 1200
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1280, 1232, 0, 0
+	Health:
+		HP: 600
+	Mobile:
+		Speed: 50
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 5c896
+	Turreted:
+		TurnSpeed: 30
+		Offset: 0,0,0
+	AttackTurreted:
+		Armaments: primary, secondary, tertiary, quaternary
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ed_vehicles_warhammer
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 700,200,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ed_vehicles_warhammer
+		LocalOffset: 700,0,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: ed_vehicles_warhammer
+		LocalOffset: 700,-200,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@QUATERNARY:
+		Name: quaternary
+		Weapon: ed_vehicles_warhammer_muzzle
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:
