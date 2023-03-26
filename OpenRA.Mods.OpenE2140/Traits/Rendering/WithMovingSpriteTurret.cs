@@ -52,7 +52,7 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 	protected override WVec TurretOffset(Actor self)
 	{
 		var offset = base.TurretOffset(self);
-		var notWalking = this.mobile.CurrentMovementTypes is MovementType.None or MovementType.Turn;
+		var notWalking = this.mobile.CurrentMovementTypes is MovementType.None;
 
 		if (notWalking)
 			return offset;
