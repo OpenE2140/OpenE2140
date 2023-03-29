@@ -4,20 +4,27 @@ steam: Earth 2140 (Steam, English)
 	IDFiles:
 		E2140.exe: e9389de4e7570bc125d3cd8ff1fc3b613d44f065
 	Install:
-		Copy: .
-			^SupportDir|Content/e2140/FLC.WD: classic/FLC.WD
-			^SupportDir|Content/e2140/GRAPH.WD: classic/GRAPH.WD
-			^SupportDir|Content/e2140/MENU.WD: classic/MENU.WD
-			^SupportDir|Content/e2140/MIX.WD: classic/MIX.WD
-			^SupportDir|Content/e2140/PIRO.WD: classic/PIRO.WD
-			^SupportDir|Content/e2140/SMP0.WD: classic/SMP0.WD
-			^SupportDir|Content/e2140/SMP1.WD: classic/SMP1.WD
-			^SupportDir|Content/e2140/music/1.ogg: classic/music/1.ogg
-			^SupportDir|Content/e2140/music/2.ogg: classic/music/2.ogg
-			^SupportDir|Content/e2140/music/3.ogg: classic/music/3.ogg
-			^SupportDir|Content/e2140/music/4.ogg: classic/music/4.ogg
-			^SupportDir|Content/e2140/music/5.ogg: classic/music/5.ogg
-			^SupportDir|Content/e2140/music/6.ogg: classic/music/6.ogg
-			^SupportDir|Content/e2140/music/7.ogg: classic/music/7.ogg
-			^SupportDir|Content/e2140/music/8.ogg: classic/music/8.ogg
-			^SupportDir|Content/e2140/music/9.ogg: classic/music/9.ogg
+		ContentPackage:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: classic/FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: classic/GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: classic/MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: classic/MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: classic/PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: classic/SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: classic/SMP1.WD
+		ContentPackage:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/1.ogg: classic/music/1.ogg
+					^SupportDir|Content/e2140/music/2.ogg: classic/music/2.ogg
+					^SupportDir|Content/e2140/music/3.ogg: classic/music/3.ogg
+					^SupportDir|Content/e2140/music/4.ogg: classic/music/4.ogg
+					^SupportDir|Content/e2140/music/5.ogg: classic/music/5.ogg
+					^SupportDir|Content/e2140/music/6.ogg: classic/music/6.ogg
+					^SupportDir|Content/e2140/music/7.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/8.ogg: classic/music/8.ogg
+					^SupportDir|Content/e2140/music/9.ogg: classic/music/9.ogg
