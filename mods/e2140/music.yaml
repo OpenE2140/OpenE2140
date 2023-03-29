@@ -1,27 +1,45 @@
-track1: Track 1
-	Filename: music/1
-	Extension: ogg
-track2: Track 2
-	Filename: music/2
-	Extension: ogg
-track3: Track 3
-	Filename: music/3
-	Extension: ogg
-track4: Track 4
-	Filename: music/4
-	Extension: ogg
-track5: Track 5
-	Filename: music/5
-	Extension: ogg
-track6: Track 6
-	Filename: music/6
-	Extension: ogg
-track7: Track 7
+track7: 2140
 	Filename: music/7
 	Extension: ogg
-track8: Track 8
+track4: Before the Battle
+	Filename: music/4
+	Extension: ogg
+#track?: Big Journey
+#	Filename: music/?
+#	Extension: ogg
+track6: Birds
+	Filename: music/6
+	Extension: ogg
+#track?: Black Tech
+#	Filename: music/?
+#	Extension: ogg
+#track?: Bubbles Revenge
+#	Filename: music/?
+#	Extension: ogg
+track1: Child of 2140
+	Filename: music/1
+	Extension: ogg
+#track?: Deep in the Bunker
+#	Filename: music/?
+#	Extension: ogg
+track8: Earth Theme
 	Filename: music/8
 	Extension: ogg
-track9: Track 9
+track5: Everywhere
+	Filename: music/5
+	Extension: ogg
+track2: Hope
+	Filename: music/2
+	Extension: ogg
+track3: Hurricane
+	Filename: music/3
+	Extension: ogg
+#track?: Space
+#	Filename: music/?
+#	Extension: ogg
+#track?: The Hunt
+#	Filename: music/?
+#	Extension: ogg
+track9: Total Control
 	Filename: music/9
 	Extension: ogg
