@@ -19,7 +19,6 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-
 // TODO Temporary solution until PR #20635 is merged in OpenRA.
 [UsedImplicitly]
 public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidget

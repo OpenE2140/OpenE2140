@@ -32,12 +32,14 @@ public class ElevatorProductionQueue : ProductionQueue
 {
 	private readonly Lazy<ElevatorProduction[]> elevatorProductionTraits;
 
-	private IEnumerable<ElevatorProduction> EnabledProductionTraits => elevatorProductionTraits.Value.Where(e => !e.IsTraitDisabled);
+	private IEnumerable<ElevatorProduction> EnabledProductionTraits => this.elevatorProductionTraits.Value.Where(e => !e.IsTraitDisabled);
 
 	public ElevatorProductionQueue(ActorInitializer init, ProductionQueueInfo info)
 		: base(init, info)
 	{
-		this.elevatorProductionTraits = Exts.Lazy(() => this.productionTraits.OfType<ElevatorProduction>().Where(p => p.Info.Produces.Contains(this.Info.Type)).ToArray());
+		this.elevatorProductionTraits = Exts.Lazy(
+			() => this.productionTraits.OfType<ElevatorProduction>().Where(p => p.Info.Produces.Contains(this.Info.Type)).ToArray()
+		);
 	}
 
 	protected override void BeginProduction(ProductionItem item, bool hasPriority)
@@ -106,7 +108,7 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void CancelProduction(string itemName, uint numberToCancel)
 	{
-		var closed = EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
+		var closed = this.EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
 
 		var queuedCount = this.Queue.Count(i => i.Item == itemName);
 		var isInfinite = this.Queue.Any(i => i.Item == itemName && i.Infinite);
@@ -115,6 +117,7 @@ public class ElevatorProductionQueue : ProductionQueue
 		if (!closed.Any())
 		{
 			numberToCancel = (uint)Math.Min(Math.Max(0, queuedCount - 1), numberToCancel);
+
 			// If the item has Infinite flag, we need to cancel it, since that will remove the Infinite flag
 			// and queue items to fill the infinite build limit (which is what player wanted).
 			// The currently ejected unit will not be affected by this (since the item with Infinite flag will be preserved).
@@ -127,7 +130,7 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void PauseProduction(string itemName, bool paused)
 	{
-		var closed = EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
+		var closed = this.EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
 
 		// Don't pause production if unit is being ejected (i.e. elevator is open).
 		if (closed.Any())
@@ -136,7 +139,7 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void TickInner(Actor self, bool allProductionPaused)
 	{
-		var unpaused = EnabledProductionTraits.Where(a => a is { IsTraitPaused: false, State: ElevatorProduction.AnimationState.Closed });
+		var unpaused = this.EnabledProductionTraits.Where(a => a is { IsTraitPaused: false, State: ElevatorProduction.AnimationState.Closed });
 
 		if (unpaused.Any())
 			base.TickInner(self, allProductionPaused);

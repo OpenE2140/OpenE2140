@@ -22,7 +22,7 @@ namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 [UsedImplicitly]
 public class AddFactionSuffixExLogic : ChromeLogic
 {
-	[ObjectCreator.UseCtor]
+	[ObjectCreator.UseCtorAttribute]
 	public AddFactionSuffixExLogic(Widget widget, World world)
 	{
 		if (world.LocalPlayer == null || world.LocalPlayer.Spectating)
