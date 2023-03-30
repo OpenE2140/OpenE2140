@@ -37,7 +37,7 @@ Assemblies:
 	^BinDir|OpenRA.Mods.Common.dll
 	^BinDir|OpenRA.Mods.OpenE2140.dll
 
-SoundFormats: Wav, Ogg, Mp3, Smp
+SoundFormats: Wav, Ogg, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VirtualSprite
 TerrainFormat: DefaultTerrain
 VideoFormats: FlcVideo
@@ -99,21 +99,16 @@ ModContent:
 	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
 		ContentPackage@base:
-			Title: Game Files
+			Title: Base Game Files
 			Identifier: base
 			TestFiles: ^SupportDir|Content/e2140/MIX.WD
 			Sources: gog, steam
 			Required: true
 		ContentPackage@music:
-			Title: Game Music
+			Title: Base Game Music
 			Identifier: music
-			TestFiles: ^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg
+			TestFiles: ^SupportDir|Content/e2140/music/1.ogg
 			Sources: gog, steam
-		ContentPackage@soundtrack:
-			Title: Soundtrack Music
-			Identifier: soundtrack
-			TestFiles: ^SupportDir|Content/e2140/music/01. EARTH Theme.mp3
-			Sources: gog_soundtrack, steam_soundtrack
 	Sources:
 		e2140|installer/gog.yaml
 		e2140|installer/steam.yaml

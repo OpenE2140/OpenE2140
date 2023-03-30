@@ -1,6 +1,6 @@
 gog: Earth 2140 (GoG, English)
 	Type: Gog
-		AppId: 1207658738
+		AppId: 1207658737
 	IDFiles:
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
@@ -19,38 +19,12 @@ gog: Earth 2140 (GoG, English)
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg: music/8.ogg
-					^SupportDir|Content/e2140/music/17. Child of 2140 - Instrumental.ogg: music/1.ogg
-					^SupportDir|Content/e2140/music/18. Birds - Instrumental.ogg: music/6.ogg
-					^SupportDir|Content/e2140/music/19. Hurricane - Instrumental.ogg: music/3.ogg
-					^SupportDir|Content/e2140/music/20. Before the Battle - Instrumental.ogg: music/4.ogg
-					^SupportDir|Content/e2140/music/21. Total Control - Instrumental.ogg: music/9.ogg
-					^SupportDir|Content/e2140/music/22. Everywhere - Instrumental.ogg: music/5.ogg
-					^SupportDir|Content/e2140/music/23. Hope - Instrumental.ogg: music/2.ogg
-					^SupportDir|Content/e2140/music/24. 2140 - Instrumental.ogg: music/7.ogg
-
-gog_soundtrack: Earth 2140 Soundtrack (GoG)
-	Type: Gog
-		AppId: 1207658738
-	IDFiles:
-		!Downloads/earth_2140_original_ost_mp3.zip: 80b55f2ac60feae835c5cf9a376af53a2237b126
-	Install:
-		ContentPackage:
-			Name: soundtrack
-			Actions:
-				ExtractZip: !Downloads/earth_2140_original_ost_mp3.zip
-					^SupportDir|Content/e2140/music/01. EARTH Theme.mp3: earth_2140_original_ost_mp3/01 - EARTH Theme.mp3
-					^SupportDir|Content/e2140/music/02. Child of 2140.mp3: earth_2140_original_ost_mp3/02 - Child of 2140.mp3
-					^SupportDir|Content/e2140/music/03. The Hunt.mp3: earth_2140_original_ost_mp3/03 - The Hunt.mp3
-					^SupportDir|Content/e2140/music/04. Birds.mp3: earth_2140_original_ost_mp3/04 - Birds.mp3
-					^SupportDir|Content/e2140/music/05. Deep in the Bunker.mp3: earth_2140_original_ost_mp3/05 - Deep in the Bunker.mp3
-					^SupportDir|Content/e2140/music/06. Hurricane.mp3: earth_2140_original_ost_mp3/06 - Hurricane.mp3
-					^SupportDir|Content/e2140/music/07. Before the Battle.mp3: earth_2140_original_ost_mp3/07 - Before the Battle.mp3
-					^SupportDir|Content/e2140/music/08. Black Tech.mp3: earth_2140_original_ost_mp3/08 - Black Tech.mp3
-					^SupportDir|Content/e2140/music/09. Total Control.mp3: earth_2140_original_ost_mp3/09 - Total Control.mp3
-					^SupportDir|Content/e2140/music/10. Everywhere.mp3: earth_2140_original_ost_mp3/10 - Everywhere.mp3
-					^SupportDir|Content/e2140/music/11. Bubbles' Revenge.mp3: earth_2140_original_ost_mp3/11 - Bubbles' Revenge.mp3
-					^SupportDir|Content/e2140/music/12. Big Journey.mp3: earth_2140_original_ost_mp3/12 - Big Journey.mp3
-					^SupportDir|Content/e2140/music/13. Hope.mp3: earth_2140_original_ost_mp3/13 - Hope.mp3
-					^SupportDir|Content/e2140/music/14. 2140.mp3: earth_2140_original_ost_mp3/14 - 2140.mp3
-					^SupportDir|Content/e2140/music/15. Space.mp3: earth_2140_original_ost_mp3/15 - Space.mp3
+					^SupportDir|Content/e2140/music/1.ogg: music/1.ogg
+					^SupportDir|Content/e2140/music/2.ogg: music/2.ogg
+					^SupportDir|Content/e2140/music/3.ogg: music/3.ogg
+					^SupportDir|Content/e2140/music/4.ogg: music/4.ogg
+					^SupportDir|Content/e2140/music/5.ogg: music/5.ogg
+					^SupportDir|Content/e2140/music/6.ogg: music/6.ogg
+					^SupportDir|Content/e2140/music/7.ogg: music/7.ogg
+					^SupportDir|Content/e2140/music/8.ogg: music/8.ogg
+					^SupportDir|Content/e2140/music/9.ogg: music/9.ogg
