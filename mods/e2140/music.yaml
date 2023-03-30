@@ -1,45 +1,72 @@
-track7: 2140
-	Filename: music/7
+track01: EARTH Theme
+	Filename: music/01. EARTH Theme
+	Extension: mp3
+track02: Child of 2140
+	Filename: music/02. Child of 2140
+	Extension: mp3
+track03:  The Hunt
+	Filename: music/03.  The Hunt
+	Extension: mp3
+track04: Birds
+	Filename: music/04. Birds
+	Extension: mp3
+track05: Deep in the Bunker
+	Filename: music/05. Deep in the Bunker
+	Extension: mp3
+track06: Hurricane
+	Filename: music/06. Hurricane
+	Extension: mp3
+track07: Before the Battle
+	Filename: music/07. Before the Battle
+	Extension: mp3
+track08: Black Tech
+	Filename: music/08. Black Tech
+	Extension: mp3
+track09: Total Control
+	Filename: music/09. Total Control
+	Extension: mp3
+track10: Everywhere
+	Filename: music/10. Everywhere
+	Extension: mp3
+track11: Bubbles' Revenge
+	Filename: music/11. Bubbles' Revenge
+	Extension: mp3
+track12: Big Journey
+	Filename: music/12. Big Journey
+	Extension: mp3
+track13: Hope
+	Filename: music/13. Hope
+	Extension: mp3
+track14: 2140
+	Filename: music/14. 2140
+	Extension: mp3
+track15: Space
+	Filename: music/15. Space
+	Extension: mp3
+track16: EARTH Theme - Instrumental
+	Filename: music/16. EARTH Theme - Instrumental
 	Extension: ogg
-track4: Before the Battle
-	Filename: music/4
+track17: Child of 2140 - Instrumental
+	Filename: music/17. Child of 2140 - Instrumental
 	Extension: ogg
-#track?: Big Journey
-#	Filename: music/?
-#	Extension: ogg
-track6: Birds
-	Filename: music/6
+track18: Birds - Instrumental
+	Filename: music/18. Birds - Instrumental
 	Extension: ogg
-#track?: Black Tech
-#	Filename: music/?
-#	Extension: ogg
-#track?: Bubbles Revenge
-#	Filename: music/?
-#	Extension: ogg
-track1: Child of 2140
-	Filename: music/1
+track19: Hurricane - Instrumental
+	Filename: music/19. Hurricane - Instrumental
 	Extension: ogg
-#track?: Deep in the Bunker
-#	Filename: music/?
-#	Extension: ogg
-track8: Earth Theme
-	Filename: music/8
+track20: Before the Battle - Instrumental
+	Filename: music/20. Before the Battle - Instrumental
 	Extension: ogg
-track5: Everywhere
-	Filename: music/5
+track21: Total Control - Instrumental
+	Filename: music/21. Total Control - Instrumental
 	Extension: ogg
-track2: Hope
-	Filename: music/2
+track22: Everywhere - Instrumental
+	Filename: music/22. Everywhere - Instrumental
 	Extension: ogg
-track3: Hurricane
-	Filename: music/3
+track23: Hope - Instrumental
+	Filename: music/23. Hope - Instrumental
 	Extension: ogg
-#track?: Space
-#	Filename: music/?
-#	Extension: ogg
-#track?: The Hunt
-#	Filename: music/?
-#	Extension: ogg
-track9: Total Control
-	Filename: music/9
+track24: 2140 - Instrumental
+	Filename: music/24. 2140 - Instrumental
 	Extension: ogg
