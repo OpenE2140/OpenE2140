@@ -1,0 +1,10 @@
+shared_vehicles_hcrm:
+	ReloadDelay: 10
+	Range: 1c896
+	Projectile: InstantHit
+	ValidTargets: DamagedUnit
+	TargetActorCenter: true
+	Warhead@Repair: TargetDamage
+		Damage: -10
+		ValidTargets: DamagedUnit
+		Spread: 1

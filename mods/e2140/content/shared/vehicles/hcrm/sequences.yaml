@@ -1,0 +1,32 @@
+shared_vehicles_hcrm:
+	idle:
+		Filename: vehicle_hcr_m.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_hcr_m.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	turret:
+		Filename: turret_hcr_m.vspr
+		Facings: -16
+	repair:
+		Filename: turret_hcr_m.vspr
+		Start: 16
+		Length: 5
+		Facings: -4
+		Tick: 100
+	icon:
+		Filename: SPRI0.MIX
+		Start: 149
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 149
+
+# TODO: remove after PR #20705
+shared_vehicles_hcrm.ucs:
+	Inherits: shared_vehicles_hcrm
+	icon:
+		Filename: SPRI1.MIX
+		Start: 149
