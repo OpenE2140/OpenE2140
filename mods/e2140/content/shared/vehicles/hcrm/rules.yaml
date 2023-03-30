@@ -1,0 +1,42 @@
+shared_vehicles_hcrm:
+	Inherits@1: ^CoreVehicle
+	Inherits@2: ^CoreTurret
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	# Needs special rules to have either ED or UCS voice
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+	Tooltip:
+		Name: HCR M
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED, Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 832, 656, 0, 0
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 91
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 3c896
+	Turreted:
+		TurnSpeed: 30
+		Offset: 0,0,80
+	WithTurretAttackAnimation:
+		Sequence: repair
+	Armament@PRIMARY:
+		Weapon: shared_vehicles_hcrm
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetRelationships: Ally
+		ForceTargetRelationships: None
+		MuzzlePalette:
+	AutoTarget:
+		ScanRadius: 8
+		InitialStance: AttackAnything
+	AutoTargetPriority@Default:
+		ValidTargets: DamagedVehicle
