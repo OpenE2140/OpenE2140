@@ -1,11 +1,11 @@
 ed_vehicles_mt200:
-	ReloadDelay: 40
+	ReloadDelay: 50
 	Range: 5c896
 	MinRange: 0c512
 	Report: 3.smp
 	ValidTargets: Ground, Water
 	Burst: 4
-	BurstDelays: 20
+	BurstDelays: 25
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false

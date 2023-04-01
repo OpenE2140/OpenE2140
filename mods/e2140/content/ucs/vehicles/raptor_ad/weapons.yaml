@@ -1,11 +1,11 @@
 ucs_vehicles_raptor_ad:
-	ReloadDelay: 50
+	ReloadDelay: 62
 	Range: 4c896
 	MinRange: 0c512
 	Report: 5.smp
 	ValidTargets: Ground, Water
-	Burst: 4
-	BurstDelays: 10
+	Burst: 2
+	BurstDelays: 12
 	Projectile: Missile
 		Speed: 260
 		Arm: 1

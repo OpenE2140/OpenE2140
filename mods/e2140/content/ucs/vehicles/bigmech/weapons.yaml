@@ -1,5 +1,5 @@
 ucs_vehicles_big_mech:
-	ReloadDelay: 100
+	ReloadDelay: 125
 	Range: 5c896
 	MinRange: 0c512
 	Report: 5.smp

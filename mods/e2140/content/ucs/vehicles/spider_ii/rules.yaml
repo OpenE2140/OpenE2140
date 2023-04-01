@@ -27,8 +27,16 @@ ucs_vehicles_spider_ii:
 		LocalOffset: 300,-300,0, 300,300,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMoveSound:
 		Sound: 28.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 100
+		ResetOnFire: True
+		Count: 2

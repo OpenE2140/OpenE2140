@@ -1,11 +1,11 @@
 ed_vehicles_ht33r:
-	ReloadDelay: 40
+	ReloadDelay: 62
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
 	ValidTargets: Ground, Water
 	Burst: 3
-	BurstDelays: 25
+	BurstDelays: 24
 	Projectile: Missile
 		Speed: 260
 		Arm: 2
