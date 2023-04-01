@@ -4,20 +4,27 @@ gog: Earth 2140 (GoG, English)
 	IDFiles:
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
-		Copy: .
-			^SupportDir|Content/e2140/FLC.WD: FLC.WD
-			^SupportDir|Content/e2140/GRAPH.WD: GRAPH.WD
-			^SupportDir|Content/e2140/MENU.WD: MENU.WD
-			^SupportDir|Content/e2140/MIX.WD: MIX.WD
-			^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
-			^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
-			^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
-			^SupportDir|Content/e2140/music/1.ogg: music/1.ogg
-			^SupportDir|Content/e2140/music/2.ogg: music/2.ogg
-			^SupportDir|Content/e2140/music/3.ogg: music/3.ogg
-			^SupportDir|Content/e2140/music/4.ogg: music/4.ogg
-			^SupportDir|Content/e2140/music/5.ogg: music/5.ogg
-			^SupportDir|Content/e2140/music/6.ogg: music/6.ogg
-			^SupportDir|Content/e2140/music/7.ogg: music/7.ogg
-			^SupportDir|Content/e2140/music/8.ogg: music/8.ogg
-			^SupportDir|Content/e2140/music/9.ogg: music/9.ogg
+		ContentPackage:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
+		ContentPackage:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/1.ogg: music/1.ogg
+					^SupportDir|Content/e2140/music/2.ogg: music/2.ogg
+					^SupportDir|Content/e2140/music/3.ogg: music/3.ogg
+					^SupportDir|Content/e2140/music/4.ogg: music/4.ogg
+					^SupportDir|Content/e2140/music/5.ogg: music/5.ogg
+					^SupportDir|Content/e2140/music/6.ogg: music/6.ogg
+					^SupportDir|Content/e2140/music/7.ogg: music/7.ogg
+					^SupportDir|Content/e2140/music/8.ogg: music/8.ogg
+					^SupportDir|Content/e2140/music/9.ogg: music/9.ogg

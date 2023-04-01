@@ -4,18 +4,21 @@ ucs_vehicles_tiger_assault: vehicle_mech.vspr
 	idle:
 		Filename: vehicle_mech.vspr
 		Facings: -8
+		ZOffset: -350
 	move:
 		Filename: vehicle_mech.vspr
 		Start: 8
 		Length: 8
 		Facings: -8
 		Tick: 80
+		ZOffset: -350
 	move.turn:
 		Filename: vehicle_mech.vspr
 		Start: 72
 		Length: 2
 		Facings: -8
 		Tick: 120
+		ZOffset: -350
 	turret:
 		Filename: turret_tiger_assault.vspr
 		Facings: -16

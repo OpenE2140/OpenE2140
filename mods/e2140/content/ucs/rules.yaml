@@ -20,7 +20,8 @@ World:
 	WithMovingSpriteTurret:
 	WithTurretShadow:
 		ShadowColor: 00000046
-		Offset: 0,115,0
+		Offset: 0,32,-300
+		ZOffset: -256
 
 # Base for all UCS vehicles.
 ^UcsVehicle:

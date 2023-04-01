@@ -47,7 +47,7 @@ Generate:
 
 	turret_hcr_m: Shadow
 		idle: 211-219 16
-		repair: 230-234,225-229,220,224 4
+		repair: 230-234,225-229,220-224 4
 
 	aircraft_heavy_lifter: Player
 		idle: 235-243 16

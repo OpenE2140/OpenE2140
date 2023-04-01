@@ -70,8 +70,12 @@ World:
 		PreviewActor: colorpicker
 		PresetHues: 0, 0.30
 		PresetSaturations: 0.94, 0.95
-		# ED: 009e00
-		# UCS: ad7131
+		# 273C0A green
+		# AD7131 red
+		# 4A4D4A light gray
+		# 7B4100 orange
+		# 393439 dark gray
+		# 29345a purple
 		#PresetColors:
 		FactionPreviewActors:
 			ucs: ucs_colorpicker

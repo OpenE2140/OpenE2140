@@ -4,9 +4,14 @@ Notifications:
 Rules:
 	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/vehicles/mcu/rules.yaml
+	e2140|content/shared/vehicles/hcrm/rules.yaml
 
 Sequences:
 	e2140|content/shared/sequences/projectiles.yaml
 	e2140|content/shared/sequences/misc.yaml
 	e2140|content/shared/vehicles/mcu/sequences.yaml
 	e2140|content/shared/buildings/power_plant/sequences.yaml
+	e2140|content/shared/vehicles/hcrm/sequences.yaml
+
+Weapons:
+	e2140|content/shared/vehicles/hcrm/weapons.yaml

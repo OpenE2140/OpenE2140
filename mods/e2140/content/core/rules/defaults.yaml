@@ -244,8 +244,16 @@
 		Locomotor: vehicle
 		BlockedCursor: generic-blocked
 	# Actor can be targeted by anything which attacks ground.
-	Targetable:
+	Targetable@Default:
 		TargetTypes: Ground, Vehicle
+	# Actor can be autorepaired by friendly HCR M.
+	Targetable@Repair:
+		RequiresCondition: damaged
+		TargetTypes: DamagedUnit
+	# Condition to be granted to damaged vehicles so HCR M can autorepair them.
+	GrantConditionOnDamageState@Damaged:
+		Condition: damaged
+		ValidDamageStates: Light, Medium, Heavy, Critical
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
 	# Group all vehicles in the map editor.
@@ -259,6 +267,7 @@
 	Explodes:
 		Weapon: VehicleExplosion
 		EmptyWeapon: VehicleExplosion
+
 
 # Add locomotor to world...
 ^CoreWorld:

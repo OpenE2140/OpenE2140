@@ -1,0 +1,19 @@
+ucs_vehicles_wtp_100:
+	idle:
+		Filename: vehicle_wtp_100.vspr
+		Facings: -16
+		ZOffset: 16
+	icon:
+		Filename: SPRI1.MIX
+		Start: 143
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 143
+
+# TODO: remove after PR #20705
+ucs_vehicles_wtp_100.ed:
+	Inherits: ucs_vehicles_wtp_100
+	icon:
+		Filename: SPRI0.MIX
+		Start: 143

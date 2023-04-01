@@ -8,12 +8,14 @@ ed_elevator:
 	open:
 		Offset: 0, 0
 		Start: 3
+		ZOffset: -512	
 	overlay:
 		Offset: 2, 17
 		Start: 4
 	elevator:
 		Offset: 0, 1
 		Start: 7
+		ZOffset: -512
 	closed:
 	closing:
 		Start: 5

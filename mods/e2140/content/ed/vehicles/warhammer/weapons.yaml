@@ -1,0 +1,50 @@
+ed_vehicles_warhammer:
+	ReloadDelay: 40
+	Range: 5c896
+	MinRange: 0c512
+	Report: 3.smp
+	ValidTargets: Ground, Water
+	Burst: 4
+	BurstDelays: 20
+	Projectile: Bullet
+		Speed: 650
+		Blockable: false
+		Image: projectile_cannon
+		Palette:
+		TrailPalette:
+		Shadow: False
+		Inaccuracy: 1c0
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 25
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Ground
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_small
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure
+
+ed_vehicles_warhammer_muzzle:
+	ReloadDelay: 40
+	Range: 5c896
+	MinRange: 0c512
+	Burst: 4
+	BurstDelays: 20
+	Projectile: InstantHit
+	Warhead@Damage: SpreadDamage
+		Spread: 0
+		Damage: 0

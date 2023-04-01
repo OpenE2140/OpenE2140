@@ -1,0 +1,19 @@
+ucs_vehicles_wtp_100:
+	Inherits@1: ^CoreVehicle
+	Tooltip:
+		Name: WTP 100
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 68
+		TurnSpeed: 32
+	RevealsShroud:
+		Range: 5c896
+	# WTP 100 doesn't have move animation.
+	-WithMoveAnimation:

@@ -20,6 +20,29 @@ shared_buildings_power_plant:
 	Explodes:
 		Weapon: PowerPlantExplosion
 		EmptyWeapon: PowerPlantExplosion
+	FloatingSpriteEmitter@SMOKE:
+		Lifetime: 35
+		Duration: -1
+		SpawnFrequency: 3
+		Speed: 10
+		Gravity: 35
+		RandomFacing: true
+		RandomRate: 0
+		Palette:
+		Image: power_plant_smoke
+		Sequences: chimney_smoke
+		RequiresCondition: !Transforming
+	FloatingSpriteEmitter@CHIMNEY:
+		Lifetime: 25
+		Duration: -1
+		Offset: -10,-10,0, 10,10,0
+		SpawnFrequency: 8
+		Speed: 5
+		Gravity: 10
+		Palette:
+		Image: power_plant_smoke
+		Sequences: chimney_chamber
+		RequiresCondition: !Transforming
 
 shared_mcu_power_plant:
 	Inherits@1: ^SharedVehicleMcu

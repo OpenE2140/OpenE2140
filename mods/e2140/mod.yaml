@@ -98,11 +98,15 @@ ModContent:
 	InstallPromptMessage: OpenE2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
 	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
-		base: Base Game Files
+		ContentPackage@base:
+			Title: Base Game Files
+			Identifier: base
 			TestFiles: ^SupportDir|Content/e2140/MIX.WD
 			Sources: gog, steam
 			Required: true
-		music: Base Game Music
+		ContentPackage@music:
+			Title: Base Game Music
+			Identifier: music
 			TestFiles: ^SupportDir|Content/e2140/music/1.ogg
 			Sources: gog, steam
 	Sources:
