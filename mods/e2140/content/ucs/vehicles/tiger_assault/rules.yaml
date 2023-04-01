@@ -25,6 +25,7 @@ ucs_vehicles_tiger_assault:
 		LocalOffset: 300,-300,-100
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Weapon: ucs_vehicles_tiger_assault
 		Recoil: 64
@@ -32,8 +33,16 @@ ucs_vehicles_tiger_assault:
 		LocalOffset: 300,300,-100
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMoveSound:
 		Sound: 28.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 8
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 4

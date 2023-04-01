@@ -1,7 +1,7 @@
 ucs_vehicles_t100:
-	ReloadDelay: 40
+	ReloadDelay: 56
 	Burst: 10
-	Range: 3c896
+	Range: 2c896
 	Report: 2.smp
 	ValidTargets: Ground, Water
 	Projectile: InstantHit

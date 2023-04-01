@@ -1,11 +1,11 @@
 ucs_vehicles_spider:
-	ReloadDelay: 40
+	ReloadDelay: 52
 	Range: 4c896
 	MinRange: 0c512
 	Report: 9.smp
 	ValidTargets: Ground, Water
 	Burst: 12
-	BurstDelays: 5
+	BurstDelays: 8
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false

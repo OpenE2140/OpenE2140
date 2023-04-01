@@ -25,6 +25,7 @@ ucs_vehicles_spider:
 		LocalOffset: 500,-300,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Weapon: ucs_vehicles_spider
 		Recoil: 64
@@ -32,8 +33,16 @@ ucs_vehicles_spider:
 		LocalOffset: 500,300,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMoveSound:
 		Sound: 28.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 12
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 52
+		ResetOnFire: True
+		Count: 10

@@ -1,5 +1,5 @@
 ed_vehicles_btti:
-	ReloadDelay: 40
+	ReloadDelay: 50
 	Burst: 5
 	Range: 2c896
 	Report: 2.smp

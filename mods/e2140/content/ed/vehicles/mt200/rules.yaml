@@ -27,4 +27,12 @@ ed_vehicles_mt200:
 		LocalYaw: 0, 0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
 	WithMuzzleOverlay@muzzle:
+	AmmoPool:
+		Ammo: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 2

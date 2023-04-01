@@ -15,7 +15,7 @@ ucs_vehicles_t100:
 		Speed: 50
 		TurnSpeed: 50
 	RevealsShroud:
-		Range: 3c896
+		Range: 2c896
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,0
@@ -27,4 +27,12 @@ ucs_vehicles_t100:
 		LocalYaw: 0,0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMuzzleOverlay@muzzle:
+	AmmoPool:
+		Ammo: 10
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 56
+		ResetOnFire: True
+		Count: 7

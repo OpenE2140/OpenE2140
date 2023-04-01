@@ -23,8 +23,16 @@ ucs_vehicles_raptor_ad:
 		LocalOffset: 100,-200,0, 100,200,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMoveSound:
 		Sound: 32.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 2
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 62
+		ResetOnFire: True
+		Count: 1

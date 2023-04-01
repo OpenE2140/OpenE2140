@@ -1,11 +1,11 @@
 ucs_vehicles_spider_ii:
-	ReloadDelay: 50
+	ReloadDelay: 100
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
 	ValidTargets: Ground, Water
 	Burst: 4
-	BurstDelays: 10
+	BurstDelays: 13
 	Projectile: Missile
 		Speed: 260
 		Arm: 2

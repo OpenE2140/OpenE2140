@@ -24,9 +24,17 @@ ucs_vehicles_raptor_es:
 		LocalYaw: 0, 0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	WithMuzzleOverlay@muzzle:
 	WithMoveSound:
 		Sound: 32.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 10
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 56
+		ResetOnFire: True
+		Count: 7

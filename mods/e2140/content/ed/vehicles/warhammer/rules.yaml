@@ -31,21 +31,33 @@ ed_vehicles_warhammer:
 		LocalOffset: 700,200,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: ed_vehicles_warhammer
 		LocalOffset: 700,0,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: ed_vehicles_warhammer
 		LocalOffset: 700,-200,0
 		LocalYaw: 0, 0
 		MuzzlePalette:
+		PauseOnCondition: !ammo
 	Armament@QUATERNARY:
 		Name: quaternary
 		Weapon: ed_vehicles_warhammer_muzzle
 		MuzzlePalette:
 		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
 	WithMuzzleOverlay@muzzle:
+	AmmoPool:
+		Armaments: primary, secondary, tertiary, quaternary
+		Ammo: 16
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 8
