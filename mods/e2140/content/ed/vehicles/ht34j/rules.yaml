@@ -1,28 +1,30 @@
-ed_vehicles_ht33r:
+ed_vehicles_ht34j:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreTurret
 	Tooltip:
-		Name: HR 33 R
+		Name: HR 34 J
 	Valued:
 		Cost: 1200
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+	Selectable:
+		Bounds: 960, 784, 0, 0
 	Health:
 		HP: 600
 	Mobile:
 		Speed: 50
 		TurnSpeed: 50
 	RevealsShroud:
-		Range: 6c896
+		Range: 4c896
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,160
 	Armament@PRIMARY:
-		Weapon: ed_vehicles_ht33r
+		Weapon: ed_vehicles_ht34j
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		LocalOffset: 150,0,75
 		LocalYaw: 0, 0
 		MuzzlePalette:
