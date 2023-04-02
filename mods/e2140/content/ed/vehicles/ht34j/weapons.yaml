@@ -1,0 +1,33 @@
+ed_vehicles_ht34j:
+	ReloadDelay: 34
+	Range: 4c896
+	MinRange: 0c512
+	Report: 7.smp
+	ValidTargets: Ground, Water
+	Projectile: Bullet
+		Speed: 650
+		Blockable: false
+		Image: projectile_ion
+		Palette:
+		TrailPalette:
+		TrailImage: projectile_ion
+		TrailSequences: trail
+		TrailInterval: 1
+		Shadow: False
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 130
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_ion
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 18.smp, 19.smp
+		ValidTargets: Ground
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure

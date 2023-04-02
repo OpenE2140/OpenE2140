@@ -17,6 +17,11 @@ Generate:
 		idle: 82
 		explode: 106-110
 
+	projectile_ion:
+		idle: 78
+		trail: 77,76,75
+		explode: 111-115
+
 	projectile_cannon:
 		idle: 83
 		explode: 8-15

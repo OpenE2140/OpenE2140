@@ -1,0 +1,27 @@
+ed_vehicles_ht34j:
+	idle:
+		Filename: vehicle_tank_large.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_tank_large.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	turret:
+		Filename: turret_ht_34_j.vspr
+		Facings: -16
+		Offset: 0, 0, 0
+	icon:
+		Filename: SPRI0.MIX
+		Start: 141
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 140
+
+# TODO: remove after PR #20705
+ed_vehicles_ht34j.ucs:
+	Inherits: ed_vehicles_ht34j
+	icon:
+		Filename: SPRI1.MIX
+		Start: 141
