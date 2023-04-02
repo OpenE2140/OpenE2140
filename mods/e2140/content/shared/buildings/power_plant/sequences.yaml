@@ -20,3 +20,18 @@ shared_mcu_power_plant:
 	icon:
 		Filename: SPRI1.MIX
 		Start: 183
+
+power_plant_smoke:
+	chimney_smoke:
+		Filename: smoke.vspr
+		Offset: 0,-80,0
+		Length: 8
+		Tick: 140
+		BlendMode: Additive
+	chimney_chamber:
+		Filename: smoke.vspr
+		Offset: 2,-79,0
+		Frames: 1,2,3,4
+		Length: 4
+		Tick: 140
+		BlendMode: Additive
