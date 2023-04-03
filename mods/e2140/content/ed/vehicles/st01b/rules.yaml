@@ -9,6 +9,8 @@ ed_vehicles_st01b:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+	Selectable:
+		Bounds: 784, 544, 0, 0
 	Health:
 		HP: 200
 	Mobile:

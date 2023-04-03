@@ -9,6 +9,8 @@ ucs_vehicles_big_mech:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
+	Selectable:
+		Bounds: 1376, 1408, 0, 0
 	Health:
 		HP: 800
 	Mobile:
