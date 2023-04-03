@@ -12,7 +12,7 @@ shared_vehicles_hcrm:
 		Cost: 800
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED, Vehicle.UCS
+		Queue: Building.UCS, Building.ED
 		BuildDuration: 60
 	Selectable:
 		Bounds: 832, 656, 0, 0
