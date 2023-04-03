@@ -8,6 +8,8 @@ ucs_vehicles_spider:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 90
+	Selectable:
+		Bounds: 976, 976, 0, 0
 	Health:
 		HP: 300
 	Mobile:

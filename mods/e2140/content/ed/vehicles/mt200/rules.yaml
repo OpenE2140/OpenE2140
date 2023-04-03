@@ -9,6 +9,8 @@ ed_vehicles_mt200:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+	Selectable:
+		Bounds: 912, 640, 0, 0
 	Health:
 		HP: 300
 	Mobile:

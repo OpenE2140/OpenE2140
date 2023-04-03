@@ -8,6 +8,8 @@ ucs_vehicles_tiger_assault:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
+	Selectable:
+		Bounds: 976, 976, 0, 0
 	Health:
 		HP: 400
 	Mobile:
