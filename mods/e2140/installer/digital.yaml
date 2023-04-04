@@ -1,0 +1,65 @@
+digital_en: Earth 2140 (Digital, English)
+	Type: RegistryDirectory
+	RegistryPrefixes: HKEY_LOCAL_MACHINE\Software\, HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\, HKEY_CURRENT_USER\Software\, HKEY_CURRENT_USER\SOFTWARE\Wow6432Node\
+	RegistryKey: Reality Pump\Earth 2140
+	RegistryValue: Path
+	IDFiles:
+		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
+	Install:
+		ContentPackage:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
+		ContentPackage:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg: music/8.ogg
+					^SupportDir|Content/e2140/music/17. Child of 2140 - Instrumental.ogg: music/1.ogg
+					^SupportDir|Content/e2140/music/18. Birds - Instrumental.ogg: music/6.ogg
+					^SupportDir|Content/e2140/music/19. Hurricane - Instrumental.ogg: music/3.ogg
+					^SupportDir|Content/e2140/music/20. Before the Battle - Instrumental.ogg: music/4.ogg
+					^SupportDir|Content/e2140/music/21. Total Control - Instrumental.ogg: music/9.ogg
+					^SupportDir|Content/e2140/music/22. Everywhere - Instrumental.ogg: music/5.ogg
+					^SupportDir|Content/e2140/music/23. Hope - Instrumental.ogg: music/2.ogg
+					^SupportDir|Content/e2140/music/24. 2140 - Instrumental.ogg: music/7.ogg
+
+digital_de: Earth 2140 (Digital, German)
+	Type: RegistryDirectory
+	RegistryPrefixes: HKEY_LOCAL_MACHINE\Software\, HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\, HKEY_CURRENT_USER\Software\, HKEY_CURRENT_USER\SOFTWARE\Wow6432Node\
+	RegistryKey: Reality Pump\Earth 2140
+	RegistryValue: Path
+	IDFiles:
+		E2140.exe: 3c9426e80be90091db49bedc43efaafb702e1cd4
+	Install:
+		ContentPackage:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
+		ContentPackage:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg: music/8.ogg
+					^SupportDir|Content/e2140/music/17. Child of 2140 - Instrumental.ogg: music/1.ogg
+					^SupportDir|Content/e2140/music/18. Birds - Instrumental.ogg: music/6.ogg
+					^SupportDir|Content/e2140/music/19. Hurricane - Instrumental.ogg: music/3.ogg
+					^SupportDir|Content/e2140/music/20. Before the Battle - Instrumental.ogg: music/4.ogg
+					^SupportDir|Content/e2140/music/21. Total Control - Instrumental.ogg: music/9.ogg
+					^SupportDir|Content/e2140/music/22. Everywhere - Instrumental.ogg: music/5.ogg
+					^SupportDir|Content/e2140/music/23. Hope - Instrumental.ogg: music/2.ogg
+					^SupportDir|Content/e2140/music/24. 2140 - Instrumental.ogg: music/7.ogg

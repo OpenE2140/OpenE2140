@@ -102,19 +102,20 @@ ModContent:
 			Title: Game Files
 			Identifier: base
 			TestFiles: ^SupportDir|Content/e2140/MIX.WD
-			Sources: gog, steam
+			Sources: gog, steam_en, steam_de, digital_en, digital_de
 			Required: true
 		ContentPackage@music:
 			Title: Game Music
 			Identifier: music
 			TestFiles: ^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg
-			Sources: gog, steam
+			Sources: gog, steam_en, steam_de, digital_en, digital_de
 		ContentPackage@soundtrack:
 			Title: Soundtrack Music
 			Identifier: soundtrack
 			TestFiles: ^SupportDir|Content/e2140/music/01. EARTH Theme.mp3
 			Sources: gog_soundtrack, steam_soundtrack
 	Sources:
+		e2140|installer/digital.yaml
 		e2140|installer/gog.yaml
 		e2140|installer/steam.yaml
 
