@@ -10,9 +10,6 @@ ed_vehicles_ht34j:
 		Image: projectile_ion
 		Palette:
 		TrailPalette:
-		TrailImage: projectile_ion
-		TrailSequences: trail
-		TrailInterval: 1
 		Shadow: False
 	Warhead@Damage: SpreadDamage
 		Spread: 128

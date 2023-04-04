@@ -53,23 +53,24 @@ missile_trail:
 
 projectile_plasma:
 	Defaults:
-		Filename: projectile_plasma.vspr
 		ZOffset: 512
-	idle:
-	explode:
 		BlendMode: Additive
+	idle:
+		Filename: content\core\assets\projectile_plasma.png
+		InterpolatedFacings: 64
+	explode:
+		Filename: projectile_plasma.vspr
 		Start: 1
 		Length: 5
 
 projectile_ion:
 	Defaults:
-		Filename: projectile_ion.vspr
 		BlendMode: Additive
 		ZOffset: 512
 	idle:
-	trail:
-		Start: 1
-		Length: 3
+		Filename: content\core\assets\projectile_ion.png
+		InterpolatedFacings: 64
 	explode:
+		Filename: projectile_ion.vspr
 		Start: 4
 		Length: 5

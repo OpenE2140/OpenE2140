@@ -25,6 +25,6 @@ ed_vehicles_ht34j:
 		Weapon: ed_vehicles_ht34j
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 150,0,75
+		LocalOffset: 450,0,75
 		LocalYaw: 0, 0
 		MuzzlePalette:
