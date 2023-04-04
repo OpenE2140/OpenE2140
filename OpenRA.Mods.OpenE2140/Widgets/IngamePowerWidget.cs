@@ -1,7 +1,7 @@
 ﻿#region Copyright & License Information
 
 /*
- * Copyright 2007-2023 The OpenE2140 Developers (see AUTHORS)
+ * Copyright (c) The OpenE2140 Developers and Contributors
  * This file is part of OpenE2140, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
