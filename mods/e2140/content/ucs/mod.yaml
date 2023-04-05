@@ -16,6 +16,7 @@ Rules:
 	e2140|content/ucs/vehicles/spider_ii/rules.yaml
 	e2140|content/ucs/vehicles/bigmech/rules.yaml
 	e2140|content/ucs/vehicles/wtp_100/rules.yaml
+	e2140|content/ucs/vehicles/shadow/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -30,6 +31,7 @@ Sequences:
 	e2140|content/ucs/vehicles/spider_ii/sequences.yaml
 	e2140|content/ucs/vehicles/bigmech/sequences.yaml
 	e2140|content/ucs/vehicles/wtp_100/sequences.yaml
+	e2140|content/ucs/vehicles/shadow/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
