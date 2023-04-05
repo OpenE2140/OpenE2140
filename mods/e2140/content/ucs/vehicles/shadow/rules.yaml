@@ -1,0 +1,23 @@
+ucs_vehicles_shadow:
+	Inherits@1: ^UcsVehicle
+	Tooltip:
+		Name: Shadow
+	Valued:
+		Cost: 2100
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 960, 864, 0, 0
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 91
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 4c896
+	ProximityExternalCondition:
+		Condition: shadowcloak
+		Range: 4c896
+		AffectsParent: true
