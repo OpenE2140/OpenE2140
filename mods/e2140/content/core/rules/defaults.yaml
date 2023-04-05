@@ -193,7 +193,8 @@
 
 # Base for all infantry.
 ^CoreInfantry:
-	Inherits: ^CoreUnit
+	Inherits@1: ^CoreUnit
+	Inherits@2: ^Cloakable
 	# Applying "infantry"-damage to all actors based on this.
 	Armor:
 		Type: infantry
@@ -236,7 +237,8 @@
 
 # Base for all vehicles
 ^CoreVehicle:
-	Inherits: ^CoreUnit
+	Inherits@1: ^CoreUnit
+	Inherits@2: ^Cloakable
 	Armor:
 		Type: vehicle
 	# Vehicles can kill infantry by moving over them and set movement modifiers.
@@ -348,3 +350,18 @@
 	AutoTarget:
 	AutoTargetPriority:
 		InvalidTargets: Structure
+
+# Units can be cloaked by SHADOW unit. 
+^Cloakable:
+	Cloak:
+		RequiresCondition: shadowcloak
+		InitialDelay: 20
+		CloakDelay: 90
+		# TODO Implement custom palette trait.
+		Palette: cloak
+		UncloakOn: Damage
+		CloakType: cloak
+		EffectPalette: 
+	# This allows using condition 'shadowcloak' which SHADOW unit provides.
+	ExternalCondition:
+		Condition: shadowcloak
