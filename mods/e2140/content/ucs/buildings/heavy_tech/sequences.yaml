@@ -14,6 +14,20 @@ ucs_buildings_heavy_tech:
 		Start: 2
 	damaged-idle_light:
 		Start: 3
+	deploy:
+		Filename: content/ucs/buildings/heavy_tech/mcu_deploy.png
+		Offset: -26, -50
+		Length: 30
+		Tick: 30
+	covered:
+		Filename: content/ucs/buildings/heavy_tech/mcu_deploy.png
+		Offset: -26, -50
+		Start: 29
+	uncover:
+		Filename: content/ucs/buildings/heavy_tech/pyramid_uncover.png
+		Offset: -26, -50
+		Length: 8
+		Tick: 30
 
 ucs_mcu_heavy_tech:
 	Inherits: shared_mcu

@@ -7,6 +7,10 @@ ucs_buildings_heavy_tech:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
+	# Use custom MCU deploy and pyramid uncover animations
+	TransformSequence:
+		Image: ucs_buildings_heavy_tech
+		ConstructionTime: 20
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
