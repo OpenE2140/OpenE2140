@@ -10,7 +10,7 @@ ed_vehicles_warhammer:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Selectable:
-		Bounds: 1280, 1232, 0, 0
+		Bounds: 1280, 1248, 0, 0
 	Health:
 		HP: 600
 	Mobile:

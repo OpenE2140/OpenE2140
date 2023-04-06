@@ -10,7 +10,7 @@ ucs_vehicles_t100:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
 	Selectable:
-		Bounds: 496, 384, 0, 0
+		Bounds: 480, 384, 0, 0
 	Health:
 		HP: 80
 	Mobile:

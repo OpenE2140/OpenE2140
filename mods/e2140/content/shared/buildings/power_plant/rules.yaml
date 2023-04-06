@@ -12,7 +12,7 @@ shared_buildings_power_plant:
 			TopLeft: -1536, -1024
 			BottomRight: 1536, 1024
 	Selectable:
-		Bounds: 2080, 2208, -228, -275
+		Bounds: 2064, 1984, -228, -275
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Power:

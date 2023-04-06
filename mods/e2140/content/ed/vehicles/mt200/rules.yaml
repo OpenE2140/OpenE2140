@@ -10,11 +10,11 @@ ed_vehicles_mt200:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Selectable:
-		Bounds: 912, 640, 0, 0
+		Bounds: 896, 640, 0, 0
 	Health:
 		HP: 300
 	Mobile:
-		Speed: 91
+		Speed: 90
 		TurnSpeed: 50
 	RevealsShroud:
 		Range: 5c896

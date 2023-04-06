@@ -9,11 +9,11 @@ ucs_vehicles_spider:
 		Queue: Vehicle.UCS
 		BuildDuration: 90
 	Selectable:
-		Bounds: 976, 976, 0, 0
+		Bounds: 960, 928, 0, 0
 	Health:
 		HP: 300
 	Mobile:
-		Speed: 51
+		Speed: 50
 		TurnSpeed: 30
 	RevealsShroud:
 		Range: 4c896
