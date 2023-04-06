@@ -10,11 +10,11 @@ ed_vehicles_st01b:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Selectable:
-		Bounds: 784, 544, 0, 0
+		Bounds: 768, 544, 0, 0
 	Health:
 		HP: 200
 	Mobile:
-		Speed: 91
+		Speed: 90
 		TurnSpeed: 50
 	RevealsShroud:
 		Range: 3c896

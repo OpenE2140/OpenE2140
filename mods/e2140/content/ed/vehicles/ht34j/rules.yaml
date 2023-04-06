@@ -10,7 +10,7 @@ ed_vehicles_ht34j:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Selectable:
-		Bounds: 960, 784, 0, 0
+		Bounds: 944, 784, 0, 0
 	Health:
 		HP: 600
 	Mobile:

@@ -10,7 +10,7 @@ ed_vehicles_btti:
 		Queue: Vehicle.ED
 		BuildDuration: 60
 	Selectable:
-		Bounds: 656, 464, 0, 0
+		Bounds: 640, 464, 0, 0
 	Health:
 		HP: 150
 	Mobile:

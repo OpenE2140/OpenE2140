@@ -10,7 +10,7 @@ ucs_vehicles_raptor_ad:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
 	Selectable:
-		Bounds: 848, 976, 0, 0
+		Bounds: 832, 928, 0, 0
 	Health:
 		HP: 200
 	Mobile:
