@@ -14,7 +14,6 @@ ucs_vehicles_spider_ii:
 		HP: 400
 	Mobile:
 		Speed: 50
-		TurnSpeed: 30
 	RevealsShroud:
 		Range: 6c896
 	Turreted:

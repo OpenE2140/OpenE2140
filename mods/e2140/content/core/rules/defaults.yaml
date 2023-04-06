@@ -327,6 +327,7 @@
 ^CoreTurret:
 	# General turret behavior.
 	Turreted:
+		TurnSpeed: 30
 	# Special trait to position turret depending on attachment point (only visualy).
 	WithSpriteTurret:
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.

@@ -19,7 +19,6 @@ ed_vehicles_mt201l:
 	RevealsShroud:
 		Range: 3c896
 	Turreted:
-		TurnSpeed: 30
 		Offset: 0,0,0
 	Armament@PRIMARY:
 		Weapon: ed_vehicles_mt201l
