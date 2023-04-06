@@ -19,7 +19,6 @@ ucs_vehicles_t100:
 	RevealsShroud:
 		Range: 2c896
 	Turreted:
-		TurnSpeed: 30
 		Offset: 0,0,0
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_t100

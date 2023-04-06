@@ -19,7 +19,6 @@ ed_vehicles_st02:
 	RevealsShroud:
 		Range: 4c896
 	Turreted:
-		TurnSpeed: 30
 		Offset: 0,0,160
 	Armament@PRIMARY:
 		Weapon: ed_vehicles_st02

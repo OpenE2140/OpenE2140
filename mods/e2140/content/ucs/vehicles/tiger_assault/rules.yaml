@@ -18,7 +18,6 @@ ucs_vehicles_tiger_assault:
 	RevealsShroud:
 		Range: 5c896
 	Turreted:
-		TurnSpeed: 30
 		Offset: 0,0,200
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_tiger_assault
