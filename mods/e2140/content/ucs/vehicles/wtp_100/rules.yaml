@@ -17,5 +17,8 @@ ucs_vehicles_wtp_100:
 		TurnSpeed: 32
 	RevealsShroud:
 		Range: 5c896
+	WithMoveSound:
+		Sound: 31.smp
+		Constant: true
 	# WTP 100 doesn't have move animation.
 	-WithMoveAnimation:

@@ -24,6 +24,9 @@ public class WithMoveSoundInfo : TraitInfo, Requires<MobileInfo>
 	[FieldLoader.RequireAttribute]
 	public readonly string Sound = "";
 
+	[Desc("Continuously playing move sound. Typically for units that make sound even when not moving between cells.")]
+	public readonly bool Constant = false;
+
 	public override object Create(ActorInitializer init)
 	{
 		return new WithMoveSound(this, init);
@@ -49,7 +52,7 @@ public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWo
 
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
-		if (type != MovementType.None && this.mobile.IsMovingBetweenCells)
+		if (type != MovementType.None && (this.mobile.IsMovingBetweenCells || this.info.Constant))
 			this.worldTrait?.Enable(self, this.info.Sound);
 		else
 			this.worldTrait?.Disable(self, this.info.Sound);
