@@ -56,7 +56,7 @@ projectile_plasma:
 		ZOffset: 512
 		BlendMode: Additive
 	idle:
-		Filename: content\core\assets\projectile_plasma.png
+		Filename: content/core/assets/projectile_plasma.png
 		InterpolatedFacings: 64
 	explode:
 		Filename: projectile_plasma.vspr
@@ -68,7 +68,7 @@ projectile_ion:
 		BlendMode: Additive
 		ZOffset: 512
 	idle:
-		Filename: content\core\assets\projectile_ion.png
+		Filename: content/core/assets/projectile_ion.png
 		InterpolatedFacings: 64
 	explode:
 		Filename: projectile_ion.vspr
