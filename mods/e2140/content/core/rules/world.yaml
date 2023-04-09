@@ -68,18 +68,11 @@ World:
 	# Required for the color picker.
 	ColorPickerManager:
 		PreviewActor: colorpicker
-		PresetHues: 0, 0.30
-		PresetSaturations: 0.94, 0.95
-		# 273C0A green
-		# AD7131 red
-		# 4A4D4A light gray
-		# 7B4100 orange
-		# 393439 dark gray
-		# 29345a purple
-		#PresetColors:
 		FactionPreviewActors:
 			ucs: ucs_colorpicker
 			ed: ed_colorpicker
+		# Colors: green (ED default), red (UCS default), light gray, orange, dark gray, purple
+		PresetColors: 273C0A, F20F0F, 4A4D4A, 7B4100, 393439, 29345A
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:
