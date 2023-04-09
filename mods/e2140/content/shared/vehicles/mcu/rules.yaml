@@ -16,7 +16,7 @@
 		Speed: 28
 		TurnSpeed: 25
 	RevealsShroud:
-		Range: 6c0
+		Range: 5c896
 	TriggerTransformSequence:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
