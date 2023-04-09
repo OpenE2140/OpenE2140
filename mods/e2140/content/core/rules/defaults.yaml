@@ -118,7 +118,7 @@
 		RepairingStoppedNotification: RepairsInterrupted
 	# The view radius of buildings.
 	RevealsShroud:
-		Range: 5c0
+		Range: 4c896
 	# Group all buildings in the map editor.
 	MapEditorData:
 		Categories: Building
