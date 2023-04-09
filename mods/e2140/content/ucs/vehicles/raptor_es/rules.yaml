@@ -18,6 +18,10 @@ ucs_vehicles_raptor_es:
 		TurnSpeed: 32
 	RevealsShroud:
 		Range: 3c896
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow
+		# ForceToGround: true
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_es
 		Recoil: 0

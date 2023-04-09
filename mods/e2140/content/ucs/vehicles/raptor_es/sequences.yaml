@@ -20,6 +20,13 @@ ucs_vehicles_raptor_es:
 		Length: 3
 		Facings: -16
 		Tick: 60
+	shadow:
+		Filename: vehicle_raptor_es.vspr
+		Start: 128
+		Length: 1
+		Facings: -8
+		Offset: 6,5,0
+		ZOffset: -256
 	icon:
 		Filename: SPRI1.MIX
 		Start: 129

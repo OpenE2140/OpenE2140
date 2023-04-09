@@ -24,16 +24,18 @@ Generate:
 	turret_spider: Player
 		idle: 100-108 16
 
-	vehicle_raptor_es: Player Muzzle Raptor
+	vehicle_raptor_es: Player Muzzle Shadow
 		idle: 115,144,122,145,129,146,136,147,143 16
 		move: 109-143[0:6:1] 8
 		muzzle: 115,144,122,145,129,146,136,147,143 16 3
 		move.turn: 115,111,122,118,129,125,136,132,143,139 8
+		shadow: 686-690 8
 
-	vehicle_raptor_ad: Player Raptor
+	vehicle_raptor_ad: Player Shadow
 		idle: 154,184,161,183,168,185,175,186,182 16
 		move: 148-182[0:6:1] 8
 		move.turn: 154,149,161,156,168,164,175,171,182,177 8
+		shadow: 686-690 8
 
 	vehicle_wtp_100: Player
 		idle: 187-195 16
