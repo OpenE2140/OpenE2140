@@ -23,7 +23,8 @@ ucs_buildings_heavy_tech:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: -960, 128, 0
-		CutOff: 32
+		# CutOff: 32
+		CutOff: 35
 		Produces: Vehicle.UCS
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:
@@ -33,23 +34,23 @@ ucs_buildings_heavy_tech:
 		ProductionType: Vehicle.UCS
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: -960, 96, 0
+		SpawnOffset: -1024, 0, 0
 		ExitCell: -1,0
 		Facing: 128
 	Exit@Exit2:
-		SpawnOffset: -960, 96, 0
+		SpawnOffset: -1024, 0, 0
 		ExitCell: -1,1
 		Facing: 256
 	Exit@Exit3:
-		SpawnOffset: -960, 96, 0
+		SpawnOffset: -1024, 0, 0
 		ExitCell: -1,2
 		Facing: 384
 	Exit@Exit4:
-		SpawnOffset: -960, 96, 0
+		SpawnOffset: -1024, 0, 0
 		ExitCell: 0,2
 		Facing: 512
 	Exit@Exit5:
-		SpawnOffset: -960, 96, 0
+		SpawnOffset: -1024, 0, 0
 		ExitCell: 1,2
 		Facing: 640
 	WithIdleOverlay:

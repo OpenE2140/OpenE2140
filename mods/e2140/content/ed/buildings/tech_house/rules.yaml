@@ -19,7 +19,7 @@ ed_buildings_tech_house:
 	ElevatorProduction:
 		Image: ed_elevator
 		Position: 992, -104, 0
-		CutOff: 32
+		CutOff: 29
 		Produces: Vehicle.ED
 		RequiresCondition: !Transforming
 	ElevatorProductionQueue:
@@ -29,27 +29,27 @@ ed_buildings_tech_house:
 		ProductionType: Vehicle.ED
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 1,2
 		Facing: 384
 	Exit@Exit2:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 2,2
 		Facing: 512
 	Exit@Exit3:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 3,2
 		Facing: 640
 	Exit@Exit4:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 3,1
 		Facing: 768
 	Exit@Exit5:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 3,0
 		Facing: 896
 	Exit@Exit6:
-		SpawnOffset: 992, -104, 0
+		SpawnOffset: 1024, 0, 0
 		ExitCell: 2,0
 		Facing: 0
 

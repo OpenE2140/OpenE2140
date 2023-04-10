@@ -262,9 +262,10 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		var actorPreviews = renderActorPreview.RenderPreview(
 			new ActorPreviewInitializer(new ActorReference(this.productionInfo.Producee.Name, previewInit), worldRenderer)
 		);
+		var spawnPosition = this.GetSpawnPosition(self);
 
 		var renderables = actorPreviews
-			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, self.CenterPosition + this.info.Position + new WVec(0, 0, this.GetElevatorHeight())))
+			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, spawnPosition + new WVec(0, 0, this.GetElevatorHeight())))
 			.Select(
 				renderable => renderable is SpriteRenderable spriteRenderable
 					? spriteRenderable.WithZOffset(spriteRenderable.ZOffset + this.info.ZOffset)
@@ -275,6 +276,11 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() + this.info.CutOff * 16);
 
 		return renderables;
+	}
+
+	private WPos GetSpawnPosition(Actor self)
+	{
+		return self.World.Map.CenterOfCell(self.World.Map.CellContaining(self.CenterPosition + this.info.Position));
 	}
 
 	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer worldRenderer)
