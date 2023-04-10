@@ -355,6 +355,7 @@
 ^Cloakable:
 	Cloak:
 		RequiresCondition: shadowcloak
+		CloakedCondition: cloaked
 		InitialDelay: 20
 		CloakDelay: 90
 		# TODO Implement custom palette trait.
