@@ -44,40 +44,31 @@ public class ColorPickerColorShiftInfo : TraitInfo
 	public override object Create(ActorInitializer init) { return new ColorPickerColorShift(this); }
 }
 
-public class ColorPickerColorShift : ILoadsPalettes, ITickRender
+public class ColorPickerColorShift : ITickRender
 {
 	private readonly ColorPickerColorShiftInfo info;
 	private readonly ColorPickerManagerInfo colorManager;
-	private Color color;
+	private Color? color;
+	private Color? newColor;
 
 	public ColorPickerColorShift(ColorPickerColorShiftInfo info)
 	{
 		this.colorManager = Game.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
+		this.colorManager.OnColorPickerColorUpdate += color =>
+		{
+			this.newColor = color;
+		};
 		this.info = info;
-	}
-
-	void ILoadsPalettes.LoadPalettes(WorldRenderer worldRenderer)
-	{
-		this.color = this.colorManager.Color;
-		var (_, hue, saturation, value) = this.color.ToAhsv();
-
-		worldRenderer.SetPaletteColorShift(
-			this.info.BasePalette,
-			hue - this.info.ReferenceHue,
-			saturation - this.info.ReferenceSaturation,
-			value,
-			this.info.MinHue,
-			this.info.MaxHue
-		);
 	}
 
 	void ITickRender.TickRender(WorldRenderer worldRenderer, Actor self)
 	{
-		if (this.color == this.colorManager.Color)
+		if (this.newColor == null || this.newColor == this.color)
 			return;
 
-		this.color = this.colorManager.Color;
-		var (_, hue, saturation, value) = this.color.ToAhsv();
+		this.color = this.newColor.Value;
+		this.newColor = null;
+		var (_, hue, saturation, value) = this.color.Value.ToAhsv();
 
 		worldRenderer.SetPaletteColorShift(
 			this.info.BasePalette,
