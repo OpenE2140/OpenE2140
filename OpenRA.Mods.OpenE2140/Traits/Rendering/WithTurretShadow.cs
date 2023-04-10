@@ -56,12 +56,18 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 				anim,
 				() => t.Offset + this.Offset,
 				() => this.ZOffset,
-				e => ((IModifyableRenderable)e).WithTint(
-						new float3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
-						((IModifyableRenderable)e).TintModifiers | TintModifiers.ReplaceColor
-					)
-					.WithAlpha(this.ShadowColor.A / 255f)
-			);
+				(IRenderable renderable, bool renderUi) =>
+				{
+					// When rendering inside UI, we cannot render shadow, so skip entire IRenderable
+					if (renderUi || renderable is not IModifyableRenderable mr)
+						return null;
+
+					return mr.WithTint(
+							new float3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
+							mr.TintModifiers | TintModifiers.ReplaceColor
+						)
+						.WithAlpha(this.ShadowColor.A / 255f);
+				});
 		}
 	}
 }
