@@ -356,10 +356,9 @@
 	Cloak:
 		RequiresCondition: shadowcloak
 		CloakedCondition: cloaked
-		InitialDelay: 20
+		InitialDelay: 0
 		CloakDelay: 90
-		# TODO Implement custom palette trait.
-		Palette: cloak
+		Palette:
 		UncloakOn: Damage
 		CloakType: cloak
 		EffectPalette: 
