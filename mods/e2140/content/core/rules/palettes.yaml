@@ -11,11 +11,3 @@
 		AllowModifiers: false
 	ColorPickerColorShift:
 		BasePalette: colorpicker
-	# TODO Implement custom palette trait.
-	PaletteFromRGBA@Shadow:
-		Name: cloak
-		R: 0
-		G: 0
-		B: 0
-		A: 145
-		AllowModifiers: False
