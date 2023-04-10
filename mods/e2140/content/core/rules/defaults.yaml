@@ -363,6 +363,8 @@
 		UncloakOn: Damage
 		CloakType: cloak
 		EffectPalette: 
+	WithCloakShadow:
+		ShadowColor: 00000046
 	# This allows using condition 'shadowcloak' which SHADOW unit provides.
 	ExternalCondition:
 		Condition: shadowcloak
