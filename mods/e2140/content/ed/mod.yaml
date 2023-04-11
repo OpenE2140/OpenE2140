@@ -16,6 +16,7 @@ Rules:
 	e2140|content/ed/vehicles/ht33r/rules.yaml
 	e2140|content/ed/vehicles/ht34j/rules.yaml
 	e2140|content/ed/vehicles/warhammer/rules.yaml
+	e2140|content/ed/vehicles/screamer/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -30,6 +31,7 @@ Sequences:
 	e2140|content/ed/vehicles/ht33r/sequences.yaml
 	e2140|content/ed/vehicles/ht34j/sequences.yaml
 	e2140|content/ed/vehicles/warhammer/sequences.yaml
+	e2140|content/ed/vehicles/screamer/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml

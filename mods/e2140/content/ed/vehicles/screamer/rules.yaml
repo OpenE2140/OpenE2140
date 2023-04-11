@@ -1,0 +1,23 @@
+ed_vehicles_screamer:
+	Inherits: ^EdVehicle
+	Tooltip:
+		Name: SCREAMER
+	Valued:
+		Cost: 900
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1024, 928, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 4c896
+	WithIdleOverlay:
+		Palette:
+	DetectCloaked:
+		Range: 4c896
