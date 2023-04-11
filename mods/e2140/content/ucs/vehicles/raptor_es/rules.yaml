@@ -21,7 +21,7 @@ ucs_vehicles_raptor_es:
 	WithFacingSpriteBody@shadow:
 		Sequence: shadow
 		Name: shadow
-		RequiresCondition: !cloaked
+		# RequiresCondition: !cloaked
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_es
 		Recoil: 0

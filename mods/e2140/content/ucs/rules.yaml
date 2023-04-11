@@ -19,10 +19,14 @@ World:
 	-WithSpriteTurret:
 	WithMovingSpriteTurret:
 	WithTurretShadow:
-		RequiresCondition: !cloaked
+		# RequiresCondition: !cloaked
 		ShadowColor: 00000046
 		Offset: 0,32,-300
 		ZOffset: -256
+	# WithCloakShadow needs to be defined/run after WithTurretShadow (unfortunately)
+	-WithCloakShadow:
+	Inherits@3: ^SilhouetteShadowCloak
+	# Inherits@3: ^SemiTransparentShadowCloak
 
 # Base for all UCS vehicles.
 ^UcsVehicle:

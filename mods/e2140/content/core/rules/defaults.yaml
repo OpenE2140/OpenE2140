@@ -353,6 +353,8 @@
 
 # Units can be cloaked by SHADOW unit. 
 ^Cloakable:
+	Inherits@1: ^SilhouetteShadowCloak
+	# Inherits@1: ^SemiTransparentShadowCloak
 	Cloak:
 		RequiresCondition: shadowcloak
 		CloakedCondition: cloaked
@@ -361,9 +363,36 @@
 		Palette:
 		UncloakOn: Damage
 		CloakType: cloak
-		EffectPalette: 
-	WithCloakShadow:
-		ShadowColor: 00000046
+		EffectPalette:
 	# This allows using condition 'shadowcloak' which SHADOW unit provides.
 	ExternalCondition:
 		Condition: shadowcloak
+
+# Cloak effect: cloaked actors are rendered as semi-transparent.
+^SemiTransparentShadowCloak:
+	WithCloakShadow:
+		ShadowColor: 00000046
+		TransparentAppearance: true
+		# Muzzle overlay should be always rendered without any modification.
+		TraitsToFullyRender: WithMuzzleOverlay
+		# Make custom shadow sprites slightly more transparent.
+		OverrideShadowAlphaForSequences:
+			shadow: 0.75
+		# Make turret shadow slightly more transparent.
+		ApplyToRenderModifierTraits:
+			WithTurretShadow: 0.14
+
+# Cloak effect: cloaked actors are rendered as a shadow silhouette.
+^SilhouetteShadowCloak:
+	WithCloakShadow:
+		# ShadowColor: 00000046
+		ShadowColor: 00000046
+		TransparentAppearance: false
+		# Muzzle overlay should be always rendered without any modification.
+		TraitsToFullyRender: WithMuzzleOverlay
+		# Hide custom shadow sprites.
+		OverrideShadowAlphaForSequences:
+			shadow: 0
+		# Hide turret shadow.
+		ApplyToRenderModifierTraits:
+			WithTurretShadow: 0

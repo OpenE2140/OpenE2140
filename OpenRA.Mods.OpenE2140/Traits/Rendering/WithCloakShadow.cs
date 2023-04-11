@@ -20,16 +20,27 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
+[Desc("Trait that makes cloaked units with cloak shadow effect.")]
 public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<RenderSpritesInfo>
 {
 	[Desc("Color to draw shadow.")]
 	public readonly Color ShadowColor = Color.FromArgb(140, 0, 0, 0);
+
+	[Desc($"Apply cloaked effect to render modifiers from specified traits. Key is trait name, value is alpha (which defaults to value from {nameof(ShadowColor)}).")]
+	public readonly Dictionary<string, float?> ApplyToRenderModifierTraits = new Dictionary<string, float?>();
 
 	[Desc("Render specified traits fully without applying shadow effect.")]
 	public readonly string[] TraitsToFullyRender = new[] { "WithMuzzleOverlay" };  // TODO: PR for making it public
 
 	[Desc("Render specified traits even when the actor is completely invisible (i.e. owner is not render player).")]
 	public readonly string[] TraitsToRenderWhenInvisibile = new[] { "WithMuzzleOverlay" };  // TODO: PR for making it public
+
+	[Desc("Render cloaked units with transparency effect instead of shadow effect.")]
+	public readonly bool TransparentAppearance = false;
+
+	[Desc($"Render specified sequences (from {nameof(RenderSprites)}) using custom shadow alpha value. Key is sequence name, value is alpha." +
+		  "Default alpha is 1.0 (i.e. no cloak shadow effect)")]
+	public readonly Dictionary<string, float?> OverrideShadowAlphaForSequences = new Dictionary<string, float?>();
 
 	public override object Create(ActorInitializer init)
 	{
@@ -89,20 +100,13 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 			renderables = GetRenderables(self, wr, this.renderTraitsForInvisibleActors);
 		}
 
-		// Use same pipeline as in Actor.Render here:
-		// - get renderables from IRender traits
-		// - call IModifyRender traits to modify renderables
-
 		if (this.renderModifiers != null)
-		{
-			foreach (var modifier in this.renderModifiers)
-				renderables = modifier.ModifyRender(self, wr, renderables);
-		}
+			renderables = this.ApplyRenderModifiersWithCloakShadow(self, wr, renderables);
 		return renderables;
 	}
 
 	/// <summary>
-	/// Custom method for determining visibility is needed, because invisibility due to cloak has to be handles by this trait.
+	/// Custom method for determining visibility. It is necessary, because invisibility due to cloak has to be handles by this trait.
 	/// </summary>
 	private bool FogObscures(Actor self)
 	{
@@ -120,25 +124,94 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 			// render RenderSprites traits with cloak shadow effect
 			if (item is RenderSprites rs && this.reflectionHelpers.TryGetValue(rs, out var rsHelper))
 			{
-				foreach (var r in rsHelper.RenderAnimations(self, wr, rsHelper.GetVisibleAnimations()).OfType<IModifyableRenderable>())
+				var renderables = rsHelper.RenderModifiedAnimations(
+					self, wr, rsHelper.GetVisibleAnimations(),
+					(anim, renderables) =>
+					{
+						var alphaToApply = this.shadowAlpha;
+						var currentSequence = anim.Animation.CurrentSequence?.Name;
+						if (!string.IsNullOrEmpty(currentSequence) && this.info.OverrideShadowAlphaForSequences.TryGetValue(currentSequence, out var customAlpha))
+							alphaToApply = customAlpha ?? 1.0f;
+
+						return renderables.OfType<IModifyableRenderable>().Select(r => this.ApplyCloakShadow(r, alphaToApply));
+					});
+
+				foreach (var r in renderables)
 				{
-					yield return this.ApplyCloakShadow(r);
+					yield return r;
 				}
 			}
 			else if (this.info.TraitsToFullyRender.Contains(item.GetType().Name))
 			{
-				// render specified traits without cloak shadow effect
+				// render specified traits without any modification
 				foreach (var r in item.Render(self, wr))
 					yield return r;
 			}
 			else
 			{
 				// render remaining traits with cloak shadow effect
-				// TODO: do we need to handle IRenderable that is not IModifyableRenderable?
 				foreach (var r in item.Render(self, wr).OfType<IModifyableRenderable>())
-					yield return this.ApplyCloakShadow(r);
+					yield return this.ApplyCloakShadow(r, this.shadowAlpha);
 			}
 		}
+	}
+
+	private IEnumerable<IRenderable> ApplyRenderModifiersWithCloakShadow(Actor self, WorldRenderer wr, IEnumerable<IRenderable> renderables)
+	{
+		if (this.renderModifiers == null)
+		{
+			return renderables;
+		}
+
+		// This algorithm:
+		// - iterates each IRenderModifier
+		// - lets them modify renderables
+		// - modified renderables from specified traits are processed:
+		//		- cloak shadow effect is applied new renderables, existing are reused as-is, removed are thrown away
+		// - modified renderables from rest of traits are reused as-is
+		// - next iteration uses this new list of renderables
+		// - returns final list of transformed renderables
+
+		var currentRenderables = renderables.ToHashSet();
+		var nextRenderables = new HashSet<IRenderable>();
+
+		foreach (var item in this.renderModifiers)
+		{
+			var modifiedRenderables = item.ModifyRender(self, wr, currentRenderables).OfType<IModifyableRenderable>();
+
+			if (this.info.ApplyToRenderModifierTraits.TryGetValue(item.GetType().Name, out var customAlpha))
+			{
+				// apply cloak shadow effect to specified traits
+				foreach (var r in modifiedRenderables)
+				{
+					if (!currentRenderables.Contains(r))
+					{
+						// don't render renderables that have alpha = 0 at all
+						if (customAlpha == 0.0f)
+							continue;
+
+						// this IRenderable is new, apply cloak shadow effect
+						nextRenderables.Add(this.ApplyCloakShadow(r, customAlpha ?? this.shadowAlpha));
+					}
+					else
+					{
+						// this IRenderable is old, don't apply cloak shadow effect again
+						nextRenderables.Add(r);
+					}
+				}
+			}
+			else
+			{
+				// render remaining traits without adding any modification cloak shadow effect
+				foreach (var r in modifiedRenderables)
+					nextRenderables.Add(r);
+			}
+
+			(nextRenderables, currentRenderables) = (currentRenderables, nextRenderables);
+			nextRenderables.Clear();
+		}
+
+		return currentRenderables;
 	}
 
 	private static IEnumerable<IRenderable> GetRenderables(Actor self, WorldRenderer wr, IEnumerable<IRender> renderTraits)
@@ -148,10 +221,12 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 				yield return r;
 	}
 
-	private IRenderable ApplyCloakShadow(IModifyableRenderable r)
+	private IRenderable ApplyCloakShadow(IModifyableRenderable r, float shadowAlpha)
 	{
-		return r.WithTint(this.shadowColor, r.TintModifiers | TintModifiers.ReplaceColor)
-			.WithAlpha(this.shadowAlpha)
+		if (!this.info.TransparentAppearance)
+			r = r.WithTint(this.shadowColor, r.TintModifiers | TintModifiers.ReplaceColor);
+		return r
+			.WithAlpha(shadowAlpha)
 			.AsDecoration();
 	}
 
