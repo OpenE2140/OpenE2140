@@ -26,7 +26,10 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	public readonly Color ShadowColor = Color.FromArgb(140, 0, 0, 0);
 
 	[Desc("Render specified traits fully without applying shadow effect.")]
-	public readonly string[] FullyRenderTraits = new[] { "WithMuzzleOverlay" };  // TODO: PR for making it public
+	public readonly string[] TraitsToFullyRender = new[] { "WithMuzzleOverlay" };  // TODO: PR for making it public
+
+	[Desc("Render specified traits even when the actor is completely invisible (i.e. owner is not render player).")]
+	public readonly string[] TraitsToRenderWhenInvisibile = new[] { "WithMuzzleOverlay" };  // TODO: PR for making it public
 
 	public override object Create(ActorInitializer init)
 	{
@@ -41,7 +44,10 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 	private readonly float3 shadowColor;
 	private readonly float shadowAlpha;
 	private readonly Dictionary<RenderSprites, RenderSpritesReflectionHelper> reflectionHelpers;
-	private IEnumerable<IRenderModifier>? renderModifiers;
+	private readonly IDefaultVisibility defaultVisibility;
+	private readonly IVisibilityModifier[] visibilityModifiers;
+	private IRenderModifier[]? renderModifiers;
+	private IRender[]? renderTraitsForInvisibleActors;
 
 	public WithCloakShadow(Actor self, WithCloakShadowInfo info)
 	{
@@ -52,35 +58,62 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 
 		this.reflectionHelpers = self.TraitsImplementing<RenderSprites>()
 			.ToDictionary(rs => rs, rs => new RenderSpritesReflectionHelper(rs));
+		this.defaultVisibility = self.TraitsImplementing<IDefaultVisibility>().Last();
+		this.visibilityModifiers = self.TraitsImplementing<IVisibilityModifier>()
+			.Where(m => m is not Cloak)
+			.ToArray();
 	}
 
 	void INotifyCreated.Created(Actor self)
 	{
-		this.renderModifiers = self.TraitsImplementing<IRenderModifier>();
+		this.renderModifiers = self.TraitsImplementing<IRenderModifier>()
+			.Where(rm => rm is not WithCloakShadow && rm is not Cloak)
+			.ToArray();
+		this.renderTraitsForInvisibleActors = self.TraitsImplementing<IRender>()
+			.Where(r => this.info.TraitsToRenderWhenInvisibile.Contains(r.GetType().Name))
+			.ToArray();
 	}
 
 	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> renderables)
 	{
-		if (self.World.FogObscures(self) || self.World.ShroudObscures(self.CenterPosition))
+		// Actor is obscured by fog/shroud or not cloaked at all, ignore these and don't modify renderables.
+		if (this.FogObscures(self) || self.World.ShroudObscures(self.CenterPosition) || !this.cloak.Cloaked)
 			return renderables;
 
-		if (!this.cloak.Cloaked || !this.cloak.IsVisible(self, self.World.RenderPlayer))
-			return renderables;
+		// Actor is cloaked, but visible to render player. Apply cloak shadow effect to traits.
+		if (this.cloak.IsVisible(self, self.World.RenderPlayer))
+			renderables = GetRenderablesWithCloakShadow(self, wr);
+		else if (this.renderTraitsForInvisibleActors != null)
+		{
+			// Actor is cloaked, but invisible to render player. Fully render renderables only from specified traits.
+			renderables = GetRenderables(self, wr, this.renderTraitsForInvisibleActors);
+		}
 
 		// Use same pipeline as in Actor.Render here:
-		// - get IEnumerable<IRenderable> from IRender traits
-		// - call IModifyRender traits with list of IRenderable objects
-		renderables = GetRenderables(self, wr);
+		// - get renderables from IRender traits
+		// - call IModifyRender traits to modify renderables
 
 		if (this.renderModifiers != null)
 		{
-			foreach (var modifier in this.renderModifiers.Where(rm => rm is not WithCloakShadow))
+			foreach (var modifier in this.renderModifiers)
 				renderables = modifier.ModifyRender(self, wr, renderables);
 		}
 		return renderables;
 	}
 
-	private IEnumerable<IRenderable> GetRenderables(Actor self, WorldRenderer wr)
+	/// <summary>
+	/// Custom method for determining visibility is needed, because invisibility due to cloak has to be handles by this trait.
+	/// </summary>
+	private bool FogObscures(Actor self)
+	{
+		foreach (var visibilityModifier in visibilityModifiers)
+			if (!visibilityModifier.IsVisible(self, self.World.RenderPlayer))
+				return true;
+
+		return !defaultVisibility.IsVisible(self, self.World.RenderPlayer);
+	}
+
+	private IEnumerable<IRenderable> GetRenderablesWithCloakShadow(Actor self, WorldRenderer wr)
 	{
 		foreach (var item in self.TraitsImplementing<IRender>())
 		{
@@ -92,7 +125,7 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 					yield return this.ApplyCloakShadow(r);
 				}
 			}
-			else if (this.info.FullyRenderTraits.Contains(item.GetType().Name))
+			else if (this.info.TraitsToFullyRender.Contains(item.GetType().Name))
 			{
 				// render specified traits without cloak shadow effect
 				foreach (var r in item.Render(self, wr))
@@ -106,6 +139,13 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 					yield return this.ApplyCloakShadow(r);
 			}
 		}
+	}
+
+	private static IEnumerable<IRenderable> GetRenderables(Actor self, WorldRenderer wr, IEnumerable<IRender> renderTraits)
+	{
+		foreach (var trait in renderTraits)
+			foreach (var r in trait.Render(self, wr))
+				yield return r;
 	}
 
 	private IRenderable ApplyCloakShadow(IModifyableRenderable r)
