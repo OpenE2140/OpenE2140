@@ -66,6 +66,37 @@ public class RenderSpritesReflectionHelper
 		}
 	}
 
+	public IEnumerable<IRenderable> RenderModifiedAnimations(
+		Actor self,
+		WorldRenderer worldRenderer,
+		IEnumerable<AnimationWithOffset> animations,
+		Func<AnimationWithOffset, IEnumerable<IRenderable>, IEnumerable<IRenderable>>? renderableProcess = null
+	)
+	{
+		var animLookup = this.animField.Value!.Cast<object>().ToDictionary(wrapper => this.animWrapperHelper.GetAnimation(wrapper));
+
+		foreach (var animation in animations)
+		{
+			if (!animLookup.TryGetValue(animation, out var animWrapper) || this.animWrapperHelper.GetAnimation(animWrapper) != animation)
+				throw new InvalidOperationException($"Unknown animation passed to {nameof(RenderSpritesReflectionHelper)}");
+
+			var paletteReference = this.animWrapperHelper.GetPaletteReference(animWrapper);
+
+			if (paletteReference == null)
+			{
+				var owner = self.EffectiveOwner is { Disguised: true } ? self.EffectiveOwner.Owner : self.Owner;
+				this.animWrapperHelper.CachePalette(animWrapper, worldRenderer, owner);
+			}
+
+			IEnumerable<IRenderable> renderables = animation.Render(self, this.animWrapperHelper.GetPaletteReference(animWrapper));
+			if (renderableProcess != null)
+				renderables = renderableProcess.Invoke(animation, renderables);
+
+			foreach (var renderable in renderables)
+				yield return renderable;
+		}
+	}
+
 	private class AnimWrapperHelper
 	{
 		private readonly TypePropertyHelper<bool> isVisible;
