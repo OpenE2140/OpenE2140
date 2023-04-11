@@ -1,0 +1,28 @@
+ed_vehicles_screamer:
+	idle:
+		Filename: vehicle_screamer.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_screamer.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	idle-overlay:
+		Filename: turret_screamer.vspr
+		Length: 16
+		Tick: 50
+		Offset: 0, -8
+	icon:
+		Filename: SPRI0.MIX
+		Start: 152
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 152
+
+# TODO: remove after PR #20705
+ed_vehicles_screamer.ucs:
+	Inherits: ed_vehicles_screamer
+	icon:
+		Filename: SPRI1.MIX
+		Start: 152

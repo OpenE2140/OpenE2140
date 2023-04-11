@@ -362,7 +362,6 @@
 		CloakDelay: 90
 		Palette:
 		UncloakOn: None
-		CloakType: cloak
 		EffectPalette:
 	# This allows using condition 'shadowcloak' which SHADOW unit provides.
 	ExternalCondition:
