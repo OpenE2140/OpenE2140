@@ -360,7 +360,6 @@
 		CloakDelay: 90
 		Palette:
 		UncloakOn: Damage
-		CloakType: cloak
 		EffectPalette: 
 	WithCloakShadow:
 		ShadowColor: 00000046
