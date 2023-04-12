@@ -91,9 +91,15 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 		if (this.FogObscures(self) || self.World.ShroudObscures(self.CenterPosition) || !this.cloak.Cloaked)
 			return renderables;
 
-		// Actor is cloaked, but visible to render player. Apply cloak shadow effect to traits.
 		if (this.cloak.IsVisible(self, self.World.RenderPlayer))
+		{
+			// Actor is cloaked, visible to render player but the owner is not allied to the render player -> render without any effect.
+			if (!self.Owner.IsAlliedWith(self.World.RenderPlayer))
+				return renderables;
+
+			// Owner is allied with render player, apply cloak shadow effect to traits.
 			renderables = GetRenderablesWithCloakShadow(self, wr);
+		}
 		else if (this.renderTraitsForInvisibleActors != null)
 		{
 			// Actor is cloaked, but invisible to render player. Fully render renderables only from specified traits.
@@ -106,7 +112,7 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 	}
 
 	/// <summary>
-	/// Custom method for determining visibility. It is necessary, because invisibility due to cloak has to be handles by this trait.
+	/// Custom method for determining visibility. It is necessary, because invisibility due to cloak has to be handled by this trait.
 	/// </summary>
 	private bool FogObscures(Actor self)
 	{
