@@ -353,8 +353,8 @@
 
 # Units can be cloaked by SHADOW unit. 
 ^Cloakable:
-	# Inherits@1: ^SilhouetteShadowCloak
-	Inherits@1: ^SemiTransparentShadowCloak
+	# Inherits: ^SilhouetteShadowCloak
+	Inherits: ^SemiTransparentShadowCloak
 	Cloak:
 		RequiresCondition: shadowcloak
 		CloakedCondition: cloaked
