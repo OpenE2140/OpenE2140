@@ -25,8 +25,8 @@ World:
 		ZOffset: -256
 	# WithCloakShadow needs to be defined/run after WithTurretShadow (unfortunately)
 	-WithCloakShadow:
-	Inherits@3: ^SilhouetteShadowCloak
-	# Inherits@3: ^SemiTransparentShadowCloak
+	# Inherits@3: ^SilhouetteShadowCloak
+	Inherits@3: ^SemiTransparentShadowCloak
 
 # Base for all UCS vehicles.
 ^UcsVehicle:
