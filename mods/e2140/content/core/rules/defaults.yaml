@@ -361,7 +361,7 @@
 		InitialDelay: 0
 		CloakDelay: 90
 		Palette:
-		UncloakOn: Damage
+		UncloakOn: None
 		CloakType: cloak
 		EffectPalette:
 	# This allows using condition 'shadowcloak' which SHADOW unit provides.
