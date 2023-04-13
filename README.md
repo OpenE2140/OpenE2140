@@ -1,10 +1,22 @@
 # Earth 2140 on OpenRA
 
-Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on [OpenRA Mod SDK](https://github.com/OpenRA/OpenRAModSDK).
+Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on [OpenRA Mod SDK](https://github.com/OpenRA/OpenRAModSDK). Work in progress.
 
-Work in progress. Video previews showcasing latest development:
+# Videos / Screenshots
+
+Video previews showcasing latest development:
 - [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h)
 - [OpenE2140 - preview #3 (big battle)](https://dalek.zone/w/oY9zfn6UowchnsuSsT96Fn)
+
+<details>
+
+<summary>Screenshots (April 2023)</summary>
+
+![ed_battle3](https://user-images.githubusercontent.com/119738087/231708102-c7688547-0a58-4394-bbb5-26ed2c449972.png)
+![ucs_battle2](https://user-images.githubusercontent.com/119738087/231708121-ffa428f1-b5df-4417-8203-7199a3ca6e43.png)
+![mcu](https://user-images.githubusercontent.com/119738087/231708287-1b0b52c8-d6c5-491b-9387-83357966a9ec.gif)
+
+</details>
 
 ## Development team
 
@@ -22,7 +34,7 @@ Work in progress. Video previews showcasing latest development:
 	* custom resource sprites (work in progress),
 	* yaml coding support.
 - Disembo
-	* custom transformations for MCUs.
+	* custom animations for MCU deployment.
 
 ## Special thanks!
 
@@ -30,9 +42,14 @@ Huge thanks for OpenRA devs and contributors for all the great work done on Open
 
 Special thanks to original development team at Reality Pump Studios for making Earth 2140, an amazing game this mod recreates!
 
+Support the developer by buying the original game:
+- [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
+- [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
+
 ## Contributing
 
 At the moment, we're looking for these people:
 - video editor (for occasional preview videos like the ones above)
 
 Contact us over at [OpenRA's Discord server](https://discord.openra.net/).
+
