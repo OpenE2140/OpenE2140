@@ -19,16 +19,16 @@ Container@PLAYER_WIDGETS:
 		LogicTicker@SIDEBAR_TICKER:
 		Image@COMMAND_BAR_BACKGROUND:
 			Logic: AddFactionSuffixLogic
-			X: 5
-			Y: WINDOW_BOTTOM - HEIGHT - 5
+			X: 0
+			Y: WINDOW_BOTTOM - HEIGHT
 			Width: 416
 			Height: 44
 			ImageCollection: commandbar
 			ImageName: background
 		Container@COMMAND_BAR:
 			Logic: CommandBarLogic
-			X: 14
-			Y: WINDOW_BOTTOM - HEIGHT - 13
+			X: 9
+			Y: WINDOW_BOTTOM - HEIGHT - 7
 			Width: 311
 			Height: 26
 			Children:
@@ -183,8 +183,8 @@ Container@PLAYER_WIDGETS:
 							ImageName: queue-orders
 		Container@STANCE_BAR:
 			Logic: StanceSelectorLogic
-			X: 294
-			Y: WINDOW_BOTTOM - HEIGHT - 14
+			X: 291
+			Y: WINDOW_BOTTOM - HEIGHT - 7
 			Width: 138
 			Height: 26
 			Children:
