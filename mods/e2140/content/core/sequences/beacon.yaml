@@ -1,4 +1,5 @@
 beacon:
-	x:
-		Filename: SPRI1.MIX
-		Start: 100
+	idle:
+		Filename: content/core/assets/beaconmarker.png
+		Length: 7
+		Tick: 80

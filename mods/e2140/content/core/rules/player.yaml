@@ -21,9 +21,11 @@ Player:
 	ConquestVictoryConditions:
 	# Required for FrozenUnderFog to work
 	FrozenActorLayer:
+	# Allows placing a beacon.
 	PlaceBeacon:
-		ArrowSequence:
-		CircleSequence: x
+		ArrowSequence: 
+		CircleSequence:
+		BeaconSequence: idle
 		Duration: 250
 	# Player always has access to radar
 	ProvidesRadar:
