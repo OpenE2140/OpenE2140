@@ -271,6 +271,7 @@ Container@PLAYER_WIDGETS:
 			Height: 25
 			Children:
 				Image@ICON:
+					Logic: AddFactionSuffixLogic
 					X: PARENT_RIGHT - WIDTH
 					Y: 1
 					Width: 24

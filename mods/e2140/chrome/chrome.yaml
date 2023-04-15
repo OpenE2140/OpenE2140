@@ -625,7 +625,7 @@ sidebar-bits-ucs:
 		production-tooltip-time: 187, 51, 16, 16
 		production-tooltip-power: 153, 51, 16, 16
 		production-tooltip-cost: 137, 51, 16, 16
-		indicator-muted: 221, 17, 26, 24
+		indicator-muted: 221, 42, 26, 24
 
 # ED
 
