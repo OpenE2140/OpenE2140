@@ -133,3 +133,10 @@ Cursors:
 			Length: 6
 		sell-blocked:
 			Start: 6
+
+	content/core/assets/selfdestruct.png:
+		selfdestruct:
+			Start: 0
+			Length: 36
+		selfdestruct-blocked:
+			Start: 0

@@ -30,7 +30,8 @@ Video previews showcasing latest development:
 	* custom resource sprites (work in progress),
 	* yaml coding support.
 - Disembo
-	* custom animations for MCU deployment.
+	* custom animations for MCU deployment,
+	* custom self-destruct cursor.
 
 ## Special thanks!
 
