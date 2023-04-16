@@ -122,87 +122,105 @@ Actors:
 	Actor32: shared_buildings_power_plant
 		Owner: ED_Player
 		Location: 22,3
-		Health: 31
-	Actor33: ed_vehicles_mt201l
-		Owner: ED_Player
-		Location: 26,8
-		TurretFacing: 0
-		Facing: 384
-	Actor34: ed_vehicles_mt201l
+	Actor26: ed_vehicles_st01b
 		Owner: ED_Player
 		Facing: 384
-		Location: 27,8
-	Actor35: ed_vehicles_mt201l
-		Owner: ED_Player
-		Facing: 384
-		Location: 26,7
-	Actor36: ed_vehicles_mt201l
-		Owner: ED_Player
-		Facing: 384
-		Location: 27,7
-	Actor37: ed_vehicles_st02
-		Owner: ED_Player
-		Facing: 384
-		Location: 24,7
-	Actor38: ed_vehicles_st02
-		Owner: ED_Player
-		Facing: 384
-		Location: 23,7
-	Actor39: ed_vehicles_st02
-		Owner: ED_Player
-		Facing: 384
-		Location: 23,8
-	Actor40: ed_vehicles_st02
-		Owner: ED_Player
-		Facing: 384
-		Location: 24,8
-	Actor41: ed_vehicles_mt200
-		Owner: ED_Player
-		Facing: 384
-		Location: 21,7
-	Actor42: ed_vehicles_mt200
+		Location: 19,7
+	Actor27: ed_vehicles_st02
 		Owner: ED_Player
 		Facing: 384
 		Location: 20,7
-	Actor43: ed_vehicles_mt200
+	Actor33: ed_vehicles_mt200
 		Owner: ED_Player
 		Facing: 384
-		Location: 20,8
-	Actor44: ed_vehicles_mt200
+		Location: 21,7
+	Actor34: ed_vehicles_mt201l
 		Owner: ED_Player
 		Facing: 384
-		Location: 21,8
-	Actor45: ed_vehicles_st01b
+		Location: 22,7
+	Actor35: ed_vehicles_btti
 		Owner: ED_Player
 		Facing: 384
-		Location: 18,7
-	Actor46: ed_vehicles_st01b
+		Location: 23,7
+	Actor36: ed_vehicles_ht33r
 		Owner: ED_Player
 		Facing: 384
-		Location: 17,7
-	Actor47: ed_vehicles_st01b
+		Location: 24,7
+	Actor37: ed_vehicles_ht34j
 		Owner: ED_Player
 		Facing: 384
-		Location: 17,8
-	Actor48: ed_vehicles_st01b
+		Location: 25,7
+	Actor38: ed_vehicles_warhammer
 		Owner: ED_Player
 		Facing: 384
-		Location: 18,8
-	Actor49: ed_vehicles_btti
+		Location: 26,7
+	Actor39: ed_vehicles_screamer
 		Owner: ED_Player
 		Facing: 384
-		Location: 23,10
-	Actor50: ed_vehicles_btti
+		Location: 27,7
+	Actor40: ed_aircrafts_storm
 		Owner: ED_Player
 		Facing: 384
-		Location: 24,10
-	Actor51: ed_vehicles_btti
+		Location: 19,9
+	Actor41: ed_aircrafts_thunder
 		Owner: ED_Player
 		Facing: 384
-		Location: 23,11
-	Actor52: ed_vehicles_btti
+		Location: 21,9
+	Actor42: ed_aircrafts_hat
 		Owner: ED_Player
 		Facing: 384
-		Location: 24,11
+		Location: 23,9
+	Actor43: ed_aircrafts_vtol
+		Owner: ED_Player
+		Facing: 384
+		Location: 25,9
+	Actor44: ed_aircrafts_nemezis
+		Owner: ED_Player
+		Facing: 384
+		Location: 27,9
+	Actor45: ucs_vehicles_big_mech
+		Owner: UCS_AI
+		Facing: 384
+		Location: 9,23
+	Actor46: ucs_vehicles_big_mech
+		Owner: UCS_AI
+		Location: 3,21
+		Facing: 880
+	Actor47: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 384
+		Location: 4,25
+	Actor48: ucs_vehicles_spider_ii
+		Owner: UCS_AI
+		Facing: 384
+		Location: 3,23
+	Actor49: ucs_vehicles_spider
+		Owner: UCS_AI
+		Location: 6,25
+		Facing: 578
+	Actor50: ucs_vehicles_raptor_ad
+		Owner: UCS_AI
+		Facing: 384
+		Location: 6,18
+	Actor51: ucs_vehicles_raptor_ad
+		Owner: UCS_AI
+		Location: 3,19
+		Facing: 769
+	Actor52: ucs_vehicles_raptor_ad
+		Owner: UCS_AI
+		Location: 7,20
+		Facing: 134
+	Actor53: ucs_vehicles_t100
+		Owner: UCS_AI
+		Location: 9,21
+		Facing: 586
+	Actor54: ucs_vehicles_t100
+		Owner: UCS_AI
+		Facing: 384
+		Location: 7,19
+	Actor55: ucs_vehicles_t100
+		Owner: UCS_AI
+		Location: 8,25
+		Facing: 384
 
 Rules: rules.yaml
