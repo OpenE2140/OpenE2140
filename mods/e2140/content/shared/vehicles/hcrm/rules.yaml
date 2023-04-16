@@ -3,7 +3,7 @@ shared_vehicles_hcrm:
 	Inherits@2: ^CoreTurret
 	MustBeDestroyed:
 		RequiredForShortGame: true
-	# Needs special rules to have either ED or UCS voice
+	# TODO needs special rules to have either ED or UCS voice
 	Voiced:
 		VoiceSet: UcsVehicleVoice
 	Tooltip:
@@ -22,9 +22,8 @@ shared_vehicles_hcrm:
 		Speed: 91
 		TurnSpeed: 50
 	RevealsShroud:
-		Range: 3c896
+		Range: 2c896
 	Turreted:
-		TurnSpeed: 30
 		Offset: 0,0,80
 	WithTurretAttackAnimation:
 		Sequence: repair
