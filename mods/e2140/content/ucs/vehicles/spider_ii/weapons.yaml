@@ -3,7 +3,7 @@ ucs_vehicles_spider_ii:
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Air
 	Burst: 4
 	BurstDelays: 13
 	Projectile: Missile
@@ -17,28 +17,33 @@ ucs_vehicles_spider_ii:
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
+		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
 		RangeLimit: 8c0
-	Warhead@Damage: SpreadDamage
+	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 80
 		ValidTargets: Ground
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 80
+		ValidTargets: Air
 	Warhead@Effect: CreateEffect
 		Image: projectile_heavy_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Air

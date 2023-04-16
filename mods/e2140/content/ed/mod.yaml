@@ -17,6 +17,11 @@ Rules:
 	e2140|content/ed/vehicles/ht34j/rules.yaml
 	e2140|content/ed/vehicles/warhammer/rules.yaml
 	e2140|content/ed/vehicles/screamer/rules.yaml
+	e2140|content/ed/aircrafts/storm/rules.yaml
+	e2140|content/ed/aircrafts/thunder/rules.yaml
+	e2140|content/ed/aircrafts/hat/rules.yaml
+	e2140|content/ed/aircrafts/vtol/rules.yaml
+	e2140|content/ed/aircrafts/nemezis/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -32,6 +37,11 @@ Sequences:
 	e2140|content/ed/vehicles/ht34j/sequences.yaml
 	e2140|content/ed/vehicles/warhammer/sequences.yaml
 	e2140|content/ed/vehicles/screamer/sequences.yaml
+	e2140|content/ed/aircrafts/storm/sequences.yaml
+	e2140|content/ed/aircrafts/thunder/sequences.yaml
+	e2140|content/ed/aircrafts/hat/sequences.yaml
+	e2140|content/ed/aircrafts/vtol/sequences.yaml
+	e2140|content/ed/aircrafts/nemezis/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -45,3 +55,7 @@ Weapons:
 	e2140|content/ed/vehicles/ht33r/weapons.yaml
 	e2140|content/ed/vehicles/ht34j/weapons.yaml
 	e2140|content/ed/vehicles/warhammer/weapons.yaml
+	e2140|content/ed/aircrafts/storm/weapons.yaml
+	e2140|content/ed/aircrafts/thunder/weapons.yaml
+	e2140|content/ed/aircrafts/vtol/weapons.yaml
+	e2140|content/ed/aircrafts/nemezis/weapons.yaml

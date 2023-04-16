@@ -1,0 +1,35 @@
+ed_aircrafts_hat:
+	Inherits: ^EdAircraft
+	Tooltip:
+		Name: HAT
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1184, 1072, 0, 0
+	Health:
+		HP: 200
+	Aircraft:
+		Speed: 94
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 2c896
+	WithMoveAnimation:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 6
+	SpawnActorOnDeath:
+		Actor: ed_aircrafts_hat_husk
+		RequiresCondition: airborne
+
+ed_aircrafts_hat_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: HAT
+	RevealsShroud:
+		Range: 4c896
+	RenderSprites: 
+		Image: ed_aircrafts_hat

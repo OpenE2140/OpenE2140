@@ -1,0 +1,33 @@
+ed_aircrafts_storm:
+	idle:
+		Filename: aircraft_storm.vspr
+		Facings: -16
+	move:
+		Filename: aircraft_storm.vspr
+		Facings: -16
+	rotorfast:
+		Filename: rotor_fast.vspr
+		Length: 2
+	rotorslow:
+		Filename: rotor_slow.vspr
+		Length: 4
+	muzzle:
+		Filename: aircraft_storm.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Tick: 60
+	icon:
+		Filename: SPRI0.MIX
+		Start: 161
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 161
+
+# TODO: remove after PR #20705
+ed_aircrafts_storm.ucs:
+	Inherits: ed_aircrafts_storm
+	icon:
+		Filename: SPRI1.MIX
+		Start: 161

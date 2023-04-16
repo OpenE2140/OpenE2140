@@ -1,11 +1,11 @@
-ed_vehicles_ht33r:
-	ReloadDelay: 62
+ed_aircrafts_vtol:
+	ReloadDelay: 125 	# TODO to be verified
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground, Water, Air
-	Burst: 3
-	BurstDelays: 24
+	ValidTargets: Ground, Water
+	Burst: 2
+	BurstDelays: 8 # TODO to be verified
 	Projectile: Missile
 		Speed: 260
 		Arm: 2
@@ -20,30 +20,26 @@ ed_vehicles_ht33r:
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
 		RangeLimit: 8c0
-	Warhead@DamageGround: SpreadDamage
+	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 80
 		ValidTargets: Ground
-	Warhead@DamageAir: SpreadDamage
-		Spread: 128
-		Damage: 80
-		ValidTargets: Air
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
-		ValidTargets: Ground, Air
+		ValidTargets: Ground
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure
