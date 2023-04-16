@@ -272,7 +272,9 @@
 	Explodes:
 		Weapon: VehicleExplosion
 		EmptyWeapon: VehicleExplosion
-
+	# Vehicles smoke when they're heavily damaged.
+	WithDamageOverlay:
+		Image: smoking
 
 # Add locomotor to world...
 ^CoreWorld:

@@ -58,3 +58,5 @@ ucs_vehicles_tiger_assault:
 		Delay: 50
 		ResetOnFire: True
 		Count: 4
+	WithDamageOverlay:
+		Image: smoking_mech

@@ -72,3 +72,24 @@ water_splash_firearm:
 		Filename: content/core/assets/water_splash_firearm.png
 	idle:
 		Length: 8
+
+smoking:
+	Defaults:
+		BlendMode: Subtractive
+		Offset: 5, -20
+		Tick: 120
+		ZOffset: 512
+	idle:
+		Filename: content/core/assets/smoking_start.png
+		Length: 5
+	loop:
+		Filename: smoking.vspr
+		Length: 20
+	end:
+		Filename: content/core/assets/smoking_end.png
+		Length: 5
+
+smoking_mech:
+	Inherits: smoking
+	Defaults:
+		Offset: 5, -35
