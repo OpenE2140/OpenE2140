@@ -20,7 +20,6 @@ shared_vehicles_hcrm:
 		HP: 200
 	Mobile:
 		Speed: 91
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 2c896
 	Turreted:

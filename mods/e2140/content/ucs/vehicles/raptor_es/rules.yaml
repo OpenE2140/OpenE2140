@@ -15,7 +15,6 @@ ucs_vehicles_raptor_es:
 		HP: 200
 	Mobile:
 		Speed: 68
-		TurnSpeed: 32
 	RevealsShroud:
 		Range: 3c896
 	WithFacingSpriteBody@shadow:

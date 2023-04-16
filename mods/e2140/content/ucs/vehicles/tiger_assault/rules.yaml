@@ -14,7 +14,6 @@ ucs_vehicles_tiger_assault:
 		HP: 400
 	Mobile:
 		Speed: 50
-		TurnSpeed: 30
 	RevealsShroud:
 		Range: 5c896
 	Turreted:

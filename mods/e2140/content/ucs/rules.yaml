@@ -41,6 +41,8 @@ World:
 	Mobile:
 		Locomotor: vehicleFastSand
 		AlwaysTurnInPlace: true
+	Mobile:
+		TurnSpeed: 32
 
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
