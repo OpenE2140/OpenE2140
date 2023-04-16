@@ -32,3 +32,5 @@ ucs_vehicles_big_mech:
 		MoveSequence: move.turn
 	AttackFrontal:
 		FacingTolerance: 25
+	WithDamageOverlay:
+		Image: smoking_mech

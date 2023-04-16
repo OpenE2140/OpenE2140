@@ -47,3 +47,5 @@ ucs_vehicles_spider_ii:
 		Delay: 100
 		ResetOnFire: True
 		Count: 2
+	WithDamageOverlay:
+		Image: smoking_mech
