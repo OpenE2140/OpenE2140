@@ -3,7 +3,7 @@ ucs_vehicles_big_mech:
 	Range: 5c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Air
 	Burst: 16
 	BurstDelays: 5
 	Projectile: Missile
@@ -17,22 +17,34 @@ ucs_vehicles_big_mech:
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
+		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
 		RangeLimit: 8c0
-	Warhead@Damage: SpreadDamage
+	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 30
 		ValidTargets: Ground
-	Warhead@Effect: CreateEffect
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 30
+		ValidTargets: Air
+	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
+	Warhead@EffectActor: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Vehicle, Structure, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Air

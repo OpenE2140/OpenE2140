@@ -74,3 +74,9 @@ projectile_ion:
 		Filename: projectile_ion.vspr
 		Start: 4
 		Length: 5
+
+projectile_bomb:
+	Defaults:
+		Filename: projectile_bomb.vspr
+	idle:
+		Length: 2

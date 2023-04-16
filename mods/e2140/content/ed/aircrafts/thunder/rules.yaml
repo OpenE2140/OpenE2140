@@ -1,0 +1,47 @@
+ed_aircrafts_thunder:
+	Inherits@1: ^EdAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: THUNDER
+	Valued:
+		Cost: 700
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1312, 928, 0, 0
+	Health:
+		HP: 40
+	Aircraft:
+		Speed: 175
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 4c896
+	Armament@PRIMARY:
+		Weapon: ed_aircrafts_thunder
+		LocalOffset: 0,100,-50, 0,-100,-50
+		MuzzlePalette:
+	WithIdleOverlay@rotorfast:
+		Offset: 0,16,48
+		Sequence: rotorfast
+		RequiresCondition: airborne
+	WithIdleOverlay@rotorslow:
+		Offset: 0,16,48
+		Sequence: rotorslow
+		RequiresCondition: !airborne
+	SpawnActorOnDeath:
+		Actor: ed_aircrafts_thunder_husk
+		RequiresCondition: airborne
+
+ed_aircrafts_thunder_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: THUNDER
+	RevealsShroud:
+		Range: 4c896
+	WithIdleOverlay@rotorslow:
+		Offset: 0,16,48
+		Sequence: rotorslow
+	RenderSprites: 
+		Image: ed_aircrafts_thunder

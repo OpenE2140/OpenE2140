@@ -17,22 +17,34 @@ ucs_vehicles_tiger_assault:
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
+		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
 		RangeLimit: 6c0
-	Warhead@Damage: SpreadDamage
+	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 15
 		ValidTargets: Ground
-	Warhead@Effect: CreateEffect
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 15
+		ValidTargets: Air
+	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
+	Warhead@EffectActor: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Vehicle, Structure, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Air
