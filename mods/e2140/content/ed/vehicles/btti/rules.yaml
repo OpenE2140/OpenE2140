@@ -15,7 +15,6 @@ ed_vehicles_btti:
 		HP: 150
 	Mobile:
 		Speed: 100
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 3c896
 	Armament@PRIMARY:

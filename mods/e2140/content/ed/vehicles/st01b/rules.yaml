@@ -15,7 +15,6 @@ ed_vehicles_st01b:
 		HP: 200
 	Mobile:
 		Speed: 90
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 3c896
 	Turreted:

@@ -15,7 +15,6 @@ ucs_vehicles_big_mech:
 		HP: 800
 	Mobile:
 		Speed: 68
-		TurnSpeed: 32
 	RevealsShroud:
 		Range: 5c896
 	Armament@PRIMARY:

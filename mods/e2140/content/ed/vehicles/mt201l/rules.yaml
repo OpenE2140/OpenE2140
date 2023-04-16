@@ -15,7 +15,6 @@ ed_vehicles_mt201l:
 		HP: 300
 	Mobile:
 		Speed: 90
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 3c896
 	Turreted:

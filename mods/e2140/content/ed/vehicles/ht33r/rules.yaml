@@ -15,7 +15,6 @@ ed_vehicles_ht33r:
 		HP: 600
 	Mobile:
 		Speed: 50
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 6c896
 	Turreted:

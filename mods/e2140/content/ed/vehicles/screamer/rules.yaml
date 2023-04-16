@@ -14,7 +14,6 @@ ed_vehicles_screamer:
 		HP: 300
 	Mobile:
 		Speed: 90
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 4c896
 	WithIdleOverlay:
