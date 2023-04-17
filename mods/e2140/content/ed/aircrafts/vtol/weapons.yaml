@@ -19,7 +19,6 @@ ed_aircrafts_vtol:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-		RangeLimit: 8c0
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 80

@@ -19,7 +19,6 @@ ucs_vehicles_tiger_assault:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-		RangeLimit: 6c0
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 15
@@ -48,3 +47,9 @@ ucs_vehicles_tiger_assault:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure, Air
+
+ucs_vehicles_tiger_assault_air:
+	Inherits: ucs_vehicles_tiger_assault
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

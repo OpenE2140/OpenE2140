@@ -69,6 +69,8 @@
 	# Play sound notification on destruction
 	ActorLostNotification:
 		TextNotification: Unit lost.
+	# Unit is added to the observer stats.
+	UpdatesPlayerStatistics:
 
 # Base for all buildings and towers.
 ^CoreConstruction:
@@ -345,7 +347,7 @@
 	# Husks shouldn't be selectable, only interctable.
 	-Selectable:
 	Interactable:
-	# Default health for aircraft husks
+	# Default health for aircraft husks.
 	Health:
 		HP: 1000
 	# Aircraft husks fall to the ground and explode.
@@ -354,6 +356,10 @@
 	# Aircraft husks are no longer targetable.
 	Targetable@Airborne:
 		TargetTypes: NoTarget
+	# Do not notify the player that a husk was lost.
+	-ActorLostNotification:
+	# Husks are not counted towards player's army.
+	-UpdatesPlayerStatistics:
 
 # Special light vehicles
 ^CoreLightVehicle:

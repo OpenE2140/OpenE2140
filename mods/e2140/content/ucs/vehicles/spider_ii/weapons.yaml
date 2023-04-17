@@ -3,7 +3,7 @@ ucs_vehicles_spider_ii:
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground, Water, Air
+	ValidTargets: Ground, Water
 	Burst: 4
 	BurstDelays: 13
 	Projectile: Missile
@@ -19,7 +19,6 @@ ucs_vehicles_spider_ii:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-		RangeLimit: 8c0
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 80
@@ -47,3 +46,9 @@ ucs_vehicles_spider_ii:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure, Air
+
+ucs_vehicles_spider_ii_air:
+	Inherits: ucs_vehicles_spider_ii
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

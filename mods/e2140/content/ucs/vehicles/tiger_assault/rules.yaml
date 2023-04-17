@@ -23,7 +23,6 @@ ucs_vehicles_tiger_assault:
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 300,-300,-100
-		LocalYaw: 0, 0
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
@@ -31,7 +30,20 @@ ucs_vehicles_tiger_assault:
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 300,300,-100
-		LocalYaw: 0, 0
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Weapon: ucs_vehicles_tiger_assault_air
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 300,-300,-100
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@QUATERNARY:
+		Weapon: ucs_vehicles_tiger_assault_air
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 300,300,-100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveSound:

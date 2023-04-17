@@ -23,10 +23,12 @@ ucs_vehicles_raptor_ad:
 		# RequiresCondition: !cloaked
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_ad
-		Recoil: 0
-		RecoilRecovery: 0
 		LocalOffset: 100,-200,0, 100,200,0
-		LocalYaw: 0, 0
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: ucs_vehicles_raptor_ad_air
+		LocalOffset: 100,-200,0, 100,200,0
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveSound:
@@ -41,3 +43,5 @@ ucs_vehicles_raptor_ad:
 		Delay: 62
 		ResetOnFire: True
 		Count: 1
+	AttackFrontal:
+		FacingTolerance: 25
