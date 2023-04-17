@@ -43,6 +43,7 @@ public static class VirtualAssetsBuilder
 
 	private static readonly Color[] TracksPalette;
 	private static readonly Color[] RotorsPalette;
+	private static readonly Color[] HelicopterRotorPalette;
 	private static readonly Color[] EnginesOnPalette;
 	private static readonly Color[] EnginesOffPalette;
 	private static readonly Color[] MuzzlesPalette;
@@ -66,6 +67,10 @@ public static class VirtualAssetsBuilder
 		VirtualAssetsBuilder.RotorsPalette[241] = Color.FromArgb(0xff000000);
 		VirtualAssetsBuilder.RotorsPalette[242] = Color.FromArgb(0xff393c39);
 		VirtualAssetsBuilder.RotorsPalette[243] = Color.FromArgb(0xff000000);
+
+
+		VirtualAssetsBuilder.HelicopterRotorPalette = new Color[256];
+		VirtualAssetsBuilder.HelicopterRotorPalette[227] = Color.FromArgb(0x50000000);
 
 		VirtualAssetsBuilder.EnginesOnPalette = new Color[256];
 		VirtualAssetsBuilder.EnginesOnPalette[240] = Color.FromArgb(0xffff0000);
@@ -182,6 +187,8 @@ public static class VirtualAssetsBuilder
 								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.TracksPalette, 240, 4, palette, 240, 4, cycle, false);
 							else if (sheetFlags.Contains("Rotors"))
 								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.RotorsPalette, 240, 4, palette, 240, 4, cycle, frameInfo.FlipX);
+							else if (sheetFlags.Contains("HelicopterRotor"))
+								VirtualAssetsBuilder.ApplyPalette(VirtualAssetsBuilder.HelicopterRotorPalette, 227, 1, palette, 227, 1, cycle, frameInfo.FlipX);
 							else if (sheetFlags.Contains("Engine"))
 							{
 								VirtualAssetsBuilder.ApplyPalette(
