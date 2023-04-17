@@ -267,7 +267,7 @@ Generate:
 	rotor_slow:
 		idle: 649-652
 
-	rotor_fast:
+	rotor_fast: HelicopterRotor
 		idle: 653-654
 
 	infantry_silver_t: Player Infantry
