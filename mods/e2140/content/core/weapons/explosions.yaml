@@ -19,7 +19,7 @@ BuildingExplosion:
 PowerPlantExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
-		Image: power_plant_explosion
+		Image: nuclear_explosion
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground, Water
