@@ -3,7 +3,7 @@ ed_vehicles_st02:
 	Range: 4c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water, Air
+	ValidTargets: Ground, Water
 	Burst: 3
 	BurstDelays: 8
 	Projectile: Missile
@@ -19,7 +19,6 @@ ed_vehicles_st02:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-		RangeLimit: 6c0
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 20
@@ -48,3 +47,9 @@ ed_vehicles_st02:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure, Air
+
+ed_vehicles_st02_air:
+	Inherits: ed_vehicles_st02
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

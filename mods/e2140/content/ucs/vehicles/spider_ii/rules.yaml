@@ -19,8 +19,16 @@ ucs_vehicles_spider_ii:
 	Turreted:
 		TurnSpeed: 30
 		Offset: 0,0,300
-	Armament:
+	Armament@PRIMARY:
 		Weapon: ucs_vehicles_spider_ii
+		Recoil: 64
+		RecoilRecovery: 38
+		LocalOffset: 300,-300,0, 300,300,0
+		LocalYaw: 0, 0
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: ucs_vehicles_spider_ii_air
 		Recoil: 64
 		RecoilRecovery: 38
 		LocalOffset: 300,-300,0, 300,300,0

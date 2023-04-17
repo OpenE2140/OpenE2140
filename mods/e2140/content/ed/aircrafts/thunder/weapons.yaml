@@ -19,7 +19,6 @@ ed_aircrafts_thunder:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-		RangeLimit: 6c0
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 20

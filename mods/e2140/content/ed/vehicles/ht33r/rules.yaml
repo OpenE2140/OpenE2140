@@ -25,5 +25,10 @@ ed_vehicles_ht33r:
 		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 200,100,100,200,-100,100,200,0,100
-		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ed_vehicles_ht33r_air
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
 		MuzzlePalette:

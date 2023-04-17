@@ -46,6 +46,8 @@ Player:
 	TechTree:
 	# Render terrain on Radar widget (minimap).
 	PlayerRadarTerrain:
+	# Collects observer stats.
+	PlayerStatistics:
 
 # Map editor specific player setup.
 EditorPlayer:

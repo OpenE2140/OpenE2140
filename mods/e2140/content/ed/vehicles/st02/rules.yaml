@@ -25,5 +25,10 @@ ed_vehicles_st02:
 		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 100,-100,0, 100,100,0
-		LocalYaw: 0, 0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ed_vehicles_st02_air
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 100,-100,0, 100,100,0
 		MuzzlePalette:
