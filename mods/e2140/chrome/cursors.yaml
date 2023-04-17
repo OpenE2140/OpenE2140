@@ -30,6 +30,9 @@ Cursors:
 		enter:
 			Start: 8
 			Length: 4
+		enter-blocked:
+			Start: 24
+			Length: 4
 		exit:
 			Start: 20
 			Length: 4
@@ -51,6 +54,9 @@ Cursors:
 			Length: 4
 		deploy:
 			Start: 76
+			Length: 4
+		deploy-blocked:
+			Start: 24
 			Length: 4
 
 		waterMinePlace:

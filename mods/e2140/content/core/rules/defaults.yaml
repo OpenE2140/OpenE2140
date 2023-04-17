@@ -299,18 +299,60 @@
 		Type: aircraft
 	# Making the actors actualy fly.
 	Aircraft:
-		CruiseAltitude: 2560
-		Repulsable: False # TODO verify what this is and if its correct
-	# Actor can be targeted by anything which attacks air.
-	Targetable:
+		IdleBehavior: Land
+		LandableTerrainTypes: Clear, Shore, Sand, Road
+		CruiseAltitude: 1c256
+		AltitudeVelocity: 0c60
+		IdealSeparation: 1c0
+		RepulsionSpeed: 50
+		AirborneCondition: airborne
+		VTOL: True
+	# Actor can be targeted by anything which attacks ground.
+	Targetable@Ground:
+		RequiresCondition: !airborne
+		TargetTypes: Ground, Vehicle
+		# Actor can be targeted by anything which attacks air.
+	Targetable@Airborne:
+		RequiresCondition: airborne
 		TargetTypes: Air
 	# Group all aircrafts in the map editor.
 	MapEditorData:
-		Categories: Aircraft
+		Categories: Vehicle
 	# Aircraft has visible shadow on ground beneath
-	WithShadow: # TODO verify this one. why 43? Shouldnt it be just "below"? And how does this work in combination with ZOffset?
-		Offset: 43,128,0
-		ZOffset: -129
+	WithShadow:
+		Offset: 0,32,0
+		ZOffset: -256
+		ShadowColor: 00000046
+	# Bla bla bla
+	RevealsShroud:
+		Type: GroundPosition
+	# Can guard and be guarded
+	Guard:
+		Voice: Escort
+	Guardable:
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: VehicleExplosion
+		EmptyWeapon: VehicleExplosion
+		RequiresCondition: !airborne
+
+# Base for all aircrafts husks
+^CoreAircraftHusk:
+	Inherits: ^CoreAircraft
+	# Husks shouldn't be selectable in the map editor.
+	-MapEditorData:
+	# Husks shouldn't be selectable, only interctable.
+	-Selectable:
+	Interactable:
+	# Default health for aircraft husks
+	Health:
+		HP: 1000
+	# Aircraft husks fall to the ground and explode.
+	FallsToEarth:
+		Explosion: VehicleExplosion
+	# Aircraft husks are no longer targetable.
+	Targetable@Airborne:
+		TargetTypes: NoTarget
 
 # Special light vehicles
 ^CoreLightVehicle:
@@ -346,6 +388,19 @@
 	AttackFrontal:
 		FacingTolerance: 0
 		Voice: Attack
+	# Auto target enemies nearby.
+	AutoTarget:
+	AutoTargetPriority:
+		InvalidTargets: Structure
+
+# Grouped traits for standard non-turreted behavior.
+^CoreAttackAircraft:
+	# Allows aircrafts attacking strafe run way.
+	AttackAircraft:
+		FacingTolerance: 0
+		Voice: Attack
+		PersistentTargeting: false
+		OpportunityFire: false
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:

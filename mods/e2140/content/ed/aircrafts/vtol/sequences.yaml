@@ -1,0 +1,22 @@
+ed_aircrafts_vtol:
+	idle:
+		Filename: aircraft_vtol.vspr
+		Facings: -16
+	move:
+		Filename: aircraft_vtol.vspr
+		Start: 16
+		Facings: -16
+	icon:
+		Filename: SPRI0.MIX
+		Start: 275
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 275
+
+# TODO: remove after PR #20705
+ed_aircrafts_storm.ucs:
+	Inherits: ed_aircrafts_vtol
+	icon:
+		Filename: SPRI1.MIX
+		Start: 275

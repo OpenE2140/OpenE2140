@@ -1,0 +1,56 @@
+ed_aircrafts_storm:
+	Inherits@1: ^EdAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: STORM
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1312, 928, 0, 0
+	Health:
+		HP: 40
+	Aircraft:
+		Speed: 175
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 5c896
+	Armament@PRIMARY:
+		Weapon: ed_aircrafts_storm
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	WithMuzzleOverlay@muzzle:
+	AmmoPool:
+		Ammo: 55
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 56
+		ResetOnFire: True
+		Count: 50
+	WithIdleOverlay@rotorfast:
+		Offset: 0,16,48
+		Sequence: rotorfast
+		RequiresCondition: airborne
+	WithIdleOverlay@rotorslow:
+		Offset: 0,16,48
+		Sequence: rotorslow
+		RequiresCondition: !airborne
+	SpawnActorOnDeath:
+		Actor: ed_aircrafts_storm_husk
+		RequiresCondition: airborne
+
+ed_aircrafts_storm_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: STORM
+	RevealsShroud:
+		Range: 5c896
+	WithIdleOverlay@rotorslow:
+		Offset: 0,16,48
+		Sequence: rotorslow
+	RenderSprites: 
+		Image: ed_aircrafts_storm

@@ -1,0 +1,37 @@
+ed_aircrafts_vtol:
+	Inherits@1: ^EdAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: VTOL
+	Valued:
+		Cost: 900
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 992, 848, 0, 0
+	Health:
+		HP: 50
+	Aircraft:
+		Speed: 175
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 6c896
+	Armament@PRIMARY:
+		Weapon: ed_aircrafts_vtol
+		LocalOffset: 0,100,-50, 0,-100,-50
+		MuzzlePalette:
+	WithMoveAnimation:
+	SpawnActorOnDeath:
+		Actor: ed_aircrafts_vtol_husk
+		RequiresCondition: airborne
+
+ed_aircrafts_vtol_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: VTOL
+	RevealsShroud:
+		Range: 6c896
+	RenderSprites: 
+		Image: ed_aircrafts_vtol

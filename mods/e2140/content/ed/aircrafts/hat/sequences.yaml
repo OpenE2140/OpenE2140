@@ -1,0 +1,33 @@
+ed_aircrafts_hat:
+	idle:
+		Filename: aircraft_hat.vspr
+		Start: 16
+		Length: 4
+		Tick: 60
+		Facings: -16
+	move:
+		Filename: aircraft_hat.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	open:
+		Filename: aircraft_hat.vspr
+		Start: 80
+		Length: 4
+	unload:
+		Filename: aircraft_hat.vspr
+		Start: 82
+	icon:
+		Filename: SPRI0.MIX
+		Start: 160
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 160
+
+# TODO: remove after PR #20705
+ed_aircrafts_hat.ucs:
+	Inherits: ed_aircrafts_hat
+	icon:
+		Filename: SPRI1.MIX
+		Start: 160

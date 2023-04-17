@@ -1,0 +1,38 @@
+ed_aircrafts_nemezis:
+	Inherits@1: ^EdAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: Heavy Bomber
+	Valued:
+		Cost: 2300
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1680, 1648, 0, 0
+	Health:
+		HP: 300
+	Aircraft:
+		Speed: 94
+		TurnSpeed: 50
+	RevealsShroud:
+		Range: 3c896
+	Armament@PRIMARY:
+		Weapon: ed_aircrafts_nemezis
+		MuzzlePalette:
+	AttackAircraft:
+		StrafeRunLength: 6c0
+	WithMoveAnimation:
+	SpawnActorOnDeath:
+		Actor: ed_aircrafts_nemezis_husk
+		RequiresCondition: airborne
+
+ed_aircrafts_nemezis_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: Heavy Bomber
+	RevealsShroud:
+		Range: 3c896
+	RenderSprites: 
+		Image: ed_aircrafts_nemezis

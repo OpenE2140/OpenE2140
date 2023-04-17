@@ -1,0 +1,20 @@
+ed_aircrafts_nemezis:
+	ReloadDelay: 500 	# TODO to be verified
+	Range: 0c512
+	ValidTargets: Ground, Water
+	Projectile: GravityBomb
+		Velocity: 0,0,-25
+		Shadow: True
+		Palette: 
+		Image: projectile_bomb
+		Sequences: idle
+	Warhead@Damage: SpreadDamage
+		Spread: 0c728
+		Damage: 1750
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: nuclear_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
