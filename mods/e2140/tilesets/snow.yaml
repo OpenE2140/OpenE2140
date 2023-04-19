@@ -13,12 +13,12 @@ Terrain:
 		Type: Clear
 		TargetTypes: Ground
 		Color: 909C88
-		AcceptsSmudgeType: SnowClear
+		AcceptsSmudgeType: Clear
 	TerrainType@Sand:
 		Type: Sand
 		TargetTypes: Ground
 		Color: C6AE76
-		AcceptsSmudgeType: SnowSand
+		AcceptsSmudgeType: Sand
 	TerrainType@Rock:
 		Type: Rock
 		TargetTypes: Ground
