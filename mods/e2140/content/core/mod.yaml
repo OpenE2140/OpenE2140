@@ -21,6 +21,8 @@ Sequences:
 	e2140|content/core/sequences/misc.yaml
 	e2140|content/core/sequences/mpspawn.yaml
 	e2140|content/core/sequences/explosions.yaml
+	e2140|content/core/sequences/craters.yaml
 
 Weapons:
 	e2140|content/core/weapons/explosions.yaml
+	e2140|content/core/weapons/craters.yaml

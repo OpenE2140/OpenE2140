@@ -1,4 +1,5 @@
 ed_vehicles_st01b:
+	Inherits: Smudges
 	ReloadDelay: 56
 	Range: 3c896
 	MinRange: 0c512

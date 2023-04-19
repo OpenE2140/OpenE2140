@@ -1,0 +1,40 @@
+^Crater:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: SPRT0.MIX
+			DESERT: SPRT1.MIX
+			SANDY: SPRT2.MIX
+			TEMPERATE: SPRT3.MIX
+			SNOW: SPRT4.MIX
+			URBAN: SPRT5.MIX
+			URBAN2: SPRT6.MIX
+
+craters_clear:
+	Inherits: ^Crater
+	Defaults:
+		ZOffset: -512
+	crater1:
+		Start: 209
+	crater2:
+		Start: 210
+	crater3:
+		Start: 211
+	crater4:
+		Start: 212
+	crater5:
+		Start: 213
+	crater6:
+		Start: 214
+
+craters_sand:
+	Inherits: ^Crater
+	Defaults:
+		ZOffset: -512
+	crater1:
+		Start: 215
+	crater2:
+		Start: 216
+	crater3:
+		Start: 217
+	crater4:
+		Start: 218
