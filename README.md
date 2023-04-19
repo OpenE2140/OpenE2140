@@ -5,8 +5,8 @@ Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on 
 # Videos / Screenshots
 
 Video previews showcasing latest development:
-- [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h)
-- [OpenE2140 - preview #3 (big battle)](https://dalek.zone/w/oY9zfn6UowchnsuSsT96Fn)
+- [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h) (January 2023)
+- [OpenE2140 - preview #3 (big battle)](https://dalek.zone/w/oY9zfn6UowchnsuSsT96Fn) (February 2023)
 
 ## Screenshots (April 2023)
 
@@ -17,7 +17,12 @@ Video previews showcasing latest development:
 ## Development team
 
 - [michaeldgg2](https://github.com/michaeldgg2)
+	* project lead
+	* programming
 - [IceReaper](https://github.com/IceReaper)
+	* project's original founder
+	* programming
+	* reverse engineering
 
 ## Contributors
 
