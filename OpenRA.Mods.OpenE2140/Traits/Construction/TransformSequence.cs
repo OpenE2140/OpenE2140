@@ -22,7 +22,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 [Desc("The MCU to building transform sequence.")]
 public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 {
-	[FieldLoader.RequireAttribute]
+	[FieldLoader.Require]
 	[Desc("Image used for this decoration.")]
 	public readonly string Image = "";
 

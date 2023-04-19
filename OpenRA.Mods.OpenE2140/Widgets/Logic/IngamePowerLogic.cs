@@ -27,7 +27,7 @@ public class IngamePowerLogic : ChromeLogic
 	[TranslationReference]
 	private const string Infinite = "label-infinite-power";
 
-	[ObjectCreator.UseCtorAttribute]
+	[ObjectCreator.UseCtor]
 	public IngamePowerLogic(Widget widget, ModData modData, World world)
 	{
 		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();

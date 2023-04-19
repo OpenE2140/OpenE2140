@@ -28,7 +28,7 @@ public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidg
 
 	public readonly string Identifier = "";
 
-	[ObjectCreator.UseCtorAttribute]
+	[ObjectCreator.UseCtor]
 	public ProductionTabsExWidget(World world)
 		: base(world)
 	{

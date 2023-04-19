@@ -21,10 +21,10 @@ public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificW
 {
 	public readonly string[] FieldsToOverride = { "TextColor" };
 
-	[FieldLoader.RequireAttribute]
+	[FieldLoader.Require]
 	public readonly string Identifier = "";
 
-	[ObjectCreator.UseCtorAttribute]
+	[ObjectCreator.UseCtor]
 	public FactionLabelWidget(World world)
 		: base(world)
 	{

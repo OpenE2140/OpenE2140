@@ -26,7 +26,7 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	[Desc("Color to draw shadow.")]
 	public readonly Color ShadowColor = Color.FromArgb(140, 0, 0, 0);
 
-	[Desc($"Apply cloaked effect to render modifiers from specified traits. Key is trait name, value is alpha (which defaults to value from {nameof(WithCloakShadowInfo.ShadowColor)}).")]
+	[Desc("Apply cloaked effect to render modifiers from specified traits. Key is trait name, value is alpha (which defaults to value from ShadowColor).")]
 	public readonly Dictionary<string, float?> ApplyToRenderModifierTraits = new Dictionary<string, float?>();
 
 	[Desc("Render specified traits fully without applying shadow effect.")]
@@ -38,8 +38,7 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	[Desc("Render cloaked units with transparency effect instead of shadow effect.")]
 	public readonly bool TransparentAppearance = false;
 
-	[Desc($"Render specified sequences (from {nameof(RenderSprites)}) using custom shadow alpha value. Key is sequence name, value is alpha." +
-		  "Default alpha is 1.0 (i.e. no cloak shadow effect)")]
+	[Desc("Render specified sequences RenderSprites using custom shadow alpha value. Key is sequence name, value is alpha. Default alpha is 1.0 (no cloak)")]
 	public readonly Dictionary<string, float?> OverrideShadowAlphaForSequences = new Dictionary<string, float?>();
 
 	public override object Create(ActorInitializer init)
@@ -74,10 +73,7 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 
 	void INotifyCreated.Created(Actor self)
 	{
-		this.renderModifiers = self
-			.TraitsImplementing<IRenderModifier>()
-			.Where(rm => rm is not WithCloakShadow && rm is not Cloak)
-			.ToArray();
+		this.renderModifiers = self.TraitsImplementing<IRenderModifier>().Where(rm => rm is not WithCloakShadow && rm is not Cloak).ToArray();
 
 		this.renderTraitsForInvisibleActors = self.TraitsImplementing<IRender>()
 			.Where(r => this.info.TraitsToRenderWhenInvisibile.Contains(r.GetType().Name))
@@ -238,7 +234,9 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 
 	private static IEnumerable<IRenderable> GetRenderables(Actor self, WorldRenderer wr, IEnumerable<IRender> renderTraits)
 	{
-		return renderTraits.SelectMany(trait => trait.Render(self, wr));
+		foreach (var trait in renderTraits)
+		foreach (var r in trait.Render(self, wr))
+			yield return r;
 	}
 
 	private IRenderable ApplyCloakShadow(IModifyableRenderable r, float shadowAlpha)

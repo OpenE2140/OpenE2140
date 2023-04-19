@@ -24,7 +24,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 public class PlayerColorShiftInfo : TraitInfo
 {
 	[PaletteReference(true)]
-	[FieldLoader.RequireAttribute]
+	[FieldLoader.Require]
 	[Desc("The name of the palette to base off.")]
 	public readonly string BasePalette = "";
 

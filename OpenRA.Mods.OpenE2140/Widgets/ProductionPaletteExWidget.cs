@@ -28,7 +28,7 @@ public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecif
 
 	public readonly string Identifier = "";
 
-	[ObjectCreator.UseCtorAttribute]
+	[ObjectCreator.UseCtor]
 	public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)
 		: base(modData, orderManager, world, worldRenderer)
 	{

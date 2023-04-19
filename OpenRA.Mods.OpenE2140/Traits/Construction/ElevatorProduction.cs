@@ -28,7 +28,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 [Desc("This actor has an elevater used for production.")]
 public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSpritesInfo, Requires<RenderSpritesInfo>
 {
-	[FieldLoader.RequireAttribute]
+	[FieldLoader.Require]
 	[Desc("Image used for the elevator.")]
 	public readonly string Image = "";
 
@@ -265,8 +265,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 		var spawnPosition = this.GetSpawnPosition(self);
 
-		var renderables = actorPreviews
-			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, spawnPosition + new WVec(0, 0, this.GetElevatorHeight())))
+		var renderables = actorPreviews.SelectMany(actorPreview => actorPreview.Render(worldRenderer, spawnPosition + new WVec(0, 0, this.GetElevatorHeight())))
 			.Select(
 				renderable => renderable is SpriteRenderable spriteRenderable
 					? spriteRenderable.WithZOffset(spriteRenderable.ZOffset + this.info.ZOffset)
