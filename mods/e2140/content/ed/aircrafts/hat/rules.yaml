@@ -18,6 +18,9 @@ ed_aircrafts_hat:
 	RevealsShroud:
 		Range: 2c896
 	WithMoveAnimation:
+	AmbientSound:
+		RequiresCondition: airborne
+		SoundFiles: 30.smp
 	Cargo:
 		Types: Infantry
 		MaxWeight: 6
