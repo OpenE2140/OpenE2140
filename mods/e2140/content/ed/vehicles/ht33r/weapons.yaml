@@ -1,4 +1,5 @@
 ed_vehicles_ht33r:
+	Inherits: Smudges
 	ReloadDelay: 62
 	Range: 6c896
 	MinRange: 0c512

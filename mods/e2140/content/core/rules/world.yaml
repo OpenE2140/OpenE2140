@@ -95,7 +95,17 @@ World:
 	StartGameNotification:
 		# Disable notification for game start (don't have any notification sound for that)
 		Notification:
-
+	# Allows spawning craters on the battlefield.
+	SmudgeLayer@Clear:
+		Type: Clear
+		Sequence: craters_clear
+		Palette:
+		SmokePalette:
+	SmudgeLayer@Sand:
+		Type: Sand
+		Sequence: craters_sand
+		Palette:
+		SmokePalette:
 
 # Map editor specific world setup.
 EditorWorld:

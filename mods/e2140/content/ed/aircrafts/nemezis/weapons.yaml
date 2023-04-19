@@ -1,4 +1,5 @@
 ed_aircrafts_nemezis:
+	Inherits: Smudges
 	ReloadDelay: 500 	# TODO to be verified
 	Range: 0c512
 	ValidTargets: Ground, Water

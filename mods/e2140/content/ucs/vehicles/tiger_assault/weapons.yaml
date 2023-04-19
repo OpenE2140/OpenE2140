@@ -1,4 +1,5 @@
 ucs_vehicles_tiger_assault:
+	Inherits: Smudges
 	ReloadDelay: 50
 	Range: 5c896
 	MinRange: 0c512
