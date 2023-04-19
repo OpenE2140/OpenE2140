@@ -89,6 +89,7 @@ public class RenderSpritesReflectionHelper
 			}
 
 			IEnumerable<IRenderable> renderables = animation.Render(self, this.animWrapperHelper.GetPaletteReference(animWrapper));
+
 			if (renderableProcess != null)
 				renderables = renderableProcess.Invoke(animation, renderables);
 

@@ -54,10 +54,7 @@ public class ColorPickerColorShift : ITickRender
 	public ColorPickerColorShift(ColorPickerColorShiftInfo info)
 	{
 		this.colorManager = Game.ModData.DefaultRules.Actors[SystemActors.World].TraitInfo<ColorPickerManagerInfo>();
-		this.colorManager.OnColorPickerColorUpdate += color =>
-		{
-			this.newColor = color;
-		};
+		this.colorManager.OnColorPickerColorUpdate += color => this.newColor = color;
 		this.info = info;
 	}
 

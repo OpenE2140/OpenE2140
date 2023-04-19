@@ -262,6 +262,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		var actorPreviews = renderActorPreview.RenderPreview(
 			new ActorPreviewInitializer(new ActorReference(this.productionInfo.Producee.Name, previewInit), worldRenderer)
 		);
+
 		var spawnPosition = this.GetSpawnPosition(self);
 
 		var renderables = actorPreviews

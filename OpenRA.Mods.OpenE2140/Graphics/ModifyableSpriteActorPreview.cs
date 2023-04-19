@@ -49,14 +49,16 @@ public class ModifyableSpriteActorPreview : IActorPreview
 
 	IEnumerable<IRenderable> IActorPreview.RenderUI(WorldRenderer wr, int2 pos, float scale)
 	{
-		return this.animation.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale)
+		return this.animation
+			.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale)
 			.Select(e => this.modify(e, true))
 			.WhereNotNull();
 	}
 
 	IEnumerable<IRenderable> IActorPreview.Render(WorldRenderer wr, WPos pos)
 	{
-		return this.animation.Render(pos, this.offset(), this.zOffset(), null)
+		return this.animation
+			.Render(pos, this.offset(), this.zOffset(), null)
 			.Select(e => this.modify(e, false))
 			.WhereNotNull();
 	}

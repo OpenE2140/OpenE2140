@@ -68,7 +68,6 @@ public static class VirtualAssetsBuilder
 		VirtualAssetsBuilder.RotorsPalette[242] = Color.FromArgb(0xff393c39);
 		VirtualAssetsBuilder.RotorsPalette[243] = Color.FromArgb(0xff000000);
 
-
 		VirtualAssetsBuilder.HelicopterRotorPalette = new Color[256];
 		VirtualAssetsBuilder.HelicopterRotorPalette[227] = Color.FromArgb(0x50000000);
 

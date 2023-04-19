@@ -67,7 +67,8 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 							mr.TintModifiers | TintModifiers.ReplaceColor
 						)
 						.WithAlpha(this.ShadowColor.A / 255f);
-				});
+				}
+			);
 		}
 	}
 }
