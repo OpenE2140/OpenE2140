@@ -13,8 +13,7 @@ ucs_vehicles_shadow:
 	Health:
 		HP: 200
 	Mobile:
-		Speed: 91
-		TurnSpeed: 50
+		Speed: 90
 	RevealsShroud:
 		Range: 4c896
 	ProximityExternalCondition:

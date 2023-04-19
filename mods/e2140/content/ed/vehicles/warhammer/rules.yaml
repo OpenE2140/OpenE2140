@@ -15,7 +15,6 @@ ed_vehicles_warhammer:
 		HP: 600
 	Mobile:
 		Speed: 50
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 5c896
 	Turreted:
