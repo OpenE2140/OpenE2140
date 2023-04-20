@@ -30,6 +30,10 @@ Generate:
 	projectile_bomb:
 		idle: 60,61
 
+	projectile_plasma_bomb:
+		idle: 61
+		explode: 129-136
+
 	smoke:
 		idle: 169-176
 
@@ -45,3 +49,5 @@ Generate:
 	vehicle_explosion:
 		explode1: 32-39
 		explode2: 40-47
+
+

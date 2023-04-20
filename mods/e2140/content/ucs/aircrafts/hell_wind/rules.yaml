@@ -1,0 +1,46 @@
+ucs_aircrafts_hell_wind:
+	Inherits@1: ^UcsAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: HELL WIND
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1280, 1056, 0, 0
+	Health:
+		HP: 150
+	Aircraft:
+		Speed: 94
+	RevealsShroud:
+		Range: 3c896
+	Armament@PRIMARY:
+		Weapon: ucs_aircrafts_hell_wind
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	WithMoveAnimation:
+	AmbientSound:
+		RequiresCondition: airborne
+		SoundFiles: 31.smp
+	SpawnActorOnDeath:
+		Actor: ucs_aircrafts_hell_wind_husk
+		RequiresCondition: airborne
+	AmmoPool:
+		Ammo: 7
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 100
+		ResetOnFire: True
+		Count: 4
+
+ucs_aircrafts_hell_wind_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: HELL WIND
+	RevealsShroud:
+		Range: 3c896
+	RenderSprites: 
+		Image: ucs_aircrafts_hell_wind

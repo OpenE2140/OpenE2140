@@ -17,6 +17,9 @@ Rules:
 	e2140|content/ucs/vehicles/bigmech/rules.yaml
 	e2140|content/ucs/vehicles/wtp_100/rules.yaml
 	e2140|content/ucs/vehicles/shadow/rules.yaml
+	e2140|content/ucs/aircrafts/gargoil/rules.yaml
+	e2140|content/ucs/aircrafts/hell_wind/rules.yaml
+	e2140|content/ucs/aircrafts/gargoil2/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -32,6 +35,9 @@ Sequences:
 	e2140|content/ucs/vehicles/bigmech/sequences.yaml
 	e2140|content/ucs/vehicles/wtp_100/sequences.yaml
 	e2140|content/ucs/vehicles/shadow/sequences.yaml
+	e2140|content/ucs/aircrafts/gargoil/sequences.yaml
+	e2140|content/ucs/aircrafts/hell_wind/sequences.yaml
+	e2140|content/ucs/aircrafts/gargoil2/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
@@ -44,3 +50,6 @@ Weapons:
 	e2140|content/ucs/vehicles/spider/weapons.yaml
 	e2140|content/ucs/vehicles/spider_ii/weapons.yaml
 	e2140|content/ucs/vehicles/bigmech/weapons.yaml
+	e2140|content/ucs/aircrafts/gargoil/weapons.yaml
+	e2140|content/ucs/aircrafts/hell_wind/weapons.yaml
+	e2140|content/ucs/aircrafts/gargoil2/weapons.yaml

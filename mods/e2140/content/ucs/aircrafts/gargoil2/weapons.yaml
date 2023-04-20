@@ -1,4 +1,4 @@
-ed_aircrafts_vtol:
+ucs_aircrafts_gargoil_ii:
 	Inherits: Smudges
 	ReloadDelay: 200
 	Range: 6c896

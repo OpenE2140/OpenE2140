@@ -14,7 +14,6 @@ ed_aircrafts_hat:
 		HP: 200
 	Aircraft:
 		Speed: 94
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 2c896
 	WithMoveAnimation:

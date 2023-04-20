@@ -1,0 +1,45 @@
+usc_aircrafts_gargoil:
+	Inherits@1: ^UcsAircraft
+	Inherits@2: ^CoreAttackAircraft
+	Tooltip:
+		Name: Gargoil
+	Valued:
+		Cost: 600
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 960, 688, 0, 0
+	Health:
+		HP: 46
+	Aircraft:
+		Speed: 175
+	RevealsShroud:
+		Range: 5c896
+	Armament@PRIMARY:
+		Weapon: usc_aircrafts_gargoil
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	WithMuzzleOverlay@muzzle:
+	AmmoPool:
+		Ammo: 55
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 56
+		ResetOnFire: True
+		Count: 50
+	WithMoveAnimation:
+	SpawnActorOnDeath:
+		Actor: usc_aircrafts_gargoil_husk
+		RequiresCondition: airborne
+
+usc_aircrafts_gargoil_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: STORM
+	RevealsShroud:
+		Range: 5c896
+	RenderSprites: 
+		Image: usc_aircrafts_gargoil

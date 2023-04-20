@@ -302,6 +302,7 @@
 		Type: aircraft
 	# Making the actors actualy fly.
 	Aircraft:
+		TurnSpeed: 50
 		IdleBehavior: Land
 		LandableTerrainTypes: Clear, Shore, Sand, Road
 		CruiseAltitude: 1c256

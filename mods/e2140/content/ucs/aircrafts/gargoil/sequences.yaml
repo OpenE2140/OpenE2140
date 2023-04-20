@@ -1,0 +1,28 @@
+usc_aircrafts_gargoil:
+	idle:
+		Filename: aircraft_gargoil.vspr
+		Facings: -16
+	move:
+		Start: 16
+		Filename: aircraft_gargoil.vspr
+		Facings: -16
+	muzzle:
+		Filename: aircraft_gargoil.vspr
+		Start: 32
+		Length: 3
+		Facings: -16
+		Tick: 60
+	icon:
+		Filename: SPRI1.MIX
+		Start: 162
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI0.MIX
+	#	Start: 162
+
+# TODO: remove after PR #20705
+usc_aircrafts_gargoil.ed:
+	Inherits: usc_aircrafts_gargoil
+	icon:
+		Filename: SPRI0.MIX
+		Start: 162

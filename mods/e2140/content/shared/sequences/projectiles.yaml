@@ -80,3 +80,13 @@ projectile_bomb:
 		Filename: projectile_bomb.vspr
 	idle:
 		Length: 2
+
+projectile_plasma_bomb:
+	Defaults:
+		Filename: projectile_plasma_bomb.vspr
+	idle:
+	explode:
+		BlendMode: Additive
+		Start: 1
+		Length: 8
+		ZOffset: 512
