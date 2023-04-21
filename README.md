@@ -20,7 +20,7 @@ Video previews showcasing latest development:
 	* project lead
 	* programming
 - [IceReaper](https://github.com/IceReaper)
-	* project's original founder
+	* author of the original prototype
 	* programming
 	* reverse engineering
 
