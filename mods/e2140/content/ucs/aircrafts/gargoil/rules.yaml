@@ -12,7 +12,7 @@ usc_aircrafts_gargoil:
 	Selectable:
 		Bounds: 960, 688, 0, 0
 	Health:
-		HP: 46
+		HP: 60
 	Aircraft:
 		Speed: 175
 	RevealsShroud:
