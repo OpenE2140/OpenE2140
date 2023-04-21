@@ -31,6 +31,7 @@ usc_aircrafts_gargoil:
 		ResetOnFire: True
 		Count: 50
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
 		Actor: usc_aircrafts_gargoil_husk
 		RequiresCondition: airborne

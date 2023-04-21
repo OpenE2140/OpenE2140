@@ -22,6 +22,7 @@ ucs_aircrafts_hell_wind:
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Vertical, Turn
 	AmbientSound:
 		RequiresCondition: airborne
 		SoundFiles: 31.smp

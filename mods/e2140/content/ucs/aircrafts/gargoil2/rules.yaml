@@ -22,6 +22,7 @@ ucs_aircrafts_gargoil_ii:
 		LocalOffset: 0,100,-50, 0,-100,-50
 		MuzzlePalette:
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
 		Actor: ucs_aircrafts_gargoil_ii_husk
 		RequiresCondition: airborne
