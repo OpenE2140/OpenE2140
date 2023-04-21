@@ -22,6 +22,7 @@ ed_aircrafts_vtol:
 		LocalOffset: 0,100,-50, 0,-100,-50
 		MuzzlePalette:
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_vtol_husk
 		RequiresCondition: airborne
