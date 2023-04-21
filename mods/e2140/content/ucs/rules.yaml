@@ -44,6 +44,11 @@ World:
 	Mobile:
 		TurnSpeed: 32
 
+^UcsAircraft:
+	Inherits: ^CoreAircraft
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
 	RenderSprites:

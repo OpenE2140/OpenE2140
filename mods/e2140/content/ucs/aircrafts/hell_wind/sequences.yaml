@@ -1,0 +1,22 @@
+ucs_aircrafts_hell_wind:
+	idle:
+		Filename: aircraft_hell_wind.vspr
+		Facings: -16
+	move:
+		Filename: aircraft_hell_wind.vspr
+		Start: 16
+		Facings: -16
+	icon:
+		Filename: SPRI1.MIX
+		Start: 163
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI0.MIX
+	#	Start: 163
+
+# TODO: remove after PR #20705
+ucs_aircrafts_hell_wind.ed:
+	Inherits: ucs_aircrafts_hell_wind
+	icon:
+		Filename: SPRI0.MIX
+		Start: 163

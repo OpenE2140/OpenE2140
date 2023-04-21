@@ -15,7 +15,6 @@ ed_aircrafts_thunder:
 		HP: 40
 	Aircraft:
 		Speed: 175
-		TurnSpeed: 50
 	RevealsShroud:
 		Range: 4c896
 	Armament@PRIMARY:

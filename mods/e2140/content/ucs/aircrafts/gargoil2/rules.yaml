@@ -1,16 +1,16 @@
-ed_aircrafts_vtol:
-	Inherits@1: ^EdAircraft
+ucs_aircrafts_gargoil_ii:
+	Inherits@1: ^UcsAircraft
 	Inherits@2: ^CoreAttackAircraft
 	Tooltip:
-		Name: VTOL
+		Name: Gargoil II
 	Valued:
 		Cost: 900
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED
+		Queue: Vehicle.UCS
 		BuildDuration: 60
 	Selectable:
-		Bounds: 992, 848, 0, 0
+		Bounds: 960, 688, 0, 0
 	Health:
 		HP: 50
 	Aircraft:
@@ -18,19 +18,20 @@ ed_aircrafts_vtol:
 	RevealsShroud:
 		Range: 6c896
 	Armament@PRIMARY:
-		Weapon: ed_aircrafts_vtol
+		Weapon: ucs_aircrafts_gargoil_ii
 		LocalOffset: 0,100,-50, 0,-100,-50
 		MuzzlePalette:
 	WithMoveAnimation:
+		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: ed_aircrafts_vtol_husk
+		Actor: ucs_aircrafts_gargoil_ii_husk
 		RequiresCondition: airborne
 
-ed_aircrafts_vtol_husk:
+ucs_aircrafts_gargoil_ii_husk:
 	Inherits: ^CoreAircraftHusk
 	Tooltip:
-		Name: VTOL
+		Name: Gargoil II
 	RevealsShroud:
 		Range: 6c896
 	RenderSprites: 
-		Image: ed_aircrafts_vtol
+		Image: ucs_aircrafts_gargoil_ii

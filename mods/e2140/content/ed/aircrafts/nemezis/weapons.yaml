@@ -1,11 +1,13 @@
 ed_aircrafts_nemezis:
 	Inherits: Smudges
-	ReloadDelay: 500 	# TODO to be verified
+	ReloadDelay: 900
 	Range: 0c512
 	ValidTargets: Ground, Water
+	TargetActorCenter: true
 	Projectile: GravityBomb
-		Velocity: 0,0,-25
+		Velocity: 50,0,-25
 		Shadow: True
+		ShadowColor: 00000046
 		Palette: 
 		Image: projectile_bomb
 		Sequences: idle
