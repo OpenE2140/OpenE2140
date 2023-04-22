@@ -12,8 +12,10 @@
 #endregion
 
 using JetBrains.Annotations;
+using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
@@ -68,22 +70,55 @@ public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSprites
 
 public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 {
-	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits, Actor? Actor);
+	/// <summary>
+	/// When current or all exits are blocked, nudge surrounding units every X ticks.
+	/// </summary>
+	private const int NudgeAfterTicks = 100;
+
+	/// <summary>
+	/// When no exit is currently available, wait X ticks until attempting to eject produced unit again.
+	/// </summary>
+	private const int WaitingForEjectionDelay = 15;
+
+	/// <summary>
+	/// When current exit is currently blocked, wait X ticks until giving up and running retry logic.
+	/// </summary>
+	private const int EjectionWaitLimit = 25;
+
+	private record ProductionInfo(ActorInfo Producee, ExitInfo ExitInfo, string ProductionType, TypeDictionary Inits, Actor? Actor)
+	{
+		public Activity? ExitMoveActivity;
+
+		public void TryQueuingPathToRallyPoint(RallyPoint rp)
+		{
+			// Queue path to rally point only if current activity has been ordered by ElevatorProduction (and not player).
+			// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
+			if (this.Actor == null || this.Actor.CurrentActivity != this.ExitMoveActivity)
+				return;
+
+			foreach (var cell in rp.Path)
+				this.Actor.QueueActivity(new AttackMoveActivity(this.Actor,
+					() => this.Actor.Trait<Mobile>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)));
+		}
+	}
 
 	public enum AnimationState
 	{
-		Closed, Opening, ElevatorUp, Ejecting, ElevatorDown, Closing
+		Closed, Opening, ElevatorUp, Ejecting, WaitingForEjection, ElevatorDown, Closing
 	}
 
 	private readonly ElevatorProductionInfo info;
-
 	private readonly RenderSprites? renderSprites;
 	private readonly AnimationWithOffset animation;
 	private readonly ElevatorProductionQueue productionQueue;
 	private AnimationState state = AnimationState.Closed;
 	private int stateAge;
+	private int? lastNudge;
 	private ProductionInfo? productionInfo;
 	private ProductionInfo? lastProducedUnit;
+	private RallyPoint? rallyPoint;
+
+	public Actor Actor { get; }
 
 	public AnimationState State
 	{
@@ -95,10 +130,13 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		}
 	}
 
+	public CPos ElevatorCell => this.Actor.World.Map.CellContaining(this.Actor.CenterPosition + this.info.Position);
+
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
 	{
 		this.info = info;
+		this.Actor = init.Self;
 
 		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
 
@@ -136,12 +174,33 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		this.productionQueue = init.Self.Trait<ElevatorProductionQueue>();
 	}
 
-	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo exitinfo, string productionType, TypeDictionary inits)
+	protected override void Created(Actor self)
+	{
+		this.rallyPoint = self.TraitOrDefault<RallyPoint>();
+		base.Created(self);
+	}
+
+	public override bool Produce(Actor self, ActorInfo producee, string productionType, TypeDictionary inits, int refundableValue)
+	{
+		if (this.IsTraitDisabled || this.IsTraitPaused || Reservable.IsReserved(self) || this.State != AnimationState.Closed)
+			return false;
+
+		// Pick a spawn/exit point pair
+		var exit = this.SelectExit(self, producee, productionType);
+
+		this.DoProduction(self, producee, exit?.Info, productionType, inits);
+		return true;
+	}
+
+	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo? exitInfo, string productionType, TypeDictionary inits)
 	{
 		if (this.State != AnimationState.Closed)
 			return;
 
-		this.productionInfo = new ProductionInfo(producee, exitinfo, productionType, inits, null);
+		// If no exit was specified, pick one (even if it isn't free)
+		exitInfo ??= this.SelectAnyPassableExit(self, producee, productionType).Info;
+
+		this.productionInfo = new ProductionInfo(producee, exitInfo, productionType, inits, null);
 
 		this.State = AnimationState.Opening;
 
@@ -154,6 +213,34 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 				this.State = AnimationState.ElevatorUp;
 			}
 		);
+
+		// Preemptively nudge any blocking actors out of the way now
+		var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
+		this.NudgeBlockingActors(self, exitCell);
+	}
+
+	private bool NudgeBlockingActors(Actor self, CPos targetCell, params Actor[] exceptActors)
+	{
+		if (this.lastNudge != null && this.lastNudge + NudgeAfterTicks > self.World.WorldTick)
+			return false;
+
+		var blockingActors = self.World.ActorMap.GetActorsAt(targetCell)
+			.Except(exceptActors)
+			.ToArray();
+		if (!blockingActors.Any())
+			return false;
+
+		this.lastNudge = self.World.WorldTick;
+
+		foreach (var actor in blockingActors)
+		{
+			var mobile = actor.Trait<Mobile>();
+			var cell = mobile.GetAdjacentCell(targetCell);
+			if (cell != null)
+				actor.QueueActivity(false, mobile.MoveTo(cell.Value, 0));
+		}
+
+		return true;
 	}
 
 	private int GetElevatorHeight()
@@ -174,36 +261,160 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		switch (this.state)
 		{
 			case AnimationState.ElevatorUp:
-				if (this.stateAge++ < this.info.Duration)
-					return;
-
-				this.State = AnimationState.Ejecting;
-
-				if (this.productionInfo != null)
 				{
+					if (this.stateAge++ < this.info.Duration)
+						return;
+
+					this.State = AnimationState.Ejecting;
+
+					if (this.productionInfo == null)
+					{
+						break;
+					}
+
+					var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
+					var spawn = self.CenterPosition + this.productionInfo.ExitInfo.SpawnOffset;
+
+					var initialFacing = this.productionInfo.ExitInfo.Facing ?? GetInitialFacing(this.productionInfo.Producee, spawn, self.World.Map.CenterOfCell(exit));
+
+					var inits = this.productionInfo.Inits;
+					inits.Add(new LocationInit(self.World.Map.CellContaining(spawn)));
+					inits.Add(new CenterPositionInit(spawn));
+					inits.Add(new FacingInit(initialFacing));
+
+					Log.Write("debug", $"ElevatorProduction: creating actor: {this.productionInfo.Producee.Name}, location: {self.World.Map.CellContaining(spawn)}, exit: {exit}");
+
 					base.DoProduction(
 						self,
 						this.productionInfo.Producee,
-						this.productionInfo.ExitInfo,
+						null,
 						this.productionInfo.ProductionType,
-						this.productionInfo.Inits
+						inits
 					);
+					break;
 				}
-
-				break;
 
 			case AnimationState.Ejecting:
-				var actor = this.productionInfo?.Actor;
-
-				if (actor != null && (!actor.IsInWorld || actor.CurrentActivity is not Mobile.ReturnToCellActivity))
 				{
-					this.State = AnimationState.ElevatorDown;
+					var actor = this.productionInfo?.Actor;
+					if (this.productionInfo == null || actor == null || actor.IsInWorld == false)
+					{
+						// actor was likely destroyed, close elevator
+						this.State = AnimationState.ElevatorDown;
+						this.productionInfo = null;
+						break;
+					}
 
-					this.lastProducedUnit = this.productionInfo;
-					this.productionInfo = null;
+					var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
+
+					Log.Write("debug", $"ElevatorProduction: ejecting actor: {this.productionInfo.Actor}, location: {self.World.Map.CellContaining(actor.CenterPosition)}, exit: {exitCell}");
+					
+					if (this.NudgeBlockingActors(self, exitCell, actor))
+					{
+						this.State = AnimationState.WaitingForEjection;
+					}
+					else if (actor.CurrentActivity is null || actor.CurrentActivity is not Move)
+					{
+						// Abort all activites except Move to prevent player from delaying the exit.
+						actor.CancelActivity();
+
+						// Store move activity that is queued by this ElevatorProduction, it's going to be needed later.
+						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<Mobile>().MoveTo(exitCell) };
+						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
+					}
+
+					// Check if actor is no longer on the elevator cell. Only checking whether actor has moved to
+					// exit cell might be insufficient and in rare cases can elevator get stuck in this state.
+					if (self.World.Map.CellContaining(actor.CenterPosition) != this.ElevatorCell)
+					{
+						this.State = AnimationState.ElevatorDown;
+
+						if (this.rallyPoint?.Path.Count > 0)
+							this.productionInfo.TryQueuingPathToRallyPoint(this.rallyPoint);
+
+						this.lastProducedUnit = this.productionInfo;
+						this.productionInfo = null;
+					}
+					// TODO:
+					// - rally points
+
+					// If current exit cell is still blocked after some time, try again in next state (WaitingForEjection),
+					// which can pick another exit.
+					if (this.stateAge++ >= EjectionWaitLimit)
+					{
+						this.State = AnimationState.WaitingForEjection;
+					}
+
+					break;
 				}
+			case AnimationState.WaitingForEjection:
+				{
+					var actor = this.productionInfo?.Actor;
 
-				break;
+					if (this.productionInfo == null || actor == null || actor.IsInWorld == false)
+					{
+						// actor was likely destroyed, close elevator
+						this.State = AnimationState.ElevatorDown;
+						this.productionInfo = null;
+						break;
+					}
+
+					// player manually moved produced actor
+					var actorCell = self.World.Map.CellContaining(actor.CenterPosition);
+					if (actorCell != this.ElevatorCell)
+					{
+						Log.Write("debug", $"ElevatorProduction: WaitingForEjection, actor '{this.productionInfo.Actor}' has been manually moved to exit: {actorCell}");
+						this.State = AnimationState.ElevatorDown;
+
+						this.lastProducedUnit = this.productionInfo;
+						this.productionInfo = null;
+						break;
+					}
+
+					if (this.stateAge++ < WaitingForEjectionDelay)
+						break;
+
+					var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
+
+					Log.Write("debug", $"ElevatorProduction: WaitingForEjection, actor: {this.productionInfo.Actor}, current exit: {exitCell}");
+
+					var blockingActors = self.World.ActorMap.GetActorsAt(exitCell)
+						.Exclude(actor)
+						.ToArray();
+					if (!blockingActors.Any())
+					{
+						Log.Write("debug", $"ElevatorProduction: WaitingForEjection, actor '{this.productionInfo.Actor}' can be ejected, exit: {exitCell}");
+
+						// Store move activity that is queued by this ElevatorProduction, it's going to be needed later.
+						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<Mobile>().MoveTo(exitCell) };
+						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
+						this.State = AnimationState.Ejecting;
+						break;
+					}
+
+					// current exit cell is still blocked, try picking another
+					var nextFreeExit = this.SelectExit(self, actor.Info, this.productionInfo.ProductionType);
+					if (nextFreeExit != null)
+					{
+						Log.Write("debug", $"ElevatorProduction: WaitingForEjection, found new exit for actor '{this.productionInfo!.Actor}', ejecting, new exit: {exitCell}");
+						this.productionInfo = this.productionInfo with { ExitInfo = nextFreeExit.Info };
+						actor.CancelActivity();
+						this.State = AnimationState.Ejecting;
+						break;
+					}
+
+					// still no exit available, try picking any other passable ...
+					var randomExit = this.SelectAnyPassableExit(self, this.productionInfo.Producee, this.productionInfo.ProductionType)!;
+					exitCell = self.Location + randomExit.Info.ExitCell;
+					this.productionInfo = this.productionInfo with { ExitInfo = randomExit.Info };
+
+					// ... and nudge any actors at that cell
+					this.NudgeBlockingActors(self, exitCell, actor);
+
+					this.stateAge = 0;
+
+					break;
+				}
 
 			case AnimationState.ElevatorDown:
 				if (this.stateAge++ < this.info.Duration)
@@ -235,10 +446,31 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		}
 	}
 
+	private static WAngle GetInitialFacing(ActorInfo producee, WPos spawn, WPos target)
+	{
+		WAngle initialFacing;
+		var delta = target - spawn;
+		if (delta.HorizontalLengthSquared == 0)
+		{
+			var fi = producee.TraitInfoOrDefault<IFacingInfo>();
+			initialFacing = fi != null ? fi.GetInitialFacing() : WAngle.Zero;
+		}
+		else
+			initialFacing = delta.Yaw;
+		return initialFacing;
+	}
+
 	void INotifyProduction.UnitProduced(Actor self, Actor other, CPos exit)
 	{
 		if (this.productionInfo != null)
 			this.productionInfo = this.productionInfo with { Actor = other };
+	}
+
+	private Exit SelectAnyPassableExit(Actor self, ActorInfo producee, string productionType)
+	{
+		// Passable exit is cell, which is passable for produced actor, while ignoring any movable actors.
+		return this.SelectExit(self, producee, productionType, e =>
+			producee?.TraitInfo<MobileInfo>()?.CanEnterCell(self.World, self, self.Location + e.Info.ExitCell, ignoreActor: self, check: BlockedByActor.Immovable) == true);
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer worldRenderer)
