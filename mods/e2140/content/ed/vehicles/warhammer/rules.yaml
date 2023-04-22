@@ -20,7 +20,7 @@ ed_vehicles_warhammer:
 	Turreted:
 		Offset: 0,0,0
 	AttackTurreted:
-		Armaments: primary, secondary, tertiary, quaternary
+		Armaments: primary, secondary, tertiary
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: ed_vehicles_warhammer
@@ -29,6 +29,7 @@ ed_vehicles_warhammer:
 		LocalOffset: 700,200,0
 		LocalYaw: 0
 		MuzzlePalette:
+		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Name: secondary
@@ -44,20 +45,14 @@ ed_vehicles_warhammer:
 		LocalYaw: 0
 		MuzzlePalette:
 		PauseOnCondition: !ammo
-	Armament@QUATERNARY:
-		Name: quaternary
-		Weapon: ed_vehicles_warhammer_muzzle
-		MuzzlePalette:
-		MuzzleSequence: muzzle
-		PauseOnCondition: !ammo
 	# Render muzzle overlay at correct offset using custom trait.
 	WithCustomMuzzleOverlay@muzzle:
 		ZeroOffset: true
 	AmmoPool:
 		Armaments: primary, secondary, tertiary, quaternary
-		Ammo: 16
+		Ammo: 12
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Delay: 50
 		ResetOnFire: True
-		Count: 8
+		Count: 6
