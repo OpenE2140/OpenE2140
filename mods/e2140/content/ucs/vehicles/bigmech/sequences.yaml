@@ -17,8 +17,9 @@ ucs_vehicles_big_mech:
 	shadow:
 		Filename: vehicle_big_mech.vspr
 		Start: 64
-		Facings: -8	
-		ZOffset: -512
+		Facings: -8
+		Offset: 0,12,0
+		ZOffset: -256
 	icon:
 		Filename: SPRI1.MIX
 		Start: 279

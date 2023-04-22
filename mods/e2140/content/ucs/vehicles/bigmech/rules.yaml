@@ -17,6 +17,10 @@ ucs_vehicles_big_mech:
 		Speed: 68
 	RevealsShroud:
 		Range: 5c896
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow
+		ForceToGround: true
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_big_mech
 		LocalOffset: 200,-425,0, 200,425,0
