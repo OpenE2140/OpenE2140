@@ -6,7 +6,7 @@ ed_aircrafts_hat:
 		Cost: 1000
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED
+		Queue: Aircraft.ED
 		BuildDuration: 60
 	Selectable:
 		Bounds: 1184, 1072, 0, 0

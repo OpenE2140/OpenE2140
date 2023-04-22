@@ -7,7 +7,7 @@ ed_aircrafts_nemezis:
 		Cost: 2300
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED
+		Queue: Aircraft.ED
 		BuildDuration: 60
 	Selectable:
 		Bounds: 1680, 1648, 0, 0
