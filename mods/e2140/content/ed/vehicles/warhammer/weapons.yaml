@@ -38,14 +38,3 @@ ed_vehicles_warhammer:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure
-
-ed_vehicles_warhammer_muzzle:
-	ReloadDelay: 50
-	Range: 5c896
-	MinRange: 0c512
-	Burst: 4
-	BurstDelays: 25
-	Projectile: InstantHit
-	Warhead@Damage: SpreadDamage
-		Spread: 0
-		Damage: 0
