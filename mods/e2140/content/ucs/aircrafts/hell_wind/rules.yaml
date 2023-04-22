@@ -7,7 +7,7 @@ ucs_aircrafts_hell_wind:
 		Cost: 1000
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Aircraft.UCS
 		BuildDuration: 60
 	Selectable:
 		Bounds: 1280, 1056, 0, 0

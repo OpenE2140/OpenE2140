@@ -1,0 +1,109 @@
+shared_buildings_air_base:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Air Base
+	Health:
+		HP: 500
+	Building:
+		Dimensions: 4,3
+		Footprint: =xxx xxx= ====
+	HitShape:
+		TargetableOffsets: 512,-412,0,   512,412,0,   1524,-412,0,   1524,412,0
+		Type: Rectangle
+			TopLeft: -1024, -1524
+			BottomRight: 1024, 524
+	Selectable:
+		Bounds: 2064, 1984, 0,-432
+	Power:
+		Amount: -200
+	Production:
+		Produces: Aircraft.ED, Aircraft.UCS
+		RequiresCondition: !Transforming
+	ProductionQueue@ED:
+		Type: Aircraft.ED
+		Factions: ed
+		Group: Aircraft
+		LowPowerModifier: 150
+		ReadyAudio: ProductionComplete
+		QueuedAudio: ProductionStarted
+		OnHoldAudio: ProductionInterrupted
+		CancelledAudio: ProductionCancelled
+	ProductionQueue@UCS:
+		Type: Aircraft.UCS
+		Factions: ucs
+		Group: Aircraft
+		LowPowerModifier: 150
+		ReadyAudio: ProductionComplete
+		QueuedAudio: ProductionStarted
+		OnHoldAudio: ProductionInterrupted
+		CancelledAudio: ProductionCancelled
+	ProductionBar@ED:
+		ProductionType: Aircraft.ED
+	ProductionBar@UCS:
+		ProductionType: Aircraft.UCS
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: 1500, -900, 0
+		ExitCell: 4,0
+		Facing: 768
+	Exit@Exit2:
+		SpawnOffset: 1500, -900, 0
+		ExitCell: 4,-1
+		Facing: 896
+	Exit@Exit3:
+		SpawnOffset: 1500, -900, 0
+		ExitCell: 3,-1
+		Facing: 0
+	Exit@Exit4:
+		SpawnOffset: 1500, -900, 0
+		ExitCell: 4,1
+		Facing: 640
+	Exit@Exit5:
+		SpawnOffset: 1500, -900, 0
+		ExitCell: 3,1
+		Facing: 500
+	Exit@Exit6:
+		SpawnOffset: -1400, 0, 0
+		ExitCell: 0,0
+		Facing: 0
+	Exit@Exit7:
+		SpawnOffset: -1400, 0, 0
+		ExitCell: -1,0
+		Facing: 100
+	Exit@Exit8:
+		SpawnOffset: -1400, 0, 0
+		ExitCell: -1,1
+		Facing: 245
+	Exit@Exit9:
+		SpawnOffset: -1400, 0, 0
+		ExitCell: -1,2
+		Facing: 384
+	Exit@Exit10:
+		SpawnOffset: -1400, 0, 0
+		ExitCell: 0,2
+		Facing: 500
+	WithIdleOverlay@HelipadLeft:
+		Sequence: helipad-left
+		RequiresCondition: !Transforming
+	WithIdleOverlay@HelipadLeftLight:
+		Sequence: helipad-left-light
+		RequiresCondition: !Transforming
+	WithIdleOverlay@HelipadRight:
+		Sequence: helipad-right
+		RequiresCondition: !Transforming
+	WithIdleOverlay@HelipadRightLight:
+		Sequence: helipad-right-light
+		RequiresCondition: !Transforming
+
+shared_mcu_air_base:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Air Base
+	Transforms:
+		IntoActor: shared_buildings_air_base
+	Valued:
+		Cost: 1300
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160

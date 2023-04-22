@@ -7,7 +7,7 @@ ed_aircrafts_thunder:
 		Cost: 700
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED
+		Queue: Aircraft.ED
 		BuildDuration: 60
 	Selectable:
 		Bounds: 1312, 928, 0, 0

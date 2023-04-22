@@ -1,0 +1,31 @@
+shared_buildings_air_base:
+	Defaults:
+		Filename: building_air_base.vspr
+		Offset: 1,-45,0
+		ZOffset: -1024
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
+	helipad-left:
+		Start: 4
+		Offset: -91, -4
+	helipad-left-light:
+		Start: 5
+		Offset: -91, -4
+	helipad-right:
+		Start: 6
+		Offset: 97, -58
+	helipad-right-light:
+		Start: 7
+		Offset: 97, -58
+
+shared_mcu_air_base:
+	Inherits: shared_mcu
+	# TODO remove this!!! We only need faction specific variants!
+	icon:
+		Filename: SPRI1.MIX
+		Start: 185

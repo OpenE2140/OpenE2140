@@ -222,5 +222,8 @@ Actors:
 		Owner: UCS_AI
 		Location: 8,25
 		Facing: 384
+	Actor56: shared_buildings_air_base
+		Owner: ED_Player
+		Location: 3,3
 
 Rules: rules.yaml

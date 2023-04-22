@@ -507,22 +507,22 @@ Container@PLAYER_WIDGETS:
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
-						#ProductionTypeButton@Aircraft:
-						#	Logic: AddFactionSuffixLogic
-						#	X: 116
-						#	Width: 23
-						#	Height: 21
-						#	Background: sidebar-button
-						#	TooltipText: Aircraft
-						#	TooltipContainer: TOOLTIP_CONTAINER
-						#	ProductionGroup: Aircraft
-						#	Key: ProductionTypeAircraft
-						#	Children:
-						#		Image@ICON:
-						#			Logic: AddFactionSuffixLogic
-						#			X: 3
-						#			Y: 3
-						#			ImageCollection: production-icons
+						ProductionTypeButton@Aircraft:
+							Logic: AddFactionSuffixLogic
+							X: 116
+							Width: 23
+							Height: 21
+							Background: sidebar-production-tab
+							TooltipText: Aircraft
+							TooltipContainer: TOOLTIP_CONTAINER
+							ProductionGroup: Aircraft
+							Key: ProductionTypeAircraft
+							Children:
+								Image@ICON:
+									Logic: AddFactionSuffixLogic
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
 						#ProductionTypeButton@Naval:
 						#	Logic: AddFactionSuffixLogic
 						#	X: 145

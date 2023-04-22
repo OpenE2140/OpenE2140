@@ -7,7 +7,7 @@ usc_aircrafts_gargoil:
 		Cost: 600
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Aircraft.UCS
 		BuildDuration: 60
 	Selectable:
 		Bounds: 960, 688, 0, 0

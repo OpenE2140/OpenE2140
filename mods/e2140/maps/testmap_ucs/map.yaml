@@ -103,31 +103,6 @@ Actors:
 		Owner: UCS_AI
 		Location: 6,21
 		Facing: 768
-	Actor26: ucs_vehicles_tiger_assault
-		Owner: UCS_Player
-		Location: 20,11
-		Facing: 384
-	Actor27: ucs_vehicles_tiger_assault
-		Owner: UCS_Player
-		Facing: 384
-		Location: 21,11
-	Actor28: ucs_vehicles_raptor_es
-		Owner: UCS_Player
-		Facing: 384
-		Location: 24,10
-	Actor29: ucs_vehicles_raptor_es
-		Owner: UCS_Player
-		Facing: 384
-		Location: 23,10
-	Actor30: shared_buildings_power_plant
-		Owner: UCS_Player
-		Location: 28,2
-	Actor31: ucs_buildings_heavy_tech
-		Owner: UCS_Player
-		Location: 25,3
-	Actor32: ucs_buildings_prod_center
-		Owner: UCS_Player
-		Location: 21,2
 	Actor33: ucs_mcu_prod_center
 		Owner: UCS_Player
 		Facing: 384
@@ -140,5 +115,65 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 29,12
+	Actor36: shared_buildings_air_base
+		Owner: UCS_Player
+		Location: 3,3
+	Actor32: ucs_buildings_prod_center
+		Owner: UCS_Player
+		Location: 16,2
+	Actor30: shared_buildings_power_plant
+		Owner: UCS_Player
+		Location: 19,2
+	Actor31: ucs_buildings_heavy_tech
+		Owner: UCS_Player
+		Location: 23,3
+	Actor26: ucs_vehicles_t100
+		Owner: UCS_Player
+		Facing: 384
+		Location: 18,7
+	Actor27: ucs_vehicles_raptor_es
+		Owner: UCS_Player
+		Facing: 384
+		Location: 19,7
+	Actor28: ucs_vehicles_raptor_ad
+		Owner: UCS_Player
+		Facing: 384
+		Location: 20,7
+	Actor29: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Facing: 384
+		Location: 21,7
+	Actor37: ucs_vehicles_spider
+		Owner: UCS_Player
+		Facing: 384
+		Location: 22,7
+	Actor38: ucs_vehicles_spider_ii
+		Owner: UCS_Player
+		Facing: 384
+		Location: 23,7
+	Actor39: ucs_vehicles_big_mech
+		Owner: UCS_Player
+		Facing: 384
+		Location: 24,7
+	Actor40: ucs_vehicles_wtp_100
+		Owner: UCS_Player
+		Facing: 384
+		Location: 25,7
+	Actor41: ucs_vehicles_shadow
+		Owner: UCS_Player
+		Facing: 384
+		Location: 26,7
+	Actor42: usc_aircrafts_gargoil
+		Owner: UCS_Player
+		Facing: 384
+		Location: 18,9
+	Actor43: ucs_aircrafts_hell_wind
+		Owner: UCS_Player
+		Facing: 384
+		Location: 19,9
+	Actor44: ucs_aircrafts_gargoil_ii
+		Owner: UCS_Player
+		Facing: 384
+		Location: 20,9
 
 Rules: rules.yaml

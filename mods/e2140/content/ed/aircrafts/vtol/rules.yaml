@@ -7,7 +7,7 @@ ed_aircrafts_vtol:
 		Cost: 900
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.ED
+		Queue: Aircraft.ED
 		BuildDuration: 60
 	Selectable:
 		Bounds: 992, 848, 0, 0
