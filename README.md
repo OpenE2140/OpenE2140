@@ -27,16 +27,18 @@ Video previews showcasing latest development:
 ## Contributors
 
 - [Dzierzan](https://github.com/Dzierzan)
-	* custom artwork for faction sidebars and command bars,
-	* main menu artwork,
-	* reskinned glyphs,
-	* custom cursors,
-	* custom effects,
-	* custom resource sprites (work in progress),
-	* yaml coding support.
+	* custom artwork for faction sidebars and command bars
+	* main menu artwork
+	* reskinned glyphs
+	* custom cursors
+	* custom effects
+	* custom resource sprites (work in progress)
+	* yaml coding support
 - Disembo
-	* custom animations for MCU deployment,
-	* custom self-destruct cursor.
+	* custom animations for MCU deployment
+	* custom self-destruct cursor
+- [michal-mad](https://github.com/michal-mad)
+	* programming
 
 ## Special thanks!
 
