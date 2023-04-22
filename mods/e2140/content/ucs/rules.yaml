@@ -19,7 +19,6 @@ World:
 	-WithSpriteTurret:
 	WithMovingSpriteTurret:
 	WithTurretShadow:
-		# RequiresCondition: !cloaked
 		ShadowColor: 00000046
 		Offset: 0,32,-300
 		ZOffset: -256

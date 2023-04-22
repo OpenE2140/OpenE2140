@@ -20,7 +20,6 @@ ucs_vehicles_raptor_ad:
 	WithFacingSpriteBody@shadow:
 		Sequence: shadow
 		Name: shadow
-		# RequiresCondition: !cloaked
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_ad
 		LocalOffset: 100,-200,0, 100,200,0
