@@ -50,7 +50,9 @@ ed_vehicles_warhammer:
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
-	WithMuzzleOverlay@muzzle:
+	# Render muzzle overlay at correct offset using custom trait.
+	WithCustomMuzzleOverlay@muzzle:
+		ZeroOffset: true
 	AmmoPool:
 		Armaments: primary, secondary, tertiary, quaternary
 		Ammo: 16

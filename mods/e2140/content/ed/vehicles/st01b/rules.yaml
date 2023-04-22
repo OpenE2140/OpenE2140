@@ -23,12 +23,14 @@ ed_vehicles_st01b:
 		Weapon: ed_vehicles_st01b
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 600,0,-125
+		LocalOffset: 340,0,-125
 		LocalYaw: 0, 0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
-	WithMuzzleOverlay@muzzle:
+	# Render muzzle overlay at correct offset using custom trait.
+	WithCustomMuzzleOverlay@muzzle:
+		ZeroOffset: true
 	AmmoPool:
 		Ammo: 4
 		AmmoCondition: ammo

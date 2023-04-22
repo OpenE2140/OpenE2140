@@ -23,12 +23,14 @@ ed_vehicles_mt200:
 		Weapon: ed_vehicles_mt200
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 600,0,-100
+		LocalOffset: 430,0,-100
 		LocalYaw: 0, 0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
-	WithMuzzleOverlay@muzzle:
+	# Render muzzle overlay at correct offset using custom trait.
+	WithCustomMuzzleOverlay@muzzle:
+		ZeroOffset: true
 	AmmoPool:
 		Ammo: 4
 		AmmoCondition: ammo
