@@ -24,7 +24,7 @@ ed_vehicles_st01b:
 		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 340,0,-125
-		LocalYaw: 0, 0
+		LocalYaw: 0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo

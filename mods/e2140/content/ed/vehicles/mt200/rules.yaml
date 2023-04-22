@@ -24,7 +24,7 @@ ed_vehicles_mt200:
 		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 430,0,-100
-		LocalYaw: 0, 0
+		LocalYaw: 0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo

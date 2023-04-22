@@ -25,7 +25,7 @@ ucs_vehicles_raptor_es:
 		Recoil: 0
 		RecoilRecovery: 0
 		LocalOffset: 0,0,0
-		LocalYaw: 0, 0
+		LocalYaw: 0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo

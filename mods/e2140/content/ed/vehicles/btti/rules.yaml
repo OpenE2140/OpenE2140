@@ -22,7 +22,7 @@ ed_vehicles_btti:
 		Recoil: 0
 		RecoilRecovery: 0
 		LocalOffset: 0,0,0
-		LocalYaw: 0,0
+		LocalYaw: 0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:

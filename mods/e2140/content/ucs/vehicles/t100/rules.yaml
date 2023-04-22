@@ -24,7 +24,7 @@ ucs_vehicles_t100:
 		Recoil: 80
 		RecoilRecovery: 38
 		LocalOffset: 0,0,0
-		LocalYaw: 0,0
+		LocalYaw: 0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
