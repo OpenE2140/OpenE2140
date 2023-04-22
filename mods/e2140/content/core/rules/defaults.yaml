@@ -144,14 +144,32 @@
 		Weapon: BuildingExplosion
 		EmptyWeapon: BuildingExplosion
 
+# Base for all factories.
+^CoreFactory:
+	Inherits: ^CoreBuilding
+	ProductionQueue:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+	# Allow player setting rally point. TODO: needs custom flag and circle sequences.
+	RallyPoint:
+		Image:
+		FlagSequence:
+		CirclesSequence:
+		Cursor: move
+		Palette:
+		LineWidth: 2
 
 # Base for all factories using elevator production.
 ^CoreElevatorFactory:
-	Inherits: ^CoreBuilding
+	Inherits: ^CoreFactory
 	# Use custom RenderSprites trait for rendering elevator.
 	-RenderSprites:
 	RenderElevatorSprites:
 	# Elevator production needs custom production queue.
+	-ProductionQueue:
 	ElevatorProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete

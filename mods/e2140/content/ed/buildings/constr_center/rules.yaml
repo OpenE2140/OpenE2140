@@ -25,12 +25,6 @@ ed_buildings_constr_center:
 		Group: Building
 	ProductionBar:
 		ProductionType: Building.ED
-	RallyPoint:
-		Image:
-		FlagSequence:
-		CirclesSequence:
-		Cursor: move
-		Palette:
 	ProvidesPrerequisite:
 	Exit@Exit1:
 		SpawnOffset: 1024, 1024, 0
