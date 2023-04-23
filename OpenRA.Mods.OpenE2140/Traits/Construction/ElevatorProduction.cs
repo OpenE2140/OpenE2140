@@ -98,7 +98,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 			foreach (var cell in rp.Path)
 				this.Actor.QueueActivity(new AttackMoveActivity(this.Actor,
-					() => this.Actor.Trait<Mobile>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)));
+					() => this.Actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)));
 		}
 	}
 
@@ -234,10 +234,10 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 
 		foreach (var actor in blockingActors)
 		{
-			var mobile = actor.Trait<Mobile>();
-			var cell = mobile.GetAdjacentCell(targetCell);
+			var mobile = actor.TraitOrDefault<Mobile>();
+			var cell = mobile?.GetAdjacentCell(targetCell);
 			if (cell != null)
-				actor.QueueActivity(false, mobile.MoveTo(cell.Value, 0));
+				actor.QueueActivity(false, mobile?.MoveTo(cell.Value, 0));
 		}
 
 		return true;
@@ -319,7 +319,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 						actor.CancelActivity();
 
 						// Store move activity that is queued by this ElevatorProduction, it's going to be needed later.
-						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<Mobile>().MoveTo(exitCell) };
+						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<IMove>().MoveTo(exitCell) };
 						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
 					}
 
@@ -386,7 +386,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 						Log.Write("debug", $"ElevatorProduction: WaitingForEjection, actor '{this.productionInfo.Actor}' can be ejected, exit: {exitCell}");
 
 						// Store move activity that is queued by this ElevatorProduction, it's going to be needed later.
-						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<Mobile>().MoveTo(exitCell) };
+						this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<IMove>().MoveTo(exitCell) };
 						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
 						this.State = AnimationState.Ejecting;
 						break;
