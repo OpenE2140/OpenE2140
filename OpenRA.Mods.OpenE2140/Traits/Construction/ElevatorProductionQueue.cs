@@ -15,7 +15,6 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Construction;
 
@@ -111,11 +110,12 @@ public class ElevatorProductionQueue : ProductionQueue
 	{
 		var closed = this.EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
 
+		var currentItem = this.Queue.FirstOrDefault();
 		var queuedCount = this.Queue.Count(i => i.Item == itemName);
 		var isInfinite = this.Queue.Any(i => i.Item == itemName && i.Infinite);
 
 		// If unit is currently being ejected (i.e. elevator is not closed), we cannot cancel the last item (as this would refund paid cash)
-		if (!closed.Any())
+		if (!closed.Any() && (currentItem == null || currentItem.Item == itemName))
 		{
 			numberToCancel = (uint)Math.Min(Math.Max(0, queuedCount - 1), numberToCancel);
 
