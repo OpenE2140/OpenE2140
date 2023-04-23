@@ -252,6 +252,7 @@
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 100
+			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
 
@@ -303,6 +304,7 @@
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 50
+			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
 	Locomotor@vehicleFastSand:
@@ -310,6 +312,7 @@
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 100
+			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
 
