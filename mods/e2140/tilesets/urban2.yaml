@@ -14,11 +14,6 @@ Terrain:
 		TargetTypes: Ground
 		Color: 504122
 		AcceptsSmudgeType: Clear
-	TerrainType@Sand:
-		Type: Sand
-		TargetTypes: Ground
-		Color: C6AE76
-		AcceptsSmudgeType: Sand
 	TerrainType@Rock:
 		Type: Rock
 		TargetTypes: Ground
