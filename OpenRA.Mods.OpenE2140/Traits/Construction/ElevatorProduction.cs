@@ -335,8 +335,6 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 						this.lastProducedUnit = this.productionInfo;
 						this.productionInfo = null;
 					}
-					// TODO:
-					// - rally points
 
 					// If current exit cell is still blocked after some time, try again in next state (WaitingForEjection),
 					// which can pick another exit.
