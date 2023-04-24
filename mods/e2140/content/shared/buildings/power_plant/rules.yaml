@@ -7,10 +7,12 @@ shared_buildings_power_plant:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
+		LocalCenterOffset: -304,-272,0
 	HitShape:
+		TargetableOffsets: -100,-512,0,   -100,112,0,   824,-512,0,   824,112,0
 		Type: Rectangle
-			TopLeft: -1536, -1024
-			BottomRight: 1536, 1024
+			TopLeft: -1024, -1024
+			BottomRight: 512, 512
 	Selectable:
 		Bounds: 2064, 1984, -228, -275
 	ProvidesPrerequisite:
