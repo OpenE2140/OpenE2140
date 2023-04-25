@@ -21,7 +21,6 @@ ucs_buildings_prod_center:
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: 16, 1024, 0
-		# CutOff: 32
 		CutOff: 29
 		Produces: Building.UCS
 		RequiresCondition: !Transforming
@@ -32,27 +31,21 @@ ucs_buildings_prod_center:
 		ProductionType: Building.UCS
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 0,2
 		Facing: 256
 	Exit@Exit2:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 0,3
 		Facing: 384
 	Exit@Exit3:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 1,3
 		Facing: 512
 	Exit@Exit4:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 2,3
 		Facing: 640
 	Exit@Exit5:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 2,2
 		Facing: 768
 	Exit@Exit6:
-		SpawnOffset: 16, 1024, 0
 		ExitCell: 2,1
 		Facing: 896
 
