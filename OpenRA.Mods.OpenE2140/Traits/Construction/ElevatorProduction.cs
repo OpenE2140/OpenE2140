@@ -131,6 +131,7 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 	}
 
 	public CPos ElevatorCell => this.Actor.World.Map.CellContaining(this.Actor.CenterPosition + this.info.Position);
+	public WPos ElevatorCellCenter => this.Actor.World.Map.CenterOfCell(this.ElevatorCell);
 
 	public ElevatorProduction(ActorInitializer init, ElevatorProductionInfo info)
 		: base(init, info)
@@ -273,16 +274,16 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 					}
 
 					var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
-					var spawn = self.CenterPosition + this.productionInfo.ExitInfo.SpawnOffset;
 
-					var initialFacing = this.productionInfo.ExitInfo.Facing ?? GetInitialFacing(this.productionInfo.Producee, spawn, self.World.Map.CenterOfCell(exit));
+					var initialFacing = this.productionInfo.ExitInfo.Facing ??
+						GetInitialFacing(this.productionInfo.Producee, this.ElevatorCellCenter, self.World.Map.CenterOfCell(exit));
 
 					var inits = this.productionInfo.Inits;
-					inits.Add(new LocationInit(self.World.Map.CellContaining(spawn)));
-					inits.Add(new CenterPositionInit(spawn));
+					inits.Add(new LocationInit(self.World.Map.CellContaining(this.ElevatorCellCenter)));
+					inits.Add(new CenterPositionInit(this.ElevatorCellCenter));
 					inits.Add(new FacingInit(initialFacing));
 
-					Log.Write("debug", $"ElevatorProduction: creating actor: {this.productionInfo.Producee.Name}, location: {self.World.Map.CellContaining(spawn)}, exit: {exit}");
+					Log.Write("debug", $"ElevatorProduction: creating actor: {this.productionInfo.Producee.Name}, location: {self.World.Map.CellContaining(this.ElevatorCellCenter)}, exit: {exit}");
 
 					base.DoProduction(
 						self,
@@ -493,9 +494,8 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			new ActorPreviewInitializer(new ActorReference(this.productionInfo.Producee.Name, previewInit), worldRenderer)
 		);
 
-		var spawnPosition = this.GetSpawnPosition(self);
 
-		var renderables = actorPreviews.SelectMany(actorPreview => actorPreview.Render(worldRenderer, spawnPosition + new WVec(0, 0, this.GetElevatorHeight())))
+		var renderables = actorPreviews.SelectMany(actorPreview => actorPreview.Render(worldRenderer, this.ElevatorCellCenter + new WVec(0, 0, this.GetElevatorHeight())))
 			.Select(
 				renderable => renderable is SpriteRenderable spriteRenderable
 					? spriteRenderable.WithZOffset(spriteRenderable.ZOffset + this.info.ZOffset)
@@ -506,11 +506,6 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() + this.info.CutOff * 16);
 
 		return renderables;
-	}
-
-	private WPos GetSpawnPosition(Actor self)
-	{
-		return self.World.Map.CenterOfCell(self.World.Map.CellContaining(self.CenterPosition + this.info.Position));
 	}
 
 	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer worldRenderer)
