@@ -443,7 +443,6 @@
 	Inherits: ^SemiTransparentShadowCloak
 	Cloak:
 		RequiresCondition: shadowcloak
-		CloakedCondition: cloaked
 		InitialDelay: 0
 		CloakDelay: 90
 		Palette:
