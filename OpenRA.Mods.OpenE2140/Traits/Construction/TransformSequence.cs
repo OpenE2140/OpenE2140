@@ -36,6 +36,9 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	[Desc("Sound played when actor starts transforming.", "The filename of the audio is defined per faction in notifications.yaml.")]
 	public readonly string? TransformSound;
 
+	[Desc("Offset to render the construction animation relative to the buildings top-left cell.")]
+	public readonly WVec Offset = WVec.Zero;
+
 	public override object Create(ActorInitializer init)
 	{
 		return new TransformSequence(init, this);
@@ -56,8 +59,8 @@ public class TransformSequence : ITick
 		this.info = info;
 
 		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
-		this.animationCover = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
-		this.animationDeploy = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => WVec.Zero, () => false, _ => 0);
+		this.animationCover = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
+		this.animationDeploy = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
 	}
 
 	public void Run(Actor self)
