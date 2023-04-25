@@ -29,9 +29,8 @@ ed_aircrafts_thunder:
 		Offset: 0,16,48
 		Sequence: rotorslow
 		RequiresCondition: !airborne
-	AmbientSound:
-		RequiresCondition: airborne
-		SoundFiles: 29.smp
+	WithMoveSound:
+		Sound: 29.smp
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_thunder_husk
 		RequiresCondition: airborne
