@@ -1,0 +1,22 @@
+shared_vehicles_bantha:
+	Inherits: ^CoreVehicle
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	Voiced:
+		VoiceSet: EdVehicleVoice
+	Tooltip:
+		Name: BANTHA
+	Valued:
+		Cost: 400
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1040, 1056, 0, 0
+	Health:
+		HP: 400
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 2c896

@@ -1,0 +1,21 @@
+shared_aircrafts_heavy_lifter:
+	idle:
+		Filename: aircraft_heavy_lifter.vspr
+		Facings: -16
+	vertical:
+		Filename: aircraft_heavy_lifter.vspr
+		Start: 16
+	icon:
+		Filename: SPRI0.MIX
+		Start: 164
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 164
+
+# TODO: remove after PR #20705
+shared_aircrafts_heavy_lifter.ucs:
+	Inherits: shared_aircrafts_heavy_lifter
+	icon:
+		Filename: SPRI1.MIX
+		Start: 164

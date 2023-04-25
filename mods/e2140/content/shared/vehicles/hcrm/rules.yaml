@@ -3,9 +3,8 @@ shared_vehicles_hcrm:
 	Inherits@2: ^CoreTurret
 	MustBeDestroyed:
 		RequiredForShortGame: true
-	# TODO needs special rules to have either ED or UCS voice
 	Voiced:
-		VoiceSet: UcsVehicleVoice
+		VoiceSet: EdVehicleVoice
 	Tooltip:
 		Name: HCR M
 	Valued:
@@ -19,7 +18,7 @@ shared_vehicles_hcrm:
 	Health:
 		HP: 200
 	Mobile:
-		Speed: 91
+		Speed: 90
 	RevealsShroud:
 		Range: 2c896
 	Turreted:

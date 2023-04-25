@@ -1,0 +1,36 @@
+shared_aircrafts_heavy_lifter:
+	Inherits: ^CoreAircraft
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+	Tooltip:
+		Name: Heavy Lifter
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 992, 848, 0, 0
+	Health:
+		HP: 300
+	Aircraft:
+		Speed: 94
+	RevealsShroud:
+		Range: 2c896
+	WithMoveSound:
+		Sound: 31.smp
+	SpawnActorOnDeath:
+		Actor: shared_aircrafts_heavy_lifter_husk
+		RequiresCondition: airborne
+
+shared_aircrafts_heavy_lifter_husk:
+	Inherits: ^CoreAircraftHusk
+	Tooltip:
+		Name: Heavy Lifter
+	RevealsShroud:
+		Range: 2c896
+	RenderSprites: 
+		Image: shared_aircrafts_heavy_lifter
