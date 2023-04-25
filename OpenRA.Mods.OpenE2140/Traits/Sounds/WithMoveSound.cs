@@ -19,37 +19,54 @@ namespace OpenRA.Mods.OpenE2140.Traits.Sounds;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Makes an actor play a sound while moving.")]
-public class WithMoveSoundInfo : TraitInfo, Requires<MobileInfo>
+public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
 {
 	[FieldLoader.Require]
 	public readonly string Sound = "";
-
+	
 	public override object Create(ActorInitializer init)
 	{
-		return new WithMoveSound(this, init);
+		return new WithMoveSound(this);
+	}
+
+	public void RulesetLoaded(Ruleset rules, ActorInfo info)
+	{
+		var isMobile = info.HasTraitInfo<MobileInfo>();
+		var isAircraft = info.HasTraitInfo<AircraftInfo>();
+		if (isMobile ^ isAircraft == false)
+			throw new YamlException(nameof(WithMoveSound) + " trait requires actor to have either Mobile or Aircraft trait (not both at the same time). " +
+				$"Actor '{info.Name}' does not satisfy this requirement.");
 	}
 }
 
 public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWorld
 {
 	private readonly WithMoveSoundInfo info;
-	private readonly Mobile mobile;
+	private Aircraft? aircraft;
+	private Mobile? mobile;
 	private WithWorldMoveSound? worldTrait;
 
-	public WithMoveSound(WithMoveSoundInfo info, ActorInitializer init)
+	public WithMoveSound(WithMoveSoundInfo info)
 	{
 		this.info = info;
-		this.mobile = init.Self.Trait<Mobile>();
 	}
 
 	void INotifyCreated.Created(Actor self)
 	{
 		this.worldTrait = self.World.WorldActor.TraitOrDefault<WithWorldMoveSound>();
+		this.mobile = self.TraitOrDefault<Mobile>();
+		this.aircraft = self.TraitOrDefault<Aircraft>();
 	}
 
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
-		if (type != MovementType.None && this.mobile.IsMovingBetweenCells)
+		var enableSound = false;
+		if (this.mobile != null)
+			enableSound = type != MovementType.None && this.mobile.IsMovingBetweenCells;
+		else if (this.aircraft != null)
+			enableSound = type != MovementType.None && !this.aircraft.AtLandAltitude;
+
+		if (enableSound)
 			this.worldTrait?.Enable(self, this.info.Sound);
 		else
 			this.worldTrait?.Disable(self, this.info.Sound);
