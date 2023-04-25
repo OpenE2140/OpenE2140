@@ -6,6 +6,8 @@ Rules:
 	e2140|content/shared/vehicles/mcu/rules.yaml
 	e2140|content/shared/vehicles/hcrm/rules.yaml
 	e2140|content/shared/buildings/air_base/rules.yaml
+	e2140|content/shared/vehicles/bantha/rules.yaml
+	e2140|content/shared/aircrafts/heavy_lifter/rules.yaml
 
 Sequences:
 	e2140|content/shared/sequences/projectiles.yaml
@@ -14,6 +16,8 @@ Sequences:
 	e2140|content/shared/buildings/power_plant/sequences.yaml
 	e2140|content/shared/vehicles/hcrm/sequences.yaml
 	e2140|content/shared/buildings/air_base/sequences.yaml
+	e2140|content/shared/vehicles/bantha/sequences.yaml
+	e2140|content/shared/aircrafts/heavy_lifter/sequences.yaml
 
 Weapons:
 	e2140|content/shared/vehicles/hcrm/weapons.yaml
