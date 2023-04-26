@@ -163,7 +163,7 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 26,7
-	Actor42: usc_aircrafts_gargoil
+	Actor42: ucs_aircrafts_gargoil
 		Owner: UCS_Player
 		Facing: 384
 		Location: 18,9

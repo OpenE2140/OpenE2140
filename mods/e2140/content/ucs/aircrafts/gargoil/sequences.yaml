@@ -1,4 +1,4 @@
-usc_aircrafts_gargoil:
+ucs_aircrafts_gargoil:
 	idle:
 		Filename: aircraft_gargoil.vspr
 		Facings: -16
@@ -21,8 +21,8 @@ usc_aircrafts_gargoil:
 	#	Start: 162
 
 # TODO: remove after PR #20705
-usc_aircrafts_gargoil.ed:
-	Inherits: usc_aircrafts_gargoil
+ucs_aircrafts_gargoil.ed:
+	Inherits: ucs_aircrafts_gargoil
 	icon:
 		Filename: SPRI0.MIX
 		Start: 162

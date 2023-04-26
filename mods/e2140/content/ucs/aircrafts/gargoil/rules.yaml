@@ -1,4 +1,4 @@
-usc_aircrafts_gargoil:
+ucs_aircrafts_gargoil:
 	Inherits@1: ^UcsAircraft
 	Inherits@2: ^CoreAttackAircraft
 	Tooltip:
@@ -18,7 +18,7 @@ usc_aircrafts_gargoil:
 	RevealsShroud:
 		Range: 5c896
 	Armament@PRIMARY:
-		Weapon: usc_aircrafts_gargoil
+		Weapon: ucs_aircrafts_gargoil
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
@@ -33,14 +33,14 @@ usc_aircrafts_gargoil:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: usc_aircrafts_gargoil_husk
+		Actor: ucs_aircrafts_gargoil_husk
 		RequiresCondition: airborne
 
-usc_aircrafts_gargoil_husk:
+ucs_aircrafts_gargoil_husk:
 	Inherits: ^CoreAircraftHusk
 	Tooltip:
 		Name: STORM
 	RevealsShroud:
 		Range: 5c896
 	RenderSprites: 
-		Image: usc_aircrafts_gargoil
+		Image: ucs_aircrafts_gargoil
