@@ -8,10 +8,15 @@ ed_buildings_constr_center:
 		Dimensions: 3,3
 		Footprint: xxx xxx ==x
 	HitShape:
-		UseTargetableCellsOffsets: true
+		TargetableOffsets: 1124,-612,0,   1124,200,0,   1124,1024,0,   412,-612,0,   412,200,0,   412,1024,0,   -250,-850,0
 		Type: Rectangle
-			TopLeft: -1536, -1536
-			BottomRight: 768, 1536
+			TopLeft: -1024, -1024
+			BottomRight: 1324, 312	
+	HitShape@Elevator:
+		TargetableOffsets: -1624,1024,0
+		Type: Rectangle
+			TopLeft: 656, 656
+			BottomRight: 1412, 1412
 	Selectable:
 		Bounds: 3088, 1950, -1, -416
 	ElevatorProduction:
