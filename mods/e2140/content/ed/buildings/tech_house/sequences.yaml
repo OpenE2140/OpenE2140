@@ -15,3 +15,9 @@ ed_mcu_tech_house:
 	icon:
 		Filename: SPRI0.MIX
 		Start: 167
+
+ed_mcu_tech_house.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 167

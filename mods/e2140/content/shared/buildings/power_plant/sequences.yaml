@@ -16,7 +16,12 @@ shared_buildings_power_plant:
 
 shared_mcu_power_plant:
 	Inherits: shared_mcu
-	# TODO remove this!!! We only need faction specific variants!
+	icon:
+		Filename: SPRI0.MIX
+		Start: 183
+
+shared_mcu_power_plant.ucs:
+	Inherits: shared_mcu
 	icon:
 		Filename: SPRI1.MIX
 		Start: 183

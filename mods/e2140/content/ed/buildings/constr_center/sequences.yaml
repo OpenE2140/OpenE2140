@@ -15,3 +15,9 @@ ed_mcu_constr_center:
 	icon:
 		Filename: SPRI0.MIX
 		Start: 165
+
+ed_mcu_constr_center.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 165

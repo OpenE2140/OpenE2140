@@ -25,7 +25,12 @@ shared_buildings_air_base:
 
 shared_mcu_air_base:
 	Inherits: shared_mcu
-	# TODO remove this!!! We only need faction specific variants!
+	icon:
+		Filename: SPRI0.MIX
+		Start: 185
+
+shared_mcu_air_base.ucs:
+	Inherits: shared_mcu
 	icon:
 		Filename: SPRI1.MIX
 		Start: 185

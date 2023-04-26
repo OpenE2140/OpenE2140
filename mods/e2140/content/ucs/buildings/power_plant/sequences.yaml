@@ -1,5 +1,0 @@
-﻿shared_mcu_power_plant.ucs:
-	Inherits: shared_mcu_power_plant
-	icon:
-		Filename: SPRI1.MIX
-		Start: 183

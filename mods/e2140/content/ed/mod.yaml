@@ -27,7 +27,6 @@ Rules:
 Sequences:
 	e2140|content/ed/sequences.yaml
 	e2140|content/ed/buildings/constr_center/sequences.yaml
-	e2140|content/ed/buildings/power_plant/sequences.yaml
 	e2140|content/ed/buildings/tech_house/sequences.yaml
 	e2140|content/ed/vehicles/st01b/sequences.yaml
 	e2140|content/ed/vehicles/st02/sequences.yaml

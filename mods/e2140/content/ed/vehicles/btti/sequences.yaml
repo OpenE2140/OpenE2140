@@ -16,3 +16,14 @@ ed_vehicles_btti:
 	icon:
 		Filename: SPRI0.MIX
 		Start: 146
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 146
+
+# TODO: remove after PR #20705
+ed_vehicles_btti.ucs:
+	Inherits: ed_vehicles_btti
+	icon:
+		Filename: SPRI1.MIX
+		Start: 146
