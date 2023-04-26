@@ -315,7 +315,8 @@
 
 # Base for all aircrafts
 ^CoreAircraft:
-	Inherits: ^CoreUnit
+	Inherits@1: ^CoreUnit
+	Inherits@2: ^Cloakable
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
 		Type: aircraft
@@ -358,6 +359,9 @@
 		Weapon: VehicleExplosion
 		EmptyWeapon: VehicleExplosion
 		RequiresCondition: !airborne
+	# Aircraft can be cloaked, but only if it is on the ground.
+	Cloak:
+		RequiresCondition: shadowcloak && !airborne
 
 # Base for all aircrafts husks
 ^CoreAircraftHusk:
