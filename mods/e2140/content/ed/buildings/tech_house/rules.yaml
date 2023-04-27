@@ -8,10 +8,15 @@ ed_buildings_tech_house:
 		Dimensions: 3,3
 		Footprint: xx= xxx ===
 	HitShape:
-		UseTargetableCellsOffsets: true
+		TargetableOffsets: 2024,-1224,0,   2024,-512,0,   2024,100,0,   1024,-1224,0,  1024,-512,0,   1024,100,0
 		Type: Rectangle
-			TopLeft: -1535,-1948
-			BottomRight: 512, 512
+			TopLeft: -1424, -1724
+			BottomRight: 256, -256
+	HitShape@Elevator:
+		TargetableOffsets: 124,1024,0
+		Type: Rectangle
+			TopLeft: 656, -456
+			BottomRight: 1412, 312
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
 	Power:
