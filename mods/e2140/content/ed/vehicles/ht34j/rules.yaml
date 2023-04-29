@@ -2,7 +2,7 @@ ed_vehicles_ht34j:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreTurret
 	Tooltip:
-		Name: HR 34 J
+		Name: HT 34 J
 	Valued:
 		Cost: 1200
 	Buildable:

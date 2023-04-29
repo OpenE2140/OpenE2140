@@ -1,0 +1,84 @@
+ed_vehicles_ht30lr_laser:
+	ReloadDelay: 50
+	Range: 2c896
+	MinRange: 0c512
+	Report: 10.smp
+	ValidTargets: Ground, Water
+	Burst: 15
+	BurstDelays: 3
+	Projectile: LaserZap
+		HitAnimPalette:
+		LaunchEffectPalette:
+		Duration: 5
+		ZOffset: 512
+		Width: 0c20
+		Color: FF4935
+		SecondaryBeam: True
+		SecondaryBeamWidth: 0c35
+		SecondaryBeamColor: FF4935
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 16
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: smoke
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+
+ed_vehicles_ht30lr_missiles:
+	Inherits: Smudges
+	ReloadDelay: 48
+	Range: 4c896
+	MinRange: 0c512
+	Report: 5.smp
+	ValidTargets: Ground, Water
+	Burst: 4
+	BurstDelays: 6
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		HorizontalRateOfTurn: 20
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 15
+		ValidTargets: Ground
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 15
+		ValidTargets: Air
+	Warhead@EffectGround: CreateEffect
+		Image: projectile_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
+	Warhead@EffectActor: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Vehicle, Structure, Air
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air
+
+ed_vehicles_ht30lr_missiles_air:
+	Inherits: ed_vehicles_st02
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0
