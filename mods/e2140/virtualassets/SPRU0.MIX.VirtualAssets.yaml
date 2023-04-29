@@ -121,7 +121,7 @@ Generate:
 	turret_kt30:
 		idle: 378-386 16
 
-	turret_ht_30_lr:
+	turret_ht_30_lr_secondary:
 		idle: 387-395 16
 
 	turret_kt30_secondary:
@@ -136,7 +136,7 @@ Generate:
 	turret_little_eye:
 		idle: 396-404 16
 
-	turret_ht_30_lr_secondary: Player
+	turret_ht_30_lr: Player
 		idle: 405-413 16
 
 	turret_ht_34_j: Shadow

@@ -2,7 +2,7 @@ ed_vehicles_ht33r:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreTurret
 	Tooltip:
-		Name: HR 33 R
+		Name: HT 33 R
 	Valued:
 		Cost: 1200
 	Buildable:

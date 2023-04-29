@@ -1,0 +1,73 @@
+ed_vehicles_ht30lr:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: HT 30 LR
+	Valued:
+		Cost: 1500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 944, 784, 0, 0
+	Health:
+		HP: 600
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 2c896
+	Turreted@PRIMARY:
+		Turret: primary
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 30
+		Offset: 0,0,230
+	AttackTurreted:
+		Turrets: primary, secondary
+		Armaments: primary, secondary
+	WithSpriteTurret@SECONDARY:
+		Sequence: turret_secondary
+		Turret: secondary
+	Armament@PRIMARY_LASER:
+		Name: primary
+		Turret: primary
+		Weapon: ed_vehicles_ht30lr_laser
+		Recoil: 40
+		RecoilRecovery: 19
+		LocalOffset: 250,200,100
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY_LASER:
+		Name: primary
+		Turret: primary
+		Weapon: ed_vehicles_ht30lr_laser
+		Recoil: 40
+		RecoilRecovery: 19
+		LocalOffset: 250,-200,100
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@MISSILES:
+		Name: secondary
+		Turret: secondary
+		Weapon: ed_vehicles_ht30lr_missiles
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 100,100,0,100,-100,0
+		MuzzlePalette:
+	Armament@MISSILES_AIR:
+		Name: secondary
+		Turret: secondary
+		Weapon: ed_vehicles_ht30lr_missiles_air
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 100,100,0,100,-100,0
+		MuzzlePalette:
+	AmmoPool:
+		Armaments: primary
+		Ammo: 30
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		#ResetOnFire: True #TODO Secondary turret resets the timer when it shoots but it shouldn't.
+		Count: 20
