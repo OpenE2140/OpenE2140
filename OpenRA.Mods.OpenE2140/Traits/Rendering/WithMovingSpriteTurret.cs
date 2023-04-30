@@ -13,7 +13,7 @@ public class WithMovingSpriteTurretInfo : WithSpriteTurretInfo, Requires<MobileI
 	public readonly int OffsetHigh = 40;
 
 	[Desc("Offset indicating how low the turret moves down.")]
-	public readonly int OffsetLow = -30;
+	public readonly int OffsetLow = -40;
 
 	[Desc("Frequency of the movement. The higher the value, the quicker turret moves.")]
 	public readonly int Frequency = 20;
@@ -21,10 +21,13 @@ public class WithMovingSpriteTurretInfo : WithSpriteTurretInfo, Requires<MobileI
 	[Desc("Cycle duration.")]
 	public readonly int Duration = 1000;
 
+	[Desc("Turn cycle duration.")]
+	public readonly int TurnDuration = 500;
+
 	public override object Create(ActorInitializer init) { return new WithMovingSpriteTurret(init.Self, this); }
 }
 
-public class WithMovingSpriteTurret : WithSpriteTurret
+public class WithMovingSpriteTurret : WithSpriteTurret, INotifyMoving
 {
 	private readonly Mobile mobile;
 	private readonly BodyOrientation body;
@@ -33,6 +36,7 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 
 	private int current;
 	private int frequency;
+	private int duration;
 
 	public WithMovingSpriteTurret(Actor self, WithMovingSpriteTurretInfo info)
 		: base(self, info)
@@ -42,6 +46,7 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 		this.body = self.Trait<BodyOrientation>();
 		this.turreted = self.TraitsImplementing<Turreted>().First(turreted => turreted.Name == this.info.Turret);
 		this.frequency = info.Frequency;
+		this.duration = info.Duration;
 	}
 
 	public WVec GetTurretOffset(Actor self)
@@ -57,9 +62,9 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 		if (notWalking)
 			return offset;
 
-		var interpolation = int2.Lerp(this.info.OffsetLow, this.info.OffsetHigh, this.current, this.info.Duration);
+		var interpolation = int2.Lerp(this.info.OffsetLow, this.info.OffsetHigh, this.current, this.duration);
 
-		this.frequency *= this.current > this.info.Duration || this.current < 0 ? -1 : 1;
+		this.frequency *= this.current > this.duration || this.current < 0 ? -1 : 1;
 		this.current += this.frequency;
 
 		var turretMovement = new WVec(WDist.Zero, WDist.Zero, new WDist(interpolation));
@@ -67,5 +72,11 @@ public class WithMovingSpriteTurret : WithSpriteTurret
 		turretMovement = this.body.LocalToWorld(turretMovement);
 
 		return offset + turretMovement;
+	}
+
+	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
+	{
+		this.current = 0;
+		this.duration = type is MovementType.Turn ? this.info.TurnDuration : this.info.Duration;
 	}
 }
