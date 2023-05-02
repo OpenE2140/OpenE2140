@@ -1,0 +1,28 @@
+ed_infantry_a01:
+	Inherits@1: ^EdInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Android A01
+	Valued:
+		Cost: 50
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ed_infantry_a01_machine_gun_vs_ground
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ed_infantry_a01_machine_gun_vs_infantry
+		MuzzlePalette:
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: ed_infantry_a01_grenade
+		MuzzlePalette:
+	AttackFrontal:
+		Armaments: primary, secondary, tertiary

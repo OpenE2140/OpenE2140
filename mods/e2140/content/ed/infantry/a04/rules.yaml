@@ -1,0 +1,14 @@
+ed_infantry_a04:
+	Inherits: ^EdInfantry
+	Tooltip:
+		Name: Android A04
+	Valued:
+		Cost: 100
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 20
+	RevealsShroud:
+		Range: 2c896
+	#TODO Add mines

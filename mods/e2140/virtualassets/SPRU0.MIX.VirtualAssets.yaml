@@ -279,44 +279,51 @@ Generate:
 		idle: 691-720[5:1:0] 8
 		idle2: 691-720[5:1:0] 8
 		move: 691-720[0:4:2] 8
-		muzzle: 721-730 8
+		aim:  721-730[0:1:1] 8
+		shoot: 721-730[1:1:0] 8
 
 	infantry_silver_max: Player Infantry
 		idle: 731-760[4:1:1] 8
 		idle2: 731-760[5:1:0] 8
 		move: 731-760[0:4:2] 8
-		muzzle: 761-770 8
+		aim:  761-770[0:1:1] 8
+		shoot: 761-770[1:1:0] 8
 
 	infantry_silver_r: Player Infantry
 		idle: 771-800[4:1:1] 8
 		idle2: 771-800[5:1:0] 8
 		move: 771-800[0:4:2] 8
-		muzzle: 801-810 8
+		aim:  801-810[0:1:1] 8
+		shoot: 801-810[1:1:0] 8
 
 	infantry_android_a04: Player Infantry
 		idle: 811-840[4:1:1] 8
 		idle2: 811-840[5:1:0] 8
 		move: 811-840[0:4:2] 8
-		Muzzle: 841-850 8
+		deploy: 841-850 8
 
 	infantry_android_a03: Player Infantry
 		idle: 851-880[4:1:1] 8
 		idle2: 851-880[5:1:0] 8
 		move: 851-880[0:4:2] 8
-		Muzzle: 881-890 8
+		aim:  881-890[0:1:1] 8
+		shoot: 881-890[1:1:0] 8
 
 	infantry_android_a01: Player Infantry
 		idle: 891-920[4:1:1] 8
 		idle2: 891-920[5:1:0] 8
 		move: 891-920[0:4:2] 8
-		Muzzle: 921-930 8
-		Muzzle2: 931-940 8
+		aim:  921-930[0:1:1] 8
+		shoot: 921-930[1:1:0] 8
+		aim2: 931-940[0:1:1] 8
+		shoot2: 931-940[1:1:0] 8
 
 	infantry_android_a02: Player Infantry
 		idle: 941-970[4:1:1] 8
 		idle2: 941-970[5:1:0] 8
 		move: 941-970[0:4:2] 8
-		Muzzle: 971-980 8
+		aim:  971-980[0:1:1] 8
+		shoot: 971-980[1:1:0] 8
 
 	infantry_civil1: Player Infantry
 		idle: 981-1010[4:1:1] 8

@@ -1,0 +1,39 @@
+ed_infantry_a03:
+	Inherits: ed_infantry_deaths
+	idle:
+		Filename: infantry_android_a03.vspr
+		Facings: -8
+	idle2:
+		Filename: infantry_android_a03.vspr
+		Start: 8
+		Facings: -8
+		Tick: 200
+	move:
+		Filename: infantry_android_a03.vspr
+		Start: 16
+		Length: 4
+		Facings: -8
+		Tick: 60
+	shoot:
+		Filename: infantry_android_a03.vspr
+		Start: 56
+		Facings: -8
+		Tick: 100
+	aim:
+		Filename: infantry_android_a03.vspr
+		Start: 48
+		Facings: -8
+	icon:
+		Filename: SPRI0.MIX
+		Start: 123
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 123
+
+# TODO: remove after PR #20705
+ed_infantry_a03.ucs:
+	Inherits: ed_infantry_a03
+	icon:
+		Filename: SPRI1.MIX
+		Start: 123

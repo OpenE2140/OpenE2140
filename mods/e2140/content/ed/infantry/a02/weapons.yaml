@@ -1,0 +1,57 @@
+ed_infantry_a02:
+	Inherits: Smudges
+	ReloadDelay: 62
+	Range: 4c896
+	MinRange: 0c512
+	Report: 5.smp
+	ValidTargets: Ground, Water
+	Burst: 2
+	BurstDelays: 12
+	Projectile: Missile
+		Speed: 260
+		Arm: 1
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		HorizontalRateOfTurn: 20
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 25
+		DamageTypes: Explosion
+		ValidTargets: Ground
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 25
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@Effect: CreateEffect
+		Image: projectile_grenade
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Ground
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_small
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air
+
+ed_infantry_a02_air:
+	Inherits: ed_infantry_a02
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

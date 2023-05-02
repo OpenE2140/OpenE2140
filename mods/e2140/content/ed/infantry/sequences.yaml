@@ -1,0 +1,26 @@
+ed_infantry_deaths:
+	die:
+		Filename: death.vspr
+		Start: 25
+		Length: 7
+		Tick: 60
+	die-default:
+		Filename: death.vspr
+		Start: 25
+		Length: 7
+		Tick: 60
+	die-burn:
+		Filename: death.vspr
+		Start: 68
+		Length: 7
+		Tick: 60
+	die-explode:
+		Filename: death.vspr
+		Start: 54
+		Length: 7
+		Tick: 60
+	die-crushed:
+		Filename: death.vspr
+		Start: 45
+		Length: 2
+		Tick: 2000

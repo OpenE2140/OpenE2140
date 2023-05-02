@@ -1,0 +1,33 @@
+ucs_infantry_silver_r:
+	Inherits@1: ^UcsInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Silver R
+	Valued:
+		Cost: 75
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 4c896
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ucs_infantry_silver_r
+		LocalOffset: 100,0,150
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ucs_infantry_silver_r_air
+		LocalOffset: 100,0,150
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 2
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 62
+		ResetOnFire: True
+		Count: 1

@@ -1,0 +1,39 @@
+ucs_infantry_silver_one:
+	Inherits: ucs_infantry_deaths
+	idle:
+		Filename: infantry_silver_one.vspr
+		Facings: -8
+	idle2:
+		Filename: infantry_silver_one.vspr
+		Start: 8
+		Facings: -8
+		Tick: 200
+	move:
+		Filename: infantry_silver_one.vspr
+		Start: 16
+		Length: 4
+		Facings: -8
+		Tick: 60
+	shoot:
+		Filename: infantry_silver_one.vspr
+		Start: 56
+		Facings: -8
+		Tick: 100
+	aim:
+		Filename: infantry_silver_one.vspr
+		Start: 48
+		Facings: -8
+	icon:
+		Filename: SPRI1.MIX
+		Start: 117
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 117
+
+# TODO: remove after PR #20705
+ucs_infantry_silver_one.ed:
+	Inherits: ucs_infantry_silver_one
+	icon:
+		Filename: SPRI0.MIX
+		Start: 117

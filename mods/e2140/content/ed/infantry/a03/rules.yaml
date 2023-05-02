@@ -1,0 +1,18 @@
+ed_infantry_a03:
+	Inherits@1: ^EdInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Android A03
+	Valued:
+		Cost: 100
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Weapon: ed_infantry_a03
+		LocalOffset: 400,0,50
+		MuzzlePalette:

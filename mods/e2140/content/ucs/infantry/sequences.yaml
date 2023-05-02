@@ -1,0 +1,26 @@
+ucs_infantry_deaths:
+	die:
+		Filename: death.vspr
+		Start: 75
+		Length: 6
+		Tick: 60
+	die-default:
+		Filename: death.vspr
+		Start: 75
+		Length: 6
+		Tick: 60
+	die-explode:
+		Filename: death.vspr
+		Start: 75
+		Length: 6
+		Tick: 60
+	die-burn:
+		Filename: death.vspr
+		Start: 75
+		Length: 6
+		Tick: 60
+	die-crushed:
+		Filename: death.vspr
+		Start: 80
+		Length: 2
+		Tick: 2000

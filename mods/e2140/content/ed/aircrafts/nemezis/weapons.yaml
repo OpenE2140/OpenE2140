@@ -14,6 +14,7 @@ ed_aircrafts_nemezis:
 	Warhead@Damage: SpreadDamage
 		Spread: 0c728
 		Damage: 1750
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: nuclear_explosion

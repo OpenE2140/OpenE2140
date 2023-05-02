@@ -1,0 +1,34 @@
+ucs_buildings_robot_factory:
+	Defaults:
+		Filename: building_robot_factory.vspr
+	idle:
+	idle_light:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle_light:
+		Start: 3
+	opening:
+		Combine:
+			0: 
+				Filename: content/ucs/buildings/robot_factory/robot_factory_door_patch.png
+				Offset: -32,18
+			1: 
+				Filename: building_robot_factory.vspr
+				Start: 4
+				Length: 2
+				Offset: -32,18
+		Length: 3
+		Tick: 80
+
+ucs_mcu_robot_factory:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 170
+
+ucs_mcu_robot_factory.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 170

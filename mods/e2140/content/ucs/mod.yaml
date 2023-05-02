@@ -8,6 +8,7 @@ Rules:
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml
 	e2140|content/ucs/buildings/prod_center/rules.yaml
+	e2140|content/ucs/buildings/robot_factory/rules.yaml
 	e2140|content/ucs/vehicles/t100/rules.yaml
 	e2140|content/ucs/vehicles/raptor_es/rules.yaml
 	e2140|content/ucs/vehicles/raptor_ad/rules.yaml
@@ -20,12 +21,17 @@ Rules:
 	e2140|content/ucs/aircrafts/gargoil/rules.yaml
 	e2140|content/ucs/aircrafts/hell_wind/rules.yaml
 	e2140|content/ucs/aircrafts/gargoil2/rules.yaml
+	e2140|content/ucs/infantry/silver_one/rules.yaml
+	e2140|content/ucs/infantry/silver_r/rules.yaml
+	e2140|content/ucs/infantry/silver_max/rules.yaml
+	e2140|content/ucs/infantry/silver_t/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
 	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
 	e2140|content/ucs/buildings/power_plant/sequences.yaml
 	e2140|content/ucs/buildings/prod_center/sequences.yaml
+	e2140|content/ucs/buildings/robot_factory/sequences.yaml
 	e2140|content/ucs/vehicles/t100/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_ad/sequences.yaml
@@ -38,6 +44,12 @@ Sequences:
 	e2140|content/ucs/aircrafts/gargoil/sequences.yaml
 	e2140|content/ucs/aircrafts/hell_wind/sequences.yaml
 	e2140|content/ucs/aircrafts/gargoil2/sequences.yaml
+	e2140|content/ucs/infantry/sequences.yaml
+	e2140|content/ucs/infantry/silver_one/sequences.yaml
+	e2140|content/ucs/infantry/silver_r/sequences.yaml
+	e2140|content/ucs/infantry/silver_max/sequences.yaml
+	e2140|content/ucs/infantry/silver_t/sequences.yaml
+
 
 Voices:
 	e2140|content/ucs/voices.yaml
@@ -53,3 +65,7 @@ Weapons:
 	e2140|content/ucs/aircrafts/gargoil/weapons.yaml
 	e2140|content/ucs/aircrafts/hell_wind/weapons.yaml
 	e2140|content/ucs/aircrafts/gargoil2/weapons.yaml
+	e2140|content/ucs/infantry/silver_one/weapons.yaml
+	e2140|content/ucs/infantry/silver_r/weapons.yaml
+	e2140|content/ucs/infantry/silver_max/weapons.yaml
+	e2140|content/ucs/infantry/silver_t/weapons.yaml

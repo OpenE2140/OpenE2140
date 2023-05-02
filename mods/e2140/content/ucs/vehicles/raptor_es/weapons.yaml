@@ -9,6 +9,7 @@ ucs_vehicles_raptor_es:
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 7
+		DamageTypes: Default
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm

@@ -17,6 +17,7 @@ ed_vehicles_st01b:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 15
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon

@@ -1,0 +1,66 @@
+ucs_buildings_robot_factory:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Robot Factory
+	Health:
+		HP: 700
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -520,-660,0
+	TransformSequence:
+		Offset: 500,580,0
+	HitShape:
+		TargetableOffsets: -250,-650,0,   -250,-100,0,   -250,400,0,   550,-350,0,   550,100,0,   550,600,0
+		Type: Rectangle
+			TopLeft: -950, -700
+			BottomRight: 900, 750
+	Selectable:
+		Bounds: 2064, 1984, 0,0
+	Power:
+		Amount: -200
+	Production:
+		Produces: Infantry.UCS
+		RequiresCondition: !Transforming
+	ProductionQueue:
+		Type: Infantry.UCS
+		Factions: ucs
+		Group: Infantry
+		LowPowerModifier: 150
+		ReadyAudio: ProductionComplete
+		QueuedAudio: ProductionStarted
+		OnHoldAudio: ProductionInterrupted
+		CancelledAudio: ProductionCancelled
+	ProductionBar:
+		ProductionType: Infantry.UCS
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: -450, 400, 0
+		ExitCell: -1,2
+		Facing: 384
+	Exit@Exit2:
+		SpawnOffset: -450, 400, 0
+		ExitCell: 0,2
+		Facing: 500
+	Exit@Exit3:
+		SpawnOffset: -450, 400, 0
+		ExitCell: 1,2
+		Facing: 650
+	GrantConditionOnDamageState:
+		Condition: damaged
+	WithProductionDoorOverlay:
+		RequiresCondition: !Transforming && !damaged
+		Sequence: opening
+
+ucs_mcu_robot_factory:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Robot Factory
+	Transforms:
+		IntoActor: ucs_buildings_robot_factory
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS
+		BuildDuration: 40

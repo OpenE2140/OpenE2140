@@ -23,6 +23,7 @@ ed_aircrafts_vtol:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 80
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon

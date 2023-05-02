@@ -4,5 +4,14 @@ EdVehicleVoice:
 		Select: 68.smp, 69.smp
 		Action: 70.smp, 71.smp
 		Attack: 74.smp, 75.smp
-		Escort: 73.smp
+		Escort: 72.smp, 73.smp
 		Unload: 77.smp
+
+EdInfantryVoice:
+	DefaultVariant:
+	Voices:
+		Select: 44.smp, 45.smp
+		Action: 46.smp, 47.smp
+		Escort: 48.smp, 49.smp
+		Attack: 50.smp, 51.smp
+		Unload: 53.smp

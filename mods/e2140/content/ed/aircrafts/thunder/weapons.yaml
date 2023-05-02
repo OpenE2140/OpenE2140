@@ -23,6 +23,7 @@ ed_aircrafts_thunder:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 20
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket

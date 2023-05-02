@@ -1,0 +1,26 @@
+ucs_infantry_silver_t:
+	Inherits: ^UcsInfantry
+	Tooltip:
+		Name: Silver T
+	Valued:
+		Cost: 70
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 40
+	RevealsShroud:
+		Range: 2c896
+	Explodes:
+		Weapon: ucs_infantry_silver_t_explode
+		EmptyWeapon: ucs_infantry_silver_t_explode
+		DamageSource: Killer
+	AttackFrontal:
+		Voice: Attack
+	Armament@PRIMARY:
+		Weapon: ucs_infantry_silver_t
+		MuzzlePalette:
+	GrantConditionOnAttack:
+		Condition: triggered
+	KillsSelf:
+		RequiresCondition: triggered

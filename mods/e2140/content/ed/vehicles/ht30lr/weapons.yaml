@@ -19,6 +19,7 @@ ed_vehicles_ht30lr_laser:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 16
+		DamageTypes: Default
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: smoke
@@ -51,10 +52,12 @@ ed_vehicles_ht30lr_missiles:
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 15
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 15
+		DamageTypes: Explosion
 		ValidTargets: Air
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket

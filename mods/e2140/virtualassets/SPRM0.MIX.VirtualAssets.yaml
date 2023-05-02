@@ -34,6 +34,11 @@ Generate:
 		idle: 61
 		explode: 129-136
 
+	projectile_grenade:
+		idle: 58,59
+		explode: 8-15
+		explode2: 0-7
+
 	smoke:
 		idle: 169-176
 

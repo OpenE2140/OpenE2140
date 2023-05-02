@@ -1,0 +1,17 @@
+ucs_infantry_silver_one:
+	Inherits@1: ^UcsInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Silver One
+	Valued:
+		Cost: 50
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Weapon: ucs_infantry_silver_one
+		MuzzlePalette:

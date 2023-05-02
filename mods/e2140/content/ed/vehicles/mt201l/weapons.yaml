@@ -19,6 +19,7 @@ ed_vehicles_mt201l:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 8
+		DamageTypes: Default
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: smoke

@@ -16,6 +16,7 @@ ucs_vehicles_spider:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 30
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_plasma

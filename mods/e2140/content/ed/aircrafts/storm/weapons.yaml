@@ -10,6 +10,7 @@ ed_aircrafts_storm:
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 10
+		DamageTypes: Default
 		ValidTargets: Ground, Air
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
