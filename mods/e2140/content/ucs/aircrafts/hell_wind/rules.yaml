@@ -18,9 +18,14 @@ ucs_aircrafts_hell_wind:
 	RevealsShroud:
 		Range: 3c896
 	Armament@PRIMARY:
+		Name: primary
 		Weapon: ucs_aircrafts_hell_wind
 		MuzzlePalette:
 		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ucs_aircrafts_hell_wind_targeting
+		MuzzlePalette:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	WithMoveSound:
@@ -29,6 +34,7 @@ ucs_aircrafts_hell_wind:
 		Actor: ucs_aircrafts_hell_wind_husk
 		RequiresCondition: airborne
 	AmmoPool:
+		Armaments: primary
 		Ammo: 7
 		AmmoCondition: ammo
 	ReloadAmmoPool:

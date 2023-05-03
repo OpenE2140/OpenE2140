@@ -29,3 +29,9 @@ ucs_aircrafts_hell_wind:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure
+
+ucs_aircrafts_hell_wind_targeting:
+	ReloadDelay: 100
+	Range: 6c896
+	ValidTargets: Ground, Water
+	Projectile: InstantHit

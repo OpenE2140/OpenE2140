@@ -21,3 +21,9 @@ ed_aircrafts_nemezis:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
+
+ed_aircrafts_nemezis_targeting:
+	ReloadDelay: 900
+	Range: 6c896
+	ValidTargets: Ground, Water
+	Projectile: InstantHit
