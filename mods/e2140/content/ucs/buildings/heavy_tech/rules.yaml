@@ -12,10 +12,15 @@ ucs_buildings_heavy_tech:
 		Image: ucs_buildings_heavy_tech
 		ConstructionTime: 20
 	HitShape:
-		UseTargetableCellsOffsets: true
+		TargetableOffsets: 2324,-1124,0,   2324,-412,0,   2324,300,0,   1524,-1124,0,   1524,-412,0,   1524,300,0,   624,300,0
 		Type: Rectangle
-			TopLeft: -1535,-1948
-			BottomRight: 512, 512
+			TopLeft: -1424, -1824
+			BottomRight: 512, -256
+	HitShape@Elevator:
+		TargetableOffsets: -200,-1024,0
+		Type: Rectangle
+			TopLeft: -1424, -256
+			BottomRight: -612, 412
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
 	Power:
