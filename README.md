@@ -39,6 +39,7 @@ Video previews showcasing latest development:
 - Disembo
 	* custom animations for MCU deployment
 	* custom self-destruct cursor
+	* custom rally point artwork
 - [michal-mad](https://github.com/michal-mad)
 	* programming
 
