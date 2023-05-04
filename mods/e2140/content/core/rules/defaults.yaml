@@ -155,11 +155,7 @@
 		InfiniteBuildLimit: 10
 	# Allow player setting rally point. TODO: needs custom flag and circle sequences.
 	RallyPoint:
-		Image:
-		FlagSequence:
-		CirclesSequence:
 		Cursor: move
-		Palette:
 		LineWidth: 2
 
 # Base for all factories using elevator production.

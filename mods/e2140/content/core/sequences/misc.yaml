@@ -32,3 +32,14 @@ moveflash:
 		Length: 6
 		Tick: 60
 		ZOffset: 2048
+
+rallypoint:
+	Defaults:
+		Filename: content/core/assets/rallypoint.png
+		Offset: 0,-20
+		ZOffset: 1024
+	flag:
+		Length: 10
+		Tick: 80
+	circles:
+		Start: 10
