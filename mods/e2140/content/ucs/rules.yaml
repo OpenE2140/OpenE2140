@@ -18,6 +18,7 @@ World:
 	Inherits@2: ^CoreTurret
 	-WithSpriteTurret:
 	WithMovingSpriteTurret:
+		TurnDuration: 750
 	WithTurretShadow:
 		ShadowColor: 00000046
 		Offset: 0,32,-300
