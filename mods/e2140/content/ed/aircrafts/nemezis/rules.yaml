@@ -21,6 +21,7 @@ ed_aircrafts_nemezis:
 		Weapon: ed_aircrafts_nemezis
 		MuzzlePalette:
 	AttackAircraft:
+		AttackType: Strafe
 		StrafeRunLength: 6c0
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
