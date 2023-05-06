@@ -15,9 +15,7 @@ ucs_vehicles_raptor_ad:
 		Facings: -8
 		Tick: 80
 	shadow:
-		Filename: vehicle_raptor_ad.vspr
-		Start: 80
-		Length: 1
+		Filename: raptor_shadow.vspr
 		Facings: -8
 		Offset: 6,5,0
 		ZOffset: -256

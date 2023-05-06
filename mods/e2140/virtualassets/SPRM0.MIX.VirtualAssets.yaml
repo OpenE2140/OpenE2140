@@ -1,4 +1,18 @@
 Source: SPRM0.MIX
+
+Palettes:
+	Smoke: Merge
+		0: 0 0 0
+		1: 8 8 8
+		2: 16 16 16
+		3: 24 24 24
+		4: 32 32 32
+		5: 40 40 40
+		6: 48 48 48
+		7: 56 56 56
+		8: 64 64 64
+		9: 72 72 72
+
 Generate:
 	# TODO map all stuff here!
 	projectile_rocket:
@@ -53,5 +67,3 @@ Generate:
 	vehicle_explosion:
 		explode1: 32-39
 		explode2: 40-47
-
-
