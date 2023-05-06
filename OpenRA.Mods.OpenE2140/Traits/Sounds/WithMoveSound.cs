@@ -23,7 +23,7 @@ public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
 {
 	[FieldLoader.Require]
 	public readonly string Sound = "";
-	
+
 	public override object Create(ActorInitializer init)
 	{
 		return new WithMoveSound(this);
@@ -33,9 +33,15 @@ public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
 	{
 		var isMobile = info.HasTraitInfo<MobileInfo>();
 		var isAircraft = info.HasTraitInfo<AircraftInfo>();
-		if (isMobile ^ isAircraft == false)
-			throw new YamlException(nameof(WithMoveSound) + " trait requires actor to have either Mobile or Aircraft trait (not both at the same time). " +
-				$"Actor '{info.Name}' does not satisfy this requirement.");
+
+		if (!isMobile && !isAircraft)
+		{
+			throw new YamlException(
+				nameof(WithMoveSound)
+				+ " trait requires actor to have either Mobile or Aircraft trait (not both at the same time). "
+				+ $"Actor '{info.Name}' does not satisfy this requirement."
+			);
+		}
 	}
 }
 
@@ -61,6 +67,7 @@ public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWo
 	void INotifyMoving.MovementTypeChanged(Actor self, MovementType type)
 	{
 		var enableSound = false;
+
 		if (this.mobile != null)
 			enableSound = type != MovementType.None && this.mobile.IsMovingBetweenCells;
 		else if (this.aircraft != null)

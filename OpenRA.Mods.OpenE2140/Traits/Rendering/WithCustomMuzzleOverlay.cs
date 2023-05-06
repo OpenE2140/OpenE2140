@@ -11,26 +11,27 @@
 
 #endregion
 
-using OpenRA.Mods.Common.Traits.Render;
-using OpenRA.Mods.Common.Traits;
-using OpenRA.Traits;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [Desc("Renders the MuzzleSequence from the Armament trait with zero offset.")]
 public class WithCustomMuzzleOverlayInfo : ConditionalTraitInfo, Requires<RenderSpritesInfo>, Requires<AttackBaseInfo>, Requires<ArmamentInfo>
 {
-	[Desc("Draw relative to the weapon's position but with zero offset. " +
-		"This means the rendering is same as with original WithMuzzleOverlay trait just Armament's LocalOffset is 0,0,0. " +
-		"Useful when muzzle sprites in assets are properly aligned with sprites having the actor's weapon. " +
-		"When set to false, original behavior of WithMuzzleOverlay trait is used")]
+	[Desc(
+		"Draw relative to the weapon's position but with zero offset. "
+		+ "This means the rendering is same as with original WithMuzzleOverlay trait just Armament's LocalOffset is 0,0,0. "
+		+ "Useful when muzzle sprites in assets are properly aligned with sprites having the actor's weapon. "
+		+ "When set to false, original behavior of WithMuzzleOverlay trait is used"
+	)]
 	public readonly bool ZeroOffset = false;
 
 	public override object Create(ActorInitializer init) { return new WithCustomMuzzleOverlay(init.Self, this); }
 }
-
 
 public class WithCustomMuzzleOverlay : ConditionalTrait<WithCustomMuzzleOverlayInfo>, INotifyAttack, IRender, ITick
 {
@@ -44,19 +45,17 @@ public class WithCustomMuzzleOverlay : ConditionalTrait<WithCustomMuzzleOverlayI
 		var render = self.Trait<RenderSprites>();
 		var facing = self.TraitOrDefault<IFacing>();
 
-		armaments = self.TraitsImplementing<Armament>()
-			.Where(arm => arm.Info.MuzzleSequence != null)
-			.ToArray();
+		this.armaments = self.TraitsImplementing<Armament>().Where(arm => arm.Info.MuzzleSequence != null).ToArray();
 
-		foreach (var arm in armaments)
+		foreach (var arm in this.armaments)
 		{
 			foreach (var b in arm.Barrels)
 			{
 				var barrel = b;
-				var turreted = self.TraitsImplementing<Turreted>()
-					.FirstOrDefault(t => t.Name == arm.Info.Turret);
+				var turreted = self.TraitsImplementing<Turreted>().FirstOrDefault(t => t.Name == arm.Info.Turret);
 
 				Func<WAngle> getFacing;
+
 				if (turreted != null)
 					getFacing = () => turreted.WorldOrientation.Yaw;
 				else if (facing != null)
@@ -64,49 +63,50 @@ public class WithCustomMuzzleOverlay : ConditionalTrait<WithCustomMuzzleOverlayI
 				else
 					getFacing = () => WAngle.Zero;
 
-				var muzzleFlash = new Animation(self.World, render.GetImage(self), getFacing)
-				{
-					IsDecoration = true
-				};
+				var muzzleFlash = new Animation(self.World, render.GetImage(self), getFacing) { IsDecoration = true };
 
-				var dummyBarrel = new Barrel
-				{
-					Offset = WVec.Zero,
-					Yaw = barrel.Yaw
-				};
+				var dummyBarrel = new Barrel { Offset = WVec.Zero, Yaw = barrel.Yaw };
+
 				if (!this.Info.ZeroOffset)
 					dummyBarrel = barrel;
 
 				this.visible.Add(barrel, false);
-				this.anims.Add(barrel,
-					new AnimationWithOffset(muzzleFlash,
+
+				this.anims.Add(
+					barrel,
+					new AnimationWithOffset(
+						muzzleFlash,
 						() => arm.MuzzleOffset(self, dummyBarrel),
-						() => IsTraitDisabled || !this.visible[barrel],
-						p => RenderUtils.ZOffsetFromCenter(self, p, 2)));
+						() => this.IsTraitDisabled || !this.visible[barrel],
+						p => RenderUtils.ZOffsetFromCenter(self, p, 2)
+					)
+				);
 			}
 		}
 	}
 
 	void INotifyAttack.Attacking(Actor self, in Target target, Armament armement, Barrel barrel)
 	{
-		if (armement == null || barrel == null || !armaments.Contains(armement))
+		if (armement == null || barrel == null || !this.armaments.Contains(armement))
 			return;
 
 		var sequence = armement.Info.MuzzleSequence;
-		visible[barrel] = true;
-		anims[barrel].Animation.PlayThen(sequence, () => visible[barrel] = false);
+		this.visible[barrel] = true;
+		this.anims[barrel].Animation.PlayThen(sequence, () => this.visible[barrel] = false);
 	}
 
 	void INotifyAttack.PreparingAttack(Actor self, in Target target, Armament armament, Barrel barrel) { }
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 	{
-		foreach (var arm in armaments)
+		foreach (var arm in this.armaments)
 		{
 			var palette = wr.Palette(arm.Info.MuzzlePalette);
+
 			foreach (var barrel in arm.Barrels)
 			{
-				var anim = anims[barrel];
+				var anim = this.anims[barrel];
+
 				if (anim.DisableFunc != null && anim.DisableFunc())
 					continue;
 
@@ -124,7 +124,7 @@ public class WithCustomMuzzleOverlay : ConditionalTrait<WithCustomMuzzleOverlayI
 
 	void ITick.Tick(Actor self)
 	{
-		foreach (var a in anims.Values)
+		foreach (var a in this.anims.Values)
 			a.Animation.Tick();
 	}
 }
