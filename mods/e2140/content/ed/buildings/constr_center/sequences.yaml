@@ -3,11 +3,11 @@ ed_buildings_constr_center:
 		Filename: building_constr_center.vspr
 		Offset: 6, -25, 0
 	idle:
-	idle_light:
+	idle-nopower:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle_light:
+	damaged-idle-nopower:
 		Start: 3
 
 ed_mcu_constr_center:

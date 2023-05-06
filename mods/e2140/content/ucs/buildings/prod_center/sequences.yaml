@@ -3,11 +3,11 @@ ucs_buildings_prod_center:
 		Filename: building_prod_center.vspr
 		Offset: -32, -22, 0
 	idle:
-	idle_light:
+	idle-nopower:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle_light:
+	damaged-idle-nopower:
 		Start: 3
 	deploy:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png

@@ -8,11 +8,11 @@ ucs_buildings_heavy_tech:
 		Offset: -20, -115
 		Length: 16
 		Tick: 50
-	idle_light:
+	idle-nopower:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle_light:
+	damaged-idle-nopower:
 		Start: 3
 	deploy:
 		Filename: content/ucs/buildings/heavy_tech/mcu_deploy.png

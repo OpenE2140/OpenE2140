@@ -3,11 +3,11 @@ shared_buildings_power_plant:
 		Filename: building_power_plant.vspr
 		Offset: -10, -20, 0
 	idle:
-	idle_light:
+	idle-nopower:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle_light:
+	damaged-idle-nopower:
 		Start: 3
 	addon:
 		Start: 4

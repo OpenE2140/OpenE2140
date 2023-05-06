@@ -29,7 +29,7 @@ public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
 		return new WithMoveSound(this);
 	}
 
-	public void RulesetLoaded(Ruleset rules, ActorInfo info)
+	void IRulesetLoaded<ActorInfo>.RulesetLoaded(Ruleset rules, ActorInfo info)
 	{
 		var isMobile = info.HasTraitInfo<MobileInfo>();
 		var isAircraft = info.HasTraitInfo<AircraftInfo>();
