@@ -43,7 +43,9 @@ Generate:
 		idle: 6
 		idle-nopower: 6 LightsOff
 		damaged-idle: 7
+			Offsets: 7:0,-1
 		damaged-idle-nopower: 7 LightsOff
+			Offsets: 7:0,-1
 
 	building_research_center: Shadow Player
 		idle: 12
@@ -64,6 +66,7 @@ Generate:
 	building_water_base: Shadow Player
 		idle: 18
 		damaged-idle: 19
+			Offsets: 19:-1,0
 		addon: 88
 		addon_damaged: 89
 
@@ -113,7 +116,9 @@ Generate:
 		idle: 43
 		damaged-idle: 48
 		lower: 46
+			Offsets: 46:0,-14
 		upper: 47
+			Offsets: 47:0,12
 		opening: 43-45
 		open: 45
 		closing: 45-43
@@ -201,6 +206,7 @@ Generate:
 	building_civ_building_4: Shadow
 		idle: 96
 		damaged-idle: 97
+			Offsets: 97:5,0
 
 	building_civ_building_5: Shadow
 		idle: 98
