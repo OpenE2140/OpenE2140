@@ -12,11 +12,10 @@ ed_vehicles_warhammer:
 		Facings: -16
 		Offset: 0, 0, 0
 	muzzle:
-		Filename: turret_warhammer.vspr
-		Start: 16
+		Filename: content/ed/vehicles/warhammer/turret_warhammer_muzzle.png
 		Length: 3
 		Facings: -16
-		Offset: 0, 0, 0
+		Offset: 0,-5
 	icon:
 		Filename: SPRI0.MIX
 		Start: 280
