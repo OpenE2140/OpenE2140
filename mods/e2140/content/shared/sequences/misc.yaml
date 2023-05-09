@@ -83,7 +83,8 @@ smoking:
 		Filename: content/core/assets/smoking_start.png
 		Length: 5
 	loop:
-		Filename: smoking.vspr
+		Filename: content/core/assets/smoking.png
+		Frames: 0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3
 		Length: 20
 	end:
 		Filename: content/core/assets/smoking_end.png
