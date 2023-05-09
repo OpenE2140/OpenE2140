@@ -88,16 +88,22 @@ Generate:
 
 	turret_spider: Player
 		idle: 100-108 16
+			Offsets: 101:-2,-1 102,103:2,-1 104:2,0 106:0,1 107:-1,0
 
 	vehicle_raptor_es: Player Shadow NoMuzzle
 		idle: 115,144,122,145,129,146,136,147,143 16
+			Offsets: 144,145,146,147:-5,0
 		move: 109-143[0:6:1] 8
+			Offsets: 109:1,0 119:0,-2 133:0,-2 140:0,-2
 		muzzle: 115,144,122,145,129,146,136,147,143 16 3 Muzzle
+			Offsets: 144,145,146,147:-5,0
 		move.turn: 115,111,122,118,129,125,136,132,143,139 8
 
 	vehicle_raptor_ad: Player Shadow
 		idle: 154,184,161,183,168,185,175,186,182 16
+			Offsets: 184:-5,-1 183:-3,0 185:-5,-1 186:-4,-1 175:0,2
 		move: 148-182[0:6:1] 8
+			Offsets: 148:0,-1 158:0,-2
 		move.turn: 154,149,161,156,168,164,175,171,182,177 8
 
 	vehicle_wtp_100: Player
@@ -112,7 +118,9 @@ Generate:
 
 	turret_hcr_m: Shadow
 		idle: 211-219 16
+			Offsets: 214:1,0 218:-1,0
 		repair: 230-234,225-229,220-224 4
+			Offsets: 230:0,-9 231:-1,-9 232-234:0,-9 225:11,-2 226,227:12,-2 228:13,-2 229:12,-2 220:0,6 221-224:-1,6
 
 	aircraft_heavy_lifter: Player
 		idle: 235-243 16
@@ -127,6 +135,7 @@ Generate:
 
 	cargo: Shadow
 		idle: 257-265 16
+			Offsets: 259:1,-1 261:0,2 263:-1,-1
 
 	vehicle_bio: Shadow Player Tracks FlickerOff
 		idle: 266-274 16
@@ -169,9 +178,11 @@ Generate:
 
 	turret_ht_33_r: Shadow Player
 		idle: 342-350 16
+			Offsets: 345:1,0 347:1,0
 
 	turret_mt_201l: Shadow Player
 		idle: 351-359 16
+			Offsets: 351-354:-1,0 356-359:-1,0
 
 	turret_mt_200: Shadow Player NoMuzzle
 		idle: 360-368 16
@@ -186,12 +197,15 @@ Generate:
 
 	turret_ht_30_lr_secondary:
 		idle: 387-395 16
+			Offsets: 390-391:1,0 392-394:2,0
 
 	turret_kt30_secondary:
 		idle: 387-395 16
+			Offsets: 390-391:1,0 392-394:2,0
 
 	turret_thunder:
 		idle: 396-404 16
+			Offsets: 390-391:1,0 392-394:2,0
 
 	turret_st_02:
 		idle: 396-404 16
@@ -201,6 +215,7 @@ Generate:
 
 	turret_ht_30_lr: Player
 		idle: 405-413 16
+			Offsets: 407-410:2,0 411:2,0 412:1,0  
 
 	turret_ht_34_j: Shadow
 		idle: 414-422 16
@@ -214,6 +229,7 @@ Generate:
 
 	turret_defend_tower: Shadow
 		idle: 432-440 16
+			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0
 
 	turret_big_eye: Player
 		idle: 441-449 16
@@ -232,21 +248,26 @@ Generate:
 
 	turret_atm_500: Shadow NoMuzzle
 		idle: 468-476 16
+			Offsets: 475:2,0
 		muzzle: 468-476 16 3 Muzzle
 
 	turret_miner: Shadow NoMuzzle
 		idle: 468-476 16
+			Offsets: 475:2,0
 		muzzle: 468-476 16 3 Muzzle
 
 	turret_miner_bt: Shadow NoMuzzle
 		idle: 468-476 16
+			Offsets: 475:2,0
 		muzzle: 468-476 16 3 Muzzle
 
 	turret_big_eye_secondary:
 		idle: 477-485 16
+			Offsets: 479-481:1,0
 
 	turret_heavy_def_tower_secondary:
 		idle: 477-485 16
+			Offsets: 479-481:1,0
 
 	ship_kt30: Shadow Player
 		idle: 486-494 16
@@ -281,7 +302,9 @@ Generate:
 
 	turret_t100: Shadow Player NoMuzzle
 		idle: 558-566 16
+			Offsets: 558,559,561,562-564:1,0 560:1,-1 565:1,1 566:0,2
 		muzzle: 558-566 16 3 Muzzle
+			Offsets: 558,559,561,562-564:1,0 560:1,-1 565:1,1 566:0,2
 
 	vehicle_atm_500: Shadow Player Tracks
 		idle: 567-575 16
@@ -296,12 +319,15 @@ Generate:
 
 	turret_screamer: Shadow
 		idle: 587-595 16
+			Offsets: 587-595:-1,0
 
 	turret_an_center: Shadow
 		idle: 587-595 16
+			Offsets: 587-595:-1,0
 
 	turret_heavy_tech: Shadow
 		idle: 587-595 16
+			Offsets: 587-595:-1,0
 
 	aircraft_hat: Player Rotors
 		idle: 596-604 16
@@ -317,6 +343,7 @@ Generate:
 
 	ship_ttre_400: Shadow Player
 		idle: 616-624 16
+			Offsets: 616-624:-1,0
 
 	ship_shark: Shadow Player
 		idle: 625-633 16
