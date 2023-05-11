@@ -35,5 +35,5 @@ ed_aircrafts_nemezis_husk:
 		Name: Heavy Bomber
 	RevealsShroud:
 		Range: 3c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ed_aircrafts_nemezis

@@ -11,7 +11,7 @@ ed_buildings_constr_center:
 		TargetableOffsets: 1124,-612,0,   1124,200,0,   1124,1024,0,   412,-612,0,   412,200,0,   412,1024,0,   -250,-850,0
 		Type: Rectangle
 			TopLeft: -1024, -1024
-			BottomRight: 1324, 312	
+			BottomRight: 1324, 312
 	HitShape@Elevator:
 		TargetableOffsets: -1624,1024,0
 		Type: Rectangle

@@ -44,5 +44,5 @@ ed_aircrafts_thunder_husk:
 	WithIdleOverlay@rotorslow:
 		Offset: 0,16,48
 		Sequence: rotorslow
-	RenderSprites: 
+	RenderSprites:
 		Image: ed_aircrafts_thunder

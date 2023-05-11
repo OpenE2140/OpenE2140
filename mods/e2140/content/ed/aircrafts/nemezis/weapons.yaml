@@ -8,7 +8,7 @@ ed_aircrafts_nemezis:
 		Velocity: 50,0,-25
 		Shadow: True
 		ShadowColor: 00000046
-		Palette: 
+		Palette:
 		Image: projectile_bomb
 		Sequences: idle
 	Warhead@Damage: SpreadDamage

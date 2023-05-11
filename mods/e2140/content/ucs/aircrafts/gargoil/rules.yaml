@@ -42,5 +42,5 @@ ucs_aircrafts_gargoil_husk:
 		Name: STORM
 	RevealsShroud:
 		Range: 5c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ucs_aircrafts_gargoil

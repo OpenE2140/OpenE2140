@@ -434,7 +434,7 @@
 	AutoTargetPriority:
 		InvalidTargets: Structure
 
-# Units can be cloaked by SHADOW unit. 
+# Units can be cloaked by SHADOW unit.
 ^Cloakable:
 	# Inherits: ^SilhouetteShadowCloak
 	Inherits: ^SemiTransparentShadowCloak

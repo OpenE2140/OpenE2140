@@ -45,5 +45,5 @@ ucs_aircrafts_hell_wind_husk:
 		Name: HELL WIND
 	RevealsShroud:
 		Range: 3c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ucs_aircrafts_hell_wind

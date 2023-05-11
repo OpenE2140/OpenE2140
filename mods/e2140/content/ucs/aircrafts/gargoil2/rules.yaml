@@ -35,5 +35,5 @@ ucs_aircrafts_gargoil_ii_husk:
 		Name: Gargoil II
 	RevealsShroud:
 		Range: 6c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ucs_aircrafts_gargoil_ii

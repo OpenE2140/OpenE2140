@@ -27,20 +27,11 @@ public static class VirtualAssetsBuilder
 		Replace
 	}
 
-	private enum PalleteAnimation
-	{
-		Cycle,
-		CycleReverse,
-		Shift,
-		ShiftReverse,
-		ShiftReverseE2140
-	}
-
 	public record Frame(Rectangle Bounds, byte[] Pixels);
 
 	private record FrameInfo(int Frame, int2 Offset, bool FlipX);
 
-	private record PaletteEffect((int Index, Color Color)[] Colors, PalleteApplication Application, PalleteAnimation? Animation);
+	private record PaletteEffect((int Index, Color Color)[][] Colors, PalleteApplication Application);
 
 	public const string Identifier = "VirtualSpriteSheet";
 	private const string Extension = ".vspr";
@@ -87,27 +78,34 @@ public static class VirtualAssetsBuilder
 
 			var settings = paletteNode.Value.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 			var application = Enum.Parse<PalleteApplication>(settings[0]);
-			var animation = settings.Length < 2 ? (PalleteAnimation?)null : Enum.Parse<PalleteAnimation>(settings[1]);
 
-			var colors = paletteNode.Value.Nodes.Select(
-					e =>
-					{
-						var value = e.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+			var frameNodes = paletteNode.Value.Nodes;
 
-						if (value.Length is not 3 and not 4)
-							throw new Exception("Broken format!");
+			if (frameNodes[0].Value.Nodes.Count == 0)
+				frameNodes = new List<MiniYamlNode> { paletteNode };
 
-						var r = int.Parse(value[0]);
-						var g = int.Parse(value[1]);
-						var b = int.Parse(value[2]);
-						var a = value.Length < 4 ? 0xff : int.Parse(value[3]);
+			var colors = frameNodes.Select(
+					frame => frame.Value.Nodes.Select(
+							e =>
+							{
+								var value = e.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
-						return (int.Parse(e.Key), Color.FromArgb(a, r, g, b));
-					}
+								if (value.Length is not 3 and not 4)
+									throw new Exception("Broken format!");
+
+								var r = int.Parse(value[0]);
+								var g = int.Parse(value[1]);
+								var b = int.Parse(value[2]);
+								var a = value.Length < 4 ? 0xff : int.Parse(value[3]);
+
+								return (int.Parse(e.Key), Color.FromArgb(a, r, g, b));
+							}
+						)
+						.ToArray()
 				)
 				.ToArray();
 
-			effects.Add(name, new PaletteEffect(colors, application, animation));
+			effects.Add(name, new PaletteEffect(colors, application));
 		}
 
 		return effects;
@@ -226,28 +224,15 @@ public static class VirtualAssetsBuilder
 		return stream.ToArray();
 	}
 
-	private static void ApplyPalette(PaletteEffect paletteEffect, Color[] palette, int offset)
+	private static void ApplyPalette(PaletteEffect paletteEffect, Color[] palette, int cycle)
 	{
 		if (paletteEffect.Application == PalleteApplication.Replace)
 			Array.Fill(palette, Color.Transparent);
 
-		var total = paletteEffect.Colors.Length;
+		var colors = paletteEffect.Colors[cycle % paletteEffect.Colors.Length];
 
-		for (var i = 0; i < total; i++)
-		{
-			var index = paletteEffect.Animation switch
-			{
-				PalleteAnimation.Cycle => (i + offset + total) % total,
-				PalleteAnimation.CycleReverse => (i - offset + total) % total,
-				PalleteAnimation.Shift => Math.Clamp(i + offset, 0, total - 1),
-				PalleteAnimation.ShiftReverse => Math.Clamp(i - offset, 0, total - 1),
-				PalleteAnimation.ShiftReverseE2140 => Math.Clamp(offset == 0 && i > 0 ? i + 1 : i - offset, 0, total - 1),
-				null => i,
-				_ => throw new Exception("Unknown animation type!")
-			};
-
-			palette[paletteEffect.Colors[i].Index] = paletteEffect.Colors[index].Color;
-		}
+		for (var i = 0; i < colors.Length; i++)
+			palette[colors[i].Index] = colors[i].Color;
 	}
 
 	private static List<FrameInfo> BuildFrameInfos(string frames, int facings, string? offsets)

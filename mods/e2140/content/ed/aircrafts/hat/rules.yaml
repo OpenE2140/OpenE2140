@@ -32,5 +32,5 @@ ed_aircrafts_hat_husk:
 		Name: HAT
 	RevealsShroud:
 		Range: 4c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ed_aircrafts_hat

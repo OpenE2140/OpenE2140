@@ -33,5 +33,5 @@ ed_aircrafts_vtol_husk:
 		Name: VTOL
 	RevealsShroud:
 		Range: 6c896
-	RenderSprites: 
+	RenderSprites:
 		Image: ed_aircrafts_vtol

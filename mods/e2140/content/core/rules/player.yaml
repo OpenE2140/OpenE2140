@@ -23,7 +23,7 @@ Player:
 	FrozenActorLayer:
 	# Allows placing a beacon.
 	PlaceBeacon:
-		ArrowSequence: 
+		ArrowSequence:
 		CircleSequence:
 		BeaconSequence: idle
 		Duration: 250

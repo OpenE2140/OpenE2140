@@ -738,7 +738,7 @@ Templates:
 			1: AsphaltRoad
 			2: AsphaltRoad
 			3: AsphaltRoad
-	
+
 	# Building tiles
 	Template@300:
 		Id: 300

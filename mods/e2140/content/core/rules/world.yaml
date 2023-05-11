@@ -84,7 +84,7 @@ World:
 	# Select proper production tab when production building is selected
 	ProductionQueueFromSelection:
 		ProductionTabsWidget: PRODUCTION_TABS
-	# Renders an effect at the order target locations. 
+	# Renders an effect at the order target locations.
 	OrderEffects:
 		TerrainFlashImage: moveflash
 		TerrainFlashSequence: idle

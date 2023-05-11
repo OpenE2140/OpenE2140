@@ -518,7 +518,7 @@ sidebar-production-tab-ucs-highlighted:
 	Inherits: ^Sidebar
 	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
-	
+
 sidebar-production-tab-ucs-highlighted-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
@@ -536,7 +536,7 @@ sidebar-production-tab-button-ucs-hover:
 sidebar-production-tab-button-ucs-highlighted:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
-	
+
 sidebar-production-tab-button-ucs-highlighted-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
@@ -571,7 +571,7 @@ sidebar-order-button-ucs-hover:
 sidebar-order-button-ucs-highlighted:
 	Inherits: ^Sidebar
 	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
-	
+
 sidebar-order-button-ucs-highlighted-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
@@ -579,7 +579,7 @@ sidebar-order-button-ucs-highlighted-hover:
 sidebar-order-button-ucs-pressed:
 	Inherits: ^Sidebar
 	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
-	
+
 sidebar-order-button-ucs-pressed-hover:
 	Inherits: ^Sidebar
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
@@ -688,7 +688,7 @@ sidebar-production-tab-ed-highlighted:
 	Inherits: ^SidebarEd
 	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
-	
+
 sidebar-production-tab-ed-highlighted-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
@@ -706,7 +706,7 @@ sidebar-production-tab-button-ed-hover:
 sidebar-production-tab-button-ed-highlighted:
 	Inherits: ^SidebarEd
 	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
-	
+
 sidebar-production-tab-button-ed-highlighted-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
@@ -741,7 +741,7 @@ sidebar-order-button-ed-hover:
 sidebar-order-button-ed-highlighted:
 	Inherits: ^SidebarEd
 	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
-	
+
 sidebar-order-button-ed-highlighted-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
@@ -749,7 +749,7 @@ sidebar-order-button-ed-highlighted-hover:
 sidebar-order-button-ed-pressed:
 	Inherits: ^SidebarEd
 	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
-	
+
 sidebar-order-button-ed-pressed-hover:
 	Inherits: ^SidebarEd
 	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
