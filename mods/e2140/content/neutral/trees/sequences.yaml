@@ -13,28 +13,40 @@ neutral_tree01:
 	Inherits: ^Tree
 	idle:
 		Start: 93
+	damaged-idle:
+		Start: 99
 
 neutral_tree02:
 	Inherits: ^Tree
 	idle:
 		Start: 94
+	damaged-idle:
+		Start: 100
 
 neutral_tree03:
 	Inherits: ^Tree
 	idle:
 		Start: 95
+	damaged-idle:
+		Start: 101
 
 neutral_tree04:
 	Inherits: ^Tree
 	idle:
 		Start: 96
+	damaged-idle:
+		Start: 102
 
 neutral_tree05:
 	Inherits: ^Tree
 	idle:
 		Start: 97
+	damaged-idle:
+		Start: 103
 
 neutral_tree06:
 	Inherits: ^Tree
 	idle:
 		Start: 98
+	damaged-idle:
+		Start: 104
