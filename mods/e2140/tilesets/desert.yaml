@@ -1094,14 +1094,12 @@ Templates:
 		Size: 1,1
 		PickAny: True
 		Categories: Cliffs
-		Frames: 69, 70, 71, 72, 73, 74
+		Frames: 69, 70, 71, 72
 		Tiles:
 			0: Rock
 			1: Rock
 			2: Rock
 			3: Rock
-			4: Rock
-			5: Rock
 	Template@329:
 		Id: 329
 		Images: SPRT1.MIX
@@ -1212,6 +1210,22 @@ Templates:
 		Size: 1,1
 		Categories: Cliffs
 		Frames: 230
+		Tiles:
+			0: Rock
+	Template@341:
+		Id: 341
+		Images: SPRT1.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 73
+		Tiles:
+			0: Rock
+	Template@342:
+		Id: 342
+		Images: SPRT1.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 74
 		Tiles:
 			0: Rock
 

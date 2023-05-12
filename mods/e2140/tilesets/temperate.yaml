@@ -1214,4 +1214,20 @@ Templates:
 		Frames: 230
 		Tiles:
 			0: Rock
+	Template@341:
+		Id: 341
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 73
+		Tiles:
+			0: Rock
+	Template@342:
+		Id: 342
+		Images: SPRT3.MIX
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 74
+		Tiles:
+			0: Rock
 
