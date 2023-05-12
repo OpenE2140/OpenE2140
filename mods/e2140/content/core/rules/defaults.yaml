@@ -151,7 +151,7 @@
 		CancelledAudio: ProductionCancelled
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
-	# Allow player setting rally point. TODO: needs custom flag and circle sequences.
+	# Allow player setting rally point.
 	RallyPoint:
 		Cursor: move
 		LineWidth: 2
