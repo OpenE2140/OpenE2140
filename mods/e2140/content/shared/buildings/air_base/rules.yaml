@@ -63,6 +63,10 @@ shared_buildings_air_base:
 		ProductionType: Aircraft.ED
 	ProductionBar@UCS:
 		ProductionType: Aircraft.UCS
+	# Allow player setting rally point.
+	RallyPoint:
+		Cursor: move
+		LineWidth: 2
 	ProvidesPrerequisite:
 	Exit@Exit1:
 		SpawnOffset: 1500, -900, 0
