@@ -101,10 +101,10 @@ public static class VirtualAssetsBuilder
 				frameNodes = new List<MiniYamlNode> { paletteNode };
 
 			var colors = frameNodes.Select(
-					frame => frame.Value.Nodes.Select(
-							e =>
+					frameNode => frameNode.Value.Nodes.SelectMany(
+							sequenceNode =>
 							{
-								var value = e.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+								var value = sequenceNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
 								if (value.Length is not 3 and not 4)
 									throw new Exception("Broken format!");
@@ -114,7 +114,9 @@ public static class VirtualAssetsBuilder
 								var b = int.Parse(value[2]);
 								var a = value.Length < 4 ? 0xff : int.Parse(value[3]);
 
-								return (int.Parse(e.Key), Color.FromArgb(a, r, g, b));
+								var color = Color.FromArgb(a, r, g, b);
+
+								return VirtualAssetsBuilder.BuildSequence(sequenceNode.Key).Select(index => (index, color));
 							}
 						)
 						.ToArray()
