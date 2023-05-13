@@ -122,6 +122,12 @@ Palettes:
 		246: 255 0 0
 		247: 68 68 68
 
+	Husk: Merge Multiply
+		0-239[1_1_0]: 128 128 128
+		240-243: 0 0 0
+		244-247: 0 0 0
+		248-252: 0 0 0
+
 Generate:
 	vehicle_mcu: Shadow Player Tracks
 		idle: 0-8 16
@@ -233,6 +239,9 @@ Generate:
 	vehicle_tank_large: Shadow Player Tracks
 		idle: 333-341 16
 		move: 333-341 16 4
+
+	vehicle_tank_large_husk: Shadow Husk
+		idle: 333-341 16
 
 	turret_ht_33_r: Shadow Player
 		idle: 342-350 16
