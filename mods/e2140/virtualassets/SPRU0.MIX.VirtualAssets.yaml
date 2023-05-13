@@ -134,8 +134,8 @@ Generate:
 		deploy: 9-15
 
 	vehicle_mech: Shadow
-		idle: 37-81[8:1:0] 8
-		move: 37-81[0:8:1] 8
+		idle: 37-81[8_1_0] 8
+		move: 37-81[0_8_1] 8
 		move.turn: 45,42,54,51,63,60,72,69,81,78 8
 
 	turret_tiger_assault: Player
@@ -151,7 +151,7 @@ Generate:
 	vehicle_raptor_es: Player Shadow NoMuzzle
 		idle: 115,144,122,145,129,146,136,147,143 16
 			Offsets: 144,145,146,147:-5,0
-		move: 109-143[0:6:1] 8
+		move: 109-143[0_6_1] 8
 			Offsets: 109:1,0 119:0,-2 133:0,-2 140:0,-2
 		muzzle: 115,144,122,145,129,146,136,147,143 16 3 Muzzle
 			Offsets: 144,145,146,147:-5,0
@@ -160,14 +160,14 @@ Generate:
 	vehicle_raptor_ad: Player Shadow
 		idle: 154,184,161,183,168,185,175,186,182 16
 			Offsets: 184:-5,-1 183:-3,0 185:-5,-1 186:-4,-1 175:0,2
-		move: 148-182[0:6:1] 8
+		move: 148-182[0_6_1] 8
 			Offsets: 148:0,-1 158:0,-2
 		move.turn: 154,149,161,156,168,164,175,171,182,177 8
 
 	vehicle_wtp_100: Player
 		idle: 187-195 16
 		open: 196-201 4
-		opened: 196-201[1:1:0] 4
+		opened: 196-201[1_1_0] 4
 		close: 197-196,199-198,201-200 4
 
 	vehicle_hcr_m: Shadow Player Tracks
@@ -409,7 +409,7 @@ Generate:
 	ship_wtrn: Shadow Player
 		idle: 634-642 16
 		open: 643-648 4
-		opened: 643-648[1:1:0] 4
+		opened: 643-648[1_1_0] 4
 		close: 644-643,646-645,648-647 4
 
 	rotor_slow:
@@ -419,9 +419,9 @@ Generate:
 		idle: 653-654
 
 	infantry_silver_t: Player
-		idle: 655-684[4:1:1] 8
-		idle2: 655-684[5:1:0] 8
-		move: 655-684[0:4:2] 8
+		idle: 655-684[4_1_1] 8
+		idle2: 655-684[5_1_0] 8
+		move: 655-684[0_4_2] 8
 
 	infantry_shadow: Shadow
 		idle: 685
@@ -430,62 +430,62 @@ Generate:
 		idle: 686-690 8
 
 	infantry_silver_one: Player
-		idle: 691-720[5:1:0] 8
-		idle2: 691-720[5:1:0] 8
-		move: 691-720[0:4:2] 8
+		idle: 691-720[5_1_0] 8
+		idle2: 691-720[5_1_0] 8
+		move: 691-720[0_4_2] 8
 		attack: 721-730 8
 
 	infantry_silver_max: Player
-		idle: 731-760[4:1:1] 8
-		idle2: 731-760[5:1:0] 8
-		move: 731-760[0:4:2] 8
+		idle: 731-760[4_1_1] 8
+		idle2: 731-760[5_1_0] 8
+		move: 731-760[0_4_2] 8
 		attack: 761-770 8
 
 	infantry_silver_r: Player
-		idle: 771-800[4:1:1] 8
-		idle2: 771-800[5:1:0] 8
-		move: 771-800[0:4:2] 8
+		idle: 771-800[4_1_1] 8
+		idle2: 771-800[5_1_0] 8
+		move: 771-800[0_4_2] 8
 		attack: 801-810 8
 
 	infantry_android_a04: Player
-		idle: 811-840[4:1:1] 8
-		idle2: 811-840[5:1:0] 8
-		move: 811-840[0:4:2] 8
+		idle: 811-840[4_1_1] 8
+		idle2: 811-840[5_1_0] 8
+		move: 811-840[0_4_2] 8
 		attack: 841-850 8
 
 	infantry_android_a03: Player
-		idle: 851-880[4:1:1] 8
-		idle2: 851-880[5:1:0] 8
-		move: 851-880[0:4:2] 8
+		idle: 851-880[4_1_1] 8
+		idle2: 851-880[5_1_0] 8
+		move: 851-880[0_4_2] 8
 		attack: 881-890 8
 
 	infantry_android_a01: Player
-		idle: 891-920[4:1:1] 8
-		idle2: 891-920[5:1:0] 8
-		move: 891-920[0:4:2] 8
+		idle: 891-920[4_1_1] 8
+		idle2: 891-920[5_1_0] 8
+		move: 891-920[0_4_2] 8
 		attack: 921-930 8
 		attack2: 931-940 8
 
 	infantry_android_a02: Player
-		idle: 941-970[4:1:1] 8
-		idle2: 941-970[5:1:0] 8
-		move: 941-970[0:4:2] 8
+		idle: 941-970[4_1_1] 8
+		idle2: 941-970[5_1_0] 8
+		move: 941-970[0_4_2] 8
 		attack: 971-980 8
 
 	infantry_civil1: Player
-		idle: 981-1010[4:1:1] 8
-		idle2: 981-1010[5:1:0] 8
-		move: 981-1010[0:4:2] 8
+		idle: 981-1010[4_1_1] 8
+		idle2: 981-1010[5_1_0] 8
+		move: 981-1010[0_4_2] 8
 
 	infantry_civil2: Player
-		idle: 1015-1044[4:1:1] 8
-		idle2: 1015-1044[5:1:0] 8
-		move: 1015-1044[0:4:2] 8
+		idle: 1015-1044[4_1_1] 8
+		idle2: 1015-1044[5_1_0] 8
+		move: 1015-1044[0_4_2] 8
 
 	infantry_civil3: Player
-		idle: 1049-1078[4:1:1] 8
-		idle2: 1049-1078[5:1:0] 8
-		move: 1049-1078[0:4:2] 8
+		idle: 1049-1078[4_1_1] 8
+		idle2: 1049-1078[5_1_0] 8
+		move: 1049-1078[0_4_2] 8
 
 	death: Shadow
 		civil1: 1011-1014
@@ -507,7 +507,7 @@ Generate:
 
 	vehicle_big_mech: Shadow Player
 		idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
-		move: 1171-1205[0:6:1] 8
+		move: 1171-1205[0_6_1] 8
 		shadow: 1210-1214 8
 		move.turn: 1177,1171,1184,1178,1191,1185,1198,1192,1205,1199 8
 

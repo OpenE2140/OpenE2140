@@ -264,9 +264,29 @@ public static class VirtualAssetsBuilder
 			}
 		}
 
-		foreach (var segment in frames.Split(',', StringSplitOptions.RemoveEmptyEntries))
+		var frameInfos = VirtualAssetsBuilder.BuildSequence(frames)
+			.Select(frame => new FrameInfo(frame, frameOffsets.TryGetValue(frame, out var offset) ? offset : new int2(), false))
+			.ToList();
+
+		if (facings <= 1)
+			return frameInfos;
+
+		var framesPerFacing = frameInfos.Count / (facings / 2 + 1);
+
+		for (var facing = facings / 2 - 1; facing > 0; facing--)
+		for (var j = 0; j < framesPerFacing; j++)
+			frameInfos.Add(frameInfos[facing * framesPerFacing + j] with { FlipX = true });
+
+		return frameInfos;
+	}
+
+	private static IEnumerable<int> BuildSequence(string sequenceString)
+	{
+		var sequence = new List<int>();
+
+		foreach (var segment in sequenceString.Split(',', StringSplitOptions.RemoveEmptyEntries))
 		{
-			var match = Regex.Match(segment, "^(\\d+)(?:-(\\d+)(?:\\[(\\d+):(\\d+):(\\d+)\\])?)?$");
+			var match = Regex.Match(segment, "^(\\d+)(?:-(\\d+)(?:\\[(\\d+)_(\\d+)_(\\d+)\\])?)?$");
 
 			if (!match.Success)
 				throw new Exception("Broken format!");
@@ -288,19 +308,10 @@ public static class VirtualAssetsBuilder
 				var segmentIndex = i % segmentLength;
 
 				if (segmentIndex >= skipBefore && segmentIndex < trailing)
-					frameInfos.Add(new FrameInfo(frame, frameOffsets.TryGetValue(frame, out var offset) ? offset : new int2(), false));
+					sequence.Add(frame);
 			}
 		}
 
-		if (facings <= 1)
-			return frameInfos;
-
-		var framesPerFacing = frameInfos.Count / (facings / 2 + 1);
-
-		for (var facing = facings / 2 - 1; facing > 0; facing--)
-		for (var j = 0; j < framesPerFacing; j++)
-			frameInfos.Add(frameInfos[facing * framesPerFacing + j] with { FlipX = true });
-
-		return frameInfos;
+		return sequence;
 	}
 }
