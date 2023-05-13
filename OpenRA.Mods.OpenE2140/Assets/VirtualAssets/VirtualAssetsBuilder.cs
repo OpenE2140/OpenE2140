@@ -29,6 +29,8 @@ public static class VirtualAssetsBuilder
 
 	public record Frame(Rectangle Bounds, byte[] Pixels);
 
+	private record FrameWithPalette(Rectangle Bounds, byte[] Pixels, Color[] Palette);
+
 	private record FrameInfo(int Frame, int2 Offset, bool FlipX);
 
 	private record PaletteEffect((int Index, Color Color)[][] Colors, PalleteApplication Application);
@@ -56,14 +58,28 @@ public static class VirtualAssetsBuilder
 
 		var paletteEffects = palettes == null ? new Dictionary<string, PaletteEffect>() : VirtualAssetsBuilder.BuildPaletteEffects(palettes);
 
-		// TODO instead of opening the mix, get the image data along the palette from the engine, allowing to use any sprite source.
-		if (!fileSystem.TryOpen(source, out var stream))
-			return virtualAssets;
+		var frames = new List<FrameWithPalette>();
 
-		var mix = new Mix(stream);
+		// TODO instead of opening the mix, get the image data along the palette from the engine, allowing to use any sprite source.
+		{
+			if (!fileSystem.TryOpen(source, out var stream))
+				return virtualAssets;
+
+			var mix = new Mix(stream);
+
+			frames.AddRange(
+				mix.Frames.Select(
+					frame => new FrameWithPalette(
+						new Rectangle(frame.Width / -2, frame.Height / -2, frame.Width, frame.Height),
+						frame.Pixels,
+						mix.Palettes[frame.Palette].Colors
+					)
+				)
+			);
+		}
 
 		foreach (var node in generate.Nodes)
-			virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(mix, paletteEffects, node)));
+			virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(frames, paletteEffects, node)));
 
 		return virtualAssets;
 	}
@@ -111,12 +127,16 @@ public static class VirtualAssetsBuilder
 		return effects;
 	}
 
-	private static byte[] BuildSpriteSheet(Mix mix, Dictionary<string, PaletteEffect> paletteEffects, MiniYamlNode sheetNode)
+	private static byte[] BuildSpriteSheet(
+		IReadOnlyList<FrameWithPalette> inputFrames,
+		IReadOnlyDictionary<string, PaletteEffect> paletteEffects,
+		MiniYamlNode sheetNode
+	)
 	{
 		if (!VirtualAssetsBuilder.Cache.ContainsKey(sheetNode.Key))
 		{
 			var globalEffects = sheetNode.Value.Value == null ? Array.Empty<string>() : sheetNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-			var frames = new List<Frame>();
+			var outputFrames = new List<Frame>();
 
 			foreach (var animationNode in sheetNode.Value.Nodes)
 			{
@@ -164,41 +184,39 @@ public static class VirtualAssetsBuilder
 				{
 					for (var cycle = 0; cycle < cycles; cycle++)
 					{
-						var mixFrame = mix.Frames[frameInfo.Frame];
-						var palette = new Color[256];
-
-						Array.Copy(mix.Palettes[mixFrame.Palette].Colors, 0, palette, 0, palette.Length);
+						var frame = inputFrames[frameInfo.Frame];
+						var palette = frame.Palette;
 
 						try
 						{
-							foreach (var effect in globalEffects.Concat(frameEffects))
-								VirtualAssetsBuilder.ApplyPalette(paletteEffects[effect], palette, cycle);
+							palette = globalEffects.Concat(frameEffects)
+								.Aggregate(palette, (current, effect) => VirtualAssetsBuilder.ApplyPalette(paletteEffects[effect], current, cycle));
 
-							var pixels = mixFrame.Pixels;
+							var pixels = frame.Pixels;
 
 							if (frameInfo.FlipX)
 							{
 								pixels = new byte[pixels.Length];
 
-								for (var y = 0; y < mixFrame.Height; y++)
+								for (var y = 0; y < frame.Bounds.Height; y++)
 								{
 									Array.Copy(
-										mixFrame.Pixels.Skip(y * mixFrame.Width).Take(mixFrame.Width).Reverse().ToArray(),
+										frame.Pixels.Skip(y * frame.Bounds.Width).Take(frame.Bounds.Width).Reverse().ToArray(),
 										0,
 										pixels,
-										y * mixFrame.Width,
-										mixFrame.Width
+										y * frame.Bounds.Width,
+										frame.Bounds.Width
 									);
 								}
 							}
 
-							frames.Add(
+							outputFrames.Add(
 								new Frame(
 									new Rectangle(
-										(frameInfo.FlipX ? -frameInfo.Offset.X : frameInfo.Offset.X) - mixFrame.Width / 2,
-										frameInfo.Offset.Y - mixFrame.Height / 2,
-										mixFrame.Width,
-										mixFrame.Height
+										(frameInfo.FlipX ? -frameInfo.Offset.X : frameInfo.Offset.X) + frame.Bounds.X,
+										frameInfo.Offset.Y + frame.Bounds.Y,
+										frame.Bounds.Width,
+										frame.Bounds.Height
 									),
 									pixels.Select(e => palette[e]).SelectMany(e => new[] { e.R, e.G, e.B, e.A }).ToArray()
 								)
@@ -212,7 +230,7 @@ public static class VirtualAssetsBuilder
 				}
 			}
 
-			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, frames.ToArray());
+			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, outputFrames.ToArray());
 		}
 
 		var stream = new MemoryStream();
@@ -224,21 +242,25 @@ public static class VirtualAssetsBuilder
 		return stream.ToArray();
 	}
 
-	private static void ApplyPalette(PaletteEffect paletteEffect, Color[] palette, int cycle)
+	private static Color[] ApplyPalette(PaletteEffect paletteEffect, IReadOnlyCollection<Color> basePalette, int cycle)
 	{
-		if (paletteEffect.Application == PalleteApplication.Replace)
-			Array.Fill(palette, Color.Transparent);
+		var palette = paletteEffect.Application switch
+		{
+			PalleteApplication.Replace => new Color[basePalette.Count],
+			PalleteApplication.Merge => basePalette.ToArray(),
+			_ => throw new Exception("Unsupported PaletteApplication!")
+		};
 
 		var colors = paletteEffect.Colors[cycle % paletteEffect.Colors.Length];
 
 		for (var i = 0; i < colors.Length; i++)
 			palette[colors[i].Index] = colors[i].Color;
+
+		return palette;
 	}
 
 	private static List<FrameInfo> BuildFrameInfos(string frames, int facings, string? offsets)
 	{
-		var frameInfos = new List<FrameInfo>();
-
 		var frameOffsets = new Dictionary<int, int2>();
 
 		if (offsets != null)
