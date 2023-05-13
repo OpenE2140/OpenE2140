@@ -26,6 +26,8 @@ shared_mcu:
 	-MapEditorData:
 	Tooltip:
 		Name: MCU
+	Health:
+		HP: 1000
 	EnhancedEncyclopedia:
 		Category: Shared - Vehicles
 		Order: 1
