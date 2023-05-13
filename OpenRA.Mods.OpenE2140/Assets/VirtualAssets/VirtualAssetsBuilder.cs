@@ -27,13 +27,19 @@ public static class VirtualAssetsBuilder
 		Replace
 	}
 
+	private enum ColorEffect
+	{
+		Normal,
+		Multiply
+	}
+
 	public record Frame(Rectangle Bounds, byte[] Pixels);
 
 	private record FrameWithPalette(Rectangle Bounds, byte[] Pixels, Color[] Palette);
 
 	private record FrameInfo(int Frame, int2 Offset, bool FlipX);
 
-	private record PaletteEffect((int Index, Color Color)[][] Colors, PalleteApplication Application);
+	private record PaletteEffect((int Index, Color Color)[][] Colors, PalleteApplication Application, ColorEffect ColorEffect);
 
 	public const string Identifier = "VirtualSpriteSheet";
 	private const string Extension = ".vspr";
@@ -94,6 +100,7 @@ public static class VirtualAssetsBuilder
 
 			var settings = paletteNode.Value.Value.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 			var application = Enum.Parse<PalleteApplication>(settings[0]);
+			var colorEffect = settings.Length <= 1 ? ColorEffect.Normal : Enum.Parse<ColorEffect>(settings[1]);
 
 			var frameNodes = paletteNode.Value.Nodes;
 
@@ -123,7 +130,7 @@ public static class VirtualAssetsBuilder
 				)
 				.ToArray();
 
-			effects.Add(name, new PaletteEffect(colors, application));
+			effects.Add(name, new PaletteEffect(colors, application, colorEffect));
 		}
 
 		return effects;
@@ -256,7 +263,22 @@ public static class VirtualAssetsBuilder
 		var colors = paletteEffect.Colors[cycle % paletteEffect.Colors.Length];
 
 		for (var i = 0; i < colors.Length; i++)
-			palette[colors[i].Index] = colors[i].Color;
+		{
+			var oldColor = palette[colors[i].Index];
+			var newColor = colors[i].Color;
+
+			palette[colors[i].Index] = paletteEffect.ColorEffect switch
+			{
+				ColorEffect.Normal => newColor,
+				ColorEffect.Multiply => Color.FromArgb(
+					oldColor.A * newColor.A / byte.MaxValue,
+					oldColor.R * newColor.R / byte.MaxValue,
+					oldColor.G * newColor.G / byte.MaxValue,
+					oldColor.B * newColor.B / byte.MaxValue
+				),
+				_ => throw new Exception("Unsupported ColorEffect!")
+			};
+		}
 
 		return palette;
 	}
