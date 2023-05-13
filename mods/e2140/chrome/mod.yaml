@@ -36,7 +36,7 @@ ChromeLayout:
 	common|chrome/lobby-options.yaml
 	common|chrome/lobby-players.yaml
 	common|chrome/lobby-servers.yaml
-	common|chrome/mainmenu.yaml
+	e2140|chrome/layouts/mainmenu.yaml
 	common|chrome/mainmenu-prompts.yaml
 	common|chrome/map-chooser.yaml
 	common|chrome/missionbrowser.yaml
@@ -55,6 +55,7 @@ ChromeLayout:
 	common|chrome/settings-input.yaml
 	common|chrome/text-notifications.yaml
 	e2140|chrome/layouts/tooltips.yaml
+	e2140|chrome/layouts/encyclopedia.yaml
 
 ChromeMetrics:
 	common|metrics.yaml

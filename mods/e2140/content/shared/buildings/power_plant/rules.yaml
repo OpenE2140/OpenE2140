@@ -38,6 +38,17 @@ shared_buildings_power_plant:
 		Image: power_plant_smoke
 		Sequence: chimney_chamber
 		RequiresCondition: !Transforming
+	EnhancedEncyclopedia:
+		Category: Shared - Buildings
+		Order: 1
+		Animation: DATABASE/X01.FLC
+		Title: Power Plant
+		Armor: none
+		Armament: none
+		Resistance: medium
+		Description: The nuclear power plant is built in modules.\nTwo further modules, each generating 500 energy units, can be added at any time.\nThe power plant itself generates 2000 energy units.\nThe nuclear power plant is used to supply structures which are unable to generate energy themselves.\nStructures which have no energy are not active.\nThey cannot construct anything and their defense systems are unusable.\nThe destruction of a nuclear power plant has serious consequences for the direct environment.\nDue to atomic contamination, any unit which remains in the building for too long will be destroyed.\nThe contamination will overload the generators of most vehicles, eventually destroying them.
+		#TODO Price += 500 for each module
+		#TODO Energy supplied += 500 energy units per module
 
 shared_mcu_power_plant:
 	Inherits@1: ^SharedVehicleMcu

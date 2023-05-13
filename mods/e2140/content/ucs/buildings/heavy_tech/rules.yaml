@@ -56,6 +56,15 @@ ucs_buildings_heavy_tech:
 	WithIdleOverlay:
 		Palette:
 		RequiresCondition: !Transforming
+	EnhancedEncyclopedia:
+		Category: UCS - Buildings
+		Order: 3
+		Animation: DATABASE/X19.FLC
+		Title: UCS Production Center for Heavyweight Battle Units
+		Armor: Resistant to conventional weapons
+		Armament: none
+		Resistance: medium
+		Description: This complex (so called HeavyTech), most parts of which are underground, produces heavyweight battle units.\nThe assembly takes place underground.\nThe units are then transported to the surface where they leave the factory via a large sluice.
 
 ucs_mcu_heavy_tech:
 	Inherits@1: ^SharedVehicleMcu

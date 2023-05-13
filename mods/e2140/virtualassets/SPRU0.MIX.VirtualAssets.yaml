@@ -176,11 +176,11 @@ Generate:
 		opened: 196-201[1_1_0] 4
 		close: 197-196,199-198,201-200 4
 
-	vehicle_hcr_m: Shadow Player Tracks
+	vehicle_hcu_m: Shadow Player Tracks
 		idle: 202-210 16
 		move: 202-210 16 4
 
-	turret_hcr_m: Shadow
+	turret_hcu_m: Shadow
 		idle: 211-219 16
 			Offsets: 214:1,0 218:-1,0
 		repair: 230-234,225-229,220-224 4
@@ -342,7 +342,7 @@ Generate:
 	ship_russ3:
 		idle: 495-503 16
 
-	aircraft_hell_wind: Player
+	aircraft_hellwind: Player
 		idle: 504-512 16 EngineOff
 		move: 504-512 16 EngineOn
 

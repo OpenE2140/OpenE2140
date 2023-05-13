@@ -38,3 +38,11 @@ ed_vehicles_st01b:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
+	EnhancedEncyclopedia:
+		Category: ED - Vehicles
+		Order: 1
+		Animation: DATABASE/PM01.FLC
+		Title: ST 01B - Small Tank
+		Armor: lite
+		Armament: small cannon
+		Description: The ST 01B is a small tank which is ideal for destroying unarmed and lightly armed enemy vehicles.\nDue to its limited ability to aim, it is not designed for doing battle with fast moving targets such as enemy SILVER units.\nIn this case it should be escorted by A-series androids.\nA further weakness of the ST 01B is its liteweight armor, which is easily burned by the DXC-additive in the napalm bombs used by the enemy HELL units.\nThe on-board electronics` main priority is to pull out of such a situation.

@@ -109,6 +109,15 @@ shared_buildings_air_base:
 	WithIdleOverlay@HelipadRightLight:
 		Sequence: helipad-right-light
 		RequiresCondition: !Transforming
+	EnhancedEncyclopedia:
+		Category: Shared - Buildings
+		Order: 6
+		Animation: DATABASE/X06.FLC
+		Title: Air Base
+		Armor: none
+		Armament: none
+		Resistance: medium
+		Description: At the Air Base you can construct anything that flies.\nThis building is principally there to control these objects, but is also used to supply fuel and ammunition, a process which takes place in the landing areas.\nSince all flying objects are constantly in touch with the Air Base, it is fully automated, requiring no personnel.
 
 shared_mcu_air_base:
 	Inherits@1: ^SharedVehicleMcu

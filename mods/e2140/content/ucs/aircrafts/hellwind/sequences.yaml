@@ -1,9 +1,9 @@
-ucs_aircrafts_hell_wind:
+ucs_aircrafts_hellwind:
 	idle:
-		Filename: aircraft_hell_wind.vspr
+		Filename: aircraft_hellwind.vspr
 		Facings: -16
 	move:
-		Filename: aircraft_hell_wind.vspr
+		Filename: aircraft_hellwind.vspr
 		Start: 16
 		Facings: -16
 	icon:
@@ -15,8 +15,8 @@ ucs_aircrafts_hell_wind:
 	#	Start: 163
 
 # TODO: remove after PR #20705
-ucs_aircrafts_hell_wind.ed:
-	Inherits: ucs_aircrafts_hell_wind
+ucs_aircrafts_hellwind.ed:
+	Inherits: ucs_aircrafts_hellwind
 	icon:
 		Filename: SPRI0.MIX
 		Start: 163

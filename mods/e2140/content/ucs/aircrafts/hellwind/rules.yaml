@@ -1,8 +1,8 @@
-ucs_aircrafts_hell_wind:
+ucs_aircrafts_hellwind:
 	Inherits@1: ^UcsAircraft
 	Inherits@2: ^CoreAttackAircraft
 	Tooltip:
-		Name: HELL WIND
+		Name: HELLWIND
 	Valued:
 		Cost: 1000
 	Buildable:
@@ -18,7 +18,7 @@ ucs_aircrafts_hell_wind:
 	RevealsShroud:
 		Range: 3c896
 	Armament@PRIMARY:
-		Weapon: ucs_aircrafts_hell_wind
+		Weapon: ucs_aircrafts_hellwind
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AttackAircraft:
@@ -29,7 +29,7 @@ ucs_aircrafts_hell_wind:
 	WithMoveSound:
 		Sound: 31.smp
 	SpawnActorOnDeath:
-		Actor: ucs_aircrafts_hell_wind_husk
+		Actor: ucs_aircrafts_hellwind_husk
 		RequiresCondition: airborne
 	AmmoPool:
 		Ammo: 7
@@ -38,12 +38,20 @@ ucs_aircrafts_hell_wind:
 		Delay: 100
 		ResetOnFire: True
 		Count: 4
+	EnhancedEncyclopedia:
+		Category: UCS - Aircrafts
+		Order: 2
+		Animation: DATABASE/BT16.FLC
+		Title: HellWind - Anti-gravity Bomber
+		Armor: heavy
+		Armament: plasma bombs
+		Description: The HELLWIND is the latest generation of anti-gravity bombers.\nIt is heavily armored and carries large quantities of plasma bombs.\nThese are very effective and will destroy a small battle unit, a large tank or even a structure.\nThe HELLWIND always drops five bombs at a time.
 
-ucs_aircrafts_hell_wind_husk:
+ucs_aircrafts_hellwind_husk:
 	Inherits: ^CoreAircraftHusk
 	Tooltip:
 		Name: HELL WIND
 	RevealsShroud:
 		Range: 3c896
 	RenderSprites:
-		Image: ucs_aircrafts_hell_wind
+		Image: ucs_aircrafts_hellwind

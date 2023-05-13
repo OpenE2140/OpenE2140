@@ -1,7 +1,7 @@
 ucs_vehicles_tiger_assault:
 	Inherits: ^UcsTurretedMech
 	Tooltip:
-		Name: Tiger Assault
+		Name: TIGER Assault
 	Valued:
 		Cost: 700
 	Buildable:
@@ -60,3 +60,11 @@ ucs_vehicles_tiger_assault:
 		Count: 4
 	WithDamageOverlay:
 		Image: smoking_mech
+	EnhancedEncyclopedia:
+		Category: UCS - Vehicles
+		Order: 4
+		Animation: DATABASE/BT04.FLC
+		Title: TIGER Assault
+		Armor: middle and fireproof
+		Armament: two liteweight rocket launchers
+		Description: TIGER-type battle robots are middleweight, heavily armored battle machines, mainly used when attacking the enemy.\nThey are still very fast, in spite of all that armor they are still very fast.\nTIGER-Assault robots with their two liteweight rocket launchers, are true all-round destroyers.\nThey are connected directly to the central computer and have their own built-in new generation artificial intelligence.

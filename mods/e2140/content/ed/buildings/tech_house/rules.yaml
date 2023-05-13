@@ -51,6 +51,15 @@ ed_buildings_tech_house:
 	Exit@Exit6:
 		ExitCell: 2,0
 		Facing: 0
+	EnhancedEncyclopedia:
+		Category: ED - Buildings
+		Order: 3
+		Animation: DATABASE/X11.FLC
+		Title: Vehicle Factory (Tech House)
+		Armor: Resistant to conventional weapons
+		Armament: none
+		Resistance: medium
+		Description: All vehicles are manufactured in the Tech House, except for the BANTHA, the HCU-M and the HEAVY-LIFTER, which are manufactured in the Construction Center.\nThis means all other vehicles, tanks, flying machines and heavy battle machines.\nA big part of the production takes place above ground.
 
 ed_mcu_tech_house:
 	Inherits@1: ^SharedVehicleMcu

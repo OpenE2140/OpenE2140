@@ -2,7 +2,7 @@ ucs_aircrafts_gargoil:
 	Inherits@1: ^UcsAircraft
 	Inherits@2: ^CoreAttackAircraft
 	Tooltip:
-		Name: Gargoil
+		Name: GARGOIL
 	Valued:
 		Cost: 600
 	Buildable:
@@ -35,6 +35,14 @@ ucs_aircrafts_gargoil:
 	SpawnActorOnDeath:
 		Actor: ucs_aircrafts_gargoil_husk
 		RequiresCondition: airborne
+	EnhancedEncyclopedia:
+		Category: UCS - Aircrafts
+		Order: 1
+		Animation: DATABASE/BT15.FLC
+		Title: GARGOIL - lightly armed anti-gravity flier
+		Armor: medium
+		Armament: two double barreled 22mm guns
+		Description: The GARGOIL is proof of the UCS's superiority in anti-gravity technology.\nIt is faster and zippier than a helicopter.\nIts two double barreled machine guns are ideal for attacking small battle units and liteweight vehicles.\nThe GARGOIL is often used for reconnaissance missions.
 
 ucs_aircrafts_gargoil_husk:
 	Inherits: ^CoreAircraftHusk

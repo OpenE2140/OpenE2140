@@ -1,7 +1,7 @@
 ucs_vehicles_shadow:
 	Inherits@1: ^UcsVehicle
 	Tooltip:
-		Name: Shadow
+		Name: SHADOW
 	Valued:
 		Cost: 2100
 	Buildable:
@@ -20,3 +20,11 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
+	EnhancedEncyclopedia:
+		Category: UCS - Vehicles
+		Order: 11
+		Animation: DATABASE/BT11.FLC
+		Title: SHADOW - "The Camouflage Hood"
+		Armor: middleweight
+		Armament: none
+		Description: The SHADOW is a tracked vehicle with a difference - it has stealth camouflaging.\nFor decades the UCS have been researching vehicle invisibility.\nSHADOW is the result of that research - an improved and fully functional version of the prototype.\nThe new SHADOW's system can camouflage, for example, a middle sized army for any length of time. 

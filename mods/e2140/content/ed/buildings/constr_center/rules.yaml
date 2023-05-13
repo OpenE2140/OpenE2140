@@ -49,6 +49,15 @@ ed_buildings_constr_center:
 	Exit@Exit6:
 		ExitCell: 3,1
 		Facing: 896
+	EnhancedEncyclopedia:
+		Category: ED - Buildings
+		Order: 1
+		Animation: DATABASE/X09.FLC
+		Title: Headquarter (Construction Center)
+		Armor: Resistant to conventional weapons
+		Armament: none
+		Resistance: High
+		Description: The Construction Center is the headquarters.\nThe MCU construction vehicles are built there to be used later in constructing all kinds of structures.\nThe Construction Center is also used to build the BANTHA heavy transporter, the mobile repair unit HCU-M and the HEAVY LIFTER.\nThe Construction Center can also be used to build an MCU construction vehicle to build another Construction Center.
 
 ed_mcu_constr_center:
 	Inherits@1: ^SharedVehicleMcu

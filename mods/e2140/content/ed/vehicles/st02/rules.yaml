@@ -31,3 +31,11 @@ ed_vehicles_st02:
 		RecoilRecovery: 38
 		LocalOffset: 100,-100,0, 100,100,0
 		MuzzlePalette:
+	EnhancedEncyclopedia:
+		Category: ED - Vehicles
+		Order: 2
+		Animation: DATABASE/PM02.FLC
+		Title: ST 02 - Small Tank
+		Armor: lite
+		Armament: small rockets
+		Description: The ST 02 is a small tank, based on the ST 01B, which is fitted out with a liteweight rocket launcher.\nIt is ideal for launching attacks on small air-borne targets and buildings.\nIts liteweight armor, makes it an easy target for the SILVER series battle units.\nIt should be escorted by several A-series androids in this sort of battle.\nJust like the ST 01B, it should not be used in battles with enemy HELL-series battle units, since the armor is easily burned by the DXC-additive in their napalm bombs.

@@ -28,6 +28,14 @@ ed_aircrafts_nemezis:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_nemezis_husk
 		RequiresCondition: airborne
+	EnhancedEncyclopedia:
+		Category: ED - Aircrafts
+		Order: 4
+		Animation: DATABASE/MP2_BOMB.FLC
+		Title: Heavy Nuclear Bomber
+		Armor: heavy
+		Armament: Nuclear bombs
+		Description: The Heavy Nuclear Bomber is the ideal weapon for destroying enemy structures and units.\nBecause of its long loading time, however, the Heavy Nuclear Bomber should never be deployed alone.\nThe best results are reached when deployed in groups of several bombers.
 
 ed_aircrafts_nemezis_husk:
 	Inherits: ^CoreAircraftHusk

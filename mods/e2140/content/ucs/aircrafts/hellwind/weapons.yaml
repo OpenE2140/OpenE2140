@@ -1,4 +1,4 @@
-ucs_aircrafts_hell_wind:
+ucs_aircrafts_hellwind:
 	ReloadDelay: 100
 	Range: 2c896
 	ValidTargets: Ground, Water

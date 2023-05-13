@@ -1,17 +1,17 @@
-shared_vehicles_hcrm:
+shared_vehicles_hcum:
 	idle:
-		Filename: vehicle_hcr_m.vspr
+		Filename: vehicle_hcu_m.vspr
 		Facings: -16
 	move:
-		Filename: vehicle_hcr_m.vspr
+		Filename: vehicle_hcu_m.vspr
 		Start: 16
 		Length: 4
 		Facings: -16
 	turret:
-		Filename: turret_hcr_m.vspr
+		Filename: turret_hcu_m.vspr
 		Facings: -16
 	repair:
-		Filename: turret_hcr_m.vspr
+		Filename: turret_hcu_m.vspr
 		Start: 16
 		Length: 5
 		Facings: -4
@@ -25,8 +25,8 @@ shared_vehicles_hcrm:
 	#	Start: 149
 
 # TODO: remove after PR #20705
-shared_vehicles_hcrm.ucs:
-	Inherits: shared_vehicles_hcrm
+shared_vehicles_hcum.ucs:
+	Inherits: shared_vehicles_hcum
 	icon:
 		Filename: SPRI1.MIX
 		Start: 149

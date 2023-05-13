@@ -42,3 +42,11 @@ ucs_vehicles_raptor_es:
 		Delay: 56
 		ResetOnFire: True
 		Count: 7
+	EnhancedEncyclopedia:
+		Category: UCS - Vehicles
+		Order: 2
+		Animation: DATABASE/BT02.FLC
+		Title: RAPTOR ES
+		Armor: medium
+		Armament: two 1" machine guns
+		Description: This fast and agile battle robot is ideally suited for close combat and for accompanying the heavily armored TIGER-type destruction machines.\nIts two 1" lite machine guns, with uranium coated barrels, and its new generation protective armor, an alloy of different elements, give it an advantage which lightly armored vehicles and small battle units will find hard to beat in close combat.

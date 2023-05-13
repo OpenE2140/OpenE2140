@@ -56,3 +56,12 @@ ed_vehicles_warhammer:
 		Delay: 50
 		ResetOnFire: True
 		Count: 6
+	EnhancedEncyclopedia:
+		Category: ED - Vehicles
+		Order: 13
+		Animation: DATABASE/MP2_HT.FLC
+		Title: Warhammer
+		Armor: heavy
+		Armament: three heavy cannon
+		Description: The ED's newest development, the Warhammer has some unique properties.\nThe extremely stable, heavy armor gives this tank a long life on the battlefield.\nPlus, it's equipped with enough firepower to be used as a SPIDER-killer.
+  

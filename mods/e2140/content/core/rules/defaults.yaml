@@ -263,11 +263,11 @@
 	# Actor can be targeted by anything which attacks ground.
 	Targetable@Default:
 		TargetTypes: Ground, Vehicle
-	# Actor can be autorepaired by friendly HCR M.
+	# Actor can be autorepaired by friendly HCU-M.
 	Targetable@Repair:
 		RequiresCondition: damaged
 		TargetTypes: DamagedUnit
-	# Condition to be granted to damaged vehicles so HCR M can autorepair them.
+	# Condition to be granted to damaged vehicles so HCU-M can autorepair them.
 	GrantConditionOnDamageState@Damaged:
 		Condition: damaged
 		ValidDamageStates: Light, Medium, Heavy, Critical

@@ -26,3 +26,11 @@ ed_vehicles_mt201l:
 		LocalOffset: 350,0,50
 		LocalYaw: 0
 		MuzzlePalette:
+	EnhancedEncyclopedia:
+		Category: ED - Vehicles
+		Order: 4
+		Animation: DATABASE/PM04.FLC
+		Title: MT 201L - Middle-sized Tank
+		Armor: heavy
+		Armament: laser-gun
+		Description: The MT 201L, being based on the MT 200, is also a middleweight tank, but is fitted with a laser cannon which is ideal for quickly destroying the enemy's liteweight vehicles.\nThe armor-plating is an improvement on the original version, making it pretty strong.\nThis is a defense plus while the laser cannon generator is reloading.\nBut it's still advisable to have the protection of other units.\nThe laser cannon is effective at close range, making it a good defense weapon if enemy SILVER units launch an attack.\nYou can use this tank to run over and crush enemy units.

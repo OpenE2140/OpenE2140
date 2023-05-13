@@ -20,3 +20,17 @@
 	TriggerTransformSequence:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
+
+shared_mcu:
+	Inherits@1: ^CoreVehicle
+	-MapEditorData:
+	Tooltip:
+		Name: MCU
+	EnhancedEncyclopedia:
+		Category: Shared - Vehicles
+		Order: 1
+		Animation: DATABASE/N01.FLC
+		Title: MCU (Meta Construction Unit)
+		Armor: thick
+		Armament: none
+		Description: The MCU is a heavy vehicle which is used to construct all types of structures.\nHowever, the type of structure the MCU can construct must first be defined and cannot be changed.\nThe MCU is a large, heavy, slow-moving vehicle, which is very difficult to navigate.\nIt does, however, have thick armour-plating, making up for its weaknesses should the enemy launch a small attack.\nBear in mind, however, that the MCU is unarmed.

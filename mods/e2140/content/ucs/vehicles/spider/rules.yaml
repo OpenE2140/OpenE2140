@@ -48,3 +48,11 @@ ucs_vehicles_spider:
 		Count: 22
 	WithDamageOverlay:
 		Image: smoking_mech
+	EnhancedEncyclopedia:
+		Category: UCS - Vehicles
+		Order: 6
+		Animation: DATABASE/BT06.FLC
+		Title: SPIDER
+		Armor: heavy
+		Armament: two plasma guns
+		Description: The SPIDER is a heavy unit with its own artificial intelligence which receives battle commands from the central computers.\nThe SPIDER's armor is strengthened with a special alloy, which makes it even more rocket-proof.\nArmed with two quick-fire plasma guns, it's slower than the TIGER-series, but thanks to those new generation plasma guns it carries, it's great for backing up battle robots, e.g., the TIGER series, when they launch an attack on the enemy.

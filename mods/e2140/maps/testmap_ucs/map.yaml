@@ -167,7 +167,7 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 18,9
-	Actor43: ucs_aircrafts_hell_wind
+	Actor43: ucs_aircrafts_hellwind
 		Owner: UCS_Player
 		Facing: 384
 		Location: 19,9

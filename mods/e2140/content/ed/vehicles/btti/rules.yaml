@@ -26,3 +26,11 @@ ed_vehicles_btti:
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
+	EnhancedEncyclopedia:
+		Category: ED - Vehicles
+		Order: 10
+		Animation: DATABASE/PM10.FLC
+		Title: BTTI - Fast Exploration Vehicle
+		Armor: liteweight
+		Armament: two machine guns
+		Description: The BTTI is an enhanced EB110 which was built by an exclusive Italian sports-car manufacturer.\nThe manufacturer had financial problems and had to sell the construction plans at a relatively cheap price.\nSome minor modifications were made, making the BTTI a fast vehicle useful for special missions.\nIt can be easily located by satellites, a fact which, together with its speed, makes it ideal for reconnaissance missions in enemy territory.\nIn order to maintain most of the typical characteristics of a high performance sports car, it is fitted with a relatively liteweight armor-plating and is primitively armed.\nShould it come into contact with the enemy, its only defense is retreat.\nThis high speed car can quickly lose any pursuing enemy.

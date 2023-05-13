@@ -1,0 +1,337 @@
+========================== ED Infantry:
+
+A01 Android
+#Armor: none
+#Armament: medium-sized machine gun and grenades
+#Price: 50
+_
+The A01 is an android constructed with a modified form of human DNA. The main aim in the development of this android was to enhance certain aspects of human performance, such as stamina, strength and susceptibility to environmental conditions. For example, the A01 is still fully operational in environments with an oxygen level of 7%. It is 6 ft. tall and weighs 240lb. The A01 is ideal for patrols, escorts and defending smaller bases. However you'll find it best at capturing enemy buildings. Attacks on hostile positions and units are better made with one of the later android-models, since the A01 has no armor. The A01 comes with a medium sized MG and hand grenades which can only be used against vehicles. A01 androids automatically come in groups of seven, optimizing their attack and defense capabilities.
+
+A02 Android
+#Armor: none
+#Armament: rocket launcher
+#Price: 75
+_
+The A02 is an enhanced version of the A01. They have the same features and differ only in weaponry. The A02 has a rocket launcher and is ideal for destroying heavyweight enemy vehicles. You can also use it for ground to air combat, it's wide range rocket launcher enabling you to hit air-borne targets.
+
+A03 Android
+#Armor: none
+#Armament: ion cannon
+#Price: 100
+_
+The A03 differs from the others in that it has an ion cannon for deactivating enemy vehicles. The HCU-M can then be used to repair and reprogram these vehicles.
+
+A04 Android
+#Armor: none
+#Armament: mines and explosives
+#Price: 100
+_
+The A04 carries mines and explosives. It can not only lay mines; it can also defuse enemy mines. The explosives carried by the A04 make it a danger to the enemy. If the android gets hit, or if the A04 is able to get close enough to an enemy unit or vehicle, it can ignite these explosives. The damage caused more than justifies the loss of the android.
+
+========================== UCS Vehicles:
+
+TIGER HellMaker
+#Armor: middle and fireproof
+#Armament: two napalm bomb firing devices
+#Price: 500
+_
+The HellMaker is part of the second generation of TIGER-Series battle robots. They have two devices for firing napalm-type bombs which can burn a complete army of small battle units to death within seconds. In combat with a lite or middleweight Eurasian Dynasty tank, the DXC additive in the napalm will corrode and burn the tank's armor.
+
+HellBike
+#Armor: liteweight but fireproof
+#Armament: napalm grenade launcher
+#Price: 200
+_
+The HellBike, mainly used as a fast reconnaissance vehicle, is equipped with a napalm grenade launcher. It's liteweight armor enables it to be used for lighting strikes on small enemy battle units, but not for lengthy firefights. It's high speed and the DXC additive in the napalm grenades make it a killer of lite and middleweight tanks.
+
+ATM 500 - Armored Transporter
+#Armor: middleweight
+#Armament: heavy machine gun
+#Price: 400
+_
+The ATM 500 is an armored vehicle used for transporting small battle units like the SILVER series. The ATM 500 can hold six units and can get them quickly to their target, even through contaminated areas. Well armored and well armed with a heavy MG, small enemy units and watchtowers will find it a difficult opponent. Built for high speed, you can't, however, use it to run over enemy units.
+
+MINER BT
+#Armor: heavy
+#Armament: heavyweight machine guns
+#Price: 700
+_
+The MINER BT is based on the ED army's MINER. The UCS stole the construction plans and optimized the vehicle by adding a reliable building device and strengthening the armor, allowing it to operate better in battle fields. It's a heavy, multifunctional vehicle used mainly for mining land. It can also be used to defuse enemy mines and to construct border walls.
+
+Goliat
+#Armament: heavy explosives
+#Armor: medium
+#Price: 600
+This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliat approaches 
+its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even 
+the most heavily armed units and structures.
+
+========================== UCS Ships:
+
+RUSS III - Submarine
+#Armor: medium
+#Armament: torpedo launcher
+#Price: 500
+_
+The RUSS III is the latest model of the reliable RUSS-series. These small, fast submarines have been used for various tasks for decades. The RUSS III is the latest version, fitted with a high-performance, low-noise motor. But what makes this submarine so special is its stealth device which makes it invisible to enemy airplanes and helicopters, even when it's just beneath the water's surface. It's conventional torpedo launcher, is enough to destroy any target moving on the water. The RUSS III can only be seen by the enemy when it fires its torpedoes.
+
+TTRE 400 - Mine Layer
+#Armor: medium
+#Armament: water mines
+#Price: 700
+_
+The TTR is a fast mine layer which can safeguard territories effectively from enemy ships and submarines by laying and moving water mines. The only armament a TTR 400 carries are its mines, making it an easy target for the enemy. It's only defense is to retreat, dropping mines in the water as it goes.
+
+========================== ED Vehicles:
+
+TUR - Transport Vehicle
+#Armor: lite
+#Armament: none
+#Price: 300
+_
+The TUR is a middle, fast, unarmed vehicle used to transport small SILVER or A-series battle-units. Up to six units can be transported in a TUR, even through contaminated areas. The TUR has liteweight armor-plating. It destroys small hostile units by running over them without damage to itself. When the TUR is destroyed, all units on board it are also destroyed.
+
+BIO - Regeneration Vehicle
+#Armor: lite
+#Armament: none
+#Price: 1000
+_
+The BIO, like the TUR, is an unarmed and fast vehicle that was originally used as a civil vehicle and has been adapted for battle. It's fitted out with complete regeneration devices for A-series androids. It can repair four androids at a time. Since the BIO only has liteweight armor-plating, it should not be used anywhere near a battlefield. It is also an easy target for fast reconnaissance vehicles. Since the androids being repaired are connected to the regeneration device, they cannot be evacuated should the vehicle be destroyed and will also be lost.
+
+MINER
+#Armor: middleweight
+#Armament: large machine gun
+#Price: 700
+_
+The miner is a heavyweight, multifunctional vehicle used mainly for laying mines in enemy territory, making these areas impassable. It can defuse enemy mines and erect border fences, etc. Its medium weight armor-plating and large machine gun make it a battlefield unit.
+
+========================== ED Ships:
+
+SHARK - Fast Boat
+#Armor: medium
+#Armament: torpedoes
+#Price: 300
+_
+Its high velocity and its torpedoes make the SHARK ideal for quick attacks aimed at destroying enemy marine units. However, SHARK is completely helpless against land-based or air-borne attacks. A SHARK should avoid direct confrontation and use its speed to get enough distance between itself and the enemy.
+
+WTRN - High Water Transporter
+#Armor: medium
+#Armament: none
+#Price: 500
+_
+The WTRN is a nautical transport unit for small battle units and middle-sized vehicles. It can carry one vehicle and up to five battle units. The battle units have to board the WTRN first due to restrictions in the construction of the transporter. It can also carry six small battle units if required. The WTRN is not very fast but, due to its armor-plating, can stand up to sustained attacks from the enemy. A vehicle on board can still fire its weapons, an obvious advantage.
+
+KT 30 - Battleship
+#Armor: heavy
+#Armament: launcher for small and heavy rockets
+#Price: 2000
+_
+The KT 30 is a medium-sized battleship with heavy armor-plating and heavy weapons. Its disadvantage is its low speed but its heavy armor-plating and its two rocket launchers with missiles, both small and large, make it a force to be reckoned with. The KT 30 can be used to fight hostile ships or structures that are close to shore. You can use the small rockets against air-attacks. These features gave the KT 30 the nickname "swimming castle".
+
+========================== UCS Infantry:
+
+SILVER ONE
+#Armor: liteweight
+#Armament: large machine gun
+#Price: 50
+_
+SILVER series battle units are similar in form to a human skeleton. 2m tall, their chassis is made of titan and has a hydraulic motor. SILVER battle units have a type °7 MiniNuclear reactor and a protective alloy made of different elements. The MiniNuclear reactor also has a self-destruct device. These multifunctional battle units are controlled by the new XPARC°2000B family of processors, making the SILVER units excellent tactical and strategic battle units. There are always seven of these SILVER battle units in a group; a great attack group for taking over enemy buildings. SILVER ONE is armed with a large machine gun and is ideal for fighting androids and lite-armored vehicles. 
+
+SILVER R
+#Armor: liteweight
+#Armament: rocket launcher
+#Price: 75
+_
+The SILVER R and the SILVER ONE are similarly constructed, the only difference being in their weaponry. SILVER R has a rocket launcher instead of a machine gun. This makes it efficient at destroying static targets and lite or middleweight vehicles. The SILVER R can fire smaller rockets in the event of an air-raid. Being so small and zippy, it is ideal for doing battle with ED helicopters. 
+
+SILVER MAX
+#Armor: liteweight
+#Armament: plasma gun
+#Price: 100
+_
+SILVER MAX units, armed with plasma cannons, are a danger to mobile units and even heavily armored vehicles.
+
+SILVER T
+#Armor: medium
+#Armament: self destruction detonator
+#Price: 70
+_
+SILVER T units are armed with a self-destruction detonator. Activated, the SILVER T unit becomes a kamikaze heavily armored for penetration to its target, which can be a structure, a vehicle or a group of small battle units.
+
+========================== SHARED Buildings:
+
+
+Teleport
+#Armament: none
+#Armor: none
+#Resistance: medium
+#Price: 2150
+#Energy requirements: 700 energy units
+_
+Teleport makes it possible to take delivery of goods directly from the main underground base. The items to be transported are first dematerialized and then rematerialized in the Teleport. This process not only requires large quantities of energy, it is also very expensive. So vehicles acquired in this way are more expensive than if they were built at the point of delivery. There are many situations which justify this higher price; for example, when the main base is under enemy attack. In this case, it is better to pay the higher price and have the vehicles delivered quickly.
+
+Refinery
+#Armament: none
+#Armor: cannot be damaged by normal firearms.
+#Resistance: medium
+#Price: 1000
+#Energy requirements: 300 energy units
+_
+The Refinery processes the raw materials excavated from the mines. The raw materials are then sold thereby improving the budget. Each container is filled with resources to the value of 200 Dollars. The Refinery is fully automated and does not require any personnel whatsoever. The containers are brought to the Refinery using either a BANTHA or HEAVY LIFTER. They load the containers onto a conveyer belt which transports the containers inside the Refinery.
+
+Mine
+#Armament: none
+#Armor: cannot be damaged by normal firearms.
+#Resistance: medium
+#Price: 800
+#Energy requirements: 200 energy units
+_
+Resources are extracted from the depths of a Mine. Mines are completely automated and do not require personnel. The extracted ores are placed in containers and transported to a refinery by either a BANTHA or a HEAVY LIFTER. Each container contains resources to the value of 200. A Mine can only be built in locations containing resources. You cannot build a Mine anywhere else. If there are plenty of resources, you may have to build a new Mine, if one stops producing. A Mine can only extract resources in a certain area. When all the available resources have been extracted the Mine shuts down.
+
+Research Center
+#Armament: none
+#Armor: none
+#Resistance: medium
+#Price: 1500
+#Energy requirements: 200 energy units
+_
+The Research Center has a very important role. This is where research takes place, resulting in the construction of newer, even better weapons, vehicles and structures which improve the technical level of the game. Research cannot be influenced from outside the Research Center and is not always successful.
+
+Water Base
+#Armament: none
+#Armor: medium
+#Resistance: very good
+#Price: 1200
+#Energy requirements: 300 energy units
+_
+The Water Base is where ships and boats are built. It consists of control center and dockyard plus a launching dock. A Water Base can only be built at the water's edge, and requires enough space for the dock from which to launch the vessels.
+
+Bunker
+#Armament: none
+#Armor: very thick; offers protection against almost anything that can be thrown at it.
+#Resistance: very good
+#Price: 800
+#Energy requirements: none; has it's own power generators.
+_
+The Bunker is a heavily fortified structure, the largest part of which is underground. The only part that can be seen is the entrance with a heavily armored sluice. There is enough room in a Bunker for up to 6 small vehicles or units, providing shelter if the enemy launches an attack. If the enemy has enough firepower to actually destroy the Bunker, then all units inside will be evacuated shortly before it is destroyed.
+
+========================== ED Buildings:
+
+AN Center		
+#Armaments: none
+#Armor: light
+#Defence: medium
+#Price: 2000
+#Energy Usage: 1000
+This structure has the same reconnaissance capabilities as a defence tower, but with a much larger radius.
+This structure can cover large areas and make out SHADOW-camouflaged vehicles from great distances.
+
+Bionic Production Center (BioCenter)
+#Armament: None
+#Armor: None
+#Resistance: Medium
+#Price: 1000
+#Energy usage: 200 energy units
+_
+The Bionic Production Center contains the production lines for A-series androids. Bionic research and clone technology improvements take place here too. The high sophistication of the technology in the Bionic Production Center makes it a prime target for the enemy. All production takes place above ground.
+
+Ballistic Control Center
+#Armament: none
+#Armor: none
+#Resistance: medium
+#Price: 2000
+#Energy usage: 200 energy units
+_
+All nuclear weapons are controlled in the Ballistic Control Center. This center has to be built first before you can build underground launchers for nuclear rockets. These nuclear rockets are very powerful and precise. The entire area a nuclear rocket hits becomes contaminated.
+
+Launcher for Nuclear Rockets
+#Armament: none
+#Armor: heavy
+#Resistance: high
+#Price: 1000
+#Energy usage: 100 energy units
+_
+The whole apparatus is under ground. Only the gate with heavy armor-plating is above the ground,  opening shortly before the launch of a rocket and closing immediately after. A launcher for nuclear rockets holds only one rocket and cannot be used after the rocket has been launched. With its heavy armor-plating it can still be used to support a defense line.
+
+Bunker
+#Armament: 8" double barrel canon
+#Armor: resistant to conventional weapons, small rockets and fire
+#Resistance: high
+#Price: 800
+#Energy usage: 50 energy units
+_
+The low-lying Bunker with heavy armor-plating is a strategic part of every line of defense. Even though it only contains an 8" double barrel gun, it is extremely resistant to all kinds of conventional weapons. Only large rockets or plasma guns can wear down the armor after some time.
+
+Defense Tower
+#Armament: 8" cannon or launcher for small rockets
+#Armor: resistant to conventional weapons
+#Resistance: medium
+#Price: 400, upgrade 200
+#Energy usage: 50 energy units
+_
+One important element of an effective line of defense is this tower which is almost 12' high. The tower is always built with an 8" cannon and can be upgraded with up to two launchers for small rockets.
+
+Heavy Defense Tower
+#Armament: triple launcher for heavy rockets, can be upgraded with an ion-cannon.
+#Armor: resistant to conventional weapons, small rockets and fire
+#Resistance: high
+#Price: 600, upgrade 200
+#Energy usage: 100 energy units
+_
+The Heavy Defense Tower is the big brother of the defense tower standing approximately 20 ft. high. It has heavy armor-plating and triple launchers for heavy, self-guided rockets. It can be upgraded by a heavy ion-cannon when the technology for its construction has been invented.
+
+========================== UCS Buildings:
+
+SDI Defence
+#Armament:  none
+#Armor: light
+#Defence: medium
+#Price: 2000
+#Energy Usage: 1000
+This structure serves exclusively as protection against the enemy's nuclear rockets. With its three lasers,
+this structure can destroy any oncoming nuclear rockets within a medium radius before they land.
+
+UCS Robot Factory
+#Armament: none
+#Armor: protected from traditional weapons
+#Resistance: medium
+#Price: 1000
+#Energy requirements: 200 energy units
+_
+Small battle units of the SILVER type are produced in this building. The whole production process happens underground. The completed robots are then brought to the surface. This underground construction makes the Robot Factory more attack proof than a building on the surface would be.
+
+Plasma Control Center
+#Armament: none
+#Armor: protected from traditional weapons
+#Resistance: medium
+#Price: 1800
+#Energy requirements: 200 energy units
+_
+This control center is responsible for the entire PlasmaBlast, a new UCS invention. The Eurasian Dynasty still uses long distance atomic rockets, whereas the UCS has this new, even more powerful technology. PlasmaBlast is a plasma cannon with a very strong plasma laser beam. You can destroy long distance targets using the plasma laser beam as a transport medium for a large number of plasma bombs. This control center must be built before stationary PlasmaBlasts can be constructed.
+
+PlasmaBlast
+#Armament: none
+#Armor: protected from traditional weapons
+#Resistance: medium
+#Price: 1500
+#Energy requirements: 500 energy units
+_
+PlasmaBlast is the latest UCS invention and currently the best mass destruction device in the world. A very strong plasma laser beam is fired, not to destroy but as a transport medium for large numbers of plasma bombs. Although the PlasmaBlast can be fired as often as necessary, it does take a while for the generators to recharge.
+
+Little Eye - Small Defense Tower
+#Armament: heavyweight machine gun or liteweight rocket launcher
+#Armor: protected from traditional weapons
+#Resistance: medium
+#Price: 400, an upgrade costs 200
+#Energy requirements: 50 energy units
+_
+This tower is a must when you create an effective defense line. The tower is built with an integrated heavyweight machine gun; this enables an immediate and hard hitting response should any small battle units or liteweight vehicles try to attack during construction. To offer any defense from middle and heavyweight vehicles, the tower must be rearmed with a rocket launcher. Alternatively a larger tower, the Big Eye, could be built.
+
+Big Eye - Large Defense Tower
+#Armament: heavyweight rocket launcher or Plasma Gun
+#Armor: protected from traditional weapons, liteweight rockets and fire
+#Resistance: high
+#Price: 600; an upgrade costs 200
+#Energy requirements: 100 energy units
+_
+The Big Eye Defense Tower is almost 18 feet tall and has a launcher holding three heavyweight rockets. For added defense you can rearm the tower with a large, quick-fire plasma cannon. The Big Eye Defense Tower is hard to destroy, and from 18 ft. can identify allied units more easily.

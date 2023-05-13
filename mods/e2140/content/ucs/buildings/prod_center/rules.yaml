@@ -53,6 +53,15 @@ ucs_buildings_prod_center:
 	Exit@Exit6:
 		ExitCell: 2,1
 		Facing: 896
+	EnhancedEncyclopedia:
+		Category: UCS - Buildings
+		Order: 1
+		Animation: DATABASE/X17.FLC
+		Title: UCS Production Center
+		Armor: Resistant to conventional weapons
+		Armament: none
+		Resistance: high
+		Description: The Production Center is the main building of a UCS base.\nThis is where MCU construction vehicles are built.\nThey are used to build all other structures.\nBANTHA heavy goods transporters are built here too.\nWhen you reach the required technology level, you can start building the anti-gravity transporter HEAVY LIFTER here.\nYou can then use it to transport resource containers faster and more efficiently.
 
 ucs_mcu_prod_center:
 	Inherits@1: ^SharedVehicleMcu
