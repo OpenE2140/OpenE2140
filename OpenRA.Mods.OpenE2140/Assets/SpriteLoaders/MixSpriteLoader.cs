@@ -69,11 +69,6 @@ public class MixSpriteLoader : ISpriteLoader
 			if (mix.Frames.Length == 0)
 				return false;
 
-			// TODO we should do this using VirtualAssets and remove this hack here!
-			var hasShadow = new[] { "spro0.mix", "spro1.mix", "spro2.mix", "spro3.mix", "spro4.mix", "spro5.mix", "spro6.mix" }.Any(
-				file => filename.EndsWith(file, StringComparison.OrdinalIgnoreCase)
-			);
-
 			foreach (var frame in mix.Frames)
 			{
 				var size = new Size(frame.Width, frame.Height);
@@ -90,9 +85,6 @@ public class MixSpriteLoader : ISpriteLoader
 					{
 						var index = frame.Pixels[i];
 						var color = palette[index];
-
-						if (hasShadow && index == 254)
-							color = Color.FromArgb(0x80000000);
 
 						indexedImage[i] = index;
 
