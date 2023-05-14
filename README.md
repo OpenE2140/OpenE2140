@@ -2,6 +2,10 @@
 
 Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on [OpenRA Mod SDK](https://github.com/OpenRA/OpenRAModSDK). Work in progress.
 
+Links:
+* [Discord server](https://discord.gg/KNcX5BxA37)
+* [Mod DB page](https://www.moddb.com/mods/opene2140)
+
 # Videos / Screenshots
 
 Video previews showcasing latest development:
