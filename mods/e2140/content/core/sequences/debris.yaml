@@ -1,0 +1,49 @@
+^Debris:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: SPRO0.MIX
+			DESERT: SPRO1.MIX
+			SANDY: SPRO2.MIX
+			TEMPERATE: SPRO3.MIX
+			SNOW: SPRO4.MIX
+			URBAN: SPRO5.MIX
+			URBAN2: SPRO6.MIX
+
+debris:
+	Inherits: ^Debris
+	Defaults:
+		InterpolatedFacings: 4
+		Facings: 1
+		ZOffset: 512
+		Length: 2
+		Tick: 60
+	debris1:
+		Frames: 49, 50
+	debris2:
+		Frames: 51, 52
+	debris3:
+		Frames: 53, 54
+	debris4:
+		Frames: 55, 56
+	debris5:
+		Frames: 65, 66
+	debris6:
+		Frames: 67, 68
+
+debris_ground:
+	Inherits: ^Debris
+	Defaults:
+		ZOffset: 512
+		Tick: 250
+	debris1:
+		Frames: 49
+	debris2:
+		Frames: 51
+	debris3:
+		Frames: 53
+	debris4:
+		Frames: 55
+	debris5:
+		Frames: 65
+	debris6:
+		Frames: 67

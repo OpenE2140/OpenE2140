@@ -2,7 +2,7 @@ VehicleExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
 		Image: vehicle_explosion
-		Explosions: explode1, explode2
+		Explosions: explode, explode2
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp

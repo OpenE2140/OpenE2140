@@ -32,6 +32,12 @@ ed_aircrafts_thunder:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2

@@ -31,6 +31,12 @@ ucs_aircrafts_gargoil_ii:
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris
+		Range: 0c512, 1c0
+		Pieces: 3,4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle

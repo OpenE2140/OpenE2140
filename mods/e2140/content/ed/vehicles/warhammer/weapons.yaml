@@ -26,6 +26,12 @@ ed_vehicles_warhammer:
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris
+		Range: 0c512, 1c0
+		Pieces: 2,2
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
