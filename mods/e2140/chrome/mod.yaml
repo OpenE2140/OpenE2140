@@ -68,35 +68,35 @@ Fonts:
 	Tiny:
 		Font: e2140|chrome/fonts/Oxanium-Regular.ttf
 		Size: 10
-		Ascender: 12
+		Ascender: 8
 	TinyBold:
 		Font: e2140|chrome/fonts/Oxanium-Bold.ttf
 		Size: 10
-		Ascender: 12
+		Ascender: 8
 	Small:
 		Font: e2140|chrome/fonts/Oxanium-Regular.ttf
 		Size: 12
-		Ascender: 14
+		Ascender: 9
 	Regular:
 		Font: e2140|chrome/fonts/Oxanium-Regular.ttf
 		Size: 14
-		Ascender: 17
+		Ascender: 11
 	Bold:
 		Font: e2140|chrome/fonts/Oxanium-Bold.ttf
 		Size: 14
-		Ascender: 17
+		Ascender: 11
 	MediumBold:
 		Font: e2140|chrome/fonts/Oxanium-Bold.ttf
 		Size: 18
-		Ascender: 22
+		Ascender: 14
 	BigBold:
 		Font: e2140|chrome/fonts/Oxanium-Bold.ttf
 		Size: 24
-		Ascender: 29
+		Ascender: 18
 	Title:
 		Font: e2140|chrome/fonts/Oxanium-Bold.ttf
 		Size: 32
-		Ascender: 38
+		Ascender: 24
 	SourceSansProSmall:
 		Font: e2140|chrome/fonts/source-sans-pro.regular.ttf
 		Size: 12
