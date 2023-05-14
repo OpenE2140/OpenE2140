@@ -23,11 +23,13 @@ public class Flc : IVideo
 	public ushort Height { get; }
 	public byte[] CurrentFrameData { get; }
 	public int CurrentFrameIndex { get; private set; }
-	public bool HasAudio => false;
-	public byte[] AudioData => Array.Empty<byte>();
-	public int AudioChannels => 0;
-	public int SampleBits => 0;
-	public int SampleRate => 0;
+
+	// TODO this is just a workaround of a bug in the VideoPlayerWidget. Remove when fixed.
+	public bool HasAudio => true;
+	public byte[] AudioData => Enumerable.Repeat((byte)0x80, this.FrameCount).ToArray();
+	public int AudioChannels => 1;
+	public int SampleBits => 8;
+	public int SampleRate => this.Framerate;
 
 	private readonly byte[][] frames;
 	private readonly byte[] palette = new byte[1024];
@@ -59,7 +61,7 @@ public class Flc : IVideo
 		if (flags != 3)
 			throw new Exception("Broken flc file!");
 
-		this.Framerate = (byte)stream.ReadUInt32();
+		this.Framerate = (byte)(stream.ReadUInt32() / 2);
 
 		if (stream.ReadBytes(2).Any(b => b != 0x00))
 			throw new Exception("Broken flc file!");
