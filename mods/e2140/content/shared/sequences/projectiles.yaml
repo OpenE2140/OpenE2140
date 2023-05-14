@@ -44,12 +44,16 @@ projectile_heavy_rocket:
 		Length: 8
 
 missile_trail:
-	idle:
+	Defaults:
+		Filename: missile_trail.vspr		
 		Tick: 70
-		BlendMode: Additive
-		Filename: missile_trail.vspr
 		Length: 4
+	idle:
+		BlendMode: Additive
 		ZOffset: 512
+	explode:
+		BlendMode: Subtractive
+		ZOffset: -64
 
 projectile_plasma:
 	Defaults:

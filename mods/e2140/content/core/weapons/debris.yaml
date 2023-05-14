@@ -1,0 +1,33 @@
+weapon_debris:
+	ReloadDelay: 60
+	Range: 1c0
+	Projectile: Bullet
+		Speed: 75,100
+		Blockable: false
+		LaunchAngle: 125, 175
+		Image: debris
+		Sequences: debris1, debris2, debris3, debris4, debris5, debris6
+		Palette: 
+		TrailPalette:
+		Shadow: true
+		ShadowColor: 00000046
+	Warhead@EffectGroundDebris: CreateEffect
+		Image: debris_ground
+		Explosions: debris1, debris2, debris3, debris4, debris5, debris6
+		ExplosionPalette:
+		ValidTargets: Ground
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash_firearm
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure
+
+weapon_debris_smoke:
+	Inherits: weapon_debris
+	Warhead@EffectGroundSmoke: CreateEffect
+		Image: missile_trail
+		Explosions: explode
+		ExplosionPalette:
+		ValidTargets: Ground
