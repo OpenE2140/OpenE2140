@@ -54,7 +54,7 @@ Background@ENCYCLOPEDIA_PANEL:
 					Children:
 						Background@ANIMATION_BG:
 							Width: 325
-							Height: 170
+							Height: 225
 							Background: dialog3
 							Children:
 								LoopedVideoPlayer@ANIMATION:
@@ -65,7 +65,7 @@ Background@ENCYCLOPEDIA_PANEL:
 						Background@ACTOR_BG:
 							X: PARENT_RIGHT - 325
 							Width: 325
-							Height: 170
+							Height: 225
 							Background: dialog3
 							Children:
 								ActorPreview@ACTOR_PREVIEW:
@@ -74,9 +74,9 @@ Background@ENCYCLOPEDIA_PANEL:
 									Width: PARENT_RIGHT - 2
 									Height: PARENT_BOTTOM - 2
 						ScrollPanel@ACTOR_DESCRIPTION_PANEL:
-							Y: 170+ 10
+							Y: 225 + 10
 							Width: PARENT_RIGHT
-							Height: PARENT_BOTTOM - 170 - 10
+							Height: PARENT_BOTTOM - 225 - 10
 							TopBottomSpacing: 8
 							Children:
 								Label@ACTOR_DESCRIPTION:

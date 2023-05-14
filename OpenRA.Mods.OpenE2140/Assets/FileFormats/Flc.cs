@@ -46,6 +46,9 @@ public class Flc : IVideo
 		this.frames = new byte[this.FrameCount + 1][];
 		this.CurrentFrameData = new byte[Exts.NextPowerOf2(this.Height) * Exts.NextPowerOf2(this.Width) * 4];
 
+		// TODO this is just a workaround of a bug in the VideoPlayerWidget. Remove when fixed.
+		this.CurrentFrameData = new byte[Exts.NextPowerOf2(Math.Max(this.Width, this.Height)) * Exts.NextPowerOf2(Math.Max(this.Width, this.Height)) * 4];
+
 		var depth = stream.ReadUInt16();
 
 		if (depth != 8)
