@@ -55,37 +55,47 @@ public static class VirtualAssetsBuilder
 
 		var yaml = MiniYaml.FromStream(yamlStream);
 
-		var source = yaml.FirstOrDefault(e => e.Key == "Source")?.Value.Value;
+		var sources = yaml.FirstOrDefault(e => e.Key == "Sources")?.Value.Nodes;
 		var palettes = yaml.FirstOrDefault(e => e.Key == "Palettes")?.Value;
 		var generate = yaml.FirstOrDefault(e => e.Key == "Generate")?.Value;
 
-		if (source == null || generate == null)
+		if (sources == null || generate == null)
 			return virtualAssets;
 
 		var paletteEffects = palettes == null ? new Dictionary<string, PaletteEffect>() : VirtualAssetsBuilder.BuildPaletteEffects(palettes);
 
-		var frames = new List<FrameWithPalette>();
-
-		// TODO instead of opening the mix, get the image data along the palette from the engine, allowing to use any sprite source.
+		foreach (var sourceNode in sources)
 		{
-			if (!fileSystem.TryOpen(source, out var stream))
-				return virtualAssets;
+			var source = sourceNode.Key;
+			var suffix = sourceNode.Value.Value ?? string.Empty;
+			var frames = new List<FrameWithPalette>();
 
-			var mix = new Mix(stream);
+			// TODO instead of opening the mix, get the image data along the palette from the engine, allowing to use any sprite source.
+			{
+				if (!fileSystem.TryOpen(source, out var stream))
+					continue;
 
-			frames.AddRange(
-				mix.Frames.Select(
-					frame => new FrameWithPalette(
-						new Rectangle(frame.Width / -2, frame.Height / -2, frame.Width, frame.Height),
-						frame.Pixels,
-						mix.Palettes[frame.Palette].Colors
+				var mix = new Mix(stream);
+
+				frames.AddRange(
+					mix.Frames.Select(
+						frame => new FrameWithPalette(
+							new Rectangle(frame.Width / -2, frame.Height / -2, frame.Width, frame.Height),
+							frame.Pixels,
+							mix.Palettes[frame.Palette].Colors
+						)
 					)
-				)
-			);
-		}
+				);
+			}
 
-		foreach (var node in generate.Nodes)
-			virtualAssets.Add(node.Key + VirtualAssetsBuilder.Extension, new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(frames, paletteEffects, node)));
+			foreach (var node in generate.Nodes)
+			{
+				virtualAssets.Add(
+					node.Key + suffix + VirtualAssetsBuilder.Extension,
+					new MemoryStream(VirtualAssetsBuilder.BuildSpriteSheet(frames, paletteEffects, node, node.Key + suffix))
+				);
+			}
+		}
 
 		return virtualAssets;
 	}
@@ -139,10 +149,11 @@ public static class VirtualAssetsBuilder
 	private static byte[] BuildSpriteSheet(
 		IReadOnlyList<FrameWithPalette> inputFrames,
 		IReadOnlyDictionary<string, PaletteEffect> paletteEffects,
-		MiniYamlNode sheetNode
+		MiniYamlNode sheetNode,
+		string name
 	)
 	{
-		if (!VirtualAssetsBuilder.Cache.ContainsKey(sheetNode.Key))
+		if (!VirtualAssetsBuilder.Cache.ContainsKey(name))
 		{
 			var globalEffects = sheetNode.Value.Value == null ? Array.Empty<string>() : sheetNode.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 			var outputFrames = new List<Frame>();
@@ -239,14 +250,14 @@ public static class VirtualAssetsBuilder
 				}
 			}
 
-			VirtualAssetsBuilder.Cache.Add(sheetNode.Key, outputFrames.ToArray());
+			VirtualAssetsBuilder.Cache.Add(name, outputFrames.ToArray());
 		}
 
 		var stream = new MemoryStream();
 		var writer = new BinaryWriter(stream);
 		writer.Write(Encoding.ASCII.GetBytes(VirtualAssetsBuilder.Identifier));
-		writer.Write(sheetNode.Key.Length);
-		writer.Write(Encoding.ASCII.GetBytes(sheetNode.Key));
+		writer.Write(name.Length);
+		writer.Write(Encoding.ASCII.GetBytes(name));
 
 		return stream.ToArray();
 	}

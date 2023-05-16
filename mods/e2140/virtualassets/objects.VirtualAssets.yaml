@@ -1,0 +1,62 @@
+Sources:
+	SPRO0.MIX: -wasteland
+	SPRO1.MIX: -desert
+	SPRO2.MIX: -sandy
+	SPRO3.MIX: -temperate
+	SPRO4.MIX: -snow
+	SPRO5.MIX: -urban
+	SPRO6.MIX: -urban2
+
+Palettes:
+	Shadow: Merge
+		253: 0 0 0 32
+		254: 0 0 0 64
+
+Generate:
+	wall: Shadow
+		idle-h1: 73
+		idle-h1-damaged: 75
+		idle-h1-critical: 77
+		idle-h2: 74
+		idle-h2-damaged: 76
+		idle-h2-critical: 78
+		make-h: 79-81
+		idle-v1: 82
+		idle-v1-damaged: 84
+		idle-v1-critical: 86
+		idle-v2: 83
+		idle-v2-damaged: 85
+		idle-v2-critical: 87
+		make-v: 88-90
+
+	tree: Shadow
+		idle1: 93
+		damaged-idle1: 99
+		idle2: 94
+		damaged-idle2: 100
+		idle3: 95
+		damaged-idle3: 101
+		idle4: 96
+		damaged-idle4: 102
+		idle5: 97
+		damaged-idle5: 103
+		idle6: 98
+		damaged-idle6: 104
+
+	pipe: Shadow
+		idle-v1: 105
+		idle-v2: 106
+		idle-v3: 107
+		idle-v4: 108
+		idle-corner1: 109
+		idle-corner2: 110
+		idle-corner3: 111
+		idle-corner4: 112
+		idle-end1: 113
+		idle-end2: 114
+		idle-end3: 115
+		idle-end4: 116
+		idle-h1: 117
+		idle-h2: 118
+		idle-h3: 119
+		idle-h4: 120
