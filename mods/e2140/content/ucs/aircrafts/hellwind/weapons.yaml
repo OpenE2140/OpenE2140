@@ -15,6 +15,7 @@ ucs_aircrafts_hellwind:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 90
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_plasma_bomb

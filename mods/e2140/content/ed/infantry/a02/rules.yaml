@@ -1,0 +1,41 @@
+ed_infantry_a02:
+	Inherits@1: ^EdInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Android A02
+	Valued:
+		Cost: 75
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 4c896
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ed_infantry_a02
+		LocalOffset: 100,0,150
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ed_infantry_a02_air
+		LocalOffset: 100,0,150
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 2
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 62
+		ResetOnFire: True
+		Count: 1
+	Encyclopedia:
+		Category: ED - Infantry
+		Order: 2
+		Animation: DATABASE/A02.FLC
+		Title: Android A02
+		Armor: None
+		Armament: Rocket launcher
+		Description: The A02 is an enhanced version of the A01. They have the same features and differ only in weaponry. The A02 has a rocket launcher and is ideal for destroying heavyweight enemy vehicles. You can also use it for ground to air combat, its wide range rocket launcher enabling you to hit airborne targets.

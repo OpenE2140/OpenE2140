@@ -17,6 +17,7 @@ ed_vehicles_mt200:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 25
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon

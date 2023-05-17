@@ -22,6 +22,11 @@ World:
 	Voiced:
 		VoiceSet: EdVehicleVoice
 
+^EdInfantry:
+	Inherits: ^CoreInfantry
+	Voiced:
+		VoiceSet: EdInfantryVoice
+
 ed_colorpicker:
 	Inherits: ed_vehicles_st01b
 	RenderSprites:

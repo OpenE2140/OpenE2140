@@ -1,0 +1,88 @@
+ucs_buildings_robot_factory:
+	Inherits: ^CoreFactory
+	Tooltip:
+		Name: Robot Factory
+	Health:
+		HP: 700
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -520,-660,0
+	TransformSequence:
+		Offset: 500,580,0
+	HitShape:
+		TargetableOffsets: -250,-650,0,   -250,-100,0,   -250,400,0,   550,-350,0,   550,100,0,   550,600,0
+		Type: Rectangle
+			TopLeft: -950, -700
+			BottomRight: 900, 750
+	Selectable:
+		Bounds: 2064, 1984, 0,176
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Production:
+		Produces: Infantry.UCS
+		RequiresCondition: !Transforming
+	ProductionQueue:
+		Type: Infantry.UCS
+		Factions: ucs
+		Group: Infantry
+		LowPowerModifier: 150
+	ProductionBar:
+		ProductionType: Infantry.UCS
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: -450, 400, 0
+		ExitCell: -1,2
+		Facing: 384
+	Exit@Exit2:
+		SpawnOffset: -450, 400, 0
+		ExitCell: 0,2
+		Facing: 500
+	Exit@Exit3:
+		SpawnOffset: -450, 400, 0
+		ExitCell: 1,2
+		Facing: 650
+	GrantConditionOnDamageState:
+		Condition: damaged
+	WithProductionExitOverlay@Exit1:
+		ExitCell: -1,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	WithProductionExitOverlay@Exit2:
+		ExitCell: 0,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	WithProductionExitOverlay@Exit3:
+		ExitCell: 1,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	Encyclopedia:
+		Category: UCS - Buildings
+		Order: 2
+		Animation: DATABASE/X18.FLC
+		Title: Light Robot Factory
+		Armor: Protected from traditional weapons
+		Armament: None
+		Resistance: Medium
+		Description: Small battle units of the SILVER type are produced in this building. The whole production process happens underground. The completed robots are then brought to the surface. This underground construction makes the light-robot factory more attack proof than a building on the surface would be.
+
+ucs_mcu_robot_factory:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Robot Factory
+	Transforms:
+		IntoActor: ucs_buildings_robot_factory
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS
+		BuildDuration: 40

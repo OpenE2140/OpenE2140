@@ -32,7 +32,7 @@ ed_aircrafts_hat:
 		Title: HAT - Transport Helicopter
 		Armor: medium
 		Armament: none
-		Description: The HAT is a turbine powered transporter, whose four turbines enable it to quickly reach high altitudes and cover large distances very fast.\nHAT can transport up to six A or SILVER units and is heavily armored, unusual for an air-borne machine.\nIt is ideal for moving troops, withstanding rocket fire for a relatively long period of time.\nIt is fast enough to maneuver itself out of the line of enemy rocket attacks.
+		Description: The HAT is a turbine powered transporter, whose four turbines enable it to quickly reach high altitudes and cover large distances very fast.\nHAT can transport up to six A or SILVER units and is heavily armored, unusual for an airborne machine.\nIt is ideal for moving troops, withstanding rocket fire for a relatively long period of time.\nIt is fast enough to maneuver itself out of the line of enemy rocket attacks.
 
 ed_aircrafts_hat_husk:
 	Inherits: ^CoreAircraftHusk

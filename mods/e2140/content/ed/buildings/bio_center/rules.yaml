@@ -1,0 +1,88 @@
+ed_buildings_bio_center:
+	Inherits: ^CoreFactory
+	Tooltip:
+		Name: Bio-Center
+	Health:
+		HP: 700
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -480,-415,0
+	TransformSequence:
+		Offset: 460,350,0
+	HitShape:
+		TargetableOffsets: -250,-850,0,   -450,-200,0,   -650,400,0,   750,-512,0,   550,139,0,   350,739,0
+		Type: Rectangle
+			TopLeft: -1000, -900
+			BottomRight: 900, 750
+	Selectable:
+		Bounds: 2064, 1984, -32,-32
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Production:
+		Produces: Infantry.ED
+		RequiresCondition: !Transforming
+	ProductionQueue:
+		Type: Infantry.ED
+		Factions: ed
+		Group: Infantry
+		LowPowerModifier: 150
+	ProductionBar:
+		ProductionType: Infantry.ED
+	ProvidesPrerequisite:
+	Exit@Exit1:
+		SpawnOffset: -1000, 500, 0
+		ExitCell: -1,2
+		Facing: 384
+	Exit@Exit2:
+		SpawnOffset: -1000, 500, 0
+		ExitCell: 0,2
+		Facing: 500
+	Exit@Exit3:
+		SpawnOffset: -1000, 500, 0
+		ExitCell: 1,2
+		Facing: 650
+	GrantConditionOnDamageState:
+		Condition: damaged
+	WithProductionExitOverlay@Exit1:
+		ExitCell: -1,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	WithProductionExitOverlay@Exit2:
+		ExitCell: 0,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	WithProductionExitOverlay@Exit3:
+		ExitCell: 1,2
+		Sequence: opening
+		Palette:
+		RequiresCondition: !Transforming && !damaged
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 2
+		Animation: DATABASE/X10.FLC
+		Title: Bionic Production Center (Bio-Center)
+		Armor: None
+		Armament: None
+		Resistance: Medium
+		Description: The BIO CENTER contains the production lines for A-series androids. Bionic research and clone technology improvements take place here too. The high sophistication of the technology in the bio center, makes it a prime target for the enemy. All production takes place above ground.
+
+ed_mcu_tech_house:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Bio-Center
+	Transforms:
+		IntoActor: ed_buildings_bio_center
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Building.ED
+		BuildDuration: 40

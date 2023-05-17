@@ -1,0 +1,22 @@
+ed_infantry_a04:
+	Inherits: ^EdInfantry
+	Tooltip:
+		Name: Android A04
+	Valued:
+		Cost: 100
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 20
+	RevealsShroud:
+		Range: 2c896
+	#TODO Add mines
+	Encyclopedia:
+		Category: ED - Infantry
+		Order: 4
+		Animation: DATABASE/A04.FLC
+		Title: Android A04
+		Armor: None
+		Armament: Mines and explosives
+		Description: The A04 carries mines and explosives. It can not only lay mines; it can also defuse enemy mines.\n\nThe explosives carried by the A04 make it a danger to the enemy. If the android gets hit, or if the A04 is able to get close enough to an enemy unit or vehicle, it can ignite these explosives. The damage caused more than justifies the loss of the android.

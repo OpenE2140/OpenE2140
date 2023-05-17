@@ -6,3 +6,12 @@ UcsVehicleVoice:
 		Attack: 87.smp, 88.smp
 		Escort: 86.smp
 		Unload: 90.smp
+
+UcsInfantryVoice:
+	DefaultVariant:
+	Voices:
+		Select: e2140|content/ucs/sounds/ucs_infantry_ready.wav, 57.smp
+		Action: e2140|content/ucs/sounds/ucs_infantry_moving_out.wav, 59.smp
+		Attack: e2140|content/ucs/sounds/ucs_infantry_target_selected.wav, e2140|content/ucs/sounds/ucs_infantry_attack.wav
+		Escort: e2140|content/ucs/sounds/ucs_infantry_escorting.wav
+		Unload: e2140|content/ucs/sounds/ucs_infantry_alright.wav

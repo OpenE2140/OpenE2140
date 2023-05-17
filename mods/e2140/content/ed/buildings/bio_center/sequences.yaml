@@ -1,0 +1,27 @@
+ed_buildings_bio_center:
+	Defaults:
+		Filename: building_bio_center.vspr
+	idle:
+	idle-lights:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+	opening:
+		Start: 4
+		Offset: -63,32
+		Length: 5
+		Tick: 120
+
+ed_mcu_bio_center:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 169
+
+ed_mcu_bio_center.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 169

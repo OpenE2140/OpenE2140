@@ -1,0 +1,25 @@
+ucs_infantry_silver_one:
+	Inherits@1: ^UcsInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Silver One
+	Valued:
+		Cost: 50
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Weapon: ucs_infantry_silver_one
+		MuzzlePalette:
+	Encyclopedia:
+		Category: UCS - Infantry
+		Order: 1
+		Animation: DATABASE/S01.FLC
+		Title: SILVER ONE
+		Armor: Lightweight
+		Armament: Large machine gun
+		Description: SILVER series battle units are similar in form to a human skeleton 2m tall, their chassis is made of titan and has a hydraulic motor. SILVER battle units have a type 7 MinNuclear reactor and a protective alloy made of different elements. The MinNuclear reactor also has a self-destruct device. These multifunctional battle units are controlled by the new XPARC 2000B family of processors, making the SILVER units excellent tactical and strategic battle units. There are always seven of these SILVER battle units in a group; a great attack group for taking over enemy buildings.\n\nSILVER ONE is armed with a large machine gun and is ideal for fighting androids and lightly-armored vehicles.

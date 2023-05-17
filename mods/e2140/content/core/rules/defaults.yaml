@@ -213,29 +213,55 @@
 		Type: infantry
 	# Vehicles can kill infantry by driving over them.
 	Crushable:
-		CrushClasses: infantry
 		WarnProbability: 0
 	# Allow 5 infantry units to share a cell and set movement modifiers.
 	Mobile:
+		Speed: 50
 		Locomotor: infantry
 	# Actor can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground, Infantry
 	# Calculated size for infantry to match shared cells.
 	Selectable:
-		Bounds: 576,640,0,-192
+		Bounds: 256,288,0,0
 	# Infantry hitshape
 	HitShape:
 		Type: Circle
 			Radius: 128
-	# Infantry has an animation while moving: walking.
+	# Infantry has an animation while moving.
 	WithMoveAnimation:
+	# Grants condition when moving.
+	GrantConditionOnMovement:
+		Condition: moving
+	# Periodically plays an idle animation
+	WithIdleAnimation:
+		Sequences: idle2
+		Interval: 100,200
+		RequiresCondition: !moving
 	# Group all infantry in the map editor.
 	MapEditorData:
 		Categories: Infantry
 	# Can guard and be guarded
 	Guard:
+		Voice: Escort
 	Guardable:
+	#Infantry has own death animations.
+	WithDeathAnimation:
+		DeathTypes:
+			Default: -default
+			Explosion: -explode
+			Fire: -burn
+		CrushedSequence: die-crushed
+		CrushedSequencePalette:
+		FallbackSequence: die
+	# Infantry turns when idle.
+	TurnOnIdle:
+		MinDelay: 200
+		MaxDelay: 600
+	# Infantry units have shadow.
+	WithIdleOverlay:
+		Sequence: shadow
+		Palette:
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -302,13 +328,14 @@
 			AsphaltRoad: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
+		Crushes: infantry
+		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
 			Sand: 100
 			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
-
 
 # Base for all aircrafts
 ^CoreAircraft:
@@ -328,6 +355,7 @@
 		RepulsionSpeed: 50
 		AirborneCondition: airborne
 		VTOL: True
+		Crushes: infantry
 	# Actor can be targeted by anything which attacks ground.
 	Targetable@Ground:
 		RequiresCondition: !airborne
@@ -420,6 +448,31 @@
 	AutoTarget:
 	AutoTargetPriority:
 		InvalidTargets: Structure
+
+# Grouped traits for standard infantry attack behavior.
+^CoreArmedSelfInfantry:
+	# Units without a turret have to stop and aim at a target to shoot.
+	AttackFrontal:
+		FacingTolerance: 15
+		Voice: Attack
+	# Auto target enemies nearby.
+	AutoTarget:
+	AutoTargetPriority:
+		InvalidTargets: Structure
+	# Grants condition when shooting.
+	GrantConditionOnAttack:
+		Condition: shooting
+		RevokeDelay: 100
+	# Make sure idle animation is not played when shooting.
+	WithIdleAnimation:
+		RequiresCondition: !shooting && !moving
+	# Make sure turning is not triggered when shooting.
+	TurnOnIdle:
+		RequiresCondition: !shooting
+	# Specify sequences to use when shooting and aiming.
+	WithAimAttackAnimation:
+		SequenceFire: shoot
+		SequenceAim: aim
 
 # Grouped traits for standard non-turreted behavior.
 ^CoreAttackAircraft:

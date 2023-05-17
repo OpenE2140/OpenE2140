@@ -8,6 +8,7 @@ Rules:
 	e2140|content/ed/rules.yaml
 	e2140|content/ed/buildings/constr_center/rules.yaml
 	e2140|content/ed/buildings/tech_house/rules.yaml
+	e2140|content/ed/buildings/bio_center/rules.yaml
 	e2140|content/ed/vehicles/st01b/rules.yaml
 	e2140|content/ed/vehicles/st02/rules.yaml
 	e2140|content/ed/vehicles/mt200/rules.yaml
@@ -23,11 +24,16 @@ Rules:
 	e2140|content/ed/aircrafts/hat/rules.yaml
 	e2140|content/ed/aircrafts/vtol/rules.yaml
 	e2140|content/ed/aircrafts/nemezis/rules.yaml
+	e2140|content/ed/infantry/a01/rules.yaml
+	e2140|content/ed/infantry/a02/rules.yaml
+	e2140|content/ed/infantry/a03/rules.yaml
+	e2140|content/ed/infantry/a04/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
 	e2140|content/ed/buildings/constr_center/sequences.yaml
 	e2140|content/ed/buildings/tech_house/sequences.yaml
+	e2140|content/ed/buildings/bio_center/sequences.yaml
 	e2140|content/ed/vehicles/st01b/sequences.yaml
 	e2140|content/ed/vehicles/st02/sequences.yaml
 	e2140|content/ed/vehicles/mt200/sequences.yaml
@@ -43,6 +49,11 @@ Sequences:
 	e2140|content/ed/aircrafts/hat/sequences.yaml
 	e2140|content/ed/aircrafts/vtol/sequences.yaml
 	e2140|content/ed/aircrafts/nemezis/sequences.yaml
+	e2140|content/ed/infantry/sequences.yaml
+	e2140|content/ed/infantry/a01/sequences.yaml
+	e2140|content/ed/infantry/a02/sequences.yaml
+	e2140|content/ed/infantry/a03/sequences.yaml
+	e2140|content/ed/infantry/a04/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -61,3 +72,6 @@ Weapons:
 	e2140|content/ed/aircrafts/thunder/weapons.yaml
 	e2140|content/ed/aircrafts/vtol/weapons.yaml
 	e2140|content/ed/aircrafts/nemezis/weapons.yaml
+	e2140|content/ed/infantry/a01/weapons.yaml
+	e2140|content/ed/infantry/a02/weapons.yaml
+	e2140|content/ed/infantry/a03/weapons.yaml

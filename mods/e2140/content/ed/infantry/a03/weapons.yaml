@@ -1,0 +1,31 @@
+ed_infantry_a03:
+	ReloadDelay: 50
+	Range: 2c896
+	Report: 6.smp
+	ValidTargets: Ground, Water
+	Burst: 1
+	Projectile: Bullet
+		Speed: 550
+		Blockable: false
+		Image: projectile_ion_small
+		Palette:
+		TrailPalette:
+		Shadow: False
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Ground
+	Warhead@Effect: CreateEffect
+		Image: projectile_ion
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 18.smp, 19.smp
+		ValidTargets: Ground
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure

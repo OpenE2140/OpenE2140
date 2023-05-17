@@ -63,6 +63,18 @@ projectile_plasma:
 		Start: 1
 		Length: 5
 
+projectile_plasma_small:
+	Defaults:
+		ZOffset: 512
+		BlendMode: Additive
+	idle:
+		Filename: content/core/assets/projectile_plasma_small.png
+		InterpolatedFacings: 64
+	explode:
+		Filename: projectile_plasma.vspr
+		Start: 1
+		Length: 5
+
 projectile_ion:
 	Defaults:
 		BlendMode: Additive
@@ -75,12 +87,39 @@ projectile_ion:
 		Start: 4
 		Length: 5
 
+projectile_ion_small:
+	Defaults:
+		BlendMode: Additive
+		ZOffset: 512
+	idle:
+		Filename: content/core/assets/projectile_ion_small.png
+		InterpolatedFacings: 64
+	explode:
+		Filename: projectile_ion.vspr
+		Start: 4
+		Length: 5
+
 projectile_bomb:
 	Defaults:
 		Filename: projectile_bomb.vspr
 		ZOffset: -64
 	idle:
 		Length: 2
+
+projectile_grenade:
+	Defaults:
+		Filename: projectile_grenade.vspr
+		ZOffset: 512
+	idle:
+		Length: 2
+	explode:
+		BlendMode: Additive
+		Start: 2
+		Length: 8
+	explode2:
+		BlendMode: Additive
+		Start: 10
+		Length: 8
 
 projectile_plasma_bomb:
 	Defaults:

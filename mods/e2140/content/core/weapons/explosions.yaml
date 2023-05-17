@@ -24,3 +24,12 @@ PowerPlantExplosion:
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
+
+UcsInfantryExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Ground

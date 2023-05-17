@@ -1,0 +1,43 @@
+shared_infantry_civil3:
+	idle:
+		Filename: infantry_civil3.vspr
+		Facings: -8
+	idle2:
+		Filename: infantry_civil3.vspr
+		Start: 8
+		Facings: -8
+		Tick: 200
+	move:
+		Filename: infantry_civil3.vspr
+		Start: 16
+		Length: 4
+		Facings: -8
+		Tick: 60
+	shadow:
+		Filename: infantry_shadow.vspr
+		ZOffset: -256
+	die:
+		Filename: death.vspr
+		Start: 8
+		Length: 4
+		Tick: 80
+	die-default:
+		Filename: death.vspr
+		Start: 8
+		Length: 4
+		Tick: 80
+	die-explode:
+		Filename: death.vspr
+		Start: 8
+		Length: 4
+		Tick: 80
+	die-burn:
+		Filename: death.vspr
+		Start: 8
+		Length: 4
+		Tick: 80
+	die-crushed:
+		Filename: death.vspr
+		Start: 10
+		Length: 2
+		Tick: 2000
