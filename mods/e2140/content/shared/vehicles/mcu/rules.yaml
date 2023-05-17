@@ -17,7 +17,7 @@
 		TurnSpeed: 25
 	RevealsShroud:
 		Range: 2c896
-	TriggerTransformSequence:
+	Mcu:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
 
