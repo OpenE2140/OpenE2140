@@ -25,7 +25,7 @@ public class EnhancedEncyclopediaInfo : EncyclopediaInfo
 	[Desc("The Long title.")]
 	public readonly string? Title;
 
-	[Desc("Just meta data which we display properl...")]
+	[Desc("Just meta data which we display properly...")]
 	public readonly string? Armor;
 	public readonly string? Armament;
 	public readonly string? Resistance;
