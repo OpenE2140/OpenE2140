@@ -14,6 +14,7 @@ ed_vehicles_ht34j:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 130
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_ion

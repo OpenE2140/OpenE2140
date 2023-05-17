@@ -1,33 +1,3 @@
-========================== ED Infantry:
-
-A01 Android
-#Armor: none
-#Armament: medium-sized machine gun and grenades
-#Price: 50
-_
-The A01 is an android constructed with a modified form of human DNA. The main aim in the development of this android was to enhance certain aspects of human performance, such as stamina, strength and susceptibility to environmental conditions. For example, the A01 is still fully operational in environments with an oxygen level of 7%. It is 6 ft. tall and weighs 240lb. The A01 is ideal for patrols, escorts and defending smaller bases. However you'll find it best at capturing enemy buildings. Attacks on hostile positions and units are better made with one of the later android-models, since the A01 has no armor. The A01 comes with a medium sized MG and hand grenades which can only be used against vehicles. A01 androids automatically come in groups of seven, optimizing their attack and defense capabilities.
-
-A02 Android
-#Armor: none
-#Armament: rocket launcher
-#Price: 75
-_
-The A02 is an enhanced version of the A01. They have the same features and differ only in weaponry. The A02 has a rocket launcher and is ideal for destroying heavyweight enemy vehicles. You can also use it for ground to air combat, it's wide range rocket launcher enabling you to hit air-borne targets.
-
-A03 Android
-#Armor: none
-#Armament: ion cannon
-#Price: 100
-_
-The A03 differs from the others in that it has an ion cannon for deactivating enemy vehicles. The HCU-M can then be used to repair and reprogram these vehicles.
-
-A04 Android
-#Armor: none
-#Armament: mines and explosives
-#Price: 100
-_
-The A04 carries mines and explosives. It can not only lay mines; it can also defuse enemy mines. The explosives carried by the A04 make it a danger to the enemy. If the android gets hit, or if the A04 is able to get close enough to an enemy unit or vehicle, it can ignite these explosives. The damage caused more than justifies the loss of the android.
-
 ========================== UCS Vehicles:
 
 TIGER HellMaker
@@ -62,8 +32,8 @@ Goliat
 #Armament: heavy explosives
 #Armor: medium
 #Price: 600
-This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliat approaches 
-its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even 
+This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliat approaches
+its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even
 the most heavily armed units and structures.
 
 ========================== UCS Ships:
@@ -128,38 +98,7 @@ KT 30 - Battleship
 _
 The KT 30 is a medium-sized battleship with heavy armor-plating and heavy weapons. Its disadvantage is its low speed but its heavy armor-plating and its two rocket launchers with missiles, both small and large, make it a force to be reckoned with. The KT 30 can be used to fight hostile ships or structures that are close to shore. You can use the small rockets against air-attacks. These features gave the KT 30 the nickname "swimming castle".
 
-========================== UCS Infantry:
-
-SILVER ONE
-#Armor: liteweight
-#Armament: large machine gun
-#Price: 50
-_
-SILVER series battle units are similar in form to a human skeleton. 2m tall, their chassis is made of titan and has a hydraulic motor. SILVER battle units have a type °7 MiniNuclear reactor and a protective alloy made of different elements. The MiniNuclear reactor also has a self-destruct device. These multifunctional battle units are controlled by the new XPARC°2000B family of processors, making the SILVER units excellent tactical and strategic battle units. There are always seven of these SILVER battle units in a group; a great attack group for taking over enemy buildings. SILVER ONE is armed with a large machine gun and is ideal for fighting androids and lite-armored vehicles. 
-
-SILVER R
-#Armor: liteweight
-#Armament: rocket launcher
-#Price: 75
-_
-The SILVER R and the SILVER ONE are similarly constructed, the only difference being in their weaponry. SILVER R has a rocket launcher instead of a machine gun. This makes it efficient at destroying static targets and lite or middleweight vehicles. The SILVER R can fire smaller rockets in the event of an air-raid. Being so small and zippy, it is ideal for doing battle with ED helicopters. 
-
-SILVER MAX
-#Armor: liteweight
-#Armament: plasma gun
-#Price: 100
-_
-SILVER MAX units, armed with plasma cannons, are a danger to mobile units and even heavily armored vehicles.
-
-SILVER T
-#Armor: medium
-#Armament: self destruction detonator
-#Price: 70
-_
-SILVER T units are armed with a self-destruction detonator. Activated, the SILVER T unit becomes a kamikaze heavily armored for penetration to its target, which can be a structure, a vehicle or a group of small battle units.
-
 ========================== SHARED Buildings:
-
 
 Teleport
 #Armament: none
@@ -217,7 +156,7 @@ The Bunker is a heavily fortified structure, the largest part of which is underg
 
 ========================== ED Buildings:
 
-AN Center		
+AN Center
 #Armaments: none
 #Armor: light
 #Defence: medium
@@ -225,15 +164,6 @@ AN Center
 #Energy Usage: 1000
 This structure has the same reconnaissance capabilities as a defence tower, but with a much larger radius.
 This structure can cover large areas and make out SHADOW-camouflaged vehicles from great distances.
-
-Bionic Production Center (BioCenter)
-#Armament: None
-#Armor: None
-#Resistance: Medium
-#Price: 1000
-#Energy usage: 200 energy units
-_
-The Bionic Production Center contains the production lines for A-series androids. Bionic research and clone technology improvements take place here too. The high sophistication of the technology in the Bionic Production Center makes it a prime target for the enemy. All production takes place above ground.
 
 Ballistic Control Center
 #Armament: none
@@ -290,15 +220,6 @@ SDI Defence
 #Energy Usage: 1000
 This structure serves exclusively as protection against the enemy's nuclear rockets. With its three lasers,
 this structure can destroy any oncoming nuclear rockets within a medium radius before they land.
-
-UCS Robot Factory
-#Armament: none
-#Armor: protected from traditional weapons
-#Resistance: medium
-#Price: 1000
-#Energy requirements: 200 energy units
-_
-Small battle units of the SILVER type are produced in this building. The whole production process happens underground. The completed robots are then brought to the surface. This underground construction makes the Robot Factory more attack proof than a building on the surface would be.
 
 Plasma Control Center
 #Armament: none

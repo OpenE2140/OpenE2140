@@ -1,8 +1,25 @@
+EdInfantryVoice:
+	DefaultVariant:
+	Voices:
+		Select: 44.smp, 45.smp
+		Action: 46.smp, 47.smp
+		Defend: 48.smp
+		Escort: 49.smp
+		Attack: 50.smp, 51.smp
+		Enter: 52.smp
+		Unload: 53.smp
+		Recording: 54.smp
+		Recorded: 55.smp
+
 EdVehicleVoice:
 	DefaultVariant:
 	Voices:
 		Select: 68.smp, 69.smp
 		Action: 70.smp, 71.smp
-		Attack: 74.smp, 75.smp
+		Defend: 72.smp
 		Escort: 73.smp
+		Attack: 74.smp, 75.smp
+		Enter: 76.smp
 		Unload: 77.smp
+		Recording: 79.smp
+		Recorded: 80.smp

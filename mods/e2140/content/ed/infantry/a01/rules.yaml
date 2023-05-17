@@ -1,0 +1,33 @@
+ed_infantry_a01:
+	Inherits@1: ^EdInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: Android A01
+	Valued:
+		Cost: 50
+	Buildable:
+		IconPalette:
+		Queue: Infantry.ED
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ed_infantry_a01_machine_gun
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ed_infantry_a01_grenade
+		LocalOffset: 100,0,50
+		MuzzlePalette:
+	GrantConditionOnAttack:
+		ArmamentNames: primary, secondary
+	Encyclopedia:
+		Category: ED - Infantry
+		Order: 1
+		Animation: DATABASE/A01.FLC
+		Title: Android A01
+		Armor: None
+		Armament: Medium-sized machine gun and grenades
+		Description: The androids of the A-Series are constructed with a modified form of human DNA. The main aim in the development of this androids were to enhance certain aspects of human performance, such as stamina, strength and susceptibility to environmental conditions. For example, the A-Androids are still fully operational in environments with an oxygen level of 7%. They are 6 ft. tall and weigh 240lb.\n\nA-Androids automatically come in groups of seven, optimizing their attack and defense capabilities.\n\nThe A01 is ideal for patrols, escorts and defending smaller bases. However you’ll find it best at capturing enemy buildings. Attacks on hostile positions and units are better made with one of the later android-models, since the A01 has no armor. The A01 comes with a medium sized MG and hand grenades which can only be used against vehicles.

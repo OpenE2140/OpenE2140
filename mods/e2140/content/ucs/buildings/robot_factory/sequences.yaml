@@ -1,0 +1,27 @@
+ucs_buildings_robot_factory:
+	Defaults:
+		Filename: building_robot_factory.vspr
+	idle:
+	idle-lights:
+		Start: 1
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+	opening:
+		Start: 4
+		Offset: -32,18
+		Length: 5
+		Tick: 120
+
+ucs_mcu_robot_factory:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 170
+
+ucs_mcu_robot_factory.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 170

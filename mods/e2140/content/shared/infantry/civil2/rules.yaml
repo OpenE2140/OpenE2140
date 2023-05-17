@@ -1,0 +1,12 @@
+shared_infantry_civil2:
+	Inherits: ^CoreInfantry
+	Tooltip:
+		Name: Civilian
+	Valued:
+		Cost: 50
+	Health:
+		HP: 30
+	RevealsShroud:
+		Range: 2c896
+	Voiced:
+		VoiceSet: EdInfantryVoice

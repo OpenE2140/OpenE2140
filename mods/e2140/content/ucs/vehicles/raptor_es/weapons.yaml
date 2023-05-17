@@ -9,22 +9,23 @@ ucs_vehicles_raptor_es:
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 7
+		DamageTypes: Default
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Infantry
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash_firearm
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Infantry
 	Warhead@EffectSmoke: CreateEffect
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure
+		ValidTargets: Vehicle, Structure, Infantry

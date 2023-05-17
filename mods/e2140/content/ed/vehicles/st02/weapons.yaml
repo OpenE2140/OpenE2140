@@ -23,10 +23,12 @@ ed_vehicles_st02:
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 20
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 20
+		DamageTypes: Explosion
 		ValidTargets: Air
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket

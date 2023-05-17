@@ -1,0 +1,30 @@
+ucs_infantry_silver_t:
+	Inherits: ucs_infantry_common
+	idle:
+		Filename: infantry_silver_t.vspr
+		Facings: -8
+	idle2:
+		Filename: infantry_silver_t.vspr
+		Start: 8
+		Facings: -8
+		Tick: 200
+	move:
+		Filename: infantry_silver_t.vspr
+		Start: 16
+		Length: 4
+		Facings: -8
+		Tick: 60
+	icon:
+		Filename: SPRI1.MIX
+		Start: 120
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI.MIX
+	#	Start: 120
+
+# TODO: remove after PR #20705
+ucs_infantry_silver_t.ed:
+	Inherits: ucs_infantry_silver_t
+	icon:
+		Filename: SPRI1.MIX
+		Start: 120

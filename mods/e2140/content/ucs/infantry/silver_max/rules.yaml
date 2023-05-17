@@ -1,0 +1,34 @@
+ucs_infantry_silver_max:
+	Inherits@1: ^UcsInfantry
+	Inherits@2: ^CoreArmedSelfInfantry
+	Tooltip:
+		Name: SILVER MAX
+	Valued:
+		Cost: 100
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 28
+	RevealsShroud:
+		Range: 2c896
+	Armament@PRIMARY:
+		Weapon: ucs_infantry_silver_max
+		LocalOffset: 400,0,50
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 10
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 5
+	Encyclopedia:
+		Category: UCS - Infantry
+		Order: 3
+		Animation: DATABASE/S03.FLC
+		Title: SILVER MAX
+		Armor: Lightweight
+		Armament: Plasma gun
+		Description: SILVER MAX units, armed with plasma cannons, are a danger to mobile units and even heavily armored vehicles.

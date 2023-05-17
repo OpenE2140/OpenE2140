@@ -18,6 +18,7 @@ ed_vehicles_warhammer:
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 25
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon

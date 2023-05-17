@@ -23,10 +23,12 @@ ucs_vehicles_spider_ii:
 	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 80
+		DamageTypes: Explosion
 		ValidTargets: Ground
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 80
+		DamageTypes: Explosion
 		ValidTargets: Air
 	Warhead@Effect: CreateEffect
 		Image: projectile_heavy_rocket

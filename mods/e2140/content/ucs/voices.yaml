@@ -1,8 +1,24 @@
+UcsInfantryVoice:
+	DefaultVariant:
+	Voices:
+		Select: 56.smp, 57.smp
+		Action: 58.smp, 59.smp
+		Defend: 60.smp
+		Escort: 61.smp
+		Attack: 62.smp, 63.smp
+		Enter: 64.smp
+		Unload: 65.smp
+		Recording: 66.smp
+		Recorded: 67.smp
+
 UcsVehicleVoice:
 	DefaultVariant:
 	Voices:
 		Select: 81.smp, 82.smp
 		Action: 83.smp, 84.smp
-		Attack: 87.smp, 88.smp
+		Defend: 85.smp
 		Escort: 86.smp
-		Unload: 90.smp
+		Attack: 87.smp, 88.smp
+		Unload: 89.smp
+		Recording: 92.smp
+		Recorded: 93.smp

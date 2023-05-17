@@ -474,23 +474,23 @@ Container@PLAYER_WIDGETS:
 						#			X: 3
 						#			Y: 3
 						#			ImageCollection: production-icons
-						#ProductionTypeButton@Infantry:
-						#	Logic: AddFactionSuffixLogic
-						#	X: 58
-						#	Width: 23
-						#	Height: 21
-						#	VisualHeight: 1
-						#	Background: sidebar-button
-						#	TooltipText: Infantry
-						#	TooltipContainer: TOOLTIP_CONTAINER
-						#	ProductionGroup: Infantry
-						#	Key: ProductionTypeInfantry
-						#	Children:
-						#		Image@ICON:
-						#			Logic: AddFactionSuffixLogic
-						#			X: 3
-						#			Y: 3
-						#			ImageCollection: production-icons
+						ProductionTypeButton@Infantry:
+							Logic: AddFactionSuffixLogic
+							X: 58
+							Width: 23
+							Height: 21
+							VisualHeight: 1
+							Background: sidebar-production-tab
+							TooltipText: Infantry
+							TooltipContainer: TOOLTIP_CONTAINER
+							ProductionGroup: Infantry
+							Key: ProductionTypeInfantry
+							Children:
+								Image@ICON:
+									Logic: AddFactionSuffixLogic
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
 						ProductionTypeButton@Vehicle:
 							Logic: AddFactionSuffixLogic
 							X: 87

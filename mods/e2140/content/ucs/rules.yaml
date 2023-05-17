@@ -49,6 +49,14 @@ World:
 	Voiced:
 		VoiceSet: UcsVehicleVoice
 
+^UcsInfantry:
+	Inherits: ^CoreInfantry
+	Voiced:
+		VoiceSet: UcsInfantryVoice
+	Explodes:
+		Weapon: UcsInfantryExplosion
+		EmptyWeapon: UcsInfantryExplosion
+
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
 	RenderSprites:

@@ -1,0 +1,34 @@
+ucs_infantry_silver_t:
+	Inherits: ^UcsInfantry
+	Tooltip:
+		Name: SILVER T
+	Valued:
+		Cost: 70
+	Buildable:
+		IconPalette:
+		Queue: Infantry.UCS
+	Health:
+		HP: 40
+	RevealsShroud:
+		Range: 2c896
+	Explodes:
+		Weapon: ucs_infantry_silver_t_explode
+		EmptyWeapon: ucs_infantry_silver_t_explode
+		DamageSource: Killer
+	AttackFrontal:
+		Voice: Attack
+	Armament@PRIMARY:
+		Weapon: ucs_infantry_silver_t
+		MuzzlePalette:
+	GrantConditionOnAttack:
+		Condition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
+	Encyclopedia:
+		Category: UCS - Infantry
+		Order: 4
+		Animation: DATABASE/S04.FLC
+		Title: SILVER T
+		Armor: Medium
+		Armament: Self destruction detonator
+		Description: SILVER T units are armed with a self-destruction detonator. Activated, the SILVER T unit becomes a kamikaze heavily armored for penetration to its target, which can be a building, a vehicle or a group of small battle units.
