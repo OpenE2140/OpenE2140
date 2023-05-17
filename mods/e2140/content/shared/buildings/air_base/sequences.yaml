@@ -13,18 +13,40 @@ shared_buildings_air_base:
 		Start: 3
 		IgnoreWorldTint: true
 	helipad-left:
-		Start: 4
-		Offset: -91, -4
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 0
+		Offset: -93, -6
 	helipad-left-lights:
-		Start: 5
-		Offset: -91, -4
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 2
+		Offset: -93, -6
+		IgnoreWorldTint: true
+	damaged-helipad-left:
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 1
+		Offset: -93, -6
+	damaged-helipad-left-lights:
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 2
+		Offset: -93, -6
 		IgnoreWorldTint: true
 	helipad-right:
-		Start: 6
-		Offset: 97, -58
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 3
+		Offset: 95, -59
 	helipad-right-lights:
-		Start: 7
-		Offset: 97, -58
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 5
+		Offset: 95, -59
+		IgnoreWorldTint: true
+	damaged-helipad-right:
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 4
+		Offset: 95, -59
+	damaged-helipad-right-lights:
+		Filename: content/shared/buildings/air_base/air_base_helipad.png
+		Start: 5
+		Offset: 95, -59
 		IgnoreWorldTint: true
 
 shared_mcu_air_base:
