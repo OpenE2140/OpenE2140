@@ -18,7 +18,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+[UsedImplicitly]
 [Desc("Add to MCU to inform deployed actor it was created by MCU deployment.")]
 public class McuInfo : TraitInfo
 {

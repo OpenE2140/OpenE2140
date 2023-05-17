@@ -18,6 +18,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Sounds;
 
 [UsedImplicitly]
+[TraitLocation(SystemActors.World)]
 [Desc("Prevents WithMoveSound to play multiple times.")]
 public class WithWorldMoveSoundInfo : TraitInfo
 {
