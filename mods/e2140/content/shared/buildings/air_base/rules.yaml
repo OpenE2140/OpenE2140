@@ -10,6 +10,8 @@ shared_buildings_air_base:
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
 	Building:
 		Dimensions: 4,3
 		Footprint: =xxx xxx= ====

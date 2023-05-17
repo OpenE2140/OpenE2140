@@ -106,6 +106,9 @@ World:
 		Sequence: craters_sand
 		Palette:
 		SmokePalette:
+	# Weather stuff.
+	#TerrainLighting:
+	#DayNight:
 
 # Map editor specific world setup.
 EditorWorld:

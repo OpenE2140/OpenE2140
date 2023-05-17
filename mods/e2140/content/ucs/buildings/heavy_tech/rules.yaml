@@ -10,6 +10,8 @@ ucs_buildings_heavy_tech:
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===

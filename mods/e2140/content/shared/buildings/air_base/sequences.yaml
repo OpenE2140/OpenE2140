@@ -6,22 +6,26 @@ shared_buildings_air_base:
 	idle:
 	idle-lights:
 		Start: 1
+		IgnoreWorldTint: true
 	damaged-idle:
 		Start: 2
 	damaged-idle-lights:
 		Start: 3
+		IgnoreWorldTint: true
 	helipad-left:
 		Start: 4
 		Offset: -91, -4
 	helipad-left-lights:
 		Start: 5
 		Offset: -91, -4
+		IgnoreWorldTint: true
 	helipad-right:
 		Start: 6
 		Offset: 97, -58
 	helipad-right-lights:
 		Start: 7
 		Offset: 97, -58
+		IgnoreWorldTint: true
 
 shared_mcu_air_base:
 	Inherits: shared_mcu

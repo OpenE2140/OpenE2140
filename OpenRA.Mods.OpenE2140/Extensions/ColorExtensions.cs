@@ -11,13 +11,14 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Helpers;
+using OpenRA.Primitives;
 
-internal static class IEnumerableExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions;
+
+public static class ColorExtensions
 {
-	public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> values)
-		where T : class
+	public static Color Lerp(this Color from, Color to, float progress)
 	{
-		return values.Where(e => e is not null).Cast<T>();
+		return Color.FromArgb((byte)float2.Lerp(from.R, to.R, progress), (byte)float2.Lerp(from.G, to.G, progress), (byte)float2.Lerp(from.B, to.B, progress));
 	}
 }

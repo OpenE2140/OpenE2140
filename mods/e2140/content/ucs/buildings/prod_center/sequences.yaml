@@ -5,10 +5,12 @@ ucs_buildings_prod_center:
 	idle:
 	idle-lights:
 		Start: 1
+		IgnoreWorldTint: true
 	damaged-idle:
 		Start: 2
 	damaged-idle-lights:
 		Start: 3
+		IgnoreWorldTint: true
 	deploy:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png
 		Offset: -28, -4

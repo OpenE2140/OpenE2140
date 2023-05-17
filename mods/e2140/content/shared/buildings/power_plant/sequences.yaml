@@ -5,10 +5,12 @@ shared_buildings_power_plant:
 	idle:
 	idle-lights:
 		Start: 1
+		IgnoreWorldTint: true
 	damaged-idle:
 		Start: 2
 	damaged-idle-lights:
 		Start: 3
+		IgnoreWorldTint: true
 	addon:
 		Start: 4
 	addon_damaged:

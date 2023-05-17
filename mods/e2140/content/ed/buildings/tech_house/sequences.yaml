@@ -5,10 +5,12 @@ ed_buildings_tech_house:
 	idle:
 	idle-lights:
 		Start: 1
+		IgnoreWorldTint: true
 	damaged-idle:
 		Start: 2
 	damaged-idle-lights:
 		Start: 3
+		IgnoreWorldTint: true
 
 ed_mcu_tech_house:
 	Inherits: shared_mcu
