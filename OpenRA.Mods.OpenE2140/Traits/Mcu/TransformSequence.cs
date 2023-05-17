@@ -16,7 +16,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("The MCU to building transform sequence.")]
@@ -48,79 +48,97 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 public class TransformSequence : ITick
 {
 	private readonly TransformSequenceInfo info;
+
 	private readonly RenderSprites renderSprites;
-	private readonly AnimationWithOffset animationCover;
-	private readonly AnimationWithOffset animationDeploy;
+
+	private readonly AnimationWithOffset legacyAnimation;
+	private readonly AnimationWithOffset animation;
+
 	private int token = Actor.InvalidConditionToken;
-	private int remainingTime = -1;
+
+	private int remainingTime;
 
 	public TransformSequence(ActorInitializer init, TransformSequenceInfo info)
 	{
 		this.info = info;
 
 		this.renderSprites = init.Self.TraitOrDefault<RenderSprites>();
-		this.animationCover = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
-		this.animationDeploy = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
+
+		this.legacyAnimation = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
+		this.animation = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
+
+		var mcu = init.GetOrDefault<Mcu.McuInit>();
+
+		if (mcu == null)
+			return;
+
+		this.StartDeploy(init.Self);
 	}
 
-	public void Run(Actor self)
+	private void StartDeploy(Actor self)
 	{
 		this.token = self.GrantCondition(this.info.Condition);
 
-		self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animationDeploy));
-
 		Game.Sound.PlayToPlayer(SoundType.World, self.Owner, this.info.TransformSound, self.CenterPosition);
 
-		this.animationDeploy.Animation.PlayThen(
-			"deploy",
+		// Original construction animation has separate sprites for deploy and pyramid cover animations
+		// If building is using original construction animation, we need to play cover animation
+		if (this.legacyAnimation.Animation.HasSequence("cover"))
+			this.DeployLegacy(self);
+		else
+			this.Deploy(self);
+	}
+
+	private void DeployLegacy(Actor self)
+	{
+		self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.legacyAnimation));
+		this.legacyAnimation.Animation.PlayThen("deploy", () => this.Cover(self));
+	}
+
+	private void Deploy(Actor self)
+	{
+		self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animation));
+		this.animation.Animation.PlayThen("deploy", this.Covered);
+	}
+
+	private void Cover(Actor self)
+	{
+		self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animation));
+
+		this.animation.Animation.PlayThen(
+			"cover",
 			() =>
 			{
-				self.World.AddFrameEndTask(_ => this.renderSprites.Add(this.animationCover));
-
-				// Original construction animation has separate sprites for deploy and pyramid cover animations
-				// If building is using original construction animation, we need to play cover animation
-				if (this.animationCover.Animation.HasSequence("cover"))
-				{
-					this.animationCover.Animation.PlayThen(
-						"cover",
-						() =>
-						{
-							self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationDeploy));
-
-							this.animationCover.Animation.PlayRepeating("covered");
-
-							this.remainingTime = this.info.ConstructionTime;
-						}
-					);
-				}
-				else
-				{
-					// New cover animations have both MCU deployment and construction pyramid baked into single animation.
-					// So we just render fully covered pyramid and run construction timer here.
-
-					self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationDeploy));
-					this.animationCover.Animation.PlayRepeating("covered");
-					this.remainingTime = this.info.ConstructionTime;
-				}
+				self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.legacyAnimation));
+				this.Covered();
 			}
 		);
 	}
 
+	private void Covered()
+	{
+		this.animation.Animation.PlayRepeating("covered");
+		this.remainingTime = this.info.ConstructionTime;
+	}
+
 	void ITick.Tick(Actor self)
 	{
-		if (this.remainingTime < 0)
+		if (this.remainingTime == 0)
 			return;
 
 		this.remainingTime--;
 
-		if (this.remainingTime >= 0)
+		if (this.remainingTime > 0)
 			return;
 
 		self.RevokeCondition(this.token);
 		this.token = Actor.InvalidConditionToken;
 
-		this.renderSprites.Remove(this.animationDeploy);
+		this.Uncover(self);
+	}
 
-		this.animationCover.Animation.PlayThen("uncover", () => self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animationCover)));
+	private void Uncover(Actor self)
+	{
+		this.animation.Animation.PlayThen("uncover", () => self.World.AddFrameEndTask(_ => this.renderSprites.Remove(this.animation)));
 	}
 }

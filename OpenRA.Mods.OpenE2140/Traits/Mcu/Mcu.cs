@@ -13,32 +13,33 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-[Desc("Add to MCU to trigger the TransformSequence trait.")]
-public class TriggerTransformSequenceInfo : TraitInfo
+[Desc("Add to MCU to inform deployed actor it was created by MCU deployment.")]
+public class McuInfo : TraitInfo
 {
 	public override object Create(ActorInitializer init)
 	{
-		return new TriggerTransformSequence();
+		return new Mcu();
 	}
 }
 
-public class TriggerTransformSequence : INotifyTransform
+public class Mcu : ITransformActorInitModifier
 {
-	void INotifyTransform.BeforeTransform(Actor self)
+	public class McuInit : ActorInit, ISingleInstanceInit
 	{
+		public override MiniYaml Save()
+		{
+			return new MiniYaml(string.Empty);
+		}
 	}
 
-	void INotifyTransform.OnTransform(Actor self)
+	void ITransformActorInitModifier.ModifyTransformActorInit(Actor self, TypeDictionary init)
 	{
-	}
-
-	void INotifyTransform.AfterTransform(Actor toActor)
-	{
-		toActor.TraitOrDefault<TransformSequence>().Run(toActor);
+		init.Add(new McuInit());
 	}
 }
