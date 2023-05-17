@@ -13,7 +13,6 @@
 
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
-using OpenRA.Mods.OpenE2140.Helpers;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Graphics;
@@ -49,12 +48,12 @@ public class ModifyableSpriteActorPreview : IActorPreview
 
 	IEnumerable<IRenderable> IActorPreview.RenderUI(WorldRenderer wr, int2 pos, float scale)
 	{
-		return this.animation.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale).Select(e => this.modify(e, true)).WhereNotNull();
+		return this.animation.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale).Select(e => this.modify(e, true)).OfType<IRenderable>();
 	}
 
 	IEnumerable<IRenderable> IActorPreview.Render(WorldRenderer wr, WPos pos)
 	{
-		return this.animation.Render(pos, this.offset(), this.zOffset(), null).Select(e => this.modify(e, false)).WhereNotNull();
+		return this.animation.Render(pos, this.offset(), this.zOffset(), null).Select(e => this.modify(e, false)).OfType<IRenderable>();
 	}
 
 	IEnumerable<Rectangle> IActorPreview.ScreenBounds(WorldRenderer wr, WPos pos)
