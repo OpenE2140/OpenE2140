@@ -40,7 +40,7 @@ public class WithNightLightSourceInfo : ConditionalTraitInfo
 
 public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSourceInfo>, INotifyRemovedFromWorld, ITick
 {
-	private readonly TerrainLighting terrainLighting;
+	private readonly TerrainLighting? terrainLighting;
 	private readonly DayNight? dayNight;
 
 	private int lightingToken = -1;
@@ -48,7 +48,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 	public WithNightLightSource(Actor self, WithNightLightSourceInfo info)
 		: base(info)
 	{
-		this.terrainLighting = self.World.WorldActor.Trait<TerrainLighting>();
+		this.terrainLighting = self.World.WorldActor.TraitOrDefault<TerrainLighting>();
 		this.dayNight = self.World.WorldActor.TraitOrDefault<DayNight>();
 	}
 
@@ -82,7 +82,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 
 	private void Add(Actor self)
 	{
-		if (this.lightingToken != -1)
+		if (this.lightingToken != -1 || this.terrainLighting == null)
 			return;
 
 		this.lightingToken = this.terrainLighting.AddLightSource(
@@ -95,7 +95,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 
 	private void Remove()
 	{
-		if (this.lightingToken == -1)
+		if (this.lightingToken == -1 || this.terrainLighting == null)
 			return;
 
 		this.terrainLighting.RemoveLightSource(this.lightingToken);
