@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.PlayerColor;
 
 [TraitLocation(SystemActors.World | SystemActors.EditorWorld)]
 [Desc("Create a color picker palette from another palette.")]
