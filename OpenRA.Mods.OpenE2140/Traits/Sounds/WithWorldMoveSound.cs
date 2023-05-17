@@ -39,10 +39,17 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 		this.worldRenderer = worldRenderer;
 	}
 
-	public void Enable(Actor actor, string sound)
+	public void Enable(Actor actor, string soundName)
 	{
-		if (!this.playing.TryGetValue(sound, out var entry))
-			this.playing.Add(sound, entry = new Entry(Game.Sound.PlayLooped(SoundType.World, sound, actor.CenterPosition), new List<Actor> { actor }));
+		if (!this.playing.TryGetValue(soundName, out var entry))
+		{
+			var sound = Game.Sound.PlayLooped(SoundType.World, soundName, actor.CenterPosition);
+
+			if (sound == null)
+				return;
+
+			this.playing.Add(soundName, entry = new Entry(sound, new List<Actor> { actor }));
+		}
 
 		if (!entry.Actors.Contains(actor))
 			entry.Actors.Add(actor);
@@ -69,7 +76,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 
 			if (!entry.Actors.Any())
 			{
-				if (entry.Sound == null || entry.Sound.Complete == true)
+				if (entry.Sound.Complete)
 					this.playing.Remove(sound);
 			}
 			else if (this.worldRenderer != null)
