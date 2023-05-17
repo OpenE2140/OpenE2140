@@ -64,16 +64,16 @@ public class ProductionTooltipLogic : ChromeLogic
 				return;
 
 			// Fetch data
-			var tooltip = actor.TraitInfos<TooltipInfo>().FirstOrDefault();
-			var buildable = actor.TraitInfo<BuildableInfo>();
-			var hotkey = tooltipIcon.Hotkey?.GetValue() ?? Hotkey.Invalid;
-			var cost = actor.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0;
-			var power = 0;
-
 			var transforms = actor.TraitInfos<TransformsInfo>().FirstOrDefault();
+			var cost = actor.TraitInfoOrDefault<ValuedInfo>()?.Cost ?? 0;
+			var hotkey = tooltipIcon.Hotkey?.GetValue() ?? Hotkey.Invalid;
+			var buildable = actor.TraitInfo<BuildableInfo>();
 
 			if (transforms != null)
-				power = player.World.Map.Rules.Actors[transforms.IntoActor].TraitInfos<PowerInfo>().Sum(i => i.Amount);
+				actor = player.World.Map.Rules.Actors[transforms.IntoActor];
+
+			var tooltip = actor.TraitInfos<TooltipInfo>().FirstOrDefault();
+			var power = actor.TraitInfos<PowerInfo>().Sum(i => i.Amount);
 
 			// Name
 			nameLabel.Text = tooltip?.Name ?? actor.Name;
