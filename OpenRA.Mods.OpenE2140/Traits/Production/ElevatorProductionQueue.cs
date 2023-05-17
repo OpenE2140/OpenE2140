@@ -16,7 +16,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Attach to all production buildings with elevator production instead of default ProductionQueue")]

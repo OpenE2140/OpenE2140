@@ -4,6 +4,12 @@ ucs_buildings_heavy_tech:
 		Name: Heavy Tech
 	Health:
 		HP: 1000
+	EnhancedPower:
+		Amount: -400
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
@@ -23,8 +29,6 @@ ucs_buildings_heavy_tech:
 			BottomRight: -612, 412
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
-	Power:
-		Amount: -400
 	ElevatorProduction:
 		Image: ucs_elevator
 		Position: -960, 128, 0
@@ -32,6 +36,7 @@ ucs_buildings_heavy_tech:
 		CutOff: 35
 		Produces: Vehicle.UCS
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ElevatorProductionQueue:
 		Type: Vehicle.UCS
 		Group: Vehicle

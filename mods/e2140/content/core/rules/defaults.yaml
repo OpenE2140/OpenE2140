@@ -134,7 +134,7 @@
 		ConstructionTime: 30
 		TransformSound: 78.smp
 	-WithSpriteBody:
-	WithPoweredSpriteBody:
+	WithSpriteBody:
 		RequiresCondition: !Transforming
 	# This actor explodes when killed.
 	Explodes:

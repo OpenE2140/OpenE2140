@@ -4,6 +4,12 @@ shared_buildings_air_base:
 		Name: Air Base
 	Health:
 		HP: 500
+	EnhancedPower:
+		Amount: -200
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 4,3
 		Footprint: =xxx xxx= ====
@@ -29,11 +35,10 @@ shared_buildings_air_base:
 			BottomRight: 1338, -744
 	Selectable:
 		Bounds: 2064, 1984, 0,-432
-	Power:
-		Amount: -200
 	Production:
 		Produces: Aircraft.ED, Aircraft.UCS
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ProductionQueue@ED:
 		Type: Aircraft.ED
 		Factions: ed
@@ -101,14 +106,14 @@ shared_buildings_air_base:
 		Sequence: helipad-left
 		RequiresCondition: !Transforming
 	WithIdleOverlay@HelipadLeftLight:
-		Sequence: helipad-left-light
-		RequiresCondition: !Transforming
+		Sequence: helipad-left-lights
+		RequiresCondition: !Transforming && Powered
 	WithIdleOverlay@HelipadRight:
 		Sequence: helipad-right
 		RequiresCondition: !Transforming
 	WithIdleOverlay@HelipadRightLight:
-		Sequence: helipad-right-light
-		RequiresCondition: !Transforming
+		Sequence: helipad-right-lights
+		RequiresCondition: !Transforming && Powered
 	EnhancedEncyclopedia:
 		Category: Shared - Buildings
 		Order: 6

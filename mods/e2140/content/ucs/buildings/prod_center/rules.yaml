@@ -4,6 +4,11 @@ ucs_buildings_prod_center:
 		Name: Prod. Center
 	Health:
 		HP: 1000
+	EnhancedPower:
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= =x=
@@ -29,6 +34,7 @@ ucs_buildings_prod_center:
 		CutOff: 29
 		Produces: Building.UCS
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ElevatorProductionQueue:
 		Type: Building.UCS
 		Group: Building

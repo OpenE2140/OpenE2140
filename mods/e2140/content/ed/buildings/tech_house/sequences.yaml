@@ -3,11 +3,11 @@ ed_buildings_tech_house:
 		Filename: building_tech_house.vspr
 		Offset: -36, -54, 0
 	idle:
-	idle-nopower:
+	idle-lights:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle-nopower:
+	damaged-idle-lights:
 		Start: 3
 
 ed_mcu_tech_house:

@@ -4,6 +4,12 @@ shared_buildings_power_plant:
 		Name: Power Plant
 	Health:
 		HP: 1000
+	EnhancedPower:
+		Amount: 2000
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
@@ -17,8 +23,6 @@ shared_buildings_power_plant:
 		Bounds: 2064, 1984, -228, -275
 	ProvidesPrerequisite:
 		Prerequisite: anypower
-	Power:
-		Amount: 2000
 	Explodes:
 		Weapon: PowerPlantExplosion
 		EmptyWeapon: PowerPlantExplosion

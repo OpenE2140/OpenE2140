@@ -14,6 +14,7 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
@@ -32,27 +33,24 @@ public class IngamePowerLogic : ChromeLogic
 	{
 		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
 
-		var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManager>();
+		var powerManager = world.LocalPlayer.PlayerActor.Trait<EnhancedPowerManager>();
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
 		var unlimitedCapacity = modData.Translation.GetString(IngamePowerLogic.Infinite);
 
-		powerIcon.GetImageName = () => powerManager.ExcessPower < 0 ? "power-critical" : "power-normal";
-		power.GetColor = () => powerManager.ExcessPower < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
-		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.ExcessPower.ToString();
+		powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
+		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
+		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
 
 		var tooltipTextCached = new CachedTransform<(string, string), string>(
-			((string usage, string capacity) args) =>
-			{
-				return modData.Translation.GetString(IngamePowerLogic.PowerUsage, Translation.Arguments("usage", args.usage, "capacity", args.capacity));
-			}
+			((string usage, string capacity) args) => modData.Translation.GetString(
+				IngamePowerLogic.PowerUsage,
+				Translation.Arguments("usage", args.usage, "capacity", args.capacity)
+			)
 		);
 
-		power.GetTooltipText = () =>
-		{
-			var capacity = developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.PowerProvided.ToString();
-
-			return tooltipTextCached.Update((powerManager.PowerDrained.ToString(), capacity));
-		};
+		power.GetTooltipText = () => tooltipTextCached.Update(
+			(powerManager.PowerConsumed.ToString(), developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.PowerGenerated.ToString())
+		);
 	}
 }

@@ -4,6 +4,11 @@ ed_buildings_constr_center:
 		Name: Constr. Center
 	Health:
 		HP: 1500
+	EnhancedPower:
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xxx ==x
@@ -25,6 +30,7 @@ ed_buildings_constr_center:
 		CutOff: 35
 		Produces: Building.ED
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ElevatorProductionQueue:
 		Type: Building.ED
 		Group: Building

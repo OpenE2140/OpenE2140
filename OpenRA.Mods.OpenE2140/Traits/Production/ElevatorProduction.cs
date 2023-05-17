@@ -24,7 +24,7 @@ using OpenRA.Mods.OpenE2140.Traits.Rendering;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Construction;
+namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor has an elevater used for production.")]
@@ -68,7 +68,7 @@ public class ElevatorProductionInfo : ProductionInfo, IRenderActorPreviewSprites
 	}
 }
 
-public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
+public class ElevatorProduction : Common.Traits.Production, ITick, IRender, INotifyProduction
 {
 	/// <summary>
 	/// When current or all exits are blocked, nudge surrounding units every X ticks.
@@ -270,6 +270,9 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 		{
 			case AnimationState.ElevatorUp:
 			{
+				if (this.IsTraitPaused)
+					return;
+
 				if (this.stateAge++ < this.info.Duration)
 					return;
 
@@ -434,6 +437,9 @@ public class ElevatorProduction : Production, ITick, IRender, INotifyProduction
 			}
 
 			case AnimationState.ElevatorDown:
+				if (this.IsTraitPaused)
+					return;
+
 				if (this.stateAge++ < this.info.Duration)
 					return;
 

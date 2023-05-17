@@ -4,22 +4,22 @@ shared_buildings_air_base:
 		Offset: 1,-45,0
 		ZOffset: -1024
 	idle:
-	idle-nopower:
+	idle-lights:
 		Start: 1
 	damaged-idle:
 		Start: 2
-	damaged-idle-nopower:
+	damaged-idle-lights:
 		Start: 3
 	helipad-left:
 		Start: 4
 		Offset: -91, -4
-	helipad-left-light:
+	helipad-left-lights:
 		Start: 5
 		Offset: -91, -4
 	helipad-right:
 		Start: 6
 		Offset: 97, -58
-	helipad-right-light:
+	helipad-right-lights:
 		Start: 7
 		Offset: 97, -58
 

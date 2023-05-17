@@ -2,16 +2,8 @@ Sources:
 	SPRU0.MIX:
 
 Palettes:
-	Shadow: Merge
-		253: 0 0 0 32
-		254: 0 0 0 64
-
-	Player: Merge
-		248: 102 0 102
-		249: 119 0 119
-		250: 136 0 136
-		251: 153 0 153
-		252: 170 0 170
+	Rotor: Merge
+		227: 0 0 0 80
 
 	Tracks: Merge
 		0:
@@ -56,9 +48,6 @@ Palettes:
 			241: 0 0 0
 			242: 0 0 0
 			243: 0 0 0
-
-	Rotor: Merge
-		227: 0 0 0 80
 
 	EngineOn: Merge
 		240: 255 0 0
@@ -122,6 +111,17 @@ Palettes:
 		245: 0 0 0
 		246: 255 0 0
 		247: 68 68 68
+
+	Player: Merge
+		248: 102 0 102
+		249: 119 0 119
+		250: 136 0 136
+		251: 153 0 153
+		252: 170 0 170
+
+	Shadow: Merge
+		253: 0 0 0 32
+		254: 0 0 0 64
 
 	Husk: Merge Multiply
 		0-239[1_1_0]: 128 128 128

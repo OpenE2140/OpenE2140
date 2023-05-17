@@ -4,6 +4,12 @@ ed_buildings_tech_house:
 		Name: Tech House
 	Health:
 		HP: 1000
+	EnhancedPower:
+		Amount: -400
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xxx ===
@@ -19,14 +25,13 @@ ed_buildings_tech_house:
 			BottomRight: 1412, 312
 	Selectable:
 		Bounds: 2064, 1984, -513, -495
-	Power:
-		Amount: -400
 	ElevatorProduction:
 		Image: ed_elevator
 		Position: 992, -104, 0
 		CutOff: 29
 		Produces: Vehicle.ED
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ElevatorProductionQueue:
 		Type: Vehicle.ED
 		Group: Vehicle

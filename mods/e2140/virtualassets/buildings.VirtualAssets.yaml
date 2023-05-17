@@ -2,9 +2,14 @@ Sources:
 	SPRB0.MIX:
 
 Palettes:
-	Shadow: Merge
-		253: 0 0 0 32
-		254: 0 0 0 64
+	Lights: Merge
+		0-243,248-255: 0 0 0 0
+
+	WithoutLight: Merge
+		244: 0 0 0
+		245: 0 0 0
+		246: 0 0 0
+		247: 0 0 0
 
 	Player: Merge
 		248: 102 0 102
@@ -13,56 +18,54 @@ Palettes:
 		251: 153 0 153
 		252: 170 0 170
 
-	LightsOff: Merge
-		244: 0 0 0
-		245: 0 0 0
-		246: 0 0 0
-		247: 0 0 0
+	Shadow: Merge
+		253: 0 0 0 32
+		254: 0 0 0 64
 
 Generate:
 	building_power_plant: Shadow Player
-		idle: 0
-		idle-nopower: 0 LightsOff
-		damaged-idle: 1
-		damaged-idle-nopower: 1 LightsOff
+		idle: 0 WithoutLight
+		idle-lights: 0 Lights
+		damaged-idle: 1 WithoutLight
+		damaged-idle-lights: 1 Lights
 		addon: 2
-		addon_damaged: 3
+		damaged-addon: 3
 
 	building_teleport: Shadow Player
-		idle: 4
-		idle-nopower: 4 LightsOff
-		damaged-idle: 5
-		damaged-idle-nopower: 5 LightsOff
+		idle: 4 WithoutLight
+		idle-lights: 4 Lights
+		damaged-idle: 5 WithoutLight
+		damaged-idle-lights: 5 Lights
 
 	belt: Shadow
-		idle: 8
-		idle-nopower: 8 LightsOff
+		idle: 8 WithoutLight
+		idle-lights: 8 Lights
 		eject: 9-11
 		retract: 11-9
 
 	building_refinery: Shadow Player
-		idle: 6
-		idle-nopower: 6 LightsOff
-		damaged-idle: 7
+		idle: 6 WithoutLight
+		idle-lights: 6 Lights
+		damaged-idle: 7 WithoutLight
 			Offsets: 7:0,-1
-		damaged-idle-nopower: 7 LightsOff
+		damaged-idle-lights: 7 Lights
 			Offsets: 7:0,-1
 
 	building_research_center: Shadow Player
-		idle: 12
-		idle-nopower: 12 LightsOff
-		damaged-idle: 13
-		damaged-idle-nopower: 13 LightsOff
+		idle: 12 WithoutLight
+		idle-lights: 12 Lights
+		damaged-idle: 13 WithoutLight
+		damaged-idle-lights: 13 Lights
 
 	building_air_base: Shadow Player
-		idle: 14
-		idle-nopower: 14 LightsOff
-		damaged-idle: 15
-		damaged-idle-nopower: 15 LightsOff
-		addon_left: 16
-		addon_left-nopower: 16 LightsOff
-		addon_right: 17
-		addon_right-nopower: 17 LightsOff
+		idle: 14 WithoutLight
+		idle-lights: 14 Lights
+		damaged-idle: 15 WithoutLight
+		damaged-idle-lights: 15 Lights
+		addon_left: 16 WithoutLight
+		addon_left-lights: 16 Lights
+		addon_right: 17 WithoutLight
+		addon_right-lights: 17 Lights
 
 	building_water_base: Shadow Player
 		idle: 18
@@ -80,38 +83,38 @@ Generate:
 		door_damaged: 25
 
 	building_mine: Shadow Player
-		idle: 26
-		idle-nopower: 26 LightsOff
-		damaged-idle: 27
-		damaged-idle-nopower: 27 LightsOff
+		idle: 26 WithoutLight
+		idle-lights: 26 Lights
+		damaged-idle: 27 WithoutLight
+		damaged-idle-lights: 27 Lights
 		rotor: 28-32
 
 	building_tech_house: Shadow Player
-		idle: 33
-		idle-nopower: 33 LightsOff
-		damaged-idle: 34
-		damaged-idle-nopower: 34 LightsOff
+		idle: 33 WithoutLight
+		idle-lights: 33 Lights
+		damaged-idle: 34 WithoutLight
+		damaged-idle-lights: 34 Lights
 
 	building_bio_center: Shadow Player
-		idle: 35
-		idle-nopower: 35 LightsOff
-		damaged-idle: 36
-		damaged-idle-nopower: 36 LightsOff
+		idle: 35 WithoutLight
+		idle-lights: 35 Lights
+		damaged-idle: 36 WithoutLight
+		damaged-idle-lights: 36 Lights
 		opening: 37-38
 		opened: 38
 		closing: 38-37
 
 	building_constr_center: Shadow Player
-		idle: 39
-		idle-nopower: 39 LightsOff
-		damaged-idle: 40
-		damaged-idle-nopower: 40 LightsOff
+		idle: 39 WithoutLight
+		idle-lights: 39 Lights
+		damaged-idle: 40 WithoutLight
+		damaged-idle-lights: 40 Lights
 
 	building_bcc: Shadow Player
-		idle: 41
-		idle-nopower: 41 LightsOff
-		damaged-idle: 42
-		damaged-idle-nopower: 42 LightsOff
+		idle: 41 WithoutLight
+		idle-lights: 41 Lights
+		damaged-idle: 42 WithoutLight
+		damaged-idle-lights: 42 Lights
 
 	building_silo: Shadow Player
 		idle: 43
@@ -137,31 +140,31 @@ Generate:
 		damaged-idle: 54
 
 	building_heavy_tech: Shadow Player
-		idle: 55
-		idle-nopower: 55 LightsOff
-		damaged-idle: 56
-		damaged-idle-nopower: 56 LightsOff
+		idle: 55 WithoutLight
+		idle-lights: 55 Lights
+		damaged-idle: 56 WithoutLight
+		damaged-idle-lights: 56 Lights
 
 	building_robot_factory: Shadow Player
-		idle: 57
-		idle-nopower: 57 LightsOff
-		damaged-idle: 58
-		damaged-idle-nopower: 58 LightsOff
+		idle: 57 WithoutLight
+		idle-lights: 57 Lights
+		damaged-idle: 58 WithoutLight
+		damaged-idle-lights: 58 Lights
 		opening: 59-60
 		opened: 60
 		closing: 60-59
 
 	building_prod_center: Shadow Player
-		idle: 61
-		idle-nopower: 61 LightsOff
-		damaged-idle: 62
-		damaged-idle-nopower: 62 LightsOff
+		idle: 61 WithoutLight
+		idle-lights: 61 Lights
+		damaged-idle: 62 WithoutLight
+		damaged-idle-lights: 62 Lights
 
 	building_pb_control: Shadow Player
-		idle: 63
-		idle-nopower: 63 LightsOff
-		damaged-idle: 64
-		damaged-idle-nopower: 64 LightsOff
+		idle: 63 WithoutLight
+		idle-lights: 63 Lights
+		damaged-idle: 64 WithoutLight
+		damaged-idle-lights: 64 Lights
 
 	building_pb_cannon: Shadow Player
 		idle: 65
@@ -218,13 +221,13 @@ Generate:
 		damaged-idle: 101
 
 	building_sdi_defence: Shadow Player
-		idle: 102
-		idle-nopower: 102 LightsOff
-		damaged-idle: 103
-		damaged-idle-nopower: 103 LightsOff
+		idle: 102 WithoutLight
+		idle-lights: 102 Lights
+		damaged-idle: 103 WithoutLight
+		damaged-idle-lights: 103 Lights
 
 	building_an_center: Shadow Player
-		idle: 104
-		idle-nopower: 104 LightsOff
-		damaged-idle: 105
-		damaged-idle-nopower: 105 LightsOff
+		idle: 104 WithoutLight
+		idle-lights: 104 Lights
+		damaged-idle: 105 WithoutLight
+		damaged-idle-lights: 105 Lights
