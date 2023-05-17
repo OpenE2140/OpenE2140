@@ -42,7 +42,7 @@ ucs_vehicles_raptor_es:
 		Delay: 56
 		ResetOnFire: True
 		Count: 7
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 2
 		Animation: DATABASE/BT02.FLC

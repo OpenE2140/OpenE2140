@@ -17,14 +17,14 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.Common.Widgets;
-using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
+using EncyclopediaInfo = OpenRA.Mods.OpenE2140.Traits.EncyclopediaInfo;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
 [UsedImplicitly]
-public class EnhancedEncyclopediaLogic : ChromeLogic
+public class EncyclopediaLogic : ChromeLogic
 {
 	private readonly World world;
 	private readonly ModData modData;
@@ -43,7 +43,7 @@ public class EnhancedEncyclopediaLogic : ChromeLogic
 	private ScrollItemWidget? firstItem;
 
 	[ObjectCreator.UseCtor]
-	public EnhancedEncyclopediaLogic(Widget widget, World world, ModData modData, Action onExit)
+	public EncyclopediaLogic(Widget widget, World world, ModData modData, Action onExit)
 	{
 		this.world = world;
 		this.modData = modData;
@@ -82,9 +82,9 @@ public class EnhancedEncyclopediaLogic : ChromeLogic
 		};
 	}
 
-	private IEnumerable<KeyValuePair<ActorInfo, EnhancedEncyclopediaInfo>> GetFilteredActorEncyclopediaPairs()
+	private IEnumerable<KeyValuePair<ActorInfo, EncyclopediaInfo>> GetFilteredActorEncyclopediaPairs()
 	{
-		var actors = new List<KeyValuePair<ActorInfo, EnhancedEncyclopediaInfo>>();
+		var actors = new List<KeyValuePair<ActorInfo, EncyclopediaInfo>>();
 
 		foreach (var actor in this.modData.DefaultRules.Actors.Values)
 		{
@@ -96,12 +96,12 @@ public class EnhancedEncyclopediaLogic : ChromeLogic
 			if (statistics != null && !string.IsNullOrEmpty(statistics.OverrideActor))
 				continue;
 
-			var encyclopedia = actor.TraitInfoOrDefault<EnhancedEncyclopediaInfo>();
+			var encyclopedia = actor.TraitInfoOrDefault<EncyclopediaInfo>();
 
 			if (encyclopedia == null)
 				continue;
 
-			actors.Add(new KeyValuePair<ActorInfo, EnhancedEncyclopediaInfo>(actor, encyclopedia));
+			actors.Add(new KeyValuePair<ActorInfo, EncyclopediaInfo>(actor, encyclopedia));
 		}
 
 		return actors;
@@ -141,7 +141,7 @@ public class EnhancedEncyclopediaLogic : ChromeLogic
 	{
 		this.selectedActor = actor;
 
-		var info = actor.TraitInfoOrDefault<EnhancedEncyclopediaInfo>();
+		var info = actor.TraitInfoOrDefault<EncyclopediaInfo>();
 
 		this.animationWidget.SetVideo(info?.Animation);
 

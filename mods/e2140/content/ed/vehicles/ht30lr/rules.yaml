@@ -71,7 +71,7 @@ ed_vehicles_ht30lr:
 		Delay: 50
 		#ResetOnFire: True #TODO Secondary turret resets the timer when it shoots but it shouldn't.
 		Count: 20
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 5
 		Animation: DATABASE/PM05.FLC

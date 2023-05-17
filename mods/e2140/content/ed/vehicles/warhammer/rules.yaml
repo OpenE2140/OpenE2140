@@ -56,7 +56,7 @@ ed_vehicles_warhammer:
 		Delay: 50
 		ResetOnFire: True
 		Count: 6
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 13
 		Animation: DATABASE/MP2_HT.FLC

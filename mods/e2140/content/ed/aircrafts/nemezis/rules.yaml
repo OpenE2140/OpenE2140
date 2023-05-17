@@ -28,7 +28,7 @@ ed_aircrafts_nemezis:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_nemezis_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 4
 		Animation: DATABASE/MP2_BOMB.FLC

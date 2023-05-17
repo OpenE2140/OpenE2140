@@ -4,7 +4,7 @@ ucs_buildings_heavy_tech:
 		Name: Heavy Tech
 	Health:
 		HP: 1000
-	EnhancedPower:
+	Power:
 		Amount: -400
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
@@ -61,7 +61,7 @@ ucs_buildings_heavy_tech:
 	WithIdleOverlay:
 		Palette:
 		RequiresCondition: !Transforming
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 3
 		Animation: DATABASE/X19.FLC

@@ -44,7 +44,7 @@ ucs_vehicles_raptor_ad:
 		Count: 1
 	AttackFrontal:
 		FacingTolerance: 25
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 3
 		Animation: DATABASE/BT03.FLC

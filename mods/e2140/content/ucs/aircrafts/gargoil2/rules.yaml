@@ -28,7 +28,7 @@ ucs_aircrafts_gargoil_ii:
 	SpawnActorOnDeath:
 		Actor: ucs_aircrafts_gargoil_ii_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Aircrafts
 		Order: 3
 		Animation: DATABASE/MP2_GARG.FLC

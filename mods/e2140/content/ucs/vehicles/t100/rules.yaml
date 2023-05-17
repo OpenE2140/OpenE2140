@@ -36,7 +36,7 @@ ucs_vehicles_t100:
 		Delay: 56
 		ResetOnFire: True
 		Count: 7
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 1
 		Animation: DATABASE/BT01.FLC

@@ -25,7 +25,7 @@ ed_aircrafts_hat:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_hat_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 3
 		Animation: DATABASE/PM15.FLC

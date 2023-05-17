@@ -35,7 +35,7 @@ ucs_aircrafts_gargoil:
 	SpawnActorOnDeath:
 		Actor: ucs_aircrafts_gargoil_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Aircrafts
 		Order: 1
 		Animation: DATABASE/BT15.FLC

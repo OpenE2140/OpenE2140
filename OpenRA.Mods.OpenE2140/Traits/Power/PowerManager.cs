@@ -20,7 +20,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Power;
 [TraitLocation(SystemActors.Player)]
 [Desc("Earth specific variant of the PowerManager trait.")]
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class EnhancedPowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
+public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 {
 	[Desc("Interval (in milliseconds) at which to warn the player of low power.")]
 	public readonly int AdviceInterval = 10000;
@@ -38,17 +38,17 @@ public class EnhancedPowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 
 	public override object Create(ActorInitializer init)
 	{
-		return new EnhancedPowerManager(init.Self, this);
+		return new PowerManager(init.Self, this);
 	}
 }
 
-public class EnhancedPowerManager : ITick
+public class PowerManager : ITick
 {
-	private readonly EnhancedPowerManagerInfo info;
+	private readonly PowerManagerInfo info;
 
 	private readonly DeveloperMode devMode;
 
-	private readonly Dictionary<Actor, EnhancedPower> powers = new Dictionary<Actor, EnhancedPower>();
+	private readonly Dictionary<Actor, Power> powers = new Dictionary<Actor, Power>();
 
 	public int Power { get; private set; }
 	public int PowerGenerated { get; private set; }
@@ -57,14 +57,14 @@ public class EnhancedPowerManager : ITick
 	private int firstPower;
 	private long lastAdviceTime;
 
-	public EnhancedPowerManager(Actor self, EnhancedPowerManagerInfo info)
+	public PowerManager(Actor self, PowerManagerInfo info)
 	{
 		this.info = info;
 
 		this.devMode = self.Trait<DeveloperMode>();
 	}
 
-	public void Add(Actor actor, EnhancedPower power)
+	public void Add(Actor actor, Power power)
 	{
 		this.powers.Add(actor, power);
 	}

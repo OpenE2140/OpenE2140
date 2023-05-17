@@ -28,7 +28,7 @@ shared_mcu:
 		Name: MCU
 	Health:
 		HP: 1000
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 1
 		Animation: DATABASE/N01.FLC

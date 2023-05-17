@@ -48,7 +48,7 @@ ucs_vehicles_spider:
 		Count: 22
 	WithDamageOverlay:
 		Image: smoking_mech
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 6
 		Animation: DATABASE/BT06.FLC

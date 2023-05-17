@@ -14,8 +14,8 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
-using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Widgets;
+using PowerManager = OpenRA.Mods.OpenE2140.Traits.Power.PowerManager;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
@@ -33,7 +33,7 @@ public class IngamePowerLogic : ChromeLogic
 	{
 		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
 
-		var powerManager = world.LocalPlayer.PlayerActor.Trait<EnhancedPowerManager>();
+		var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManager>();
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
 		var unlimitedCapacity = modData.Translation.GetString(IngamePowerLogic.Infinite);

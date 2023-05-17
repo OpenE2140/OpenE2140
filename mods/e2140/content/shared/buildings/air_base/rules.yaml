@@ -4,7 +4,7 @@ shared_buildings_air_base:
 		Name: Air Base
 	Health:
 		HP: 500
-	EnhancedPower:
+	Power:
 		Amount: -200
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
@@ -114,7 +114,7 @@ shared_buildings_air_base:
 	WithIdleOverlay@HelipadRightLight:
 		Sequence: helipad-right-lights
 		RequiresCondition: !Transforming && Powered
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 6
 		Animation: DATABASE/X06.FLC

@@ -25,7 +25,7 @@ shared_aircrafts_heavy_lifter:
 	SpawnActorOnDeath:
 		Actor: shared_aircrafts_heavy_lifter_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Aircrafts
 		Order: 1
 		Animation: DATABASE/N04.FLC

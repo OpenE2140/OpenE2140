@@ -4,7 +4,7 @@ ed_buildings_constr_center:
 		Name: Constr. Center
 	Health:
 		HP: 1500
-	EnhancedPower:
+	Power:
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
@@ -55,7 +55,7 @@ ed_buildings_constr_center:
 	Exit@Exit6:
 		ExitCell: 3,1
 		Facing: 896
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Buildings
 		Order: 1
 		Animation: DATABASE/X09.FLC

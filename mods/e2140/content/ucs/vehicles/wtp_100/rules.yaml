@@ -20,7 +20,7 @@ ucs_vehicles_wtp_100:
 		Sound: 31.smp
 	# WTP 100 doesn't have move animation.
 	-WithMoveAnimation:
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Ships
 		Order: 1
 		Animation: DATABASE/BT12.FLC

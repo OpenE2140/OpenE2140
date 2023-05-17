@@ -38,7 +38,7 @@ ed_vehicles_mt200:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 3
 		Animation: DATABASE/PM03.FLC

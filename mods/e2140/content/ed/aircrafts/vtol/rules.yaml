@@ -26,7 +26,7 @@ ed_aircrafts_vtol:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_vtol_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 5
 		Animation: DATABASE/MP2_HAR.FLC

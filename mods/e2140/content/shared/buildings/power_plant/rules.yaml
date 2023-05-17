@@ -4,7 +4,7 @@ shared_buildings_power_plant:
 		Name: Power Plant
 	Health:
 		HP: 1000
-	EnhancedPower:
+	Power:
 		Amount: 2000
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
@@ -42,7 +42,7 @@ shared_buildings_power_plant:
 		Image: power_plant_smoke
 		Sequence: chimney_chamber
 		RequiresCondition: !Transforming
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 1
 		Animation: DATABASE/X01.FLC

@@ -26,7 +26,7 @@ ed_vehicles_btti:
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 10
 		Animation: DATABASE/PM10.FLC

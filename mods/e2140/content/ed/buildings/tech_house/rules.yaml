@@ -4,7 +4,7 @@ ed_buildings_tech_house:
 		Name: Tech House
 	Health:
 		HP: 1000
-	EnhancedPower:
+	Power:
 		Amount: -400
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
@@ -56,7 +56,7 @@ ed_buildings_tech_house:
 	Exit@Exit6:
 		ExitCell: 2,0
 		Facing: 0
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Buildings
 		Order: 3
 		Animation: DATABASE/X11.FLC

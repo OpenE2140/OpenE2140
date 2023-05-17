@@ -34,7 +34,7 @@ ed_aircrafts_thunder:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_thunder_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 2
 		Animation: DATABASE/PM14.FLC

@@ -38,7 +38,7 @@ ed_vehicles_st01b:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 1
 		Animation: DATABASE/PM01.FLC

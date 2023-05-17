@@ -20,7 +20,7 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 11
 		Animation: DATABASE/BT11.FLC

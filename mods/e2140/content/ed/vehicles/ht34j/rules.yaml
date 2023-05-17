@@ -26,7 +26,7 @@ ed_vehicles_ht34j:
 		LocalOffset: 450,0,75
 		LocalYaw: 0
 		MuzzlePalette:
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 7
 		Animation: DATABASE/PM07.FLC

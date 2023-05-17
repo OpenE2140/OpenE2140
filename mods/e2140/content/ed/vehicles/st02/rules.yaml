@@ -31,7 +31,7 @@ ed_vehicles_st02:
 		RecoilRecovery: 38
 		LocalOffset: 100,-100,0, 100,100,0
 		MuzzlePalette:
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 2
 		Animation: DATABASE/PM02.FLC

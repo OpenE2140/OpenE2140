@@ -60,7 +60,7 @@ ucs_vehicles_tiger_assault:
 		Count: 4
 	WithDamageOverlay:
 		Image: smoking_mech
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 4
 		Animation: DATABASE/BT04.FLC

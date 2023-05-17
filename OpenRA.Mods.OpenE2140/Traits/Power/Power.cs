@@ -6,7 +6,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Power;
 
 [Desc("Earth specific variant of the Power trait.")]
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class EnhancedPowerInfo : ConditionalTraitInfo
+public class PowerInfo : ConditionalTraitInfo
 {
 	[Desc("If negative, it will drain power. If positive, it will provide power.")]
 	public readonly int Amount;
@@ -17,20 +17,20 @@ public class EnhancedPowerInfo : ConditionalTraitInfo
 
 	public override object Create(ActorInitializer init)
 	{
-		return new EnhancedPower(init.Self, this);
+		return new Power(init.Self, this);
 	}
 }
 
-public class EnhancedPower : ConditionalTrait<EnhancedPowerInfo>, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOwnerChanged
+public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOwnerChanged
 {
-	private EnhancedPowerManager playerPower;
+	private PowerManager playerPower;
 
 	private int token = Actor.InvalidConditionToken;
 
-	public EnhancedPower(Actor self, EnhancedPowerInfo info)
+	public Power(Actor self, PowerInfo info)
 		: base(info)
 	{
-		this.playerPower = self.Owner.PlayerActor.Trait<EnhancedPowerManager>();
+		this.playerPower = self.Owner.PlayerActor.Trait<PowerManager>();
 	}
 
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
@@ -46,7 +46,7 @@ public class EnhancedPower : ConditionalTrait<EnhancedPowerInfo>, INotifyAddedTo
 	void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner)
 	{
 		this.playerPower.Remove(self);
-		this.playerPower = newOwner.PlayerActor.Trait<EnhancedPowerManager>();
+		this.playerPower = newOwner.PlayerActor.Trait<PowerManager>();
 		this.playerPower.Add(self, this);
 	}
 

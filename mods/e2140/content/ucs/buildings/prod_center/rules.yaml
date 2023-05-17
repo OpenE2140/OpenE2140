@@ -4,7 +4,7 @@ ucs_buildings_prod_center:
 		Name: Prod. Center
 	Health:
 		HP: 1000
-	EnhancedPower:
+	Power:
 		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
@@ -59,7 +59,7 @@ ucs_buildings_prod_center:
 	Exit@Exit6:
 		ExitCell: 2,1
 		Facing: 896
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 1
 		Animation: DATABASE/X17.FLC

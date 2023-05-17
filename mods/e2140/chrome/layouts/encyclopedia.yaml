@@ -1,5 +1,5 @@
 Background@ENCYCLOPEDIA_PANEL:
-	Logic: EnhancedEncyclopediaLogic
+	Logic: EncyclopediaLogic
 	X: (WINDOW_RIGHT - WIDTH) / 2
 	Y: (WINDOW_BOTTOM - HEIGHT) / 2
 	Width: 900

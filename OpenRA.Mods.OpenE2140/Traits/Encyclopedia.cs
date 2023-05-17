@@ -12,12 +12,11 @@
 #endregion
 
 using JetBrains.Annotations;
-using OpenRA.Mods.Common.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class EnhancedEncyclopediaInfo : EncyclopediaInfo
+public class EncyclopediaInfo : Common.Traits.EncyclopediaInfo
 {
 	[Desc("The FLC Animation to play.")]
 	public readonly string? Animation;
@@ -27,6 +26,7 @@ public class EnhancedEncyclopediaInfo : EncyclopediaInfo
 
 	[Desc("Just meta data which we display properly...")]
 	public readonly string? Armor;
+
 	public readonly string? Armament;
 	public readonly string? Resistance;
 }

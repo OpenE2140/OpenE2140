@@ -43,7 +43,7 @@ ed_aircrafts_storm:
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_storm_husk
 		RequiresCondition: airborne
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 1
 		Animation: DATABASE/PM13.FLC

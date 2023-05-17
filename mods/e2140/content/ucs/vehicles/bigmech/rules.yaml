@@ -38,7 +38,7 @@ ucs_vehicles_big_mech:
 		FacingTolerance: 25
 	WithDamageOverlay:
 		Image: smoking_mech
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 12
 		Animation: DATABASE/MP2_MECH.FLC

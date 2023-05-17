@@ -30,7 +30,7 @@ Player:
 	# Player always has access to radar
 	ProvidesRadar:
 	# Manage power for buildings
-	EnhancedPowerManager:
+	PowerManager:
 		SpeechNotification: LowPower
 		TextNotification: Low power.
 	# Player can repair own and ally buildings.

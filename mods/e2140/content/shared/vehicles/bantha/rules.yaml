@@ -20,7 +20,7 @@ shared_vehicles_bantha:
 		Speed: 50
 	RevealsShroud:
 		Range: 2c896
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 2
 		Animation: DATABASE/N02.FLC

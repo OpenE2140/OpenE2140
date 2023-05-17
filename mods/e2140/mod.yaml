@@ -35,8 +35,8 @@ MapFolders:
 	~^SupportDir|maps/e2140/{DEV_VERSION}: User
 
 Assemblies:
-	^BinDir|OpenRA.Mods.Common.dll
 	^BinDir|OpenRA.Mods.OpenE2140.dll
+	^BinDir|OpenRA.Mods.Common.dll
 
 SoundFormats: Wav, Ogg, Mp3, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VirtualSprite

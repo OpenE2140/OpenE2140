@@ -37,7 +37,7 @@ shared_vehicles_hcum:
 		InitialStance: AttackAnything
 	AutoTargetPriority@Default:
 		ValidTargets: DamagedVehicle
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 3
 		Animation: DATABASE/N03.FLC

@@ -20,7 +20,7 @@ ed_vehicles_screamer:
 		Palette:
 	DetectCloaked:
 		Range: 4c896
-	EnhancedEncyclopedia:
+	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 12
 		Animation: DATABASE/PM12.FLC
