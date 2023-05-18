@@ -25,7 +25,7 @@ public class WithAimAttackAnimationInfo : TraitInfo, Requires<WithSpriteBodyInfo
 	[SequenceReference]
 	public readonly string SequenceFire = "";
 
-	[Desc("Displayed while attacking.")]
+	[Desc("Displayed while aiming.")]
 	[SequenceReference]
 	public readonly string SequenceAim = "";
 
