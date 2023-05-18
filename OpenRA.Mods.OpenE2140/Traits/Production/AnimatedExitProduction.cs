@@ -268,7 +268,17 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
 					if (this.rallyPoint?.Path.Count > 0)
-						AnimatedExitProduction.TryQueuingPathToRallyPoint(self, this.rallyPoint, this.productionInfo);
+					{
+						foreach (var cell in this.rallyPoint.Path)
+						{
+							self.QueueActivity(
+								new AttackMoveActivity(
+									self,
+									() => self.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
+								)
+							);
+						}
+					}
 
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
@@ -442,21 +452,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		this.productionQueue.UnitCompleted(this.lastProducedUnit!.Actor!);
 	}
 
-	private static void TryQueuingPathToRallyPoint(Actor self, RallyPoint rp, ProductionInfo pi)
-	{
-		// Queue path to rally point only if current activity has been ordered by AnimatedExitProduction (and not player).
-		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
-		if (self.CurrentActivity != pi.ExitMoveActivity)
-			return;
-
-		foreach (var cell in rp.Path)
-		{
-			self.QueueActivity(
-				new AttackMoveActivity(self, () => self.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed))
-			);
-		}
-	}
-
 	private static WAngle GetInitialFacing(ActorInfo producee, WPos spawn, WPos target)
 	{
 		WAngle initialFacing;
@@ -475,7 +470,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		// Mobile ICreationActivity queued an uncancelable ReturnToCellActivity activity -.-
 		// This looks horrible when not spawned at a cell center! (see infantry walking into the house before exiting)
 		if (other.CurrentActivity is Mobile.ReturnToCellActivity)
-			other.GetType().GetField("currentActivity", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(other, null);
+			other.GetType().GetField("currentActivity", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(other, other.CurrentActivity.NextActivity);
 
 		if (this.productionInfo != null)
 			this.productionInfo = this.productionInfo with { Actor = other };
