@@ -286,10 +286,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 					{
 						foreach (var cell in this.rallyPoint.Path)
 						{
-							self.QueueActivity(
+							actor.QueueActivity(
 								new AttackMoveActivity(
-									self,
-									() => self.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
+									actor,
+									() => actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
 								)
 							);
 						}
