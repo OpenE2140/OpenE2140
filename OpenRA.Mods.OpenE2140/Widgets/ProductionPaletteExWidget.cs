@@ -20,13 +20,13 @@ using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecificWidget
 {
 	private readonly World world;
 	private readonly ObjectFieldHelper<string> clockAnimationField;
 
-	public readonly string Identifier = "";
+	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
 	public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)

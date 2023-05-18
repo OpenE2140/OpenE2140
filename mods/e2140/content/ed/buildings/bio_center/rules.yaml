@@ -1,5 +1,5 @@
 ed_buildings_bio_center:
-	Inherits: ^CoreFactory
+	Inherits: ^CoreDoorFactory
 	Tooltip:
 		Name: Bio-Center
 	Health:
@@ -24,10 +24,11 @@ ed_buildings_bio_center:
 		RequiresCondition: Powered
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
-	Production:
+	AnimatedExitProduction:
 		Produces: Infantry.ED
 		RequiresCondition: !Transforming
-	ProductionQueue:
+		Position: -1008,512,0
+	AnimatedExitProductionQueue:
 		Type: Infantry.ED
 		Factions: ed
 		Group: Infantry
@@ -36,34 +37,19 @@ ed_buildings_bio_center:
 		ProductionType: Infantry.ED
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: -1000, 500, 0
+		SpawnOffset: -400, 200, 0
 		ExitCell: -1,2
 		Facing: 384
 	Exit@Exit2:
-		SpawnOffset: -1000, 500, 0
+		SpawnOffset: -400, 200, 0
 		ExitCell: 0,2
 		Facing: 500
 	Exit@Exit3:
-		SpawnOffset: -1000, 500, 0
+		SpawnOffset: -400, 200, 0
 		ExitCell: 1,2
 		Facing: 650
 	GrantConditionOnDamageState:
 		Condition: damaged
-	WithProductionExitOverlay@Exit1:
-		ExitCell: -1,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
-	WithProductionExitOverlay@Exit2:
-		ExitCell: 0,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
-	WithProductionExitOverlay@Exit3:
-		ExitCell: 1,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 2

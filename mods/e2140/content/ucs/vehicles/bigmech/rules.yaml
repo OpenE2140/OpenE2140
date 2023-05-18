@@ -30,7 +30,7 @@ ucs_vehicles_big_mech:
 		LocalOffset: 200,-425,0, 200,425,0
 		MuzzlePalette:
 	WithMoveSound:
-		Sound: 32.smp
+		Sound: 28.smp
 	WithMoveAnimation@turn:
 		ValidMovementTypes: Turn
 		MoveSequence: move.turn

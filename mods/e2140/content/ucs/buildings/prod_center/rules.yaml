@@ -37,7 +37,7 @@ ucs_buildings_prod_center:
 		Produces: Building.UCS
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
-	ElevatorProductionQueue:
+	AnimatedExitProductionQueue:
 		Type: Building.UCS
 		Group: Building
 	ProductionBar:

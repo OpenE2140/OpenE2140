@@ -24,7 +24,7 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 {
 	[FieldLoader.Require]
 	[Desc("Image used for this decoration.")]
-	public readonly string Image = "";
+	public readonly string Image = string.Empty;
 
 	[GrantedConditionReference]
 	[Desc("Grant this condition while the actor is playing the sequence.")]

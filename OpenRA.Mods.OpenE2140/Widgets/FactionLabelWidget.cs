@@ -16,13 +16,13 @@ using OpenRA.Mods.Common.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 {
 	public readonly string[] FieldsToOverride = { "TextColor" };
 
 	[FieldLoader.Require]
-	public readonly string Identifier = "";
+	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
 	public FactionLabelWidget(World world)

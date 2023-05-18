@@ -22,7 +22,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Sounds;
 public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
 {
 	[FieldLoader.Require]
-	public readonly string Sound = "";
+	public readonly string Sound = string.Empty;
 
 	public override object Create(ActorInitializer init)
 	{

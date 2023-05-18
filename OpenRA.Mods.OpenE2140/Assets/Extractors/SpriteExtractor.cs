@@ -23,7 +23,7 @@ public static class SpriteExtractor
 	{
 		var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.png");
 
-		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? "");
+		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
 
 		var sheetBaker = new SheetBaker(4);
 

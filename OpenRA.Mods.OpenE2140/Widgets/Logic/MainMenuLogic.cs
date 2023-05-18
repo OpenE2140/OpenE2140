@@ -12,11 +12,13 @@
 #endregion
 
 using System.Reflection;
+using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
+[UsedImplicitly]
 public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
 {
 	[ObjectCreator.UseCtor]

@@ -144,6 +144,7 @@
 # Base for all factories.
 ^CoreFactory:
 	Inherits: ^CoreBuilding
+	Production:
 	ProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
@@ -155,15 +156,32 @@
 		Cursor: move
 		LineWidth: 2
 
+# Base for all factories using animated exit production.
+^CoreDoorFactory:
+	Inherits: ^CoreFactory
+	# Door production needs custom production.
+	-Production:
+	AnimatedExitProduction:
+	-ProductionQueue:
+	AnimatedExitProductionQueue:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+
 # Base for all factories using elevator production.
 ^CoreElevatorFactory:
 	Inherits: ^CoreFactory
 	# Use custom RenderSprites trait for rendering elevator.
 	-RenderSprites:
 	RenderElevatorSprites:
-	# Elevator production needs custom production queue.
+	# Door production needs custom production.
+	-Production:
+	ElevatorProduction:
+		ZOffset: -1024
 	-ProductionQueue:
-	ElevatorProductionQueue:
+	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
 		CancelledAudio: ProductionCancelled

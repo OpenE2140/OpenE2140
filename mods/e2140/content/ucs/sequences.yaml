@@ -2,9 +2,9 @@ ucs_elevator:
 	Defaults:
 		Filename: elevator_ucs.vspr
 	opening:
-		Tick: 100
 		Start: 1
 		Length: 2
+		Tick: 100
 	open:
 		Offset: 0, -8
 		Start: 3
@@ -20,3 +20,4 @@ ucs_elevator:
 	closing:
 		Start: 5
 		Length: 2
+		Tick: 100

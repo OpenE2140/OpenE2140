@@ -21,7 +21,7 @@ public static class AudioExtractor
 	{
 		var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.wav");
 
-		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? "");
+		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
 
 		var stream = sound.GetPCMInputStream();
 

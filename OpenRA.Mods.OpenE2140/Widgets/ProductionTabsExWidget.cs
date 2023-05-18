@@ -20,13 +20,13 @@ using OpenRA.Widgets;
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
 // TODO Temporary solution until PR #20635 is merged in OpenRA.
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidget
 {
 	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
 	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
 
-	public readonly string Identifier = "";
+	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
 	public ProductionTabsExWidget(World world)

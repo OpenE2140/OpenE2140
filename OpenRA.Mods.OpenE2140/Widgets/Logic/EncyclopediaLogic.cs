@@ -156,7 +156,7 @@ public class EncyclopediaLogic : ChromeLogic
 
 		this.previewWidget.SetPreview(actor, typeDictionary);
 
-		var text = "";
+		var text = string.Empty;
 
 		if (info != null)
 		{

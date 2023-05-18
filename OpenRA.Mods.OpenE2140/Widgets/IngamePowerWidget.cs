@@ -17,13 +17,13 @@ using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
-[UsedImplicitly]
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class IngamePowerWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 {
 	public readonly Color NormalPowerColor = Color.White;
 	public readonly Color CriticalPowerColor = Color.Red;
 
-	public readonly string Identifier = "";
+	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
 	public IngamePowerWidget(World world)

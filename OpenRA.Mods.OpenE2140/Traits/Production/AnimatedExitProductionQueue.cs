@@ -19,26 +19,26 @@ using OpenRA.Primitives;
 namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-[Desc("Attach to all production buildings with elevator production instead of default ProductionQueue")]
-public class ElevatorProductionQueueInfo : ProductionQueueInfo
+[Desc("Attach to all production buildings with animated exit production instead of default ProductionQueue")]
+public class AnimatedExitProductionQueueInfo : ProductionQueueInfo
 {
 	public override object Create(ActorInitializer init)
 	{
-		return new ElevatorProductionQueue(init, this);
+		return new AnimatedExitProductionQueue(init, this);
 	}
 }
 
-public class ElevatorProductionQueue : ProductionQueue
+public class AnimatedExitProductionQueue : ProductionQueue
 {
-	private readonly Lazy<ElevatorProduction[]> elevatorProductionTraits;
+	private readonly Lazy<AnimatedExitProduction[]> animatedExitProductionTraits;
 
-	private IEnumerable<ElevatorProduction> EnabledProductionTraits => this.elevatorProductionTraits.Value.Where(e => !e.IsTraitDisabled);
+	private IEnumerable<AnimatedExitProduction> EnabledProductionTraits => this.animatedExitProductionTraits.Value.Where(e => !e.IsTraitDisabled);
 
-	public ElevatorProductionQueue(ActorInitializer init, ProductionQueueInfo info)
+	public AnimatedExitProductionQueue(ActorInitializer init, ProductionQueueInfo info)
 		: base(init, info)
 	{
-		this.elevatorProductionTraits = Exts.Lazy(
-			() => this.productionTraits.OfType<ElevatorProduction>().Where(p => p.Info.Produces.Contains(this.Info.Type)).ToArray()
+		this.animatedExitProductionTraits = Exts.Lazy(
+			() => this.productionTraits.OfType<AnimatedExitProduction>().Where(p => p.Info.Produces.Contains(this.Info.Type)).ToArray()
 		);
 	}
 
@@ -68,7 +68,7 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override bool BuildUnit(ActorInfo unit)
 	{
-		var mostLikelyProducerTrait = this.MostLikelyProducer().Trait as ElevatorProduction;
+		var mostLikelyProducerTrait = this.MostLikelyProducer().Trait as AnimatedExitProduction;
 
 		if (!this.Actor.IsInWorld || this.Actor.IsDead || mostLikelyProducerTrait == null)
 		{
@@ -77,7 +77,7 @@ public class ElevatorProductionQueue : ProductionQueue
 			return false;
 		}
 
-		if (mostLikelyProducerTrait.State != ElevatorProduction.AnimationState.Closed)
+		if (mostLikelyProducerTrait.State != AnimatedExitProduction.AnimationState.Closed)
 			return false;
 
 		var inits = new TypeDictionary { new OwnerInit(this.Actor.Owner), new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction)) };
@@ -108,13 +108,13 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void CancelProduction(string itemName, uint numberToCancel)
 	{
-		var closed = this.EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
+		var closed = this.EnabledProductionTraits.Where(a => a.State == AnimatedExitProduction.AnimationState.Closed);
 
 		var currentItem = this.Queue.FirstOrDefault();
 		var queuedCount = this.Queue.Count(i => i.Item == itemName);
 		var isInfinite = this.Queue.Any(i => i.Item == itemName && i.Infinite);
 
-		// If unit is currently being ejected (i.e. elevator is not closed), we cannot cancel the last item (as this would refund paid cash)
+		// If unit is currently being ejected (i.e. animated exit is not closed), we cannot cancel the last item (as this would refund paid cash)
 		if (!closed.Any() && (currentItem == null || currentItem.Item == itemName))
 		{
 			numberToCancel = (uint)Math.Min(Math.Max(0, queuedCount - 1), numberToCancel);
@@ -131,16 +131,16 @@ public class ElevatorProductionQueue : ProductionQueue
 
 	protected override void PauseProduction(string itemName, bool paused)
 	{
-		var closed = this.EnabledProductionTraits.Where(a => a.State == ElevatorProduction.AnimationState.Closed);
+		var closed = this.EnabledProductionTraits.Where(a => a.State == AnimatedExitProduction.AnimationState.Closed);
 
-		// Don't pause production if unit is being ejected (i.e. elevator is open).
+		// Don't pause production if unit is being ejected (i.e. animated exit is open).
 		if (closed.Any())
 			base.PauseProduction(itemName, paused);
 	}
 
 	protected override void TickInner(Actor self, bool allProductionPaused)
 	{
-		var unpaused = this.EnabledProductionTraits.Where(a => a is { IsTraitPaused: false, State: ElevatorProduction.AnimationState.Closed });
+		var unpaused = this.EnabledProductionTraits.Where(a => a is { IsTraitPaused: false, State: AnimatedExitProduction.AnimationState.Closed });
 
 		if (unpaused.Any())
 			base.TickInner(self, allProductionPaused);

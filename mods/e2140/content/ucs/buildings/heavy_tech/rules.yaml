@@ -39,7 +39,7 @@ ucs_buildings_heavy_tech:
 		Produces: Vehicle.UCS
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
-	ElevatorProductionQueue:
+	AnimatedExitProductionQueue:
 		Type: Vehicle.UCS
 		Group: Vehicle
 	ProductionBar:

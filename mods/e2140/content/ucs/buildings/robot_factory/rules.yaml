@@ -1,5 +1,5 @@
 ucs_buildings_robot_factory:
-	Inherits: ^CoreFactory
+	Inherits: ^CoreDoorFactory
 	Tooltip:
 		Name: Robot Factory
 	Health:
@@ -24,10 +24,11 @@ ucs_buildings_robot_factory:
 		RequiresCondition: Powered
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
-	Production:
+	AnimatedExitProduction:
 		Produces: Infantry.UCS
 		RequiresCondition: !Transforming
-	ProductionQueue:
+		Position: -512,288,0
+	AnimatedExitProductionQueue:
 		Type: Infantry.UCS
 		Factions: ucs
 		Group: Infantry
@@ -36,34 +37,19 @@ ucs_buildings_robot_factory:
 		ProductionType: Infantry.UCS
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: -450, 400, 0
+		SpawnOffset: 0, -256, 0
 		ExitCell: -1,2
 		Facing: 384
 	Exit@Exit2:
-		SpawnOffset: -450, 400, 0
+		SpawnOffset: 0, -256, 0
 		ExitCell: 0,2
 		Facing: 500
 	Exit@Exit3:
-		SpawnOffset: -450, 400, 0
+		SpawnOffset: 0, -256, 0
 		ExitCell: 1,2
 		Facing: 650
 	GrantConditionOnDamageState:
 		Condition: damaged
-	WithProductionExitOverlay@Exit1:
-		ExitCell: -1,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
-	WithProductionExitOverlay@Exit2:
-		ExitCell: 0,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
-	WithProductionExitOverlay@Exit3:
-		ExitCell: 1,2
-		Sequence: opening
-		Palette:
-		RequiresCondition: !Transforming && !damaged
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 2

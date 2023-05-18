@@ -34,7 +34,7 @@ ed_buildings_tech_house:
 		Produces: Vehicle.ED
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
-	ElevatorProductionQueue:
+	AnimatedExitProductionQueue:
 		Type: Vehicle.ED
 		Group: Vehicle
 	ProductionBar:

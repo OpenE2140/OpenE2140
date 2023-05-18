@@ -33,7 +33,7 @@ ed_buildings_constr_center:
 		Produces: Building.ED
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
-	ElevatorProductionQueue:
+	AnimatedExitProductionQueue:
 		Type: Building.ED
 		Group: Building
 	ProductionBar:

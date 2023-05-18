@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Collections;
 using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;

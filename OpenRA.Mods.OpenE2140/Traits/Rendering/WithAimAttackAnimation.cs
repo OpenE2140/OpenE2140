@@ -11,23 +11,23 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Traits.Misc;
-
-using Common.Traits;
-using Common.Traits.Render;
 using JetBrains.Annotations;
+using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
+
+namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class WithAimAttackAnimationInfo : TraitInfo, Requires<WithSpriteBodyInfo>
 {
 	[Desc("Displayed while attacking.")]
 	[SequenceReference]
-	public readonly string SequenceFire = "";
+	public readonly string SequenceFire = string.Empty;
 
 	[Desc("Displayed while aiming.")]
 	[SequenceReference]
-	public readonly string SequenceAim = "";
+	public readonly string SequenceAim = string.Empty;
 
 	public override object Create(ActorInitializer init)
 	{

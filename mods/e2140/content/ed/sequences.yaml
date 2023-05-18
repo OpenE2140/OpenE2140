@@ -2,9 +2,9 @@ ed_elevator:
 	Defaults:
 		Filename: elevator_ed.vspr
 	opening:
-		Tick: 100
 		Start: 1
 		Length: 2
+		Tick: 100
 	open:
 		Offset: 0, 0
 		Start: 3
@@ -20,3 +20,4 @@ ed_elevator:
 	closing:
 		Start: 5
 		Length: 2
+		Tick: 100

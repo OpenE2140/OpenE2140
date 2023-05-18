@@ -26,7 +26,7 @@ public class PlayerColorShiftInfo : TraitInfo
 	[PaletteReference(true)]
 	[FieldLoader.Require]
 	[Desc("The name of the palette to base off.")]
-	public readonly string BasePalette = "";
+	public readonly string BasePalette = string.Empty;
 
 	[Desc("Hues between this and MaxHue will be shifted.")]
 	public readonly float MinHue = 0.83f;
