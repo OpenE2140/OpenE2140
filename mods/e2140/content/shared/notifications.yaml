@@ -1,20 +1,20 @@
 Speech:
 	DefaultVariant:
 	Prefixes:
-		ed: smp0_
-		ucs: smp1_
+		ed: smp0|
+		ucs: smp1|
 	Notifications:
-		BaseAttack: base|127.smp
-		BuildingLost: base|97.smp
-		InsufficientCash: base|109.smp
-		LowPower: base|110.smp
-		Repairing: base|100.smp
-		ProductionStarted: base|119.smp
-		ProductionComplete: base|99.smp
-		UnitLost: base|105.smp
-		RepairsInterrupted: base|120.smp
-		GameSaved: base|113.smp
-		GameLoaded: base|114.smp
-		RestartGame: base|115.smp
-		ProductionInterrupted: extra|interrupted.wav
-		ProductionCancelled: extra|cancelled.wav
+		ProductionInterrupted: 34.smp
+		ProductionCancelled: 34.smp
+		BuildingLost: 97.smp
+		ProductionComplete: 99.smp
+		Repairing: 100.smp
+		UnitLost: 105.smp
+		InsufficientCash: 109.smp
+		LowPower: 110.smp
+		GameSaved: 113.smp
+		GameLoaded: 114.smp
+		RestartGame: 115.smp
+		ProductionStarted: 119.smp
+		RepairsInterrupted: 120.smp
+		BaseAttack: 127.smp
