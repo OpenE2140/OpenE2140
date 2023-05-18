@@ -32,6 +32,21 @@ public class AnimatedExitProductionInfo : ProductionInfo, IRenderActorPreviewSpr
 	[Desc("Image used for the Exit.")]
 	public readonly string? Image;
 
+	[Desc("The sequence to use for the closed state.")]
+	public string SequenceClosed = "closed";
+
+	[Desc("The sequence to use for the opening animation.")]
+	public string SequenceOpening = "opening";
+
+	[Desc("The sequence to use for the open state.")]
+	public string SequenceOpen = "open";
+
+	[Desc("The sequence to use for the closing animation.")]
+	public string SequenceClosing = "closing";
+
+	[Desc("The sequence to use for the overlay.")]
+	public string SequenceOverlay = "overlay";
+
 	[Desc("Animated exit Position.")]
 	public readonly WVec Position;
 
@@ -61,10 +76,10 @@ public class AnimatedExitProductionInfo : ProductionInfo, IRenderActorPreviewSpr
 	{
 		var animation = new Animation(init.World, this.Image ?? image);
 
-		if (!animation.HasSequence("closed"))
+		if (!animation.HasSequence(this.SequenceClosed))
 			yield break;
 
-		animation.PlayRepeating("closed");
+		animation.PlayRepeating(this.SequenceClosed);
 
 		yield return new SpriteActorPreview(animation, () => this.Position, this.GetZOffset, palette);
 	}
@@ -131,7 +146,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			_ => this.info.ZOffset + this.info.GetZOffset()
 		);
 
-		this.PlayAnimation("closed");
+		this.PlayAnimation(this.info.SequenceClosed);
 		init.Self.World.AddFrameEndTask(_ => this.RenderSprites?.Add(this.animation));
 
 		var animationOverlay = new AnimationWithOffset(
@@ -141,9 +156,9 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			_ => this.info.ZOffset
 		);
 
-		if (animationOverlay.Animation.HasSequence("overlay"))
+		if (animationOverlay.Animation.HasSequence(this.info.SequenceOverlay))
 		{
-			animationOverlay.Animation.PlayRepeating("overlay");
+			animationOverlay.Animation.PlayRepeating(this.info.SequenceOverlay);
 			init.Self.World.AddFrameEndTask(_ => this.RenderSprites?.Add(animationOverlay));
 		}
 
@@ -392,10 +407,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 		// TODO First frame is skipped...?!
 		this.animation.Animation.PlayThen(
-			"opening",
+			this.info.SequenceOpening,
 			() =>
 			{
-				this.PlayAnimation("open");
+				this.PlayAnimation(this.info.SequenceOpen);
 				self.World.AddFrameEndTask(_ => this.Opened(self));
 			}
 		);
@@ -436,10 +451,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		this.State = AnimationState.Closing;
 
 		this.animation.Animation.PlayThen(
-			"closing",
+			this.info.SequenceClosing,
 			() =>
 			{
-				this.PlayAnimation("closed");
+				this.PlayAnimation(this.info.SequenceClosed);
 				self.World.AddFrameEndTask(_ => this.Closed(self));
 			}
 		);

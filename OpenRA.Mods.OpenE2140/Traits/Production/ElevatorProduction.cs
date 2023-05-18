@@ -36,6 +36,9 @@ public class ElevatorProductionInfo : AnimatedExitProductionInfo
 	[Desc("How long it takes the elevator to reach the top.")]
 	public readonly int Duration = 25;
 
+	[Desc("The sequence to use for the elevator platform.")]
+	public string SequenceElevator = "elevator";
+
 	public override object Create(ActorInitializer init)
 	{
 		return new ElevatorProduction(init, this);
@@ -70,7 +73,7 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 			() => this.info.Position.Y + this.info.CutOff * 16
 		);
 
-		animationElevator.Animation.PlayRepeating("elevator");
+		animationElevator.Animation.PlayRepeating(this.info.SequenceElevator);
 		init.Self.World.AddFrameEndTask(_ => this.RenderSprites.Add(animationElevator));
 	}
 
