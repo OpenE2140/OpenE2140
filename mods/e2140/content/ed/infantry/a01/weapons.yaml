@@ -4,7 +4,7 @@ ed_infantry_a01_machine_gun:
 	Range: 2c896
 	Report: 1.smp
 	ValidTargets: Ground, Infantry
-	InvalidTargets: Vehicle, Structure, Infantry
+	InvalidTargets: Vehicle, Structure
 	Projectile: InstantHit
 		Inaccuracy: 0c128
 	Warhead@1Dam: SpreadDamage
