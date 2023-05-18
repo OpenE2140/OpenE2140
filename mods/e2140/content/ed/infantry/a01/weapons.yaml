@@ -29,7 +29,7 @@ ed_infantry_a01_machine_gun:
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure, Infantry
+		ValidTargets: Vehicle, Structure
 
 ed_infantry_a01_grenade:
 	Inherits: Smudges
