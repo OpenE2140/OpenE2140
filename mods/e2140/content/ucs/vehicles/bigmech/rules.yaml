@@ -2,7 +2,7 @@ ucs_vehicles_big_mech:
 	Inherits@1: ^UcsMech
 	Inherits@2: ^CoreArmedSelf
 	Tooltip:
-		Name: BigMech
+		Name: BIG MECH
 	Valued:
 		Cost: 1500
 	Buildable:
@@ -42,7 +42,7 @@ ucs_vehicles_big_mech:
 		Category: UCS - Vehicles
 		Order: 12
 		Animation: DATABASE/MP2_MECH.FLC
-		Title: BigMech
+		Title: BIG MECH
 		Armor: heavy
 		Armament: two light rocket launchers
-		Description: At first glance, this heavily armed battle machine doesn't seem very impressively equipped.\nBut rest assured, the BigMech is definitely one of the UCS' most impressive weapons.\nIts two fast-firing light rocket launchers fire 16 rockets in a row and take very little time to load.
+		Description: At first glance, this heavily armed battle machine doesn't seem very impressively equipped.\nBut rest assured, the BIG MECH is definitely one of the UCS' most impressive weapons.\nIts two fast-firing light rocket launchers fire 16 rockets in a row and take very little time to load.

@@ -42,7 +42,7 @@ ucs_aircrafts_hellwind:
 		Category: UCS - Aircrafts
 		Order: 2
 		Animation: DATABASE/BT16.FLC
-		Title: HellWind - Anti-gravity Bomber
+		Title: HELLWIND - Anti-gravity Bomber
 		Armor: heavy
 		Armament: plasma bombs
 		Description: The HELLWIND is the latest generation of anti-gravity bombers.\nIt is heavily armored and carries large quantities of plasma bombs.\nThese are very effective and will destroy a small battle unit, a large tank or even a structure.\nThe HELLWIND always drops five bombs at a time.

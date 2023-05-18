@@ -2,7 +2,7 @@ ed_aircrafts_nemezis:
 	Inherits@1: ^EdAircraft
 	Inherits@2: ^CoreAttackAircraft
 	Tooltip:
-		Name: Heavy Bomber
+		Name: NEMEZIS
 	Valued:
 		Cost: 2300
 	Buildable:
@@ -32,7 +32,7 @@ ed_aircrafts_nemezis:
 		Category: ED - Aircrafts
 		Order: 4
 		Animation: DATABASE/MP2_BOMB.FLC
-		Title: Heavy Nuclear Bomber
+		Title: NEMEZIS - Heavy Nuclear Bomber
 		Armor: heavy
 		Armament: Nuclear bombs
 		Description: The Heavy Nuclear Bomber is the ideal weapon for destroying enemy structures and units.\nBecause of its long loading time, however, the Heavy Nuclear Bomber should never be deployed alone.\nThe best results are reached when deployed in groups of several bombers.
