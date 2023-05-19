@@ -19,8 +19,11 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class WithAimAttackAnimationInfo : TraitInfo, Requires<WithSpriteBodyInfo>
+public class WithAimAttackAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>, Requires<ArmamentInfo>
 {
+	[Desc("Armament name")]
+	public readonly string Armament = "primary";
+
 	[Desc("Displayed while attacking.")]
 	[SequenceReference]
 	public readonly string SequenceFire = string.Empty;
@@ -35,21 +38,31 @@ public class WithAimAttackAnimationInfo : TraitInfo, Requires<WithSpriteBodyInfo
 	}
 }
 
-public class WithAimAttackAnimation : ITick, INotifyAttack, INotifyAiming
+public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInfo>, ITick, INotifyAttack, INotifyAiming
 {
-	private readonly WithAimAttackAnimationInfo info;
+	private readonly Armament armament;
 	private readonly WithSpriteBody wsb;
 	private bool aiming;
+	private bool isAttacking;
 
 	public WithAimAttackAnimation(ActorInitializer init, WithAimAttackAnimationInfo info)
+		: base(info)
 	{
-		this.info = info;
+		this.armament = init.Self.TraitsImplementing<Armament>()
+			.Single(a => a.Info.Name == info.Armament);
 		this.wsb = init.Self.TraitOrDefault<WithSpriteBody>();
 	}
 
 	void INotifyAttack.Attacking(Actor self, in Target target, Armament a, Barrel barrel)
 	{
-		this.wsb.PlayCustomAnimation(self, this.info.SequenceFire);
+		if (wsb.IsTraitDisabled || a != this.armament)
+		{
+			this.isAttacking = false;
+			return;
+		}
+
+		this.isAttacking = true;
+		this.wsb.PlayCustomAnimation(self, this.Info.SequenceFire);
 	}
 
 	void INotifyAttack.PreparingAttack(Actor self, in Target target, Armament a, Barrel barrel)
@@ -58,8 +71,11 @@ public class WithAimAttackAnimation : ITick, INotifyAttack, INotifyAiming
 
 	void ITick.Tick(Actor self)
 	{
-		if (!string.IsNullOrEmpty(this.info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name == "idle")
-			this.wsb.PlayCustomAnimation(self, this.info.SequenceAim);
+		if (this.IsTraitDisabled || wsb.IsTraitDisabled || !this.isAttacking)
+			return;
+
+		if (!string.IsNullOrEmpty(this.Info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name == "idle")
+			this.wsb.PlayCustomAnimation(self, this.Info.SequenceAim);
 	}
 
 	void INotifyAiming.StartedAiming(Actor self, AttackBase attack)
@@ -70,5 +86,6 @@ public class WithAimAttackAnimation : ITick, INotifyAttack, INotifyAiming
 	void INotifyAiming.StoppedAiming(Actor self, AttackBase attack)
 	{
 		this.aiming = false;
+		this.isAttacking = false;
 	}
 }
