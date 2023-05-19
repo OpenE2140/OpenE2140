@@ -2,7 +2,7 @@ ucs_infantry_silver_one:
 	ReloadDelay: 50
 	Burst: 5
 	Range: 2c896
-	Report: 1.smp
+	Report: 2.smp
 	ValidTargets: Ground, Water
 	Projectile: InstantHit
 		Inaccuracy: 0c128
