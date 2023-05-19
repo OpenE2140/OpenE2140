@@ -19,6 +19,6 @@ UcsVehicleVoice:
 		Defend: 85.smp
 		Escort: 86.smp
 		Attack: 87.smp, 88.smp
-		Unload: 89.smp
+		Unload: 90.smp
 		Recording: 92.smp
 		Recorded: 93.smp
