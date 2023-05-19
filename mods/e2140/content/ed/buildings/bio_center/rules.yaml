@@ -60,7 +60,7 @@ ed_buildings_bio_center:
 		Resistance: Medium
 		Description: The BIO CENTER contains the production lines for A-series androids. Bionic research and clone technology improvements take place here too. The high sophistication of the technology in the bio center, makes it a prime target for the enemy. All production takes place above ground.
 
-ed_mcu_tech_house:
+ed_mcu_bio_center:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
 		Name: Mobile Bio-Center
