@@ -34,7 +34,7 @@ ed_infantry_a02:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
