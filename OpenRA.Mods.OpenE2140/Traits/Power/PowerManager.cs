@@ -111,7 +111,7 @@ public class PowerManager : ITick
 
 			var consume = -power.Info.Amount;
 
-			if (consume < 0)
+			if (consume <= 0)
 			{
 				power.SetPowered(actor, true);
 
