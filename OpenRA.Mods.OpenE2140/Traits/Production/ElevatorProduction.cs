@@ -131,6 +131,11 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 		this.customState = CustomAnimationState.ElevatorDown;
 	}
 
+	protected override WPos GetSpawnLocation(Actor self, CPos exitCell)
+	{
+		return this.GetExitCellCenter(self);
+	}
+
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer worldRenderer)
 	{
 		if (this.customState != CustomAnimationState.ElevatorUp)

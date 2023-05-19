@@ -432,7 +432,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 		var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
 		var exitCenter = this.GetExitCellCenter(self);
-		var spawnLocation = exitCenter + this.productionInfo.ExitInfo.SpawnOffset;
+		var spawnLocation = GetSpawnLocation(self, exit);
 
 		var initialFacing = this.productionInfo.ExitInfo.Facing
 			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnLocation, self.World.Map.CenterOfCell(exit));
@@ -443,6 +443,11 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		inits.Add(new FacingInit(initialFacing));
 
 		base.DoProduction(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
+	}
+
+	protected virtual WPos GetSpawnLocation(Actor self, CPos exitCell)
+	{
+		return this.GetExitCellCenter(self) + this.productionInfo?.ExitInfo.SpawnOffset ?? WPos.Zero;
 	}
 
 	// Called when we should close.
