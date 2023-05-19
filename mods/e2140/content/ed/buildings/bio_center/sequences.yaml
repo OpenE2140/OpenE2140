@@ -18,6 +18,22 @@ ed_buildings_bio_center:
 		Start: 7
 		Length: 2
 		Tick: 100
+	damaged-opening:
+		Filename: content/ed/buildings/bio_center/bio_center_damaged_door.png
+		Frames: 0,1
+		Length: 2
+		Offset: 1,-1
+		Tick: 100
+	damaged-open:
+		Filename: content/ed/buildings/bio_center/bio_center_damaged_door.png
+		Frames: 1
+		Offset: 1,-1
+	damaged-closing:
+		Filename: content/ed/buildings/bio_center/bio_center_damaged_door.png
+		Frames: 1,0
+		Length: 2
+		Offset: 1,-1
+		Tick: 100	
 
 ed_mcu_bio_center:
 	Inherits: shared_mcu
