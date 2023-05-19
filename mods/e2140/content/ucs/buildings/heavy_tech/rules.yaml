@@ -72,6 +72,7 @@ ucs_buildings_heavy_tech:
 	WithIdleOverlay:
 		Palette:
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 3
