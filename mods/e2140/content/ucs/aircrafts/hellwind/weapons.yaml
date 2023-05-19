@@ -1,12 +1,12 @@
 ucs_aircrafts_hellwind:
 	ReloadDelay: 100
-	Range: 2c896
+	Range: 1c896
 	ValidTargets: Ground, Water
 	Burst: 7
-	BurstDelays: 4
+	BurstDelays: 3
 	TargetActorCenter: true
 	Projectile: GravityBomb
-		Velocity: 80,0,-25
+		Velocity: 100,0,-25
 		Shadow: True
 		ShadowColor: 00000046
 		Palette:
