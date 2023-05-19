@@ -34,7 +34,7 @@ ucs_infantry_silver_r:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
