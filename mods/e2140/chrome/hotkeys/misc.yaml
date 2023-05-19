@@ -1,0 +1,4 @@
+PowerDown: X
+	Description: Power-down mode
+	Types: OrderGenerator
+	Contexts: Player

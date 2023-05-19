@@ -6,7 +6,6 @@ ucs_buildings_heavy_tech:
 		HP: 1000
 	Power:
 		Amount: -400
-		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
@@ -36,8 +35,6 @@ ucs_buildings_heavy_tech:
 		Position: -960, 128, 0
 		CutOff: 35
 		Produces: Vehicle.UCS
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 	AnimatedExitProductionQueue:
 		Type: Vehicle.UCS
 		Group: Vehicle

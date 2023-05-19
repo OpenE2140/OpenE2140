@@ -91,6 +91,15 @@
 	Selectable:
 	# Constructions have sprites but do not use facing for them.
 	WithSpriteBody:
+	# Constructions require power (and can be manually powered down).
+	Power:
+		RequiresCondition: !Transforming && !PoweredDown
+	# Constructions can be powered down by specific order.
+	ToggleConditionOnOrder:
+		DisabledSpeech: PowerOn
+		EnabledSpeech: PowerOff
+		Condition: PoweredDown
+		OrderName: PowerDown
 	# Constructions are visible on the radar.
 	AppearsOnRadar:
 	# Constructions should explode when owner lost the game.
@@ -160,6 +169,8 @@
 	Inherits: ^CoreFactory
 	# Door production needs custom production.
 	AnimatedExitProduction:
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
@@ -167,6 +178,8 @@
 		CancelledAudio: ProductionCancelled
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 
 # Base for all factories using elevator production.
 ^CoreElevatorFactory:
@@ -177,6 +190,8 @@
 	# Elevator production needs custom production.
 	ElevatorProduction:
 		ZOffset: -1024
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
@@ -184,6 +199,8 @@
 		CancelledAudio: ProductionCancelled
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 
 # Base for all towers.
 ^CoreTower:

@@ -7,6 +7,8 @@ Speech:
 		BaseAttack: base|127.smp
 		BuildingLost: base|97.smp
 		InsufficientCash: base|109.smp
+		PowerOff: base|103.smp
+		PowerOn: base|104.smp
 		LowPower: base|110.smp
 		Repairing: base|100.smp
 		ProductionStarted: base|119.smp

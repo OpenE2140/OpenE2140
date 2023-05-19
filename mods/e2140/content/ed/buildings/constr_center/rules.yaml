@@ -4,8 +4,6 @@ ed_buildings_constr_center:
 		Name: Constr. Center
 	Health:
 		HP: 1500
-	Power:
-		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
@@ -31,8 +29,6 @@ ed_buildings_constr_center:
 		Position: 992, 1056, 0
 		CutOff: 35
 		Produces: Building.ED
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 	AnimatedExitProductionQueue:
 		Type: Building.ED
 		Group: Building

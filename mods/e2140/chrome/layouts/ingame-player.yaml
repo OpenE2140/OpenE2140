@@ -350,7 +350,7 @@ Container@PLAYER_WIDGETS:
 							Width: 26
 							Height: 26
 							Background: sidebar-order-button
-							#Key: PowerDown
+							Key: PowerDown
 							TooltipText: Power Down
 							TooltipContainer: TOOLTIP_CONTAINER
 							VisualHeight: 0

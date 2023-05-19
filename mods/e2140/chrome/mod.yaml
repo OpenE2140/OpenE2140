@@ -112,6 +112,7 @@ Hotkeys:
 	common|hotkeys/editor.yaml
 	common|hotkeys/control-groups.yaml
 	e2140|chrome/hotkeys/production.yaml
+	e2140|chrome/hotkeys/misc.yaml
 
 Translations:
 	common|languages/en.ftl

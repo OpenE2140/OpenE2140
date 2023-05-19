@@ -32,8 +32,6 @@ ed_buildings_tech_house:
 		Position: 992, -104, 0
 		CutOff: 29
 		Produces: Vehicle.ED
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 	AnimatedExitProductionQueue:
 		Type: Vehicle.ED
 		Group: Vehicle
