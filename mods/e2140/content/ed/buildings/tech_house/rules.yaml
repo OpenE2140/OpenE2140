@@ -40,7 +40,9 @@ ed_buildings_tech_house:
 	ProductionBar:
 		ProductionType: Vehicle.ED
 	ProvidesPrerequisite:
-	# TODO: move SpawnOffset from Exits to RallyPoint once PR for it is merged.
+	# TODO: remove SpawnOffset from Exits and enable this once PR for it is merged.
+	#RallyPoint:
+	#	InitialOffset: 1024,0,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: 1,2

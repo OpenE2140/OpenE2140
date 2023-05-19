@@ -45,7 +45,9 @@ ucs_buildings_heavy_tech:
 	ProductionBar:
 		ProductionType: Vehicle.UCS
 	ProvidesPrerequisite:
-	# TODO: move SpawnOffset from Exits to RallyPoint once PR for it is merged.
+	# TODO: remove SpawnOffset from Exits and enable this once PR for it is merged.
+	#RallyPoint:
+	#	InitialOffset: -1000,128,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: -1,0
