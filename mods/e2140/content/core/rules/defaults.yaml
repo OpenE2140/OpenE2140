@@ -133,7 +133,7 @@
 		Condition: Transforming
 		ConstructionTime: 30
 		TransformSound: 78.smp
-	-WithSpriteBody:
+	# Render building sprite when transformation is done.
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 	# This actor explodes when killed.
