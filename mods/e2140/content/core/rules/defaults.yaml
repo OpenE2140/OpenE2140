@@ -149,6 +149,12 @@
 	Explodes:
 		Weapon: BuildingExplosion
 		EmptyWeapon: BuildingExplosion
+	# Display decorative repair marker when a building is being repaired.
+	WithBuildingRepairDecoration:
+		Image: repair
+		Sequence: idle
+		Palette:
+		Position: Center
 
 # Base for all factories.
 ^CoreFactory:
