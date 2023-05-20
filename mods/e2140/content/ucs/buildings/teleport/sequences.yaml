@@ -1,0 +1,51 @@
+ucs_buildings_teleport:
+	Defaults:
+		Filename: building_teleport.vspr
+		Offset: 0, 0, 0
+		ZOffset: -351
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+	teleportation:
+		Combine:
+			0:
+				Filename: GRAPH/SHCKV30.DAT
+			1:
+				Filename: GRAPH/SHCKV31.DAT
+			2:
+				Filename: GRAPH/SHCKV32.DAT
+			3:
+				Filename: GRAPH/SHCKV33.DAT
+			4:
+				Filename: GRAPH/SHCKV34.DAT
+			5:
+				Filename: GRAPH/SHCKV35.DAT
+			6:
+				Filename: GRAPH/SHCKV36.DAT
+			7:
+				Filename: GRAPH/SHCKV37.DAT
+			8:
+				Filename: GRAPH/SHCKV38.DAT
+		BlendMode: Additive
+		Length: 9
+		Offset: 3,-3
+		IgnoreWorldTint: true
+		ZOffset: 256
+
+ucs_mcu_teleport:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 176
+
+ucs_mcu_teleport.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 176

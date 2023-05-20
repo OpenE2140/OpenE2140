@@ -9,6 +9,7 @@ Rules:
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml
 	e2140|content/ucs/buildings/prod_center/rules.yaml
 	e2140|content/ucs/buildings/robot_factory/rules.yaml
+	e2140|content/ucs/buildings/teleport/rules.yaml
 	e2140|content/ucs/vehicles/t100/rules.yaml
 	e2140|content/ucs/vehicles/raptor_es/rules.yaml
 	e2140|content/ucs/vehicles/raptor_ad/rules.yaml
@@ -36,6 +37,7 @@ Sequences:
 	e2140|content/ucs/buildings/heavy_tech/sequences.yaml
 	e2140|content/ucs/buildings/prod_center/sequences.yaml
 	e2140|content/ucs/buildings/robot_factory/sequences.yaml
+	e2140|content/ucs/buildings/teleport/sequences.yaml
 	e2140|content/ucs/vehicles/t100/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_es/sequences.yaml
 	e2140|content/ucs/vehicles/raptor_ad/sequences.yaml
