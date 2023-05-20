@@ -4,10 +4,12 @@ ucs_buildings_robot_factory:
 	idle:
 	idle-lights:
 		Start: 1
+		IgnoreWorldTint: true
 	damaged-idle:
 		Start: 2
 	damaged-idle-lights:
 		Start: 3
+		IgnoreWorldTint: true
 	opening:
 		Start: 4
 		Length: 2
