@@ -25,6 +25,7 @@ Packages:
 	e2140|virtualassets/misc.VirtualAssets.yaml: misc
 	e2140|virtualassets/objects.VirtualAssets.yaml: objects
 	e2140|virtualassets/units.VirtualAssets.yaml: units
+	e2140|virtualassets/cursors.VirtualAssets.yaml: cursors
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS

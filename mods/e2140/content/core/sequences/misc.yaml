@@ -43,3 +43,10 @@ rallypoint:
 		Tick: 80
 	circles:
 		Start: 10
+
+repair:
+	idle:
+		Filename: repair_cursor.vspr
+		Length: 4
+		Tick: 60
+		ZOffset: 2048		
