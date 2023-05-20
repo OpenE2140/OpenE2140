@@ -153,6 +153,9 @@
 # Base for all factories.
 ^CoreFactory:
 	Inherits: ^CoreBuilding
+	Production:
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	ProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
@@ -168,6 +171,7 @@
 ^CoreDoorFactory:
 	Inherits: ^CoreFactory
 	# Door production needs custom production.
+	-Production:
 	AnimatedExitProduction:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
@@ -178,8 +182,6 @@
 		CancelledAudio: ProductionCancelled
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 
 # Base for all factories using elevator production.
 ^CoreElevatorFactory:
@@ -188,6 +190,7 @@
 	-RenderSprites:
 	RenderElevatorSprites:
 	# Elevator production needs custom production.
+	-Production:
 	ElevatorProduction:
 		ZOffset: -1024
 		RequiresCondition: !Transforming
@@ -199,8 +202,6 @@
 		CancelledAudio: ProductionCancelled
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 
 # Base for all towers.
 ^CoreTower:

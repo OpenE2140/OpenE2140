@@ -38,8 +38,6 @@ shared_buildings_air_base:
 		Bounds: 2064, 1984, 0,-432
 	Production:
 		Produces: Aircraft.ED, Aircraft.UCS
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
 	-ProductionQueue:
 	ProductionQueue@ED:
 		Type: Aircraft.ED

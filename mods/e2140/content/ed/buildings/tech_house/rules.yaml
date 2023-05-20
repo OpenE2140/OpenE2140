@@ -6,7 +6,6 @@ ed_buildings_tech_house:
 		HP: 1000
 	Power:
 		Amount: -400
-		RequiresCondition: !Transforming
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered

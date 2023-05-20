@@ -26,7 +26,6 @@ ed_buildings_bio_center:
 		RequiresCondition: !Transforming && Powered
 	AnimatedExitProduction:
 		Produces: Infantry.ED
-		RequiresCondition: !Transforming
 		Position: -1008,512,0
 	AnimatedExitProductionQueue:
 		Type: Infantry.ED
