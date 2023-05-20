@@ -156,6 +156,13 @@
 		Sequence: idle
 		Palette:
 		Position: Center
+	# Display decorative power marker when a building is powered down.
+	WithDecoration@PowerDown:
+		Image: powerdown
+		Sequence: idle
+		Palette:
+		Position: Center
+		RequiresCondition: PoweredDown
 
 # Base for all factories.
 ^CoreFactory:

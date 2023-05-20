@@ -49,7 +49,7 @@ repair:
 		Filename: repair_cursor.vspr
 		Length: 4
 		Tick: 60
-		ZOffset: 2048		
+		ZOffset: 2048
 
 pips:
 	pip-empty:
@@ -58,3 +58,9 @@ pips:
 	pip-green:
 		Filename: content/core/assets/pips.png
 		Start: 1
+
+powerdown:
+	idle:
+		Filename: content/core/assets/power.png
+		Start: 5
+		ZOffset: 2048
