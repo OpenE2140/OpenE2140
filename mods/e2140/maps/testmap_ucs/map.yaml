@@ -333,5 +333,9 @@ Actors:
 		SubCell: 1
 		Facing: 384
 		Location: 20,6
+	Actor74: ucs_mcu_teleport
+		Owner: UCS_Player
+		Facing: 384
+		Location: 19,15
 
 Rules: rules.yaml
