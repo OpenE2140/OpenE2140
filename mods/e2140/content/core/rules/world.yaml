@@ -109,6 +109,15 @@ World:
 	# Weather stuff.
 	#TerrainLighting:
 	#DayNight:
+	# Random water animation
+	TerrainTileAnimation:
+		Tiles: 100, 101
+		Interval: 0,15
+		Image: water_wave
+		Sequences: wave
+		LoopDelays: 0
+		EffectMovement: -15,-15,0
+		Palette:
 
 # Map editor specific world setup.
 EditorWorld:

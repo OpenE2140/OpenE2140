@@ -94,3 +94,19 @@ smoking_mech:
 	Inherits: smoking
 	Defaults:
 		Offset: 5, -35
+
+water_wave:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: water_wave-wasteland.vspr
+			DESERT: water_wave-desert.vspr
+			SANDY: water_wave-sandy.vspr
+			TEMPERATE: water_wave-temperate.vspr
+			SNOW: water_wave-snow.vspr
+			# Unfortunately filename for all tilesets need to be specified (even though they don't have water tiles).
+			URBAN: water_wave-urban.vspr
+			URBAN2: water_wave-urban2.vspr
+		Length: 33
+		Offset: 15,15
+		ZOffset: -2048
+	wave:
