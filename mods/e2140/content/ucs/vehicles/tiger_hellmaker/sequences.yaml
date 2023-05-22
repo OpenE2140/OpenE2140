@@ -1,0 +1,38 @@
+ucs_vehicles_tiger_hellmaker: vehicle_mech.vspr
+	Defaults:
+		Tick: 70
+	idle:
+		Filename: vehicle_mech.vspr
+		Facings: -8
+		ZOffset: -350
+	move:
+		Filename: vehicle_mech.vspr
+		Start: 8
+		Length: 8
+		Facings: -8
+		Tick: 80
+		ZOffset: -350
+	move.turn:
+		Filename: vehicle_mech.vspr
+		Start: 72
+		Length: 2
+		Facings: -8
+		Tick: 120
+		ZOffset: -350
+	turret:
+		Filename: turret_tiger_hellmaker.vspr
+		Facings: -16
+	icon:
+		Filename: SPRI1.MIX
+		Start: 134
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 134
+
+# TODO: remove after PR #20705
+ucs_vehicles_tiger_hellmaker.ed:
+	Inherits: ucs_vehicles_tiger_hellmaker
+	icon:
+		Filename: SPRI0.MIX
+		Start: 134

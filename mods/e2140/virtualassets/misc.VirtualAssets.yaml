@@ -45,6 +45,10 @@ Generate:
 	projectile_bomb:
 		idle: 60,61
 
+	projectile_napalm_bomb:
+		idle: 60,61
+		explode: 48-55
+
 	projectile_plasma_bomb:
 		idle: 61
 		explode: 129-136

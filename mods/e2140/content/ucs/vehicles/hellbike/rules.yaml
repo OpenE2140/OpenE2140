@@ -1,0 +1,39 @@
+ucs_vehicles_hellbike:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: HB Bike
+	Valued:
+		Cost: 200
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 656, 608, 0, 0
+	Health:
+		HP: 120
+	Mobile:
+		Speed: 100
+	RevealsShroud:
+		Range: 1c896
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_hellbike
+		LocalOffset: -110,-50,150, -110,50,150
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 2
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 1
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 8
+		Animation: DATABASE/BT08.FLC
+		Title: HellBike
+		Armor: Lightweight but fireproof
+		Armament: Napalm grenade launcher
+		Description: The HellBike, mainly used as a fast reconnaissance vehicle, is equipped with a napalm grenade launcher. It’s lightweight armor enables it to be used for lighting strikes on small enemy battle units, but not for lengthy firefights. It’s high speed and the DXC additive in the napalm grenades make it a killer of light and middleweight tanks.

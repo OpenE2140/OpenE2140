@@ -106,6 +106,19 @@ projectile_bomb:
 	idle:
 		Length: 2
 
+projectile_napalm_bomb:
+	Defaults:
+		Filename: projectile_napalm_bomb.vspr
+		ZOffset: 512
+	idle:
+		Length: 2
+		Tick: 60
+	explode:
+		BlendMode: Additive
+		Offset: 0, -16, 0
+		Start: 2
+		Length: 8
+
 projectile_grenade:
 	Defaults:
 		Filename: projectile_grenade.vspr
