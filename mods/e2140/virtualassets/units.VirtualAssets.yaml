@@ -318,6 +318,7 @@ Generate:
 		idle: 468-476 16
 			Offsets: 475:2,0
 		muzzle: 468-476 16 3 Muzzle
+			Offsets: 475:2,0
 
 	turret_miner: Shadow NoMuzzle
 		idle: 468-476 16
