@@ -19,6 +19,7 @@ Rules:
 	e2140|content/ed/vehicles/ht34j/rules.yaml
 	e2140|content/ed/vehicles/warhammer/rules.yaml
 	e2140|content/ed/vehicles/screamer/rules.yaml
+	e2140|content/ed/vehicles/miner/rules.yaml
 	e2140|content/ed/vehicles/tur/rules.yaml
 	e2140|content/ed/vehicles/bio/rules.yaml
 	e2140|content/ed/aircrafts/storm/rules.yaml
@@ -46,6 +47,7 @@ Sequences:
 	e2140|content/ed/vehicles/ht34j/sequences.yaml
 	e2140|content/ed/vehicles/warhammer/sequences.yaml
 	e2140|content/ed/vehicles/screamer/sequences.yaml
+	e2140|content/ed/vehicles/miner/sequences.yaml
 	e2140|content/ed/vehicles/tur/sequences.yaml
 	e2140|content/ed/vehicles/bio/sequences.yaml
 	e2140|content/ed/aircrafts/storm/sequences.yaml
@@ -72,6 +74,7 @@ Weapons:
 	e2140|content/ed/vehicles/ht33r/weapons.yaml
 	e2140|content/ed/vehicles/ht34j/weapons.yaml
 	e2140|content/ed/vehicles/warhammer/weapons.yaml
+	e2140|content/ed/vehicles/miner/weapons.yaml
 	e2140|content/ed/aircrafts/storm/weapons.yaml
 	e2140|content/ed/aircrafts/thunder/weapons.yaml
 	e2140|content/ed/aircrafts/vtol/weapons.yaml
