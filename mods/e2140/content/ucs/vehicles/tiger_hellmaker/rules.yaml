@@ -1,0 +1,56 @@
+ucs_vehicles_tiger_hellmaker:
+	Inherits: ^UcsTurretedMech
+	Tooltip:
+		Name: TIGER HellMaker
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 40
+	Selectable:
+		Bounds: 960, 928, 0, 0
+	Health:
+		HP: 500
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 2c896
+	Turreted:
+		Offset: 0,0,215
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_tiger_hellmaker
+		Recoil: 32
+		RecoilRecovery: 14
+		LocalOffset: 200,-320,-100
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Weapon: ucs_vehicles_tiger_hellmaker
+		Recoil: 32
+		RecoilRecovery: 14
+		LocalOffset: 200,320,-100
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	WithMoveSound:
+		Sound: 28.smp
+	WithMoveAnimation@turn:
+		ValidMovementTypes: Turn
+		MoveSequence: move.turn
+	AmmoPool:
+		Ammo: 14
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 50
+		ResetOnFire: True
+		Count: 2
+	WithDamageOverlay:
+		Image: smoking_mech
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 5
+		Animation: DATABASE/BT05.FLC
+		Title: TIGER HellMaker
+		Armor: Heavy and bulletproof
+		Armament: Two napalm bomb firing devices
+		Description: The HellMaker is part of the second generation of TIGER-Series battle robots.\n\nThey have two devices for firing napalm-type bombs which can burn a complete army of small battle units to death within seconds. In combat with a light or middleweight Eurasian Dynasty tank, the DXC additive in the napalm will corrode and burn the tank’s armor.

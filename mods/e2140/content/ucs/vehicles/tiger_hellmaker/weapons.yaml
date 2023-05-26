@@ -1,0 +1,35 @@
+ucs_vehicles_tiger_hellmaker:
+	ReloadDelay: 50
+	Range: 2c896
+	MinRange: 0c512
+	ValidTargets: Ground, Water
+	Burst: 7
+	BurstDelays: 25
+	Projectile: Bullet
+		Speed: 100
+		Blockable: false
+		Inaccuracy: 128
+		LaunchAngle: 128
+		Image: projectile_napalm_bomb
+		Palette:
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 10
+		DamageTypes: Explosion
+		ValidTargets: Ground
+	Warhead@EffectGround: CreateEffect
+		Image: projectile_napalm_bomb
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground, Air
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air
