@@ -1,0 +1,36 @@
+ed_vehicles_miner:
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: MINER
+	Valued:
+		Cost: 700
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1008, 832, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 2c896
+	Turreted:
+		Offset: 0,0,60
+	Armament@PRIMARY:
+		Weapon: ed_vehicles_miner
+		Recoil: 60
+		RecoilRecovery: 38
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: ED - Vehicles
+		Order: 11
+		Animation: DATABASE/PM11.FLC
+		Title: Miner
+		Armor: Middleweight
+		Armament: Large machine gun
+		Description: The miner is a heavyweight, multifunctional vehicle used mainly for laying mines in enemy territory, making these areas impassable. It can defuse enemy mines and erect border fences, etc. Its medium weight armor-plating and large machine gun make it a battlefield unit.

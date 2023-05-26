@@ -1,0 +1,46 @@
+ucs_vehicles_atm_500:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: ATM 500
+	Valued:
+		Cost: 400
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 896, 688, 0, 0
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 2c896
+	Turreted:
+		Offset: 0,0,140
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_atm_500
+		Recoil: 60
+		RecoilRecovery: 38
+		MuzzleSequence: muzzle
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 6
+		UnloadVoice: Unload
+		UnloadCursor: exit
+	WithCargoPipsDecoration:
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 9
+		Animation: DATABASE/BT09.FLC
+		Title: ATM 500 - Armored Transporter
+		Armor: Middleweight
+		Armament: Heavy machine gun
+		Description: The ATM 500 is an armored vehicle used for transporting small battle units like the SILVER series. The ATM 500 can hold six units and can get them quickly to their target, even through contaminated areas. Well armored and well armed with a heavy MG,small enemy units and watchtowers will find it a difficult opponent. Built for high speed, you can’t, however, use it to run over enemy units.

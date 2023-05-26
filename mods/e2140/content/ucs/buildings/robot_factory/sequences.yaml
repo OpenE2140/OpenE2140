@@ -20,6 +20,19 @@ ucs_buildings_robot_factory:
 		Start: 7
 		Length: 2
 		Tick: 100
+	damaged-opening:
+		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
+		Frames: 0,1
+		Length: 2
+		Tick: 100
+	damaged-open:
+		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
+		Frames: 1
+	damaged-closing:
+		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
+		Frames: 1,0
+		Length: 2
+		Tick: 100	
 
 ucs_mcu_robot_factory:
 	Inherits: shared_mcu

@@ -47,8 +47,6 @@ ed_buildings_bio_center:
 		SpawnOffset: -400, 200, 0
 		ExitCell: 1,2
 		Facing: 650
-	GrantConditionOnDamageState:
-		Condition: damaged
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 2

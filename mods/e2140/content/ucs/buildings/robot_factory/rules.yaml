@@ -48,8 +48,6 @@ ucs_buildings_robot_factory:
 		SpawnOffset: 0, -256, 0
 		ExitCell: 1,2
 		Facing: 650
-	GrantConditionOnDamageState:
-		Condition: damaged
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 2

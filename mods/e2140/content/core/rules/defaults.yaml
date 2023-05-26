@@ -301,6 +301,9 @@
 	WithIdleOverlay:
 		Sequence: shadow
 		Palette:
+	# Infantry can enter Cargo actors.
+	Passenger:
+		CargoType: Infantry
 
 # Add locomotor to world...
 ^CoreWorld:

@@ -1,0 +1,36 @@
+ed_vehicles_bio:
+	Inherits: ^EdVehicle
+	Tooltip:
+		Name: BIO
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.ED
+		BuildDuration: 60
+	Selectable:
+		Bounds: 896, 640, 0, 0
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 2c896
+	Cargo:
+		Types: Infantry
+		MaxWeight: 4
+		UnloadVoice: Unload
+		UnloadCursor: exit
+	WithCargoPipsDecoration:
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
+	Encyclopedia:
+		Category: ED - Vehicles
+		Order: 9
+		Animation: DATABASE/PM09.FLC
+		Title: BIO - Regeneration vehicle
+		Armor: Light
+		Armament: None
+		Description: The BIO, like the TUR, is an unarmed and fast vehicle that was originally used as a civil vehicle and has been adapted for battle. It’s fitted out with complete regeneration devices for A-series androids. It can repair two androids at a time.\n\nSince the BIO only has lightweight armor-plating, it should not be used anywhere near a battlefield. It is also an easy target for fast reconnaissance vehicles. Since the androids being repaired are connected to the regeneration device, they cannot be evacuated should the vehicle be destroyed and will also be lost.
