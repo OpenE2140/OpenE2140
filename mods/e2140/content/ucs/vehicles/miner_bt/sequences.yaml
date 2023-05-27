@@ -1,0 +1,34 @@
+ucs_vehicles_miner_bt:
+	idle:
+		Filename: vehicle_miner_bt.vspr
+		Facings: -16
+	move:
+		Filename: vehicle_miner_bt.vspr
+		Start: 16
+		Length: 4
+		Facings: -16
+	turret:
+		Filename: turret_miner_bt.vspr
+		Facings: -16
+		Offset: -1,0
+	muzzle:
+		Filename: turret_miner_bt.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Tick: 60
+		Offset: -1,0
+	icon:
+		Filename: SPRI1.MIX
+		Start: 151
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ed:
+	#	Filename: SPRI0.MIX
+	#	Start: 151
+
+# TODO: remove after PR #20705
+ucs_vehicles_miner_bt.ed:
+	Inherits: ucs_vehicles_miner_bt
+	icon:
+		Filename: SPRI0.MIX
+		Start: 151
