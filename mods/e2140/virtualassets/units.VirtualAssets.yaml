@@ -190,6 +190,7 @@ Generate:
 	aircraft_heavy_lifter: Player
 		idle: 235-243 16
 		vertical: 244
+			Offsets: 244:2,0
 
 	vehicle_bantha: Shadow Player Tracks
 		idle: 245-253 16
