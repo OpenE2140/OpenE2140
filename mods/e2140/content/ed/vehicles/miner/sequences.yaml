@@ -16,16 +16,13 @@ ed_vehicles_miner:
 		Length: 3
 		Facings: -16
 	icon:
-		Filename: SPRI0.MIX
-		Start: 150
+		Filename: content/ed/vehicles/miner/vehicle_miner_icon_ed.png
 	# TODO: Enable after PR #20705 is merged in OpenRA
 	#icon-ucs:
-	#	Filename: SPRI1.MIX
-	#	Start: 150
+	#	Filename: content/ed/vehicles/miner/vehicle_miner_icon_ucs.png
 
 # TODO: remove after PR #20705
 ed_vehicles_miner.ucs:
 	Inherits: ed_vehicles_miner
 	icon:
-		Filename: SPRI1.MIX
-		Start: 150
+		Filename: content/ed/vehicles/miner/vehicle_miner_icon_ucs.png
