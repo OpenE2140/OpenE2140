@@ -23,8 +23,6 @@ ucs_aircrafts_gargoil_ii:
 		MuzzlePalette:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
-	WithMoveSound:
-		Sound: 29.smp
 	SpawnActorOnDeath:
 		Actor: ucs_aircrafts_gargoil_ii_husk
 		RequiresCondition: airborne
