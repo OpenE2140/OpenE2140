@@ -1,0 +1,25 @@
+shared_buildings_research_center:
+	Defaults:
+		Filename: building_research_center.vspr
+		Offset: 0,0,0
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+
+shared_mcu_research_center:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 173
+
+shared_mcu_research_center.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 173
