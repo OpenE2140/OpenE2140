@@ -1,9 +1,9 @@
-ucs_vehicles_goliat:
+ucs_vehicles_goliath:
 	idle:
-		Filename: vehicle_goliat.vspr
+		Filename: vehicle_goliath.vspr
 		Facings: -16
 	move:
-		Filename: vehicle_goliat.vspr
+		Filename: vehicle_goliath.vspr
 		Facings: -16
 	icon:
 		Filename: SPRI1.MIX
@@ -14,8 +14,8 @@ ucs_vehicles_goliat:
 	#	Start: 278
 
 # TODO: remove after PR #20705
-ucs_vehicles_goliat.ed:
-	Inherits: ucs_vehicles_goliat
+ucs_vehicles_goliath.ed:
+	Inherits: ucs_vehicles_goliath
 	icon:
 		Filename: SPRI0.MIX
 		Start: 278

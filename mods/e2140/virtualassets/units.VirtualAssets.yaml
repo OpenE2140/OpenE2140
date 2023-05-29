@@ -572,7 +572,7 @@ Generate:
 		shadow: 1210-1214 8
 		move.turn: 1177,1171,1184,1178,1191,1185,1198,1192,1205,1199 8
 
-	vehicle_goliat: Shadow Player
+	vehicle_goliath: Shadow Player
 		idle: 1215-1223 16
 
 	aircraft_gargoil_ii: Player

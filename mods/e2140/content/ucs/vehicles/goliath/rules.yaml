@@ -1,8 +1,8 @@
-ucs_vehicles_goliat:
+ucs_vehicles_goliath:
 	Inherits@1: ^UcsVehicle
 	Inherits@2: ^CoreArmedSelf
 	Tooltip:
-		Name: Goliat
+		Name: Goliath
 	Valued:
 		Cost: 600
 	Buildable:
@@ -18,11 +18,11 @@ ucs_vehicles_goliat:
 	RevealsShroud:
 		Range: 2c896
 	Explodes:
-		Weapon: ucs_vehicles_goliat_explode
-		EmptyWeapon: ucs_vehicles_goliat_explode
+		Weapon: ucs_vehicles_goliath_explode
+		EmptyWeapon: ucs_vehicles_goliath_explode
 		DamageSource: Killer
 	Armament@PRIMARY:
-		Weapon: ucs_vehicles_goliat
+		Weapon: ucs_vehicles_goliath
 		MuzzlePalette:
 	GrantConditionOnAttack:
 		Condition: triggered
@@ -32,7 +32,7 @@ ucs_vehicles_goliat:
 		Category: UCS - Vehicles
 		Order: 13
 		Animation: DATABASE/MP2_GOL.FLC
-		Title: Goliat
+		Title: Goliath
 		Armor: Medium
 		Armament: Heavy explosives
-		Description: This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliat approaches its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even the most heavily armed units and structures.
+		Description: This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliath approaches its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even the most heavily armed units and structures.
