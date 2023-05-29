@@ -122,6 +122,7 @@
 		RequiredForShortGame: true
 	# Buildings can be repaired.
 	RepairableBuilding:
+		RequiresCondition: Powered
 		RepairInterval: 1
 		RepairPercent: 40
 		RepairStep: 10
