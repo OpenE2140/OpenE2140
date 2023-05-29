@@ -1,0 +1,36 @@
+ucs_vehicles_miner_bt:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: MINER BT
+	Valued:
+		Cost: 700
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS
+		BuildDuration: 60
+	Selectable:
+		Bounds: 1088, 784, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 2c896
+	Turreted:
+		Offset: 0,0,80
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_miner_bt
+		Recoil: 60
+		RecoilRecovery: 38
+		MuzzleSequence: muzzle
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 10
+		Animation: DATABASE/BT10.FLC
+		Title: Miner BT
+		Armor: Heavy
+		Armament: Heavy machine gun
+		Description: The MINER BT is based on the ED army’s MINER. The UCS stole the construction plans and optimized the vehicle by adding a reliable building device and strengthening the armor, allowing it to operate better in battle fields./n/nIt’s a heavy, multifunctional vehicle used mainly for mining land. It can also be used to defuse enemy mines and to construct border walls.
