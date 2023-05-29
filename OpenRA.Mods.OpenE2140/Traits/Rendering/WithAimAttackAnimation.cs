@@ -55,7 +55,7 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 
 	void INotifyAttack.Attacking(Actor self, in Target target, Armament a, Barrel barrel)
 	{
-		if (wsb.IsTraitDisabled || a != this.armament)
+		if (this.wsb.IsTraitDisabled || a != this.armament)
 		{
 			this.isAttacking = false;
 			return;
@@ -71,7 +71,7 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.IsTraitDisabled || wsb.IsTraitDisabled || !this.isAttacking)
+		if (this.IsTraitDisabled || this.wsb.IsTraitDisabled || !this.isAttacking)
 			return;
 
 		if (!string.IsNullOrEmpty(this.Info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name == "idle")

@@ -432,7 +432,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 		var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
 		var exitCenter = this.GetExitCellCenter(self);
-		var spawnLocation = GetSpawnLocation(self, exit);
+		var spawnLocation = this.GetSpawnLocation(self, exit);
 
 		var initialFacing = this.productionInfo.ExitInfo.Facing
 			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnLocation, self.World.Map.CenterOfCell(exit));

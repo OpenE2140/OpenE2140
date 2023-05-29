@@ -61,16 +61,16 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 	{
 		if (this.LoopDelays.Length > this.LoopCount)
 			throw new YamlException(
-				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(LoopDelays)} configured. " +
-				$"Must be equal or lower than {nameof(LoopCount)} ({LoopCount}).");
+				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(this.LoopDelays)} configured. " +
+				$"Must be equal or lower than {nameof(this.LoopCount)} ({this.LoopCount}).");
 		if (this.EffectMovement.Length > this.LoopCount)
 			throw new YamlException(
-				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(EffectMovement)} configured. " +
-				$"Must be equal or lower than {nameof(LoopCount)} ({LoopCount}).");
+				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(this.EffectMovement)} configured. " +
+				$"Must be equal or lower than {nameof(this.LoopCount)} ({this.LoopCount}).");
 		if (this.Sequences.Length != this.LoopCount)
 			throw new YamlException(
-				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(Sequences)} configured. " +
-				$"Must be equal to {nameof(LoopCount)} ({LoopCount}).");
+				$"{nameof(TerrainTileAnimation)} has incorrect number of {nameof(this.Sequences)} configured. " +
+				$"Must be equal to {nameof(this.LoopCount)} ({this.LoopCount}).");
 	}
 }
 
@@ -134,7 +134,7 @@ public class TerrainTileAnimation : ITick
 		private int movementTicks;
 		private int loop;
 
-		public bool IsActive => this.loop < info.LoopCount;
+		public bool IsActive => this.loop < this.info.LoopCount;
 
 		public TileAnimation(TerrainTileAnimationInfo info, WPos initialPosition)
 		{
