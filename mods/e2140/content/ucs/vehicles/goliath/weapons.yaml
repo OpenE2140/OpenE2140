@@ -1,6 +1,6 @@
 ucs_vehicles_goliath:
 	ValidTargets: Ground
-	Range: 1c125
+	Range: 1c256
 	Projectile: InstantHit
 	Warhead@Damage: TargetDamage
 		Spread: 256
