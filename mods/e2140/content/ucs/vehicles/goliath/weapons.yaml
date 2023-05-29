@@ -1,0 +1,23 @@
+ucs_vehicles_goliath:
+	ValidTargets: Ground
+	Range: 1c125
+	Projectile: InstantHit
+	Warhead@Damage: TargetDamage
+		Spread: 256
+		Damage: 300
+		DamageTypes: Explosion
+		ValidTargets: Ground
+
+ucs_vehicles_goliath_explode:
+	Inherits: VehicleExplosion
+	Warhead@DamageGround: SpreadDamage
+		Spread: 256
+		Damage: 100
+		DamageTypes: Explosion
+		ValidTargets: Ground
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_small
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure

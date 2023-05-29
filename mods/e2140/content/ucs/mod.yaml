@@ -21,6 +21,7 @@ Rules:
 	e2140|content/ucs/vehicles/hellbike/rules.yaml
 	e2140|content/ucs/vehicles/shadow/rules.yaml
 	e2140|content/ucs/vehicles/atm_500/rules.yaml
+	e2140|content/ucs/vehicles/goliath/rules.yaml
 	e2140|content/ucs/vehicles/miner_bt/rules.yaml
 	e2140|content/ucs/aircrafts/gargoil/rules.yaml
 	e2140|content/ucs/aircrafts/hellwind/rules.yaml
@@ -47,6 +48,7 @@ Sequences:
 	e2140|content/ucs/vehicles/hellbike/sequences.yaml
 	e2140|content/ucs/vehicles/shadow/sequences.yaml
 	e2140|content/ucs/vehicles/atm_500/sequences.yaml
+	e2140|content/ucs/vehicles/goliath/sequences.yaml
 	e2140|content/ucs/vehicles/miner_bt/sequences.yaml
 	e2140|content/ucs/aircrafts/gargoil/sequences.yaml
 	e2140|content/ucs/aircrafts/hellwind/sequences.yaml
@@ -71,6 +73,7 @@ Weapons:
 	e2140|content/ucs/vehicles/bigmech/weapons.yaml
 	e2140|content/ucs/vehicles/hellbike/weapons.yaml
 	e2140|content/ucs/vehicles/atm_500/weapons.yaml
+	e2140|content/ucs/vehicles/goliath/weapons.yaml
 	e2140|content/ucs/vehicles/miner_bt/weapons.yaml
 	e2140|content/ucs/aircrafts/gargoil/weapons.yaml
 	e2140|content/ucs/aircrafts/hellwind/weapons.yaml
