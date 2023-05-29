@@ -1,0 +1,50 @@
+shared_buildings_research_center:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Research Center
+	Health:
+		HP: 800
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -380,-720,0
+	TransformSequence:
+		Offset: 370,650,0
+	HitShape:
+		TargetableOffsets: -400,-750,0,   -550,-150,0,   -700,350,0,   700,-600,0,   550,0,0,   400,600,0
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 756, 1024
+	Selectable:
+		Bounds: 2064, 1984, -140, 260
+	ProvidesPrerequisite:
+		Prerequisite: anypower
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 5
+		Animation: DATABASE/X05.FLC
+		Title: Research Center
+		Armor: None
+		Armament: None
+		Resistance: Medium
+		Description: The research center has a very important role. This is where research takes place, resulting in the construction of newer, even better weapons, vehicles and buildings which improve the technical level of the game. Research cannot be influenced from outside the research center and is not always successful.
+
+shared_mcu_research_center:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Research Center
+	Transforms:
+		IntoActor: shared_buildings_research_center
+	Valued:
+		Cost: 1500
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160

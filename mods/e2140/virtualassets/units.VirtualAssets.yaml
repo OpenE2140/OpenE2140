@@ -190,6 +190,7 @@ Generate:
 	aircraft_heavy_lifter: Player
 		idle: 235-243 16
 		vertical: 244
+			Offsets: 244:2,0
 
 	vehicle_bantha: Shadow Player Tracks
 		idle: 245-253 16
@@ -330,6 +331,7 @@ Generate:
 		idle: 468-476 16
 			Offsets: 475:2,0
 		muzzle: 468-476 16 3 Muzzle
+			Offsets: 475:2,0
 
 	turret_big_eye_secondary:
 		idle: 477-485 16
@@ -356,8 +358,11 @@ Generate:
 
 	vehicle_miner_bt: Shadow Player Tracks FlickerOff
 		idle: 522-530 16
+			Offsets: 522:-2,0 523,525:3,-1 524:2,0 527,529,530:0,-1 528:1,-1
 		move: 522-530 16 4
+			Offsets: 522:-2,0 523,525:3,-1 524:2,0 527,529,530:0,-1 528:1,-1
 		flicker: 522-530 16 2 FlickerOn
+			Offsets: 522:-2,0 523,525:3,-1 524:2,0 527,529,530:0,-1 528:1,-1
 
 	vehicle_hb_bike: Shadow Player
 		idle: 531-539 16

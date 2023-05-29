@@ -541,7 +541,7 @@ Container@PLAYER_WIDGETS:
 						#			ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
 					X: 17
-					Y: 332
+					Y: 334
 					Children:
 						Background@ICON_TEMPLATE:
 							Background: production-palette-button
