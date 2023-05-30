@@ -8,6 +8,7 @@ ucs_vehicles_spider:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 90
+		BuildPaletteOrder: 60
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

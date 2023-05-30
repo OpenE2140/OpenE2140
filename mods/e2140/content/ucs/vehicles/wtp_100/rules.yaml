@@ -8,6 +8,7 @@ ucs_vehicles_wtp_100:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 90
 	Selectable:
 		Bounds: 1664, 1472, 0, 0
 	Health:

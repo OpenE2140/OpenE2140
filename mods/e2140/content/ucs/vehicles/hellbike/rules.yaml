@@ -9,6 +9,7 @@ ucs_vehicles_hellbike:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 100
 	Selectable:
 		Bounds: 656, 608, 0, 0
 	Health:

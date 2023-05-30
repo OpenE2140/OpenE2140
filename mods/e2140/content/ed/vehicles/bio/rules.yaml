@@ -8,6 +8,7 @@ ed_vehicles_bio:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 90
 	Selectable:
 		Bounds: 896, 640, 0, 0
 	Health:
