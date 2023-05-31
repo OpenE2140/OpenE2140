@@ -41,30 +41,25 @@ ucs_buildings_heavy_tech:
 	ProductionBar:
 		ProductionType: Vehicle.UCS
 	ProvidesPrerequisite:
-	# TODO: remove SpawnOffset from Exits and enable this once PR for it is merged.
-	#RallyPoint:
-	#	InitialOffset: -1000,128,0
+	# Specify offset, where the first point of rally point line should be rendered.
+	CustomRallyPoint:
+		LineInitialOffset: -1000,128,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: -1,0
 		Facing: 128
-		SpawnOffset: -1000,128,0
 	Exit@Exit2:
 		ExitCell: -1,1
 		Facing: 256
-		SpawnOffset: -1000,128,0
 	Exit@Exit3:
 		ExitCell: -1,2
 		Facing: 384
-		SpawnOffset: -1000,128,0
 	Exit@Exit4:
 		ExitCell: 0,2
 		Facing: 512
-		SpawnOffset: -1000,128,0
 	Exit@Exit5:
 		ExitCell: 1,2
 		Facing: 640
-		SpawnOffset: -1000,128,0
 	WithIdleOverlay:
 		Palette:
 		RequiresCondition: !Transforming
