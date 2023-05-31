@@ -27,7 +27,7 @@ weapon_debris:
 weapon_debris_smoke:
 	Inherits: weapon_debris
 	Warhead@EffectGroundSmoke: CreateEffect
-		Image: missile_trail
-		Explosions: explode
+		Image: smoke_debris
+		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground

@@ -20,6 +20,12 @@ ucs_vehicles_tiger_hellmaker:
 		Damage: 10
 		DamageTypes: Explosion
 		ValidTargets: Ground
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 0c256, 1c256
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_napalm_bomb
 		Explosions: explode
