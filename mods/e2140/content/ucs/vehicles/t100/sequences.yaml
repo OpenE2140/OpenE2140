@@ -8,16 +8,14 @@ ucs_vehicles_t100:
 		Length: 4
 		Facings: -16
 	turret:
-		Filename: turret_t100.vspr
+		Filename: content/ucs/vehicles/t100/turret_t100.png
 		Facings: -16
-		Offset: 1, -4, 0
 	muzzle:
-		Filename: turret_t100.vspr
+		Filename: content/ucs/vehicles/t100/turret_t100.png
 		Start: 16
 		Length: 3
 		Facings: -16
 		Tick: 60
-		Offset: 1, -4, 0
 	icon:
 		Filename: SPRI1.MIX
 		Start: 128
