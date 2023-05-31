@@ -19,13 +19,11 @@ ucs_vehicles_t100:
 	RevealsShroud:
 		Range: 2c896
 	Turreted:
-		Offset: 0,0,0
+		Offset: -20,0,75
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_t100
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 0,0,0
-		LocalYaw: 0
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
