@@ -1,7 +1,6 @@
 shared_buildings_power_plant:
 	Defaults:
 		Filename: building_power_plant.vspr
-		Offset: -10, -20, 0
 	idle:
 	idle-lights:
 		Start: 1

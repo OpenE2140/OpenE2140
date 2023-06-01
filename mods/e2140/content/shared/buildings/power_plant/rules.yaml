@@ -14,14 +14,16 @@ shared_buildings_power_plant:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
-		LocalCenterOffset: -304,-272,0
+		LocalCenterOffset: -470,-600,0
+	TransformSequence:
+		Offset: 450,540,0
 	HitShape:
-		TargetableOffsets: -100,-512,0,   -100,290,0,   824,-690,0,   824,112,0
+		TargetableOffsets: -600,-412,0,   -600,50,0,   -600,512,0,   324,-690,0,   324,-200,0,   324,312,0
 		Type: Rectangle
-			TopLeft: -1024, -1024
-			BottomRight: 512, 512
+			TopLeft: -1024, -924
+			BottomRight: 812, 812
 	Selectable:
-		Bounds: 2064, 1984, -228, -275
+		Bounds: 2064, 1984, -50, 150
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Explodes:
@@ -35,6 +37,7 @@ shared_buildings_power_plant:
 		Gravity: 42
 		RandomRate: 0
 		Palette:
+		Offset: 200,256,0
 		Image: power_plant_smoke
 		Sequences: chimney_smoke
 		RequiresCondition: !Transforming && Powered
@@ -42,6 +45,7 @@ shared_buildings_power_plant:
 		Palette:
 		Image: power_plant_smoke
 		Sequence: chimney_chamber
+		Offset: -512,155,0
 		RequiresCondition: !Transforming && Powered
 	Encyclopedia:
 		Category: Shared - Buildings
