@@ -9,6 +9,7 @@ ucs_vehicles_raptor_es:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 832, 928, 0, 0
 	Health:

@@ -8,6 +8,7 @@ ed_infantry_a02:
 	Buildable:
 		IconPalette:
 		Queue: Infantry.ED
+		BuildPaletteOrder: 20
 	Health:
 		HP: 28
 	RevealsShroud:

@@ -9,6 +9,7 @@ ucs_aircrafts_gargoil_ii:
 		IconPalette:
 		Queue: Aircraft.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 30
 	Selectable:
 		Bounds: 960, 688, 0, 0
 	Health:

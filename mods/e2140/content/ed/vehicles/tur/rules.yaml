@@ -8,6 +8,7 @@ ed_vehicles_tur:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 80
 	Selectable:
 		Bounds: 848, 784, 0, 0
 	Health:

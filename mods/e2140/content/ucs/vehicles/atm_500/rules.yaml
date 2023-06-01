@@ -9,6 +9,7 @@ ucs_vehicles_atm_500:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 80
 	Selectable:
 		Bounds: 896, 688, 0, 0
 	Health:

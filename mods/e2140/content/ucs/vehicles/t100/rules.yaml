@@ -9,6 +9,7 @@ ucs_vehicles_t100:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 10
 	Selectable:
 		Bounds: 480, 384, 0, 0
 	Health:

@@ -9,6 +9,7 @@ ed_aircrafts_thunder:
 		IconPalette:
 		Queue: Aircraft.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 10
 	Selectable:
 		Bounds: 1312, 928, 0, 0
 	Health:
