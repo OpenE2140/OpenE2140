@@ -12,21 +12,22 @@ ed_buildings_constr_center:
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xxx ==x
+		LocalCenterOffset: 100,-425,0
 	HitShape:
-		TargetableOffsets: 1124,-612,0,   1124,200,0,   1124,1024,0,   412,-612,0,   412,200,0,   412,1024,0,   -250,-850,0
+		TargetableOffsets: 724,-712,0,   524,100,0,   324,924,0,   -76,-712,0,   -276,100,0,   -476,924,0,   -850,-950,0
 		Type: Rectangle
-			TopLeft: -1024, -1024
-			BottomRight: 1324, 312
+			TopLeft: -1324, -724
+			BottomRight: 1324, 812
 	HitShape@Elevator:
-		TargetableOffsets: -1624,1024,0
+		TargetableOffsets: -2324,824,0
 		Type: Rectangle
-			TopLeft: 656, 656
-			BottomRight: 1412, 1412
+			TopLeft: 356, 1156
+			BottomRight: 1312, 1912
 	Selectable:
-		Bounds: 3088, 1950, -1, -416
+		Bounds: 3088, 1950, -100, -40
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 992, 1056, 0
+		Position: 900, 1450, 0
 		CutOff: 35
 		Produces: Building.ED
 	AnimatedExitProductionQueue:
@@ -37,7 +38,7 @@ ed_buildings_constr_center:
 	ProvidesPrerequisite:
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
-		LineInitialOffset: 1024,1124,0
+		LineInitialOffset: 924,1500,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: 1,2
