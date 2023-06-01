@@ -24,6 +24,11 @@ weapon_debris:
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure
 
+weapon_debris_slow:
+	Inherits: weapon_debris
+	Projectile: Bullet
+		Speed: 50,75
+
 weapon_debris_smoke:
 	Inherits: weapon_debris
 	Warhead@EffectGroundSmoke: CreateEffect
