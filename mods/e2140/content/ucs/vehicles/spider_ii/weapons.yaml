@@ -37,9 +37,9 @@ ucs_vehicles_spider_ii:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground, Air
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris
-		Range: 0c512, 1c0
-		Pieces: 3,4
+		Weapons: weapon_debris_slow
+		Range: 0c256, 0c756
+		Pieces: 4,5
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectRubble: CreateEffect
