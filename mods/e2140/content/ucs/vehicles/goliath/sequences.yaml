@@ -1,9 +1,9 @@
 ucs_vehicles_goliath:
 	idle:
-		Filename: vehicle_goliath.vspr
+		Filename: content/ucs/vehicles/goliath/vehicle_goliath.png
 		Facings: -16
 	move:
-		Filename: vehicle_goliath.vspr
+		Filename: content/ucs/vehicles/goliath/vehicle_goliath.png
 		Facings: -16
 	icon:
 		Filename: SPRI1.MIX
