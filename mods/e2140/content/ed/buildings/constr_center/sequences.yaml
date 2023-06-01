@@ -1,7 +1,6 @@
 ed_buildings_constr_center:
 	Defaults:
 		Filename: building_constr_center.vspr
-		Offset: 6, -25, 0
 	idle:
 	idle-lights:
 		Start: 1
