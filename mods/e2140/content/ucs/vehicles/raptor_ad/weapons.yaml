@@ -4,7 +4,7 @@ ucs_vehicles_raptor_ad:
 	Range: 4c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 2
 	BurstDelays: 12
 	Projectile: Missile
@@ -24,7 +24,7 @@ ucs_vehicles_raptor_ad:
 		Spread: 128
 		Damage: 25
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 25
@@ -36,26 +36,26 @@ ucs_vehicles_raptor_ad:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Air
+		ValidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 
 ucs_vehicles_raptor_ad_air:
 	Inherits: ucs_vehicles_raptor_ad

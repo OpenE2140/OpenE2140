@@ -3,7 +3,7 @@ ed_vehicles_ht34j:
 	Range: 4c896
 	MinRange: 0c512
 	Report: 7.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
@@ -15,13 +15,13 @@ ed_vehicles_ht34j:
 		Spread: 128
 		Damage: 130
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_ion
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 18.smp, 19.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle

@@ -3,7 +3,7 @@ ed_infantry_a02:
 	ReloadDelay: 62
 	Range: 4c896
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 2
 	BurstDelays: 12
 	Projectile: Missile
@@ -23,7 +23,7 @@ ed_infantry_a02:
 		Spread: 128
 		Damage: 25
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 25
@@ -34,26 +34,26 @@ ed_infantry_a02:
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_grenade
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Air, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 
 ed_infantry_a02_air:
 	Inherits: ed_infantry_a02

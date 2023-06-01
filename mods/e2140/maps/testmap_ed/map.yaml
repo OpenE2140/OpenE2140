@@ -387,5 +387,9 @@ Actors:
 		SubCell: 1
 		Facing: 384
 		Location: 24,13
+	Actor91: ed_ships_kt30
+		Owner: ED_Player
+		Facing: 384
+		Location: 26,28
 
 Rules: rules.yaml

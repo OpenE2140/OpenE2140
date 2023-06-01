@@ -4,7 +4,7 @@ ucs_vehicles_big_mech:
 	Range: 5c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 16
 	BurstDelays: 5
 	Projectile: Missile
@@ -24,7 +24,7 @@ ucs_vehicles_big_mech:
 		Spread: 128
 		Damage: 30
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 30
@@ -36,26 +36,26 @@ ucs_vehicles_big_mech:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Air
+		ValidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 
 ucs_vehicles_big_mech_air:
 	Inherits: ucs_vehicles_big_mech

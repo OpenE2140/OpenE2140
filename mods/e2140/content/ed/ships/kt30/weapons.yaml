@@ -1,0 +1,128 @@
+ed_ships_kt30:
+	Inherits: Smudges
+	ReloadDelay: 62
+	Range: 6c896
+	MinRange: 0c512
+	Report: 4.smp
+	ValidTargets: Ground, Water, Ship
+	Burst: 3
+	BurstDelays: 24
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_heavy_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		HorizontalRateOfTurn: 20
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp, 16.smp
+		ValidTargets: Ground, Air, Ship
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_slow
+		Range: 0c256, 0c756
+		Pieces: 4,5
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_big
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air, Ship
+
+ed_ships_kt30_air:
+	Inherits: ed_ships_kt30
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0
+
+ed_ships_kt30_secondary:
+	Inherits: Smudges
+	ReloadDelay: 48
+	Range: 4c896
+	MinRange: 0c512
+	Report: 5.smp
+	ValidTargets: Ground, Water, Ship
+	Burst: 4
+	BurstDelays: 6
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		HorizontalRateOfTurn: 20
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 15
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 15
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@EffectGround: CreateEffect
+		Image: projectile_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectActor: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air, Ship
+
+ed_ships_kt30_secondary_air:
+	Inherits: ed_ships_kt30_secondary
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

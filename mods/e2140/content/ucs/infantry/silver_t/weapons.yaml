@@ -1,12 +1,12 @@
 ucs_infantry_silver_t:
-	ValidTargets: Ground
+	ValidTargets: Ground, Ship
 	Range: 1c125
 	Projectile: InstantHit
 	Warhead@Damage: TargetDamage
 		Spread: 512
 		Damage: 120
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 
 ucs_infantry_silver_t_explode:
 	ValidTargets: Ground, Water
@@ -14,16 +14,16 @@ ucs_infantry_silver_t_explode:
 		Spread: 128
 		Damage: 60
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_heavy_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground, Water
+		ValidTargets: Ground, Water, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
