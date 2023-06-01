@@ -9,6 +9,7 @@ ed_vehicles_warhammer:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 130
 	Selectable:
 		Bounds: 1280, 1248, 0, 0
 	Health:

@@ -8,6 +8,7 @@ ucs_vehicles_shadow:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 120
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:

@@ -9,6 +9,7 @@ ed_aircrafts_nemezis:
 		IconPalette:
 		Queue: Aircraft.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 50
 	Selectable:
 		Bounds: 1680, 1648, 0, 0
 	Health:

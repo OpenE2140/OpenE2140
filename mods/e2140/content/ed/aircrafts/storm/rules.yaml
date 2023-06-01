@@ -9,6 +9,7 @@ ed_aircrafts_storm:
 		IconPalette:
 		Queue: Aircraft.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 30
 	Selectable:
 		Bounds: 1312, 928, 0, 0
 	Health:

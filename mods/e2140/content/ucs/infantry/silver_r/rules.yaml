@@ -8,6 +8,7 @@ ucs_infantry_silver_r:
 	Buildable:
 		IconPalette:
 		Queue: Infantry.UCS
+		BuildPaletteOrder: 20
 	Health:
 		HP: 28
 	RevealsShroud:

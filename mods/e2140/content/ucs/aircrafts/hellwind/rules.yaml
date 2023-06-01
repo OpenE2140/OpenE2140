@@ -9,6 +9,7 @@ ucs_aircrafts_hellwind:
 		IconPalette:
 		Queue: Aircraft.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 1280, 1056, 0, 0
 	Health:

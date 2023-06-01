@@ -1,7 +1,7 @@
 vehicle_explosion:
 	Defaults:
 		Filename: vehicle_explosion.vspr
-	explode1:
+	explode:
 		BlendMode: Additive
 		Length: 8
 		Tick: 60

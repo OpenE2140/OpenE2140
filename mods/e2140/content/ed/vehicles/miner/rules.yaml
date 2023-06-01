@@ -9,6 +9,7 @@ ed_vehicles_miner:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 110
 	Selectable:
 		Bounds: 1008, 832, 0, 0
 	Health:

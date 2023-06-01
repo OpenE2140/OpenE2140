@@ -9,6 +9,7 @@ ucs_vehicles_miner_bt:
 		IconPalette:
 		Queue: Vehicle.UCS
 		BuildDuration: 60
+		BuildPaletteOrder: 110
 	Selectable:
 		Bounds: 1088, 784, 0, 0
 	Health:

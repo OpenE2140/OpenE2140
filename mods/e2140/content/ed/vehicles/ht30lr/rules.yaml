@@ -9,6 +9,7 @@ ed_vehicles_ht30lr:
 		IconPalette:
 		Queue: Vehicle.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 50
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:
