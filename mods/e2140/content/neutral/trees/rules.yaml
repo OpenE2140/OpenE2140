@@ -9,7 +9,11 @@
 		HP: 150
 	Interactable:
 	Targetable:
-		TargetTypes: Ground	
+		TargetTypes: Ground
+	Building:
+		Footprint: _
+	CustomChangesTerrain:
+		TerrainType: ClearTree
 
 neutral_tree01:
 	Inherits: ^Tree

@@ -8,6 +8,7 @@
 			SNOW: tree-snow.vspr
 			URBAN: tree-urban.vspr
 			URBAN2: tree-urban2.vspr
+		ZOffset: 512
 
 neutral_tree01:
 	Inherits: ^Tree
