@@ -22,6 +22,7 @@ ed_infantry_a01:
 		Weapon: ed_infantry_a01_grenade
 		LocalOffset: 100,0,50
 		MuzzlePalette:
+	-WithAimAttackAnimation:
 	# Attack/aim animations for machine gun.
 	WithAimAttackAnimation@PRIMARY:
 		SequenceFire: shoot

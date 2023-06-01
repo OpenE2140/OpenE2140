@@ -21,8 +21,8 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class WithAimAttackAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>, Requires<ArmamentInfo>
 {
-	[Desc("Armament name")]
-	public readonly string Armament = "primary";
+	[Desc("Armament name. If not specified, aim/attack animations are played regardless of which armament is firing.")]
+	public readonly string Armament = string.Empty;
 
 	[Desc("Displayed while attacking.")]
 	[SequenceReference]
@@ -40,7 +40,7 @@ public class WithAimAttackAnimationInfo : ConditionalTraitInfo, Requires<WithSpr
 
 public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInfo>, ITick, INotifyAttack, INotifyAiming
 {
-	private readonly Armament armament;
+	private readonly Armament? armament;
 	private readonly WithSpriteBody wsb;
 	private bool aiming;
 	private bool isAttacking;
@@ -48,14 +48,17 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	public WithAimAttackAnimation(ActorInitializer init, WithAimAttackAnimationInfo info)
 		: base(info)
 	{
-		this.armament = init.Self.TraitsImplementing<Armament>()
-			.Single(a => a.Info.Name == info.Armament);
+		if (!string.IsNullOrEmpty(info.Armament))
+			this.armament = init.Self.TraitsImplementing<Armament>()
+				.Single(a => a.Info.Name == info.Armament);
 		this.wsb = init.Self.TraitOrDefault<WithSpriteBody>();
 	}
 
 	void INotifyAttack.Attacking(Actor self, in Target target, Armament a, Barrel barrel)
 	{
-		if (this.wsb.IsTraitDisabled || a != this.armament)
+		// Specifying Armament (for which the aim/attack animation should be played) is optional
+		// But if it is specified, it must match the Armament that is currently firing
+		if (this.wsb.IsTraitDisabled || (this.armament != null && a != this.armament))
 		{
 			this.isAttacking = false;
 			return;
