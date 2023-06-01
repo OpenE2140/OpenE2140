@@ -4,14 +4,14 @@ ed_infantry_a01_machine_gun:
 	Range: 2c896
 	Report: 1.smp
 	ValidTargets: Ground, Infantry
-	InvalidTargets: Vehicle, Structure
+	InvalidTargets: Vehicle, Structure, Ship
 	Projectile: InstantHit
 		Inaccuracy: 0c128
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 5
 		DamageTypes: Default
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
@@ -24,18 +24,18 @@ ed_infantry_a01_machine_gun:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Infantry
+		InvalidTargets: Vehicle, Structure, Infantry, Ship
 	Warhead@EffectSmoke: CreateEffect
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure
+		ValidTargets: Vehicle, Structure, Ship
 
 ed_infantry_a01_grenade:
 	Inherits: Smudges
 	ReloadDelay: 50
 	Range: 2c896
-	ValidTargets: Vehicle, Structure
+	ValidTargets: Vehicle, Structure, Ship
 	Burst: 1
 	Projectile: Bullet
 		Speed: 150
@@ -50,23 +50,23 @@ ed_infantry_a01_grenade:
 		Spread: 128
 		Damage: 10
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_grenade
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship

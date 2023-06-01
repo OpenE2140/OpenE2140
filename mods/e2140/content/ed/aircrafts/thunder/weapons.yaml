@@ -4,7 +4,7 @@ ed_aircrafts_thunder:
 	Range: 4c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 3
 	BurstDelays: 8
 	Projectile: Missile
@@ -24,30 +24,30 @@ ed_aircrafts_thunder:
 		Spread: 128
 		Damage: 20
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure
+		ValidTargets: Vehicle, Structure, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship

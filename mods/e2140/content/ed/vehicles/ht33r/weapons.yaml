@@ -4,7 +4,7 @@ ed_vehicles_ht33r:
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 3
 	BurstDelays: 24
 	Projectile: Missile
@@ -24,7 +24,7 @@ ed_vehicles_ht33r:
 		Spread: 128
 		Damage: 80
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 80
@@ -35,26 +35,26 @@ ed_vehicles_ht33r:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_slow
 		Range: 0c256, 0c756
 		Pieces: 4,5
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 
 ed_vehicles_ht33r_air:
 	Inherits: ed_vehicles_ht33r

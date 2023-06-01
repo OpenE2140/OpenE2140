@@ -2,7 +2,7 @@ ed_aircrafts_nemezis:
 	Inherits: Smudges
 	ReloadDelay: 900
 	Range: 0c512
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	TargetActorCenter: true
 	Projectile: GravityBomb
 		Velocity: 50,0,-25
@@ -15,10 +15,10 @@ ed_aircrafts_nemezis:
 		Spread: 0c728
 		Damage: 1750
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: nuclear_explosion
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 14.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Water, Ship

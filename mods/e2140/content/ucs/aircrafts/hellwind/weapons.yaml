@@ -1,7 +1,7 @@
 ucs_aircrafts_hellwind:
 	ReloadDelay: 100
 	Range: 1c896
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 7
 	BurstDelays: 3
 	TargetActorCenter: true
@@ -16,17 +16,17 @@ ucs_aircrafts_hellwind:
 		Spread: 128
 		Damage: 90
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_plasma_bomb
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 22.smp, 23.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
