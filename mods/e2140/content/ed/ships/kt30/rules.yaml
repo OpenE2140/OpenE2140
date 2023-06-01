@@ -1,0 +1,73 @@
+ed_ships_kt30:
+	Inherits@1: ^EdShip
+	Inherits@2: ^CoreTurret
+	Tooltip:
+		Name: KT 30
+	Valued:
+		Cost: 2000
+	Buildable:
+		IconPalette:
+		Queue: Ship.ED
+		BuildDuration: 60
+		BuildPaletteOrder: 30
+	Selectable:
+		Bounds: 1984, 1792, 0, 0
+	Health:
+		HP: 800
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 6c896
+	Turreted:
+		Turret: primary
+		Offset: 770,0,128
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 30
+		Offset: -770,0,225
+	AttackTurreted:
+		Turrets: primary, secondary
+		Armaments: primary, secondary
+	WithSpriteTurret@SECONDARY:
+		Sequence: turret_secondary
+		Turret: secondary
+	Armament@PRIMARY:
+		Name: primary
+		Turret: primary
+		Weapon: ed_ships_kt30
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	Armament@PRIMARY_AIR:
+		Name: primary
+		Turret: primary
+		Weapon: ed_ships_kt30_air
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: ed_ships_kt30_secondary
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 100,100,0,100,-100,0
+		MuzzlePalette:
+	Armament@SECONDARY_AIR:
+		Name: secondary
+		Turret: secondary
+		Weapon: ed_ships_kt30_secondary_air
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 100,100,0,100,-100,0
+		MuzzlePalette:
+	Encyclopedia:
+		Category: ED - Ships
+		Order: 3
+		Animation: DATABASE/PM18.FLC
+		Title: KT 30 - Battleship
+		Armor: Heavy
+		Armament: Launcher for small and heavy self-guided rockets
+		Description: The KT 30 is a medium-sized battleship with heavy armor-plating and heavy weapons. Its disadvantage is its low speed but its heavy armorplating and its two rocket launchers with self-guided missiles, both small and large, make it a force to be reckoned with. The KT 30 can be used to fight hostile ships or buildings that are close to shore. You can use the small rockets against air-attacks. These features gave the KT 30 the nickname “swimming castle”.

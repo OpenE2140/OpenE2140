@@ -2,7 +2,7 @@ ucs_vehicles_tiger_hellmaker:
 	ReloadDelay: 50
 	Range: 2c896
 	MinRange: 0c512
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 7
 	BurstDelays: 25
 	Projectile: Bullet
@@ -19,23 +19,23 @@ ucs_vehicles_tiger_hellmaker:
 		Spread: 128
 		Damage: 10
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 0c256, 1c256
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_napalm_bomb
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
-		ValidTargets: Ground, Air
+		ValidTargets: Ground, Air, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship

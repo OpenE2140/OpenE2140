@@ -3,29 +3,29 @@ ucs_vehicles_miner_bt:
 	Burst: 5
 	Range: 2c896
 	Report: 2.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Projectile: InstantHit
 		Inaccuracy: 0c128
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 7
 		DamageTypes: Default
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Infantry
+		InvalidTargets: Vehicle, Structure, Infantry, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash_firearm
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Infantry
+		InvalidTargets: Vehicle, Structure, Infantry, Ship
 	Warhead@EffectSmoke: CreateEffect
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure, Infantry
+		ValidTargets: Vehicle, Structure, Infantry, Ship

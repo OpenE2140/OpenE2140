@@ -4,7 +4,7 @@ ed_vehicles_mt200:
 	Range: 5c896
 	MinRange: 0c512
 	Report: 3.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 4
 	BurstDelays: 25
 	Projectile: Bullet
@@ -18,29 +18,29 @@ ed_vehicles_mt200:
 		Spread: 128
 		Damage: 25
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship

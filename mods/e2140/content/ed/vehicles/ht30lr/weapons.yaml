@@ -3,7 +3,7 @@ ed_vehicles_ht30lr_laser:
 	Range: 2c896
 	MinRange: 0c512
 	Report: 10.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 15
 	BurstDelays: 3
 	Projectile: LaserZap
@@ -20,12 +20,12 @@ ed_vehicles_ht30lr_laser:
 		Spread: 128
 		Damage: 16
 		DamageTypes: Default
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: smoke
 		Explosions: idle
 		ExplosionPalette:
-		ValidTargets: Ground, Water
+		ValidTargets: Ground, Water, Ship
 
 ed_vehicles_ht30lr_missiles:
 	Inherits: Smudges
@@ -33,7 +33,7 @@ ed_vehicles_ht30lr_missiles:
 	Range: 4c896
 	MinRange: 0c512
 	Report: 5.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 4
 	BurstDelays: 6
 	Projectile: Missile
@@ -53,7 +53,7 @@ ed_vehicles_ht30lr_missiles:
 		Spread: 128
 		Damage: 15
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 15
@@ -65,20 +65,20 @@ ed_vehicles_ht30lr_missiles:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Air
+		ValidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 
 ed_vehicles_ht30lr_missiles_air:
 	Inherits: ed_vehicles_st02

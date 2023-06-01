@@ -3,7 +3,7 @@ ed_vehicles_mt201l:
 	Range: 2c896
 	MinRange: 0c512
 	Report: 10.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 10
 	BurstDelays: 3
 	Projectile: LaserZap
@@ -20,9 +20,9 @@ ed_vehicles_mt201l:
 		Spread: 128
 		Damage: 8
 		DamageTypes: Default
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: smoke
 		Explosions: idle
 		ExplosionPalette:
-		ValidTargets: Ground, Water
+		ValidTargets: Ground, Water, Ship

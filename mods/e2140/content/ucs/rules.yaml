@@ -57,6 +57,11 @@ World:
 		Weapon: UcsInfantryExplosion
 		EmptyWeapon: UcsInfantryExplosion
 
+^UcsShip:
+	Inherits: ^CoreShip
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
 	RenderSprites:

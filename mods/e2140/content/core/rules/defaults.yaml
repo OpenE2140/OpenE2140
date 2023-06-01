@@ -466,6 +466,26 @@
 		TerrainSpeeds:
 			Clear: 100
 
+# Base for all ships
+^CoreShip:
+	Inherits: ^CoreVehicle
+	# Ships movement modifiers.
+	Mobile:
+		Locomotor: ship
+	# Actor can be targeted by anything which attacks vehicles or ships.
+	Targetable@Default:
+		TargetTypes: Ship, Vehicle
+	# Group all ships in the map editor.
+	MapEditorData:
+		Categories: Ship
+
+# Add locomotor to world...
+^CoreWorld:
+	Locomotor@ship:
+		Name: ship
+		TerrainSpeeds:
+			Water: 100
+
 # Grouped traits for standard turret behavior.
 ^CoreTurret:
 	# General turret behavior.

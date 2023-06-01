@@ -4,7 +4,7 @@ ed_aircrafts_vtol:
 	Range: 6c896
 	MinRange: 0c512
 	Report: 4.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 2
 	BurstDelays: 8
 	Projectile: Missile
@@ -24,29 +24,29 @@ ed_aircrafts_vtol:
 		Spread: 128
 		Damage: 80
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris
 		Range: 0c512, 1c0
 		Pieces: 3,4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship

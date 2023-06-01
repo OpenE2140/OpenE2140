@@ -2,7 +2,7 @@ ucs_infantry_silver_max:
 	ReloadDelay: 50
 	Range: 2c896
 	Report: 8.smp
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Ship
 	Burst: 10
 	BurstDelays: 8
 	Projectile: Bullet
@@ -16,17 +16,17 @@ ucs_infantry_silver_max:
 		Spread: 128
 		Damage: 15
 		DamageTypes: Explosion
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: projectile_plasma
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 22.smp
-		ValidTargets: Ground
+		ValidTargets: Ground, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash_firearm
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Structure, Ship
