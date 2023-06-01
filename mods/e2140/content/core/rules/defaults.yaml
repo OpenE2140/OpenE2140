@@ -170,7 +170,7 @@
 		OnHoldAudio: ProductionInterrupted
 		InfiniteBuildLimit: 10
 	# Allow player setting rally point.
-	RallyPoint:
+	CustomRallyPoint:
 		Cursor: move
 		LineWidth: 2
 

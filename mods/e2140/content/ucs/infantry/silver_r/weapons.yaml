@@ -24,6 +24,12 @@ ucs_infantry_silver_r:
 		Damage: 25
 		DamageTypes: Explosion
 		ValidTargets: Ground
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris
+		Range: 0c512, 1c0
+		Pieces: 2,2
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 25

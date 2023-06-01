@@ -109,3 +109,10 @@ water_wave:
 		Length: 6
 		ZOffset: -2048
 	wave:
+
+smoke_debris:
+	idle:
+		Filename: content/core/assets/smoke_debris.png
+		Length: 4
+		Tick: 60
+		BlendMode: Subtractive

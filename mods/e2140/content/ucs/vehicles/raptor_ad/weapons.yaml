@@ -37,6 +37,12 @@ ucs_vehicles_raptor_ad:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris
+		Range: 0c512, 1c0
+		Pieces: 2,2
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
