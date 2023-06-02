@@ -15,7 +15,15 @@ ed_infantry_a03:
 		Spread: 128
 		Damage: 80
 		DamageTypes: Explosion
-		ValidTargets: Ground, Ship
+		ValidTargets: Structures, Ground
+		InvalidTargets: Vehicle, Ship
+	Warhead@VehicleDamage: MinimumHealthSpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		MinimumHealth: 4
+		ValidTargets: Vehicle, Ship
+		InvalidTargets: Structures, Infantry
 	Warhead@Effect: CreateEffect
 		Image: projectile_ion
 		Explosions: explode

@@ -15,7 +15,15 @@ ed_vehicles_ht34j:
 		Spread: 128
 		Damage: 130
 		DamageTypes: Explosion
-		ValidTargets: Ground, Ship
+		ValidTargets: Structures, Ground
+		InvalidTargets: Vehicle, Ship
+	Warhead@VehicleDamage: MinimumHealthSpreadDamage
+		Spread: 128
+		Damage: 130
+		DamageTypes: Explosion
+		MinimumHealth: 4
+		ValidTargets: Vehicle, Ship
+		InvalidTargets: Structures, Infantry
 	Warhead@Effect: CreateEffect
 		Image: projectile_ion
 		Explosions: explode
