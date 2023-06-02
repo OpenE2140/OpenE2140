@@ -336,17 +336,31 @@
 		TurnSpeed: 50
 		Locomotor: vehicle
 		BlockedCursor: generic-blocked
-	# Actor can be targeted by anything which attacks ground.
+		PauseOnCondition: VehicleDisabled
+	# Non-disabled vehicles can be targeted by anything which attacks ground.
 	Targetable@Default:
 		TargetTypes: Ground, Vehicle
+		RequiresCondition: !VehicleDisabled
 	# Actor can be autorepaired by friendly HCU-M.
-	Targetable@Repair:
+	WarheadDependentTargetable@Repair:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
 		RequiresCondition: damaged
 		TargetTypes: DamagedUnit
+	# Disabled vehicle cannot be targeted by actor with MinimumHealthSpreadDamage warhead (i.e. ion cannon).
+	WarheadDependentTargetable@Disabled:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
+		TargetTypes: Ground, Vehicle
+		RequiresCondition: VehicleDisabled
 	# Condition to be granted to damaged vehicles so HCU-M can autorepair them.
 	GrantConditionOnDamageState@Damaged:
 		Condition: damaged
 		ValidDamageStates: Light, Medium, Heavy, Critical
+	# Condition to be granted to heavily damaged vehicles that disables them.
+	# Disabled vehicles are susceptible to capture by other players (maybe enemies only? TODO: verify!).
+	GrantConditionOnHealth@DisableVehicle:
+		Condition: VehicleDisabled
+		MinHP: 0
+		MaxHP: 5
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
 	# Group all vehicles in the map editor.
@@ -498,6 +512,7 @@
 	# General turret behavior.
 	Turreted:
 		TurnSpeed: 30
+		PauseOnCondition: VehicleDisabled
 	# Special trait to position turret depending on attachment point (only visualy).
 	WithSpriteTurret:
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.
