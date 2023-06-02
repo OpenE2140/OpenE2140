@@ -61,7 +61,7 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 			world.AddFrameEndTask(w => w.Remove(this));
 	}
 
-	void UpdateTargetLineNodes(World world)
+	private void UpdateTargetLineNodes(World world)
 	{
 		this.cachedLocations.Clear();
 		this.cachedLocations.AddRange(this.rp.Path);
@@ -117,7 +117,7 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 		return this.RenderInner();
 	}
 
-	IEnumerable<IRenderable> RenderInner()
+	private IEnumerable<IRenderable> RenderInner()
 	{
 		var prev = this.targetLineNodes[0];
 		foreach (var pos in this.targetLineNodes.Skip(1))
