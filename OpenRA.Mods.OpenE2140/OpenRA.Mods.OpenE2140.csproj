@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputPath>../engine/bin</OutputPath>
-        <CodeAnalysisRuleSet>OpenRA.Mods.OpenE2140.ruleset</CodeAnalysisRuleSet>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     </PropertyGroup>
 
     <ItemGroup>
