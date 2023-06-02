@@ -17,6 +17,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Warheads;
 using OpenRA.Mods.OpenE2140.Effects;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -40,6 +41,10 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 
 	[Desc("Whether to consider actors in determining whether the impact should happen. If false, only terrain will be considered.")]
 	public readonly bool ImpactActors = true;
+
+	[Desc("Whether to use Damage, Inaccuracy and Range modifiers from source actor. If the source actor does not exist in the world, " +
+		"the modifiers are not applied anyway.")]
+	public readonly bool UseAttackerModifiers = true;
 
 	internal WeaponInfo[] WeaponInfos { get; private set; } = Array.Empty<WeaponInfo>();
 
@@ -93,15 +98,19 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 						Weapon = this.WeaponInfos[i],
 						Facing = new WAngle(world.SharedRandom.Next(1024)),
 						CurrentMuzzleFacing = () => WAngle.Zero,
-						DamageModifiers = firedBy.TraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray(),
-						InaccuracyModifiers = firedBy.TraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray(),
-						RangeModifiers = firedBy.TraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray(),
 						Source = pos,
 						CurrentSource = () => pos,
 						SourceActor = args.SourceActor,
 						PassiveTarget = pos + new WVec(range, 0, 0).Rotate(rotation)
 					}
 				};
+				if (this.UseAttackerModifiers)
+				{
+					projectileArgs.Args.DamageModifiers = firedBy.TryGetTraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray();
+					projectileArgs.Args.InaccuracyModifiers = firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
+					projectileArgs.Args.RangeModifiers = firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
+				}
+
 				var delayedTarget = target;
 				world.AddFrameEndTask(x =>
 				{
