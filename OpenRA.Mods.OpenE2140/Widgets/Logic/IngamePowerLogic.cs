@@ -29,21 +29,21 @@ public class IngamePowerLogic : ChromeLogic
 	private const string Infinite = "label-infinite-power";
 
 	[ObjectCreator.UseCtor]
-	public IngamePowerLogic(Widget widget, ModData modData, World world)
+	public IngamePowerLogic(Widget widget, World world)
 	{
 		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
-
 		var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManager>();
+
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
-		var unlimitedCapacity = modData.Translation.GetString(IngamePowerLogic.Infinite);
+		var unlimitedCapacity = TranslationProvider.GetString(IngamePowerLogic.Infinite);
 
 		powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
 		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
 		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
 
 		var tooltipTextCached = new CachedTransform<(string, string), string>(
-			((string usage, string capacity) args) => modData.Translation.GetString(
+			((string usage, string capacity) args) => TranslationProvider.GetString(
 				IngamePowerLogic.PowerUsage,
 				Translation.Arguments("usage", args.usage, "capacity", args.capacity)
 			)
