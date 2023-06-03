@@ -257,7 +257,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				if (this.NudgeBlockingActors(self, exitCell, actor))
 					this.State = AnimationState.WaitingForEjection;
-				else if (actor.CurrentActivity is null || actor.CurrentActivity is not Move)
+				else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not Mobile.ReturnToCellActivity))
 				{
 					// Abort all activites except Move to prevent player from delaying the exit.
 					actor.CancelActivity();
@@ -282,18 +282,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				// exit cell might be insufficient and in rare cases can exit get stuck in this state.
 				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
-					if (this.rallyPoint?.Path.Count > 0)
-					{
-						foreach (var cell in this.rallyPoint.Path)
-						{
-							actor.QueueActivity(
-								new AttackMoveActivity(
-									actor,
-									() => actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
-								)
-							);
-						}
-					}
+					this.QueuePathToRallyPoint(this.productionInfo);
 
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
@@ -328,6 +317,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				if (actorCell != this.GetExitCell(self))
 				{
+					this.QueuePathToRallyPoint(this.productionInfo);
+
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
 
@@ -391,6 +382,25 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 			default:
 				throw new ArgumentOutOfRangeException(nameof(this.state), "Unknown state.");
+		}
+	}
+
+	private void QueuePathToRallyPoint(ProductionInfo productionInfo)
+	{
+		// Queue path to rally point only if current activity has been ordered by ElevatorProduction (and not player).
+		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
+		var actor = productionInfo.Actor;
+		if (actor == null || actor.CurrentActivity != productionInfo.ExitMoveActivity || this.rallyPoint == null)
+			return;
+		
+		foreach (var cell in this.rallyPoint.Path)
+		{
+			actor.QueueActivity(
+				new AttackMoveActivity(
+					actor,
+					() => actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
+				)
+			);
 		}
 	}
 
