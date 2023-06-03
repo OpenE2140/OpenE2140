@@ -16,6 +16,8 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
+using CustomAttackActivity = OpenRA.Mods.OpenE2140.Traits.Attack.AttackFrontal.Attack;
+
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
@@ -43,7 +45,6 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	private readonly Armament? armament;
 	private readonly WithSpriteBody wsb;
 	private bool aiming;
-	private bool isAttacking;
 
 	public WithAimAttackAnimation(ActorInitializer init, WithAimAttackAnimationInfo info)
 		: base(info)
@@ -60,11 +61,9 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 		// But if it is specified, it must match the Armament that is currently firing
 		if (this.wsb.IsTraitDisabled || (this.armament != null && a != this.armament))
 		{
-			this.isAttacking = false;
 			return;
 		}
 
-		this.isAttacking = true;
 		this.wsb.PlayCustomAnimation(self, this.Info.SequenceFire);
 	}
 
@@ -74,10 +73,17 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.IsTraitDisabled || this.wsb.IsTraitDisabled || !this.isAttacking)
+		if (this.IsTraitDisabled || this.wsb.IsTraitDisabled || self.CurrentActivity is not CustomAttackActivity attackActivity ||
+			attackActivity.IsMovingWithinRange)
 			return;
 
-		if (!string.IsNullOrEmpty(this.Info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name == "idle")
+		// When WithAimAttackAnimation is tied to specific armament, verify that the Attack activity is expecting to attack with this armament.
+		// It's not 100% bulletproof, if the actor has multiple armaments that can attack current target (because all such armaments are ordered to fire).
+		// It does work for units like Android A01, i.e. actors that have distinct armaments, that all attack different targets.
+		if (this.armament != null && !attackActivity.GetExpectedArmamentsForTarget().Contains(this.armament))
+			return;
+
+		if (!string.IsNullOrEmpty(this.Info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name != this.Info.SequenceFire)
 			this.wsb.PlayCustomAnimation(self, this.Info.SequenceAim);
 	}
 
@@ -89,6 +95,5 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	void INotifyAiming.StoppedAiming(Actor self, AttackBase attack)
 	{
 		this.aiming = false;
-		this.isAttacking = false;
 	}
 }
