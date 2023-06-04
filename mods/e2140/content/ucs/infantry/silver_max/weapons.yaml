@@ -1,6 +1,7 @@
 ucs_infantry_silver_max:
 	ReloadDelay: 50
 	Range: 2c896
+	MinRange: 0c512
 	Report: 8.smp
 	ValidTargets: Ground, Water, Ship
 	Burst: 10

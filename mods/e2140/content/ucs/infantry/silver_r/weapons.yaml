@@ -1,6 +1,7 @@
 ucs_infantry_silver_r:
 	Inherits: Smudges
 	ReloadDelay: 62
+	MinRange: 0c512
 	Range: 4c896
 	Report: 5.smp
 	ValidTargets: Ground, Water, Ship
@@ -57,6 +58,7 @@ ucs_infantry_silver_r:
 
 ucs_infantry_silver_r_air:
 	Inherits: ucs_infantry_silver_r
+	MinRange: 0c0
 	ValidTargets: Air
 	Projectile: Missile
 		Inaccuracy: 2c0

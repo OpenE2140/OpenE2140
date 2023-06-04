@@ -34,6 +34,7 @@ ed_infantry_a01_machine_gun:
 ed_infantry_a01_grenade:
 	Inherits: Smudges
 	ReloadDelay: 50
+	MinRange: 0c512
 	Range: 2c896
 	ValidTargets: Vehicle, Structure, Ship
 	Burst: 1

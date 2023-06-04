@@ -1,6 +1,7 @@
 ed_infantry_a03:
 	ReloadDelay: 50
 	Range: 2c896
+	MinRange: 0c512
 	Report: 6.smp
 	ValidTargets: Ground, Water, Ship
 	Burst: 1

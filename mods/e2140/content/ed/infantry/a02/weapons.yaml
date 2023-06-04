@@ -2,6 +2,7 @@ ed_infantry_a02:
 	Inherits: Smudges
 	ReloadDelay: 62
 	Range: 4c896
+	MinRange: 0c512
 	Report: 5.smp
 	ValidTargets: Ground, Water, Ship
 	Burst: 2
@@ -57,6 +58,7 @@ ed_infantry_a02:
 
 ed_infantry_a02_air:
 	Inherits: ed_infantry_a02
+	MinRange: 0c0
 	ValidTargets: Air
 	Projectile: Missile
 		Inaccuracy: 2c0
