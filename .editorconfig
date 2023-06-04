@@ -187,6 +187,9 @@ dotnet_diagnostic.CA1829.severity = warning
 # Use string.Contains(char) instead of string.Contains(string) with single characters.
 dotnet_diagnostic.CA1847.severity = warning
 
+# Don't warn, when there are missing XML comments for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = none
+
 ; 4-column tab indentation
 [*.yaml]
 indent_style = tab
