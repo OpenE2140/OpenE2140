@@ -11,7 +11,7 @@ Rules:
 	e2140|content/core/rules/world.yaml
 
 Translations:
-	e2140|content/core/languages/en.ftl
+	e2140|content/core/languages/rules/en.ftl
 
 Sequences:
 	e2140|content/core/sequences/beacon.yaml
