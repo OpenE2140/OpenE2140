@@ -2,10 +2,12 @@
 
 namespace OpenRA.Mods.OpenE2140.Traits.Terrain;
 
-[Desc("Modifies the terrain type underneath the actors location.")]
+[Desc("Modifies the terrain type underneath the actor's location.",
+	"Make sure that the actor doesn't move, as the terrain is changed only on actor creation.")]
 public class CustomChangesTerrainInfo : TraitInfo
 {
 	[FieldLoader.Require]
+	[Desc("Type of terrain to change the cell under which the actor is created.")]
 	public readonly string TerrainType = string.Empty;
 
 	public override object Create(ActorInitializer init) { return new CustomChangesTerrain(this); }
