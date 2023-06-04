@@ -53,7 +53,7 @@ public class AttackFrontal : BaseAttackFrontal
 			this.forceAttack = forceAttack;
 		}
 
-		public IEnumerable<Armament> GetExpectedArmamentsForTarget(AttackFrontal attackBase = null)
+		public IEnumerable<Armament> GetExpectedArmamentsForTarget(AttackFrontal? attackBase = null)
 		{
 			if (attackBase != null)
 			{

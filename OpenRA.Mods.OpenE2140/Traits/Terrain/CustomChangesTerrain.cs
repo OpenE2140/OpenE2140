@@ -3,7 +3,7 @@
 namespace OpenRA.Mods.OpenE2140.Traits.Terrain;
 
 [Desc("Modifies the terrain type underneath the actors location.")]
-class CustomChangesTerrainInfo : TraitInfo
+public class CustomChangesTerrainInfo : TraitInfo
 {
 	[FieldLoader.Require]
 	public readonly string TerrainType = string.Empty;
@@ -11,10 +11,10 @@ class CustomChangesTerrainInfo : TraitInfo
 	public override object Create(ActorInitializer init) { return new CustomChangesTerrain(this); }
 }
 
-class CustomChangesTerrain : INotifyAddedToWorld, INotifyRemovedFromWorld
+public class CustomChangesTerrain : INotifyAddedToWorld, INotifyRemovedFromWorld
 {
-	readonly CustomChangesTerrainInfo info;
-	byte? previousTerrain;
+	private readonly CustomChangesTerrainInfo info;
+	private byte? previousTerrain;
 
 	public CustomChangesTerrain(CustomChangesTerrainInfo info)
 	{
