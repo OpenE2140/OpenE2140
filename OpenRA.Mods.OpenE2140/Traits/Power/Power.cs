@@ -27,6 +27,13 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 
 	private int token = Actor.InvalidConditionToken;
 
+	/// <summary>
+	/// Returns <c>true</c>, if the actor currently has power.
+	///
+	/// This depends on whether it was intentionally disabled or there's currently not enough generated power.
+	/// </summary>
+	public bool IsPowered => this.token != Actor.InvalidConditionToken;
+
 	public Power(Actor self, PowerInfo info)
 		: base(info)
 	{
@@ -55,9 +62,6 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 		if (powered && this.token == Actor.InvalidConditionToken)
 			this.token = self.GrantCondition(this.Info.Condition);
 		else if (!powered && this.token != Actor.InvalidConditionToken)
-		{
-			self.RevokeCondition(this.token);
-			this.token = Actor.InvalidConditionToken;
-		}
+			this.token = self.RevokeCondition(this.token);
 	}
 }

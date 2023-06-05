@@ -33,6 +33,8 @@ Player:
 	PowerManager:
 		SpeechNotification: LowPower
 		TextNotification: Low power.
+		# Currently mimicking original game's behavior, by being able to use all generated power when in low power state.
+		UsableEnergyWhenLowPowerPercent: 100
 	# Player can repair own and ally buildings.
 	AllyRepair:
 	# Player resources

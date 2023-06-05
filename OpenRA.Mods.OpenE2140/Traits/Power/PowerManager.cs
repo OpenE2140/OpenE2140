@@ -28,8 +28,8 @@ public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 	[Desc("Interval (in ticks) at which to to cycle the power actors on low power.")]
 	public readonly int PowerCycleInterval = 3;
 
-	[Desc("Percentage of how much remaining energy can be used.")]
-	public readonly int LowPowerPercent = 20;
+	[Desc("Percentage of how much generated energy can be used (for all buildings), when there's low power.")]
+	public readonly int UsableEnergyWhenLowPowerPercent = 80;
 
 	[NotificationReference("Speech")]
 	public readonly string? SpeechNotification;
@@ -54,7 +54,7 @@ public class PowerManager : ITick
 	public int PowerGenerated { get; private set; }
 	public int PowerConsumed { get; private set; }
 
-	private int firstPower;
+	private int? firstLowPower;
 	private long lastAdviceTime;
 
 	public PowerManager(Actor self, PowerManagerInfo info)
@@ -94,13 +94,13 @@ public class PowerManager : ITick
 		if (this.devMode.UnlimitedPower)
 			remaining = int.MaxValue;
 		else if (this.Power < 0)
-			remaining = remaining * this.info.LowPowerPercent / 100;
+			remaining = remaining * this.info.UsableEnergyWhenLowPowerPercent / 100;
 
 		var powered = 0;
 
 		for (var i = 0; i < this.powers.Count; i++)
 		{
-			var (actor, power) = this.powers.ElementAt((this.firstPower + i) % this.powers.Count);
+			var (actor, power) = this.powers.ElementAt(i);
 
 			if (power.IsTraitDisabled)
 			{
@@ -114,23 +114,37 @@ public class PowerManager : ITick
 			if (consume <= 0)
 			{
 				power.SetPowered(actor, true);
+				powered++;
 
 				continue;
 			}
 
 			remaining -= consume;
 
-			power.SetPowered(actor, remaining >= 0);
-
 			if (remaining >= 0)
+			{
+				power.SetPowered(actor, true);
 				powered++;
+			}
+			else
+			{
+				this.firstLowPower ??= i;
+
+				power.SetPowered(actor, this.firstLowPower == i);
+			}
 		}
 
 		if (remaining >= 0)
+		{
+			this.firstLowPower = null;
 			return;
+		}
 
-		if (self.World.WorldTick % this.info.PowerCycleInterval == 0)
-			this.firstPower = (this.firstPower + powered) % this.powers.Count;
+		if (self.World.WorldTick % this.info.PowerCycleInterval == 0 && this.firstLowPower != null)
+		{
+			// cycle only between buildings that are causing low power state.
+			this.firstLowPower = powered + (int)(this.firstLowPower - powered + 1) % (this.powers.Count - powered + 1);
+		}
 
 		if (Game.RunTime <= this.lastAdviceTime + this.info.AdviceInterval)
 			return;
