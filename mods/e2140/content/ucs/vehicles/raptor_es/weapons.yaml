@@ -2,6 +2,7 @@ ucs_vehicles_raptor_es:
 	ReloadDelay: 56
 	Burst: 10
 	Range: 2c896
+	MinRange: 0c128
 	Report: 2.smp
 	ValidTargets: Ground, Water, Ship
 	Projectile: InstantHit

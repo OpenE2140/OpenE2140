@@ -2,6 +2,7 @@ ed_vehicles_miner:
 	ReloadDelay: 50
 	Burst: 5
 	Range: 2c896
+	MinRange: 0c256
 	Report: 2.smp
 	ValidTargets: Ground, Water, Ship
 	Projectile: InstantHit
