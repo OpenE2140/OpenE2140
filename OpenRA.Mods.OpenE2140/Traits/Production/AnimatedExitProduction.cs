@@ -255,7 +255,13 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
 
-				if (this.NudgeBlockingActors(self, exitCell, actor))
+				if (this.productionInfo.Producee.HasTraitInfo<AircraftInfo>())
+				{
+					// Aircraft do not need custom logic to handle their exit from this Production trait.
+					// So just store the creation activity (likely going to be AssociateWithAirfieldActivity) for handling rally point.
+					this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.CurrentActivity };
+				}
+				else if (this.NudgeBlockingActors(self, exitCell, actor))
 					this.State = AnimationState.WaitingForEjection;
 				else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not Mobile.ReturnToCellActivity))
 				{
@@ -280,7 +286,9 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				// Check if actor is no longer on the exit cell. Only checking whether actor has moved to
 				// exit cell might be insufficient and in rare cases can exit get stuck in this state.
-				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
+				// If produced actor is aircraft, it's sufficient, that it's airborne, to consider ejection process complete.
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false ||
+					self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -312,10 +320,9 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 					break;
 				}
 
-				// player manually moved produced actor
-				var actorCell = self.World.Map.CellContaining(actor.CenterPosition);
-
-				if (actorCell != this.GetExitCell(self))
+				// If aircraft is airborne or player has manually moved produced actor, end ejection process
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false ||
+					self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -387,10 +394,13 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	private void QueuePathToRallyPoint(ProductionInfo productionInfo)
 	{
-		// Queue path to rally point only if current activity has been ordered by ElevatorProduction (and not player).
-		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
 		var actor = productionInfo.Actor;
-		if (actor == null || actor.CurrentActivity != productionInfo.ExitMoveActivity || this.rallyPoint == null)
+		if (actor == null || this.rallyPoint == null)
+			return;
+
+		// Queue path to rally point only if current activity has been ordered by this Production trait (and not player).
+		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
+		if (actor.CurrentActivity != productionInfo.ExitMoveActivity)
 			return;
 		
 		foreach (var cell in this.rallyPoint.Path)
