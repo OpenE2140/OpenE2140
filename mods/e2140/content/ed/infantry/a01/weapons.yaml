@@ -12,6 +12,7 @@ ed_infantry_a01_machine_gun:
 		Damage: 5
 		DamageTypes: Default
 		ValidTargets: Ground, Ship
+		InvalidTargets: Tree
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3

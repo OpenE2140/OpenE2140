@@ -9,7 +9,7 @@
 		HP: 150
 	Interactable:
 	Targetable:
-		TargetTypes: Ground
+		TargetTypes: Ground, Tree
 	Building:
 		Footprint: _
 	CustomChangesTerrain:
