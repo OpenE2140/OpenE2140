@@ -530,6 +530,7 @@
 	AttackFrontal:
 		FacingTolerance: 0
 		Voice: Attack
+		PauseOnCondition: VehicleDisabled
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
