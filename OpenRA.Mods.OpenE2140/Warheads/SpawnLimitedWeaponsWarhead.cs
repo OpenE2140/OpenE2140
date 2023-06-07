@@ -31,9 +31,9 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 	public readonly string[] Weapons = Array.Empty<string>();
 
 	[Desc("Delay in ticks before applying the warhead effect.", "0 = instant (old model).")]
-	public readonly int[] Delays = new[] { 0 };
+	public int[] Delays = new[] { 0 };
 
-	[Desc("The amount of projectile pieces to produce. Two values indicate a range.")]
+	[Desc("The amount of projectile pieces to produce. Need two values which indicate range.")]
 	public readonly int[] Pieces = { 3, 10 };
 
 	[Desc("The minimum and maximum distances the projectile may travel.")]
@@ -51,7 +51,11 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 	public void RulesetLoaded(Ruleset rules, WeaponInfo info)
 	{
 		if (this.Weapons.Length != this.Delays.Length)
-			throw new YamlException($"Length of: '{nameof(this.Weapons)}' and '{nameof(this.Delays)}' must be equal.");
+		{
+			var instantWhenExceeds = new int[this.Weapons.Length];
+			Array.Copy(this.Delays, instantWhenExceeds, Math.Min(this.Delays.Length, this.Weapons.Length));
+			this.Delays = instantWhenExceeds;
+		}
 
 		this.WeaponInfos = this.Weapons.Select(w =>
 		{
@@ -82,51 +86,50 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 		if (actorAtImpact == ImpactActorType.None && !this.IsValidAgainstTerrain(world, pos))
 			return;
 
-		for (var i = 0; this.WeaponInfos.Length > i; i++)
+		var pieces = world.SharedRandom.Next(this.Pieces[0], this.Pieces[1]);
+
+		for (var i = 0; pieces > i; i++)
 		{
-			var pieces = world.SharedRandom.Next(this.Pieces[0], this.Pieces[1]);
+			var pickedWeapon = world.SharedRandom.Next(this.WeaponInfos.Length);
 			var range = world.SharedRandom.Next(this.Range[0].Length, this.Range[1].Length);
 
-			for (var j = 0; pieces > j; j++)
+			var rotation = WRot.FromYaw(new WAngle(world.SharedRandom.Next(1024)));
+			var projectileArgs = new
 			{
-				var rotation = WRot.FromYaw(new WAngle(world.SharedRandom.Next(1024)));
-				var projectileArgs = new
+				Delay = this.Delays[pickedWeapon],
+				Args = new ProjectileArgs
 				{
-					Delay = this.Delays[i],
-					Args = new ProjectileArgs
-					{
-						Weapon = this.WeaponInfos[i],
-						Facing = new WAngle(world.SharedRandom.Next(1024)),
-						CurrentMuzzleFacing = () => WAngle.Zero,
-						Source = pos,
-						CurrentSource = () => pos,
-						SourceActor = args.SourceActor,
-						PassiveTarget = pos + new WVec(range, 0, 0).Rotate(rotation)
-					}
-				};
-				if (this.UseAttackerModifiers)
-				{
-					projectileArgs.Args.DamageModifiers = firedBy.TryGetTraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray();
-					projectileArgs.Args.InaccuracyModifiers = firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
-					projectileArgs.Args.RangeModifiers = firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
+					Weapon = this.WeaponInfos[pickedWeapon],
+					Facing = new WAngle(world.SharedRandom.Next(1024)),
+					CurrentMuzzleFacing = () => WAngle.Zero,
+					Source = pos,
+					CurrentSource = () => pos,
+					SourceActor = args.SourceActor,
+					PassiveTarget = pos + new WVec(range, 0, 0).Rotate(rotation)
 				}
-
-				var delayedTarget = target;
-				world.AddFrameEndTask(x =>
-				{
-					if (projectileArgs.Args.Weapon.Projectile != null)
-					{
-						var projectile = projectileArgs.Args.Weapon.Projectile.Create(projectileArgs.Args);
-						if (projectile != null)
-						{
-							if (projectileArgs.Delay > 0)
-								world.AddFrameEndTask(w => w.Add(new DelayedProjectile(projectile, projectileArgs.Delay)));
-							else
-								world.Add(projectile);
-						}
-					}
-				});
+			};
+			if (this.UseAttackerModifiers)
+			{
+				projectileArgs.Args.DamageModifiers = firedBy.TryGetTraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray();
+				projectileArgs.Args.InaccuracyModifiers = firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
+				projectileArgs.Args.RangeModifiers = firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
 			}
+
+			var delayedTarget = target;
+			world.AddFrameEndTask(x =>
+			{
+				if (projectileArgs.Args.Weapon.Projectile != null)
+				{
+					var projectile = projectileArgs.Args.Weapon.Projectile.Create(projectileArgs.Args);
+					if (projectile != null)
+					{
+						if (projectileArgs.Delay > 0)
+							world.AddFrameEndTask(w => w.Add(new DelayedProjectile(projectile, projectileArgs.Delay)));
+						else
+							world.Add(projectile);
+					}
+				}
+			});
 		}
 	}
 
