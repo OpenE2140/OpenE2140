@@ -20,6 +20,8 @@ using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Activites.Move;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -41,11 +43,17 @@ public class AnimatedExitProductionInfo : ProductionInfo, IRenderActorPreviewSpr
 	[Desc("The sequence to use for the open state.")]
 	public string SequenceOpen = "open";
 
+	[Desc("Whether the open sequence should be looped.")]
+	public bool SequenceOpenLoop = true;
+
 	[Desc("The sequence to use for the closing animation.")]
 	public string SequenceClosing = "closing";
 
 	[Desc("The sequence to use for the overlay.")]
 	public string SequenceOverlay = "overlay";
+
+	[Desc("The sound(s) to play at the start of the opening animation.")]
+	public string[] SoundsOpening = Array.Empty<string>();
 
 	[Desc("Animated exit Position.")]
 	public readonly WVec Position;
@@ -172,12 +180,25 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	}
 
 	// Allows to play optional animations.
-	private void PlayAnimation(string sequence)
+	private void PlayAnimation(string sequence, bool repeat = true)
 	{
-		this.animationVisible = this.animation.Animation.HasSequence(sequence);
+		this.animationVisible = !string.IsNullOrEmpty(sequence) && this.animation.Animation.HasSequence(sequence);
 
 		if (this.animationVisible)
-			this.animation.Animation.PlayRepeating(sequence);
+		{
+			if (repeat)
+				this.animation.Animation.PlayRepeating(sequence);
+			else
+				this.animation.Animation.PlayThen(sequence, () => this.animationVisible = false);
+		}
+	}
+
+	private void PlayAnimationThen(string sequence, Action action)
+	{
+		this.animationVisible = !string.IsNullOrEmpty(sequence) && this.animation.Animation.HasSequence(sequence);
+
+		if (this.animationVisible)
+			this.animation.Animation.PlayThen(sequence, action);
 	}
 
 	public override bool Produce(Actor self, ActorInfo producee, string productionType, TypeDictionary inits, int refundableValue)
@@ -263,23 +284,18 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				}
 				else if (this.NudgeBlockingActors(self, exitCell, actor))
 					this.State = AnimationState.WaitingForEjection;
-				else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not Mobile.ReturnToCellActivity))
+				else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not ProductionExitMove))
 				{
-					// Abort all activites except Move to prevent player from delaying the exit.
+					// Abort all activites except ProductionExitMove to prevent player from delaying the exit.
 					actor.CancelActivity();
 
+					// Using standard MoveTo always moves actor from one cell center to another (or subcell in case of actor located within subcell)
+					// Using activity similar to LocalMove (i.e. Drag) *is* necessary, because that moves actor from precise WPos to another WPos
+					// ProductionExitMove is safer variant of Drag that does checks not to move onto blocked cell.
+
+					var activity = new ProductionExitMove(actor, self, self.World.Map.CenterOfCell(exitCell));
+
 					// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
-					var activity = actor.Trait<IMove>().MoveTo(exitCell);
-					var mobile = actor.TraitOrDefault<Mobile>();
-
-					if (mobile != null)
-					{
-						var pos = actor.CenterPosition;
-						mobile.SetPosition(actor, exitCell);
-						mobile.SetCenterPosition(actor, pos);
-						activity = mobile.ReturnToCell(actor);
-					}
-
 					this.productionInfo = this.productionInfo with { ExitMoveActivity = activity };
 					actor.QueueActivity(this.productionInfo.ExitMoveActivity);
 				}
@@ -402,7 +418,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
 		if (actor.CurrentActivity != productionInfo.ExitMoveActivity)
 			return;
-		
+
 		foreach (var cell in this.rallyPoint.Path)
 		{
 			actor.QueueActivity(
@@ -425,15 +441,23 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	{
 		this.State = AnimationState.Opening;
 
-		// TODO First frame is skipped...?!
-		this.animation.Animation.PlayThen(
-			this.info.SequenceOpening,
-			() =>
-			{
+		void AfterSequenceOpened()
+		{
+			if (this.info.SequenceOpenLoop)
 				this.PlayAnimation(this.info.SequenceOpen);
-				self.World.AddFrameEndTask(_ => this.Opened(self));
-			}
-		);
+			else
+				this.PlayAnimation(this.info.SequenceOpen, repeat: false);
+			self.World.AddFrameEndTask(_ => this.Opened(self));
+		}
+
+		// TODO First frame is skipped...?!
+		if (!string.IsNullOrEmpty(this.info.SequenceOpening) && this.animation.Animation.HasSequence(this.info.SequenceOpening))
+			this.PlayAnimationThen(this.info.SequenceOpening, AfterSequenceOpened);
+		else
+			AfterSequenceOpened();
+
+		foreach (var file in this.info.SoundsOpening)
+			Game.Sound.PlayToPlayer(SoundType.World, self.Owner, file, self.CenterPosition);
 	}
 
 	// Called when we opened
@@ -451,23 +475,37 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			return;
 
 		var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
-		var exitCenter = this.GetExitCellCenter(self);
 		var spawnLocation = this.GetSpawnLocation(self, exit);
+		var exitCenter = self.World.Map.CellContaining(spawnLocation);
 
 		var initialFacing = this.productionInfo.ExitInfo.Facing
 			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnLocation, self.World.Map.CenterOfCell(exit));
 
+		// Don't use CenterPositionInit as that will cause Mobile to queue an uncancelable ReturnToCellActivity.
+		// AnimatedExitProduction or other *Production classes based on AnimatedExitProduction might want to customize behavior of produced actor.
+
 		var inits = this.productionInfo.Inits;
-		inits.Add(new LocationInit(self.World.Map.CellContaining(exitCenter)));
-		inits.Add(new CenterPositionInit(spawnLocation));
+		inits.Add(new LocationInit(exitCenter));
 		inits.Add(new FacingInit(initialFacing));
+
+		// HACK: CenterPositionInit is necessary, because otherwise oldPos private field in Mobile trait remains 0,0,0 after actor is created
+		// this causes Mobile.UpdateMovement to determine that Actor has moved (from 0,0,0 to spawn offset)
+		inits.Add(new CenterPositionInit(spawnLocation));
 
 		base.DoProduction(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
 	}
 
+	/// <summary>
+	/// Calls <see cref="Common.Traits.Production.DoProduction(Actor, ActorInfo, ExitInfo, string, TypeDictionary)"/>.
+	/// </summary>
+	protected void DoProductionBase(Actor self, ActorInfo producee, ExitInfo? exitInfo, string productionType, TypeDictionary inits)
+	{
+		base.DoProduction(self, producee, exitInfo, productionType, inits);
+	}
+
 	protected virtual WPos GetSpawnLocation(Actor self, CPos exitCell)
 	{
-		return this.GetExitCellCenter(self) + this.productionInfo?.ExitInfo.SpawnOffset ?? WPos.Zero;
+		return self.CenterPosition + this.info.Position;
 	}
 
 	// Called when we should close.
@@ -475,24 +513,27 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	{
 		this.State = AnimationState.Closing;
 
-		this.animation.Animation.PlayThen(
-			this.info.SequenceClosing,
-			() =>
-			{
-				this.PlayAnimation(this.info.SequenceClosed);
-				self.World.AddFrameEndTask(_ => this.Closed(self));
-			}
-		);
+		void AfterSequenceClosed()
+		{
+			this.PlayAnimation(this.info.SequenceClosed);
+			self.World.AddFrameEndTask(_ => this.Closed(self));
+		}
+
+		if (!string.IsNullOrEmpty(this.info.SequenceClosing) && this.animation.Animation.HasSequence(this.info.SequenceClosing))
+			this.PlayAnimationThen(this.info.SequenceClosing, AfterSequenceClosed);
+		else
+			AfterSequenceClosed();
 	}
 
 	// Called when we closed
 	protected virtual void Closed(Actor self)
 	{
+		this.lastNudge = 0;
 		this.State = AnimationState.Closed;
 		this.productionQueue.UnitCompleted(this.lastProducedUnit!.Actor!);
 	}
 
-	private static WAngle GetInitialFacing(ActorInfo producee, WPos spawn, WPos target)
+	protected static WAngle GetInitialFacing(ActorInfo producee, WPos spawn, WPos target)
 	{
 		WAngle initialFacing;
 		var delta = target - spawn;
@@ -507,13 +548,28 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	void INotifyProduction.UnitProduced(Actor self, Actor other, CPos exit)
 	{
-		// Mobile ICreationActivity queued an uncancelable ReturnToCellActivity activity -.-
-		// This looks horrible when not spawned at a cell center! (see infantry walking into the house before exiting)
+		// HACK: ReturnToCellActivity activity is queued because CenterPositionInit was used when creating Actor.
+		// Unfortunately this is necessary, because otherwise oldPos private field in Mobile trait remains 0,0,0 after actor is created.
+		// this causes Mobile.UpdateMovement to determine that Actor has moved (from 0,0,0 to spawn offset)
+
+		// TODO: PR to make ReturnToCellActivity on actor creation optional when CenterPositionInit is used
+
 		if (other.CurrentActivity is Mobile.ReturnToCellActivity)
 			other.GetType().GetField("currentActivity", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(other, other.CurrentActivity.NextActivity);
 
+		this.OnUnitProduced(self, other, exit);
+
 		if (this.productionInfo != null)
 			this.productionInfo = this.productionInfo with { Actor = other };
+	}
+
+	protected virtual void OnUnitProduced(Actor self, Actor other, CPos exit)
+	{
+		var spawnLocation = this.GetSpawnLocation(self, exit);
+		if (other.TryGetTrait<Mobile>(out var mobile))
+			mobile.SetCenterPosition(other, spawnLocation);
+		else if (other.TryGetTrait<Aircraft>(out var aircraft))
+			aircraft.SetCenterPosition(other, spawnLocation);
 	}
 
 	private Exit SelectAnyPassableExit(Actor self, ActorInfo producee, string productionType)
@@ -529,7 +585,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		);
 	}
 
-	private CPos GetExitCell(Actor self)
+	protected CPos GetExitCell(Actor self)
 	{
 		return self.World.Map.CellContaining(self.CenterPosition + this.info.Position);
 	}

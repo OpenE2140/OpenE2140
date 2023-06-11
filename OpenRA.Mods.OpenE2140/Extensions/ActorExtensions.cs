@@ -11,6 +11,8 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace OpenRA.Mods.OpenE2140.Extensions;
 
 public static class ActorExtensions
@@ -18,5 +20,11 @@ public static class ActorExtensions
 	public static IEnumerable<T> TryGetTraitsImplementing<T>(this Actor actor)
 	{
 		return actor.IsInWorld ? actor.TraitsImplementing<T>() : Enumerable.Empty<T>();
+	}
+
+	public static bool TryGetTrait<T>(this Actor actor, [MaybeNullWhen(false)] out T trait)
+	{
+		trait = actor.TraitOrDefault<T>();
+		return trait != null;
 	}
 }
