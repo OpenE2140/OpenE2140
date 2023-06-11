@@ -37,15 +37,12 @@ ucs_buildings_robot_factory:
 		ProductionType: Infantry.UCS
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: 0, -256, 0
 		ExitCell: -1,2
 		Facing: 384
 	Exit@Exit2:
-		SpawnOffset: 0, -256, 0
 		ExitCell: 0,2
 		Facing: 500
 	Exit@Exit3:
-		SpawnOffset: 0, -256, 0
 		ExitCell: 1,2
 		Facing: 650
 	Encyclopedia:
