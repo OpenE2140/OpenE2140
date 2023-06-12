@@ -11,3 +11,6 @@
 		AllowModifiers: false
 	ColorPickerColorShift:
 		BasePalette: colorpicker
+	# TODO: remove after PR to DrawLineToTarget trait making palette optional is merged.
+	PaletteFromGrayscale@terrain:
+		Name: terrain

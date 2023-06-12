@@ -45,6 +45,8 @@
 		Priority: 20
 	# Units have a healthbar when selected or hovered.
 	SelectionDecorations:
+	# Draw target lines.
+	DrawLineToTarget:
 	# Enemy units must be destroyed to win a game.
 	MustBeDestroyed:
 	# Units sequences should always use facings.
