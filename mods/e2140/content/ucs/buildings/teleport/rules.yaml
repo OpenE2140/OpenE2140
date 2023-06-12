@@ -48,6 +48,9 @@ ucs_buildings_teleport:
 	ProductionBar:
 		ProductionType: Vehicle.UCS
 	ProvidesPrerequisite:
+	# Units produced using Teleport cost 50% more.
+	ProductionCostMultiplier:
+		Multiplier: 150
 	Exit@Exit1:
 		ExitCell: 0,2
 		ExitDelay: 10
