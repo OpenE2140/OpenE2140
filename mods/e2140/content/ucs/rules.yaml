@@ -43,6 +43,9 @@ World:
 		AlwaysTurnInPlace: true
 	Mobile:
 		TurnSpeed: 32
+	# Mechs are not slower when they are damaged.
+	-GrantConditionOnDamageState@DecreasedSpeed:
+	-SpeedMultiplier:
 
 ^UcsAircraft:
 	Inherits: ^CoreAircraft

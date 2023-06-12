@@ -380,6 +380,14 @@
 	# Vehicles smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
+	# Condition to be granted to damaged vehicles so their speed can be decreased.
+	GrantConditionOnDamageState@DecreasedSpeed:
+		Condition: decreasedspeed
+		ValidDamageStates: Heavy, Critical
+	# Vehicles are 45% slower when they are heavily damaged.
+	SpeedMultiplier:
+		Modifier: 55
+		RequiresCondition: decreasedspeed
 
 # Add locomotor to world...
 ^CoreWorld:
