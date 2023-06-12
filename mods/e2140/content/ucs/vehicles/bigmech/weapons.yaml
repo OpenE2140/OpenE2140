@@ -38,7 +38,7 @@ ucs_vehicles_big_mech:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_smoke
+		Weapons: weapon_debris_smoke_1, weapon_debris_smoke_2, weapon_debris_smoke_3, weapon_debris_smoke_4, weapon_debris_smoke_5, weapon_debris_smoke_6
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground

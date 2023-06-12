@@ -1,4 +1,4 @@
-weapon_debris:
+debris_common:
 	ReloadDelay: 60
 	Range: 1c0
 	Projectile: Bullet
@@ -6,14 +6,14 @@ weapon_debris:
 		Blockable: false
 		LaunchAngle: 125, 175
 		Image: debris
-		#Sequences: debris1, debris2, debris3, debris4, debris5, debris6
+		Sequences: debris1
 		Palette: 
 		TrailPalette:
 		Shadow: true
 		ShadowColor: 00000046
 	Warhead@EffectGroundDebris: CreateEffect
 		Image: debris_ground
-		#Explosions: debris1, debris2, debris3, debris4, debris5, debris6
+		Explosions: debris1
 		ExplosionPalette:
 		ValidTargets: Ground
 	Warhead@EffectWater: CreateEffect
@@ -24,36 +24,101 @@ weapon_debris:
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure
 
-weapon_debris_1:
-	Inherits: weapon_debris
+debris_smoke:
+	Warhead@EffectGroundSmoke: CreateEffect
+		Image: smoke_debris
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+
+debris_slow:
 	Projectile: Bullet
-		Sequences: debris1
-	Warhead@EffectGroundDebris: CreateEffect
-		Explosions: debris1
+		Speed: 50,75
+		Palette: 
+		TrailPalette:
+
+weapon_debris_1:
+	Inherits: debris_common
 
 weapon_debris_2:
-	Inherits: weapon_debris
+	Inherits: debris_common
 	Projectile: Bullet
 		Sequences: debris2
 	Warhead@EffectGroundDebris: CreateEffect
 		Explosions: debris2
 
 weapon_debris_3:
-	Inherits: weapon_debris
+	Inherits: debris_common
 	Projectile: Bullet
 		Sequences: debris3
 	Warhead@EffectGroundDebris: CreateEffect
 		Explosions: debris3
 
-weapon_debris_slow:
-	Inherits: weapon_debris
+weapon_debris_4:
+	Inherits: debris_common
 	Projectile: Bullet
-		Speed: 50,75
+		Sequences: debris4
+	Warhead@EffectGroundDebris: CreateEffect
+		Explosions: debris4
 
-weapon_debris_smoke:
-	Inherits: weapon_debris
-	Warhead@EffectGroundSmoke: CreateEffect
-		Image: smoke_debris
-		Explosions: idle
-		ExplosionPalette:
-		ValidTargets: Ground
+weapon_debris_5:
+	Inherits: debris_common
+	Projectile: Bullet
+		Sequences: debris5
+	Warhead@EffectGroundDebris: CreateEffect
+		Explosions: debris5
+
+weapon_debris_6:
+	Inherits: debris_common
+	Projectile: Bullet
+		Sequences: debris6
+	Warhead@EffectGroundDebris: CreateEffect
+		Explosions: debris6
+
+weapon_debris_slow_1:
+	Inherits@1: weapon_debris_1
+	Inherits@2: debris_slow
+
+weapon_debris_slow_2:
+	Inherits@1: weapon_debris_2
+	Inherits@2: debris_slow
+
+weapon_debris_slow_3:
+	Inherits@1: weapon_debris_3
+	Inherits@2: debris_slow
+
+weapon_debris_slow_4:
+	Inherits@1: weapon_debris_4
+	Inherits@2: debris_slow
+
+weapon_debris_slow_5:
+	Inherits@1: weapon_debris_5
+	Inherits@2: debris_slow
+
+weapon_debris_slow_6:
+	Inherits@1: weapon_debris_6
+	Inherits@2: debris_slow
+
+weapon_debris_smoke_1:
+	Inherits@1: weapon_debris_1
+	Inherits@2: debris_smoke
+
+weapon_debris_smoke_2:
+	Inherits@1: weapon_debris_2
+	Inherits@2: debris_smoke
+
+weapon_debris_smoke_3:
+	Inherits@1: weapon_debris_3
+	Inherits@2: debris_smoke
+
+weapon_debris_smoke_4:
+	Inherits@1: weapon_debris_4
+	Inherits@2: debris_smoke
+
+weapon_debris_smoke_5:
+	Inherits@1: weapon_debris_5
+	Inherits@2: debris_smoke
+
+weapon_debris_smoke_6:
+	Inherits@1: weapon_debris_6
+	Inherits@2: debris_smoke

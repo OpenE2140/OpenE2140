@@ -12,8 +12,6 @@
 debris:
 	Inherits: ^Debris
 	Defaults:
-		InterpolatedFacings: 4
-		Facings: 1
 		ZOffset: 512
 		Length: 2
 		Tick: 60

@@ -37,7 +37,7 @@ ed_vehicles_ht33r:
 		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_slow
+		Weapons: weapon_debris_slow_1, weapon_debris_slow_2, weapon_debris_slow_3, weapon_debris_slow_4, weapon_debris_slow_5, weapon_debris_slow_6
 		Range: 0c256, 0c756
 		Pieces: 4,5
 		ValidTargets: Ground

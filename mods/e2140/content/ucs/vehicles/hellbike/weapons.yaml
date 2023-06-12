@@ -21,7 +21,7 @@ ucs_vehicles_hellbike:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_smoke
+		Weapons: weapon_debris_smoke_1, weapon_debris_smoke_2, weapon_debris_smoke_3, weapon_debris_smoke_4, weapon_debris_smoke_5, weapon_debris_smoke_6
 		Range: 0c256, 1c256
 		Pieces: 3, 4
 		ValidTargets: Ground

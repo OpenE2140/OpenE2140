@@ -30,17 +30,17 @@ ucs_vehicles_tiger_assault:
 		Damage: 15
 		DamageTypes: Explosion
 		ValidTargets: Air
-	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_1, weapon_debris_2, weapon_debris_3
-		Range: 1c0, 1c512
-		Pieces: 3, 6
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_rocket
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 14.smp
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke_1, weapon_debris_smoke_2, weapon_debris_smoke_3, weapon_debris_smoke_4, weapon_debris_smoke_5, weapon_debris_smoke_6
+		Range: 1c0, 1c512
+		Pieces: 3, 4
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectActor: CreateEffect

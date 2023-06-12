@@ -31,7 +31,7 @@ ed_infantry_a02:
 		DamageTypes: Explosion
 		ValidTargets: Air
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris
+		Weapons: weapon_debris_1, weapon_debris_2, weapon_debris_3, weapon_debris_4, weapon_debris_5, weapon_debris_6
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground

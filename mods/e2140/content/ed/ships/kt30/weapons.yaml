@@ -37,7 +37,7 @@ ed_ships_kt30:
 		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_slow
+		Weapons: weapon_debris_slow_1, weapon_debris_slow_2, weapon_debris_slow_3, weapon_debris_slow_4, weapon_debris_slow_5, weapon_debris_slow_6
 		Range: 0c256, 0c756
 		Pieces: 4,5
 		ValidTargets: Ground
@@ -102,7 +102,7 @@ ed_ships_kt30_secondary:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_smoke
+		Weapons: weapon_debris_smoke_1, weapon_debris_smoke_2, weapon_debris_smoke_3, weapon_debris_smoke_4, weapon_debris_smoke_5, weapon_debris_smoke_6
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
