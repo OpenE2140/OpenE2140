@@ -145,4 +145,21 @@ public class AnimatedExitProductionQueue : ProductionQueue
 		if (unpaused.Any())
 			base.TickInner(self, allProductionPaused);
 	}
+
+	/// <summary>
+	/// Calculates production cost of <paramref name="unit"/> using <see cref="IProductionCostModifierInfo"/> modifiers for both unit and queue's actor.
+	/// </summary>
+	public override int GetProductionCost(ActorInfo unit)
+	{
+		var valued = unit.TraitInfoOrDefault<ValuedInfo>();
+		if (valued == null)
+			return 0;
+
+		var modifiers =
+			unit.TraitInfos<IProductionCostModifierInfo>()
+			.Concat(this.Actor.Info.TraitInfos<IProductionCostModifierInfo>())
+			.Select(t => t.GetProductionCostModifier(this.techTree, this.Info.Type));
+
+		return Util.ApplyPercentageModifiers(valued.Cost, modifiers);
+	}
 }
