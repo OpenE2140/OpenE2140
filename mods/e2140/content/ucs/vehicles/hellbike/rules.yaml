@@ -7,7 +7,7 @@ ucs_vehicles_hellbike:
 		Cost: 200
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 60
 		BuildPaletteOrder: 100
 	Selectable:

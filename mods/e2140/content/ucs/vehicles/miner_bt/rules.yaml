@@ -7,7 +7,7 @@ ucs_vehicles_miner_bt:
 		Cost: 700
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 60
 		BuildPaletteOrder: 110
 	Selectable:

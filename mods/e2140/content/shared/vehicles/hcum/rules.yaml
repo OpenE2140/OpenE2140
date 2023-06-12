@@ -11,7 +11,7 @@ shared_vehicles_hcum:
 		Cost: 800
 	Buildable:
 		IconPalette:
-		Queue: Building.UCS, Building.ED
+		Queue: Building.UCS, Building.ED, Teleport.UCS
 		BuildDuration: 60
 	Selectable:
 		Bounds: 832, 656, 0, 0

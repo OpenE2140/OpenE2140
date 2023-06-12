@@ -7,7 +7,7 @@ ucs_vehicles_atm_500:
 		Cost: 400
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 60
 		BuildPaletteOrder: 80
 	Selectable:

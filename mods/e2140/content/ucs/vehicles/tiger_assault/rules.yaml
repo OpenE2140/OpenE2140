@@ -6,7 +6,7 @@ ucs_vehicles_tiger_assault:
 		Cost: 700
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 40
 		BuildPaletteOrder: 40
 	Selectable:

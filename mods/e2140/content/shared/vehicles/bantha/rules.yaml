@@ -10,7 +10,7 @@ shared_vehicles_bantha:
 		Cost: 400
 	Buildable:
 		IconPalette:
-		Queue: Building.UCS, Building.ED
+		Queue: Building.UCS, Building.ED, Teleport.UCS
 		BuildDuration: 60
 	Selectable:
 		Bounds: 1040, 1056, 0, 0

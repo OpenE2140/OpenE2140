@@ -32,11 +32,11 @@ ucs_buildings_teleport:
 		SoundsOpening: 129.smp
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
-		Produces: Vehicle.UCS
+		Produces: Teleport.UCS
 		Position: 0,0,0
 		ExitWaypointOffset: 0,512,0
 	AnimatedExitProductionQueue:
-		Type: Vehicle.UCS
+		Type: Teleport.UCS
 		Factions: ucs
 		Group: Vehicle
 		LowPowerModifier: 150
@@ -46,7 +46,7 @@ ucs_buildings_teleport:
 		-OnHoldAudio:
 		-QueuedAudio:
 	ProductionBar:
-		ProductionType: Vehicle.UCS
+		ProductionType: Teleport.UCS
 	ProvidesPrerequisite:
 	# Units produced using Teleport cost 50% more.
 	ProductionCostMultiplier:

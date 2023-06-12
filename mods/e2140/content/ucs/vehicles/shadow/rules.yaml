@@ -6,7 +6,7 @@ ucs_vehicles_shadow:
 		Cost: 2100
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 60
 		BuildPaletteOrder: 120
 	Selectable:

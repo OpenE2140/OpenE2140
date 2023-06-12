@@ -6,7 +6,7 @@ ucs_vehicles_tiger_hellmaker:
 		Cost: 500
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 40
 		BuildPaletteOrder: 50
 	Selectable:

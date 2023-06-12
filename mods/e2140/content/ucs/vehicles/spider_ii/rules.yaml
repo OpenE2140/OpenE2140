@@ -6,7 +6,7 @@ ucs_vehicles_spider_ii:
 		Cost: 1700
 	Buildable:
 		IconPalette:
-		Queue: Vehicle.UCS
+		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 100
 		BuildPaletteOrder: 70
 	Selectable:
