@@ -9,7 +9,7 @@ ed_aircrafts_nemezis:
 		Shadow: True
 		ShadowColor: 00000046
 		Palette:
-		Image: projectile_bomb
+		Image: projectile_nuclear_bomb
 		Sequences: idle
 	Warhead@Damage: SpreadDamage
 		Spread: 0c728
