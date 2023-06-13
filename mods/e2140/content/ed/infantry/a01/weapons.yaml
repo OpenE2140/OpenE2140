@@ -30,7 +30,7 @@ ed_infantry_a01_machine_gun:
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure, Ship
+		ValidTargets: Vehicle, Structure, Ship, Air
 
 ed_infantry_a01_grenade:
 	Inherits: Smudges
@@ -58,7 +58,7 @@ ed_infantry_a01_grenade:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle

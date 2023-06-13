@@ -22,7 +22,7 @@ ucs_aircrafts_hellwind:
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 22.smp, 23.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle

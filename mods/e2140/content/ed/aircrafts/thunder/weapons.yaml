@@ -31,7 +31,7 @@ ed_aircrafts_thunder:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Air
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
@@ -43,7 +43,7 @@ ed_aircrafts_thunder:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Ship
+		ValidTargets: Vehicle, Structure, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
