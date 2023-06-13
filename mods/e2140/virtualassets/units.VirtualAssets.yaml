@@ -204,7 +204,9 @@ Generate:
 
 	vehicle_bantha: Shadow Player Tracks
 		idle: 245-253 16
+			Offsets: 251:-1,3
 		move: 245-253 16 4
+			Offsets: 251:-1,3
 		extend: 254-255
 		extended: 255
 		retract: 255-256
