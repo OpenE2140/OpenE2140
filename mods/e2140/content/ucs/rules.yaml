@@ -59,6 +59,8 @@ World:
 	Explodes:
 		Weapon: UcsInfantryExplosion
 		EmptyWeapon: UcsInfantryExplosion
+	Targetable:
+		TargetTypes: Ground, InfantryUCS
 
 ^UcsShip:
 	Inherits: ^CoreShip
