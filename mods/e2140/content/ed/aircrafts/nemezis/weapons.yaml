@@ -21,4 +21,4 @@ ed_aircrafts_nemezis:
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 14.smp
-		ValidTargets: Ground, Water, Ship
+		ValidTargets: Ground, Water, Ship, Air

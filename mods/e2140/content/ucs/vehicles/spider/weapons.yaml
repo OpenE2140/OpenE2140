@@ -23,7 +23,7 @@ ucs_vehicles_spider:
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 22.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle

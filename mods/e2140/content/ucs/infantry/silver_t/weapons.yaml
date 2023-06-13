@@ -20,7 +20,7 @@ ucs_infantry_silver_t_explode:
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground, Water, Ship
+		ValidTargets: Ground, Water, Ship, Air
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_small
 		Explosions: idle

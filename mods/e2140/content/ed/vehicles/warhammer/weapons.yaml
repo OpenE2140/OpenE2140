@@ -25,7 +25,7 @@ ed_vehicles_warhammer:
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris
 		Range: 0c512, 1c0

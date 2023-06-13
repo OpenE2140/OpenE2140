@@ -30,7 +30,7 @@ ed_infantry_a03:
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 18.smp, 19.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle

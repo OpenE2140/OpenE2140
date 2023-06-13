@@ -23,7 +23,7 @@ ucs_infantry_silver_max:
 		Explosions: explode
 		ExplosionPalette:
 		ImpactSounds: 22.smp
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash_firearm
 		Explosions: idle

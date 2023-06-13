@@ -25,4 +25,4 @@ ed_vehicles_mt201l:
 		Image: smoke
 		Explosions: idle
 		ExplosionPalette:
-		ValidTargets: Ground, Water, Ship
+		ValidTargets: Ground, Water, Ship, Air

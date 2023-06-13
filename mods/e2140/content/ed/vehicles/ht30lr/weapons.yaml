@@ -25,7 +25,7 @@ ed_vehicles_ht30lr_laser:
 		Image: smoke
 		Explosions: idle
 		ExplosionPalette:
-		ValidTargets: Ground, Water, Ship
+		ValidTargets: Ground, Water, Ship, Air
 
 ed_vehicles_ht30lr_missiles:
 	Inherits: Smudges

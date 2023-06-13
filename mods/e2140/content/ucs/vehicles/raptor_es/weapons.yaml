@@ -30,4 +30,4 @@ ucs_vehicles_raptor_es:
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure, Infantry, Ship
+		ValidTargets: Vehicle, Structure, Infantry, Ship, Air
