@@ -3,7 +3,7 @@ ucs_vehicles_goliath:
 	Range: 1c256
 	Projectile: InstantHit
 	Warhead@Damage: TargetDamage
-		Spread: 256
+		Spread: 400
 		Damage: 300
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
