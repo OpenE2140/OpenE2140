@@ -34,7 +34,6 @@ debris_ground:
 	Inherits: ^Debris
 	Defaults:
 		ZOffset: 512
-		Tick: 250
 	debris1:
 		Frames: 49
 	debris2:
