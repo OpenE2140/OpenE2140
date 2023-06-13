@@ -123,6 +123,10 @@ Palettes:
 		253: 0 0 0 32
 		254: 0 0 0 64
 
+	ShadowTTRE: Merge
+		240: 0 0 0 64
+		254: 0 0 0 64
+
 	Husk: Merge Multiply
 		0-239[1_1_0]: 128 128 128
 		240-243: 0 0 0
@@ -416,7 +420,7 @@ Generate:
 		move: 607-615 16 4
 		flicker: 607-615 16 2 FlickerOn
 
-	ship_ttre_400: Shadow Player
+	ship_ttre_400: ShadowTTRE Player
 		idle: 616-624 16
 			Offsets: 616-624:-1,0
 
