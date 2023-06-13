@@ -1,0 +1,15 @@
+blood:
+	Defaults:
+		Filename: content/core/assets/blood.png
+		ZOffset: 512
+	blood1:
+		Length: 4
+		Tick: 80
+	blood2:
+		Start: 4
+		Length: 4
+		Tick: 80
+	blood3:
+		Start: 8
+	blood4:
+		Start: 9

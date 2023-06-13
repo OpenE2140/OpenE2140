@@ -1,0 +1,11 @@
+weapon_blood:
+	ReloadDelay: 60
+	Range: 1c0
+	Projectile: Bullet
+		Speed: 35,40
+		Blockable: false
+		LaunchAngle: 125, 175
+		Image: blood
+		Sequences: blood1, blood2, blood3, blood4
+		Palette: 
+		TrailPalette:
