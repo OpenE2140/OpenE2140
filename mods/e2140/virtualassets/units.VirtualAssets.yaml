@@ -61,6 +61,12 @@ Palettes:
 		242: 0 0 0
 		243: 0 0 123
 
+	EngineTakeoff: Merge
+		240: 255 0 0
+		241: 0 0 120
+		242: 120 156 184
+		243: 120 156 184
+
 	Muzzle: Replace
 		0:
 			244: 255 158 82
@@ -354,11 +360,13 @@ Generate:
 	aircraft_hellwind: Player
 		idle: 504-512 16 EngineOff
 		move: 504-512 16 EngineOn
+		takeoff: 504-512 16 EngineTakeoff
 
 	aircraft_gargoil: Player NoMuzzle
 		idle: 513-521 16 EngineOff
 		move: 513-521 16 EngineOn
 		muzzle: 513-521 16 3 Muzzle
+		takeoff: 513-521 16 EngineTakeoff
 
 	vehicle_miner_bt: Shadow Player Tracks FlickerOff
 		idle: 522-530 16
@@ -587,6 +595,7 @@ Generate:
 	aircraft_gargoil_ii: Player
 		idle: 1224-1232 16 EngineOff
 		move: 1224-1232 16 EngineOn
+		takeoff: 1224-1232 16 EngineTakeoff
 
 	vehicle_warhammer: Shadow Player Tracks
 		idle: 1233-1241 16
@@ -599,7 +608,9 @@ Generate:
 	aircraft_vtol: Player
 		idle: 1251-1259 16 EngineOff
 		move: 1251-1259 16 EngineOn
+		takeoff: 1251-1259 16 EngineTakeoff
 
 	aircraft_nemezis: Player
 		idle: 1260-1268 16 EngineOff
 		move: 1260-1268 16 EngineOn
+		takeoff: 1260-1268 16 EngineTakeoff
