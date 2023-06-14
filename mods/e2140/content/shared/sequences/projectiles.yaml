@@ -1,7 +1,7 @@
 projectile_rocket:
 	Defaults:
 		Filename: projectile_rocket.vspr
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		InterpolatedFacings: 64
 		Facings: -16
@@ -14,7 +14,7 @@ projectile_rocket:
 projectile_cannon:
 	Defaults:
 		Filename: projectile_cannon.vspr
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 	explode:
 		BlendMode: Additive
@@ -30,7 +30,7 @@ projectile_cannon:
 projectile_heavy_rocket:
 	Defaults:
 		Filename: projectile_heavy_rocket.vspr
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		InterpolatedFacings: 64
 		Facings: -16
@@ -50,14 +50,14 @@ missile_trail:
 		Length: 4
 	idle:
 		BlendMode: Additive
-		ZOffset: 512
+		ZOffset: 1024
 	explode:
 		BlendMode: Subtractive
 		ZOffset: -64
 
 projectile_plasma:
 	Defaults:
-		ZOffset: 512
+		ZOffset: 1024
 		BlendMode: Additive
 	idle:
 		Filename: content/core/assets/projectile_plasma.png
@@ -69,7 +69,7 @@ projectile_plasma:
 
 projectile_plasma_small:
 	Defaults:
-		ZOffset: 512
+		ZOffset: 1024
 		BlendMode: Additive
 	idle:
 		Filename: content/core/assets/projectile_plasma_small.png
@@ -82,7 +82,7 @@ projectile_plasma_small:
 projectile_ion:
 	Defaults:
 		BlendMode: Additive
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		Filename: content/core/assets/projectile_ion.png
 		InterpolatedFacings: 64
@@ -94,7 +94,7 @@ projectile_ion:
 projectile_ion_small:
 	Defaults:
 		BlendMode: Additive
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		Filename: content/core/assets/projectile_ion_small.png
 		InterpolatedFacings: 64
@@ -113,7 +113,7 @@ projectile_bomb:
 projectile_napalm_bomb:
 	Defaults:
 		Filename: projectile_napalm_bomb.vspr
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		Length: 2
 		Tick: 60
@@ -126,7 +126,7 @@ projectile_napalm_bomb:
 projectile_grenade:
 	Defaults:
 		Filename: projectile_grenade.vspr
-		ZOffset: 512
+		ZOffset: 1024
 	idle:
 		Length: 2
 	explode:
@@ -147,7 +147,7 @@ projectile_plasma_bomb:
 		BlendMode: Additive
 		Start: 1
 		Length: 8
-		ZOffset: 512
+		ZOffset: 1024
 
 projectile_nuclear_bomb:
 	idle:
