@@ -8,10 +8,10 @@ ed_vehicles_screamer:
 		Length: 4
 		Facings: -16
 	idle-overlay:
-		Filename: turret_screamer.vspr
+		Filename: content/ed/vehicles/screamer/turret_screamer.png
 		Length: 16
 		Tick: 50
-		Offset: 0, -8
+		Offset: 2, -7
 	icon:
 		Filename: SPRI0.MIX
 		Start: 152
