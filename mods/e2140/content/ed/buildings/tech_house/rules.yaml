@@ -14,21 +14,24 @@ ed_buildings_tech_house:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xxx ===
+		LocalCenterOffset: -560,-815,0
+	TransformSequence:
+		Offset: 540,750,0
 	HitShape:
-		TargetableOffsets: 2024,-1224,0,   2024,-512,0,   2024,100,0,   1024,-1224,0,  1024,-512,0,   1024,100,0
+		TargetableOffsets:  1200,-224,0,  850,200,0,   412,600,0,   600,-524,0,  250,-100,0,   -212,300,0,    0,-824,0,  -450,-400,0,   -812,0,0
 		Type: Rectangle
-			TopLeft: -1424, -1724
-			BottomRight: 256, -256
+			TopLeft: -1024, -1024
+			BottomRight: 956, 656
 	HitShape@Elevator:
-		TargetableOffsets: 124,1024,0
+		TargetableOffsets: -1224,1600,0
 		Type: Rectangle
-			TopLeft: 656, -456
-			BottomRight: 1412, 312
+			TopLeft: 1256, 356
+			BottomRight: 2012, 1112
 	Selectable:
-		Bounds: 2064, 1984, -513, -495
+		Bounds: 2064, 1984, 0, 0
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 992, -104, 0
+		Position: 1575, 750, 0
 		CutOff: 29
 		Produces: Vehicle.ED
 	AnimatedExitProductionQueue:

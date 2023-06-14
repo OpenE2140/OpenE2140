@@ -1,7 +1,6 @@
 ed_buildings_tech_house:
 	Defaults:
 		Filename: building_tech_house.vspr
-		Offset: -36, -54, 0
 	idle:
 	idle-lights:
 		Start: 1
