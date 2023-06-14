@@ -32,6 +32,9 @@ ed_vehicles_ht33r:
 		RecoilRecovery: 38
 		LocalOffset: 200,100,100,200,-100,100,200,0,100
 		MuzzlePalette:
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 6

@@ -27,6 +27,9 @@ ed_vehicles_mt201l:
 		LocalOffset: 350,0,50
 		LocalYaw: 0
 		MuzzlePalette:
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 4

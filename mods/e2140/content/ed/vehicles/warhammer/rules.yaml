@@ -57,6 +57,9 @@ ed_vehicles_warhammer:
 		Delay: 50
 		ResetOnFire: True
 		Count: 6
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 13

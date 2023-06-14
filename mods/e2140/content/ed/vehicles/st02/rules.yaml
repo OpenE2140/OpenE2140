@@ -32,6 +32,9 @@ ed_vehicles_st02:
 		RecoilRecovery: 38
 		LocalOffset: 100,-100,0, 100,100,0
 		MuzzlePalette:
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 2

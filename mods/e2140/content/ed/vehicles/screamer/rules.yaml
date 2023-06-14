@@ -21,6 +21,9 @@ ed_vehicles_screamer:
 		Palette:
 	DetectCloaked:
 		Range: 4c896
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 12

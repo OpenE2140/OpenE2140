@@ -411,6 +411,18 @@
 			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
+	Locomotor@vehicleWtp100:
+		Name: vehicleWtp100
+		Crushes: infantry
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Clear: 100
+			Sand: 50
+			SandEdge: 50
+			Road: 100
+			AsphaltRoad: 100	
+			Water: 100
+			Shore: 100
 
 # Base for all aircrafts
 ^CoreAircraft:

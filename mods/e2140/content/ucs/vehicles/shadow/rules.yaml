@@ -21,6 +21,9 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 11

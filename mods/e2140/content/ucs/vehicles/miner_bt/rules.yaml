@@ -27,6 +27,9 @@ ucs_vehicles_miner_bt:
 		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 10

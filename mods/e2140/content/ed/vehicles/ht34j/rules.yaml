@@ -27,6 +27,9 @@ ed_vehicles_ht34j:
 		LocalOffset: 450,0,75
 		LocalYaw: 0
 		MuzzlePalette:
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 7

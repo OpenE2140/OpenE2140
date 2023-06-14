@@ -30,6 +30,9 @@ ucs_vehicles_hellbike:
 		Delay: 50
 		ResetOnFire: True
 		Count: 1
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 8

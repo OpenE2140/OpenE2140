@@ -47,6 +47,9 @@ ucs_vehicles_tiger_hellmaker:
 		Count: 2
 	WithDamageOverlay:
 		Image: smoking_mech
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 5

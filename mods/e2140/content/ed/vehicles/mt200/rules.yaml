@@ -39,6 +39,9 @@ ed_vehicles_mt200:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 3

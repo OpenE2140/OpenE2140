@@ -37,6 +37,9 @@ shared_vehicles_hcum:
 		InitialStance: AttackAnything
 	AutoTargetPriority@Default:
 		ValidTargets: DamagedVehicle
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 3

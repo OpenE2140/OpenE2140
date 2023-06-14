@@ -20,6 +20,9 @@ shared_vehicles_bantha:
 		Speed: 50
 	RevealsShroud:
 		Range: 2c896
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 2

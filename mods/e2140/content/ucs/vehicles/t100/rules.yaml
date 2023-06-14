@@ -35,6 +35,9 @@ ucs_vehicles_t100:
 		Delay: 56
 		ResetOnFire: True
 		Count: 7
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 1

@@ -45,6 +45,9 @@ ucs_vehicles_raptor_ad:
 		Count: 1
 	AttackFrontal:
 		FacingTolerance: 25
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 3

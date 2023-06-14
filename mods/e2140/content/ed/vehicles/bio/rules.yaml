@@ -27,6 +27,9 @@ ed_vehicles_bio:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 9

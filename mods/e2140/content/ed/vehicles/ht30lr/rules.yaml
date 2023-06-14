@@ -72,6 +72,9 @@ ed_vehicles_ht30lr:
 		Delay: 50
 		#ResetOnFire: True #TODO Secondary turret resets the timer when it shoots but it shouldn't.
 		Count: 20
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 5

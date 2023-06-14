@@ -49,6 +49,9 @@ ucs_vehicles_spider:
 		Count: 22
 	WithDamageOverlay:
 		Image: smoking_mech
+	Passenger:
+		CargoType: HeavyVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 6

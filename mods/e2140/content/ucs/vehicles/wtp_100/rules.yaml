@@ -1,5 +1,5 @@
 ucs_vehicles_wtp_100:
-	Inherits@1: ^CoreVehicle
+	Inherits: ^UcsVehicle
 	Tooltip:
 		Name: WTP 100
 	Valued:
@@ -14,6 +14,7 @@ ucs_vehicles_wtp_100:
 	Health:
 		HP: 300
 	Mobile:
+		Locomotor: vehicleWtp100
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
@@ -21,6 +22,16 @@ ucs_vehicles_wtp_100:
 		Sound: 31.smp
 	# WTP 100 doesn't have move animation.
 	-WithMoveAnimation:
+	Cargo:
+		Types: Infantry, LightVehicle, HeavyVehicle
+		MaxWeight: 6
+		UnloadVoice: Unload
+		UnloadCursor: exit
+	WithCargoPipsDecoration:
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	Encyclopedia:
 		Category: UCS - Ships
 		Order: 1

@@ -27,6 +27,9 @@ ed_vehicles_miner:
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 	WithMuzzleOverlay@muzzle:
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 11

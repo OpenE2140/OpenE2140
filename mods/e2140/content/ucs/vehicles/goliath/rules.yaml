@@ -29,6 +29,9 @@ ucs_vehicles_goliath:
 		Condition: triggered
 	KillsSelf:
 		RequiresCondition: triggered
+	Passenger:
+		CargoType: LightVehicle
+		Weight: 6
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 13
