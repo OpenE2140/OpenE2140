@@ -64,9 +64,6 @@ Actors:
 	Actor10: neutral_tree01
 		Owner: Neutral
 		Location: 29,8
-	Actor12: neutral_tree05
-		Owner: Neutral
-		Location: 31,24
 	Actor13: neutral_tree04
 		Owner: Neutral
 		Location: 2,31
