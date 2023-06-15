@@ -1,0 +1,38 @@
+ed_ships_wtrn:
+	Inherits: ^EdShip
+	Tooltip:
+		Name: WTRN
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Ship.ED
+		BuildDuration: 60
+		BuildPaletteOrder: 20
+	Selectable:
+		Bounds: 1296, 1088, 0, 0
+	Health:
+		HP: 400
+	Mobile:
+		Locomotor: vehicleWtrn
+		Speed: 90
+	RevealsShroud:
+		Range: 2c896
+	Encyclopedia:
+		Category: ED - Ships
+		Order: 2
+		Animation: DATABASE/PM17.FLC
+		Title: WTRN - Deep Sea-Transporter
+		Armor: Medium
+		Armament: None
+		Description: The WTRN is a nautical transport unit for small battle units and middle-sized vehicles. It can carry one vehicle and up to five battle units.The battle units have to board the WTRN first due to restrictions in the construction of the transporter. It can also carry six small battle units if required. The WTRN is not very fast but, due to its armor-plating, can stand up to sustained attacks from the enemy. A vehicle on board can still fire its weapons, an obvious advantage.
+
+# WTRN has special locomotor as it can move on water and shore.
+^CoreWorld:
+	Locomotor@vehicleWtrn:
+		Name: vehicleWtrn
+		Crushes: infantry
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Water: 100
+			Shore: 100
