@@ -1,0 +1,27 @@
+ucs_ships_ttre400:
+	Inherits: ^UcsShip
+	Tooltip:
+		Name: TTRE 400
+	Valued:
+		Cost: 700
+	Buildable:
+		IconPalette:
+		Queue: Ship.UCS
+		BuildDuration: 60
+		BuildPaletteOrder: 20
+	Selectable:
+		Bounds: 1104, 944, 0, 0
+	Health:
+		HP: 260
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 2c896
+	Encyclopedia:
+		Category: UCS - Ships
+		Order: 3
+		Animation: DATABASE/BT14.FLC
+		Title: TTRE 400 - Mine layer
+		Armor: Medium
+		Armament: Water mines
+		Description: The TTR is a fast mine layer which can safeguard territories effectively from enemy ships and submarines by laying and moving water mines.\n\nThe only armament a TTR 400 carries are its mines, making it an easy target for the enemy. It’s only defense is to retreat, dropping mines in the water as it goes.
