@@ -32,6 +32,7 @@ Rules:
 	e2140|content/ed/infantry/a03/rules.yaml
 	e2140|content/ed/infantry/a04/rules.yaml
 	e2140|content/ed/ships/shark/rules.yaml
+	e2140|content/ed/ships/wtrn/rules.yaml
 	e2140|content/ed/ships/kt30/rules.yaml
 
 Sequences:
@@ -62,6 +63,7 @@ Sequences:
 	e2140|content/ed/infantry/a02/sequences.yaml
 	e2140|content/ed/infantry/a03/sequences.yaml
 	e2140|content/ed/infantry/a04/sequences.yaml
+	e2140|content/ed/ships/wtrn/sequences.yaml
 	e2140|content/ed/ships/shark/sequences.yaml
 	e2140|content/ed/ships/kt30/sequences.yaml
 

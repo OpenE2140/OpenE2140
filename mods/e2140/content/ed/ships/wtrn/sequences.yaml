@@ -1,0 +1,21 @@
+ed_ships_wtrn:
+	idle:
+		Filename: ship_wtrn.vspr
+		Facings: -16
+	move:
+		Filename: ship_wtrn.vspr
+		Facings: -16
+	icon:
+		Filename: SPRI0.MIX
+		Start: 155
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 156
+
+# TODO: remove after PR #20705
+ed_ships_wtrn.ucs:
+	Inherits: ed_ships_wtrn
+	icon:
+		Filename: SPRI1.MIX
+		Start: 155
