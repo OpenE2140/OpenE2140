@@ -59,6 +59,10 @@ Generate:
 		explode: 8-15
 		explode2: 0-7
 
+	projectile_torpedo:
+		idle: 97-105 16
+			Offsets: 98,104:-1,0 100,102:1,0
+
 	smoke:
 		idle: 169-176
 
