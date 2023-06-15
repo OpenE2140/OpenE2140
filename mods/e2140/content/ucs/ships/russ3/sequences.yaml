@@ -1,0 +1,21 @@
+ucs_ships_russ3:
+	idle:
+		Filename: ship_russ3.vspr
+		Facings: -16
+	move:
+		Filename: ship_russ3.vspr
+		Facings: -16
+	icon:
+		Filename: SPRI1.MIX
+		Start: 157
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI0.MIX
+	#	Start: 157
+
+# TODO: remove after PR #20705
+ucs_ships_russ3.ed:
+	Inherits: ucs_ships_russ3
+	icon:
+		Filename: SPRI0.MIX
+		Start: 157
