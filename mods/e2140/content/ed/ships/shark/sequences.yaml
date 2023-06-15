@@ -1,0 +1,21 @@
+ed_ships_shark:
+	idle:
+		Filename: ship_shark.vspr
+		Facings: -16
+	move:
+		Filename: ship_shark.vspr
+		Facings: -16
+	icon:
+		Filename: SPRI0.MIX
+		Start: 154
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI1.MIX
+	#	Start: 154
+
+# TODO: remove after PR #20705
+ed_ships_shark.ucs:
+	Inherits: ed_ships_shark
+	icon:
+		Filename: SPRI1.MIX
+		Start: 154
