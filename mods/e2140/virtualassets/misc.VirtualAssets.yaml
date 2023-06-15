@@ -18,7 +18,7 @@ Generate:
 	# TODO map all stuff here!
 	projectile_rocket:
 		idle: 62-70 16
-		explode: 47-55
+		explode: 48-55
 
 	missile_trail: Smoke
 		idle: 157-160

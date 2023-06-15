@@ -9,7 +9,7 @@ projectile_rocket:
 		BlendMode: Additive
 		Offset: 0, -16, 0
 		Start: 16
-		Length: 9
+		Length: 8
 
 projectile_cannon:
 	Defaults:
