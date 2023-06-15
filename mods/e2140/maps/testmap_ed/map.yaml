@@ -388,7 +388,11 @@ Actors:
 		Owner: ED_Player
 		Facing: 384
 		Location: 26,28
-	Actor92: ed_ships_shark
+	Actor92: ed_ships_wtrn
+		Owner: ED_Player
+		Location: 25,28
+		Facing: 384
+	Actor93: ed_ships_shark
 		Owner: ED_Player
 		Facing: 384
 		Location: 24,28
