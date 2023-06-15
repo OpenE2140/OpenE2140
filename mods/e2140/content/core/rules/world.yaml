@@ -112,7 +112,7 @@ World:
 	# Random water animation
 	TerrainTileAnimation:
 		Tiles: 100, 101
-		Interval: 0,15
+		Interval: 0,10
 		Image: water_wave
 		Sequences: wave, wave, wave
 		LoopCount: 3
