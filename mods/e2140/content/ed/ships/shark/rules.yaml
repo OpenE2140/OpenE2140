@@ -1,0 +1,40 @@
+ed_ships_shark:
+	Inherits@1: ^EdShip
+	Inherits@2: ^CoreArmedSelf
+	Tooltip:
+		Name: SHARK
+	Valued:
+		Cost: 300
+	Buildable:
+		IconPalette:
+		Queue: Ship.ED
+		BuildDuration: 60
+		BuildPaletteOrder: 10
+	Selectable:
+		Bounds: 704, 624, 0, 0
+	Health:
+		HP: 200
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 3c896
+	Armament:
+		Weapon: ed_ships_shark
+		LocalOffset: 0,-100,0,   0,100,0
+		MuzzlePalette:
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 2
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 100
+		ResetOnFire: True
+		Count: 1
+	Encyclopedia:
+		Category: ED - Ships
+		Order: 1
+		Animation: DATABASE/PM16.FLC
+		Title: Shark - Fast boat
+		Armor: Medium
+		Armament: Torpedoes
+		Description: Its high velocity and its torpedoes make the SHARK ideal for quick attacks aimed at destroying enemy marine units. How-ever, SHARK is completely helpless against landbased or air-borne attacks.\n\nA SHARK should avoid direct confrontation and use its speed to get enough distance between itself and the enemy

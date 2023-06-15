@@ -156,3 +156,11 @@ projectile_nuclear_bomb:
 		Facings: -16
 		Tick: 100
 		ZOffset: -64
+
+projectile_torpedo:
+	Defaults:
+		Filename: projectile_torpedo.vspr
+		ZOffset: -512
+	idle:
+		InterpolatedFacings: 64
+		Facings: -16

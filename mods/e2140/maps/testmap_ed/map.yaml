@@ -391,5 +391,9 @@ Actors:
 		Owner: ED_Player
 		Facing: 384
 		Location: 26,28
+	Actor92: ed_ships_shark
+		Owner: ED_Player
+		Facing: 384
+		Location: 24,28
 
 Rules: rules.yaml
