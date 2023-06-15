@@ -337,5 +337,9 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 19,15
+	Actor78: ucs_ships_ttre400
+		Owner: UCS_Player
+		Location: 24,28
+		Facing: 388
 
 Rules: rules.yaml

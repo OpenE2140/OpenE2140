@@ -31,6 +31,7 @@ Rules:
 	e2140|content/ucs/infantry/silver_r/rules.yaml
 	e2140|content/ucs/infantry/silver_max/rules.yaml
 	e2140|content/ucs/infantry/silver_t/rules.yaml
+	e2140|content/ucs/ships/ttre400/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -60,6 +61,7 @@ Sequences:
 	e2140|content/ucs/infantry/silver_r/sequences.yaml
 	e2140|content/ucs/infantry/silver_max/sequences.yaml
 	e2140|content/ucs/infantry/silver_t/sequences.yaml
+	e2140|content/ucs/ships/ttre400/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
