@@ -1,0 +1,39 @@
+shared_misc_landmine:
+	Inherits: ^CoreVisibleActor
+	Selectable:
+		Bounds: 256,288,0,0
+	HiddenUnderFog:
+		Type: CenterPosition 
+	WithSpriteBody:
+	Mine:
+		CrushClasses: mine
+		DetonateClasses: mine
+		BlockFriendly: False
+	Health:
+		HP: 10
+	Armor:
+		Type: vehicle
+	Explodes:
+		Weapon: shared_misc_landmine
+		EmptyWeapon: shared_misc_landmine
+	Cloak:
+		UncloakOn: Attack
+		Palette:
+		EffectPalette:
+		DetectionTypes: LandMine
+		InitialDelay: 0
+	Tooltip:
+		Name: Land Mine
+	Targetable:
+		TargetTypes: Ground, Mine
+	Immobile:
+		OccupiesSpace: True
+	HitShape:
+		Type: Circle
+			Radius: 128
+	MapEditorData:
+		Categories: Mine
+	KillsSelf:
+		RequiresCondition: triggered
+	GrantConditionOnDeploy:
+		DeployedCondition: triggered

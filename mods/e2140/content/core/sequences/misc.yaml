@@ -58,6 +58,12 @@ pips:
 	pip-green:
 		Filename: content/core/assets/pips.png
 		Start: 1
+	pip-grey:
+		Filename: content/core/assets/pips.png
+		Start: 2
+	pip-red:
+		Filename: content/core/assets/pips.png
+		Start: 3
 
 powerdown:
 	idle:

@@ -12,6 +12,8 @@ Rules:
 	e2140|content/shared/infantry/civil1/rules.yaml
 	e2140|content/shared/infantry/civil2/rules.yaml
 	e2140|content/shared/infantry/civil3/rules.yaml
+	e2140|content/shared/misc/landmine/rules.yaml
+	e2140|content/shared/misc/watermine/rules.yaml
 
 Sequences:
 	e2140|content/shared/sequences/projectiles.yaml
@@ -26,6 +28,10 @@ Sequences:
 	e2140|content/shared/infantry/civil1/sequences.yaml
 	e2140|content/shared/infantry/civil2/sequences.yaml
 	e2140|content/shared/infantry/civil3/sequences.yaml
+	e2140|content/shared/misc/landmine/sequences.yaml
+	e2140|content/shared/misc/watermine/sequences.yaml
 
 Weapons:
 	e2140|content/shared/vehicles/hcum/weapons.yaml
+	e2140|content/shared/misc/landmine/weapons.yaml
+	e2140|content/shared/misc/watermine/weapons.yaml

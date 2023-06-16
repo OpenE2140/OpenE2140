@@ -20,13 +20,39 @@ ed_vehicles_miner:
 		Range: 2c896
 	Turreted:
 		Offset: 0,0,60
-	Armament@PRIMARY:
+	Armament:
 		Weapon: ed_vehicles_miner
 		Recoil: 60
 		RecoilRecovery: 38
 		MuzzlePalette:
 		MuzzleSequence: muzzle
 	WithMuzzleOverlay@muzzle:
+	Minelayer:
+		Mine: shared_misc_landmine
+		AmmoPoolName: Mines
+		Voice: Unload
+		DeployCursor: minePlace
+		AbilityCursor: minePlace
+	AmmoPool:
+		Name: Mines
+		Armaments: WeaponMines
+		Ammo: 5
+	ReloadAmmoPool:
+		AmmoPool: Mines
+		Delay: 500
+		Count: 1
+	Rearmable:
+		RearmActors:
+		AmmoPools: Mines
+	DetectCloaked:
+		Range: 2c896
+		DetectionTypes: LandMine
+	WithAmmoPipsDecoration:
+		FullSequence: pip-grey
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 11

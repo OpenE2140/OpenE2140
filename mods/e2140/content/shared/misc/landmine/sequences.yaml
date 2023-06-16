@@ -1,0 +1,14 @@
+shared_misc_landmine:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: land_mine-wasteland.vspr
+			DESERT: land_mine-desert.vspr
+			SANDY: land_mine-sandy.vspr
+			TEMPERATE: land_mine-temperate.vspr
+			SNOW: land_mine-snow.vspr
+			URBAN: land_mine-urban.vspr
+			URBAN2: land_mine-urban2.vspr
+		ZOffset: -512
+	idle:
+		Length: 2
+		Tick: 500
