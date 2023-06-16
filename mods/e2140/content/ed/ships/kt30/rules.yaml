@@ -37,7 +37,7 @@ ed_ships_kt30:
 		Weapon: ed_ships_kt30
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		LocalOffset: 200,100,50,200,-100,50,200,0,50
 		MuzzlePalette:
 	Armament@PRIMARY_AIR:
 		Name: primary
@@ -45,7 +45,7 @@ ed_ships_kt30:
 		Weapon: ed_ships_kt30_air
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		LocalOffset: 200,100,50,200,-100,50,200,0,50
 		MuzzlePalette:
 	Armament@SECONDARY:
 		Name: secondary
