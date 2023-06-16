@@ -1,7 +1,15 @@
 overlay:
-	build-invalid:
+	Defaults:
 		Filename: content/core/assets/mapeditor.png
+	build-valid:
+	build-invalid:
 		Start: 1
+	build-unknown:
+	target-valid:
+	target-invalid:
+		Start: 1
+	target-unknown:
+	target-select:
 
 editor-overlay:
 	copy:

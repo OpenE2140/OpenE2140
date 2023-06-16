@@ -63,3 +63,9 @@ Generate:
 
 	water_wave:
 		wave: 0,1,2,3,4,5
+
+	land_mine: Shadow
+		idle: 69,70
+
+	water_mine: Shadow
+		idle: 71,72

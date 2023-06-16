@@ -1,0 +1,18 @@
+shared_misc_landmine:
+	Warhead@Damage: SpreadDamage
+		Spread: 256
+		Damage: 50
+		DamageTypes: Explosion
+		ValidTargets: Ground, Vehicle, Infantry
+		InvalidTargets: Mine
+	Warhead@EffectGround: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 2,2
+		ValidTargets: Ground

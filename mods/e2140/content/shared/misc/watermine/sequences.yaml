@@ -1,0 +1,14 @@
+shared_misc_watermine:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: water_mine-wasteland.vspr
+			DESERT: water_mine-desert.vspr
+			SANDY: water_mine-sandy.vspr
+			TEMPERATE: water_mine-temperate.vspr
+			SNOW: water_mine-snow.vspr
+			URBAN: water_mine-urban.vspr
+			URBAN2: water_mine-urban2.vspr
+		ZOffset: -512
+	idle:
+		Length: 2
+		Tick: 500

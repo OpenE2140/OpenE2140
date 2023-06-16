@@ -319,6 +319,7 @@
 ^CoreWorld:
 	Locomotor@infantry:
 		Name: infantry
+		Crushes: mine
 		SharesCell: true
 		TerrainSpeeds:
 			Clear: 100
@@ -393,7 +394,7 @@
 ^CoreWorld:
 	Locomotor@vehicle:
 		Name: vehicle
-		Crushes: infantry
+		Crushes: infantry, mine
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
@@ -403,7 +404,7 @@
 			AsphaltRoad: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
-		Crushes: infantry
+		Crushes: infantry, mine
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
@@ -430,7 +431,7 @@
 		RepulsionSpeed: 50
 		AirborneCondition: airborne
 		VTOL: True
-		Crushes: infantry
+		Crushes: infantry, mine
 	# Actor can be targeted by anything which attacks ground.
 	Targetable@Ground:
 		RequiresCondition: !airborne
