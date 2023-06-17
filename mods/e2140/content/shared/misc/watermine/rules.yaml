@@ -3,7 +3,7 @@ shared_misc_watermine:
 	Selectable:
 		Bounds: 256,288,0,0
 	HiddenUnderFog:
-		Type: CenterPosition 
+		Type: CenterPosition
 	WithSpriteBody:
 	Mine:
 		CrushClasses: mine

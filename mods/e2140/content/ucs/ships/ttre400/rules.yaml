@@ -17,6 +17,32 @@ ucs_ships_ttre400:
 		Speed: 50
 	RevealsShroud:
 		Range: 2c896
+	Minelayer:
+		Mine: shared_misc_watermine
+		AmmoPoolName: Mines
+		Voice: Unload
+		DeployCursor: waterMinePlace
+		AbilityCursor: waterMinePlace
+	AmmoPool:
+		Name: Mines
+		Armaments: WeaponMines
+		Ammo: 5
+	ReloadAmmoPool:
+		AmmoPool: Mines
+		Delay: 500
+		Count: 1
+	Rearmable:
+		RearmActors:
+		AmmoPools: Mines
+	DetectCloaked:
+		Range: 2c896
+		DetectionTypes: WaterMine
+	WithAmmoPipsDecoration:
+		FullSequence: pip-grey
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	Encyclopedia:
 		Category: UCS - Ships
 		Order: 3
