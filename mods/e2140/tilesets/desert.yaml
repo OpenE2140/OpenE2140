@@ -9,6 +9,10 @@ Terrain:
 		Type: Shore
 		TargetTypes: Ground
 		Color: B09C78
+	TerrainType@ShoreEdge:
+		Type: ShoreEdge
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Clear:
 		Type: Clear
 		TargetTypes: Ground
@@ -464,10 +468,10 @@ Templates:
 		Categories: Shore
 		Frames: 135, 136, 137, 138
 		Tiles:
-			0: Shore
-			1: Shore
-			2: Shore
-			3: Shore
+			0: ShoreEdge
+			1: ShoreEdge
+			2: ShoreEdge
+			3: ShoreEdge
 	Template@108:
 		Id: 108
 		Images: SPRT1.MIX
@@ -476,10 +480,10 @@ Templates:
 		Categories: Shore
 		Frames: 139, 140, 141, 142
 		Tiles:
-			0: Shore
-			1: Shore
-			2: Shore
-			3: Shore
+			0: ShoreEdge
+			1: ShoreEdge
+			2: ShoreEdge
+			3: ShoreEdge
 	Template@109:
 		Id: 109
 		Images: SPRT1.MIX
@@ -488,9 +492,9 @@ Templates:
 		Categories: Shore
 		Frames: 175, 176, 182
 		Tiles:
-			0: Shore
-			1: Shore
-			2: Shore
+			0: ShoreEdge
+			1: ShoreEdge
+			2: ShoreEdge
 	Template@110:
 		Id: 110
 		Images: SPRT1.MIX
@@ -499,9 +503,9 @@ Templates:
 		Categories: Shore
 		Frames: 177, 178, 181
 		Tiles:
-			0: Shore
-			1: Shore
-			2: Shore
+			0: ShoreEdge
+			1: ShoreEdge
+			2: ShoreEdge
 	Template@111:
 		Id: 111
 		Images: SPRT1.MIX
@@ -658,8 +662,8 @@ Templates:
 		Categories: Shore
 		Frames: 167, 173
 		Tiles:
-			0: Shore
-			1: Shore
+			0: ShoreEdge
+			1: ShoreEdge
 	Template@128:
 		Id: 128
 		Images: SPRT1.MIX
@@ -668,8 +672,8 @@ Templates:
 		Categories: Shore
 		Frames: 168, 171
 		Tiles:
-			0: Shore
-			1: Shore
+			0: ShoreEdge
+			1: ShoreEdge
 	Template@129:
 		Id: 129
 		Images: SPRT1.MIX
@@ -678,8 +682,8 @@ Templates:
 		Categories: Shore
 		Frames: 169, 172
 		Tiles:
-			0: Shore
-			1: Shore
+			0: ShoreEdge
+			1: ShoreEdge
 	Template@130:
 		Id: 130
 		Images: SPRT1.MIX
@@ -688,8 +692,8 @@ Templates:
 		Categories: Shore
 		Frames: 170, 174
 		Tiles:
-			0: Shore
-			1: Shore
+			0: ShoreEdge
+			1: ShoreEdge
 
 	# Road tiles
 	Template@200:

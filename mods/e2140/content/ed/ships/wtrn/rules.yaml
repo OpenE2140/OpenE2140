@@ -36,3 +36,4 @@ ed_ships_wtrn:
 		TerrainSpeeds:
 			Water: 100
 			Shore: 100
+			ShoreEdge: 100
