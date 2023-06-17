@@ -84,3 +84,5 @@ ed_mcu_tech_house:
 		IconPalette:
 		Queue: Building.ED
 		BuildDuration: 40
+	WithTextDecoration:
+		Text: Tech House
