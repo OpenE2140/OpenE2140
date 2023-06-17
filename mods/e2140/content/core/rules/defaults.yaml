@@ -516,6 +516,8 @@
 ^CoreWorld:
 	Locomotor@ship:
 		Name: ship
+		Crushes: mine
+		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Water: 100
 

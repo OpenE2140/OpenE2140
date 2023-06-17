@@ -338,7 +338,7 @@ Actors:
 		Owner: UCS_Player
 		Location: 24,28
 		Facing: 388
-	Actor78: ucs_ships_russ3
+	Actor79: ucs_ships_russ3
 		Owner: UCS_Player
 		Facing: 384
 		Location: 26,28

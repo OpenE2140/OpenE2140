@@ -3,16 +3,11 @@ shared_misc_watermine:
 		Spread: 256
 		Damage: 50
 		DamageTypes: Explosion
-		ValidTargets: Ground, Vehicle, Infantry
+		ValidTargets: Ground, Vehicle, Infantry, Water
 		InvalidTargets: Mine
-	Warhead@EffectGround: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
 		ExplosionPalette:
-		ImpactSounds: 14.smp
-		ValidTargets: Ground
-	Warhead@EffectShrapnels: SpawnWeapons
-		Weapons: weapon_debris_smoke
-		Range: 1c0, 1c512
-		Pieces: 2,2
-		ValidTargets: Ground
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water, Ship
