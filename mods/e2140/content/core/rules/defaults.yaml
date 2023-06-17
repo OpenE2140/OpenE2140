@@ -535,6 +535,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
+		ValidTargets: Ground, Water, Air, Ship
 		InvalidTargets: Structure
 
 # Grouped traits for standard non-turreted behavior.
@@ -547,6 +548,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
+		ValidTargets: Ground, Water, Air, Ship
 		InvalidTargets: Structure
 
 # Grouped traits for standard infantry attack behavior.
@@ -558,6 +560,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
+		ValidTargets: Ground, Water, Air, Ship
 		InvalidTargets: Structure
 	# Grants condition when shooting.
 	GrantConditionOnAttack:
@@ -585,6 +588,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
+		ValidTargets: Ground, Water, Air, Ship
 		InvalidTargets: Structure
 
 # Units can be cloaked by SHADOW unit.
