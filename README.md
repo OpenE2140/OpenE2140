@@ -53,7 +53,7 @@ Video previews showcasing latest development:
 
 Huge thanks for OpenRA devs and contributors for all the great work done on OpenRA.
 
-[Mailaender](https://github.com/Mailaender) for using traits from OpenHV (https://github.com/OpenHV/OpenHV).
+[Mailaender](https://github.com/Mailaender) for using traits from [OpenHV](https://github.com/OpenHV/OpenHV).
 
 Special thanks to original development team at Reality Pump Studios for making Earth 2140, an amazing game this mod recreates!
 
