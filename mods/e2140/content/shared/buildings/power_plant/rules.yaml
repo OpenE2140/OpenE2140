@@ -71,3 +71,5 @@ shared_mcu_power_plant:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 160
+	WithTextDecoration:
+		Text: Power Plant

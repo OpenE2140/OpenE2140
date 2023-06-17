@@ -86,3 +86,5 @@ ucs_mcu_heavy_tech:
 		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40
+	WithTextDecoration:
+		Text: Heavy Tech

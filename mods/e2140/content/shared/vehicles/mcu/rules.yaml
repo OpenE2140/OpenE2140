@@ -20,6 +20,11 @@
 	Mcu:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
+	WithTextDecoration:
+		Text: MCU
+		RequiresSelection: True
+		Position: Top
+		Margin: 0,5
 
 shared_mcu:
 	Inherits@1: ^CoreVehicle
