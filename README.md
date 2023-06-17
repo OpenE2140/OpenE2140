@@ -64,5 +64,5 @@ Support the developer by buying the original game:
 At the moment, we're looking for these people:
 - video editor (for occasional preview videos like the ones above)
 
-Contact us over at [OpenRA's Discord server](https://discord.openra.net/).
+Contact us over at [our Discord server](https://discord.gg/KNcX5BxA37).
 
