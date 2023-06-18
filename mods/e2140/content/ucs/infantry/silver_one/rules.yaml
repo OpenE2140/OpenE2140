@@ -2,7 +2,7 @@ ucs_infantry_silver_one:
 	Inherits@1: ^UcsInfantry
 	Inherits@2: ^CoreArmedSelfInfantry
 	Tooltip:
-		Name: SILVE ONE
+		Name: SILVER ONE
 	Valued:
 		Cost: 50
 	Buildable:
