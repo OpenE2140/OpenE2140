@@ -23,7 +23,7 @@
 		Name: Any
 		InternalName: Random
 		Side: Random
-		RandomFactionMembers: ucs #TODO and ed
+		RandomFactionMembers: ucs, ed
 	# Required for UI to load.
 	LoadWidgetAtGameStart:
 	# Required to show the map grid.
