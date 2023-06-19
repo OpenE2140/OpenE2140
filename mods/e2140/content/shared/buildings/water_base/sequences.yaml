@@ -1,0 +1,26 @@
+shared_buildings_water_base:
+	Defaults:
+		Filename: building_water_base.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	dock:
+		Start: 2
+		ZOffset: 512
+	damaged-dock:
+		Start: 3
+		ZOffset: 512
+	patch:
+		Filename: content/shared/buildings/water_base/building_water_base_patch.png
+
+shared_mcu_water_base:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 171
+
+shared_mcu_water_base.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 171

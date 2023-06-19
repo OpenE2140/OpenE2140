@@ -523,22 +523,22 @@ Container@PLAYER_WIDGETS:
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
-						#ProductionTypeButton@Naval:
-						#	Logic: AddFactionSuffixLogic
-						#	X: 145
-						#	Width: 23
-						#	Height: 21
-						#	Background: sidebar-button
-						#	TooltipText: Naval
-						#	TooltipContainer: TOOLTIP_CONTAINER
-						#	ProductionGroup: Ship
-						#	Key: ProductionTypeNaval
-						#	Children:
-						#		Image@ICON:
-						#			Logic: AddFactionSuffixLogic
-						#			X: 3
-						#			Y: 3
-						#			ImageCollection: production-icons
+						ProductionTypeButton@Naval:
+							Logic: AddFactionSuffixLogic
+							X: 145
+							Width: 23
+							Height: 21
+							Background: sidebar-production-tab
+							TooltipText: Naval
+							TooltipContainer: TOOLTIP_CONTAINER
+							ProductionGroup: Ship
+							Key: ProductionTypeNaval
+							Children:
+								Image@ICON:
+									Logic: AddFactionSuffixLogic
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
 				Container@PRODUCTION_BACKGROUND:
 					X: 17
 					Y: 334
