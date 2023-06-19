@@ -1,0 +1,100 @@
+shared_buildings_water_base:
+	Inherits: ^CoreFactory
+	Tooltip:
+		Name: Water Base
+	Health:
+		HP: 900
+	Power:
+		Amount: -200
+	Building:
+		Dimensions: 2,2
+		Footprint: xx xx
+		TerrainTypes: Shore, Water
+		LocalCenterOffset: -16,-160,0
+	TransformSequence:
+		Offset: 512,570,0
+	HitShape:
+		UseTargetableCellsOffsets: True
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 1024
+	Selectable:
+		Bounds: 2064, 1984, 0,220
+	Production:
+		Produces: Ship.ED, Ship.UCS
+	-ProductionQueue:
+	ProductionQueue@ED:
+		Type: Ship.ED
+		Factions: ed
+		Group: Ship
+		LowPowerModifier: 150
+		ReadyAudio: ProductionComplete
+		QueuedAudio: ProductionStarted
+		OnHoldAudio: ProductionInterrupted
+		CancelledAudio: ProductionCancelled
+		InfiniteBuildLimit: 10
+	ProductionQueue@UCS:
+		Type: Ship.UCS
+		Factions: ucs
+		Group: Ship
+		LowPowerModifier: 150
+		ReadyAudio: ProductionComplete
+		QueuedAudio: ProductionStarted
+		OnHoldAudio: ProductionInterrupted
+		CancelledAudio: ProductionCancelled
+		InfiniteBuildLimit: 10
+	ProductionBar@ED:
+		ProductionType: Ship.ED
+	ProductionBar@UCS:
+		ProductionType: Ship.UCS
+	ProvidesPrerequisite:
+	Exit:
+		SpawnOffset: -496,1690,0
+		Facing: 500
+		ExitCell: 0,2
+	GrantConditionOnDamageState:
+		Condition: damaged
+	# Water Base has loose remappable pixels when it's damaged. This overlay sprite covers that.
+	WithIdleOverlay@Patch:
+		Sequence: patch
+		Offset: 0,-16,0
+		RequiresCondition: !Transforming && damaged
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 7
+		Animation: DATABASE/X07.FLC
+		Title: Harbor & Dockyard
+		Armor: Medium
+		Armament: None
+		Resistance: Very good
+		Description: The WATER BASE is where ships and boats are built.\n\nIt consists of control center and dockyard plus a launching dock. A WATER BASE can only be built at the water’s edge, and requires enough space for the lock from which to launch the vessels.
+
+shared_mcu_water_base:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Water Base
+	Transforms:
+		IntoActor: shared_buildings_water_base
+	Valued:
+		Cost: 1200
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160
+	Mobile:
+		Locomotor: vehicleWaterMcu
+
+# TODO: Temporary solution so MCU can deploy on shore and water tiles.
+^CoreWorld:
+	Locomotor@vehicleWaterMcu:
+		Name: vehicleWaterMcu
+		Crushes: infantry, mine
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Clear: 100
+			Sand: 50
+			SandEdge: 50
+			Road: 100
+			AsphaltRoad: 100
+			Water: 100
+			Shore: 100
