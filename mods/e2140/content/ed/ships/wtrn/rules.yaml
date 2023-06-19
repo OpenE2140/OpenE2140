@@ -31,7 +31,7 @@ ed_ships_wtrn:
 ^CoreWorld:
 	Locomotor@vehicleWtrn:
 		Name: vehicleWtrn
-		Crushes: infantry
+		Crushes: infantry, mine
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Water: 100
