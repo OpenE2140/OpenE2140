@@ -396,5 +396,8 @@ Actors:
 		Owner: ED_Player
 		Facing: 384
 		Location: 24,28
+	Actor94: shared_buildings_water_base
+		Owner: ED_Player
+		Location: 29,25
 
 Rules: rules.yaml
