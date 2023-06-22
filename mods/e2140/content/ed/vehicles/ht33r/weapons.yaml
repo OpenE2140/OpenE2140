@@ -41,20 +41,20 @@ ed_vehicles_ht33r:
 		Range: 0c256, 0c756
 		Pieces: 4,5
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 
 ed_vehicles_ht33r_air:
 	Inherits: ed_vehicles_ht33r

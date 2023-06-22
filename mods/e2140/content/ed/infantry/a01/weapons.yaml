@@ -3,8 +3,8 @@ ed_infantry_a01_machine_gun:
 	Burst: 5
 	Range: 2c896
 	Report: 1.smp
-	ValidTargets: Ground, Infantry
-	InvalidTargets: Vehicle, Structure, Ship
+	ValidTargets: Ground, Water, Infantry
+	InvalidTargets: Vehicle, Structure, Ship, Pipe
 	Projectile: InstantHit
 		Inaccuracy: 0c128
 	Warhead@1Dam: SpreadDamage
@@ -12,7 +12,7 @@ ed_infantry_a01_machine_gun:
 		Damage: 5
 		DamageTypes: Default
 		ValidTargets: Ground, Ship
-		InvalidTargets: Tree
+		InvalidTargets: Tree, Pipe
 	Warhead@Effect: CreateEffect
 		Image: rubble_firearm
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
@@ -69,11 +69,11 @@ ed_infantry_a01_grenade:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Pipe

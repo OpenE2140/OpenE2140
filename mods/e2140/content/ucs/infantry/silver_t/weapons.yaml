@@ -26,4 +26,4 @@ ucs_infantry_silver_t_explode:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Pipe

@@ -1,5 +1,7 @@
 Rules:
 	e2140|content/neutral/trees/rules.yaml
+	e2140|content/neutral/pipes/rules.yaml
 
 Sequences:
 	e2140|content/neutral/trees/sequences.yaml
+	e2140|content/neutral/pipes/sequences.yaml
