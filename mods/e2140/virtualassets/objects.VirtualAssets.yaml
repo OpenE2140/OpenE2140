@@ -50,6 +50,7 @@ Generate:
 		idle-v4: 108
 		idle-corner1: 109
 		idle-corner2: 110
+			Offsets: 110:1,0
 		idle-corner3: 111
 		idle-corner4: 112
 		idle-end1: 113
@@ -58,6 +59,7 @@ Generate:
 		idle-end4: 116
 		idle-h1: 117
 		idle-h2: 118
+			Offsets: 118:1,0
 		idle-h3: 119
 		idle-h4: 120
 

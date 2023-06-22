@@ -20,4 +20,4 @@ ucs_vehicles_goliath_explode:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Pipe

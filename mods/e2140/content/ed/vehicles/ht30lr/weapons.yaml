@@ -65,26 +65,26 @@ ed_vehicles_ht30lr_missiles:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectActor: CreateEffect
 		Image: projectile_cannon
 		Explosions: explode, explode2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Air, Ship
+		ValidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 
 ed_vehicles_ht30lr_missiles_air:
 	Inherits: ed_vehicles_st02

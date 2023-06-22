@@ -19,6 +19,11 @@ Terrain:
 		TargetTypes: Ground
 		Color: 7E5C18
 		AcceptsSmudgeType: Clear
+	TerrainType@ClearPipe:
+		Type: ClearPipe
+		TargetTypes: Ground
+		Color: 403216
+		AcceptsSmudgeType: Clear
 	TerrainType@Sand:
 		Type: Sand
 		TargetTypes: Ground

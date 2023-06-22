@@ -1,0 +1,70 @@
+^PipeNode:
+	Inherits: ^CoreDecoration
+	HitShape:
+		Type: Circle
+			Radius: 512
+	Tooltip:
+		Name: Pipe
+	Health:
+		HP: 100
+	Interactable:
+	Targetable:
+		TargetTypes: Ground, Pipe
+	Explodes:
+		Weapon: PipeExplosion
+		EmptyWeapon: PipeExplosion
+
+^Pipe:
+	Inherits: ^PipeNode
+	Building:
+		Footprint: _
+	CustomChangesTerrain:
+		TerrainType: ClearPipe
+
+neutral_pipe01:
+	Inherits: ^Pipe
+
+neutral_pipe02:
+	Inherits: ^Pipe
+
+neutral_pipe03:
+	Inherits: ^Pipe
+
+neutral_pipe04:
+	Inherits: ^PipeNode
+
+neutral_pipe05:
+	Inherits: ^PipeNode
+
+neutral_pipe06:
+	Inherits: ^PipeNode
+
+neutral_pipe07:
+	Inherits: ^PipeNode
+
+neutral_pipe08:
+	Inherits: ^PipeNode
+
+neutral_pipe09:
+	Inherits: ^PipeNode
+
+neutral_pipe10:
+	Inherits: ^PipeNode
+
+neutral_pipe11:
+	Inherits: ^PipeNode
+
+neutral_pipe12:
+	Inherits: ^PipeNode
+
+neutral_pipe13:
+	Inherits: ^PipeNode
+
+neutral_pipe14:
+	Inherits: ^Pipe
+
+neutral_pipe15:
+	Inherits: ^Pipe
+
+neutral_pipe16:
+	Inherits: ^Pipe

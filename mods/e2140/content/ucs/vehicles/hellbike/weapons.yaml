@@ -25,7 +25,7 @@ ucs_vehicles_hellbike:
 		Range: 0c256, 1c256
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectGround: CreateEffect
 		Image: projectile_napalm_bomb
 		Explosions: explode
@@ -38,4 +38,4 @@ ucs_vehicles_hellbike:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe

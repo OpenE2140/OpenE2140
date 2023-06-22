@@ -30,4 +30,4 @@ ucs_vehicles_spider:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship
+		InvalidTargets: Vehicle, Structure, Ship, Pipe

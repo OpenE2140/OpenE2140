@@ -324,6 +324,7 @@
 		TerrainSpeeds:
 			Clear: 100
 			ClearTree: 100
+			ClearPipe: 100
 			Sand: 100
 			SandEdge: 100
 			Road: 100

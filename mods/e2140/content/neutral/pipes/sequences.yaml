@@ -1,0 +1,91 @@
+^Pipe:
+	Defaults:
+		TilesetFilenames:
+			WASTELAND: pipe-wasteland.vspr
+			DESERT: pipe-desert.vspr
+			SANDY: pipe-sandy.vspr
+			TEMPERATE: pipe-temperate.vspr
+			SNOW: pipe-snow.vspr
+			URBAN: pipe-urban.vspr
+			URBAN2: pipe-urban2.vspr
+		ZOffset: 512
+
+neutral_pipe01:
+	Inherits: ^Pipe
+	idle:
+		Start: 0
+
+neutral_pipe02:
+	Inherits: ^Pipe
+	idle:
+		Start: 1
+
+neutral_pipe03:
+	Inherits: ^Pipe
+	idle:
+		Start: 2
+
+neutral_pipe04:
+	Inherits: ^Pipe
+	idle:
+		Start: 3
+
+neutral_pipe05:
+	Inherits: ^Pipe
+	idle:
+		Start: 4
+
+neutral_pipe06:
+	Inherits: ^Pipe
+	idle:
+		Start: 5
+
+neutral_pipe07:
+	Inherits: ^Pipe
+	idle:
+		Start: 6
+
+neutral_pipe08:
+	Inherits: ^Pipe
+	idle:
+		Start: 7
+
+neutral_pipe09:
+	Inherits: ^Pipe
+	idle:
+		Start: 8
+
+neutral_pipe10:
+	Inherits: ^Pipe
+	idle:
+		Start: 9
+
+neutral_pipe11:
+	Inherits: ^Pipe
+	idle:
+		Start: 10
+
+neutral_pipe12:
+	Inherits: ^Pipe
+	idle:
+		Start: 11
+
+neutral_pipe13:
+	Inherits: ^Pipe
+	idle:
+		Start: 12
+
+neutral_pipe14:
+	Inherits: ^Pipe
+	idle:
+		Start: 13
+
+neutral_pipe15:
+	Inherits: ^Pipe
+	idle:
+		Start: 14
+
+neutral_pipe16:
+	Inherits: ^Pipe
+	idle:
+		Start: 15
