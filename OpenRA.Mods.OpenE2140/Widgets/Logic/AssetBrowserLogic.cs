@@ -16,6 +16,7 @@ using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Assets.Extractors;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
@@ -33,7 +34,7 @@ public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 
 		var extractButton = (ButtonWidget)closeButton.Clone();
 		extractButton.Id = "EXTRACT_BUTTON";
-		extractButton.X = new Support.IntegerExpression($"{extractButton.X.Expression} - {closeButton.Width.Expression} - 20");
+		extractButton.X = extractButton.X.Concat($" - {closeButton.Width} - 20");
 		extractButton.Text = "Extract";
 		extractButton.GetText = () => extractButton.Text;
 		extractButton.OnClick = this.Extract;

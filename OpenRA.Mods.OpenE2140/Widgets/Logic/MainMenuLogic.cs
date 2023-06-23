@@ -14,6 +14,7 @@
 using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
@@ -29,7 +30,7 @@ public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
 
 		var encyclopediaButton = (ButtonWidget)loadButton.Clone();
 		encyclopediaButton.Id = "ENCYCLOPEDIA_BUTTON";
-		encyclopediaButton.Y = new Support.IntegerExpression($"{encyclopediaButton.Y.Expression} + {loadButton.Height.Expression} + 10");
+		encyclopediaButton.Y = encyclopediaButton.Y.Concat($" + {loadButton.Height} + 10");
 		encyclopediaButton.Text = "Encyclopedia";
 		encyclopediaButton.GetText = () => encyclopediaButton.Text;
 
