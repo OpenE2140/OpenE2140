@@ -1,0 +1,29 @@
+ed_infantry_a04:
+	ValidTargets: Ground, Ship
+	Range: 1c125
+	Projectile: InstantHit
+	Warhead@Damage: TargetDamage
+		Spread: 512
+		Damage: 120
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+
+ed_infantry_a04_explode:
+	ValidTargets: Ground, Water
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@Effect: CreateEffect
+		Image: projectile_heavy_rocket
+		Explosions: explode
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Ground, Water, Ship, Air
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_small
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Ship

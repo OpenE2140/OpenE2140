@@ -22,9 +22,24 @@ ed_infantry_a04:
 		Name: Mines
 		Armaments: WeaponMines
 		Ammo: 5
+		AmmoCondition: Kamikaze
+	Explodes:
+		Weapon: ed_infantry_a04_explode
+		EmptyWeapon: ed_infantry_a04_explode
+		DamageSource: Killer
+		RequiresCondition: Kamikaze >= 1
 	Rearmable:
 		RearmActors:
 		AmmoPools: Mines
+	AttackFrontal:
+		Voice: Attack
+	Armament@PRIMARY:
+		Weapon: ed_infantry_a04
+		MuzzlePalette:
+	GrantConditionOnAttack:
+		Condition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
