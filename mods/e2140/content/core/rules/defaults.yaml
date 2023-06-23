@@ -311,9 +311,10 @@
 	WithIdleOverlay:
 		Sequence: shadow
 		Palette:
-	# Infantry can enter Cargo actors.
+	# Infantry can enter Cargo actors, every infantry unit takes a single slot out of six
 	Passenger:
 		CargoType: Infantry
+		Weight: 1
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -324,7 +325,6 @@
 		TerrainSpeeds:
 			Clear: 100
 			ClearTree: 100
-			ClearPipe: 100
 			Sand: 100
 			SandEdge: 100
 			Road: 100
@@ -390,7 +390,10 @@
 	SpeedMultiplier:
 		Modifier: 55
 		RequiresCondition: decreasedspeed
-
+	# Vehicles can enter Cargo actors, every vehicle unit take all slots out of six available
+	Passenger:
+		CargoType: Vehicle
+		Weight: 1
 # Add locomotor to world...
 ^CoreWorld:
 	Locomotor@vehicle:
