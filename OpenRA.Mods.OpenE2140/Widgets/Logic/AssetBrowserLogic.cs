@@ -33,7 +33,7 @@ public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 
 		var extractButton = (ButtonWidget)closeButton.Clone();
 		extractButton.Id = "EXTRACT_BUTTON";
-		extractButton.X += $" - {closeButton.Width} - 20";
+		extractButton.X = new Support.IntegerExpression($"{extractButton.X.Expression} - {closeButton.Width.Expression} - 20");
 		extractButton.Text = "Extract";
 		extractButton.GetText = () => extractButton.Text;
 		extractButton.OnClick = this.Extract;

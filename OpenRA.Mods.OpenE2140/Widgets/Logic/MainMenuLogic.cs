@@ -29,7 +29,7 @@ public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
 
 		var encyclopediaButton = (ButtonWidget)loadButton.Clone();
 		encyclopediaButton.Id = "ENCYCLOPEDIA_BUTTON";
-		encyclopediaButton.Y += $" + {loadButton.Height} + 10";
+		encyclopediaButton.Y = new Support.IntegerExpression($"{encyclopediaButton.Y.Expression} + {loadButton.Height.Expression} + 10");
 		encyclopediaButton.Text = "Encyclopedia";
 		encyclopediaButton.GetText = () => encyclopediaButton.Text;
 
