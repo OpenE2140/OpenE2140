@@ -16,6 +16,14 @@ ucs_vehicles_wtp_100:
 	Mobile:
 		Locomotor: vehicleWtp100
 		Speed: 90
+	Cargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 6
+	WithCargoPipsDecoration:
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	RevealsShroud:
 		Range: 2c896
 	WithMoveSound:
