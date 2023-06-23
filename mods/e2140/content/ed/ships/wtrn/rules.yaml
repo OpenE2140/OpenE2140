@@ -16,6 +16,14 @@ ed_ships_wtrn:
 	Mobile:
 		Locomotor: vehicleWtrn
 		Speed: 90
+	Cargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 6
+	WithCargoPipsDecoration:
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	RevealsShroud:
 		Range: 2c896
 	Encyclopedia:
