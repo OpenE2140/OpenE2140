@@ -27,6 +27,15 @@ ed_vehicles_bio:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	ProximityExternalCondition:
+		Condition: healing
+		Range: 2c896
+	ExternalCondition@Healing:
+		Condition: activatebio
+	WithFacingSpriteBody@Healing:
+		Sequence: healing
+		Name: healing
+		RequiresCondition: activatebio
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 9

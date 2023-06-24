@@ -23,7 +23,8 @@ World:
 		VoiceSet: EdVehicleVoice
 
 ^EdInfantry:
-	Inherits: ^CoreInfantry
+	Inherits@1: ^CoreInfantry
+	Inherits@2: ^HealedByBio
 	Voiced:
 		VoiceSet: EdInfantryVoice
 

@@ -118,6 +118,18 @@ Palettes:
 		246: 255 0 0
 		247: 68 68 68
 
+	BioFlicker: Merge
+		0:
+			244: 120 124 0
+			245: 120 124 0
+			246: 120 124 0
+			247: 120 124 0
+		1:
+			244: 120 120 194
+			245: 120 120 194
+			246: 120 120 194
+			247: 120 120 194
+
 	Player: Merge
 		248: 102 0 102
 		249: 119 0 119
@@ -138,6 +150,10 @@ Palettes:
 		240-243: 0 0 0
 		244-247: 0 0 0
 		248-252: 0 0 0
+
+	NoSprite: Merge
+		0-243: 0 0 0 0
+		248-255: 0 0 0 0
 
 Generate:
 	vehicle_mcu: Shadow Player Tracks
@@ -223,7 +239,7 @@ Generate:
 		open: 275-276
 		opened: 276
 		close: 276-275
-		flicker: 266-274 16 2 FlickerOn
+		flicker: 266-274 16 2 BioFlicker NoSprite
 
 	vehicle_tur: Shadow Player Tracks
 		idle: 277-285 16

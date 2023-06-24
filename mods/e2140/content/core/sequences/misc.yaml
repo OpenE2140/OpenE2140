@@ -70,3 +70,8 @@ powerdown:
 		Filename: content/core/assets/power.png
 		Start: 5
 		ZOffset: 2048
+
+healing:
+	idle:
+		Filename: content/core/assets/healing_indicator.png
+		Offset: 0,-11

@@ -635,3 +635,31 @@
 		# Hide turret shadow.
 		ApplyToRenderModifierTraits:
 			WithTurretShadow: 0
+
+# Infantry units can be healed when they are nearby BIO vehicle.
+^HealedByBio:
+	ChangesHealth:
+		Step: 5
+		Delay: 30
+		StartIfBelow: 100
+		RequiresCondition: healing
+	# External condition granted by BIO vehicle.
+	ExternalCondition@Healing:
+		Condition: healing
+	# Condition to be granted to injured infantry so indicator can be shown.
+	GrantConditionOnDamageState@Damaged:
+		Condition: damaged
+		ValidDamageStates: Light, Medium, Heavy, Critical
+	# Render an indicator that infantry units are within healing aura.
+	WithDecoration:
+		Image: healing
+		Sequence: idle
+		Palette:
+		Position: Top
+		RequiresSelection: True
+		RequiresCondition: healing && damaged
+	# Give back a condition to BIO so it can use its flickering animation when it's healing infantry.
+	ProximityExternalCondition:
+		Condition: activatebio
+		Range: 2c896
+		RequiresCondition: damaged

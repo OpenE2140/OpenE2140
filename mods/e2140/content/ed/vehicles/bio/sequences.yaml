@@ -7,6 +7,12 @@ ed_vehicles_bio:
 		Start: 16
 		Length: 4
 		Facings: -16
+	healing:
+		Filename: vehicle_bio.vspr
+		Start: 85
+		Length: 2
+		Tick: 80
+		Facings: -16
 	icon:
 		Filename: SPRI0.MIX
 		Start: 145
