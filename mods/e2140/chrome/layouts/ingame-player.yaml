@@ -436,7 +436,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: cash-icons
 									ImageName: cash-normal
 				Container@PRODUCTION_TYPES:
-					X: 23
+					X: 19
 					Y: 285
 					Width: 170
 					Height: 23
@@ -460,7 +460,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: production-icons
 						#ProductionTypeButton@Defense:
 						#	Logic: AddFactionSuffixLogic
-						#	X: 29
+						#	X: 25
 						#	Width: 23
 						#	Height: 21
 						#	Background: sidebar-button
@@ -476,7 +476,7 @@ Container@PLAYER_WIDGETS:
 						#			ImageCollection: production-icons
 						ProductionTypeButton@Infantry:
 							Logic: AddFactionSuffixLogic
-							X: 58
+							X: 50
 							Width: 23
 							Height: 21
 							VisualHeight: 1
@@ -493,7 +493,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: production-icons
 						ProductionTypeButton@Vehicle:
 							Logic: AddFactionSuffixLogic
-							X: 87
+							X: 75
 							Width: 23
 							Height: 21
 							Background: sidebar-production-tab
@@ -509,7 +509,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: production-icons
 						ProductionTypeButton@Aircraft:
 							Logic: AddFactionSuffixLogic
-							X: 116
+							X: 100
 							Width: 23
 							Height: 21
 							Background: sidebar-production-tab
@@ -525,7 +525,7 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: production-icons
 						ProductionTypeButton@Naval:
 							Logic: AddFactionSuffixLogic
-							X: 145
+							X: 125
 							Width: 23
 							Height: 21
 							Background: sidebar-production-tab
