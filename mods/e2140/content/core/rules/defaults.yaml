@@ -582,7 +582,7 @@
 ^CoreAttackAircraft:
 	# Allows aircrafts attacking strafe run way.
 	AttackAircraft:
-		FacingTolerance: 0
+		FacingTolerance: 80
 		Voice: Attack
 		PersistentTargeting: false
 		OpportunityFire: false
