@@ -618,6 +618,9 @@ production-icons-ucs:
 		ship: 187, 68, 16, 16
 		ship-disabled: 187, 85, 16, 16
 		ship-alert: 187, 102, 16, 16
+		research: 222, 68, 16, 16
+		research-disabled: 222, 85, 16, 16
+		research-alert: 222, 102, 16, 16
 
 sidebar-bits-ucs:
 	Inherits: ^Glyphs
@@ -788,6 +791,9 @@ production-icons-ed:
 		ship: 85, 68, 16, 16
 		ship-disabled: 85, 85, 16, 16
 		ship-alert: 85, 102, 16, 16
+		research: 205, 68, 16, 16
+		research-disabled: 205, 85, 16, 16
+		research-alert: 205, 102, 16, 16
 
 sidebar-bits-ed:
 	Inherits: ^Glyphs
