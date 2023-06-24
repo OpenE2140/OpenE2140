@@ -1,5 +1,6 @@
 shared_infantry_civil1:
-	Inherits: ^CoreInfantry
+	Inherits@1: ^CoreInfantry
+	Inherits@2: ^HealedByBio
 	Tooltip:
 		Name: Civilian
 	Valued:
