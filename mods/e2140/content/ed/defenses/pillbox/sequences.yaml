@@ -1,0 +1,27 @@
+ed_defenses_pillbox:
+	Defaults:
+		Filename: building_pillbox.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	turret:
+		Filename: content/ed/defenses/pillbox/turret_pillbox.png
+		Facings: -16
+	muzzle:
+		Filename: content/ed/defenses/pillbox/turret_pillbox.png
+		Start: 16
+		Length: 3
+		Facings: -16
+		Tick: 50
+
+ed_mcu_pillbox:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 182
+
+ed_mcu_pillbox.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 182

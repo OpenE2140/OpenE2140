@@ -1,6 +1,6 @@
 ed_vehicles_ht33r:
 	Inherits@1: ^EdVehicle
-	Inherits@2: ^CoreTurret
+	Inherits@2: ^CoreVehicleTurret
 	Tooltip:
 		Name: HT 33 R
 	Valued:

@@ -1,0 +1,47 @@
+ed_defenses_pillbox:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Pillbox
+	Health:
+		HP: 900
+	Building:
+		LocalCenterOffset: 0,0,0
+	TransformSequence:
+		Offset: -45,0,0
+	Selectable:
+		Bounds: 1040, 960, -45,0
+	Power:
+		Amount: -50
+	Turreted:
+		Offset: 335,0,0
+	Armament:
+		Weapon: ed_defenses_pillbox
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 14
+		Animation: DATABASE/X14.FLC
+		Title: Pillbox
+		Armor: Resistant to conventional weapons, small rockets and fire
+		Armament: 8” double barrel canon
+		Resistance: High
+		Description: The low-lying bunker with heavy armor-plating is a strategic part of every line of defense. Even though it only contains an 8” double barrel gun, it is extremely resistant to all kinds of conventional weapons. Only large rockets or plasma guns can wear down the armor after some time.
+
+ed_mcu_pillbox:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Pillbox
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_pillbox
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 30
+	WithTextDecoration:
+		Text: Pillbox

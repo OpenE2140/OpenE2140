@@ -1,6 +1,6 @@
 ed_vehicles_miner:
 	Inherits@1: ^EdVehicle
-	Inherits@2: ^CoreTurret
+	Inherits@2: ^CoreVehicleTurret
 	Tooltip:
 		Name: MINER
 	Valued:
