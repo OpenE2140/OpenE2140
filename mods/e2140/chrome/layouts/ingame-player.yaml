@@ -458,22 +458,22 @@ Container@PLAYER_WIDGETS:
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
-						#ProductionTypeButton@Defense:
-						#	Logic: AddFactionSuffixLogic
-						#	X: 25
-						#	Width: 23
-						#	Height: 21
-						#	Background: sidebar-button
-						#	TooltipText: Defense
-						#	TooltipContainer: TOOLTIP_CONTAINER
-						#	ProductionGroup: Defense
-						#	Key: ProductionTypeDefense
-						#	Children:
-						#		Image@ICON:
-						#			Logic: AddFactionSuffixLogic
-						#			X: 3
-						#			Y: 3
-						#			ImageCollection: production-icons
+						ProductionTypeButton@Defense:
+							Logic: AddFactionSuffixLogic
+							X: 25
+							Width: 23
+							Height: 21
+							Background: sidebar-button
+							TooltipText: Defense
+							TooltipContainer: TOOLTIP_CONTAINER
+							ProductionGroup: Defense
+							Key: ProductionTypeDefense
+							Children:
+								Image@ICON:
+									Logic: AddFactionSuffixLogic
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
 						ProductionTypeButton@Infantry:
 							Logic: AddFactionSuffixLogic
 							X: 50
