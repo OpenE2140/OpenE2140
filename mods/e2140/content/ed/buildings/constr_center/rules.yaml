@@ -29,12 +29,28 @@ ed_buildings_constr_center:
 		Image: ed_elevator
 		Position: 900, 1450, 0
 		CutOff: 35
-		Produces: Building.ED
-	AnimatedExitProductionQueue:
+		Produces: Building.ED, Defense.ED
+	-AnimatedExitProductionQueue:
+	AnimatedExitProductionQueue@Building:
 		Type: Building.ED
 		Group: Building
-	ProductionBar:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+	AnimatedExitProductionQueue@Defense:
+		Type: Defense.ED
+		Group: Defense
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+	ProductionBar@Building:
 		ProductionType: Building.ED
+	ProductionBar@Defense:
+		ProductionType: Defense.ED
 	ProvidesPrerequisite:
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:

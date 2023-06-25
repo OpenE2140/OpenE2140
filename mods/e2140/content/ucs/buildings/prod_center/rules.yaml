@@ -32,12 +32,28 @@ ucs_buildings_prod_center:
 		Image: ucs_elevator
 		Position: 16, 1024, 0
 		CutOff: 29
-		Produces: Building.UCS
-	AnimatedExitProductionQueue:
+		Produces: Building.UCS, Defense.UCS
+	-AnimatedExitProductionQueue:
+	AnimatedExitProductionQueue@Building:
 		Type: Building.UCS
 		Group: Building
-	ProductionBar:
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+	AnimatedExitProductionQueue@Defense:
+		Type: Defense.UCS
+		Group: Defense
+		QueuedAudio: ProductionStarted
+		ReadyAudio: ProductionComplete
+		CancelledAudio: ProductionCancelled
+		OnHoldAudio: ProductionInterrupted
+		InfiniteBuildLimit: 10
+	ProductionBar@Building:
 		ProductionType: Building.UCS
+	ProductionBar@Defense:
+		ProductionType: Defense.UCS
 	ProvidesPrerequisite:
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
