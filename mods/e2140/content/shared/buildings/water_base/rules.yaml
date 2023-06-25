@@ -81,6 +81,8 @@ shared_mcu_water_base:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 160
+	WithTextDecoration:
+		Text: Water Base
 	Mobile:
 		Locomotor: vehicleWaterMcu
 
