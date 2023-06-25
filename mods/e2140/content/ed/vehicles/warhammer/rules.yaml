@@ -62,7 +62,7 @@ ed_vehicles_warhammer:
 		Order: 13
 		Animation: DATABASE/MP2_HT.FLC
 		Title: WARHAMMER
-		Armor: heavy
-		Armament: three heavy cannon
-		Description: The ED's newest development, the Warhammer has some unique properties.\nThe extremely stable, heavy armor gives this tank a long life on the battlefield.\nPlus, it's equipped with enough firepower to be used as a SPIDER-killer.
+		Armor: Heavy
+		Armament: Three heavy cannon
+		Description: The ED's newest development, the Warhammer has some unique properties. The extremely stable, heavy armor gives this tank a long life on the battlefield. Plus, it's equipped with enough firepower to be used as a SPIDER-killer.
   

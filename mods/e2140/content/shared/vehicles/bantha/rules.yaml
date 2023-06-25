@@ -25,6 +25,6 @@ shared_vehicles_bantha:
 		Order: 2
 		Animation: DATABASE/N02.FLC
 		Title: BANTHA - Transport Vehicle
-		Armor: medium
-		Armament: none
-		Description: The BANTHA is a solid, heavy vehicle which is used to transport containers of raw materials from mine to refinery.\nIt can only carry one container at a time.\nOnce the BANTHA is shown the mine from which the raw materials need to be collected, it drives there and picks up the first container.\nIt must then be shown the refinery to which it has to bring its load.\nAll further containers are then collected from the mine and delivered to the refinery automatically.\nThe BANTHA is a vehicle with medium speed, medium armor-plating and is unarmed.\nHowever, its weight and construction enable it to simply run over the enemy's soldiers.
+		Armor: Medium
+		Armament: None
+		Description: The BANTHA is a solid, heavy vehicle which is used to transport containers of raw materials from mine to refinery. It can only carry one container at a time. Once the BANTHA is shown the mine from which the raw materials need to be collected, it drives there and picks up the first container. It must then be shown the refinery to which it has to bring its load. All further containers are then collected from the mine and delivered to the refinery automatically.\n\nThe BANTHA is a vehicle with medium speed, medium armor-plating and is unarmed. However, its weight and construction enable it to simply run over the enemy's soldiers.

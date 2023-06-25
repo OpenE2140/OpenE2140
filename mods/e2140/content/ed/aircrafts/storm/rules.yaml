@@ -49,9 +49,9 @@ ed_aircrafts_storm:
 		Order: 1
 		Animation: DATABASE/PM13.FLC
 		Title: STORM - Reconnaissance Helicopter
-		Armor: lite
-		Armament: large machine gun
-		Description: The STORM is a small helicopter fitted with a high power machine-gun.\nSince it is not well armed it is best used for reconnaissance flights or battles with small units, which don't have rocket launchers.
+		Armor: Light
+		Armament: Large machine gun
+		Description: The STORM is a small helicopter fitted with a high power machine-gun. Since it is not well armed it is best used for reconnaissance flights or battles with small units, which don't have rocket launchers.
 
 ed_aircrafts_storm_husk:
 	Inherits: ^CoreAircraftHusk

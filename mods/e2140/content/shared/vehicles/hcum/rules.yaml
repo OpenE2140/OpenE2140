@@ -42,6 +42,6 @@ shared_vehicles_hcum:
 		Order: 3
 		Animation: DATABASE/N03.FLC
 		Title: HCU-M - Mobile Restoration Unit
-		Armor: medium
-		Armament: none
-		Description: The HCU-M is the mobile version of the MCU restoration unit which is used to repair structures.\nThe HCU-M is used to repair damaged vehicles and military units.\nIt is controlled by the central computer.\nThe Eurasian Dynasty's troops use a modified version of the HCU-M.\nThis version, controlled by the central computer, is able to restore the enemy's vehicles, which have either been damaged or immobilized by ionic weapons.\nThese vehicles are reprogrammed for Eurasian purposes.
+		Armor: Medium
+		Armament: None
+		Description: The HCU-M is the mobile version of the MCU restoration unit which is used to repair structures. The HCU-M is used to repair damaged vehicles and military units. It is controlled by the central computer.\n\nThe Eurasian Dynasty's troops use a modified version of the HCU-M. This version, controlled by the central computer, is able to restore the enemy's vehicles, which have either been damaged or immobilized by ionic weapons. These vehicles are reprogrammed for Eurasian purposes.

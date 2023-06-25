@@ -32,6 +32,6 @@ ed_vehicles_btti:
 		Order: 10
 		Animation: DATABASE/PM10.FLC
 		Title: BTTI - Fast Exploration Vehicle
-		Armor: liteweight
-		Armament: two machine guns
-		Description: The BTTI is an enhanced EB110 which was built by an exclusive Italian sports-car manufacturer.\nThe manufacturer had financial problems and had to sell the construction plans at a relatively cheap price.\nSome minor modifications were made, making the BTTI a fast vehicle useful for special missions.\nIt can be easily located by satellites, a fact which, together with its speed, makes it ideal for reconnaissance missions in enemy territory.\nIn order to maintain most of the typical characteristics of a high performance sports car, it is fitted with a relatively liteweight armor-plating and is primitively armed.\nShould it come into contact with the enemy, its only defense is retreat.\nThis high speed car can quickly lose any pursuing enemy.
+		Armor: Lightweight
+		Armament: Two machine guns
+		Description: The BTTI is an enhanced EB110 which was built by an exclusive Italian sports-car manufacturer. The manufacturer had financial problems and had to sell the construction plans at a relatively cheap price. Some minor modifications were made, making the BTTI a fast vehicle useful for special missions.\n\nIt can be easily located by satellites, a fact which, together with its speed, makes it ideal for reconnaissance missions in enemy territory.\n\nIn order to maintain most of the typical characteristics of a high performance sports car, it is fitted with a relatively lightweight armor-plating and is primitively armed. Should it come into contact with the enemy, its only defense is retreat. This high speed car can quickly lose any pursuing enemy.

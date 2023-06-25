@@ -39,7 +39,7 @@ ucs_vehicles_t100:
 		Category: UCS - Vehicles
 		Order: 1
 		Animation: DATABASE/BT01.FLC
-		Title: T 100 - liteweight track vehicle
-		Armor: liteweight
-		Armament: two 1" machine guns
+		Title: T 100 - lightweight track vehicle
+		Armor: Lightweight
+		Armament: Two 1" machine guns
 		Description: The T 100 is mainly used to destroy type A androids, using its two rotating 22mm machine guns.\nIt is a small unit, hugging the terrain, making it hard for larger vehicles to sight and target it.

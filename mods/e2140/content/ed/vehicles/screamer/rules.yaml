@@ -26,6 +26,6 @@ ed_vehicles_screamer:
 		Order: 12
 		Animation: DATABASE/PM12.FLC
 		Title: SCREAMER
-		Armor: medium
-		Armament: none
-		Description: This tracer vehicle is one of the Eurasian Dynasty's most recent developments.\nOnce they had cracked the UCS' transmission code, they completed the development of a communication vehicle, named SCREAMER in record time.\nThis vehicle can, when within medium range, scramble the transmission frequencies used by the UCS.\nOnce these transmissions have been scrambled, all UCS units within the SCREAMER's range lose contact with their control computer and have to rely on their own artificial intelligence, receiving neither commands nor information about the movements and strength of the enemy.\nThe SCREAMER can also disable the camouflage device used by the UCS' SHADOW unit.\nIt works at longer ranges than the SHADOW.
+		Armor: Medium
+		Armament: None
+		Description: This tracer vehicle is one of the Eurasian Dynasty's most recent developments. Once they had cracked the UCS' transmission code, they completed the development of a communication vehicle, named SCREAMER in record time. This vehicle can, when within medium range, scramble the transmission frequencies used by the UCS. Once these transmissions have been scrambled, all UCS units within the SCREAMER's range lose contact with their control computer and have to rely on their own artificial intelligence, receiving neither commands nor information about the movements and strength of the enemy. The SCREAMER can also disable the camouflage device used by the UCS' SHADOW unit. It works at longer ranges than the SHADOW.

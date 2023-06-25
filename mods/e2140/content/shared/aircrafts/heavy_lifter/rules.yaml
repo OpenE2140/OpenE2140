@@ -30,9 +30,9 @@ shared_aircrafts_heavy_lifter:
 		Order: 1
 		Animation: DATABASE/N04.FLC
 		Title: Heavy Lifter - Heavy Air-Transport Unit
-		Armor: medium
-		Armament: none
-		Description: The Heavy Lifter is a heavy, flying transporter used, (like the BANTHA), to transport raw materials from mine to refinery.\nSince it can fly it is extremely useful in transporting resources over long distances or mountainous terrain.\nThe Heavy Lifter is very maneuverable, allowing it to be loaded and unloaded quickly.\nDespite being expensive and slow, it is very useful in situations where a BANTHA is either very slow or cannot be used at all.
+		Armor: Medium
+		Armament: None
+		Description: The Heavy Lifter is a heavy, flying transporter used, (like the BANTHA), to transport raw materials from mine to refinery. Since it can fly it is extremely useful in transporting resources over long distances or mountainous terrain. The Heavy Lifter is very maneuverable, allowing it to be loaded and unloaded quickly.\n\nDespite being expensive and slow, it is very useful in situations where a BANTHA is either very slow or cannot be used at all.
 
 shared_aircrafts_heavy_lifter_husk:
 	Inherits: ^CoreAircraftHusk

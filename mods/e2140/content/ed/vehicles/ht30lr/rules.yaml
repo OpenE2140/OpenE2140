@@ -77,6 +77,6 @@ ed_vehicles_ht30lr:
 		Order: 5
 		Animation: DATABASE/PM05.FLC
 		Title: HT 30 LR - "Crusher"
-		Armor: heavy
-		Armament: two laser-guns and small rocket launcher
-		Description: HT series tanks are the heavyweights of the battle field.\nThese huge tanks have a highly resistant armor-plating which efficiently protects them from any kind of weapon.\nThe armor has simply everything you could wish for.\nIt has two laser cannons, which are ideal for quickly and efficiently destroying anything, even moving targets and structures.\nDuring the relatively long length of time it takes to reload the generators, it can fire its liteweight rocket launchers.\nYou can use these against airborne targets.\nThe HT 30 LR is currently the best tank in the world and carries the name "Crusher".\nIts main disadvantage is lack of speed due to its tremendous weight of armor and weaponry.
+		Armor: Heavy
+		Armament: Two laser-guns and small rocket launcher
+		Description: HT series tanks are the heavyweights of the battle field. These huge tanks have a highly resistant armor-plating which efficiently protects them from any kind of weapon. The armor has simply everything you could wish for. It has two laser cannons, which are ideal for quickly and efficiently destroying anything, even moving targets and structures. During the relatively long length of time it takes to reload the generators, it can fire its lightweight rocket launchers. You can use these against airborne targets. The HT 30 LR is currently the best tank in the world and carries the name "Crusher". Its main disadvantage is lack of speed due to its tremendous weight of armor and weaponry.

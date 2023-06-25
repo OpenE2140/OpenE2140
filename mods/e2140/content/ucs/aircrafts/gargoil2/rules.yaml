@@ -32,9 +32,9 @@ ucs_aircrafts_gargoil_ii:
 		Order: 3
 		Animation: DATABASE/MP2_GARG.FLC
 		Title: GARGOIL II
-		Armor: heavy rockets
-		Armament: light
-		Description: A better, modernized version of its predecessor, the Gargoil Reconnaissance Plane, the GARGOIL II is ideal for directly attacking structures and individual units.\nEquipped with heavy rockets, this fast, compact fighting machine is a central element of the UCS Air Force.\nHowever, due to its light armor, the GARGOIL II should not be used against massed enemy units.
+		Armor: Heavy rockets
+		Armament: Light
+		Description: A better, modernized version of its predecessor, the Gargoil Reconnaissance Plane, the GARGOIL II is ideal for directly attacking structures and individual units. Equipped with heavy rockets, this fast, compact fighting machine is a central element of the UCS Air Force. However, due to its light armor, the GARGOIL II should not be used against massed enemy units.
 
 ucs_aircrafts_gargoil_ii_husk:
 	Inherits: ^CoreAircraftHusk

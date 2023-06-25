@@ -32,6 +32,6 @@ ed_vehicles_ht34j:
 		Order: 7
 		Animation: DATABASE/PM07.FLC
 		Title: HT 34J - Heavyweight Tank
-		Armor: heavy
-		Armament: ion-canon
-		Description: The HT 34 J (also based on the HT 30) is equipped with an ion cannon.\nIon technology is the latest Eurasian Dynasty development, which enables them to take-over and use the enemy's war machines.\nThe ion cannon paralyses the electronics of the enemy vehicle, immobilising it.\nThese vehicles can then be repaired and reprogrammed by an HCU-M.\nSo it's advisable to pair the HT 34J with an HCU-M at all times.\nDue to the overly large size of its generators, an HT chassis had to be used for this vehicle, which slows it right down.
+		Armor: Heavy
+		Armament: Ion-canon
+		Description: The HT 34 J (also based on the HT 30) is equipped with an ion cannon. Ion technology is the latest Eurasian Dynasty development, which enables them to take-over and use the enemy's war machines.\n\nThe ion cannon paralyses the electronics of the enemy vehicle, immobilising it. These vehicles can then be repaired and reprogrammed by an HCU-M. So it's advisable to pair the HT 34J with an HCU-M at all times. Due to the overly large size of its generators, an HT chassis had to be used for this vehicle, which slows it right down.

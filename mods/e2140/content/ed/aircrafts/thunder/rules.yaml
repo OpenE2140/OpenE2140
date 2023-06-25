@@ -40,9 +40,9 @@ ed_aircrafts_thunder:
 		Order: 2
 		Animation: DATABASE/PM14.FLC
 		Title: THUNDER - Battle Helicopter
-		Armor: lite
-		Armament: small rocket launcher
-		Description: The THUNDER is based on a technically improved version of the STORM helicopter.\nIt is fitted with a small rocket launcher instead of a machine gun.\nIt can be used on static targets and large vehicles.\nIt is not particularly useful in battles with moving targets such as A series androids or SILVER series battle units.\nA certain distance from the target is required and the maneuver needed to readjust its position when the target moves makes THUNDER extremely vulnerable.
+		Armor: Light
+		Armament: Small rocket launcher
+		Description: The THUNDER is based on a technically improved version of the STORM helicopter. It is fitted with a small rocket launcher instead of a machine gun. It can be used on static targets and large vehicles. It is not particularly useful in battles with moving targets such as A series androids or SILVER series battle units. A certain distance from the target is required and the maneuver needed to readjust its position when the target moves makes THUNDER extremely vulnerable.
 
 ed_aircrafts_thunder_husk:
 	Inherits: ^CoreAircraftHusk
