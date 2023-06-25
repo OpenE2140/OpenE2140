@@ -15,12 +15,13 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Attach to all production buildings with animated exit production instead of default ProductionQueue")]
-public class AnimatedExitProductionQueueInfo : ProductionQueueInfo
+public class AnimatedExitProductionQueueInfo : ProductionQueueInfo, Requires<AnimatedExitProductionInfo>
 {
 	public override object Create(ActorInitializer init)
 	{
