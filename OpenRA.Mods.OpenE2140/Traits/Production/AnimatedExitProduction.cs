@@ -117,12 +117,12 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	private readonly AnimatedExitProductionInfo info;
 
 	protected readonly RenderSprites RenderSprites;
+	private AnimatedExitProductionQueue[] productionQueues = Array.Empty<AnimatedExitProductionQueue>();
 	private RallyPoint? rallyPoint;
 
 	private readonly AnimationWithOffset animation;
 	private bool animationVisible;
 
-	private readonly AnimatedExitProductionQueue productionQueue;
 	private int? lastNudge;
 	protected ProductionInfo? productionInfo;
 	private ProductionInfo? lastProducedUnit;
@@ -169,13 +169,13 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			animationOverlay.Animation.PlayRepeating(this.info.SequenceOverlay);
 			init.Self.World.AddFrameEndTask(_ => this.RenderSprites?.Add(animationOverlay));
 		}
-
-		this.productionQueue = init.Self.Trait<AnimatedExitProductionQueue>();
 	}
 
 	protected override void Created(Actor self)
 	{
 		this.rallyPoint = self.TraitOrDefault<RallyPoint>();
+		this.productionQueues = self.TraitsImplementing<AnimatedExitProductionQueue>().ToArray();
+
 		base.Created(self);
 	}
 
@@ -530,7 +530,13 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	{
 		this.lastNudge = 0;
 		this.State = AnimationState.Closed;
-		this.productionQueue.UnitCompleted(this.lastProducedUnit!.Actor!);
+
+		if (this.lastProducedUnit != null)
+		{
+			// Multiple queues could have produced the unit, find out which one should be notified.
+			var productionQueue = this.productionQueues.Single(q => q.Info.Type == this.lastProducedUnit.ProductionType);
+			productionQueue.UnitCompleted(this.lastProducedUnit.Actor!);
+		}
 	}
 
 	protected static WAngle GetInitialFacing(ActorInfo producee, WPos spawn, WPos target)

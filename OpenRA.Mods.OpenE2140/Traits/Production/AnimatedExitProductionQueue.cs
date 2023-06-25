@@ -141,7 +141,7 @@ public class AnimatedExitProductionQueue : ProductionQueue
 
 	protected override void TickInner(Actor self, bool allProductionPaused)
 	{
-		var unpaused = this.EnabledProductionTraits.Where(a => a is { IsTraitPaused: false, State: AnimatedExitProduction.AnimationState.Closed });
+		var unpaused = this.EnabledProductionTraits.Where(a => a is { IsTraitPaused: false });
 
 		if (unpaused.Any())
 			base.TickInner(self, allProductionPaused);
