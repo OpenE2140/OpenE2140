@@ -1,17 +1,26 @@
 core_buildingsequence_small:
-	cover:
-		Filename: SPRU0.MIX
-		Frames: 31, 30, 29, 28, 27, 26
-		Length: 6
-	covered:
-		Filename: SPRU0.MIX
-		Frames: 31
 	deploy:
 		Filename: vehicle_mcu_deploy_small.vspr
 		Length: 7
 	deployed:
 		Filename: vehicle_mcu_deploy_small.vspr
 		Start: 6
+	cover:
+		Filename: content/core/assets/construction_pyramid_small.png
+		Length: 6
+		Offset: 5,-18
+		ZOffset: 64
+	covered:
+		Filename: content/core/assets/construction_pyramid_small.png
+		Frames: 5
+		Offset: 5,-18
+		ZOffset: 64
+	uncover:
+		Filename: content/core/assets/construction_pyramid_small.png
+		Length: 5
+		Frames: 4, 3, 2, 1, 0
+		Offset: 5,-18
+		ZOffset: 64
 
 core_buildingsequence_large:
 	deploy:

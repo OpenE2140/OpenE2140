@@ -115,13 +115,22 @@
 	ActorLostNotification:
 		Notification: BuildingLost
 		TextNotification: Structure lost.
-
-# Base for all buildings.
-^CoreBuilding:
-	Inherits: ^CoreConstruction
-	# Enemy buildings have to be destroyed to win, even when short game option is used.
-	MustBeDestroyed:
-		RequiredForShortGame: true
+	# The view radius of buildings.
+	RevealsShroud:
+		Range: 4c896
+	# Display decorative repair marker when a building is being repaired.
+	WithBuildingRepairDecoration:
+		Image: repair
+		Sequence: idle
+		Palette:
+		Position: Center
+	# Display decorative power marker when a building is powered down.
+	WithDecoration@PowerDown:
+		Image: powerdown
+		Sequence: idle
+		Palette:
+		Position: Center
+		RequiresCondition: PoweredDown
 	# Buildings can be repaired.
 	RepairableBuilding:
 		RequiresCondition: Powered
@@ -130,9 +139,13 @@
 		RepairStep: 10
 		RepairingNotification: Repairing
 		RepairingStoppedNotification: RepairsInterrupted
-	# The view radius of buildings.
-	RevealsShroud:
-		Range: 4c896
+
+# Base for all buildings.
+^CoreBuilding:
+	Inherits: ^CoreConstruction
+	# Enemy buildings have to be destroyed to win, even when short game option is used.
+	MustBeDestroyed:
+		RequiredForShortGame: true
 	# Group all buildings in the map editor.
 	MapEditorData:
 		Categories: Building
@@ -152,19 +165,6 @@
 	Explodes:
 		Weapon: BuildingExplosion
 		EmptyWeapon: BuildingExplosion
-	# Display decorative repair marker when a building is being repaired.
-	WithBuildingRepairDecoration:
-		Image: repair
-		Sequence: idle
-		Palette:
-		Position: Center
-	# Display decorative power marker when a building is powered down.
-	WithDecoration@PowerDown:
-		Image: powerdown
-		Sequence: idle
-		Palette:
-		Position: Center
-		RequiresCondition: PoweredDown
 
 # Base for all factories.
 ^CoreFactory:
@@ -226,18 +226,17 @@
 	# Group all towers in the map editor.
 	MapEditorData:
 		Categories: Tower
-	# Towers are always 2x2 in size.
+	# Towers are always 1x1 in size.
 	Building:
-		Dimensions: 2,2
-		Footprint: xx==
+		Dimensions: 1,1
+		Footprint: x
 	# Correct Hitshape and selection box for all towers
 	HitShape:
-		Type: Rectangle
-			TopLeft: -1024, -1024
-			BottomRight: 1024, 0
-		TargetableOffsets: 819,-512,0, 819,512,0
+		UseTargetableCellsOffsets: True
+		Type: Circle
+			Radius: 512
 	Selectable:
-		Bounds: 2048, 2048, 0, -512
+		Bounds: 1040, 960, 0, 0
 	# Towers also have to be destroyed when short game option is used.
 	MustBeDestroyed:
 		RequiredForShortGame: true
@@ -245,11 +244,19 @@
 	Turreted:
 		InitialFacing: 512
 		RealignDelay: -1
+		RequiresCondition: !Transforming
+	# Turret shouldn't attack while transforming.
+	AttackTurreted:
+		RequiresCondition: !Transforming
+	# Turret is not rendered while transforming.
+	WithSpriteTurret:
+		RequiresCondition: !Transforming
 	# Construction animation.
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Condition: Transforming
 		TransformSound: 78.smp
+	# The body is not rendered while transforming.
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 
@@ -294,7 +301,7 @@
 	Guard:
 		Voice: Escort
 	Guardable:
-	#Infantry has own death animations.
+	# Infantry has own death animations.
 	WithDeathAnimation:
 		DeathTypes:
 			Default: -default
@@ -527,7 +534,6 @@
 	# General turret behavior.
 	Turreted:
 		TurnSpeed: 30
-		PauseOnCondition: VehicleDisabled
 	# Special trait to position turret depending on attachment point (only visualy).
 	WithSpriteTurret:
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.
@@ -538,6 +544,13 @@
 	AutoTargetPriority:
 		ValidTargets: Ground, Water, Air, Ship
 		InvalidTargets: Structure
+
+# Grouped traits for standard vehicle turret behavior.
+^CoreVehicleTurret:
+	Inherits: ^CoreTurret
+	# General turret behavior.
+	Turreted:
+		PauseOnCondition: VehicleDisabled
 
 # Grouped traits for standard non-turreted behavior.
 ^CoreArmedSelf:
