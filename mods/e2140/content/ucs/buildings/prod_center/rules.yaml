@@ -83,9 +83,9 @@ ucs_buildings_prod_center:
 		Animation: DATABASE/X17.FLC
 		Title: UCS Production Center
 		Armor: Resistant to conventional weapons
-		Armament: none
-		Resistance: high
-		Description: The Production Center is the main building of a UCS base.\nThis is where MCU construction vehicles are built.\nThey are used to build all other structures.\nBANTHA heavy goods transporters are built here too.\nWhen you reach the required technology level, you can start building the anti-gravity transporter HEAVY LIFTER here.\nYou can then use it to transport resource containers faster and more efficiently.
+		Armament: None
+		Resistance: High
+		Description: The Production Center is the main building of a UCS base. This is where MCU construction vehicles are built. They are used to build all other structures. BANTHA heavy goods transporters are built here too.\n\nWhen you reach the required technology level, you can start building the anti-gravity transporter HEAVY LIFTER here. You can then use it to transport resource containers faster and more efficiently.
 
 ucs_mcu_prod_center:
 	Inherits@1: ^SharedVehicleMcu

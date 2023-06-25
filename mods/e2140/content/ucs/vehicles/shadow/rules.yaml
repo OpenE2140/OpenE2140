@@ -26,6 +26,6 @@ ucs_vehicles_shadow:
 		Order: 11
 		Animation: DATABASE/BT11.FLC
 		Title: SHADOW - "The Camouflage Hood"
-		Armor: middleweight
-		Armament: none
-		Description: The SHADOW is a tracked vehicle with a difference - it has stealth camouflaging.\nFor decades the UCS have been researching vehicle invisibility.\nSHADOW is the result of that research - an improved and fully functional version of the prototype.\nThe new SHADOW's system can camouflage, for example, a middle sized army for any length of time. 
+		Armor: Middleweight
+		Armament: None
+		Description: The SHADOW is a tracked vehicle with a difference - it has stealth camouflaging. For decades the UCS have been researching vehicle invisibility. SHADOW is the result of that research - an improved and fully functional version of the prototype.\n\nThe new SHADOW's system can camouflage, for example, a middle sized army for any length of time.

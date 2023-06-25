@@ -44,6 +44,6 @@ ed_vehicles_mt200:
 		Order: 3
 		Animation: DATABASE/PM03.FLC
 		Title: MT 200 - Middle-sized Tank
-		Armor: medium
-		Armament: heavy cannon
-		Description: The MT 200, a medium sized tank, is an excellent weapon.\nIts large cannon is ideal for eliminating enemy vehicles and structures.\nIt has good armor-plating and, compared to similar tanks, is very fast, making it hard to destroy.\nIts aiming mechanism is slow, making it very difficult to combat fast and agile units, like the enemy SILVER series.\nHowever, the tank can simply run over and crush enemy units.
+		Armor: Medium
+		Armament: Heavy cannon
+		Description: The MT 200, a medium sized tank, is an excellent weapon. Its large cannon is ideal for eliminating enemy vehicles and structures. It has good armor-plating and, compared to similar tanks, is very fast, making it hard to destroy.\n\nIts aiming mechanism is slow, making it very difficult to combat fast and agile units, like the enemy SILVER series. However, the tank can simply run over and crush enemy units.

@@ -55,6 +55,6 @@ ucs_vehicles_spider_ii:
 		Order: 7
 		Animation: DATABASE/BT07.FLC
 		Title: SPIDER II
-		Armor: heavy
-		Armament: four firing devices for large rockets
-		Description: The name SPIDER II might suggest that it is an improvement on the SPIDER.\nHowever, it was obvious from the beginning of development that this was to be something completely new.\nA zippy, fast reacting fortress was about to be created.\nThe result is a heavily armored unit with its own cluster of reaction CPUs and four firing devices for large rockets.\nTwo of these rockets can be fired in quick succession while the other two are being reloaded.\nThis constant fire capability makes the Spider II deadly.\nThe SPIDER II is the definite leader in terms of UCS destructive power.
+		Armor: Heavy
+		Armament: Four firing devices for large rockets
+		Description: The name SPIDER II might suggest that it is an improvement on the SPIDER. However, it was obvious from the beginning of development that this was to be something completely new. A zippy, fast reacting fortress was about to be created.\n\nThe result is a heavily armored unit with its own cluster of reaction CPUs and four firing devices for large rockets. Two of these rockets can be fired in quick succession while the other two are being reloaded. This constant fire capability makes the Spider II deadly.\n\nThe SPIDER II is the definite leader in terms of UCS destructive power.

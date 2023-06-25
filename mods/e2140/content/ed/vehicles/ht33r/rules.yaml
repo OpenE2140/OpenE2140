@@ -37,6 +37,6 @@ ed_vehicles_ht33r:
 		Order: 6
 		Animation: DATABASE/PM06.FLC
 		Title: HT 33 R - Heavyweight Tank
-		Armor: heavy
-		Armament: launcher for big rockets
-		Description: The HT 33 R is based on the HT 30 and has three additional launchers for large, automatic long-range rockets.\nThis makes the HT 33 R one of the most effective and destructive weapons for use against vehicles, structures and flying targets, even when used at long-distance.\nAll HT series tanks have outstanding armor-plating, which can offer protection for a relatively long period of time against enemy attacks.\nBut again, the weight slows this tank down.
+		Armor: Heavy
+		Armament: Launcher for big rockets
+		Description: The HT 33 R is based on the HT 30 and has three additional launchers for large, automatic long-range rockets. This makes the HT 33 R one of the most effective and destructive weapons for use against vehicles, structures and flying targets, even when used at long-distance.\n\nAll HT series tanks have outstanding armor-plating, which can offer protection for a relatively long period of time against enemy attacks. But again, the weight slows this tank down.

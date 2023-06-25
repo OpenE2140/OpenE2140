@@ -50,6 +50,6 @@ ucs_vehicles_raptor_ad:
 		Order: 3
 		Animation: DATABASE/BT03.FLC
 		Title: RAPTOR AD
-		Armor: medium
-		Armament: launcher for small rockets
-		Description: The RAPTOR AD is a modified version of the fast and agile RAPTOR-unit.\nIt has two small rocket launchers.\nThese can be reloaded fast.\nThey are great for ground-to-air combat, effective against lite and middleweight vehicles and can destroy structures.
+		Armor: Medium
+		Armament: Launcher for small rockets
+		Description: The RAPTOR AD is a modified version of the fast and agile RAPTOR-unit.\n\nIt has two small rocket launchers. These can be reloaded fast. They are great for ground-to-air combat, effective against light and middleweight vehicles and can destroy structures.

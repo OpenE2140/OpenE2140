@@ -32,9 +32,9 @@ ed_aircrafts_vtol:
 		Order: 5
 		Animation: DATABASE/MP2_HAR.FLC
 		Title: Vertical Take-Off Flier
-		Armor: light
-		Armament: heavy rockets
-		Description: This unit was sorely missing from the ED's Air Force.\nSmall, fast and heavily-armed, the Vertical Takeoff Flier is ideal for attacking distant targets.\nEquipped with heavy rockets, the Vertical Takeoff Flier is excellent at destroying structures and defence towers.\nBecause of its light armor it is not necessarily suitable for action against massed units.
+		Armor: Light
+		Armament: Heavy rockets
+		Description: This unit was sorely missing from the ED's Air Force. Small, fast and heavily-armed, the Vertical Takeoff Flier is ideal for attacking distant targets. Equipped with heavy rockets, the Vertical Takeoff Flier is excellent at destroying structures and defence towers. Because of its light armor it is not necessarily suitable for action against massed units.
 
 ed_aircrafts_vtol_husk:
 	Inherits: ^CoreAircraftHusk

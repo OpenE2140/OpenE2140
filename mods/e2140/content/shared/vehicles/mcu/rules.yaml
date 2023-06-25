@@ -38,6 +38,6 @@ shared_mcu:
 		Order: 1
 		Animation: DATABASE/N01.FLC
 		Title: MCU (Meta Construction Unit)
-		Armor: thick
-		Armament: none
-		Description: The MCU is a heavy vehicle which is used to construct all types of structures.\nHowever, the type of structure the MCU can construct must first be defined and cannot be changed.\nThe MCU is a large, heavy, slow-moving vehicle, which is very difficult to navigate.\nIt does, however, have thick armour-plating, making up for its weaknesses should the enemy launch a small attack.\nBear in mind, however, that the MCU is unarmed.
+		Armor: Thick
+		Armament: None
+		Description: The MCU is a heavy vehicle which is used to construct all types of structures. However, the type of structure the MCU can construct must first be defined and cannot be changed.\n\nThe MCU is a large, heavy, slow-moving vehicle, which is very difficult to navigate. It does, however, have thick armour-plating, making up for its weaknesses should the enemy launch a small attack. Bear in mind, however, that the MCU is unarmed.
