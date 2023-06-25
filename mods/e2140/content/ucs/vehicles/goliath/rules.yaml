@@ -31,7 +31,7 @@ ucs_vehicles_goliath:
 		RequiresCondition: triggered
 	Encyclopedia:
 		Category: UCS - Vehicles
-		Order: 13
+		Order: 14
 		Animation: DATABASE/MP2_GOL.FLC
 		Title: Goliath
 		Armor: Medium

@@ -23,8 +23,8 @@ ucs_vehicles_wtp_100:
 	# WTP 100 doesn't have move animation.
 	-WithMoveAnimation:
 	Encyclopedia:
-		Category: UCS - Ships
-		Order: 1
+		Category: UCS - Vehicles
+		Order: 12
 		Animation: DATABASE/BT12.FLC
 		Title: WTP 100 - Air-cushion Transporter
 		Armor: medium
