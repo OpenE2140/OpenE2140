@@ -70,6 +70,9 @@ public class AnimatedExitProductionInfo : ProductionInfo, IRenderActorPreviewSpr
 	[Desc("When current exit is currently blocked, wait X ticks until giving up and running retry logic.")]
 	public readonly int EjectionWaitLimit = 25;
 
+	[Desc("Minimum delay between production of two actors, in ticks.")]
+	public readonly int MinimumTicksBetweenProduction = 3;
+
 	public override object Create(ActorInitializer init)
 	{
 		return new AnimatedExitProduction(init, this);
@@ -126,6 +129,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	private int? lastNudge;
 	protected ProductionInfo? productionInfo;
 	private ProductionInfo? lastProducedUnit;
+	private int? lastProducedUnitTick;
 
 	private AnimationState state = AnimationState.Closed;
 	protected int stateAge;
@@ -139,6 +143,13 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			this.stateAge = 0;
 		}
 	}
+
+	/// <summary>
+	/// Returns <c>true</c>, if this <see cref="AnimatedExitProduction"/> can build new unit at this precise moment.
+	/// Takes into account the minimum delay specified by <see cref="AnimatedExitProductionInfo.MinimumTicksBetweenProduction"/>.
+	/// </summary>
+	public bool CanBuildUnitNow => this.State == AnimationState.Closed &&
+		(this.lastProducedUnitTick == null || Game.LocalTick - this.lastProducedUnitTick >= this.info.MinimumTicksBetweenProduction);
 
 	public AnimatedExitProduction(ActorInitializer init, AnimatedExitProductionInfo info)
 		: base(init, info)
@@ -203,7 +214,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	public override bool Produce(Actor self, ActorInfo producee, string productionType, TypeDictionary inits, int refundableValue)
 	{
-		if (this.IsTraitDisabled || this.IsTraitPaused || Reservable.IsReserved(self) || this.State != AnimationState.Closed)
+		if (this.IsTraitDisabled || this.IsTraitPaused || Reservable.IsReserved(self) || !this.CanBuildUnitNow)
 			return false;
 
 		// Pick a spawn/exit point pair
@@ -216,7 +227,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	public override void DoProduction(Actor self, ActorInfo producee, ExitInfo? exitInfo, string productionType, TypeDictionary inits)
 	{
-		if (this.State != AnimationState.Closed)
+		if (!this.CanBuildUnitNow)
 			return;
 
 		// If no exit was specified, pick one (even if it isn't free)
@@ -536,6 +547,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			// Multiple queues could have produced the unit, find out which one should be notified.
 			var productionQueue = this.productionQueues.Single(q => q.Info.Type == this.lastProducedUnit.ProductionType);
 			productionQueue.UnitCompleted(this.lastProducedUnit.Actor!);
+
+			// Store tick, when this AnimatedExitProduction has closed for the last produced unit.
+			// Will be used in check CanBuildUnitNow above.
+			this.lastProducedUnitTick = Game.LocalTick;
 		}
 	}
 

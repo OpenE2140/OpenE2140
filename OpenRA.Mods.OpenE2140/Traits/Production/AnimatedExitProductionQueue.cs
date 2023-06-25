@@ -78,7 +78,9 @@ public class AnimatedExitProductionQueue : ProductionQueue
 			return false;
 		}
 
-		if (mostLikelyProducerTrait.State != AnimatedExitProduction.AnimationState.Closed)
+		// If the *Production trait cannot build new unit at this precise moment, just wait a bit (ProductionQueue's ProductionItem will keep
+		// calling OnComplete callback, until the item is removed from the Queue using ProductionQueue.EndProduction method).
+		if (!mostLikelyProducerTrait.CanBuildUnitNow)
 			return false;
 
 		var inits = new TypeDictionary { new OwnerInit(this.Actor.Owner), new FactionInit(BuildableInfo.GetInitialFaction(unit, this.Faction)) };
