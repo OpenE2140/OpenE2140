@@ -41,7 +41,7 @@ ucs_vehicles_big_mech:
 		Image: smoking_mech
 	Encyclopedia:
 		Category: UCS - Vehicles
-		Order: 12
+		Order: 13
 		Animation: DATABASE/MP2_MECH.FLC
 		Title: BIG MECH
 		Armor: heavy
