@@ -13,6 +13,8 @@
 	Explodes:
 		Weapon: PipeExplosion
 		EmptyWeapon: PipeExplosion
+	ExplosivePipe:
+		IsNode: True
 
 ^Pipe:
 	Inherits: ^PipeNode
@@ -20,51 +22,101 @@
 		Footprint: _
 	CustomChangesTerrain:
 		TerrainType: ClearPipe
+	ExplosivePipe:
+		IsNode: False
 
+^PipeVertical:
+	ExplosivePipe:
+		StartDirection: North
+		EndDirection: South
+
+# Vertical pipes.
 neutral_pipe01:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeVertical
 
 neutral_pipe02:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeVertical
 
 neutral_pipe03:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeVertical
 
+# Vertical node.
 neutral_pipe04:
 	Inherits: ^PipeNode
+	Inherits@1: ^PipeVertical
 
+# Corner nodes.
 neutral_pipe05:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		StartDirection: South
+		EndDirection: East
 
 neutral_pipe06:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		StartDirection: West
+		EndDirection: South
 
 neutral_pipe07:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		StartDirection: North
+		EndDirection: East
 
 neutral_pipe08:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		StartDirection: West
+		EndDirection: North
 
+# Terminal nodes.
 neutral_pipe09:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		# Terminal node
+		StartDirection: North
 
 neutral_pipe10:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		# Terminal node
+		StartDirection: West
 
 neutral_pipe11:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		# Terminal node
+		StartDirection: East
 
 neutral_pipe12:
 	Inherits: ^PipeNode
+	ExplosivePipe:
+		# Terminal node
+		StartDirection: South
 
+^PipeHorizontal:
+	ExplosivePipe:
+		StartDirection: East
+		EndDirection: West
+
+# Horizontal node.
 neutral_pipe13:
 	Inherits: ^PipeNode
+	Inherits@1: ^PipeHorizontal
 
+# Horizontal pipes.
 neutral_pipe14:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeHorizontal
 
 neutral_pipe15:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeHorizontal
 
 neutral_pipe16:
 	Inherits: ^Pipe
+	Inherits@1: ^PipeHorizontal
