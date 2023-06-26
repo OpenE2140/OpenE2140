@@ -319,7 +319,7 @@ Generate:
 	turret_ht_34_j: Shadow
 		idle: 414-422 16
 
-	turret_heavy_def_tower: Shadow
+	turret_heavy_defense_tower_secondary: Shadow
 		idle: 414-422 16
 
 	turret_android_a01: Shadow NoMuzzle #TODO unused?!
@@ -367,7 +367,7 @@ Generate:
 		idle: 477-485 16
 			Offsets: 479-481:1,0
 
-	turret_heavy_def_tower_secondary:
+	turret_heavy_defense_tower:
 		idle: 477-485 16
 			Offsets: 479-481:1,0
 

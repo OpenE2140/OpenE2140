@@ -7,7 +7,7 @@ ed_defenses_defense_tower:
 	Building:
 		LocalCenterOffset: 0,40,0
 	TransformSequence:
-		Offset: -45,0,0
+		Offset: -48,-32,0
 	Selectable:
 		Bounds: 1040, 960, 0,0
 	Power:

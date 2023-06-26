@@ -135,7 +135,7 @@ Generate:
 		idle: 51
 		damaged-idle: 52
 
-	building_heavy_def_tower: Shadow
+	building_heavy_defense_tower: Shadow
 		idle: 53
 		damaged-idle: 54
 
