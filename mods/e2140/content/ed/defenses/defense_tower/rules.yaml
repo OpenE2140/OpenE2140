@@ -1,0 +1,47 @@
+ed_defenses_defense_tower:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Defense Tower
+	Health:
+		HP: 150
+	Building:
+		LocalCenterOffset: 0,40,0
+	TransformSequence:
+		Offset: -45,0,0
+	Selectable:
+		Bounds: 1040, 960, 0,0
+	Power:
+		Amount: -50
+	Turreted:
+		Offset: 550,-16,0
+	Armament:
+		Weapon: ed_defenses_defense_tower
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 15
+		Animation: DATABASE/X15.FLC
+		Title: Defense Tower
+		Armor: Resistant to conventional weapons
+		Armament: 8” cannon or launcher for small rockets
+		Resistance: Medium
+		Description: One important element of an effective line of defense is this tower which is almost 12’ high. The tower is always built with an 8” cannon and can be upgraded with up to two launchers for small rockets.
+
+ed_mcu_defense_tower:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Defense Tower
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_defense_tower
+	Valued:
+		Cost: 400
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 10
+	WithTextDecoration:
+		Text: Defense Tower
