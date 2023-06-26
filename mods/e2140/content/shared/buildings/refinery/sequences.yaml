@@ -1,0 +1,39 @@
+shared_buildings_refinery:
+	Defaults:
+		Filename: building_refinery.vspr
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+	belt:
+		Filename: belt.vspr
+	belt-lights:
+		Filename: belt.vspr
+		Start: 1
+		IgnoreWorldTint: true
+		ZOffset: 64
+
+shared_mcu_refinery:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 184
+
+shared_mcu_refinery.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 184
+
+refinery_smoke:
+	chimney_smoke:
+		Filename: smoke.vspr
+		Offset: 0,-80,0
+		Length: 8
+		Tick: 140
+		BlendMode: Subtractive

@@ -1,0 +1,92 @@
+shared_buildings_refinery:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Refinery
+	Health:
+		HP: 800
+	Power:
+		Amount: -300
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 216,1624,0
+		RequiresCondition: Powered
+	WithIdleOverlay@Belt:
+		Sequence: belt
+		Offset: 216,1624,0
+		RequiresCondition: !Transforming
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx x== ===
+		LocalCenterOffset: -390,-590,0
+	TransformSequence:
+		Offset: 360,540,0
+	HitShape@1:
+		TargetableOffsets: 848,-850,0,   848,-150,0,   848,550,0,   0,-850,0,   0,-150,0,   0,550,0
+		Type: Rectangle
+			TopLeft: -1124, -924
+			BottomRight: 924, 412
+	HitShape@2:
+		TargetableOffsets: -1024,-750,0,   -1024,-300,0
+		Type: Rectangle
+			TopLeft: -1024, 412
+			BottomRight: 0, 1024
+	Selectable:
+		Bounds: 3088, 1950, 384, 128
+	ProvidesPrerequisite:
+		Prerequisite: anypower
+	GrantConditionOnDamageState:
+		Condition: damaged
+	# TODO Smoke should only come out from chimey when resources are delivered inside Refinery.
+	FloatingSpriteEmitter:
+		Duration: -1
+		Lifetime: 27
+		SpawnFrequency: 5
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: -512,112,0
+		Image: refinery_smoke
+		Sequences: chimney_smoke
+		RequiresCondition: !Transforming && Powered && !damaged
+	FloatingSpriteEmitter@Damaged:
+		Duration: -1
+		Lifetime: 27
+		SpawnFrequency: 5
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: -512,812,0
+		Image: refinery_smoke
+		Sequences: chimney_smoke
+		RequiresCondition: !Transforming && Powered && damaged
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 3
+		Animation: DATABASE/X03.FLC
+		Title: Refinery
+		Armor: Cannot be damaged by normal firearms.
+		Armament: None
+		Resistance: Medium
+		Description: The refinery processes the raw materials excavated from the mines. The raw materials are then sold thereby improving the budget. Each container is filled with resources to the value of 200 Dollars.\n\nThe refinery is fully automated and does not require any personnel whatsoever.\n\nThe containers are brought to the refinery using either a BANTHA or HEAVY LIFTER. They load the containers onto a conveyer belt which transports the containers inside the refinery.
+
+shared_mcu_refinery:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Refinery
+	Transforms:
+		IntoActor: shared_buildings_refinery
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160
+	WithTextDecoration:
+		Text: Refinery
