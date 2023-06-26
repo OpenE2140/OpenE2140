@@ -259,6 +259,10 @@
 	# The body is not rendered while transforming.
 	WithSpriteBody:
 		RequiresCondition: !Transforming
+	# Towers explode when killed.
+	Explodes:
+		Weapon: BuildingExplosion
+		EmptyWeapon: BuildingExplosion
 
 # Base for all infantry.
 ^CoreInfantry:

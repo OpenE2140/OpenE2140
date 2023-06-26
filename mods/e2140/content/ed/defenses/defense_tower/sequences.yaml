@@ -1,0 +1,27 @@
+ed_defenses_defense_tower:
+	Defaults:
+		Filename: building_defense_tower.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	turret:
+		Filename: turret_defense_tower.vspr
+		Facings: -16
+	muzzle:
+		Filename: turret_defense_tower.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Tick: 50
+
+ed_mcu_defense_tower:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 178
+
+ed_mcu_defense_tower.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 178

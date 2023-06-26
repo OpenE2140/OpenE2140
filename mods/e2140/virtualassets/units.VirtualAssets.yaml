@@ -326,7 +326,7 @@ Generate:
 		idle: 423-431 16
 		muzzle: 423-431 16 3 Muzzle
 
-	turret_defend_tower: Shadow
+	turret_defense_tower_secondary: Shadow
 		idle: 432-440 16
 			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0
 
@@ -337,7 +337,7 @@ Generate:
 		idle: 450-458 16
 		muzzle: 450-458 16 3 Muzzle
 
-	turret_defend_tower_secondary: NoMuzzle
+	turret_defense_tower: NoMuzzle
 		idle: 450-458 16
 		muzzle: 450-458 16 3 Muzzle
 

@@ -35,6 +35,7 @@ Rules:
 	e2140|content/ed/ships/wtrn/rules.yaml
 	e2140|content/ed/ships/kt30/rules.yaml
 	e2140|content/ed/defenses/pillbox/rules.yaml
+	e2140|content/ed/defenses/defense_tower/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -68,6 +69,7 @@ Sequences:
 	e2140|content/ed/ships/shark/sequences.yaml
 	e2140|content/ed/ships/kt30/sequences.yaml
 	e2140|content/ed/defenses/pillbox/sequences.yaml
+	e2140|content/ed/defenses/defense_tower/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -93,3 +95,4 @@ Weapons:
 	e2140|content/ed/ships/shark/weapons.yaml
 	e2140|content/ed/ships/kt30/weapons.yaml
 	e2140|content/ed/defenses/pillbox/weapons.yaml
+	e2140|content/ed/defenses/defense_tower/weapons.yaml
