@@ -1,0 +1,51 @@
+ed_defenses_heavy_defense_tower:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Heavy Def. Tower
+	Health:
+		HP: 300
+	Building:
+		LocalCenterOffset: 0,-226,0
+	TransformSequence:
+		Offset: -48,226,0
+	Selectable:
+		Bounds: 1024, 1475, 0, 0
+	Power:
+		Amount: -100
+	Turreted:
+		Offset: 210,0,400
+	Armament@PRIMARY:
+		Weapon: ed_defenses_heavy_defense_tower
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ed_defenses_heavy_defense_tower_air
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 16
+		Animation: DATABASE/X16.FLC
+		Title: Heavy Defense Tower
+		Armor: Resistant to conventional weapons, small rockets and fire
+		Armament: Triple launcher for heavy rockets, can be upgraded with an ion-cannon.
+		Resistance: High
+		Description: The heavy defense tower is the big brother of the defense tower standing approximately 20 ft. high. It has heavy armor-plating and triple launchers for heavy, self-guided rockets. It can be upgraded by a heavy ion-cannon when the technology for its construction has been invented.
+
+ed_mcu_heavy_defense_tower:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Heavy Def. Tower 
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_heavy_defense_tower
+	Valued:
+		Cost: 600
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 20
+	WithTextDecoration:
+		Text: Heavy Def. Tower 
