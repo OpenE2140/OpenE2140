@@ -16,7 +16,7 @@ ed_aircrafts_storm:
 		Start: 16
 		Length: 3
 		Facings: -16
-		Tick: 60
+		Tick: 50
 	icon:
 		Filename: SPRI0.MIX
 		Start: 161

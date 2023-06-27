@@ -15,6 +15,7 @@ ed_vehicles_warhammer:
 		Filename: content/ed/vehicles/warhammer/turret_warhammer_muzzle.png
 		Length: 3
 		Facings: -16
+		Tick: 50
 		Offset: 0,-5
 	icon:
 		Filename: SPRI0.MIX

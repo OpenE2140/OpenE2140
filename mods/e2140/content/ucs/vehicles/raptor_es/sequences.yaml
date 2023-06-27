@@ -19,7 +19,7 @@ ucs_vehicles_raptor_es:
 		Start: 64
 		Length: 3
 		Facings: -16
-		Tick: 60
+		Tick: 50
 	shadow:
 		Filename: raptor_shadow.vspr
 		Facings: -8
