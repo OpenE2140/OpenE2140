@@ -16,7 +16,7 @@ ucs_vehicles_atm_500:
 		Start: 16
 		Length: 3
 		Facings: -16
-		Tick: 60
+		Tick: 50
 		Offset: 1,0
 	icon:
 		Filename: SPRI1.MIX
