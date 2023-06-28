@@ -232,9 +232,9 @@
 		Footprint: x
 	# Correct Hitshape and selection box for all towers
 	HitShape:
-		UseTargetableCellsOffsets: True
 		Type: Circle
 			Radius: 512
+	# Defense towers are selectable.
 	Selectable:
 		Bounds: 1040, 960, 0, 0
 	# Towers also have to be destroyed when short game option is used.
