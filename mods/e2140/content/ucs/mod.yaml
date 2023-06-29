@@ -33,6 +33,7 @@ Rules:
 	e2140|content/ucs/infantry/silver_t/rules.yaml
 	e2140|content/ucs/ships/ttre400/rules.yaml
 	e2140|content/ucs/ships/russ3/rules.yaml
+	e2140|content/ucs/defenses/little_eye/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -64,6 +65,7 @@ Sequences:
 	e2140|content/ucs/infantry/silver_t/sequences.yaml
 	e2140|content/ucs/ships/ttre400/sequences.yaml
 	e2140|content/ucs/ships/russ3/sequences.yaml
+	e2140|content/ucs/defenses/little_eye/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
@@ -89,3 +91,4 @@ Weapons:
 	e2140|content/ucs/infantry/silver_max/weapons.yaml
 	e2140|content/ucs/infantry/silver_t/weapons.yaml
 	e2140|content/ucs/ships/russ3/weapons.yaml
+	e2140|content/ucs/defenses/little_eye/weapons.yaml

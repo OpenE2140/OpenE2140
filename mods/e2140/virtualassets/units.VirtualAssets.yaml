@@ -322,7 +322,7 @@ Generate:
 	turret_st_02:
 		idle: 396-404 16
 
-	turret_little_eye:
+	turret_little_eye_secondary:
 		idle: 396-404 16
 
 	turret_ht_30_lr: Player
@@ -346,7 +346,7 @@ Generate:
 	turret_big_eye: Player
 		idle: 441-449 16
 
-	turret_little_eye_secondary: NoMuzzle
+	turret_little_eye: NoMuzzle
 		idle: 450-458 16
 		muzzle: 450-458 16 3 Muzzle
 

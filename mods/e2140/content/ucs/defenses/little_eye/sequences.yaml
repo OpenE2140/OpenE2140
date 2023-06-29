@@ -1,0 +1,27 @@
+ucs_defenses_little_eye:
+	Defaults:
+		Filename: building_little_eye.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	turret:
+		Filename: turret_little_eye.vspr
+		Facings: -16
+	muzzle:
+		Filename: turret_little_eye.vspr
+		Start: 16
+		Length: 3
+		Facings: -16
+		Tick: 50
+
+ucs_mcu_little_eye:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 179
+
+ucs_mcu_little_eye.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 179
