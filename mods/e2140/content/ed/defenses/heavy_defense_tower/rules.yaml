@@ -22,7 +22,6 @@ ed_defenses_heavy_defense_tower:
 		Weapon: ed_defenses_heavy_defense_tower_air
 		LocalOffset: 200,100,100,200,-100,100,200,0,100
 		MuzzlePalette:
-	WithMuzzleOverlay@muzzle:
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 16
