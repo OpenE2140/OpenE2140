@@ -1,0 +1,50 @@
+ucs_defenses_big_eye:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Big Eye
+	Health:
+		HP: 300
+	Building:
+		LocalCenterOffset: -16,-226,0
+	TransformSequence:
+		Offset: -32,226,0
+	Selectable:
+		Bounds: 1024, 1475, 0, 0
+	Power:
+		Amount: -100
+	Turreted:
+		Offset: 325,0,400
+	Armament@PRIMARY:
+		Weapon: ed_defenses_heavy_defense_tower
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ed_defenses_heavy_defense_tower_air
+		LocalOffset: 200,100,100,200,-100,100,200,0,100
+		MuzzlePalette:
+	Encyclopedia:
+		Category: UCS - Buildings
+		Order: 23
+		Animation: DATABASE/X23.FLC
+		Title: Big Eye - Large Defense Tower
+		Armor: Protected from traditional weapons, lightweight rockets and fire.
+		Armament: Heavyweight rocket launcher or plasma gun.
+		Resistance: High
+		Description: The Big Eye Defense Tower is almost 18 feet tall and has a launcher holding three heavyweight rockets. For added defense you can rearm the tower with a large, quick-fire Plasma Cannon.\n\nThe Big Eye Defense Tower is hard to destroy, and from 18 ft. can identify allied units more easily.
+
+ucs_mcu_big_eye:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Big Eye
+	Transforms:
+		Offset: 0,0
+		IntoActor: ucs_defenses_big_eye
+	Valued:
+		Cost: 600
+	Buildable:
+		IconPalette:
+		Queue: Defense.UCS
+		BuildDuration: 40
+		BuildPaletteOrder: 20
+	WithTextDecoration:
+		Text: Big Eye

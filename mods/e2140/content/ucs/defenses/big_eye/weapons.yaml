@@ -1,0 +1,63 @@
+ucs_defenses_big_eye:
+	Inherits: Smudges
+	ReloadDelay: 62
+	Range: 6c896
+	MinRange: 0c512
+	Report: 4.smp
+	ValidTargets: Ground, Water, Ship
+	Burst: 6
+	BurstDelays: 24
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile_heavy_rocket
+		Palette:
+		TrailImage: missile_trail
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		HorizontalRateOfTurn: 20
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@Effect: CreateEffect
+		Image: projectile_cannon
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ImpactSounds: 15.smp, 16.smp
+		ValidTargets: Ground, Air, Ship
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_slow
+		Range: 0c256, 0c756
+		Pieces: 4,5
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_big
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+
+ucs_defenses_big_eye_air:
+	Inherits: ed_vehicles_ht33r
+	ValidTargets: Air
+	Projectile: Missile
+		Inaccuracy: 2c0

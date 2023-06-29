@@ -1,0 +1,21 @@
+ucs_defenses_big_eye:
+	Defaults:
+		Filename: building_big_eye.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	turret:
+		Filename: turret_big_eye.vspr
+		Facings: -16
+
+ucs_mcu_big_eye:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 181
+
+ucs_mcu_big_eye.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 181
