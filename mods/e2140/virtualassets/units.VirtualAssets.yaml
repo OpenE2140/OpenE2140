@@ -330,7 +330,7 @@ Generate:
 		idle: 432-440 16
 			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0
 
-	turret_big_eye: Player
+	turret_big_eye_secondary: Player
 		idle: 441-449 16
 
 	turret_little_eye_secondary: NoMuzzle
@@ -363,7 +363,7 @@ Generate:
 		muzzle: 468-476 16 3 Muzzle
 			Offsets: 475:2,0
 
-	turret_big_eye_secondary:
+	turret_big_eye:
 		idle: 477-485 16
 			Offsets: 479-481:1,0
 
