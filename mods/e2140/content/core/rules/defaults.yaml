@@ -469,8 +469,8 @@
 	Guardable:
 	# This actor explodes when killed.
 	Explodes:
-		Weapon: VehicleExplosion
-		EmptyWeapon: VehicleExplosion
+		Weapon: AircraftExplosion
+		EmptyWeapon: AircraftExplosion
 		RequiresCondition: !airborne
 	# Aircraft can be cloaked, but only if it is on the ground.
 	Cloak:

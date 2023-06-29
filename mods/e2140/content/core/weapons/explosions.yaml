@@ -7,6 +7,20 @@ VehicleExplosion:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
 
+AircraftExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: vehicle_explosion
+		Explosions: explode, explode2
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
+	Warhead@Damage: SpreadDamage
+		Spread: 128
+		Damage: 60
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+
 BuildingExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
