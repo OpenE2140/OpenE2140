@@ -1,0 +1,30 @@
+ed_defenses_watch_tower:
+	Defaults:
+		Filename: building_an_center.vspr
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+	idle-overlay:
+		Filename: content/ed/defenses/watch_tower/turret_an_center.png
+		Length: 16
+		Tick: 50
+
+ed_mcu_watch_tower:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 282
+		Facings: 1
+
+ed_mcu_watch_tower.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 282
+		Facings: 1

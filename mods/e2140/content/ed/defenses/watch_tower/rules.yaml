@@ -1,0 +1,62 @@
+ed_defenses_watch_tower:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Watch Tower
+	Health:
+		HP: 300
+	Power:
+		Amount: -300
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		LocalCenterOffset: 0,-230,0
+	TransformSequence:
+		Image: core_buildingsequence_small
+		ConstructionTime: 100
+		Offset: -48,232,0
+	HitShape:
+		TargetableOffsets: -256,0,0
+		Type: Rectangle
+			TopLeft: -512, -276
+			BottomRight: 512, 732
+	Selectable:
+		Bounds: 1024, 960, 0,230
+	RevealsShroud:
+		Range: 12c896
+	WithIdleOverlay:
+		Offset: -256,32,0
+		Palette:
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	DetectCloaked:
+		Range: 12c896
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 17
+		Animation: DATABASE/MP2_TOW.FLC
+		Title: AN Center - Watch Tower
+		Armor: Light
+		Armament: None
+		Description: This structure has the same reconnaissance capabilities as a defence tower, but with a much larger radius.\n\nThis structure can cover large areas and make out SHADOW-camouflaged vehicles from great distances.
+
+ed_mcu_watch_tower:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Watch Tower
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_watch_tower
+	Valued:
+		Cost: 1200
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 50
+	WithTextDecoration:
+		Text: Watch Tower

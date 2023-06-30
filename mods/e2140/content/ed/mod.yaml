@@ -38,6 +38,7 @@ Rules:
 	e2140|content/ed/defenses/defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/rules.yaml
+  e2140|content/ed/defenses/watch_tower/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -74,6 +75,7 @@ Sequences:
 	e2140|content/ed/defenses/defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/sequences.yaml
+  e2140|content/ed/defenses/watch_tower/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
