@@ -37,6 +37,7 @@ Rules:
 	e2140|content/ed/defenses/pillbox/rules.yaml
 	e2140|content/ed/defenses/defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/rules.yaml
+	e2140|content/ed/defenses/heavy_defense_tower_upgraded/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -72,6 +73,7 @@ Sequences:
 	e2140|content/ed/defenses/pillbox/sequences.yaml
 	e2140|content/ed/defenses/defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/sequences.yaml
+	e2140|content/ed/defenses/heavy_defense_tower_upgraded/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml
@@ -99,3 +101,4 @@ Weapons:
 	e2140|content/ed/defenses/pillbox/weapons.yaml
 	e2140|content/ed/defenses/defense_tower/weapons.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/weapons.yaml
+	e2140|content/ed/defenses/heavy_defense_tower_upgraded/weapons.yaml
