@@ -1,8 +1,9 @@
 ﻿shared_mcu:
 	Defaults:
 		Filename: vehicle_mcu.vspr
-		Facings: -16
 	idle:
+		Facings: -16
 	move:
 		Start: 16
+		Facings: -16
 		Length: 4
