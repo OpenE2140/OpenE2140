@@ -14,6 +14,9 @@ Palettes:
 		8: 64 64 64
 		9: 72 72 72
 
+	ExplosionGreenPixelFix: Merge
+		253: 20 12 4
+
 Generate:
 	# TODO map all stuff here!
 	projectile_rocket:
@@ -81,4 +84,8 @@ Generate:
 
 	vehicle_explosion:
 		explode1: 32-39
-		explode2: 40-47
+		explode2a: 40
+		explode2b: 41 ExplosionGreenPixelFix
+		explode2c: 42-45
+		explode2d: 46 ExplosionGreenPixelFix
+		explode2e: 47
