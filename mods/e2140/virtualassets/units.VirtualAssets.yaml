@@ -155,6 +155,19 @@ Palettes:
 		0-243: 0 0 0 0
 		248-255: 0 0 0 0
 
+	WarhammerTracksIdle: Merge
+		220: 33 36 33
+
+	WarhammerTracksMove: Merge
+		0:
+			220: 33 36 33
+		1:
+			220: 24 28 24
+		2:
+			220: 41 44 41
+		3:
+			220: 24 28 24
+
 Generate:
 	vehicle_mcu: Shadow Player Tracks
 		idle: 0-8 16
@@ -618,8 +631,8 @@ Generate:
 		takeoff: 1224-1232 16 EngineTakeoff
 
 	vehicle_warhammer: Shadow Player Tracks
-		idle: 1233-1241 16
-		move: 1233-1241 16 4
+		idle: 1233-1241 16 WarhammerTracksIdle
+		move: 1233-1241 16 4 WarhammerTracksMove
 
 	turret_warhammer: Shadow Player NoMuzzle
 		idle: 1242-1250 16
