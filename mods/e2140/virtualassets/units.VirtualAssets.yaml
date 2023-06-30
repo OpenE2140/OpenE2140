@@ -155,6 +155,19 @@ Palettes:
 		0-243: 0 0 0 0
 		248-255: 0 0 0 0
 
+	WarhammerTracksIdle: Merge
+		220: 33 36 33
+
+	WarhammerTracksMove: Merge
+		0:
+			220: 33 36 33
+		1:
+			220: 24 28 24
+		2:
+			220: 41 44 41
+		3:
+			220: 24 28 24
+
 Generate:
 	vehicle_mcu: Shadow Player Tracks
 		idle: 0-8 16
@@ -309,7 +322,7 @@ Generate:
 	turret_st_02:
 		idle: 396-404 16
 
-	turret_little_eye:
+	turret_little_eye_secondary:
 		idle: 396-404 16
 
 	turret_ht_30_lr: Player
@@ -330,10 +343,10 @@ Generate:
 		idle: 432-440 16
 			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0
 
-	turret_big_eye: Player
+	turret_big_eye_secondary: Player
 		idle: 441-449 16
 
-	turret_little_eye_secondary: NoMuzzle
+	turret_little_eye: NoMuzzle
 		idle: 450-458 16
 		muzzle: 450-458 16 3 Muzzle
 
@@ -363,7 +376,7 @@ Generate:
 		muzzle: 468-476 16 3 Muzzle
 			Offsets: 475:2,0
 
-	turret_big_eye_secondary:
+	turret_big_eye:
 		idle: 477-485 16
 			Offsets: 479-481:1,0
 
@@ -618,8 +631,8 @@ Generate:
 		takeoff: 1224-1232 16 EngineTakeoff
 
 	vehicle_warhammer: Shadow Player Tracks
-		idle: 1233-1241 16
-		move: 1233-1241 16 4
+		idle: 1233-1241 16 WarhammerTracksIdle
+		move: 1233-1241 16 4 WarhammerTracksMove
 
 	turret_warhammer: Shadow Player NoMuzzle
 		idle: 1242-1250 16

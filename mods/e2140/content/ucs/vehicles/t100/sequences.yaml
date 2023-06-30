@@ -15,7 +15,7 @@ ucs_vehicles_t100:
 		Start: 16
 		Length: 3
 		Facings: -16
-		Tick: 60
+		Tick: 50
 	icon:
 		Filename: SPRI1.MIX
 		Start: 128

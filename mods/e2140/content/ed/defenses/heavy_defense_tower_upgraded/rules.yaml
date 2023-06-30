@@ -1,0 +1,37 @@
+ed_defenses_heavy_defense_tower_upgraded:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Heavy Def. Tower Upgr.
+	Health:
+		HP: 300
+	Building:
+		LocalCenterOffset: 0,-226,0
+	TransformSequence:
+		Offset: -48,226,0
+	Selectable:
+		Bounds: 1024, 1475, 0, 0
+	Power:
+		Amount: -100
+	Turreted:
+		Offset: 210,0,400
+	Armament:
+		Weapon: ed_defenses_heavy_defense_tower_upgraded
+		LocalOffset: 450,0,75
+		MuzzlePalette:
+
+ed_mcu_heavy_defense_tower_upgraded:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Heavy Def. Tower 
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_heavy_defense_tower_upgraded
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 25
+	WithTextDecoration:
+		Text: Heavy Def. Tower Upgr.

@@ -16,6 +16,7 @@ ed_vehicles_mt200:
 		Start: 16
 		Length: 3
 		Facings: -16
+		Tick: 50
 		Offset: -1, 6, 0
 	icon:
 		Filename: SPRI0.MIX

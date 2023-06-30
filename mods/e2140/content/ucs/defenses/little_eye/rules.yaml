@@ -1,0 +1,47 @@
+ucs_defenses_little_eye:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Little Eye
+	Health:
+		HP: 150
+	Building:
+		LocalCenterOffset: 0,-80,0
+	TransformSequence:
+		Offset: -48,80,0
+	Selectable:
+		Bounds: 1024, 1224, 0,-32
+	Power:
+		Amount: -50
+	Turreted:
+		Offset: 550,-16,170
+	Armament:
+		Weapon: ucs_defenses_little_eye
+		MuzzlePalette:
+		MuzzleSequence: muzzle
+	WithMuzzleOverlay@muzzle:
+	Encyclopedia:
+		Category: UCS - Buildings
+		Order: 22
+		Animation: DATABASE/X22.FLC
+		Title: Little Eye - Small Defense Tower
+		Armor: Protected from traditional weapons
+		Armament: Heavyweight machine gun or lightweight rocket launcher
+		Resistance: Medium
+		Description: This tower is a must when you create an effective defense line. The tower is built with an integrated heavyweight machine gun; this enables an immediate and hard hitting response should any small battle units or lightweight vehicles try to attack during construction. To offer any defense from middle and heavyweight vehicles, the tower must be rearmed with a rocket launcher. Alternatively a larger tower, the Big Eye, could be built.
+
+ucs_mcu_little_eye:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Little Eye
+	Transforms:
+		Offset: 0,0
+		IntoActor: ucs_defenses_little_eye
+	Valued:
+		Cost: 400
+	Buildable:
+		IconPalette:
+		Queue: Defense.UCS
+		BuildDuration: 40
+		BuildPaletteOrder: 10
+	WithTextDecoration:
+		Text: Little Eye
