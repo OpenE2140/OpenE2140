@@ -5,17 +5,15 @@ ucs_defenses_little_eye_upgraded:
 	damaged-idle:
 		Start: 1
 	turret:
-		Filename: turret_little_eye_secondary.vspr
+		Filename: content/ucs/defenses/little_eye_upgraded/turret_little_eye_secondary.png
 		Facings: -16
 
 ucs_mcu_little_eye_upgraded:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI1.MIX
-		Start: 198
+		Filename: content/ucs/defenses/little_eye_upgraded/little_eye_upgraded_icon_ucs.png
 
 ucs_mcu_little_eye_upgraded.ed:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI0.MIX
-		Start: 198
+		Filename: content/ucs/defenses/little_eye_upgraded/little_eye_upgraded_icon_ed.png
