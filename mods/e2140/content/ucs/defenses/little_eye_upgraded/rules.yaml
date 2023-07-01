@@ -1,0 +1,41 @@
+ucs_defenses_little_eye_upgraded:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Little Eye Upgr.
+	Health:
+		HP: 150
+	Building:
+		LocalCenterOffset: 0,-80,0
+	TransformSequence:
+		Offset: -48,80,0
+	Selectable:
+		Bounds: 1024, 1224, 0,-32
+	Power:
+		Amount: -50
+	Turreted:
+		Offset: 170,0,400
+	Armament@PRIMARY:
+		Weapon: ucs_defenses_little_eye_upgraded
+		LocalOffset: 100,-100,0, 100,100,0
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ucs_defenses_little_eye_upgraded_air
+		LocalOffset: 100,-100,0, 100,100,0
+		MuzzlePalette:
+
+ucs_mcu_little_eye_upgraded:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Little Eye Upgr.
+	Transforms:
+		Offset: 0,0
+		IntoActor: ucs_defenses_little_eye_upgraded
+	Valued:
+		Cost: 600
+	Buildable:
+		IconPalette:
+		Queue: Defense.UCS
+		BuildDuration: 40
+		BuildPaletteOrder: 15
+	WithTextDecoration:
+		Text: Little Eye Upgr.
