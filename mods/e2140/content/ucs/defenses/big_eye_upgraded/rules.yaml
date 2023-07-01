@@ -1,0 +1,37 @@
+ucs_defenses_big_eye_upgraded:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Big Eye Upgr.
+	Health:
+		HP: 300
+	Building:
+		LocalCenterOffset: -16,-226,0
+	TransformSequence:
+		Offset: -32,226,0
+	Selectable:
+		Bounds: 1024, 1475, 0, 0
+	Power:
+		Amount: -100
+	Turreted:
+		Offset: 400,0,400
+	Armament:
+		Weapon: ucs_defenses_big_eye_upgraded
+		LocalOffset: 900,0,0
+		MuzzlePalette:
+
+ucs_mcu_big_eye_upgraded:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Big Eye Upgr.
+	Transforms:
+		Offset: 0,0
+		IntoActor: ucs_defenses_big_eye_upgraded
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Defense.UCS
+		BuildDuration: 40
+		BuildPaletteOrder: 25
+	WithTextDecoration:
+		Text: Big Eye Upgr.
