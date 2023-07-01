@@ -22,7 +22,7 @@ ed_defenses_heavy_defense_tower_upgraded:
 ed_mcu_heavy_defense_tower_upgraded:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
-		Name: Mobile Heavy Def. Tower 
+		Name: Mobile Heavy Def. Tower Upgr.
 	Transforms:
 		Offset: 0,0
 		IntoActor: ed_defenses_heavy_defense_tower_upgraded
