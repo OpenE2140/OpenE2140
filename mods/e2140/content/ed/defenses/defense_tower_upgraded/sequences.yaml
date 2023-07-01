@@ -1,0 +1,21 @@
+ed_defenses_defense_tower_upgraded:
+	Defaults:
+		Filename: building_defense_tower.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	turret:
+		Filename: turret_defense_tower_secondary.vspr
+		Facings: -16
+
+ed_mcu_defense_tower_upgraded:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 197
+
+ed_mcu_defense_tower_upgraded.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 197
