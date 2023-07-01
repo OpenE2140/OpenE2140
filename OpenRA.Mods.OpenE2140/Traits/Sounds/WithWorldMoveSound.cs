@@ -35,7 +35,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 	private readonly Dictionary<string, Entry> playing = new Dictionary<string, Entry>();
 	private WorldRenderer? worldRenderer;
 
-	void IWorldLoaded.WorldLoaded(World world, WorldRenderer worldRenderer)
+	void IWorldLoaded.WorldLoaded(OpenRA.World world, WorldRenderer worldRenderer)
 	{
 		this.worldRenderer = worldRenderer;
 	}

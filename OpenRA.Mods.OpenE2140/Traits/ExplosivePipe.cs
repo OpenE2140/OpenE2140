@@ -33,11 +33,11 @@ public class ExplosivePipeInfo : ConditionalTraitInfo
 	[FieldLoader.Ignore]
 	private static readonly Dictionary<PipeEndDirection, CVec> PipeEndMappings = new Dictionary<PipeEndDirection, CVec>
 	{
-		{ PipeEndDirection.None, new(0, 0) },
-		{ PipeEndDirection.West, new(-1, 0) },
-		{ PipeEndDirection.North, new(0, -1) },
-		{ PipeEndDirection.East, new(1, 0) },
-		{ PipeEndDirection.South, new(0, 1) },
+		{ PipeEndDirection.None, new CVec(0, 0) },
+		{ PipeEndDirection.West, new CVec(-1, 0) },
+		{ PipeEndDirection.North, new CVec(0, -1) },
+		{ PipeEndDirection.East, new CVec(1, 0) },
+		{ PipeEndDirection.South, new CVec(0, 1) }
 	};
 
 	[Desc("Direction of the pipe start.")]
@@ -59,12 +59,12 @@ public class ExplosivePipeInfo : ConditionalTraitInfo
 
 	public (CVec end1, CVec end2) GetPipeEndVectors()
 	{
-		return (PipeEndMappings[this.StartDirection], PipeEndMappings[this.EndDirection]);
+		return (ExplosivePipeInfo.PipeEndMappings[this.StartDirection], ExplosivePipeInfo.PipeEndMappings[this.EndDirection]);
 	}
 
 	public (CVec end1, CVec end2) GetOppositePipeEndVectors()
 	{
-		return (PipeEndMappings[this.StartDirection] * -1, PipeEndMappings[this.EndDirection] * -1);
+		return (ExplosivePipeInfo.PipeEndMappings[this.StartDirection] * -1, ExplosivePipeInfo.PipeEndMappings[this.EndDirection] * -1);
 	}
 }
 
@@ -78,19 +78,24 @@ public class ExplosivePipe : ConditionalTrait<ExplosivePipeInfo>, INotifyKilled
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		// Pipe nodes don't explode in chained reactions, but they can initiate them.
-		var segments = this.GetNeighboringSegments(self)
-			.Where(p => !p.Trait.Info.IsNode);
+		var segments = this.GetNeighboringSegments(self).Where(p => !p.Trait.Info.IsNode);
+
 		foreach (var pipe in segments)
 		{
 			var delay = self.World.SharedRandom.FromRange(this.Info.ExplosionDelay);
 
-			self.World.AddFrameEndTask(w =>
-				w.Add(new DelayedAction(delay,
-					() =>
-					{
-						if (!pipe.Actor.Disposed)
-							pipe.Actor.Kill(self);
-					})));
+			self.World.AddFrameEndTask(
+				world => world.Add(
+					new DelayedAction(
+						delay,
+						() =>
+						{
+							if (!pipe.Actor.Disposed)
+								pipe.Actor.Kill(self);
+						}
+					)
+				)
+			);
 		}
 	}
 
@@ -123,7 +128,7 @@ public class ExplosivePipe : ConditionalTrait<ExplosivePipeInfo>, INotifyKilled
 		var (end1Opposite, end2Opposite) = this.Info.GetOppositePipeEndVectors();
 
 		var (otherEnd1, otherEnd2) = otherPipe.Info.GetPipeEndVectors();
-		return (end1Opposite == otherEnd1 || end1Opposite == otherEnd2 ||
-			end2Opposite == otherEnd1 || end2Opposite == otherEnd2);
+
+		return end1Opposite == otherEnd1 || end1Opposite == otherEnd2 || end2Opposite == otherEnd1 || end2Opposite == otherEnd2;
 	}
 }

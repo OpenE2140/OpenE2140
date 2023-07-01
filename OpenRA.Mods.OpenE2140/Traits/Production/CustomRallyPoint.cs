@@ -20,8 +20,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.Production;
 [Desc("Used to waypoint units after production or repair is finished.")]
 public class CustomRallyPointInfo : RallyPointInfo
 {
-	[Desc("Override offset at which the first point of rally point path is drawn relative relative to the center of the producing actor.",
-		"If not specified, " + nameof(ExitInfo.SpawnOffset) + " from " + nameof(Exit) + " trait with nearest " + nameof(ExitInfo.ExitCell) + " is used.")]
+	[Desc(
+		"Override offset at which the first point of rally point path is drawn relative relative to the center of the producing actor.",
+		$"If not specified, {nameof(ExitInfo.SpawnOffset)} from {nameof(Exit)} trait with nearest {nameof(ExitInfo.ExitCell)} is used."
+	)]
 	public readonly WVec? LineInitialOffset = null;
 
 	public override object Create(ActorInitializer init)

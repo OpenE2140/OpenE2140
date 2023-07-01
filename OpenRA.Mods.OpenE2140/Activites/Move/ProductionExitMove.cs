@@ -66,6 +66,7 @@ public class ProductionExitMove : Activity
 
 		var delta = end - this.start;
 		var facing = delta.HorizontalLengthSquared != 0 ? delta.Yaw : this.mobile.Facing;
+
 		return new Drag(self, this.start, end, length, facing);
 	}
 
@@ -83,12 +84,13 @@ public class ProductionExitMove : Activity
 				// Check if actor can share cell, if so we need to determine subcell it should move into
 				if (this.mobile.Info.LocomotorInfo.SharesCell)
 				{
+					// End position was not specified, pick any.
 					if (endPos == null)
-						// End position was not specified, pick any.
 						subCell = SubCell.Any;
+
+					// End position was specified, approximates the subcell from it.
 					else
-						// End position was specified, approximates the subcell from it.
-						subCell = FindApproximateSubCell(self, endPos.Value - targetCellCenter);
+						subCell = ProductionExitMove.FindApproximateSubCell(self, endPos.Value - targetCellCenter);
 
 					// Get free subcell from target cell taking into account approximated subcell (if any).
 					subCell = this.mobile.GetAvailableSubCell(this.targetCell, subCell, self);
@@ -98,9 +100,8 @@ public class ProductionExitMove : Activity
 				else if (endPos == null)
 					endPos = targetCellCenter;
 
-				var blockingActors = self.World.ActorMap.GetActorsAt(this.targetCell, subCell)
-					.Where(a => a != self && a != this.producent)
-					.ToArray();
+				var blockingActors = self.World.ActorMap.GetActorsAt(this.targetCell, subCell).Where(a => a != self && a != this.producent).ToArray();
+
 				if (!blockingActors.Any())
 				{
 					// Reserve the exit cell
@@ -116,27 +117,34 @@ public class ProductionExitMove : Activity
 					this.state = ExitMoveState.Waiting;
 					this.waitTicks = 3;
 				}
+
 				break;
 			}
+
 			case ExitMoveState.Waiting:
 			{
 				if (this.waitTicks-- >= 0)
 					break;
 
 				this.state = ExitMoveState.None;
+
 				if (this.attempt >= this.maxAttempts)
 				{
 					this.NotifyDragFailed(self);
+
 					return true;
 				}
 
 				break;
 			}
+
 			case ExitMoveState.Dragging:
 			{
 				this.NotifyDragComplete(self);
+
 				return true;
 			}
+
 			default:
 				throw new ArgumentOutOfRangeException($"Unknown state: {this.state}");
 		}
@@ -149,10 +157,10 @@ public class ProductionExitMove : Activity
 	/// </summary>
 	private static SubCell FindApproximateSubCell(Actor self, WVec cellOffset)
 	{
-		return self.World.Map.Grid.SubCellOffsets
-			.Skip(1)
-			.Select((offset, i) => (Offset: offset, SubCell : (SubCell)i + 1))
-			.MinBy(t => (t.Offset - cellOffset).HorizontalLengthSquared).SubCell;
+		return self.World.Map.Grid.SubCellOffsets.Skip(1)
+			.Select((offset, i) => (Offset: offset, SubCell: (SubCell)i + 1))
+			.MinBy(t => (t.Offset - cellOffset).HorizontalLengthSquared)
+			.SubCell;
 	}
 
 	private void NotifyDragFailed(Actor self)

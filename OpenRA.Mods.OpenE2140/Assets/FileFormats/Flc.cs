@@ -23,17 +23,11 @@ public class Flc : IVideo
 	public ushort Height { get; }
 	public byte[] CurrentFrameData { get; }
 	public int CurrentFrameIndex { get; private set; }
-	// TODO replace with this when https://github.com/OpenRA/OpenRA/pull/20858 is merged
-	//public bool HasAudio => false;
-	//public byte[] AudioData => Array.Empty<byte>();
-	//public int AudioChannels => 0;
-	//public int SampleBits => 0;
-	//public int SampleRate => 0;
-	public bool HasAudio => true;
-	public byte[] AudioData => Enumerable.Repeat((byte)0x80, this.FrameCount).ToArray();
-	public int AudioChannels => 1;
-	public int SampleBits => 8;
-	public int SampleRate => this.Framerate;
+	public bool HasAudio => false;
+	public byte[] AudioData => Array.Empty<byte>();
+	public int AudioChannels => 0;
+	public int SampleBits => 0;
+	public int SampleRate => 0;
 
 	private readonly byte[][] frames;
 	private readonly byte[] palette = new byte[1024];
@@ -50,9 +44,7 @@ public class Flc : IVideo
 		this.Height = stream.ReadUInt16();
 
 		this.frames = new byte[this.FrameCount + 1][];
-		// TODO replace with this when https://github.com/OpenRA/OpenRA/pull/20858 is merged
-		//this.CurrentFrameData = new byte[Exts.NextPowerOf2(this.Height) * Exts.NextPowerOf2(this.Width) * 4];
-		this.CurrentFrameData = new byte[Exts.NextPowerOf2(Math.Max(this.Width, this.Height)) * Exts.NextPowerOf2(Math.Max(this.Width, this.Height)) * 4];
+		this.CurrentFrameData = new byte[Exts.NextPowerOf2(this.Height) * Exts.NextPowerOf2(this.Width) * 4];
 
 		var depth = stream.ReadUInt16();
 

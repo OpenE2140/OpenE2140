@@ -137,6 +137,7 @@ public class PowerManager : ITick
 		if (remaining >= 0)
 		{
 			this.firstLowPower = null;
+
 			return;
 		}
 

@@ -31,7 +31,15 @@ public class DelayedProjectile : IEffect
 	public void Tick(World world)
 	{
 		if (--this.delay <= 0)
-			world.AddFrameEndTask(w => { w.Remove(this); w.Add(this.projectile); });
+		{
+			world.AddFrameEndTask(
+				w =>
+				{
+					w.Remove(this);
+					w.Add(this.projectile);
+				}
+			);
+		}
 	}
 
 	public IEnumerable<IRenderable> Render(WorldRenderer wr) { yield break; }

@@ -15,7 +15,6 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
-
 using CustomAttackActivity = OpenRA.Mods.OpenE2140.Traits.Attack.AttackFrontal.Attack;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
@@ -50,8 +49,8 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 		: base(info)
 	{
 		if (!string.IsNullOrEmpty(info.Armament))
-			this.armament = init.Self.TraitsImplementing<Armament>()
-				.Single(a => a.Info.Name == info.Armament);
+			this.armament = init.Self.TraitsImplementing<Armament>().Single(a => a.Info.Name == info.Armament);
+
 		this.wsb = init.Self.TraitOrDefault<WithSpriteBody>();
 	}
 
@@ -60,9 +59,7 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 		// Specifying Armament (for which the aim/attack animation should be played) is optional
 		// But if it is specified, it must match the Armament that is currently firing
 		if (this.wsb.IsTraitDisabled || (this.armament != null && a != this.armament))
-		{
 			return;
-		}
 
 		this.wsb.PlayCustomAnimation(self, this.Info.SequenceFire);
 	}
@@ -73,8 +70,10 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.IsTraitDisabled || this.wsb.IsTraitDisabled || self.CurrentActivity is not CustomAttackActivity attackActivity ||
-			attackActivity.IsMovingWithinRange)
+		if (this.IsTraitDisabled
+			|| this.wsb.IsTraitDisabled
+			|| self.CurrentActivity is not CustomAttackActivity attackActivity
+			|| attackActivity.IsMovingWithinRange)
 			return;
 
 		// When WithAimAttackAnimation is tied to specific armament, verify that the Attack activity is expecting to attack with this armament.

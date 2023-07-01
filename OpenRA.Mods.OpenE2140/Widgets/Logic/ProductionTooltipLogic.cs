@@ -66,14 +66,17 @@ public class ProductionTooltipLogic : ChromeLogic
 			// Fetch data
 			var transforms = actor.TraitInfos<TransformsInfo>().FirstOrDefault();
 			var cost = 0;
+
 			if (tooltipIcon.ProductionQueue != null)
 				cost = tooltipIcon.ProductionQueue.GetProductionCost(actor);
 			else
 			{
 				var valued = actor.TraitInfoOrDefault<ValuedInfo>();
+
 				if (valued != null)
 					cost = valued.Cost;
 			}
+
 			var hotkey = tooltipIcon.Hotkey?.GetValue() ?? Hotkey.Invalid;
 			var buildable = actor.TraitInfo<BuildableInfo>();
 

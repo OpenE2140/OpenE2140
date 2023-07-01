@@ -148,8 +148,9 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	/// Returns <c>true</c>, if this <see cref="AnimatedExitProduction"/> can build new unit at this precise moment.
 	/// Takes into account the minimum delay specified by <see cref="AnimatedExitProductionInfo.MinimumTicksBetweenProduction"/>.
 	/// </summary>
-	public bool CanBuildUnitNow => this.State == AnimationState.Closed &&
-		(this.lastProducedUnitTick == null || Game.LocalTick - this.lastProducedUnitTick >= this.info.MinimumTicksBetweenProduction);
+	public bool CanBuildUnitNow =>
+		this.State == AnimationState.Closed
+		&& (this.lastProducedUnitTick == null || Game.LocalTick - this.lastProducedUnitTick >= this.info.MinimumTicksBetweenProduction);
 
 	public AnimatedExitProduction(ActorInitializer init, AnimatedExitProductionInfo info)
 		: base(init, info)
@@ -314,8 +315,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				// Check if actor is no longer on the exit cell. Only checking whether actor has moved to
 				// exit cell might be insufficient and in rare cases can exit get stuck in this state.
 				// If produced actor is aircraft, it's sufficient, that it's airborne, to consider ejection process complete.
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false ||
-					self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -348,8 +348,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				}
 
 				// If aircraft is airborne or player has manually moved produced actor, end ejection process
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false ||
-					self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -422,6 +421,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	private void QueuePathToRallyPoint(ProductionInfo productionInfo)
 	{
 		var actor = productionInfo.Actor;
+
 		if (actor == null || this.rallyPoint == null)
 			return;
 
@@ -433,10 +433,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		foreach (var cell in this.rallyPoint.Path)
 		{
 			actor.QueueActivity(
-				new AttackMoveActivity(
-					actor,
-					() => actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed)
-				)
+				new AttackMoveActivity(actor, () => actor.Trait<IMove>().MoveTo(cell, 1, evaluateNearestMovableCell: true, targetLineColor: Color.OrangeRed))
 			);
 		}
 	}
@@ -457,7 +454,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			if (this.info.SequenceOpenLoop)
 				this.PlayAnimation(this.info.SequenceOpen);
 			else
-				this.PlayAnimation(this.info.SequenceOpen, repeat: false);
+				this.PlayAnimation(this.info.SequenceOpen, false);
+
 			self.World.AddFrameEndTask(_ => this.Opened(self));
 		}
 
@@ -587,6 +585,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	protected virtual void OnUnitProduced(Actor self, Actor other, CPos exit)
 	{
 		var spawnLocation = this.GetSpawnLocation(self, exit);
+
 		if (other.TryGetTrait<Mobile>(out var mobile))
 			mobile.SetCenterPosition(other, spawnLocation);
 		else if (other.TryGetTrait<Aircraft>(out var aircraft))

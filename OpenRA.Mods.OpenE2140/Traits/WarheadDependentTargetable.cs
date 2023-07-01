@@ -29,6 +29,7 @@ public class WarheadDependentTargetable : Targetable
 		// Actor is targetable by the viewer only if any armament has weapon with invalid warhead
 		var invalidArmaments = viewer.Info.TraitInfos<ArmamentInfo>()
 			.Where(a => a.WeaponInfo.Warheads.Any(a => this.info.InvalidViewerWarheads.Any(w => a.GetType().Name.StartsWith(w))) == true);
+
 		if (invalidArmaments.Any())
 			return false;
 

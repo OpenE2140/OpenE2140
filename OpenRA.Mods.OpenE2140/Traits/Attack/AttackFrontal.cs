@@ -1,4 +1,5 @@
 ﻿#region Copyright & License Information
+
 /*
  * Copyright (c) The OpenRA Developers and Contributors
  * This file is part of OpenRA, which is free software. It is made
@@ -7,21 +8,24 @@
  * the License, or (at your option) any later version. For more
  * information, see COPYING.
  */
+
 #endregion
 
-using BaseAttackFrontalInfo = OpenRA.Mods.Common.Traits.AttackFrontalInfo;
-using BaseAttackFrontal = OpenRA.Mods.Common.Traits.AttackFrontal;
-using BaseAttack  = OpenRA.Mods.Common.Activities.Attack;
-using OpenRA.Traits;
-using OpenRA.Primitives;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Activities;
 using OpenRA.Mods.Common.Activities;
+using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
+using OpenRA.Traits;
+using BaseAttackFrontalInfo = OpenRA.Mods.Common.Traits.AttackFrontalInfo;
+using BaseAttackFrontal = OpenRA.Mods.Common.Traits.AttackFrontal;
+using BaseAttack = OpenRA.Mods.Common.Activities.Attack;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Attack;
 
-[Desc("Unit got to face the target. ",
-	$"Works same as ORA's {nameof(AttackFrontal)} just the {nameof(AttackFrontal.Attack)} activity exposes more information.")]
+[Desc(
+	"Unit got to face the target. ",
+	$"Works same as ORA's {nameof(AttackFrontal)} just the {nameof(AttackFrontal.Attack)} activity exposes more information."
+)]
 public class AttackFrontalInfo : BaseAttackFrontalInfo, Requires<IFacingInfo>
 {
 	public override object Create(ActorInitializer init) { return new AttackFrontal(init.Self, this); }
@@ -34,7 +38,14 @@ public class AttackFrontal : BaseAttackFrontal
 	{
 	}
 
-	public override Activity GetAttackActivity(Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
+	public override Activity GetAttackActivity(
+		Actor self,
+		AttackSource source,
+		in Target newTarget,
+		bool allowMove,
+		bool forceAttack,
+		Color? targetLineColor = null
+	)
 	{
 		return new Attack(self, newTarget, allowMove, forceAttack, targetLineColor);
 	}
@@ -58,8 +69,7 @@ public class AttackFrontal : BaseAttackFrontal
 			if (attackBase != null)
 			{
 				if (!this.attackFrontalTraits.Contains(attackBase))
-					throw new ArgumentException($"Unknown {nameof(AttackFrontal)} was specified for GetExpectedArmamentsForTarget",
-						nameof(attackBase));
+					throw new ArgumentException($"Unknown {nameof(AttackFrontal)} was specified for GetExpectedArmamentsForTarget", nameof(attackBase));
 
 				return attackBase.ChooseArmamentsForTarget(this.target, this.forceAttack);
 			}
@@ -74,9 +84,11 @@ public class AttackFrontal : BaseAttackFrontal
 				var armaments = ab.ChooseArmamentsForTarget(this.target, this.forceAttack);
 
 				var gotArmaments = false;
+
 				foreach (var armament in armaments)
 				{
 					gotArmaments = true;
+
 					yield return armament;
 				}
 

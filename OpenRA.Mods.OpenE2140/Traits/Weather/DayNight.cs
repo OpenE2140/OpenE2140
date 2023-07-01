@@ -80,7 +80,7 @@ public class DayNight : ITick, IWorldLoaded
 		this.terrainRenderer = self.Trait<TerrainRenderer>();
 	}
 
-	void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
+	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
 	{
 		this.globalTint = this.terrainLighting.GetType().GetField("globalTint", DayNight.BindingFlags);
 		this.spriteLayer = this.terrainRenderer.GetType().GetField("spriteLayer", DayNight.BindingFlags);
@@ -90,7 +90,7 @@ public class DayNight : ITick, IWorldLoaded
 		this.updateTint = this.terrainSpriteLayer?.GetType().GetMethod("UpdateTint", DayNight.BindingFlags);
 	}
 
-	public float GetNightProgress(World world)
+	public float GetNightProgress(OpenRA.World world)
 	{
 		var timeOfDay = ((this.info.DayLength == 0 ? 0 : world.WorldTick * 24f / this.info.DayLength) + this.info.Start) % 24;
 
@@ -119,7 +119,7 @@ public class DayNight : ITick, IWorldLoaded
 			this.updateTint?.Invoke(this.terrainSpriteLayer, new object[] { cell.ToMPos(self.World.Map) });
 	}
 
-	private Color GetLightColor(World world)
+	private Color GetLightColor(OpenRA.World world)
 	{
 		var progress = this.GetNightProgress(world);
 

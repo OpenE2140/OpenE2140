@@ -57,6 +57,7 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		if (this.info.ExitWaypointOffset == WVec.Zero)
 		{
 			base.Eject(self);
+
 			return;
 		}
 
@@ -115,7 +116,10 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		other.QueueActivity(new ProductionExitMove(other, self, this.GetExitWaypointOffset(self)));
 	}
 
-	private WPos GetExitWaypointOffset(Actor self) => self.CenterPosition + this.info.Position + this.info.ExitWaypointOffset;
+	private WPos GetExitWaypointOffset(Actor self)
+	{
+		return self.CenterPosition + this.info.Position + this.info.ExitWaypointOffset;
+	}
 
 	void ISafeDragNotify.SafeDragFailed(Actor self, Actor movingActor)
 	{
@@ -138,10 +142,7 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		var actor = this.productionInfo.Actor;
 
 		var end = self.World.Map.CenterOfCell(self.Location + this.productionInfo.ExitInfo.ExitCell);
-		this.productionInfo = this.productionInfo with
-		{
-			ExitMoveActivity = new ProductionExitMove(actor, self, end)
-		};
+		this.productionInfo = this.productionInfo with { ExitMoveActivity = new ProductionExitMove(actor, self, end) };
 		actor.QueueActivity(this.productionInfo.ExitMoveActivity);
 	}
 }

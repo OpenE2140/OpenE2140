@@ -44,7 +44,7 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 		this.UpdateTargetLineNodes(building.World);
 	}
 
-	void IEffect.Tick(World world)
+	void IEffect.Tick(OpenRA.World world)
 	{
 		this.flag?.Tick();
 
@@ -61,11 +61,12 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 			world.AddFrameEndTask(w => w.Remove(this));
 	}
 
-	private void UpdateTargetLineNodes(World world)
+	private void UpdateTargetLineNodes(OpenRA.World world)
 	{
 		this.cachedLocations.Clear();
 		this.cachedLocations.AddRange(this.rp.Path);
 		this.targetLineNodes.Clear();
+
 		foreach (var c in this.cachedLocations)
 			this.targetLineNodes.Add(world.Map.CenterOfCell(c));
 
@@ -87,9 +88,11 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 			return SpriteRenderable.None;
 
 		var renderables = SpriteRenderable.None;
+
 		if (this.targetLineNodes.Count > 0 && (this.circles != null || this.flag != null))
 		{
 			var palette = wr.Palette(this.rp.PaletteName);
+
 			if (this.circles != null)
 				renderables = renderables.Concat(this.circles.Render(this.targetLineNodes.Last(), palette));
 
@@ -120,10 +123,12 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 	private IEnumerable<IRenderable> RenderInner()
 	{
 		var prev = this.targetLineNodes[0];
+
 		foreach (var pos in this.targetLineNodes.Skip(1))
 		{
 			var targetLine = new[] { prev, pos };
 			prev = pos;
+
 			yield return new TargetLineRenderable(targetLine, this.building.Owner.Color, this.rp.Info.LineWidth, 1);
 		}
 	}

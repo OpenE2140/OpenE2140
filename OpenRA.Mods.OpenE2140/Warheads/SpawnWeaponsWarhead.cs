@@ -31,7 +31,7 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 	public readonly string[] Weapons = Array.Empty<string>();
 
 	[Desc("Delay in ticks before applying the warhead effect.", "0 = instant (old model).")]
-	public readonly int[] Delays = new[] { 0 };
+	public readonly int[] Delays = { 0 };
 
 	[Desc("The amount of projectile pieces to produce. Two values indicate a range.")]
 	public readonly int[] Pieces = { 3, 10 };
@@ -42,8 +42,10 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 	[Desc("Whether to consider actors in determining whether the impact should happen. If false, only terrain will be considered.")]
 	public readonly bool ImpactActors = true;
 
-	[Desc("Whether to use Damage, Inaccuracy and Range modifiers from source actor. If the source actor does not exist in the world, " +
-		"the modifiers are not applied anyway.")]
+	[Desc(
+		"Whether to use Damage, Inaccuracy and Range modifiers from source actor. If the source actor does not exist in the world, "
+		+ "the modifiers are not applied anyway."
+	)]
 	public readonly bool UseAttackerModifiers = true;
 
 	internal WeaponInfo[] WeaponInfos { get; private set; } = Array.Empty<WeaponInfo>();
@@ -53,13 +55,18 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 		if (this.Weapons.Length != this.Delays.Length)
 			throw new YamlException($"Length of: '{nameof(this.Weapons)}' and '{nameof(this.Delays)}' must be equal.");
 
-		this.WeaponInfos = this.Weapons.Select(w =>
-		{
-			var weaponToLower = w.ToLowerInvariant();
-			if (!rules.Weapons.TryGetValue(weaponToLower, out var weapon))
-				throw new YamlException($"Weapons Ruleset does not contain an entry '{weaponToLower}'");
-			return weapon;
-		}).ToArray();
+		this.WeaponInfos = this.Weapons.Select(
+				w =>
+				{
+					var weaponToLower = w.ToLowerInvariant();
+
+					if (!rules.Weapons.TryGetValue(weaponToLower, out var weapon))
+						throw new YamlException($"Weapons Ruleset does not contain an entry '{weaponToLower}'");
+
+					return weapon;
+				}
+			)
+			.ToArray();
 	}
 
 	public override void DoImpact(in Target target, WarheadArgs args)
@@ -90,6 +97,7 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 			for (var j = 0; pieces > j; j++)
 			{
 				var rotation = WRot.FromYaw(new WAngle(world.SharedRandom.Next(1024)));
+
 				var projectileArgs = new
 				{
 					Delay = this.Delays[i],
@@ -104,28 +112,37 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 						PassiveTarget = pos + new WVec(range, 0, 0).Rotate(rotation)
 					}
 				};
+
 				if (this.UseAttackerModifiers)
 				{
-					projectileArgs.Args.DamageModifiers = firedBy.TryGetTraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray();
-					projectileArgs.Args.InaccuracyModifiers = firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
+					projectileArgs.Args.DamageModifiers =
+						firedBy.TryGetTraitsImplementing<IFirepowerModifier>().Select(a => a.GetFirepowerModifier()).ToArray();
+
+					projectileArgs.Args.InaccuracyModifiers =
+						firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
+
 					projectileArgs.Args.RangeModifiers = firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
 				}
 
 				var delayedTarget = target;
-				world.AddFrameEndTask(x =>
-				{
-					if (projectileArgs.Args.Weapon.Projectile != null)
+
+				world.AddFrameEndTask(
+					x =>
 					{
-						var projectile = projectileArgs.Args.Weapon.Projectile.Create(projectileArgs.Args);
-						if (projectile != null)
+						if (projectileArgs.Args.Weapon.Projectile != null)
 						{
-							if (projectileArgs.Delay > 0)
-								world.AddFrameEndTask(w => w.Add(new DelayedProjectile(projectile, projectileArgs.Delay)));
-							else
-								world.Add(projectile);
+							var projectile = projectileArgs.Args.Weapon.Projectile.Create(projectileArgs.Args);
+
+							if (projectile != null)
+							{
+								if (projectileArgs.Delay > 0)
+									world.AddFrameEndTask(w => w.Add(new DelayedProjectile(projectile, projectileArgs.Delay)));
+								else
+									world.Add(projectile);
+							}
 						}
 					}
-				});
+				);
 			}
 		}
 	}
@@ -141,6 +158,7 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 				continue;
 
 			var activeShapes = victim.TraitsImplementing<HitShape>().Where(t => !t.IsTraitDisabled);
+
 			if (!activeShapes.Any(s => s.DistanceFromEdge(victim, pos).Length <= 0))
 				continue;
 
@@ -155,12 +173,14 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 
 	private bool IsValidAgainstTerrain(World world, WPos pos)
 	{
-		BitSet<TargetableType> targetTypeAir = new("Air");
+		var targetTypeAir = new BitSet<TargetableType>("Air");
 		var cell = world.Map.CellContaining(pos);
+
 		if (!world.Map.Contains(cell))
 			return false;
 
 		var dat = world.Map.DistanceAboveTerrain(pos);
+
 		return this.IsValidTarget(dat > this.AirThreshold ? targetTypeAir : world.Map.GetTerrainInfo(cell).TargetTypes);
 	}
 }
