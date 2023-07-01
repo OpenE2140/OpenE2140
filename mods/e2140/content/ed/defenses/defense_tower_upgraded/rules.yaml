@@ -1,0 +1,37 @@
+ed_defenses_defense_tower_upgraded:
+	Inherits: ^CoreTower
+	Tooltip:
+		Name: Defense Tower Upgr.
+	Health:
+		HP: 150
+	Building:
+		LocalCenterOffset: 0,40,0
+	TransformSequence:
+		Offset: -48,-32,0
+	Selectable:
+		Bounds: 1040, 960, 0,0
+	Power:
+		Amount: -50
+	Turreted:
+		Offset: 480,-16,0
+	Armament:
+		Weapon: ed_defenses_defense_tower_upgraded
+		LocalOffset: 350,0,50
+		MuzzlePalette:
+
+ed_mcu_defense_tower_upgraded:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Defense Tower Upgr.
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_defense_tower_upgraded
+	Valued:
+		Cost: 600
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 15
+	WithTextDecoration:
+		Text: Defense Tower Upgr.

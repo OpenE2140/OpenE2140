@@ -36,6 +36,7 @@ Rules:
 	e2140|content/ed/ships/kt30/rules.yaml
 	e2140|content/ed/defenses/pillbox/rules.yaml
 	e2140|content/ed/defenses/defense_tower/rules.yaml
+	e2140|content/ed/defenses/defense_tower_upgraded/rules.yaml	
 	e2140|content/ed/defenses/heavy_defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/rules.yaml
 	e2140|content/ed/defenses/watch_tower/rules.yaml
@@ -73,6 +74,7 @@ Sequences:
 	e2140|content/ed/ships/kt30/sequences.yaml
 	e2140|content/ed/defenses/pillbox/sequences.yaml
 	e2140|content/ed/defenses/defense_tower/sequences.yaml
+	e2140|content/ed/defenses/defense_tower_upgraded/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/sequences.yaml
 	e2140|content/ed/defenses/watch_tower/sequences.yaml
@@ -102,5 +104,6 @@ Weapons:
 	e2140|content/ed/ships/kt30/weapons.yaml
 	e2140|content/ed/defenses/pillbox/weapons.yaml
 	e2140|content/ed/defenses/defense_tower/weapons.yaml
+	e2140|content/ed/defenses/defense_tower_upgraded/weapons.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/weapons.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/weapons.yaml
