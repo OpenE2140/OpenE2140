@@ -10,7 +10,7 @@ ed_vehicles_ht30lr_laser:
 		HitAnimPalette:
 		LaunchEffectPalette:
 		Duration: 5
-		ZOffset: 512
+		ZOffset: 2048
 		Width: 0c20
 		Color: FF4935
 		SecondaryBeam: True
