@@ -233,7 +233,7 @@ public static class VirtualAssetsBuilder
 							outputFrames.Add(
 								new Frame(
 									new Rectangle(
-										(frameInfo.FlipX ? -frameInfo.Offset.X : frameInfo.Offset.X) + frame.Bounds.X,
+										(frameInfo.FlipX ? -frameInfo.Offset.X - frame.Bounds.Width % 2 : frameInfo.Offset.X) + frame.Bounds.X,
 										frameInfo.Offset.Y + frame.Bounds.Y,
 										frame.Bounds.Width,
 										frame.Bounds.Height
