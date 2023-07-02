@@ -75,3 +75,8 @@ healing:
 	idle:
 		Filename: content/core/assets/healing_indicator.png
 		Offset: 0,-11
+
+disabledactor-indicator:
+	idle:
+		Filename: content/core/assets/disabledactor_indicator.png
+		Offset: 0,0
