@@ -23,7 +23,7 @@ ed_infantry_a01:
 		Filename: infantry_android_a01.vspr
 		Start: 72
 		Facings: -8
-		Tick: 100
+		Tick: 180
 	aim:
 		Filename: infantry_android_a01.vspr
 		Start: 48
