@@ -19,8 +19,6 @@ Packages:
 	~game|PIRO.WD: piro
 	~game|SMP0.WD: smp0_base
 	~game|SMP1.WD: smp1_base
-	e2140|content/ed/sounds: smp0_extra
-	e2140|content/ucs/sounds: smp1_extra
 	e2140|virtualassets/buildings.VirtualAssets.yaml: buildings
 	e2140|virtualassets/misc.VirtualAssets.yaml: misc
 	e2140|virtualassets/objects.VirtualAssets.yaml: objects
