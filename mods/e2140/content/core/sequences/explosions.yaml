@@ -30,6 +30,11 @@ building_explosion:
 		Length: 5
 		Offset: 0,-20
 
+tower_explosion:
+	Inherits: building_explosion
+	idle:
+		Offset: 0,0
+
 nuclear_explosion:
 	idle:
 		Combine:

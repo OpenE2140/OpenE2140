@@ -30,6 +30,15 @@ BuildingExplosion:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
 
+TowerExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: tower_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
+
 PowerPlantExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect

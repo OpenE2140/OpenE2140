@@ -261,8 +261,8 @@
 		RequiresCondition: !Transforming
 	# Towers explode when killed.
 	Explodes:
-		Weapon: BuildingExplosion
-		EmptyWeapon: BuildingExplosion
+		Weapon: TowerExplosion
+		EmptyWeapon: TowerExplosion
 
 # Base for all infantry.
 ^CoreInfantry:
