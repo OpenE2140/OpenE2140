@@ -32,6 +32,7 @@ ucs_ships_russ3:
 		ResetOnFire: True
 		Count: 1
 	-Cloak:
+	-ExternalCondition:
 	Cloak@Underwater:
 		CloakType: UnderwaterCloak
 		Palette:
