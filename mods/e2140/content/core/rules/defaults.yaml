@@ -345,6 +345,7 @@
 ^CoreVehicle:
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
+	Inherits@3: ^DisabledActor
 	Armor:
 		Type: vehicle
 	# Vehicles can kill infantry by moving over them and set movement modifiers.
@@ -357,26 +358,6 @@
 	Targetable@Default:
 		TargetTypes: Ground, Vehicle
 		RequiresCondition: !VehicleDisabled
-	# Actor can be autorepaired by friendly HCU-M.
-	WarheadDependentTargetable@Repair:
-		InvalidViewerWarheads: MinimumHealthSpreadDamage
-		RequiresCondition: damaged
-		TargetTypes: DamagedUnit
-	# Disabled vehicle cannot be targeted by actor with MinimumHealthSpreadDamage warhead (i.e. ion cannon).
-	WarheadDependentTargetable@Disabled:
-		InvalidViewerWarheads: MinimumHealthSpreadDamage
-		TargetTypes: Ground, Vehicle
-		RequiresCondition: VehicleDisabled
-	# Condition to be granted to damaged vehicles so HCU-M can autorepair them.
-	GrantConditionOnDamageState@Damaged:
-		Condition: damaged
-		ValidDamageStates: Light, Medium, Heavy, Critical
-	# Condition to be granted to heavily damaged vehicles that disables them.
-	# Disabled vehicles are susceptible to capture by other players (maybe enemies only? TODO: verify!).
-	GrantConditionOnHealth@DisableVehicle:
-		Condition: VehicleDisabled
-		MinHP: 0
-		MaxHP: 5
 	# Vehicles have an animation while moving.
 	WithMoveAnimation:
 	# Group all vehicles in the map editor.
@@ -429,6 +410,7 @@
 ^CoreAircraft:
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
+	Inherits@3: ^DisabledActor
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
 		Type: aircraft
@@ -475,6 +457,9 @@
 	# Aircraft can be cloaked, but only if it is on the ground.
 	Cloak:
 		RequiresCondition: shadowcloak && !airborne
+	# Make sure aircrafts cannot be repaired in air.
+	WarheadDependentTargetable@Repair:
+		RequiresCondition: damaged && !airborne
 
 # Base for all aircrafts husks
 ^CoreAircraftHusk:
@@ -513,16 +498,43 @@
 
 # Base for all ships
 ^CoreShip:
-	Inherits: ^CoreVehicle
-	# Ships movement modifiers.
+	Inherits@1: ^CoreUnit
+	Inherits@2: ^Cloakable
+	Inherits@3: ^DisabledActor
+	# Applying "armor"-damage to all actors based on this.
+	Armor:
+		Type: vehicle
+	# Ships can move.
 	Mobile:
+		TurnSpeed: 50
 		Locomotor: ship
+		BlockedCursor: generic-blocked
+		PauseOnCondition: VehicleDisabled
 	# Actor can be targeted by anything which attacks vehicles or ships.
 	Targetable@Default:
 		TargetTypes: Ship, Vehicle
 	# Group all ships in the map editor.
 	MapEditorData:
 		Categories: Ship
+	# Can guard and be guarded
+	Guard:
+		Voice: Escort
+	Guardable:
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: VehicleExplosion
+		EmptyWeapon: VehicleExplosion
+	# Ships smoke when they're heavily damaged.
+	WithDamageOverlay:
+		Image: smoking
+	# Condition to be granted to damaged ships so their speed can be decreased.
+	GrantConditionOnDamageState@DecreasedSpeed:
+		Condition: decreasedspeed
+		ValidDamageStates: Heavy, Critical
+	# Ships are 45% slower when they are heavily damaged.
+	SpeedMultiplier:
+		Modifier: 55
+		RequiresCondition: decreasedspeed
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -680,3 +692,34 @@
 		Condition: activatebio
 		Range: 2c896
 		RequiresCondition: damaged
+
+# Actors can be disabled by ion weapons and repaired by HCU-M.
+^DisabledActor:
+	# Actor can be autorepaired by friendly HCU-M.
+	WarheadDependentTargetable@Repair:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
+		RequiresCondition: damaged
+		TargetTypes: DamagedUnit
+	# Disabled actor cannot be targeted by actor with MinimumHealthSpreadDamage warhead (i.e. ion cannon).
+	WarheadDependentTargetable@Disabled:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
+		TargetTypes: Ground, Vehicle
+		RequiresCondition: VehicleDisabled
+	# Condition to be granted to damaged actors so HCU-M can autorepair them.
+	GrantConditionOnDamageState@Damaged:
+		Condition: damaged
+		ValidDamageStates: Light, Medium, Heavy, Critical
+	# Condition to be granted to heavily damaged actors that disables them.
+	# Disabled actors are susceptible to capture by other players (maybe enemies only? TODO: verify!).
+	GrantConditionOnHealth@DisableVehicle:
+		Condition: VehicleDisabled
+		MinHP: 0
+		MaxHP: 5
+	# Render an indicator that actor is disabled.
+	WithDecoration:
+		Image: disabledActor-indicator
+		Sequence: idle
+		Palette:
+		Position: Top
+		ValidRelationships: Ally, Enemy, Neutral
+		RequiresCondition: VehicleDisabled
