@@ -247,7 +247,7 @@
 		RequiresCondition: !Transforming
 	# Turret shouldn't attack while transforming.
 	AttackTurreted:
-		RequiresCondition: !Transforming
+		RequiresCondition: !Transforming && !PoweredDown && Powered
 	# Turret is not rendered while transforming.
 	WithSpriteTurret:
 		RequiresCondition: !Transforming
