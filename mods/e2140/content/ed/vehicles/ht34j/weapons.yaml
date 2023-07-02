@@ -28,7 +28,7 @@ ed_vehicles_ht34j:
 		Image: projectile_ion
 		Explosions: explode
 		ExplosionPalette:
-		ImpactSounds: 18.smp, 19.smp
+		ImpactSounds: 18.smp, 19.smp, 38.smp
 		ValidTargets: Ground, Ship, Air
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
