@@ -12,29 +12,58 @@
 #endregion
 
 using OpenRA.FileSystem;
-using OpenRA.Primitives;
+using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
 namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 
 public class VirtualAssetsPackage : IReadOnlyPackage
 {
-	public const string Extension = ".VirtualAssets.yaml";
+	private const string Extension = ".vspr";
 
-	private readonly Dictionary<string, Stream> contents;
+	private readonly Dictionary<string, VirtualAssetsStream> contents = new Dictionary<string, VirtualAssetsStream>();
 
 	public string Name { get; }
 	public IEnumerable<string> Contents => this.contents.Keys;
 
-	public VirtualAssetsPackage(string name, IReadOnlyFileSystem fileSystem)
+	public VirtualAssetsPackage(Stream stream, string name, IReadOnlyFileSystem context)
 	{
 		this.Name = name;
 
-		this.contents = VirtualAssetsBuilder.BuildAssets(fileSystem, name);
+		var yaml = MiniYaml.FromStream(stream);
+
+		var sources = yaml.FirstOrDefault(e => e.Key == "Sources")?.Value.Nodes;
+		var palettes = yaml.FirstOrDefault(e => e.Key == "Palettes")?.Value;
+
+		if (sources == null)
+			return;
+
+		var paletteEffects = palettes == null ? new Dictionary<string, VirtualPalette>() : VirtualPalette.BuildPaletteEffects(palettes);
+
+		foreach (var sourceNode in sources)
+		{
+			var source = context.Open(sourceNode.Key);
+
+			if (source == null)
+				continue;
+
+			var mix = new Mix(source);
+
+			var suffix = sourceNode.Value.Value ?? string.Empty;
+			var generate = yaml.FirstOrDefault(e => e.Key == "Generate")?.Value;
+
+			if (generate == null)
+				continue;
+
+			foreach (var node in generate.Nodes)
+				this.contents.Add(node.Key + suffix + VirtualAssetsPackage.Extension, new VirtualAssetsStream(mix, paletteEffects, node));
+		}
+
+		stream.Dispose();
 	}
 
 	public Stream? GetStream(string filename)
 	{
-		return this.contents.TryGetValue(filename, out var stream) ? SegmentStream.CreateWithoutOwningStream(stream, 0, (int)stream.Length) : null;
+		return this.contents.TryGetValue(filename, out var stream) ? stream : null;
 	}
 
 	public bool Contains(string filename)

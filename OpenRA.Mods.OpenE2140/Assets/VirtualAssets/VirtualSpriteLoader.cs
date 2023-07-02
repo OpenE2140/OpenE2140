@@ -42,19 +42,15 @@ public class VirtualSpriteLoader : ISpriteLoader
 
 	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
 	{
-		var identifier = stream.ReadASCII(VirtualAssetsBuilder.Identifier.Length);
-
-		if (identifier != VirtualAssetsBuilder.Identifier)
+		if (stream is not VirtualAssetsStream virtualAssetsStream)
 		{
-			stream.Position -= 4;
-
 			frames = null;
 			metadata = null;
 
 			return false;
 		}
 
-		frames = VirtualAssetsBuilder.Cache[stream.ReadASCII(stream.ReadInt32())]
+		frames = VirtualAssetsBuilder.BuildSpriteSheet(virtualAssetsStream)
 			.Select(
 				frame => new SpriteFrame(
 					SpriteFrameType.Rgba32,

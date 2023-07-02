@@ -20,16 +20,18 @@ namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
 [UsedImplicitly]
 public class VirtualAssetsLoader : IPackageLoader
 {
+	private const string Extension = ".VirtualAssets.yaml";
+
 	public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
 	{
-		if (!filename.EndsWith(VirtualAssetsPackage.Extension, StringComparison.OrdinalIgnoreCase))
+		if (!filename.EndsWith(VirtualAssetsLoader.Extension, StringComparison.OrdinalIgnoreCase))
 		{
 			package = null;
 
 			return false;
 		}
 
-		package = new VirtualAssetsPackage(filename, context);
+		package = new VirtualAssetsPackage(stream, filename, context);
 
 		return true;
 	}
