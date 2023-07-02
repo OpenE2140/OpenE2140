@@ -41,9 +41,7 @@ public class VirtualAssetsPackage : IReadOnlyPackage
 
 		foreach (var sourceNode in sources)
 		{
-			var source = context.Open(sourceNode.Key);
-
-			if (source == null)
+			if (!context.TryOpen(sourceNode.Key, out var source))
 				continue;
 
 			var mix = new Mix(source);
