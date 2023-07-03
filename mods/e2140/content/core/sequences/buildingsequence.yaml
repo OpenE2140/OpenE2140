@@ -9,18 +9,18 @@ core_buildingsequence_small:
 		Filename: content/core/assets/construction_pyramid_small.png
 		Length: 6
 		Offset: 5,-18
-		ZOffset: 64
+		ZOffset: 256
 	covered:
 		Filename: content/core/assets/construction_pyramid_small.png
 		Frames: 5
 		Offset: 5,-18
-		ZOffset: 64
+		ZOffset: 256
 	uncover:
 		Filename: content/core/assets/construction_pyramid_small.png
 		Length: 5
 		Frames: 4, 3, 2, 1, 0
 		Offset: 5,-18
-		ZOffset: 64
+		ZOffset: 256
 
 core_buildingsequence_large:
 	deploy:
@@ -32,10 +32,13 @@ core_buildingsequence_large:
 	cover:
 		Filename: content/core/assets/construction_pyramid.png
 		Length: 7
+		ZOffset: 256
 	covered:
 		Filename: content/core/assets/construction_pyramid.png
 		Frames: 6
+		ZOffset: 256
 	uncover:
 		Filename: content/core/assets/construction_pyramid.png
 		Length: 6
 		Frames: 5, 4, 3, 2, 1, 0
+		ZOffset: 256

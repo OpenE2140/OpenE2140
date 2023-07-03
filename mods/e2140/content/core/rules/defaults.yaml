@@ -156,7 +156,7 @@
 	TransformSequence:
 		Image: core_buildingsequence_large
 		Condition: Transforming
-		ConstructionTime: 30
+		ConstructionTime: 135
 		TransformSound: 78.smp
 	# Render building sprite when transformation is done.
 	WithSpriteBody:
@@ -255,6 +255,7 @@
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Condition: Transforming
+		ConstructionTime: 135
 		TransformSound: 78.smp
 	# The body is not rendered while transforming.
 	WithSpriteBody:
