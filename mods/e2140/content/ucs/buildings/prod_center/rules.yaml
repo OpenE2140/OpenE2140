@@ -15,7 +15,7 @@ ucs_buildings_prod_center:
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_prod_center
-		ConstructionTime: 20
+		ConstructionTime: 118
 	HitShape:
 		TargetableOffsets: 1256,-1124,0,   1256,-412,0,   1256,300,0,   512,-1124,0,   512,-412,0,   512,300,0,   -256,-1124,0
 		Type: Rectangle

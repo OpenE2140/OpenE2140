@@ -20,16 +20,17 @@ ucs_buildings_heavy_tech:
 		Filename: content/ucs/buildings/heavy_tech/mcu_deploy.png
 		Offset: -26, -50
 		Length: 30
-		Tick: 30
+		ZOffset: 256
 	covered:
 		Filename: content/ucs/buildings/heavy_tech/mcu_deploy.png
 		Offset: -26, -50
 		Start: 29
+		ZOffset: 256
 	uncover:
 		Filename: content/ucs/buildings/heavy_tech/pyramid_uncover.png
 		Offset: -26, -50
 		Length: 8
-		Tick: 30
+		ZOffset: 256
 
 ucs_mcu_heavy_tech:
 	Inherits: shared_mcu

@@ -15,16 +15,17 @@ ucs_buildings_prod_center:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png
 		Offset: -28, -4
 		Length: 30
-		Tick: 30
+		ZOffset: 256
 	covered:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png
 		Offset: -28, -4
 		Start: 29
+		ZOffset: 256
 	uncover:
 		Filename: content/ucs/buildings/prod_center/pyramid_uncover.png
 		Offset: -28, -4
 		Length: 8
-		Tick: 30
+		ZOffset: 256
 
 ucs_mcu_prod_center:
 	Inherits: shared_mcu

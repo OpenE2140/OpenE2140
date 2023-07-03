@@ -17,7 +17,7 @@ ucs_buildings_heavy_tech:
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_heavy_tech
-		ConstructionTime: 20
+		ConstructionTime: 118
 	HitShape:
 		TargetableOffsets: 2324,-1124,0,   2324,-412,0,   2324,300,0,   1524,-1124,0,   1524,-412,0,   1524,300,0,   624,300,0
 		Type: Rectangle
