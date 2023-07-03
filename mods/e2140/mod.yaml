@@ -112,13 +112,24 @@ ModContent:
 		ContentPackage@music:
 			Title: Game Music
 			Identifier: music
-			TestFiles: ^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg
+			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg
 			Sources: gog, steam_en, steam_de, digital_en, digital_de
-		ContentPackage@soundtrack:
-			Title: Soundtrack Music
+		ContentPackage@soundtrack_mp2:
+			Title: Mission Pack 2 Soundtrack Music
 			Identifier: soundtrack
-			TestFiles: ^SupportDir|Content/e2140/music/01. EARTH Theme.mp3
-			Sources: gog_soundtrack, steam_soundtrack
+			TestFiles: ^SupportDir|Content/e2140/music/Mission Pack 2 - Track 10.mp3
+			Sources: gog_soundtrack_mp2
+		ContentPackage@soundtrack_extra:
+			Title: Extra Soundtrack Music
+			Identifier: soundtrack_extra
+			TestFiles: ^SupportDir|Content/e2140/music/EARTH Theme.mp3
+			Sources: gog_soundtrack_extra, steam_soundtrack_extra
+		ContentPackage@soundtrack_vocals:
+			Title: Vocals Soundtrack Music
+			Identifier: soundtrack_vocals
+			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Vocals.mp3
+			Sources: gog_soundtrack_extra, steam_soundtrack_extra
+
 	Sources:
 		e2140|installer/digital.yaml
 		e2140|installer/gog.yaml

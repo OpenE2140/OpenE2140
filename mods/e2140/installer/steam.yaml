@@ -19,15 +19,15 @@ steam_en: Earth 2140 (Steam, English)
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg: classic/music/8.ogg
-					^SupportDir|Content/e2140/music/17. Child of 2140 - Instrumental.ogg: classic/music/1.ogg
-					^SupportDir|Content/e2140/music/18. Birds - Instrumental.ogg: classic/music/6.ogg
-					^SupportDir|Content/e2140/music/19. Hurricane - Instrumental.ogg: classic/music/3.ogg
-					^SupportDir|Content/e2140/music/20. Before the Battle - Instrumental.ogg: classic/music/4.ogg
-					^SupportDir|Content/e2140/music/21. Total Control - Instrumental.ogg: classic/music/9.ogg
-					^SupportDir|Content/e2140/music/22. Everywhere - Instrumental.ogg: classic/music/5.ogg
-					^SupportDir|Content/e2140/music/23. Hope - Instrumental.ogg: classic/music/2.ogg
-					^SupportDir|Content/e2140/music/24. 2140 - Instrumental.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg: classic/music/1.ogg
+					^SupportDir|Content/e2140/music/Hope - Track 2.ogg: classic/music/2.ogg
+					^SupportDir|Content/e2140/music/Hurricane - Track 3.ogg: classic/music/3.ogg
+					^SupportDir|Content/e2140/music/Before the Battle - Track 4.ogg: classic/music/4.ogg
+					^SupportDir|Content/e2140/music/Everywhere - Track 5.ogg: classic/music/5.ogg
+					^SupportDir|Content/e2140/music/Birds - Track 6.ogg: classic/music/6.ogg
+					^SupportDir|Content/e2140/music/2140 - Track 7.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/EARTH Theme - Track 8.ogg: classic/music/8.ogg
+					^SupportDir|Content/e2140/music/Total Control - Track 9.ogg: classic/music/9.ogg
 
 steam_de: Earth 2140 (Steam, German)
 	Type: Steam
@@ -50,38 +50,42 @@ steam_de: Earth 2140 (Steam, German)
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/16. EARTH Theme - Instrumental.ogg: classic/music/8.ogg
-					^SupportDir|Content/e2140/music/17. Child of 2140 - Instrumental.ogg: classic/music/1.ogg
-					^SupportDir|Content/e2140/music/18. Birds - Instrumental.ogg: classic/music/6.ogg
-					^SupportDir|Content/e2140/music/19. Hurricane - Instrumental.ogg: classic/music/3.ogg
-					^SupportDir|Content/e2140/music/20. Before the Battle - Instrumental.ogg: classic/music/4.ogg
-					^SupportDir|Content/e2140/music/21. Total Control - Instrumental.ogg: classic/music/9.ogg
-					^SupportDir|Content/e2140/music/22. Everywhere - Instrumental.ogg: classic/music/5.ogg
-					^SupportDir|Content/e2140/music/23. Hope - Instrumental.ogg: classic/music/2.ogg
-					^SupportDir|Content/e2140/music/24. 2140 - Instrumental.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg: classic/music/1.ogg
+					^SupportDir|Content/e2140/music/Hope - Track 2.ogg: classic/music/2.ogg
+					^SupportDir|Content/e2140/music/Hurricane - Track 3.ogg: classic/music/3.ogg
+					^SupportDir|Content/e2140/music/Before the Battle - Track 4.ogg: classic/music/4.ogg
+					^SupportDir|Content/e2140/music/Everywhere - Track 5.ogg: classic/music/5.ogg
+					^SupportDir|Content/e2140/music/Birds - Track 6.ogg: classic/music/6.ogg
+					^SupportDir|Content/e2140/music/2140 - Track 7.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/EARTH Theme - Track 8.ogg: classic/music/8.ogg
+					^SupportDir|Content/e2140/music/Total Control - Track 9.ogg: classic/music/9.ogg
 
-steam_soundtrack: Earth 2140 Soundtrack (Steam)
+steam_soundtrack_extra: Earth 2140 Extra Soundtrack (Steam)
 	Type: Steam
 		AppId: 253860
 	IDFiles:
 		Soundtrack/01. EARTH Theme.mp3: 5b5a25f65cc6815d7ca8ee8c469dfc3f7831c79f
 	Install:
 		ContentPackage:
-			Name: soundtrack
+			Name: soundtrack_extra
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/01. EARTH Theme.mp3: Soundtrack/01. EARTH Theme.mp3
-					^SupportDir|Content/e2140/music/02. Child of 2140.mp3: Soundtrack/02. Child of 2140.mp3
-					^SupportDir|Content/e2140/music/03. The Hunt.mp3: Soundtrack/03.  The Hunt.mp3
-					^SupportDir|Content/e2140/music/04. Birds.mp3: Soundtrack/04. Birds.mp3
-					^SupportDir|Content/e2140/music/05. Deep in the Bunker.mp3: Soundtrack/05. Deep in the Bunker.mp3
-					^SupportDir|Content/e2140/music/06. Hurricane.mp3: Soundtrack/06. Hurricane.mp3
-					^SupportDir|Content/e2140/music/07. Before the Battle.mp3: Soundtrack/07. Before the Battle.mp3
-					^SupportDir|Content/e2140/music/08. Black Tech.mp3: Soundtrack/08. Black Tech.mp3
-					^SupportDir|Content/e2140/music/09. Total Control.mp3: Soundtrack/09. Total Control.mp3
-					^SupportDir|Content/e2140/music/10. Everywhere.mp3: Soundtrack/10. Everywhere.mp3
-					^SupportDir|Content/e2140/music/11. Bubbles' Revenge.mp3: Soundtrack/11. Bubbles' Revenge.mp3
-					^SupportDir|Content/e2140/music/12. Big Journey.mp3: Soundtrack/12. Big Journey.mp3
-					^SupportDir|Content/e2140/music/13. Hope.mp3: Soundtrack/13. Hope.mp3
-					^SupportDir|Content/e2140/music/14. 2140.mp3: Soundtrack/14. 2140.mp3
-					^SupportDir|Content/e2140/music/15. Space.mp3: Soundtrack/15. Space.mp3
+					^SupportDir|Content/e2140/music/EARTH Theme.mp3: Soundtrack/01 - EARTH Theme.mp3
+					^SupportDir|Content/e2140/music/The Hunt.mp3: Soundtrack/03 - The Hunt.mp3
+					^SupportDir|Content/e2140/music/Deep in the Bunker.mp3: Soundtrack/05 - Deep in the Bunker.mp3
+					^SupportDir|Content/e2140/music/Before the Battle.mp3: Soundtrack/07 - Before the Battle.mp3
+					^SupportDir|Content/e2140/music/Black Tech.mp3: Soundtrack/08 - Black Tech.mp3
+					^SupportDir|Content/e2140/music/Total Control.mp3: Soundtrack/09 - Total Control.mp3
+					^SupportDir|Content/e2140/music/Bubbles' Revenge.mp3: Soundtrack/11 - Bubbles' Revenge.mp3
+					^SupportDir|Content/e2140/music/Big Journey.mp3: Soundtrack/12 - Big Journey.mp3
+					^SupportDir|Content/e2140/music/Space.mp3: Soundtrack/15 - Space.mp3
+		ContentPackage:
+			Name: soundtrack_vocals
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/Child of 2140 - Vocals.mp3: Soundtrack/02 - Child of 2140.mp3
+					^SupportDir|Content/e2140/music/Birds - Vocals.mp3: Soundtrack/04 - Birds.mp3
+					^SupportDir|Content/e2140/music/Hurricane - Vocals.mp3: Soundtrack/06 - Hurricane.mp3
+					^SupportDir|Content/e2140/music/Everywhere - Vocals.mp3: Soundtrack/10 - Everywhere.mp3
+					^SupportDir|Content/e2140/music/Hope - Vocals.mp3: Soundtrack/13 - Hope.mp3
+					^SupportDir|Content/e2140/music/2140 - Vocals.mp3: Soundtrack/14 - 2140.mp3

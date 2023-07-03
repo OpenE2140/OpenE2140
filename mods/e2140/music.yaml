@@ -1,72 +1,110 @@
-track01: EARTH Theme
-	Filename: music/01. EARTH Theme
-	Extension: mp3
-track02: Child of 2140
-	Filename: music/02. Child of 2140
-	Extension: mp3
-track03:  The Hunt
-	Filename: music/03.  The Hunt
-	Extension: mp3
-track04: Birds
-	Filename: music/04. Birds
-	Extension: mp3
-track05: Deep in the Bunker
-	Filename: music/05. Deep in the Bunker
-	Extension: mp3
-track06: Hurricane
-	Filename: music/06. Hurricane
-	Extension: mp3
-track07: Before the Battle
-	Filename: music/07. Before the Battle
-	Extension: mp3
-track08: Black Tech
-	Filename: music/08. Black Tech
-	Extension: mp3
-track09: Total Control
-	Filename: music/09. Total Control
-	Extension: mp3
-track10: Everywhere
-	Filename: music/10. Everywhere
-	Extension: mp3
-track11: Bubbles' Revenge
-	Filename: music/11. Bubbles' Revenge
-	Extension: mp3
-track12: Big Journey
-	Filename: music/12. Big Journey
-	Extension: mp3
-track13: Hope
-	Filename: music/13. Hope
-	Extension: mp3
-track14: 2140
-	Filename: music/14. 2140
-	Extension: mp3
-track15: Space
-	Filename: music/15. Space
-	Extension: mp3
-track16: EARTH Theme - Instrumental
-	Filename: music/16. EARTH Theme - Instrumental
+# Default music
+
+track01: Child of 2140 - Track 1
+	Filename: music/Child of 2140 - Track 1
 	Extension: ogg
-track17: Child of 2140 - Instrumental
-	Filename: music/17. Child of 2140 - Instrumental
+track02: Hope - Track 2
+	Filename: music/Hope - Track 2
 	Extension: ogg
-track18: Birds - Instrumental
-	Filename: music/18. Birds - Instrumental
+track03: Hurricane - Track 3
+	Filename: music/Hurricane - Track 3
 	Extension: ogg
-track19: Hurricane - Instrumental
-	Filename: music/19. Hurricane - Instrumental
+track04: Before the Battle - Track 4
+	Filename: music/Before the Battle - Track 4
 	Extension: ogg
-track20: Before the Battle - Instrumental
-	Filename: music/20. Before the Battle - Instrumental
+track05: Everywhere - Track 5
+	Filename: music/Everywhere - Track 5
 	Extension: ogg
-track21: Total Control - Instrumental
-	Filename: music/21. Total Control - Instrumental
+track06: Birds - Track 6
+	Filename: music/Birds - Track 6
 	Extension: ogg
-track22: Everywhere - Instrumental
-	Filename: music/22. Everywhere - Instrumental
+track07: 2140 - Track 7
+	Filename: music/2140 - Track 7
 	Extension: ogg
-track23: Hope - Instrumental
-	Filename: music/23. Hope - Instrumental
+track08: EARTH Theme - Track 8
+	Filename: music/EARTH Theme - Track 8
 	Extension: ogg
-track24: 2140 - Instrumental
-	Filename: music/24. 2140 - Instrumental
+track09: Total Control - Track 9
+	Filename: music/Total Control - Track 9
 	Extension: ogg
+
+# Mission Pack 2 music
+
+track10: Mission Pack 2 - Track 10
+	Filename: music/Mission Pack 2 - Track 10
+	Extension: mp3
+track11: Mission Pack 2 - Track 11
+	Filename: music/Mission Pack 2 - Track 11
+	Extension: mp3
+track12: Mission Pack 2 - Track 12
+	Filename: music/Mission Pack 2 - Track 12
+	Extension: mp3
+track13: Mission Pack 2 - Track 13
+	Filename: music/Mission Pack 2 - Track 13
+	Extension: mp3
+track14: Mission Pack 2 - Track 14
+	Filename: music/Mission Pack 2 - Track 14
+	Extension: mp3
+track15: Mission Pack 2 - Track 15
+	Filename: music/Mission Pack 2 - Track 15
+	Extension: mp3
+track16: Mission Pack 2 - Track 16
+	Filename: music/Mission Pack 2 - Track 16
+	Extension: mp3
+track17: Mission Pack 2 - Track 17
+	Filename: music/Mission Pack 2 - Track 17
+	Extension: mp3
+track18: Mission Pack 2 - Track 18
+	Filename: music/Mission Pack 2 - Track 18
+	Extension: mp3
+
+# Extra music
+
+track19: EARTH Theme
+	Filename: music/EARTH Theme
+	Extension: mp3
+track20: The Hunt
+	Filename: music/The Hunt
+	Extension: mp3
+track21: Deep in the Bunker
+	Filename: music/Deep in the Bunker
+	Extension: mp3
+track22: Before the Battle
+	Filename: music/Before the Battle
+	Extension: mp3
+track23: Black Tech
+	Filename: music/Black Tech
+	Extension: mp3
+track24: Total Control
+	Filename: music/Total Control
+	Extension: mp3
+track25: Bubbles' Revenge
+	Filename: music/Bubbles' Revenge
+	Extension: mp3
+track26: Big Journey
+	Filename: music/Big Journey
+	Extension: mp3
+track27: Space
+	Filename: music/Space
+	Extension: mp3
+
+# Vocal music
+
+track28: Child of 2140 - Vocals
+	Filename: music/Child of 2140 - Vocals
+	Extension: mp3
+track29: Birds - Vocals
+	Filename: music/Birds - Vocals
+	Extension: mp3
+track30: Hurricane - Vocals
+	Filename: music/Hurricane - Vocals
+	Extension: mp3
+track31: Everywhere - Vocals
+	Filename: music/Everywhere - Vocals
+	Extension: mp3
+track32: Hope - Vocals
+	Filename: music/Hope - Vocals
+	Extension: mp3
+track33: 2140 - Vocals
+	Filename: music/2140 - Vocals
+	Extension: mp3
