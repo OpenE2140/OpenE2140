@@ -15,8 +15,11 @@ shared_buildings_power_plant:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -470,-600,0
+	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
-		Offset: 450,540,0
+		Image: shared_buildings_power_plant
+		Offset: -180,-240,0
+		ConstructionTime: 20
 	HitShape:
 		TargetableOffsets: -600,-412,0,   -600,50,0,   -600,512,0,   324,-690,0,   324,-200,0,   324,312,0
 		Type: Rectangle

@@ -14,6 +14,18 @@ shared_buildings_power_plant:
 		Start: 4
 	addon_damaged:
 		Start: 5
+	deploy:
+		Filename: content/shared/buildings/power_plant/mcu_deploy.png
+		Length: 30
+		ZOffset: 256
+	covered:
+		Filename: content/shared/buildings/power_plant/mcu_deploy.png
+		Start: 29
+		ZOffset: 256
+	uncover:
+		Filename: content/shared/buildings/power_plant/pyramid_uncover.png
+		Length: 8
+		ZOffset: 256
 
 shared_mcu_power_plant:
 	Inherits: shared_mcu
