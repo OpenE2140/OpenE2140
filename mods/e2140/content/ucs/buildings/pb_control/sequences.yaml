@@ -1,0 +1,24 @@
+ucs_buildings_pb_control:
+	Defaults:
+		Filename: building_pb_control.vspr
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+
+ucs_mcu_pb_control:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 175
+
+ucs_mcu_pb_control.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 175

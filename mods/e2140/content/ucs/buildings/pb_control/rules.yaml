@@ -1,0 +1,50 @@
+ucs_buildings_pb_control:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: PB Control
+	Health:
+		HP: 500
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -550,-860,0
+	TransformSequence:
+		Offset: 540,820,0
+	HitShape:
+		TargetableOffsets: 200,-300,0,   200,300,0,   -650,-300,0,   -650,300,0
+		Type: Rectangle
+			TopLeft: -824, -450
+			BottomRight: 870, 1024
+	Selectable:
+		Bounds: 2064, 1984, 32, 370
+	Encyclopedia:
+		Category: UCS - Buildings
+		Order: 20
+		Animation: DATABASE/X20.FLC
+		Title: Plasma Control Center
+		Armor: Protected from traditional weapons
+		Armament: None
+		Resistance: Medium
+		Description: This control center is responsible for the entire Plasma Blast, a new UCS invention. The Eurasian Dynasty still uses long distance atomic rockets, whereas the UCS has this new, even more powerful, technology. Plasma Blast is a plasma cannon with a very strong plasma laser beam. You can destroy long distance targets using the plasma laser beam as a transport medium for a large number of plasma bombs.\n\nThis Control Center must be built before stationary Plasma Blasts can be constructed.
+
+ucs_mcu_pb_control:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile PB Control
+	Transforms:
+		IntoActor: ucs_buildings_pb_control
+	Valued:
+		Cost: 2000
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS
+		BuildDuration: 40
+	WithTextDecoration:
+		Text: PB Control
