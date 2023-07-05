@@ -1,0 +1,50 @@
+ed_buildings_bcc:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: BCC
+	Health:
+		HP: 500
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+		LocalCenterOffset: -450,-562,0
+	TransformSequence:
+		Offset: 440,520,0
+	HitShape:
+		TargetableOffsets: 812,-412,0,   612,112,0,   412,612,0,   -212,-712,0,   -412,-212,0,   -612,312,0
+		Type: Rectangle
+			TopLeft: -1024, -800
+			BottomRight: 850, 950
+	Selectable:
+		Bounds: 2064, 1984, -64, 64
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 12
+		Animation: DATABASE/X12.FLC
+		Title: Ballistic Control Center
+		Armor: None
+		Armament: None
+		Resistance: Medium
+		Description: All nuclear weapons are controlled in the ballistic control center. This center has to be built first before you can build under-ground launchers for nuclear rockets. These nuclear rockets are very powerful and precise. The entire area a nuclear rocket hits becomes contaminated.
+
+ed_mcu_bcc:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile BCC
+	Transforms:
+		IntoActor: ed_buildings_bcc
+	Valued:
+		Cost: 2000
+	Buildable:
+		IconPalette:
+		Queue: Building.ED
+		BuildDuration: 40
+	WithTextDecoration:
+		Text: BCC
