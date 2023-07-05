@@ -9,6 +9,7 @@ Rules:
 	e2140|content/ed/buildings/constr_center/rules.yaml
 	e2140|content/ed/buildings/tech_house/rules.yaml
 	e2140|content/ed/buildings/bio_center/rules.yaml
+	e2140|content/ed/buildings/bcc/rules.yaml
 	e2140|content/ed/vehicles/st01b/rules.yaml
 	e2140|content/ed/vehicles/st02/rules.yaml
 	e2140|content/ed/vehicles/mt200/rules.yaml
@@ -46,6 +47,7 @@ Sequences:
 	e2140|content/ed/buildings/constr_center/sequences.yaml
 	e2140|content/ed/buildings/tech_house/sequences.yaml
 	e2140|content/ed/buildings/bio_center/sequences.yaml
+	e2140|content/ed/buildings/bcc/sequences.yaml
 	e2140|content/ed/vehicles/st01b/sequences.yaml
 	e2140|content/ed/vehicles/st02/sequences.yaml
 	e2140|content/ed/vehicles/mt200/sequences.yaml
