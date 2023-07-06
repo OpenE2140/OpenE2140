@@ -37,6 +37,7 @@ Rules:
 	e2140|content/ucs/defenses/big_eye_upgraded/rules.yaml
 	e2140|content/ucs/defenses/little_eye/rules.yaml
 	e2140|content/ucs/defenses/little_eye_upgraded/rules.yaml
+	e2140|content/ucs/defenses/sdi_defense/rules.yaml
 
 Sequences:
 	e2140|content/ucs/sequences.yaml
@@ -72,6 +73,7 @@ Sequences:
 	e2140|content/ucs/defenses/big_eye_upgraded/sequences.yaml
 	e2140|content/ucs/defenses/little_eye/sequences.yaml
 	e2140|content/ucs/defenses/little_eye_upgraded/sequences.yaml
+	e2140|content/ucs/defenses/sdi_defense/sequences.yaml
 
 Voices:
 	e2140|content/ucs/voices.yaml
