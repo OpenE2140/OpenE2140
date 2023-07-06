@@ -78,9 +78,13 @@ Generate:
 		idle: 20
 		damaged-idle: 21
 		lower: 22
+			Offsets: 22:0,45
 		lower_damaged: 23
+			Offsets: 23:0,45
 		door: 24
+			Offsets: 24:0,33
 		door_damaged: 25
+			Offsets: 25:0,33
 
 	building_mine: Shadow Player
 		idle: 26 WithoutLight

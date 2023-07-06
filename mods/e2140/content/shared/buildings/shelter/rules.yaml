@@ -1,0 +1,53 @@
+shared_buildings_shelter:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Shelter
+	Health:
+		HP: 2000
+	Building:
+		Dimensions: 1, 2
+		Footprint: x =
+		LocalCenterOffset: 0,-680,0
+	TransformSequence:
+		Image: core_buildingsequence_small
+		Offset: -48,160,0
+	HitShape:
+		TargetableOffsets: 400,-250,0,   400,250,0,   -200,-250,0,   -200,250,0,   -800,-250,0,   -800,250,0
+		Type: Rectangle
+			TopLeft: -512, -412
+			BottomRight: 512, 812
+	Selectable:
+		Bounds: 1024, 1360, 0, 160
+	WithIdleOverlay@Lower:
+		Sequence: lower
+		Palette:
+		RequiresCondition: !Transforming
+	WithIdleOverlay@Door:
+		Sequence: door
+		Palette:
+		RequiresCondition: !Transforming
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 8
+		Animation: DATABASE/X08.FLC
+		Title: Shelter
+		Armor: Very thick; offers protection against almost anything that can be thrown at it.
+		Armament: None
+		Resistance: Very good
+		Description: The Shelter is a heavily fortified structure, the largest part of which is underground. The only part that can be seen is the entrance with a heavily armored sluice. There is enough room in a Shelter for up to 6 small vehicles or units, providing shelter if the enemy launches an attack. If the enemy has enough firepower to actually destroy the Shelter, then all units inside will be evacuated shortly before it is destroyed.
+
+shared_mcu_shelter:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Shelter
+	Transforms:
+		IntoActor: shared_buildings_shelter
+		Offset: 0,0
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160
+	WithTextDecoration:
+		Text: Shelter
