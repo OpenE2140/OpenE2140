@@ -18,6 +18,8 @@ ed_infantry_a04:
 		Voice: Unload
 		DeployCursor: minePlace
 		AbilityCursor: minePlace
+		PreLayDelay: 10
+		AfterLayingDelay: 0
 	AmmoPool:
 		Name: Mines
 		Armaments: WeaponMines
@@ -33,12 +35,17 @@ ed_infantry_a04:
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
+	WithDeployMineAnimation:
+		Sequence: deploy
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey
 		Palette:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	Passenger:
+		CargoConditions: 
+			ed_vehicles_bio: insidebio
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 4

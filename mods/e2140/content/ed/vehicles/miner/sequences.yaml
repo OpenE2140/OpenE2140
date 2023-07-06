@@ -7,6 +7,12 @@ ed_vehicles_miner:
 		Start: 16
 		Length: 4
 		Facings: -16
+	flicker:
+		Filename: vehicle_miner.vspr
+		Start: 80
+		Length: 2
+		Tick: 50
+		Facings: -16
 	turret:
 		Filename: content/ed/vehicles/miner/vehicle_miner_turret.png
 		Facings: -16
