@@ -1,6 +1,5 @@
 shared_vehicles_hcum:
 	Inherits@1: ^CoreVehicle
-	Inherits@2: ^CoreVehicleTurret
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	Voiced:
@@ -22,11 +21,13 @@ shared_vehicles_hcum:
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
-	Turreted:
-		Offset: 0,0,80
-	WithTurretAttackAnimation:
-		Sequence: repair
-	Armament@PRIMARY:
+	AttackRepair:
+		Armaments: arm
+		ArmOffset: 0,0,164
+		FacingTolerance: 0
+		PauseOnCondition: VehicleDisabled
+	Armament@REPAIR:
+		Name: arm
 		Weapon: shared_vehicles_hcum
 		Cursor: repair
 		OutsideRangeCursor: repair
@@ -36,8 +37,9 @@ shared_vehicles_hcum:
 	AutoTarget:
 		ScanRadius: 2
 		InitialStance: AttackAnything
-	AutoTargetPriority@Default:
-		ValidTargets: DamagedVehicle
+	AutoTargetPriority:
+		ValidTargets: DamagedUnit
+		InvalidTargets: Structure
 	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 3
