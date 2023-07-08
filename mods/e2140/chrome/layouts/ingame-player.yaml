@@ -463,7 +463,7 @@ Container@PLAYER_WIDGETS:
 							X: 25
 							Width: 23
 							Height: 21
-							Background: sidebar-button
+							Background: sidebar-production-tab
 							TooltipText: Defense
 							TooltipContainer: TOOLTIP_CONTAINER
 							ProductionGroup: Defense
