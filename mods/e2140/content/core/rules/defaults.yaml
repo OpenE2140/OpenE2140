@@ -461,6 +461,9 @@
 	# Make sure aircrafts cannot be repaired in air.
 	WarheadDependentTargetable@Repair:
 		RequiresCondition: damaged && !airborne
+	# Aircrafts units are visible on the radar when being on ground and in air.
+	AppearsOnRadar:
+		UseLocation: true
 
 # Base for all aircrafts husks
 ^CoreAircraftHusk:
