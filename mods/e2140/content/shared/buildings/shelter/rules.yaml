@@ -47,7 +47,7 @@ shared_mcu_shelter:
 		Cost: 800
 	Buildable:
 		IconPalette:
-		Queue: Building.UCS, Building.ED
+		Queue: Defense.UCS, Defense.ED
 		BuildDuration: 160
 	WithTextDecoration:
 		Text: Shelter
