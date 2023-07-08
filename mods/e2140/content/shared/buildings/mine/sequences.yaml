@@ -1,0 +1,40 @@
+shared_buildings_mine:
+	Defaults:
+		Filename: building_mine.vspr
+	idle:
+	idle-lights:
+		Start: 1
+		IgnoreWorldTint: true
+	damaged-idle:
+		Start: 2
+	damaged-idle-lights:
+		Start: 3
+		IgnoreWorldTint: true
+	rotor_up:
+		Filename: content/shared/buildings/mine/building_mine_rotor.png
+		Length: 8
+		Tick: 60
+	rotor_down:
+		Filename: content/shared/buildings/mine/building_mine_rotor.png
+		FlipX: True
+		Length: 8
+		Tick: 60
+	belt:
+		Filename: belt.vspr
+	belt-lights:
+		Filename: belt.vspr
+		Start: 1
+		IgnoreWorldTint: true
+		ZOffset: 64
+
+shared_mcu_mine:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 188
+
+shared_mcu_mine.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 188
