@@ -32,7 +32,7 @@ public class CustomRallyPointInfo : RallyPointInfo
 	}
 }
 
-public class CustomRallyPoint : RallyPoint, INotifyCreated
+public class CustomRallyPoint : RallyPoint, INotifyCreated, INotifyAddedToWorld
 {
 	public new CustomRallyPointInfo Info => (CustomRallyPointInfo)base.Info;
 
@@ -40,9 +40,14 @@ public class CustomRallyPoint : RallyPoint, INotifyCreated
 		: base(self, info)
 	{
 	}
-
 	void INotifyCreated.Created(Actor self)
 	{
-		self.World.Add(new CustomRallyPointIndicator(self, this));
+		// HACK: RallyPoint class is using INotifyAddedToWorld to add standard RallyPointIndicator effect to World.
+		// CustomRallyPoint does this too, but we'd like to suppress creating the standard RallyPointIndicator altogether.
+	}
+
+	void INotifyAddedToWorld.AddedToWorld(Actor self)
+	{
+		self.World.AddFrameEndTask(w => w.Add(new CustomRallyPointIndicator(self, this)));
 	}
 }
