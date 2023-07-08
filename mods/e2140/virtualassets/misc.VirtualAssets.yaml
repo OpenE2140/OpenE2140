@@ -21,46 +21,28 @@ Generate:
 	# TODO map all stuff here!
 	projectile_rocket:
 		idle: 62-70 16
-		explode: 48-55
-
-	missile_trail: Smoke
-		idle: 157-160
 
 	projectile_heavy_rocket:
 		idle: 88-96 16
 			Offsets: 89:-2,0 91:0,1 93:1,1 95:-3,-1 96:-1,0
-		explode: 8-15
-		explode2: 0-7
 
 	projectile_plasma:
 		idle: 82
-		explode: 106-110
 
 	projectile_ion:
 		idle: 78
-		trail: 77,76,75
-		explode: 111-115
 
 	projectile_cannon:
 		idle: 83
-		explode: 8-15
-		explode2: 0-7
 
 	projectile_bomb:
 		idle: 60,61
 
-	projectile_napalm_bomb:
-		idle: 60,61
-		explode: 48-55
-
 	projectile_plasma_bomb:
 		idle: 61
-		explode: 129-136
 
 	projectile_grenade:
 		idle: 58,59
-		explode: 8-15
-		explode2: 0-7
 
 	projectile_torpedo:
 		idle: 97-105 16
@@ -82,10 +64,45 @@ Generate:
 	water_splash:
 		idle: 149-156
 
-	vehicle_explosion:
+	projectile_explosion_1:
+		explode: 0-7
+
+	projectile_explosion_2:
+		explode: 8-15
+
+	projectile_explosion_3:
+		explode: 48-55
+
+	unit_explosion_1:
 		explode1: 32-39
-		explode2a: 40
-		explode2b: 41 ExplosionGreenPixelFix
-		explode2c: 42-45
-		explode2d: 46 ExplosionGreenPixelFix
-		explode2e: 47
+
+	unit_explosion_2:
+		explode_a: 40
+		explode_b: 41 ExplosionGreenPixelFix
+		explode_c: 42-45
+		explode_d: 46 ExplosionGreenPixelFix
+		explode_e: 47
+
+	ion_explosion_small:
+		explode: 111-115
+
+	ion_explosion_big:
+		explode: 121-128
+
+	plasma_explosion_small:
+		explode: 106-110
+
+	plasma_explosion_big:
+		explode: 129-136
+
+	trail_missile_small: Smoke
+		trail: 157-160
+
+	trail_missile_big: Smoke
+		trail: 170-176
+
+	trail_ion:
+		trail: 77,76,75
+
+	trail_plasma:
+		trail: 81,80,79

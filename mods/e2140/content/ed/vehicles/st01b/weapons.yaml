@@ -10,7 +10,8 @@ ed_vehicles_st01b:
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
-		Image: projectile_cannon
+		Image: projectile
+		Sequences: cannon
 		Palette:
 		TrailPalette:
 		Shadow: False
@@ -20,8 +21,8 @@ ed_vehicles_st01b:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground, Ship, Air

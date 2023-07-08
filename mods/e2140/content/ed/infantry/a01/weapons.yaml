@@ -47,7 +47,8 @@ ed_infantry_a01_grenade:
 	Projectile: Bullet
 		Speed: 150
 		Blockable: false
-		Image: projectile_grenade
+		Image: projectile
+		Sequences: grenade
 		Palette:
 		TrailPalette:
 		Shadow: True
@@ -60,8 +61,8 @@ ed_infantry_a01_grenade:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_grenade
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground, Ship, Air

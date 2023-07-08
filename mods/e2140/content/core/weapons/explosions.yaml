@@ -1,8 +1,8 @@
 VehicleExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
-		Image: vehicle_explosion
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: unit_explosion_1, unit_explosion_2
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
@@ -10,8 +10,8 @@ VehicleExplosion:
 AircraftExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
-		Image: vehicle_explosion
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: unit_explosion_1, unit_explosion_2
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
@@ -30,6 +30,15 @@ BuildingExplosion:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
 
+DefenseTowerExplosion:
+	ValidTargets: Ground, Water
+	Warhead@Effect: CreateEffect
+		Image: defense_tower_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground, Water
+		ImpactSounds: 16.smp, 17.smp
+
 PowerPlantExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
@@ -42,8 +51,8 @@ PowerPlantExplosion:
 UcsInfantryExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground
@@ -52,8 +61,8 @@ PipeExplosion:
 	Inherits: Smudges
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
-		Image: vehicle_explosion
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: unit_explosion_1, unit_explosion_2
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
