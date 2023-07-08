@@ -1,0 +1,30 @@
+shared_buildings_shelter:
+	Defaults:
+		Filename: building_shelter.vspr
+	idle:
+		ZOffset: 64
+	damaged-idle:
+		Start: 1
+		ZOffset: 64
+	lower:
+		Start: 2
+		ZOffset: -64
+	damaged-lower:
+		Start: 3
+		ZOffset: -64
+	door:
+		Start: 4
+	damaged-door:
+		Start: 5
+
+shared_mcu_shelter:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 177
+
+shared_mcu_shelter.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 177
