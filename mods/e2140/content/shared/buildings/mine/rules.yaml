@@ -1,0 +1,70 @@
+shared_buildings_mine:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Mine
+	Health:
+		HP: 500
+	Power:
+		Amount: -200
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 420,1624,0
+		RequiresCondition: Powered
+	WithIdleOverlay@Belt:
+		Sequence: belt
+		Offset: 420,1624,0
+		RequiresCondition: !Transforming
+	WithIdleOverlay@RotorUp:
+		Sequence: rotor_up
+		Offset: 1680,-280,0
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	WithIdleOverlay@RotorDown:
+		Sequence: rotor_down
+		Offset: -340,-620,0
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xx= ===
+		LocalCenterOffset: -380,-520,0
+	TransformSequence:
+		Offset: 380,460,0
+	HitShape:
+		TargetableOffsets: 448,-750,0,   648,-50,0,   848,550,0,   -212,-750,0,   0,-50,0,   212,550,0,   -812,-750,0,   -612,-50,0,   -412,550,0
+		Type: Rectangle
+			TopLeft: -1024, -824
+			BottomRight: 824, 824
+	Selectable:
+		Bounds: 3088, 1984, 340, 32
+	ProvidesPrerequisite:
+		Prerequisite: anypower
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 4
+		Animation: DATABASE/X04.FLC
+		Title: Mine
+		Armor: Cannot be damaged by normal firearms.
+		Armament: None
+		Resistance: Medium
+		Description: Resources are extracted from the depths of a mine. Mines are completely automated and do not require personnel. The extracted ores are placed in containers and transported to a refinery by either a BANTHA or a HEAVY LIFTER. Each container contains resources to the value of 200 Dollars. A mine can only be built in locations containing resources. You cannot build a mine anywhere else. If there are plenty of resources, you may have to build a new mine, if one stops producing. A mine can only extract resources in a certain area. When all the available resources have been extracted the mine shuts down.
+
+shared_mcu_mine:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Mine
+	Transforms:
+		IntoActor: shared_buildings_mine
+	Valued:
+		Cost: 800
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 160
+	WithTextDecoration:
+		Text: Mine
