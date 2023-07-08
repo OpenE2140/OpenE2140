@@ -38,7 +38,6 @@ MapFolders:
 Assemblies:
 	^BinDir|OpenRA.Mods.OpenE2140.dll
 	^BinDir|OpenRA.Mods.Common.dll
-	^BinDir|OpenRA.Mods.Cnc.dll
 
 SoundFormats: Wav, Ogg, Mp3, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VirtualSprite
