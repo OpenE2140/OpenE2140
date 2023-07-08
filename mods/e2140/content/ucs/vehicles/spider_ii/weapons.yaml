@@ -12,9 +12,11 @@ ucs_vehicles_spider_ii:
 		Arm: 2
 		Blockable: false
 		Inaccuracy: 128
-		Image: projectile_heavy_rocket
+		Image: projectile
+		Sequences: heavy_rocket
 		Palette:
-		TrailImage: missile_trail
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
@@ -31,10 +33,10 @@ ucs_vehicles_spider_ii:
 		DamageTypes: Explosion
 		ValidTargets: Air
 	Warhead@Effect: CreateEffect
-		Image: projectile_heavy_rocket
-		Explosions: explode
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
-		ImpactSounds: 14.smp
+		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground, Air, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_slow

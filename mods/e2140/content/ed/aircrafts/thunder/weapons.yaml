@@ -12,9 +12,11 @@ ed_aircrafts_thunder:
 		Arm: 2
 		Blockable: false
 		Inaccuracy: 128
-		Image: projectile_rocket
+		Image: projectile
+		Sequences: rocket
 		Palette:
-		TrailImage: missile_trail
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
@@ -26,8 +28,8 @@ ed_aircrafts_thunder:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@EffectGround: CreateEffect
-		Image: projectile_rocket
-		Explosions: explode
+		Image: explosion
+		Explosions: projectile_explosion_3
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
@@ -39,8 +41,8 @@ ed_aircrafts_thunder:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectActor: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Vehicle, Structure, Ship, Air, Pipe

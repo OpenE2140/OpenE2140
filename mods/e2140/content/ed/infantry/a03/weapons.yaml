@@ -7,7 +7,8 @@ ed_infantry_a03:
 	Projectile: Bullet
 		Speed: 550
 		Blockable: false
-		Image: projectile_ion_small
+		Image: projectile
+		Sequences: ion_small
 		Palette:
 		TrailPalette:
 		Shadow: False
@@ -25,8 +26,8 @@ ed_infantry_a03:
 		ValidTargets: Vehicle, Ship
 		InvalidTargets: Structures, Infantry
 	Warhead@Effect: CreateEffect
-		Image: projectile_ion
-		Explosions: explode
+		Image: explosion
+		Explosions: ion_explosion_small
 		ExplosionPalette:
 		ImpactSounds: 18.smp, 19.smp, 38.smp
 		ValidTargets: Ground, Ship, Air

@@ -10,7 +10,8 @@ ucs_vehicles_tiger_hellmaker:
 		Blockable: false
 		Inaccuracy: 128
 		LaunchAngle: 128
-		Image: projectile_napalm_bomb
+		Image: projectile
+		Sequences: napalm_bomb
 		Palette:
 		TrailPalette:
 		Shadow: True
@@ -27,8 +28,8 @@ ucs_vehicles_tiger_hellmaker:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@EffectGround: CreateEffect
-		Image: projectile_napalm_bomb
-		Explosions: explode
+		Image: explosion
+		Explosions: projectile_explosion_3
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground, Air, Ship

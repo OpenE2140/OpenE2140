@@ -9,7 +9,8 @@ ucs_vehicles_spider:
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
-		Image: projectile_plasma
+		Image: projectile
+		Sequences: plasma
 		Palette:
 		TrailPalette:
 		Shadow: False
@@ -19,8 +20,8 @@ ucs_vehicles_spider:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_plasma
-		Explosions: explode
+		Image: explosion
+		Explosions: plasma_explosion_small
 		ExplosionPalette:
 		ImpactSounds: 22.smp
 		ValidTargets: Ground, Ship, Air

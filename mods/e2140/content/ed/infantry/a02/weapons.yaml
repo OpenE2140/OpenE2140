@@ -12,9 +12,11 @@ ed_infantry_a02:
 		Arm: 1
 		Blockable: false
 		Inaccuracy: 128
-		Image: projectile_rocket
+		Image: projectile
+		Sequences: rocket
 		Palette:
-		TrailImage: missile_trail
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
@@ -37,8 +39,8 @@ ed_infantry_a02:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 	Warhead@Effect: CreateEffect
-		Image: projectile_grenade
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground, Air, Ship

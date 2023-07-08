@@ -9,7 +9,8 @@ ucs_infantry_silver_max:
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
-		Image: projectile_plasma_small
+		Image: projectile
+		Sequences: plasma_small
 		Palette:
 		TrailPalette:
 		Shadow: False
@@ -19,8 +20,8 @@ ucs_infantry_silver_max:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_plasma
-		Explosions: explode
+		Image: explosion
+		Explosions: plasma_explosion_small
 		ExplosionPalette:
 		ImpactSounds: 22.smp
 		ValidTargets: Ground, Ship, Air

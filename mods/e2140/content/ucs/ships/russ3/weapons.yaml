@@ -9,7 +9,8 @@ ucs_ships_russ3:
 	Projectile: Bullet
 		Speed: 160
 		Blockable: false
-		Image: projectile_torpedo
+		Image: projectile
+		Sequences: torpedo
 		Palette:
 		TrailPalette:
 	Warhead@Damage: SpreadDamage
@@ -18,8 +19,8 @@ ucs_ships_russ3:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground, Air, Ship

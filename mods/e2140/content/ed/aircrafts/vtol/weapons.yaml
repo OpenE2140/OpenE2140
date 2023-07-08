@@ -12,9 +12,11 @@ ed_aircrafts_vtol:
 		Arm: 2
 		Blockable: false
 		Inaccuracy: 128
-		Image: projectile_heavy_rocket
+		Image: projectile
+		Sequences: heavy_rocket
 		Palette:
-		TrailImage: missile_trail
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
 		TrailInterval: 0
 		TrailPalette:
 		Shadow: True
@@ -26,8 +28,8 @@ ed_aircrafts_vtol:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_cannon
-		Explosions: explode, explode2
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp, 16.smp
 		ValidTargets: Ground, Ship, Air

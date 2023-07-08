@@ -10,16 +10,16 @@ ucs_aircrafts_hellwind:
 		Shadow: True
 		ShadowColor: 00000046
 		Palette:
-		Image: projectile_plasma_bomb
-		Sequences: idle
+		Image: projectile
+		Sequences: plasma_bomb
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 90
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_plasma_bomb
-		Explosions: explode
+		Image: explosion
+		Explosions: plasma_explosion_big
 		ExplosionPalette:
 		ImpactSounds: 22.smp, 23.smp
 		ValidTargets: Ground, Ship, Air

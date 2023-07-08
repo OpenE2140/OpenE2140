@@ -16,8 +16,8 @@ ucs_infantry_silver_t_explode:
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
-		Image: projectile_heavy_rocket
-		Explosions: explode
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground, Water, Ship, Air

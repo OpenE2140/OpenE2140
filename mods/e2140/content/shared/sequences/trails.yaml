@@ -1,0 +1,16 @@
+trail:
+	Defaults:
+		BlendMode: Additive
+		ZOffset: 1024
+	trail_rocket_small:
+		Filename: trail_missile_small.vspr
+		Length: 4
+	trail_rocket_big:
+		Filename: trail_missile_big.vspr
+		Length: 7
+	trail_ion:
+		Filename: trail_ion.vspr
+		Length: 3
+	trail_plasma:
+		Filename: trail_plasma.vspr
+		Length: 3

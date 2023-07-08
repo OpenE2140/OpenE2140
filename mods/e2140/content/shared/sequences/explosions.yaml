@@ -1,17 +1,31 @@
-vehicle_explosion:
+explosion:
 	Defaults:
-		Filename: vehicle_explosion.vspr
-	explode:
-		BlendMode: Additive
 		Length: 8
-		Tick: 60
-		ZOffset: 512
-	explode2:
+		ZOffset: 1024
 		BlendMode: Additive
-		Start: 8
-		Length: 8
+	projectile_explosion_1:
+		Filename: projectile_explosion_1.vspr
+	projectile_explosion_2:
+		Filename: projectile_explosion_2.vspr
+	projectile_explosion_3:
+		Filename: projectile_explosion_3.vspr
+		Offset: 0, -16
+	unit_explosion_1:
+		Filename: unit_explosion_1.vspr
 		Tick: 60
-		ZOffset: 512
+	unit_explosion_2:
+		Filename: unit_explosion_2.vspr
+		Tick: 60
+	ion_explosion_small:
+		Filename: ion_explosion_small.vspr
+		Length: 5
+	ion_explosion_big:
+		Filename: ion_explosion_big.vspr
+	plasma_explosion_small:
+		Filename: plasma_explosion_small.vspr
+		Length: 5
+	plasma_explosion_big:
+		Filename: plasma_explosion_big.vspr
 
 building_explosion:
 	idle:
@@ -28,7 +42,12 @@ building_explosion:
 				Filename: GRAPH/SHCKV24.DAT
 		BlendMode: Additive
 		Length: 5
-		Offset: 0,-20
+		Offset: 0, -20
+
+defense_tower_explosion:
+	Inherits: building_explosion
+	idle:
+		Offset: 0, 0
 
 nuclear_explosion:
 	idle:

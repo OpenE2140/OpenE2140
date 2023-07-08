@@ -7,7 +7,8 @@ ed_defenses_heavy_defense_tower_upgraded:
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
-		Image: projectile_ion
+		Image: projectile
+		Sequences: ion
 		Palette:
 		TrailPalette:
 		Shadow: False
@@ -25,8 +26,8 @@ ed_defenses_heavy_defense_tower_upgraded:
 		ValidTargets: Vehicle, Ship
 		InvalidTargets: Structures, Infantry
 	Warhead@Effect: CreateEffect
-		Image: projectile_ion
-		Explosions: explode
+		Image: explosion
+		Explosions: ion_explosion_small
 		ExplosionPalette:
 		ImpactSounds: 18.smp, 19.smp, 38.smp
 		ValidTargets: Ground, Ship, Air
