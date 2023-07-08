@@ -12,6 +12,7 @@
 #endregion
 
 using JetBrains.Annotations;
+using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
@@ -72,7 +73,7 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	{
 		if (this.IsTraitDisabled
 			|| this.wsb.IsTraitDisabled
-			|| self.CurrentActivity is not CustomAttackActivity attackActivity
+			|| GetCurrentlyExecutingActivity(self) is not CustomAttackActivity attackActivity
 			|| attackActivity.IsMovingWithinRange)
 			return;
 
@@ -85,6 +86,12 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 		if (!string.IsNullOrEmpty(this.Info.SequenceAim) && this.aiming && this.wsb.DefaultAnimation.CurrentSequence.Name != this.Info.SequenceFire)
 			this.wsb.PlayCustomAnimation(self, this.Info.SequenceAim);
 	}
+
+	/// <summary>
+	/// Returns inner-most activity being executed. Depends on the order in which the method <see cref="Activity.ActivitiesImplementing{T}(bool)"/> returns the activities.
+	/// </summary>
+	private static Activity? GetCurrentlyExecutingActivity(Actor self) =>
+		self.CurrentActivity?.ActivitiesImplementing<Activity>().Where(a => a.State == ActivityState.Active).FirstOrDefault();
 
 	void INotifyAiming.StartedAiming(Actor self, AttackBase attack)
 	{
