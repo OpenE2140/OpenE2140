@@ -53,6 +53,7 @@ ed_infantry_a01_grenade:
 		Shadow: True
 		ShadowColor: 00000046
 		LaunchAngle: 128
+		Inaccuracy: 0c256
 	Warhead@Damage: SpreadDamage
 		Spread: 128
 		Damage: 10
