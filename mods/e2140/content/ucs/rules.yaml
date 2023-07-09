@@ -22,7 +22,7 @@ World:
 	WithTurretShadow:
 		ShadowColor: 00000046
 		Offset: 0,32,-300
-		ZOffset: -256
+		ZOffset: -220
 	# WithCloakShadow needs to be defined/run after WithTurretShadow (unfortunately)
 	-WithCloakShadow:
 	# Inherits@3: ^SilhouetteShadowCloak
