@@ -46,5 +46,6 @@ ucs_mcu_pb_control:
 		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 100
 	WithTextDecoration:
 		Text: PB Control

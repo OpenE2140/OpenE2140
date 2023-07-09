@@ -12,6 +12,7 @@ shared_aircrafts_heavy_lifter:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 60
+		BuildPaletteOrder: 130
 	Selectable:
 		Bounds: 992, 848, 0, 0
 	Health:

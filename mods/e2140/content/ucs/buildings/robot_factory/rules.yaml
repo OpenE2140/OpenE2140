@@ -67,5 +67,6 @@ ucs_mcu_robot_factory:
 		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 20
 	WithTextDecoration:
 		Text: Robot Factory

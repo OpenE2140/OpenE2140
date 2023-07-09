@@ -46,5 +46,6 @@ ed_mcu_bcc:
 		IconPalette:
 		Queue: Building.ED
 		BuildDuration: 40
+		BuildPaletteOrder: 100
 	WithTextDecoration:
 		Text: BCC
