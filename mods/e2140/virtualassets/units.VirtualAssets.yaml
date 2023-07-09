@@ -587,11 +587,11 @@ Generate:
 
 	death: Shadow
 		civil1: 1011-1014
-			Offsets: 1011-1014:0,-1
+			Offsets: 1011-1014:7,0
 		civil2: 1045-1048
-			Offsets: 1045-1048:0,-1
+			Offsets: 1045-1048:7,0
 		civil3: 1079-1082
-			Offsets: 1079-1082:0,-1
+			Offsets: 1079-1082:7,0
 		android_shot1: 1084-1090
 			Offsets: 1084-1090:0,5
 		android_shot2: 1091-1097
