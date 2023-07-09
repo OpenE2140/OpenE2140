@@ -48,5 +48,6 @@ shared_mcu_research_center:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 160
+		BuildPaletteOrder: 70
 	WithTextDecoration:
 		Text: Research Center

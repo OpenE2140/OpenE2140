@@ -99,5 +99,6 @@ ucs_mcu_prod_center:
 		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 40
 	WithTextDecoration:
 		Text: Prod. Center

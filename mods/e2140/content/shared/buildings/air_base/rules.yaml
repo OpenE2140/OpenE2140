@@ -141,5 +141,6 @@ shared_mcu_air_base:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 160
+		BuildPaletteOrder: 90
 	WithTextDecoration:
 		Text: Air Base

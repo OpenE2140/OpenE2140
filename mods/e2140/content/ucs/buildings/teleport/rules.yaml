@@ -85,5 +85,6 @@ ucs_mcu_teleport:
 		IconPalette:
 		Queue: Building.UCS
 		BuildDuration: 40
+		BuildPaletteOrder: 95
 	WithTextDecoration:
 		Text: Teleport
