@@ -24,7 +24,7 @@ shared_buildings_mine:
 		PauseOnCondition: !Powered
 	WithIdleOverlay@RotorDown:
 		Sequence: rotor_down
-		Offset: -340,-620,0
+		Offset: -340,-640,0
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
 	WithNightLightSource:
