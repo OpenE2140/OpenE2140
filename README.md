@@ -8,9 +8,8 @@ Links:
 
 # Videos / Screenshots
 
-Video previews showcasing latest development:
-- [OpenE2140 - preview #2](https://dalek.zone/w/aFNBP49nMUMXKCsSFxu41h) (January 2023)
-- [OpenE2140 - preview #3 (big battle)](https://dalek.zone/w/oY9zfn6UowchnsuSsT96Fn) (February 2023)
+Video preview showcasing latest development:
+- [OpenE2140: Preview #4 (May 2023)](https://dalek.zone/w/qJBKYThEApfiexosS1iNKM)
 
 ## Screenshots (April 2023)
 <a href="https://user-images.githubusercontent.com/119738087/233852237-1ed43c3f-3c52-4aba-ae8f-ad365d25e4da.png"><img src="https://user-images.githubusercontent.com/119738087/233852237-1ed43c3f-3c52-4aba-ae8f-ad365d25e4da.png" height="200"></a>
@@ -19,8 +18,6 @@ Video previews showcasing latest development:
 <a href="https://user-images.githubusercontent.com/119738087/231708102-c7688547-0a58-4394-bbb5-26ed2c449972.png"><img src="https://user-images.githubusercontent.com/119738087/231708102-c7688547-0a58-4394-bbb5-26ed2c449972.png" height="200"></a>
 <a href="https://user-images.githubusercontent.com/119738087/231708121-ffa428f1-b5df-4417-8203-7199a3ca6e43.png"><img src="https://user-images.githubusercontent.com/119738087/231708121-ffa428f1-b5df-4417-8203-7199a3ca6e43.png" height="200"></a>
 <a href="https://user-images.githubusercontent.com/119738087/231708287-1b0b52c8-d6c5-491b-9387-83357966a9ec.gif"><img src="https://user-images.githubusercontent.com/119738087/231708287-1b0b52c8-d6c5-491b-9387-83357966a9ec.gif" height="200"></a>
-<a href="https://github.com/michaeldgg2/OpenE2140/assets/119738087/f0b437dc-5b36-4872-a47a-7d0286f155d5"><img src="https://github.com/michaeldgg2/OpenE2140/assets/119738087/f0b437dc-5b36-4872-a47a-7d0286f155d5" height="200"></a>
-
 
 ## Development team
 
