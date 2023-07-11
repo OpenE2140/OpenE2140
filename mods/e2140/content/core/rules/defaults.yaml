@@ -671,11 +671,18 @@
 
 # Infantry units can be healed when they are nearby BIO vehicle.
 ^HealedByBio:
-	ChangesHealth:
+	# Infantry units are healed around BIO vehicle.
+	ChangesHealth@AroundBio:
 		Step: 5
 		Delay: 30
 		StartIfBelow: 100
 		RequiresCondition: healing
+	# Infantry units are healed inside BIO vehicle.
+	ChangesHealth@InsideBio:
+		Step: 500
+		Delay: 5
+		StartIfBelow: 100
+		RequiresCondition: insidebio
 	# External condition granted by BIO vehicle.
 	ExternalCondition@Healing:
 		Condition: healing
@@ -696,6 +703,10 @@
 		Condition: activatebio
 		Range: 2c896
 		RequiresCondition: damaged
+	# Give a condition to infantry units which are inside BIO.
+	Passenger:
+		CargoConditions: 
+			ed_vehicles_bio: insidebio
 
 # Actors can be disabled by ion weapons and repaired by HCU-M.
 ^DisabledActor:

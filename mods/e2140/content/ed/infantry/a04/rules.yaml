@@ -33,9 +33,6 @@ ed_infantry_a04:
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
-	Passenger:
-		CargoConditions: 
-			ed_vehicles_bio: insidebio
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey
 		Palette:
