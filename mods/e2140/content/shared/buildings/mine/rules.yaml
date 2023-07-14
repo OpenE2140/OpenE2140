@@ -11,11 +11,11 @@ shared_buildings_mine:
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt-light:
 		Sequence: belt-lights
-		Offset: 420,1624,0
+		Offset: 402,1624,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
-		Offset: 420,1624,0
+		Offset: 402,1624,0
 		RequiresCondition: !Transforming
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
