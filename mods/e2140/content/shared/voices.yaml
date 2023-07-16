@@ -1,0 +1,12 @@
+StaticVoice:
+	DefaultVariant:
+	Voices:
+		Select: 37.smp
+		Action: 37.smp
+		Defend: 37.smp
+		Escort: 37.smp
+		Attack: 37.smp
+		Enter: 37.smp
+		Unload: 37.smp
+		Recording: 37.smp
+		Recorded: 37.smp

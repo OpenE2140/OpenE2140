@@ -45,3 +45,6 @@ Weapons:
 	e2140|content/shared/vehicles/hcum/weapons.yaml
 	e2140|content/shared/misc/landmine/weapons.yaml
 	e2140|content/shared/misc/watermine/weapons.yaml
+
+Voices:
+	e2140|content/shared/voices.yaml

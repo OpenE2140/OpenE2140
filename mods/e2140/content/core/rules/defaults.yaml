@@ -727,3 +727,7 @@
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
 		RequiresCondition: VehicleDisabled
+	# Plays static sound when vehicle is disabled.
+	Voiced@Static:
+		VoiceSet: StaticVoice
+		RequiresCondition: VehicleDisabled
