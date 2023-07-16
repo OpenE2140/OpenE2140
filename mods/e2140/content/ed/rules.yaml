@@ -14,13 +14,15 @@ World:
 
 ^EdVehicle:
 	Inherits: ^CoreVehicle
-	Voiced:
+	Voiced@EdVehicle:
 		VoiceSet: EdVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 ^EdAircraft:
 	Inherits: ^CoreAircraft
-	Voiced:
+	Voiced@EdAircraft:
 		VoiceSet: EdVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 ^EdInfantry:
 	Inherits@1: ^CoreInfantry
@@ -30,8 +32,9 @@ World:
 
 ^EdShip:
 	Inherits: ^CoreShip
-	Voiced:
+	Voiced@EdShip:
 		VoiceSet: EdVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 ed_colorpicker:
 	Inherits: ed_vehicles_st01b

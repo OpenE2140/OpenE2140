@@ -32,8 +32,9 @@ World:
 ^UcsVehicle:
 	Inherits: ^CoreVehicle
 	# Unit produces voice
-	Voiced:
+	Voiced@UcsVehicle:
 		VoiceSet: UcsVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 # Base for all UCS mechs.
 ^UcsMech:
@@ -49,8 +50,9 @@ World:
 
 ^UcsAircraft:
 	Inherits: ^CoreAircraft
-	Voiced:
+	Voiced@UcsAircraft:
 		VoiceSet: UcsVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 ^UcsInfantry:
 	Inherits: ^CoreInfantry
@@ -64,8 +66,9 @@ World:
 
 ^UcsShip:
 	Inherits: ^CoreShip
-	Voiced:
+	Voiced@UcsShip:
 		VoiceSet: UcsVehicleVoice
+		RequiresCondition: !VehicleDisabled
 
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
