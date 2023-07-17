@@ -1,7 +1,6 @@
 shared_buildings_research_center:
 	Defaults:
 		Filename: building_research_center.vspr
-		Offset: 0,0,0
 	idle:
 	idle-lights:
 		Start: 1
@@ -11,6 +10,18 @@ shared_buildings_research_center:
 	damaged-idle-lights:
 		Start: 3
 		IgnoreWorldTint: true
+	deploy:
+		Filename: content/shared/buildings/research_center/mcu_deploy.png
+		Length: 30
+		ZOffset: 256
+	covered:
+		Filename: content/shared/buildings/research_center/mcu_deploy.png
+		Start: 29
+		ZOffset: 256
+	uncover:
+		Filename: content/shared/buildings/research_center/pyramid_uncover.png
+		Length: 8
+		ZOffset: 256
 
 shared_mcu_research_center:
 	Inherits: shared_mcu
