@@ -134,8 +134,6 @@ ModContent:
 		e2140|installer/gog.yaml
 		e2140|installer/steam.yaml
 
-# TODO DiscordService
-
 Translations:
 	common|languages/en.ftl
 
@@ -152,6 +150,9 @@ TileSets:
 	e2140|tilesets/temperate.yaml
 	e2140|tilesets/urban.yaml
 	e2140|tilesets/urban2.yaml
+
+DiscordService:
+	ApplicationId: 1125051696196898948
 
 Include: content/core/mod.yaml
 Include: content/shared/mod.yaml
