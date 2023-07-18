@@ -73,7 +73,7 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	{
 		if (this.IsTraitDisabled
 			|| this.wsb.IsTraitDisabled
-			|| GetCurrentlyExecutingActivity(self) is not CustomAttackActivity attackActivity
+			|| WithAimAttackAnimation.GetCurrentlyExecutingActivity(self) is not CustomAttackActivity attackActivity
 			|| attackActivity.IsMovingWithinRange)
 			return;
 
@@ -90,8 +90,10 @@ public class WithAimAttackAnimation : ConditionalTrait<WithAimAttackAnimationInf
 	/// <summary>
 	/// Returns inner-most activity being executed. Depends on the order in which the method <see cref="Activity.ActivitiesImplementing{T}(bool)"/> returns the activities.
 	/// </summary>
-	private static Activity? GetCurrentlyExecutingActivity(Actor self) =>
-		self.CurrentActivity?.ActivitiesImplementing<Activity>().Where(a => a.State == ActivityState.Active).FirstOrDefault();
+	private static Activity? GetCurrentlyExecutingActivity(Actor self)
+	{
+		return self.CurrentActivity?.ActivitiesImplementing<Activity>()?.FirstOrDefault(a => a.State == ActivityState.Active);
+	}
 
 	void INotifyAiming.StartedAiming(Actor self, AttackBase attack)
 	{

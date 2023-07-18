@@ -40,6 +40,7 @@ public class CustomRallyPoint : RallyPoint, INotifyCreated, INotifyAddedToWorld
 		: base(self, info)
 	{
 	}
+
 	void INotifyCreated.Created(Actor self)
 	{
 		// HACK: RallyPoint class is using INotifyAddedToWorld to add standard RallyPointIndicator effect to World.
