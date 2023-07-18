@@ -30,6 +30,7 @@ ed_aircrafts_thunder:
 		Offset: 0,16,48
 		Sequence: rotorslow
 		RequiresCondition: !airborne
+		PauseOnCondition: VehicleDisabled
 	WithMoveSound:
 		Sound: 29.smp
 	SpawnActorOnDeath:

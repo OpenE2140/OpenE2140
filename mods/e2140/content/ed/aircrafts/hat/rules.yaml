@@ -30,6 +30,8 @@ ed_aircrafts_hat:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	WithFacingSpriteBody:
+		PauseOnCondition: VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ed_aircrafts_hat_husk
 		RequiresCondition: airborne
