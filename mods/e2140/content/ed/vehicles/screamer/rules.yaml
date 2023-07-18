@@ -19,6 +19,7 @@ ed_vehicles_screamer:
 		Range: 4c896
 	WithIdleOverlay:
 		Palette:
+		PauseOnCondition: VehicleDisabled
 	DetectCloaked:
 		Range: 4c896
 	Encyclopedia:
