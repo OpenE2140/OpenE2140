@@ -19,7 +19,7 @@ ed_infantry_a04:
 		Start: 48
 		Length: 2
 		Facings: -8
-		Tick: 100
+		Tick: 140
 	icon:
 		Filename: SPRI0.MIX
 		Start: 124

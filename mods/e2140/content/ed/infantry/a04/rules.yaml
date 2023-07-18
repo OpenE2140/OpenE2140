@@ -43,9 +43,6 @@ ed_infantry_a04:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
-	Passenger:
-		CargoConditions: 
-			ed_vehicles_bio: insidebio
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 4
