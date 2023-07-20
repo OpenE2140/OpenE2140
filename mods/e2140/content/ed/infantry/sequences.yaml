@@ -4,9 +4,24 @@ ed_infantry_common:
 		Start: 25
 		Length: 7
 		Tick: 60
-	die-default:
+	die-default1:
 		Filename: death.vspr
-		Start: 25
+		Start: 12
+		Length: 7
+		Tick: 60
+	die-default2:
+		Filename: death.vspr
+		Start: 19
+		Length: 7
+		Tick: 60
+	die-default3:
+		Filename: death.vspr
+		Start: 26
+		Length: 7
+		Tick: 60
+	die-default4:
+		Filename: death.vspr
+		Start: 33
 		Length: 7
 		Tick: 60
 	die-burn:
@@ -14,9 +29,24 @@ ed_infantry_common:
 		Start: 68
 		Length: 7
 		Tick: 60
-	die-explode:
+	die-explode1:
+		Filename: death.vspr
+		Start: 40
+		Length: 7
+		Tick: 60
+	die-explode2:
+		Filename: death.vspr
+		Start: 47
+		Length: 7
+		Tick: 60
+	die-explode3:
 		Filename: death.vspr
 		Start: 54
+		Length: 7
+		Tick: 60
+	die-explode4:
+		Filename: death.vspr
+		Start: 61
 		Length: 7
 		Tick: 60
 	die-crushed:

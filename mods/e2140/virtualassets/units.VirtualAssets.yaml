@@ -590,26 +590,26 @@ Generate:
 			Offsets: 1045-1048:7,0
 		civil3: 1079-1082
 			Offsets: 1079-1082:7,0
-		android_shot1: 1084-1090
-			Offsets: 1084-1090:0,5
-		android_shot2: 1091-1097
-			Offsets: 1091-1097:0,5
-		android_shot3: 1098-1104
-			Offsets: 1098-1104:0,5
+		android_shot1: 1083-1089
+			Offsets: 1083-1089:0,-3
+		android_shot2: 1090-1096
+			Offsets: 1090-1094:0,4 1095-1096:5,9
+		android_shot3: 1097-1103
+			Offsets: 1097-1103:1,5
 		android_shot4: 1104-1110
-			Offsets: 1104-1110:0,5
+			Offsets: 1104-1110:0,3
 		android_explode1: 1111-1117
-			Offsets: 1111-1117:0,1
+			Offsets: 1111-1117:0,-1
 		android_explode2: 1118-1124
-			Offsets: 1118-1124:0,1
+			Offsets: 1118-1124:0,-1
 		android_explode3: 1125-1131
-			Offsets: 1125-1131:0,1
+			Offsets: 1125-1131:-5,1
 		android_explode4: 1132-1138
-			Offsets: 1132-1138:0,1
+			Offsets: 1132-1137:2,-2 1138:3,-2
 		android_burn: 1139-1145
-			Offsets: 1139-1145:0,1
+			Offsets: 1139-1145:2,1
 		silver: 1146-1152
-			Offsets: 1146-1152:0,-4
+			Offsets: 1146-1152:1,-6
 
 	turret_spider_ii: Player
 		idle: 1162-1170 16
