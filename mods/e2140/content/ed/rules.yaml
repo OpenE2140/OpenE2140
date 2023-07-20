@@ -29,6 +29,10 @@ World:
 	Inherits@2: ^HealedByBio
 	Voiced:
 		VoiceSet: EdInfantryVoice
+	WithDeathAnimation:
+		DeathTypes:
+			Default: -default1, -default2, -default3, -default4
+			Explosion: -explode1, -explode2, -explode3, -explode4
 
 ^EdShip:
 	Inherits: ^CoreShip
