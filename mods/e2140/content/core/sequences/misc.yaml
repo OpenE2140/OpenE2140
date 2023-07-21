@@ -1,10 +1,10 @@
 shroud:
 	shroud:
 		Filename: content/core/assets/shroud.png
-		Length: 24
+		Length: 32
 	fog:
 		Filename: content/core/assets/fog.png
-		Length: 24
+		Length: 32
 	shroudfull:
 		Filename: content/core/assets/shroud.png
 		Start: 1
