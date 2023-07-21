@@ -1,28 +1,31 @@
 OpenE2140 Core Team:
 ____________________________________________________________________
 
-Firstname Lastname (Nickname)
-	* Project Lead
-	* Other function
-	* And so on
+michael.dgg.2
+	* project lead
+	* programming
 
-Firstname Lastname (Nickname)
-	* Project Lead
-	* Other function
-	* And so on
+IceReaper
+	* author of the original prototype
+	* programming
+	* reverse engineering
 
 Contributors
 ____________________________________________________________________
 
 Artwork:
-	* Nickname
-	* Nickname
-	* Nickname
+	* Dzierzan
+	* Disembo
 
 Code:
-	* Nickname
-	* Nickname
-	* Nickname
+	* michal-mad
+
+######################################
+	
+Special Thanks
+
+	* OpenRA developers
+	* OpenHV developers
 
 ######################################
 
@@ -51,7 +54,8 @@ Lead Programmer:
 - Mirosław Dymek
 
 Programmer:
-- Artur Bidziński, Krzysztof Foltman, Pawel Skomro, Marcin Spiechowicz, Tomasz Radon, Wojciech Wylon
+- Artur Bidziński, Krzysztof Foltman, Pawel Skomro,
+  Marcin Spiechowicz, Tomasz Radon, Wojciech Wylon
 
 Art Director:
 - Piotr Rulka, Krzysztof Rybczynski, Marek Wylon
@@ -63,13 +67,18 @@ Intro:
 - Kajetan Czarnecki, Andrzej Rams, Piotr Rulka
 
 3D-Rendering:
-- Kajetan Czarnecki, Wojciech Kapela, Andrzej Rams, Piotr Rulka
+- Kajetan Czarnecki, Wojciech Kapela, Andrzej Rams,
+  Piotr Rulka
 
 Graphics:
-- Kajetan Czarnecki, Wojciech Drazek, Rafał Januszkiewicz, Wojciech Kapela, Maciej Kiełbiński, Andrzej Rams, Piotr Rulka, Krzysztof Rybczynski
+- Kajetan Czarnecki, Wojciech Drazek, Rafał
+  Januszkiewicz, Wojciech Kapela, Maciej Kiełbiński,
+  Andrzej Rams, Piotr Rulka, Krzysztof Rybczynski
 
 Animations:
-- Kajetan Czarnecki, Wojciech Drazek, Rafał Januszkiewicz, Wojciech Kapela, Maciej Kiełbiński, Andrzej Rams, Piotr Rulka, Krzysztof Rybczynski
+- Kajetan Czarnecki, Wojciech Drazek, Rafał
+  Januszkiewicz, Wojciech Kapela, Maciej Kiełbiński,
+  Andrzej Rams, Piotr Rulka, Krzysztof Rybczynski
 
 Video Editing:
 - Krzysztof Rybczynski, Marek Wylon
@@ -78,10 +87,12 @@ Graphic Design & Layout:
 - Kajetan Czarnecki, Andrzej Rams
 
 Graphical Editing:
-- Kajetan Czarnecki, Maciej Kiełbiński, Andrzej Rams, Piotr Rulka
+- Kajetan Czarnecki, Maciej Kiełbiński, Andrzej Rams,
+  Piotr Rulka
 
 Story:
-- René Friedrich, Dirk P. Hassinger, Lucjan Mikociak
+- René Friedrich, Dirk P. Hassinger, Lucjan
+  Mikociak
 
 Level-Design:
 - Maciej Kiełbiński, Marek Wylon, Tadeusz Zuber
@@ -93,16 +104,24 @@ Manual Composition and Layout
 - Tobias Falk
 
 Cover Design:
-- René Friedrich, Piotr Rulka, Siegfried Sorg, Digital Publishing - Mannheim
+- René Friedrich, Piotr Rulka, Siegfried Sorg,
+  Digital Publishing - Mannheim
 
 Voices:
-- Andreas Reikowski, Mandani, Dimension M - Hamburg
+- Andreas Reikowski, Mandani,
+  Dimension M - Hamburg
 
 Title Theme:
 - Joachim Schafer
 
 Music:
-- Konstantin Bommarius, Markus Cramer, Ralf Ditze, Mathias Dörsam, René Friedrich, Jascha Fuchs, Dirk P. Hassinger, Tobias Falk, Thomas Leiss, Joachim Schafer, Bianca Schäfer, Madelaine Schuhmacher, Ronald Shenkland, Frank Wagner, Tonstudio Mannheim - Mannheim, Schäfchen Musik-Verlag - Mannheim
+- Konstantin Bommarius, Markus Cramer, Ralf Ditze,
+  Mathias Dörsam, René Friedrich, Jascha Fuchs,
+  Dirk P. Hassinger, Tobias Falk, Thomas Leiss,
+  Joachim Schafer, Bianca Schäfer, Madelaine
+  Schuhmacher, Ronald Shenkland, Frank Wagner,
+  Tonstudio Mannheim - Mannheim,
+  Schäfchen Musik-Verlag - Mannheim
 
 Sounds and Special Effects:
 - Remigiusz Miernikiewicz
@@ -111,13 +130,23 @@ Lead Tester:
 - Tadeusz Zuber
 
 Beta Testers:
-- Bartosz Biernacki, Tobias Falk, René Friedrich, Dirk P. Hassinger, Marc Lemcke, Remigiusz Miernikiewicz, Pawel Partyka, Agnieszka Pazdro, Julian Pazdro, Marek Swierczynski, Marek Wylon, Rober Zienczyk
+- Bartosz Biernacki, Tobias Falk, René Friedrich,
+  Dirk P. Hassinger, Marc Lemcke, Remigiusz
+  Miernikiewicz, Pawel Partyka, Agnieszka Pazdro,
+  Julian Pazdro, Marek Swierczynski, Marek Wylon,
+  Rober Zienczyk
 
 Additional Testers:
-- Janusz Chuchro, Sergiusz Juraszek, Marcin Kępski, Marek Zborowski
+- Janusz Chuchro, Sergiusz Juraszek, Marcin Kępski,
+  Marek Zborowski
 
 Video Film and TV-Spot:
-- Krzysztof Rybczynski, René Friedrich, Lucjan Mikociak, Tonstudio Mannheim - Mannheim, VIDCO media service - Dreieich
+- Krzysztof Rybczynski, René Friedrich, Lucjan
+  Mikociak, Tonstudio Mannheim - Mannheim,
+  VIDCO media service - Dreieich
 
 Special Thanks To:
-- Adam Mikociak, Alicja Szmukala, Jan Jasiński, Magda Rybczynska, Teresa Dymek, Ania Dobecka, Agnieszka Zuber, Joanna Wierzbicka, Jarosław Parchański
+- Adam Mikociak, Alicja Szmukala, Jan Jasiński,
+  Magda Rybczynska, Teresa Dymek, Ania Dobecka,
+  Agnieszka Zuber, Joanna Wierzbicka, Jarosław
+  Parchański
