@@ -11,6 +11,8 @@
 	QuantizeFacingsFromSequence: # TODO see BodyOrientation todo
 	# Required to see debug overlays.
 	CombatDebugOverlay:
+	# Display debug information above actor.
+	RenderDebugState:
 
 # Map decoration actors.
 ^CoreDecoration:
