@@ -429,6 +429,7 @@
 		AirborneCondition: airborne
 		VTOL: True
 		Crushes: infantry, mine
+		PauseOnCondition: !airborne && VehicleDisabled
 	# Actor can be targeted by anything which attacks ground.
 	Targetable@Ground:
 		RequiresCondition: !airborne
