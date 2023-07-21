@@ -432,9 +432,9 @@
 		PauseOnCondition: !airborne && VehicleDisabled
 	# Actor can be targeted by anything which attacks ground.
 	Targetable@Ground:
-		RequiresCondition: !airborne
 		TargetTypes: Ground, Vehicle
-		# Actor can be targeted by anything which attacks air.
+		RequiresCondition: !airborne && !VehicleDisabled
+	# Actor can be targeted by anything which attacks air.
 	Targetable@Airborne:
 		RequiresCondition: airborne
 		TargetTypes: Air
