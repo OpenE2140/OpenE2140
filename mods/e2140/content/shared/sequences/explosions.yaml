@@ -100,3 +100,23 @@ nuclear_explosion:
 		Length: 22
 		Tick: 60
 		Offset: 0,-40
+
+big_explosion:
+	idle:
+		Combine:
+			0:
+				Filename: GRAPH/SHCKV10.DAT
+			1:
+				Filename: GRAPH/SHCKV11.DAT
+			2:
+				Filename: GRAPH/SHCKV12.DAT
+			3:
+				Filename: GRAPH/SHCKV13.DAT
+			4:
+				Filename: GRAPH/SHCKV14.DAT
+			5:
+				Filename: GRAPH/SHCKV15.DAT
+			6:
+				Filename: GRAPH/SHCKV16.DAT
+		BlendMode: Additive
+		Length: 7
