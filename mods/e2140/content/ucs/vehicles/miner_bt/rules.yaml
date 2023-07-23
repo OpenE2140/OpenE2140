@@ -49,6 +49,8 @@ ucs_vehicles_miner_bt:
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
+	WithDeployMineAnimation:
+		Sequence: flicker
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey
 		Palette:

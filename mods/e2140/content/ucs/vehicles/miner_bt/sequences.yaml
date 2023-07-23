@@ -7,6 +7,12 @@ ucs_vehicles_miner_bt:
 		Start: 16
 		Length: 4
 		Facings: -16
+	flicker:
+		Filename: vehicle_miner_bt.vspr
+		Start: 80
+		Length: 2
+		Tick: 50
+		Facings: -16
 	turret:
 		Filename: turret_miner_bt.vspr
 		Facings: -16
