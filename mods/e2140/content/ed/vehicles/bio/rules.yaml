@@ -25,6 +25,7 @@ ed_vehicles_bio:
 		LoadedCondition: infantryinside
 	WithCargoPipsDecoration:
 		Palette:
+		FullSequence: pip-blue
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True

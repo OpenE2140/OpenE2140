@@ -27,6 +27,7 @@ ed_aircrafts_hat:
 		UnloadCursor: exit
 	WithCargoPipsDecoration:
 		Palette:
+		FullSequence: pip-blue
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True

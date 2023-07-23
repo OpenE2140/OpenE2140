@@ -55,7 +55,7 @@ pips:
 	pip-empty:
 		Filename: content/core/assets/pips.png
 		Start: 0
-	pip-green:
+	pip-blue:
 		Filename: content/core/assets/pips.png
 		Start: 1
 	pip-grey:
