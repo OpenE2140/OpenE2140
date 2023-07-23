@@ -29,7 +29,7 @@ ucs_vehicles_atm_500:
 	WithMuzzleOverlay@muzzle:
 	Cargo:
 		Types: Infantry
-		MaxWeight: 6
+		MaxWeight: 7
 		UnloadVoice: Unload
 		UnloadCursor: exit
 	WithCargoPipsDecoration:

@@ -19,7 +19,7 @@ ed_vehicles_tur:
 		Range: 2c896
 	Cargo:
 		Types: Infantry
-		MaxWeight: 6
+		MaxWeight: 7
 		UnloadVoice: Unload
 		UnloadCursor: exit
 	WithCargoPipsDecoration:

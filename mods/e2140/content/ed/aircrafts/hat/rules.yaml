@@ -22,7 +22,7 @@ ed_aircrafts_hat:
 		Sound: 30.smp
 	Cargo:
 		Types: Infantry
-		MaxWeight: 6
+		MaxWeight: 7
 		UnloadVoice: Unload
 		UnloadCursor: exit
 	WithCargoPipsDecoration:
