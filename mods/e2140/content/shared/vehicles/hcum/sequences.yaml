@@ -8,12 +8,12 @@ shared_vehicles_hcum:
 		Length: 4
 		Facings: -16
 	turret:
-		Filename: turret_hcu_m.vspr
+		Filename: content/shared/vehicles/hcum/turret_hcu_m.png
 		Facings: -16
 	repair:
-		Filename: turret_hcu_m.vspr
+		Filename: content/shared/vehicles/hcum/turret_hcu_m.png
 		Start: 16
-		Length: 5
+		Length: 6
 		Facings: -4
 		Tick: 100
 	icon:

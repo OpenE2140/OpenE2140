@@ -23,7 +23,7 @@ shared_vehicles_hcum:
 	RevealsShroud:
 		Range: 2c896
 	Turreted:
-		Offset: 0,0,80
+		Offset: 0,0,164
 	WithTurretAttackAnimation:
 		Sequence: repair
 	Armament@PRIMARY:
