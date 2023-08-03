@@ -491,8 +491,9 @@ Generate:
 		idle: 686-690 8
 
 	infantry_silver_one: Player
-		idle: 691-720[5_1_0] 8
+		idle: 691-720[4_1_1] 8
 		idle2: 691-720[5_1_0] 8
+			Offsets: 708:-1,0
 		move: 691-720[0_4_2] 8
 			Offsets: 698-700:0,-1 704,706:-1,-1
 		aim: 721-730[0_1_1] 8
