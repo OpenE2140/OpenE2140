@@ -3,93 +3,87 @@
 	Tooltip:
 		Name: Abandoned building
 	Interactable:
-
-^MediumDimensions:
 	Building:
 		Dimensions: 3,2
 		Footprint: xx_ xx_
 
-^BigDimensions:
+urban_building_big1:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big2:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big3:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big4:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big5:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big6:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big7:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big8:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big9:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big10:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big11:
+	Inherits@1: ^UrbanBuilding
+
+urban_building_big12:
+	Inherits@1: ^UrbanBuilding
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx _xx
+
+urban_building_big13:
+	Inherits@1: ^UrbanBuilding
 	Building:
 		Dimensions: 3,2
 		Footprint: xxx xxx
 
-urban_building_big1:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big2:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big3:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big4:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big5:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big6:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big7:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big8:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big9:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big10:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big11:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
-
-urban_building_big12:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
-
-urban_building_big13:
-	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
-
 urban_building_big14:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
 
 urban_building_big15:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
 
 urban_building_big16:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
 
 urban_building_big17:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xx=
 
 urban_building_big18:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
 
 urban_building_big19:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^BigDimensions
+	Building:
+		Dimensions: 3,2
+		Footprint: xxx xxx
 
 urban_building_big20:
 	Inherits@1: ^UrbanBuilding
-	Inherits@2: ^MediumDimensions
