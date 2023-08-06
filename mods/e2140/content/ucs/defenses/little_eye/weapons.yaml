@@ -10,6 +10,11 @@ ucs_defenses_little_eye:
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 8
+		Versus:
+			infantry: 100
+			vehicle: 20
+			aircraft: 20
+			building: 20
 		DamageTypes: Default
 		ValidTargets: Ground, Ship
 		InvalidTargets: Tree, Pipe

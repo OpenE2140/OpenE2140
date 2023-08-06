@@ -9,6 +9,11 @@ ucs_infantry_silver_one:
 	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 7
+		Versus:
+			infantry: 100
+			vehicle: 20
+			aircraft: 20
+			building: 20
 		DamageTypes: Default
 		ValidTargets: Ground, Ship
 		InvalidTargets: Tree, Pipe
