@@ -17,6 +17,8 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Sounds;
 
+using Activites.Move;
+
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Makes an actor play a sound while moving.")]
 public class WithMoveSoundInfo : TraitInfo, IRulesetLoaded
@@ -69,7 +71,7 @@ public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWo
 		var enableSound = false;
 
 		if (this.mobile != null)
-			enableSound = type != MovementType.None && this.mobile.IsMovingBetweenCells;
+			enableSound = type != MovementType.None && (this.mobile.IsMovingBetweenCells || self.CurrentActivity is ProductionExitMove);
 		else if (this.aircraft != null)
 			enableSound = type != MovementType.None && !this.aircraft.AtLandAltitude;
 
