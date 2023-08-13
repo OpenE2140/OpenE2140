@@ -52,9 +52,9 @@ public class VirtualPalette
 			var application = Enum.Parse<Mode>(settings[0]);
 			var colorEffect = settings.Length <= 1 ? Effect.Normal : Enum.Parse<Effect>(settings[1]);
 
-			var frameNodes = paletteNode.Value.Nodes;
+			var frameNodes = paletteNode.Value.Nodes.ToList();
 
-			if (frameNodes[0].Value.Nodes.Count == 0)
+			if (frameNodes[0].Value.Nodes.Length == 0)
 				frameNodes = new List<MiniYamlNode> { paletteNode };
 
 			var colors = frameNodes.Select(
