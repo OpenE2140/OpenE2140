@@ -11,7 +11,7 @@ ChromeLayout:
 	common|chrome/editor.yaml
 	common|chrome/gamesave-browser.yaml
 	common|chrome/gamesave-loading.yaml
-	common|chrome/ingame.yaml
+	e2140|chrome/layouts/ingame.yaml
 	common|chrome/ingame-chat.yaml
 	common|chrome/ingame-debug.yaml
 	common|chrome/ingame-debug-hpf.yaml
