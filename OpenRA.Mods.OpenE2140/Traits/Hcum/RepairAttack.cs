@@ -129,7 +129,11 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 		var pos = self.CenterPosition;
 		var checkTarget = this.useLastVisibleTarget ? this.lastVisibleTarget : this.target;
 		if (checkTarget.Actor == null || checkTarget.Actor.IsInWorld == false)
+		{
+			if (this.RepairState is (RepairState.Repairing or RepairState.DockingToTarget))
+				this.UndockFromTarget(self);
 			return true;
+		}
 
 		switch (this.RepairState)
 		{
