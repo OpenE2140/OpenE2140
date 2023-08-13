@@ -25,6 +25,9 @@
 		RequiresSelection: True
 		Position: Top
 		Margin: 0,5
+	# MCUs are not slower when they are damaged.
+	-GrantConditionOnDamageState@DecreasedSpeed:
+	-SpeedMultiplier:
 
 shared_mcu:
 	Inherits@1: ^CoreVehicle
