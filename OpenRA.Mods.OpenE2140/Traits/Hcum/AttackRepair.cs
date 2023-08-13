@@ -13,6 +13,7 @@
 
 using OpenRA.Activities;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
@@ -21,7 +22,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Hcum;
 
 [Desc("Custom Attack trait for repair vehicle (HCU-M).")]
-public class AttackRepairInfo : AttackFrontalInfo, Requires<MobileInfo>
+public class AttackRepairInfo : AttackFrontalInfo, IRenderActorPreviewSpritesInfo, Requires<MobileInfo>
 {
 	[Desc("Percentage value of the repair vehicle speed used when docking to target actor.")]
 	public readonly int DockSpeedModifier = 30;
@@ -48,6 +49,28 @@ public class AttackRepairInfo : AttackFrontalInfo, Requires<MobileInfo>
 	public override object Create(ActorInitializer init)
 	{
 		return new AttackRepair(init.Self, this);
+	}
+
+	public IEnumerable<IActorPreview> RenderPreviewSprites(ActorPreviewInitializer init, string image, int facings, PaletteReference p)
+	{
+		if (!this.EnabledByDefault)
+			yield break;
+
+		var body = init.Actor.TraitInfo<BodyOrientationInfo>();
+		var facing = init.GetFacing();
+
+		var anim = new Animation(init.World, image, facing);
+		anim.Play(RenderSprites.NormalizeSequence(anim, init.GetDamageState(), this.IdleSequence));
+
+		WRot Orientation() => body.QuantizeOrientation(WRot.FromYaw(facing()), facings);
+		WVec Offset() => body.LocalToWorld(this.ArmOffset.Rotate(Orientation()));
+		int ZOffset()
+		{
+			var tmpOffset = Offset();
+			return -(tmpOffset.Y + tmpOffset.Z) + 1;
+		}
+
+		yield return new SpriteActorPreview(anim, Offset, ZOffset, p);
 	}
 }
 
