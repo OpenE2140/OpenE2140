@@ -600,24 +600,24 @@ cash-icons-ucs:
 production-icons-ucs:
 	Inherits: ^Glyphs
 	Regions:
-		building: 102, 68, 16, 16
-		building-disabled: 102, 85, 16, 16
-		building-alert: 102, 102, 16, 16
-		defense: 119, 68, 16, 16
-		defense-disabled: 119, 85, 16, 16
-		defense-alert: 119, 102, 16, 16
-		infantry: 136, 68, 16, 16
-		infantry-disabled: 136, 85, 16, 16
-		infantry-alert: 136, 102, 16, 16
-		vehicle: 153, 68, 16, 16
-		vehicle-disabled: 153, 85, 16, 16
-		vehicle-alert: 153, 102, 16, 16
-		aircraft: 170, 68, 16, 16
-		aircraft-disabled: 170, 85, 16, 16
-		aircraft-alert: 170, 102, 16, 16
-		ship: 187, 68, 16, 16
-		ship-disabled: 187, 85, 16, 16
-		ship-alert: 187, 102, 16, 16
+		building: 103, 68, 16, 16
+		building-disabled: 103, 85, 16, 16
+		building-alert: 103, 102, 16, 16
+		defense: 120, 68, 16, 16
+		defense-disabled: 120, 85, 16, 16
+		defense-alert: 120, 102, 16, 16
+		infantry: 137, 68, 16, 16
+		infantry-disabled: 137, 85, 16, 16
+		infantry-alert: 137, 102, 16, 16
+		vehicle: 154, 68, 16, 16
+		vehicle-disabled: 154, 85, 16, 16
+		vehicle-alert: 154, 102, 16, 16
+		aircraft: 171, 68, 16, 16
+		aircraft-disabled: 171, 85, 16, 16
+		aircraft-alert: 171, 102, 16, 16
+		ship: 188, 68, 16, 16
+		ship-disabled: 188, 85, 16, 16
+		ship-alert: 188, 102, 16, 16
 		research: 222, 68, 16, 16
 		research-disabled: 222, 85, 16, 16
 		research-alert: 222, 102, 16, 16
