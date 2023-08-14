@@ -1,15 +1,15 @@
 Metrics:
 	InfiniteOffset: -10, -2
-	MoneyBinTextColor-ed: 009e00
-	MoneyBinTextColor-ucs: ad7131
+	MoneyBinTextColor-ed: 00ec00
+	MoneyBinTextColor-ucs: e47411
 	MoneyBinCriticalPowerColor: ffff00
-	MoneyBinNormalPowerColor-ucs: ad7131
-	MoneyBinNormalPowerColor-ed: 009e00
-	TabNumberTabColor-ucs: ad7131
-	TabNumberTabColorDone-ucs: fdc181
-	TabNumberTabColor-ed: 009e00
-	TabNumberTabColorDone-ed: 50ee50
-	ProductionTextTextColor-ucs: ad7131
-	ProductionTextReadyTextAltColor-ucs: fdc181
-	ProductionTextTextColor-ed: 009e00
-	ProductionTextReadyTextAltColor-ed: 50ee50
+	MoneyBinNormalPowerColor-ucs: e47411
+	MoneyBinNormalPowerColor-ed: 00ec00
+	TabNumberTabColor-ucs: e47411
+	TabNumberTabColorDone-ucs: ffcb9b
+	TabNumberTabColor-ed: 00ec00
+	TabNumberTabColorDone-ed: a4f6a1
+	ProductionTextTextColor-ucs: e47411
+	ProductionTextReadyTextAltColor-ucs: ffcb9b
+	ProductionTextTextColor-ed: 00ec00
+	ProductionTextReadyTextAltColor-ed: a4f6a1
