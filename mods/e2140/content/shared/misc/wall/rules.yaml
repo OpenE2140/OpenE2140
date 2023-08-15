@@ -1,0 +1,43 @@
+shared_buildings_wall:
+	Inherits: ^CoreVisibleActor
+	Tooltip:
+		Name: Wall
+	Health:
+		HP: 100
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	HitShape:
+		Type: Circle
+			Radius: 512
+	WithWallSpriteBody:
+		Type: wall
+		StartSequence: constructing
+		Palette:
+	MapEditorData:
+		Categories: Wall
+	Interactable:
+	BlocksProjectiles:
+	Armor:
+		Type: building
+	Targetable:
+		TargetTypes: Ground, Structure
+	Targetable@NoAutoAttack:
+		TargetTypes: NoAutoAttack
+	OwnerLostAction:
+		Action: Kill
+	UpdatesPlayerStatistics:
+		AddToAssetsValue: false
+	MustBeDestroyed:
+		RequiredForShortGame: false
+	Explodes:
+		Weapon: WallExplosion
+		EmptyWeapon: WallExplosion
+	Encyclopedia:
+		Category: Shared - Buildings
+		Order: 25
+		Title: Wall
+		Armor: Terrible
+		Armament: None
+		Resistance: Questionable
+		Description: Walls are very basic defense structures that block bullets. They can be constructed by miner vehicles.

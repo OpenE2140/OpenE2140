@@ -1,0 +1,15 @@
+shared_buildings_wall:
+	Defaults:
+		Filename: content/shared/misc/wall/wall.png
+	idle:
+		Length: 16
+	damaged-idle:
+		Start: 16
+		Length: 16
+	critical-idle:
+		Start: 32
+		Length: 16
+	constructing:
+		Start: 48
+		Length: 48
+		Tick: 100

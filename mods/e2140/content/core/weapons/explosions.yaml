@@ -122,3 +122,9 @@ PipeExplosion:
 		ExplosionPalette:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+
+WallExplosion:
+	Inherits: PipeExplosion
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_structure
+		Pieces: 3,4

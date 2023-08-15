@@ -34,3 +34,11 @@ weapon_debris_smoke:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
+
+weapon_debris_structure:
+	Inherits: weapon_debris_smoke
+	Projectile: FreezingBullet
+		Image: structure_debris
+		Sequences: debris1, debris2, debris3
+		FrozenImage: structure_debris_ground
+		FrozenSequences: debris1, debris2, debris3
