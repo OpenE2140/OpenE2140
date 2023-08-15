@@ -46,3 +46,28 @@ debris_ground:
 		Frames: 65
 	debris6:
 		Frames: 67
+
+structure_debris:
+	Inherits: ^Debris
+	Defaults:
+		ZOffset: 512
+		Length: 2
+		Tick: 60
+	debris1:
+		Frames: 57, 58
+	debris2:
+		Frames: 59, 60
+	debris3:
+		Frames: 61, 62, 63, 64
+		Length: 4
+
+structure_debris_ground:
+	Inherits: ^Debris
+	Defaults:
+		ZOffset: 512
+	debris1:
+		Frames: 57
+	debris2:
+		Frames: 59
+	debris3:
+		Frames: 61
