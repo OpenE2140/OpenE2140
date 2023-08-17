@@ -1,0 +1,333 @@
+^Tracks:
+	Defaults:
+		Facings: -16
+		Tick: 5000
+		ZOffset: -1024
+
+tracks:
+	Inherits: ^Tracks
+	track_small:
+		Combine:
+			0:
+				Filename: SPRO0.MIX
+				Frames: 24
+			1:
+				Filename: SPRO0.MIX
+				Frames: 25
+			2:
+				Filename: SPRO0.MIX
+				Frames: 26
+			3:
+				Filename: SPRO0.MIX
+				Frames: 27
+			4:
+				Filename: SPRO0.MIX
+				Frames: 28
+			5:
+				Filename: SPRO0.MIX
+				Frames: 27
+				FlipX: True
+			6:
+				Filename: SPRO0.MIX
+				Frames: 26
+				FlipX: True
+			7:
+				Filename: SPRO0.MIX
+				Frames: 25
+				FlipX: True
+			8:
+				Filename: SPRO0.MIX
+				Frames: 24
+				FlipX: True
+			9:
+				Filename: SPRO0.MIX
+				Frames: 25
+				FlipX: True
+				FlipY: True
+			10:
+				Filename: SPRO0.MIX
+				Frames: 26
+				FlipX: True
+				FlipY: True
+			11:
+				Filename: SPRO0.MIX
+				Frames: 27
+				FlipX: True
+				FlipY: True
+			12:
+				Filename: SPRO0.MIX
+				Frames: 28
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: SPRO0.MIX
+				Frames: 27
+				FlipY: True
+			14:
+				Filename: SPRO0.MIX
+				Frames: 26
+				FlipY: True
+			15:
+				Filename: SPRO0.MIX
+				Frames: 25
+				FlipY: True
+	track_medium:
+		Combine:
+			0:
+				Filename: SPRO0.MIX
+				Frames: 29
+			1:
+				Filename: SPRO0.MIX
+				Frames: 30
+			2:
+				Filename: SPRO0.MIX
+				Frames: 31
+			3:
+				Filename: SPRO0.MIX
+				Frames: 32
+			4:
+				Filename: SPRO0.MIX
+				Frames: 33
+			5:
+				Filename: SPRO0.MIX
+				Frames: 32
+				FlipX: True
+			6:
+				Filename: SPRO0.MIX
+				Frames: 31
+				FlipX: True
+			7:
+				Filename: SPRO0.MIX
+				Frames: 30
+				FlipX: True
+			8:
+				Filename: SPRO0.MIX
+				Frames: 29
+				FlipX: True
+			9:
+				Filename: SPRO0.MIX
+				Frames: 30
+				FlipX: True
+				FlipY: True
+			10:
+				Filename: SPRO0.MIX
+				Frames: 31
+				FlipX: True
+				FlipY: True
+			11:
+				Filename: SPRO0.MIX
+				Frames: 32
+				FlipX: True
+				FlipY: True
+			12:
+				Filename: SPRO0.MIX
+				Frames: 33
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: SPRO0.MIX
+				Frames: 32
+				FlipY: True
+			14:
+				Filename: SPRO0.MIX
+				Frames: 31
+				FlipY: True
+			15:
+				Filename: SPRO0.MIX
+				Frames: 30
+				FlipY: True
+	track_large:
+		Combine:
+			0:
+				Filename: SPRO0.MIX
+				Frames: 34
+			1:
+				Filename: SPRO0.MIX
+				Frames: 35
+			2:
+				Filename: SPRO0.MIX
+				Frames: 36
+			3:
+				Filename: SPRO0.MIX
+				Frames: 37
+			4:
+				Filename: SPRO0.MIX
+				Frames: 38
+			5:
+				Filename: SPRO0.MIX
+				Frames: 37
+				FlipX: True
+			6:
+				Filename: SPRO0.MIX
+				Frames: 36
+				FlipX: True
+			7:
+				Filename: SPRO0.MIX
+				Frames: 35
+				FlipX: True
+			8:
+				Filename: SPRO0.MIX
+				Frames: 34
+				FlipX: True
+			9:
+				Filename: SPRO0.MIX
+				Frames: 35
+				FlipX: True
+				FlipY: True
+			10:
+				Filename: SPRO0.MIX
+				Frames: 36
+				FlipX: True
+				FlipY: True
+			11:
+				Filename: SPRO0.MIX
+				Frames: 37
+				FlipX: True
+				FlipY: True
+			12:
+				Filename: SPRO0.MIX
+				Frames: 38
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: SPRO0.MIX
+				Frames: 37
+				FlipY: True
+			14:
+				Filename: SPRO0.MIX
+				Frames: 36
+				FlipY: True
+			15:
+				Filename: SPRO0.MIX
+				Frames: 35
+				FlipY: True
+	track_medium2:
+		Combine:
+			0:
+				Filename: SPRO0.MIX
+				Frames: 39
+			1:
+				Filename: SPRO0.MIX
+				Frames: 40
+			2:
+				Filename: SPRO0.MIX
+				Frames: 41
+			3:
+				Filename: SPRO0.MIX
+				Frames: 42
+			4:
+				Filename: SPRO0.MIX
+				Frames: 43
+			5:
+				Filename: SPRO0.MIX
+				Frames: 42
+				FlipX: True
+			6:
+				Filename: SPRO0.MIX
+				Frames: 41
+				FlipX: True
+			7:
+				Filename: SPRO0.MIX
+				Frames: 40
+				FlipX: True
+			8:
+				Filename: SPRO0.MIX
+				Frames: 39
+				FlipX: True
+			9:
+				Filename: SPRO0.MIX
+				Frames: 40
+				FlipX: True
+				FlipY: True
+			10:
+				Filename: SPRO0.MIX
+				Frames: 41
+				FlipX: True
+				FlipY: True
+			11:
+				Filename: SPRO0.MIX
+				Frames: 42
+				FlipX: True
+				FlipY: True
+			12:
+				Filename: SPRO0.MIX
+				Frames: 43
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: SPRO0.MIX
+				Frames: 42
+				FlipY: True
+			14:
+				Filename: SPRO0.MIX
+				Frames: 41
+				FlipY: True
+			15:
+				Filename: SPRO0.MIX
+				Frames: 40
+				FlipY: True
+	track_extra_large:
+		Combine:
+			0:
+				Filename: SPRO0.MIX
+				Frames: 44
+			1:
+				Filename: SPRO0.MIX
+				Frames: 45
+			2:
+				Filename: SPRO0.MIX
+				Frames: 46
+			3:
+				Filename: SPRO0.MIX
+				Frames: 47
+			4:
+				Filename: SPRO0.MIX
+				Frames: 48
+			5:
+				Filename: SPRO0.MIX
+				Frames: 47
+				FlipX: True
+			6:
+				Filename: SPRO0.MIX
+				Frames: 46
+				FlipX: True
+			7:
+				Filename: SPRO0.MIX
+				Frames: 45
+				FlipX: True
+			8:
+				Filename: SPRO0.MIX
+				Frames: 44
+				FlipX: True
+			9:
+				Filename: SPRO0.MIX
+				Frames: 45
+				FlipX: True
+				FlipY: True
+			10:
+				Filename: SPRO0.MIX
+				Frames: 46
+				FlipX: True
+				FlipY: True
+			11:
+				Filename: SPRO0.MIX
+				Frames: 47
+				FlipX: True
+				FlipY: True
+			12:
+				Filename: SPRO0.MIX
+				Frames: 48
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: SPRO0.MIX
+				Frames: 47
+				FlipY: True
+			14:
+				Filename: SPRO0.MIX
+				Frames: 46
+				FlipY: True
+			15:
+				Filename: SPRO0.MIX
+				Frames: 45
+				FlipY: True

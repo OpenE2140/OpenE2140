@@ -42,6 +42,14 @@ ed_vehicles_st01b:
 		Count: 2
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_st01b_husk
+	LeavesTrails:
+		Image: tracks
+		Sequences: track_small
+		Palette:
+		TerrainTypes: Sand, SandEdge
+		Type: CenterPosition
+		MovingInterval: 5
+		StartDelay: 0
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 1
