@@ -1,0 +1,15 @@
+^CoreCivilianBuilding:
+	Inherits: ^CoreBuilding
+	Building:
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
+	Health:
+		HP: 500
+	RepairableBuilding:
+		-RequiresCondition:
+	WithSpriteBody:
+		-RequiresCondition:
+	-TransformSequence:
+	-Power:
+	-WithDecoration@PowerDown:
+	-ToggleConditionOnOrder:

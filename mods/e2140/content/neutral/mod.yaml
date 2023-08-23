@@ -1,9 +1,22 @@
 Rules:
 	e2140|content/neutral/trees/rules.yaml
 	e2140|content/neutral/pipes/rules.yaml
+	e2140|content/neutral/civ_building/rules.yaml
+	e2140|content/neutral/civ_building/civ_building1/rules.yaml
+	e2140|content/neutral/civ_building/civ_building2/rules.yaml
+	e2140|content/neutral/civ_building/civ_building3/rules.yaml
+	e2140|content/neutral/civ_building/civ_building4/rules.yaml
+	e2140|content/neutral/civ_building/civ_building5/rules.yaml
+	e2140|content/neutral/civ_building/civ_building6/rules.yaml
 	e2140|content/neutral/urban_buildings/rules.yaml
 
 Sequences:
 	e2140|content/neutral/trees/sequences.yaml
 	e2140|content/neutral/pipes/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building1/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building2/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building3/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building4/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building5/sequences.yaml
+	e2140|content/neutral/civ_building/civ_building6/sequences.yaml
 	e2140|content/neutral/urban_buildings/sequences.yaml

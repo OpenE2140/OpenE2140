@@ -1,0 +1,6 @@
+neutral_building_civ_2:
+	Defaults:
+		Filename: building_civ_building_2.vspr
+	idle:
+	damaged-idle:
+		Start: 1
