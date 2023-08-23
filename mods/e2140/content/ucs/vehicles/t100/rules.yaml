@@ -35,6 +35,8 @@ ucs_vehicles_t100:
 		Delay: 56
 		ResetOnFire: True
 		Count: 7
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_t100_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 1
@@ -43,3 +45,10 @@ ucs_vehicles_t100:
 		Armor: Lightweight
 		Armament: Two 1" machine guns
 		Description: The T 100 is mainly used to destroy type A androids, using its two rotating 22mm machine guns.\nIt is a small unit, hugging the terrain, making it hard for larger vehicles to sight and target it.
+
+ucs_vehicles_t100_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (T 100)

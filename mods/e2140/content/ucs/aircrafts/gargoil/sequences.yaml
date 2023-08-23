@@ -20,6 +20,12 @@ ucs_aircrafts_gargoil:
 	#	Filename: SPRI0.MIX
 	#	Start: 162
 
+ucs_aircrafts_gargoil_husk:
+	idle:
+		Filename: aircraft_gargoil_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_aircrafts_gargoil.ed:
 	Inherits: ucs_aircrafts_gargoil

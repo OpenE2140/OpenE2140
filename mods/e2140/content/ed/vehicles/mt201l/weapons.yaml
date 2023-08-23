@@ -23,6 +23,6 @@ ed_vehicles_mt201l:
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: smoke
-		Explosions: idle
+		Explosions: white_smoke
 		ExplosionPalette:
 		ValidTargets: Ground, Water, Ship, Air

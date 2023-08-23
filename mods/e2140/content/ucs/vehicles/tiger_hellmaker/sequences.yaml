@@ -1,6 +1,4 @@
-ucs_vehicles_tiger_hellmaker: vehicle_mech.vspr
-	Defaults:
-		Tick: 70
+ucs_vehicles_tiger_hellmaker:
 	idle:
 		Filename: vehicle_mech.vspr
 		Facings: -8
@@ -29,6 +27,16 @@ ucs_vehicles_tiger_hellmaker: vehicle_mech.vspr
 	#icon-ed:
 	#	Filename: SPRI0.MIX
 	#	Start: 134
+
+ucs_vehicles_tiger_hellmaker_husk:
+	idle:
+		Filename: vehicle_mech_husk.vspr
+		Facings: -8
+		ZOffset: -512
+	turret:
+		Filename: turret_tiger_hellmaker_husk.vspr
+		Facings: -16
+		ZOffset: -256
 
 # TODO: remove after PR #20705
 ucs_vehicles_tiger_hellmaker.ed:

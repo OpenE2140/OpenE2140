@@ -28,6 +28,18 @@ ucs_vehicles_big_mech:
 	#	Filename: SPRI0.MIX
 	#	Start: 130
 
+ucs_vehicles_big_mech_husk:
+	idle:
+		Filename: vehicle_big_mech_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	shadow:
+		Filename: vehicle_big_mech.vspr
+		Start: 64
+		Facings: -8
+		Offset: 0,12,0
+		ZOffset: -530
+
 # TODO: remove after PR #20705
 ucs_vehicles_big_mech.ed:
 	Inherits: ucs_vehicles_big_mech

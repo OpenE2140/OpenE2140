@@ -7,3 +7,9 @@
 		Start: 16
 		Facings: -16
 		Length: 4
+
+shared_mcu_husk:
+	idle:
+		Filename: vehicle_mcu_husk.vspr
+		Facings: -16
+		ZOffset: -512

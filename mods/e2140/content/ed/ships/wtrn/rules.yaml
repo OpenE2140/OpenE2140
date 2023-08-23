@@ -18,6 +18,8 @@ ed_ships_wtrn:
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
+	SpawnActorOnDeath:
+		Actor: ed_ships_wtrn_husk
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 2
@@ -36,3 +38,9 @@ ed_ships_wtrn:
 		TerrainSpeeds:
 			Water: 100
 			Shore: 100
+
+ed_ships_wtrn_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (WTRN)

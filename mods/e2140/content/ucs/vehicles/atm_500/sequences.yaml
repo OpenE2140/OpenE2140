@@ -26,6 +26,17 @@ ucs_vehicles_atm_500:
 	#	Filename: SPRI0.MIX
 	#	Start: 142
 
+ucs_vehicles_atm_500_husk:
+	idle:
+		Filename: vehicle_atm_500_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_atm_500_husk.vspr
+		Facings: -16
+		Offset: 1,0
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ucs_vehicles_atm_500.ed:
 	Inherits: ucs_vehicles_atm_500

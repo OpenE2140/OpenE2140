@@ -42,6 +42,16 @@ shared_vehicles_hcum:
 	#	Filename: SPRI1.MIX
 	#	Start: 149
 
+shared_vehicles_hcum_husk:
+	idle:
+		Filename: vehicle_hcu_m_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_hcu_m_husk.vspr
+		Facings: -16
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 shared_vehicles_hcum.ucs:
 	Inherits: shared_vehicles_hcum

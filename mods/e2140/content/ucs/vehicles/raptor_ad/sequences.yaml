@@ -27,6 +27,17 @@ ucs_vehicles_raptor_ad:
 	#	Filename: SPRI0.MIX
 	#	Start: 130
 
+ucs_vehicles_raptor_ad_husk:
+	idle:
+		Filename: vehicle_raptor_ad_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	shadow:
+		Filename: raptor_shadow.vspr
+		Facings: -8
+		Offset: 6,5,0
+		ZOffset: -530
+
 # TODO: remove after PR #20705
 ucs_vehicles_raptor_ad.ed:
 	Inherits: ucs_vehicles_raptor_ad

@@ -10,7 +10,6 @@ ed_vehicles_warhammer:
 	turret:
 		Filename: turret_warhammer.vspr
 		Facings: -16
-		Offset: 0, 0, 0
 	muzzle:
 		Filename: content/ed/vehicles/warhammer/turret_warhammer_muzzle.png
 		Length: 3
@@ -24,6 +23,16 @@ ed_vehicles_warhammer:
 	#icon-ucs:
 	#	Filename: SPRI1.MIX
 	#	Start: 280
+
+ed_vehicles_warhammer_husk:
+	idle:
+		Filename: vehicle_warhammer_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_warhammer_husk.vspr
+		Facings: -16
+		ZOffset: -256
 
 # TODO: remove after PR #20705
 ed_vehicles_warhammer.ucs:

@@ -106,3 +106,9 @@ Generate:
 
 	trail_plasma:
 		trail: 81,80,79
+
+	fire_small:
+		idle: 16-19
+
+	fire_big:
+		idle: 20-31

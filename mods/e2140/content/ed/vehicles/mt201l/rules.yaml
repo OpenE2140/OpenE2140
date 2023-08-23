@@ -27,6 +27,8 @@ ed_vehicles_mt201l:
 		LocalOffset: 350,0,50
 		LocalYaw: 0
 		MuzzlePalette:
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_mt201l_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 4
@@ -35,3 +37,10 @@ ed_vehicles_mt201l:
 		Armor: Heavy
 		Armament: Laser-gun
 		Description: The MT 201L, being based on the MT 200, is also a middleweight tank, but is fitted with a laser cannon which is ideal for quickly destroying the enemy's lightweight vehicles. The armor-plating is an improvement on the original version, making it pretty strong. This is a defense plus while the laser cannon generator is reloading. But it's still advisable to have the protection of other units. The laser cannon is effective at close range, making it a good defense weapon if enemy SILVER units launch an attack. You can use this tank to run over and crush enemy units.
+
+ed_vehicles_mt201l_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (MT 201L)

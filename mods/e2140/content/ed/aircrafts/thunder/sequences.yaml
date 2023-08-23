@@ -19,6 +19,16 @@ ed_aircrafts_thunder:
 	#	Filename: SPRI1.MIX
 	#	Start: 161
 
+ed_aircrafts_thunder_husk:
+	idle:
+		Filename: aircraft_thunder_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	rotorslow:
+		Filename: rotor_slow_husk.vspr
+		Facings: -4
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ed_aircrafts_storm.ucs:
 	Inherits: ed_aircrafts_storm

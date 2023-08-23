@@ -27,8 +27,11 @@ ed_aircrafts_nemezis:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: ed_aircrafts_nemezis_husk
+		Actor: ed_aircrafts_nemezis_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ed_aircrafts_nemezis_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 4
@@ -38,11 +41,17 @@ ed_aircrafts_nemezis:
 		Armament: Nuclear bombs
 		Description: The Heavy Nuclear Bomber is the ideal weapon for destroying enemy structures and units. Because of its long loading time, however, the Heavy Nuclear Bomber should never be deployed alone. The best results are reached when deployed in groups of several bombers.
 
-ed_aircrafts_nemezis_husk:
-	Inherits: ^CoreAircraftHusk
+ed_aircrafts_nemezis_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: Heavy Bomber
 	RevealsShroud:
 		Range: 3c896
 	RenderSprites:
 		Image: ed_aircrafts_nemezis
+
+ed_aircrafts_nemezis_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (NEMEZIS)

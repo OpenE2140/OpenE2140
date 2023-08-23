@@ -30,6 +30,8 @@ ucs_vehicles_hellbike:
 		Delay: 50
 		ResetOnFire: True
 		Count: 1
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_hellbike_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 8
@@ -38,3 +40,9 @@ ucs_vehicles_hellbike:
 		Armor: Lightweight but fireproof
 		Armament: Napalm grenade launcher
 		Description: The HellBike, mainly used as a fast reconnaissance vehicle, is equipped with a napalm grenade launcher. It’s lightweight armor enables it to be used for lighting strikes on small enemy battle units, but not for lengthy firefights. It’s high speed and the DXC additive in the napalm grenades make it a killer of light and middleweight tanks.
+
+ucs_vehicles_hellbike_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (HB Bike)

@@ -11,6 +11,12 @@ ucs_vehicles_wtp_100:
 	#	Filename: SPRI0.MIX
 	#	Start: 143
 
+ucs_vehicles_wtp_100_husk:
+	idle:
+		Filename: vehicle_wtp_100_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_vehicles_wtp_100.ed:
 	Inherits: ucs_vehicles_wtp_100

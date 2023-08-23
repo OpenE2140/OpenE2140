@@ -10,7 +10,6 @@ ed_vehicles_ht33r:
 	turret:
 		Filename: turret_ht_33_r.vspr
 		Facings: -16
-		Offset: 0, 0, 0
 	icon:
 		Filename: SPRI0.MIX
 		Start: 140
@@ -18,6 +17,16 @@ ed_vehicles_ht33r:
 	#icon-ucs:
 	#	Filename: SPRI1.MIX
 	#	Start: 140
+
+ed_vehicles_ht33r_husk:
+	idle:
+		Filename: vehicle_tank_large_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_ht_33_r_husk.vspr
+		Facings: -16
+		ZOffset: -256
 
 # TODO: remove after PR #20705
 ed_vehicles_ht33r.ucs:

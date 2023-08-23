@@ -25,8 +25,11 @@ ed_aircrafts_vtol:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: ed_aircrafts_vtol_husk
+		Actor: ed_aircrafts_vtol_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ed_aircrafts_vtol_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 5
@@ -36,11 +39,17 @@ ed_aircrafts_vtol:
 		Armament: Heavy rockets
 		Description: This unit was sorely missing from the ED's Air Force. Small, fast and heavily-armed, the Vertical Takeoff Flier is ideal for attacking distant targets. Equipped with heavy rockets, the Vertical Takeoff Flier is excellent at destroying structures and defence towers. Because of its light armor it is not necessarily suitable for action against massed units.
 
-ed_aircrafts_vtol_husk:
-	Inherits: ^CoreAircraftHusk
+ed_aircrafts_vtol_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: VTOL
 	RevealsShroud:
 		Range: 6c896
 	RenderSprites:
 		Image: ed_aircrafts_vtol
+
+ed_aircrafts_vtol_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (VTOL)

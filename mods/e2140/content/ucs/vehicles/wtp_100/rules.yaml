@@ -22,6 +22,8 @@ ucs_vehicles_wtp_100:
 		Sound: 31.smp
 	# WTP 100 doesn't have move animation.
 	-WithMoveAnimation:
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_wtp_100_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 12
@@ -45,3 +47,9 @@ ucs_vehicles_wtp_100:
 			AsphaltRoad: 100
 			Water: 100
 			Shore: 100
+
+ucs_vehicles_wtp_100_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (WTP 100)

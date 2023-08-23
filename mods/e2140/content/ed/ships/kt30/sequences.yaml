@@ -8,11 +8,9 @@ ed_ships_kt30:
 	turret:
 		Filename: turret_kt30.vspr
 		Facings: -16
-		Offset: 0,0
 	turret_secondary:
 		Filename: turret_kt30_secondary.vspr
 		Facings: -16
-		Offset: 0,0
 	icon:
 		Filename: SPRI0.MIX
 		Start: 156
@@ -20,6 +18,20 @@ ed_ships_kt30:
 	#icon-ucs:
 	#	Filename: SPRI1.MIX
 	#	Start: 156
+
+ed_ships_kt30_husk:
+	idle:
+		Filename: ship_kt30_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_kt30_husk.vspr
+		Facings: -16
+		ZOffset: -128
+	turret_secondary:
+		Filename: turret_kt30_secondary_husk.vspr
+		Facings: -16
+		ZOffset: -128
 
 # TODO: remove after PR #20705
 ed_ships_kt30.ucs:

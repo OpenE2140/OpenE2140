@@ -39,6 +39,8 @@ ed_vehicles_st01b:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_st01b_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 1
@@ -47,3 +49,10 @@ ed_vehicles_st01b:
 		Armor: Light
 		Armament: Small cannon
 		Description: The ST 01B is a small tank which is ideal for destroying unarmed and lightly armed enemy vehicles. Due to its limited ability to aim, it is not designed for doing battle with fast moving targets such as enemy SILVER units. In this case it should be escorted by A-series androids. A further weakness of the ST 01B is its lightweight armor, which is easily burned by the DXC-additive in the napalm bombs used by the enemy HELL units. The on-board electronics` main priority is to pull out of such a situation.
+
+ed_vehicles_st01b_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (ST 01B)

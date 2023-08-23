@@ -2,7 +2,7 @@ ed_vehicles_ht34j:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreVehicleTurret
 	Tooltip:
-		Name: HT 34J
+		Name: HT 34 J
 	Valued:
 		Cost: 1200
 	Buildable:
@@ -27,6 +27,8 @@ ed_vehicles_ht34j:
 		LocalOffset: 450,0,75
 		LocalYaw: 0
 		MuzzlePalette:
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_ht34j_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 7
@@ -35,3 +37,10 @@ ed_vehicles_ht34j:
 		Armor: Heavy
 		Armament: Ion-canon
 		Description: The HT 34 J (also based on the HT 30) is equipped with an ion cannon. Ion technology is the latest Eurasian Dynasty development, which enables them to take-over and use the enemy's war machines.\n\nThe ion cannon paralyses the electronics of the enemy vehicle, immobilising it. These vehicles can then be repaired and reprogrammed by an HCU-M. So it's advisable to pair the HT 34J with an HCU-M at all times. Due to the overly large size of its generators, an HT chassis had to be used for this vehicle, which slows it right down.
+
+ed_vehicles_ht34j_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (HT 34 J)

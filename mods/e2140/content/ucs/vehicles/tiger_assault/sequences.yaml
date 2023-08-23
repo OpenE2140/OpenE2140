@@ -1,6 +1,4 @@
-ucs_vehicles_tiger_assault: vehicle_mech.vspr
-	Defaults:
-		Tick: 70
+ucs_vehicles_tiger_assault:
 	idle:
 		Filename: vehicle_mech.vspr
 		Facings: -8
@@ -29,6 +27,15 @@ ucs_vehicles_tiger_assault: vehicle_mech.vspr
 	#icon-ed:
 	#	Filename: SPRI0.MIX
 	#	Start: 133
+
+ucs_vehicles_tiger_assault_husk:
+	idle:
+		Filename: vehicle_mech_husk.vspr
+		Facings: -8
+		ZOffset: -512
+	turret:
+		Filename: turret_tiger_assault_husk.vspr
+		Facings: -16
 
 # TODO: remove after PR #20705
 ucs_vehicles_tiger_assault.ed:

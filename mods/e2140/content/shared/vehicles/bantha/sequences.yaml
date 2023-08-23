@@ -15,6 +15,12 @@ shared_vehicles_bantha:
 	#	Filename: SPRI1.MIX
 	#	Start: 148
 
+shared_vehicles_bantha_husk:
+	idle:
+		Filename: vehicle_bantha_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 shared_vehicles_bantha.ucs:
 	Inherits: shared_vehicles_bantha

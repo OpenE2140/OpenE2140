@@ -24,8 +24,11 @@ shared_aircrafts_heavy_lifter:
 	WithMoveSound:
 		Sound: 31.smp
 	SpawnActorOnDeath:
-		Actor: shared_aircrafts_heavy_lifter_husk
+		Actor: shared_aircrafts_heavy_lifter_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: shared_aircrafts_heavy_lifter_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: Shared - Aircrafts
 		Order: 1
@@ -35,11 +38,17 @@ shared_aircrafts_heavy_lifter:
 		Armament: None
 		Description: The Heavy Lifter is a heavy, flying transporter used, (like the BANTHA), to transport raw materials from mine to refinery. Since it can fly it is extremely useful in transporting resources over long distances or mountainous terrain. The Heavy Lifter is very maneuverable, allowing it to be loaded and unloaded quickly.\n\nDespite being expensive and slow, it is very useful in situations where a BANTHA is either very slow or cannot be used at all.
 
-shared_aircrafts_heavy_lifter_husk:
-	Inherits: ^CoreAircraftHusk
+shared_aircrafts_heavy_lifter_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: Heavy Lifter
 	RevealsShroud:
 		Range: 2c896
 	RenderSprites:
 		Image: shared_aircrafts_heavy_lifter
+
+shared_aircrafts_heavy_lifter_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (Heavy Lifter)

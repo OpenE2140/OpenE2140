@@ -33,9 +33,12 @@ ed_aircrafts_hat:
 		RequiresSelection: True
 	WithFacingSpriteBody:
 		PauseOnCondition: VehicleDisabled
-	SpawnActorOnDeath:
-		Actor: ed_aircrafts_hat_husk
+	SpawnActorOnDeath@Airborne:
+		Actor: ed_aircrafts_hat_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ed_aircrafts_hat_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 3
@@ -45,11 +48,17 @@ ed_aircrafts_hat:
 		Armament: None
 		Description: The HAT is a turbine powered transporter, whose four turbines enable it to quickly reach high altitudes and cover large distances very fast.\n\nHAT can transport up to six A or SILVER units and is heavily armored, unusual for an airborne machine. It is ideal for moving troops, withstanding rocket fire for a relatively long period of time. It is fast enough to maneuver itself out of the line of enemy rocket attacks.
 
-ed_aircrafts_hat_husk:
-	Inherits: ^CoreAircraftHusk
+ed_aircrafts_hat_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: HAT
 	RevealsShroud:
 		Range: 4c896
 	RenderSprites:
 		Image: ed_aircrafts_hat
+
+ed_aircrafts_hat_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (HAT)

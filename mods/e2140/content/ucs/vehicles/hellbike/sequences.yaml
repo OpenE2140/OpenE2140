@@ -13,6 +13,12 @@ ucs_vehicles_hellbike:
 	#	Filename: SPRI0.MIX
 	#	Start: 147
 
+ucs_vehicles_hellbike_husk:
+	idle:
+		Filename: vehicle_hb_bike_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_vehicles_hellbike.ed:
 	Inherits: ucs_vehicles_hellbike

@@ -20,6 +20,16 @@ ed_vehicles_screamer:
 	#	Filename: SPRI1.MIX
 	#	Start: 152
 
+ed_vehicles_screamer_husk:
+	idle:
+		Filename: vehicle_screamer_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_screamer_husk.vspr
+		Offset: 2, -7
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ed_vehicles_screamer.ucs:
 	Inherits: ed_vehicles_screamer

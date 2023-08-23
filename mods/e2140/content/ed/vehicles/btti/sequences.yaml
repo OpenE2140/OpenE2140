@@ -21,6 +21,12 @@ ed_vehicles_btti:
 	#	Filename: SPRI1.MIX
 	#	Start: 146
 
+ed_vehicles_btti_husk:
+	idle:
+		Filename: vehicle_btti_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_vehicles_btti.ucs:
 	Inherits: ed_vehicles_btti

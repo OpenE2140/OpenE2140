@@ -14,6 +14,12 @@ ed_aircrafts_nemezis:
 	#	Filename: SPRI1.MIX
 	#	Start: 276
 
+ed_aircrafts_nemezis_husk:
+	idle:
+		Filename: aircraft_nemezis_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_aircrafts_nemezis.ucs:
 	Inherits: ed_aircrafts_nemezis

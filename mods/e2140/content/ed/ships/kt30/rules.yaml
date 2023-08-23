@@ -63,6 +63,8 @@ ed_ships_kt30:
 		RecoilRecovery: 38
 		LocalOffset: 100,100,0,100,-100,0
 		MuzzlePalette:
+	SpawnActorOnDeath:
+		Actor: ed_ships_kt30_husk
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 3
@@ -71,3 +73,20 @@ ed_ships_kt30:
 		Armor: Heavy
 		Armament: Launcher for small and heavy self-guided rockets
 		Description: The KT 30 is a medium-sized battleship with heavy armor-plating and heavy weapons. Its disadvantage is its low speed but its heavy armorplating and its two rocket launchers with self-guided missiles, both small and large, make it a force to be reckoned with. The KT 30 can be used to fight hostile ships or buildings that are close to shore. You can use the small rockets against air-attacks. These features gave the KT 30 the nickname “swimming castle”.
+
+ed_ships_kt30_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (KT 30)
+	ThrowsParticle@Turret:
+		Anim: turret
+		MaxThrowRange: 0c256
+		Velocity: 45
+		Offset: 0,-700,128
+	ThrowsParticle@TurretSecondary:
+		Anim: turret_secondary
+		MaxThrowRange: 0c256
+		Velocity: 45
+		Offset: 0,700,128

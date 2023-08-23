@@ -45,6 +45,8 @@ ucs_vehicles_raptor_ad:
 		Count: 1
 	AttackFrontal:
 		FacingTolerance: 25
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_raptor_ad_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 3
@@ -53,3 +55,12 @@ ucs_vehicles_raptor_ad:
 		Armor: Medium
 		Armament: Launcher for small rockets
 		Description: The RAPTOR AD is a modified version of the fast and agile RAPTOR-unit.\n\nIt has two small rocket launchers. These can be reloaded fast. They are great for ground-to-air combat, effective against light and middleweight vehicles and can destroy structures.
+
+ucs_vehicles_raptor_ad_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (RAPTOR AD)
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow

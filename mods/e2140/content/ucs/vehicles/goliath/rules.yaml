@@ -18,10 +18,13 @@ ucs_vehicles_goliath:
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
-	Explodes:
+	Explodes@Default:
+		RequiresCondition: !triggered
+	Explodes@Triggered:
 		Weapon: ucs_vehicles_goliath_explode
 		EmptyWeapon: ucs_vehicles_goliath_explode
 		DamageSource: Killer
+		RequiresCondition: triggered
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_goliath
 		MuzzlePalette:
@@ -29,6 +32,9 @@ ucs_vehicles_goliath:
 		Condition: triggered
 	KillsSelf:
 		RequiresCondition: triggered
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_goliath_husk
+		RequiresCondition: !triggered
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 14
@@ -37,3 +43,9 @@ ucs_vehicles_goliath:
 		Armor: Medium
 		Armament: Heavy explosives
 		Description: This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliath approaches its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even the most heavily armed units and structures.
+
+ucs_vehicles_goliath_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (Goliath)

@@ -21,6 +21,12 @@ ed_vehicles_bio:
 	#	Filename: SPRI1.MIX
 	#	Start: 145
 
+ed_vehicles_bio_husk:
+	idle:
+		Filename: vehicle_bio_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_vehicles_bio.ucs:
 	Inherits: ed_vehicles_bio

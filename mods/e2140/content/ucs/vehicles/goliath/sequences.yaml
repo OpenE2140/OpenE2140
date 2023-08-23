@@ -13,6 +13,12 @@ ucs_vehicles_goliath:
 	#	Filename: SPRI0.MIX
 	#	Start: 278
 
+ucs_vehicles_goliath_husk:
+	idle:
+		Filename: vehicle_goliath_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_vehicles_goliath.ed:
 	Inherits: ucs_vehicles_goliath

@@ -1,33 +1,32 @@
 smoke:
 	Defaults:
 		Filename: smoke.vspr
-	idle:
-		BlendMode: Additive
 		Length: 8
-		Tick: 60
 		ZOffset: 512
+	white_smoke:
+		BlendMode: Additive
+		Tick: 60
+	dark_smoke:
+		BlendMode: Subtractive
+		Tick: 140
 
 smoke_firearm:
 	Defaults:
 		Filename: content/core/assets/smoke_firearm.png
+		Tick: 60
+		ZOffset: 512
 	smoke_firearm1:
 		BlendMode: Additive
 		Start: 0
 		Length: 5
-		Tick: 60
-		ZOffset: 512
 	smoke_firearm2:
 		BlendMode: Additive
 		Start: 5
 		Length: 5
-		Tick: 60
-		ZOffset: 512
 	smoke_firearm3:
 		Start: 10
 		BlendMode: Additive
 		Length: 5
-		Tick: 60
-		ZOffset: 512
 
 rubble_small:
 	Defaults:
@@ -47,18 +46,14 @@ rubble_big:
 rubble_firearm:
 	Defaults:
 		Filename: content/core/assets/rubble_firearm.png
+		Length: 8
+		Offset: 0,-3
 	rubble_firearm1:
 		Start: 0
-		Length: 8
-		Offset: 0,-3
 	rubble_firearm2:
 		Start: 8
-		Length: 8
-		Offset: 0,-3
 	rubble_firearm3:
 		Start: 16
-		Length: 8
-		Offset: 0,-3
 
 water_splash:
 	Defaults:
@@ -116,3 +111,16 @@ smoke_debris:
 		Length: 4
 		Tick: 60
 		BlendMode: Subtractive
+
+fire:
+	Defaults:
+		BlendMode: Additive
+		ZOffset: 256
+	fire_small:
+		Filename: fire_small.vspr
+		Length: 4
+		Tick: 60
+	fire_big:
+		Filename: fire_big.vspr
+		Length: 12
+		Tick: 60

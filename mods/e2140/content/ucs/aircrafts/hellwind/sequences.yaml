@@ -14,6 +14,12 @@ ucs_aircrafts_hellwind:
 	#	Filename: SPRI0.MIX
 	#	Start: 163
 
+ucs_aircrafts_hellwind_husk:
+	idle:
+		Filename: aircraft_hellwind_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_aircrafts_hellwind.ed:
 	Inherits: ucs_aircrafts_hellwind

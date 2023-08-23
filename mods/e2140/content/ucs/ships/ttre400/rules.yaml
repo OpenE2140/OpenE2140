@@ -43,6 +43,8 @@ ucs_ships_ttre400:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	SpawnActorOnDeath:
+		Actor: ucs_ships_ttre400_husk
 	Encyclopedia:
 		Category: UCS - Ships
 		Order: 3
@@ -51,3 +53,9 @@ ucs_ships_ttre400:
 		Armor: Medium
 		Armament: Water mines
 		Description: The TTR is a fast mine layer which can safeguard territories effectively from enemy ships and submarines by laying and moving water mines.\n\nThe only armament a TTR 400 carries are its mines, making it an easy target for the enemy. It’s only defense is to retreat, dropping mines in the water as it goes.
+
+ucs_ships_ttre400_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (TTRE 400)
