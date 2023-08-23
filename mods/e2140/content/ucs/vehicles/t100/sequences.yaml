@@ -24,6 +24,16 @@ ucs_vehicles_t100:
 	#	Filename: SPRI0.MIX
 	#	Start: 128
 
+ucs_vehicles_t100_husk:
+	idle:
+		Filename: vehicle_t100_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_t100_husk.vspr
+		Facings: -16
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ucs_vehicles_t100.ed:
 	Inherits: ucs_vehicles_t100

@@ -13,6 +13,12 @@ ucs_ships_ttre400:
 	#	Filename: SPRI0.MIX
 	#	Start: 158
 
+ucs_ships_ttre400_husk:
+	idle:
+		Filename: ship_ttre_400_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_ships_ttre400.ed:
 	Inherits: ucs_ships_ttre400

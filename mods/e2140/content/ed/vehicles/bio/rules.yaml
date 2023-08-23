@@ -38,6 +38,8 @@ ed_vehicles_bio:
 		Sequence: healing
 		Name: healing
 		RequiresCondition: activatebio || infantryinside
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_bio_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 9
@@ -46,3 +48,9 @@ ed_vehicles_bio:
 		Armor: Light
 		Armament: None
 		Description: The BIO, like the TUR, is an unarmed and fast vehicle that was originally used as a civil vehicle and has been adapted for battle. It’s fitted out with complete regeneration devices for A-series androids. It can repair two androids at a time.\n\nSince the BIO only has lightweight armor-plating, it should not be used anywhere near a battlefield. It is also an easy target for fast reconnaissance vehicles. Since the androids being repaired are connected to the regeneration device, they cannot be evacuated should the vehicle be destroyed and will also be lost.
+
+ed_vehicles_bio_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (BIO)

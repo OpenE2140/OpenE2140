@@ -21,6 +21,8 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_shadow_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 11
@@ -29,3 +31,9 @@ ucs_vehicles_shadow:
 		Armor: Middleweight
 		Armament: None
 		Description: The SHADOW is a tracked vehicle with a difference - it has stealth camouflaging. For decades the UCS have been researching vehicle invisibility. SHADOW is the result of that research - an improved and fully functional version of the prototype.\n\nThe new SHADOW's system can camouflage, for example, a middle sized army for any length of time.
+
+ucs_vehicles_shadow_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (SHADOW)

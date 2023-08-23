@@ -25,6 +25,12 @@ ed_aircrafts_hat:
 	#	Filename: SPRI1.MIX
 	#	Start: 160
 
+ed_aircrafts_hat_husk:
+	idle:
+		Filename: aircraft_hat_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_aircrafts_hat.ucs:
 	Inherits: ed_aircrafts_hat

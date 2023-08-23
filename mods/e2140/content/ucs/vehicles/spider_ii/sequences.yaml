@@ -1,6 +1,4 @@
 ucs_vehicles_spider_ii:
-	Defaults:
-		Tick: 70
 	idle:
 		Filename: vehicle_mech.vspr
 		Facings: -8
@@ -10,6 +8,7 @@ ucs_vehicles_spider_ii:
 		Start: 8
 		Length: 8
 		Facings: -8
+		Tick: 80
 		ZOffset: -350
 	move.turn:
 		Filename: vehicle_mech.vspr
@@ -28,6 +27,15 @@ ucs_vehicles_spider_ii:
 	#icon-ed:
 	#	Filename: SPRI0.MIX
 	#	Start: 138
+
+ucs_vehicles_spider_ii_husk:
+	idle:
+		Filename: vehicle_mech_husk.vspr
+		Facings: -8
+		ZOffset: -512
+	turret:
+		Filename: turret_spider_ii_husk.vspr
+		Facings: -16
 
 # TODO: remove after PR #20705
 ucs_vehicles_spider_ii.ed:

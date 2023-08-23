@@ -28,6 +28,16 @@ ed_vehicles_miner:
 	#icon-ucs:
 	#	Filename: content/ed/vehicles/miner/vehicle_miner_icon_ucs.png
 
+ed_vehicles_miner_husk:
+	idle:
+		Filename: vehicle_miner_husk.vspr
+		Facings: -16	
+		ZOffset: -512
+	turret:
+		Filename: turret_unknown_husk.vspr
+		Facings: -16
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ed_vehicles_miner.ucs:
 	Inherits: ed_vehicles_miner

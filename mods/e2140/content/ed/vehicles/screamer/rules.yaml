@@ -22,6 +22,8 @@ ed_vehicles_screamer:
 		PauseOnCondition: VehicleDisabled
 	DetectCloaked:
 		Range: 4c896
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_screamer_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 12
@@ -30,3 +32,10 @@ ed_vehicles_screamer:
 		Armor: Medium
 		Armament: None
 		Description: This tracer vehicle is one of the Eurasian Dynasty's most recent developments. Once they had cracked the UCS' transmission code, they completed the development of a communication vehicle, named SCREAMER in record time. This vehicle can, when within medium range, scramble the transmission frequencies used by the UCS. Once these transmissions have been scrambled, all UCS units within the SCREAMER's range lose contact with their control computer and have to rely on their own artificial intelligence, receiving neither commands nor information about the movements and strength of the enemy. The SCREAMER can also disable the camouflage device used by the UCS' SHADOW unit. It works at longer ranges than the SHADOW.
+
+ed_vehicles_screamer_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (SCREAMER)

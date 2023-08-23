@@ -15,6 +15,12 @@ ucs_vehicles_shadow:
 	#	Filename: SPRI0.MIX
 	#	Start: 153
 
+ucs_vehicles_shadow_husk:
+	idle:
+		Filename: vehicle_shadow_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_vehicles_shadow.ed:
 	Inherits: ucs_vehicles_shadow

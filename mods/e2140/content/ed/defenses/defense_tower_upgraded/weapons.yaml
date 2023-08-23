@@ -23,6 +23,6 @@ ed_defenses_defense_tower_upgraded:
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: smoke
-		Explosions: idle
+		Explosions: white_smoke
 		ExplosionPalette:
 		ValidTargets: Ground, Water, Ship, Air

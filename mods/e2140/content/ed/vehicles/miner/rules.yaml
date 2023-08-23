@@ -57,6 +57,8 @@ ed_vehicles_miner:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_miner_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 11
@@ -65,3 +67,10 @@ ed_vehicles_miner:
 		Armor: Middleweight
 		Armament: Large machine gun
 		Description: The miner is a heavyweight, multifunctional vehicle used mainly for laying mines in enemy territory, making these areas impassable. It can defuse enemy mines and erect border fences, etc. Its medium weight armor-plating and large machine gun make it a battlefield unit.
+
+ed_vehicles_miner_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (MINER)

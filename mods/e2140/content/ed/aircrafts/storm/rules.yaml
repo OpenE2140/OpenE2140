@@ -43,8 +43,11 @@ ed_aircrafts_storm:
 	WithMoveSound:
 		Sound: 29.smp
 	SpawnActorOnDeath:
-		Actor: ed_aircrafts_storm_husk
+		Actor: ed_aircrafts_storm_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ed_aircrafts_storm_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 1
@@ -54,8 +57,8 @@ ed_aircrafts_storm:
 		Armament: Large machine gun
 		Description: The STORM is a small helicopter fitted with a high power machine-gun. Since it is not well armed it is best used for reconnaissance flights or battles with small units, which don't have rocket launchers.
 
-ed_aircrafts_storm_husk:
-	Inherits: ^CoreAircraftHusk
+ed_aircrafts_storm_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: STORM
 	RevealsShroud:
@@ -65,3 +68,12 @@ ed_aircrafts_storm_husk:
 		Sequence: rotorslow
 	RenderSprites:
 		Image: ed_aircrafts_storm
+
+ed_aircrafts_storm_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (STORM)
+	ThrowsParticle@Turret:
+		Anim: rotorslow

@@ -13,6 +13,12 @@ ed_ships_wtrn:
 	#	Filename: SPRI1.MIX
 	#	Start: 156
 
+ed_ships_wtrn_husk:
+	idle:
+		Filename: ship_wtrn_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_ships_wtrn.ucs:
 	Inherits: ed_ships_wtrn

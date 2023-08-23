@@ -28,6 +28,8 @@
 	# MCUs are not slower when they are damaged.
 	-GrantConditionOnDamageState@DecreasedSpeed:
 	-SpeedMultiplier:
+	SpawnActorOnDeath:
+		Actor: shared_mcu_husk
 
 shared_mcu:
 	Inherits@1: ^CoreVehicle
@@ -44,3 +46,9 @@ shared_mcu:
 		Armor: Thick
 		Armament: None
 		Description: The MCU is a heavy vehicle which is used to construct all types of structures. However, the type of structure the MCU can construct must first be defined and cannot be changed.\n\nThe MCU is a large, heavy, slow-moving vehicle, which is very difficult to navigate. It does, however, have thick armour-plating, making up for its weaknesses should the enemy launch a small attack. Bear in mind, however, that the MCU is unarmed.
+
+shared_mcu_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (MCU)

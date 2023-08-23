@@ -13,6 +13,12 @@ ucs_ships_russ3:
 	#	Filename: SPRI0.MIX
 	#	Start: 157
 
+ucs_ships_russ3_husk:
+	idle:
+		Filename: ship_russ3_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ucs_ships_russ3.ed:
 	Inherits: ucs_ships_russ3

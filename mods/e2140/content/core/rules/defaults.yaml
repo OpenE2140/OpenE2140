@@ -371,9 +371,9 @@
 		Voice: Escort
 	Guardable:
 	# This actor explodes when killed.
-	Explodes:
-		Weapon: VehicleExplosion
-		EmptyWeapon: VehicleExplosion
+	Explodes@Default:
+		Weapon: VehicleExploding
+		EmptyWeapon: VehicleExploding
 	# Vehicles smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
@@ -455,8 +455,8 @@
 	Guardable:
 	# This actor explodes when killed.
 	Explodes:
-		Weapon: AircraftExplosion
-		EmptyWeapon: AircraftExplosion
+		Weapon: VehicleExploding
+		EmptyWeapon: VehicleExploding
 		RequiresCondition: !airborne
 	# Aircraft can be cloaked, but only if it is on the ground.
 	Cloak:
@@ -469,7 +469,7 @@
 		UseLocation: true
 
 # Base for all aircrafts husks
-^CoreAircraftHusk:
+^CoreAircraftFallingHusk:
 	Inherits: ^CoreAircraft
 	# Husks shouldn't be selectable in the map editor.
 	-MapEditorData:
@@ -489,6 +489,11 @@
 	-ActorLostNotification:
 	# Husks are not counted towards player's army.
 	-UpdatesPlayerStatistics:
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: AircraftExplosion
+		EmptyWeapon: AircraftExplosion
+		RequiresCondition: !airborne
 
 # Special light vehicles
 ^CoreLightVehicle:
@@ -529,8 +534,8 @@
 	Guardable:
 	# This actor explodes when killed.
 	Explodes:
-		Weapon: VehicleExplosion
-		EmptyWeapon: VehicleExplosion
+		Weapon: VehicleExploding
+		EmptyWeapon: VehicleExploding
 	# Ships smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
@@ -745,3 +750,93 @@
 	Voiced@Static:
 		VoiceSet: StaticVoice
 		RequiresCondition: VehicleDisabled
+
+# Vehicles leave a husk when they're destroyed
+^Husk:
+	Inherits: ^CoreVisibleActor
+	# Husks are only interactable, not selectable.
+	Interactable:
+	# Default husk's health amount.
+	Health:
+		HP: 500
+	# Applying "vehicle"-damage to all actors based on this.
+	Armor:
+		Type: vehicle
+	# At default fog hides every actor.
+	HiddenUnderFog:
+		Type: CenterPosition
+		AlwaysVisibleRelationships: None
+	# Husks sequences use facings.
+	WithFacingSpriteBody:
+	# Husks hitshape
+	HitShape:
+		Type: Circle
+			Radius: 256
+	# Husk trait which allows keeping actor's facing when it's dead.
+	Husk:
+		AllowedTerrain: Clear, ClearTree, ClearPipe, Shore, Sand, SandEdge, Road
+	# Decrease husk's HP over time.
+	ChangesHealth:
+		Step: -25
+		StartIfBelow: 101
+		Delay: 10
+	# Change owner to neutral when husk is created.
+	OwnerLostAction:
+		Action: ChangeOwner
+	# Husks can be targeted by anything which attacks ground but are also ignored by other actors.
+	Targetable:
+		TargetTypes: Ground, Vehicle
+		RequiresForceFire: true
+	# Generic name for husks.
+	Tooltip:
+		GenericName: Destroyed Vehicle
+	# Husks explode when killed or they disappear.
+	Explodes:
+		Weapon: VehicleExplosion
+		EmptyWeapon: VehicleExplosion
+
+# Husk throws a turret if it has it.
+^HuskThrowsTurret:
+	ThrowsParticle@Turret:
+		Anim: turret
+		MaxThrowRange: 0c256
+
+# Husk burns - small fire
+^HuskBurnsSmallFire:
+	WithIdleOverlay@Burns:
+		Image: fire
+		Sequence: fire_small
+		Palette:
+		IsDecoration: true
+	# Smoke particles are created when husks burns.
+	FloatingSpriteEmitter@Burns:
+		Duration: -1
+		Lifetime: 27
+		SpawnFrequency: 5
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,-128,0
+		Image: smoke
+		Sequences: dark_smoke
+
+# Husk burns - big fire
+^HuskBurnsBigFire:
+	WithIdleOverlay@Burns:
+		Image: fire
+		Sequence: fire_big
+		Palette:
+		IsDecoration: true
+	# Smoke particles are created when husks burns.
+	FloatingSpriteEmitter@Burns:
+		Duration: -1
+		Lifetime: 27
+		SpawnFrequency: 5
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,-128,0
+		Image: smoke
+		Sequences: dark_smoke

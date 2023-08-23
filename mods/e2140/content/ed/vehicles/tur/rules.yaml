@@ -28,6 +28,8 @@ ed_vehicles_tur:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_tur_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 8
@@ -36,3 +38,9 @@ ed_vehicles_tur:
 		Armor: Light
 		Armament: None
 		Description: The TUR is an small, fast, unarmed vehicle used to transport small SILVER or A-series battle-units. Up to six units can be transported in a TUR, even through contaminated areas.\n\nThe TUR has lightweight armorplating. It destroys small hostile vehicles by running over them without damage to itself. When the TUR is destroyed, all vehicles on board it are also destroyed.
+
+ed_vehicles_tur_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (TUR)

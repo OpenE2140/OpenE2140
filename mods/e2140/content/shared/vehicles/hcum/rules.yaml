@@ -40,6 +40,8 @@ shared_vehicles_hcum:
 	AutoTargetPriority:
 		ValidTargets: DamagedUnit
 		InvalidTargets: Structure
+	SpawnActorOnDeath:
+		Actor: shared_vehicles_hcum_husk
 	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 3
@@ -48,3 +50,10 @@ shared_vehicles_hcum:
 		Armor: Medium
 		Armament: None
 		Description: The HCU-M is the mobile version of the MCU restoration unit which is used to repair structures. The HCU-M is used to repair damaged vehicles and military units. It is controlled by the central computer.\n\nThe Eurasian Dynasty's troops use a modified version of the HCU-M. This version, controlled by the central computer, is able to restore the enemy's vehicles, which have either been damaged or immobilized by ionic weapons. These vehicles are reprogrammed for Eurasian purposes.
+
+shared_vehicles_hcum_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (HCU-M)

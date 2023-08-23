@@ -50,6 +50,8 @@ ucs_vehicles_spider_ii:
 		Count: 2
 	WithDamageOverlay:
 		Image: smoking_mech
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_spider_ii_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 7
@@ -58,3 +60,10 @@ ucs_vehicles_spider_ii:
 		Armor: Heavy
 		Armament: Four firing devices for large rockets
 		Description: The name SPIDER II might suggest that it is an improvement on the SPIDER. However, it was obvious from the beginning of development that this was to be something completely new. A zippy, fast reacting fortress was about to be created.\n\nThe result is a heavily armored unit with its own cluster of reaction CPUs and four firing devices for large rockets. Two of these rockets can be fired in quick succession while the other two are being reloaded. This constant fire capability makes the Spider II deadly.\n\nThe SPIDER II is the definite leader in terms of UCS destructive power.
+
+ucs_vehicles_spider_ii_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (SPIDER II)

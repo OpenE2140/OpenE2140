@@ -13,6 +13,12 @@ shared_aircrafts_heavy_lifter:
 	#	Filename: SPRI1.MIX
 	#	Start: 164
 
+shared_aircrafts_heavy_lifter_husk:
+	idle:
+		Filename: aircraft_heavy_lifter_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 shared_aircrafts_heavy_lifter.ucs:
 	Inherits: shared_aircrafts_heavy_lifter

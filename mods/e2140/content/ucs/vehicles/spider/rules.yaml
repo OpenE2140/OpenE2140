@@ -49,6 +49,8 @@ ucs_vehicles_spider:
 		Count: 22
 	WithDamageOverlay:
 		Image: smoking_mech
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_spider_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 6
@@ -57,3 +59,10 @@ ucs_vehicles_spider:
 		Armor: Heavy
 		Armament: Two plasma guns
 		Description: The SPIDER is a heavy unit with its own artificial intelligence which receives battle commands from the central computers.\n\nThe SPIDER's armor is strengthened with a special alloy, which makes it even more rocket-proof. Armed with two quick-fire plasma guns, it's slower than the TIGER-series, but thanks to those new generation plasma guns it carries, it's great for backing up battle robots, e.g., the TIGER series, when they launch an attack on the enemy.
+
+ucs_vehicles_spider_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (SPIDER)

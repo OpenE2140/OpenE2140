@@ -34,8 +34,11 @@ ucs_aircrafts_gargoil:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: ucs_aircrafts_gargoil_husk
+		Actor: ucs_aircrafts_gargoil_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ucs_aircrafts_gargoil_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: UCS - Aircrafts
 		Order: 1
@@ -45,11 +48,17 @@ ucs_aircrafts_gargoil:
 		Armament: Two double barreled 22mm guns
 		Description: The GARGOIL is proof of the UCS's superiority in anti-gravity technology. It is faster and zippier than a helicopter.\n\nIts two double barreled machine guns are ideal for attacking small battle units and lightweight vehicles.\n\nThe GARGOIL is often used for reconnaissance missions.
 
-ucs_aircrafts_gargoil_husk:
-	Inherits: ^CoreAircraftHusk
+ucs_aircrafts_gargoil_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: STORM
 	RevealsShroud:
 		Range: 5c896
 	RenderSprites:
 		Image: ucs_aircrafts_gargoil
+
+ucs_aircrafts_gargoil_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (GARGOIL)

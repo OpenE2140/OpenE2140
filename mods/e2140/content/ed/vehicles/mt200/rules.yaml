@@ -39,6 +39,8 @@ ed_vehicles_mt200:
 		Delay: 50
 		ResetOnFire: True
 		Count: 2
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_mt200_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 3
@@ -47,3 +49,10 @@ ed_vehicles_mt200:
 		Armor: Medium
 		Armament: Heavy cannon
 		Description: The MT 200, a medium sized tank, is an excellent weapon. Its large cannon is ideal for eliminating enemy vehicles and structures. It has good armor-plating and, compared to similar tanks, is very fast, making it hard to destroy.\n\nIts aiming mechanism is slow, making it very difficult to combat fast and agile units, like the enemy SILVER series. However, the tank can simply run over and crush enemy units.
+
+ed_vehicles_mt200_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (MT 200)

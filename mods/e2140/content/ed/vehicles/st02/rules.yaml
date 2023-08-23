@@ -32,6 +32,8 @@ ed_vehicles_st02:
 		RecoilRecovery: 38
 		LocalOffset: 100,-100,0, 100,100,0
 		MuzzlePalette:
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_st02_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 2
@@ -40,3 +42,10 @@ ed_vehicles_st02:
 		Armor: Light
 		Armament: Small rockets
 		Description: The ST 02 is a small tank, based on the ST 01B, which is fitted out with a lightweight rocket launcher. It is ideal for launching attacks on small airborne targets and buildings.\n\nIts lightweight armor, makes it an easy target for the SILVER series battle units. It should be escorted by several A-series androids in this sort of battle. Just like the ST 01B, it should not be used in battles with enemy HELL-series battle units, since the armor is easily burned by the DXC-additive in their napalm bombs.
+
+ed_vehicles_st02_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (ST 01B)

@@ -13,6 +13,12 @@ ed_ships_shark:
 	#	Filename: SPRI1.MIX
 	#	Start: 154
 
+ed_ships_shark_husk:
+	idle:
+		Filename: ship_shark_husk.vspr
+		Facings: -16
+		ZOffset: -512
+
 # TODO: remove after PR #20705
 ed_ships_shark.ucs:
 	Inherits: ed_ships_shark

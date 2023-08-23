@@ -30,8 +30,11 @@ ucs_aircrafts_hellwind:
 	WithMoveSound:
 		Sound: 31.smp
 	SpawnActorOnDeath:
-		Actor: ucs_aircrafts_hellwind_husk
+		Actor: ucs_aircrafts_hellwind_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ucs_aircrafts_hellwind_husk
+		RequiresCondition: !airborne
 	AmmoPool:
 		Ammo: 7
 		AmmoCondition: ammo
@@ -48,11 +51,17 @@ ucs_aircrafts_hellwind:
 		Armament: Plasma bombs
 		Description: The HELLWIND is the latest generation of anti-gravity bombers. It is heavily armored and carries large quantities of plasma bombs. These are very effective and will destroy a small battle unit, a large tank or even a structure.\n\nThe HELLWIND always drops five bombs at a time.
 
-ucs_aircrafts_hellwind_husk:
-	Inherits: ^CoreAircraftHusk
+ucs_aircrafts_hellwind_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: HELL WIND
 	RevealsShroud:
 		Range: 3c896
 	RenderSprites:
 		Image: ucs_aircrafts_hellwind
+
+ucs_aircrafts_hellwind_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (HELLWIND)

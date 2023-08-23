@@ -32,6 +32,8 @@ ed_vehicles_ht33r:
 		RecoilRecovery: 38
 		LocalOffset: 200,100,100,200,-100,100,200,0,100
 		MuzzlePalette:
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_ht33r_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 6
@@ -40,3 +42,10 @@ ed_vehicles_ht33r:
 		Armor: Heavy
 		Armament: Launcher for big rockets
 		Description: The HT 33 R is based on the HT 30 and has three additional launchers for large, automatic long-range rockets. This makes the HT 33 R one of the most effective and destructive weapons for use against vehicles, structures and flying targets, even when used at long-distance.\n\nAll HT series tanks have outstanding armor-plating, which can offer protection for a relatively long period of time against enemy attacks. But again, the weight slows this tank down.
+
+ed_vehicles_ht33r_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (HT 33 R)

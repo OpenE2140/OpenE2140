@@ -39,6 +39,8 @@ ucs_vehicles_big_mech:
 		FacingTolerance: 25
 	WithDamageOverlay:
 		Image: smoking_mech
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_big_mech_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 13
@@ -47,3 +49,13 @@ ucs_vehicles_big_mech:
 		Armor: Heavy
 		Armament: Two light rocket launchers
 		Description: At first glance, this heavily armed battle machine doesn't seem very impressively equipped. But rest assured, the BIG MECH is definitely one of the UCS' most impressive weapons. Its two fast-firing light rocket launchers fire 16 rockets in a row and take very little time to load.
+
+ucs_vehicles_big_mech_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (BIG MECH)
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow
+		ForceToGround: true

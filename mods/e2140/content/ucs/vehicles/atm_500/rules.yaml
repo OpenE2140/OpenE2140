@@ -38,6 +38,8 @@ ucs_vehicles_atm_500:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_atm_500_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 9
@@ -46,3 +48,10 @@ ucs_vehicles_atm_500:
 		Armor: Middleweight
 		Armament: Heavy machine gun
 		Description: The ATM 500 is an armored vehicle used for transporting small battle units like the SILVER series. The ATM 500 can hold six units and can get them quickly to their target, even through contaminated areas. Well armored and well armed with a heavy MG,small enemy units and watchtowers will find it a difficult opponent. Built for high speed, you can’t, however, use it to run over enemy units.
+
+ucs_vehicles_atm_500_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (ATM 500)

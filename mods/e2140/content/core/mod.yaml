@@ -23,6 +23,7 @@ Sequences:
 	e2140|content/core/sequences/craters.yaml
 	e2140|content/core/sequences/debris.yaml
 	e2140|content/core/sequences/blood.yaml
+	e2140|content/core/sequences/scorches.yaml
 
 Weapons:
 	e2140|content/core/weapons/explosions.yaml

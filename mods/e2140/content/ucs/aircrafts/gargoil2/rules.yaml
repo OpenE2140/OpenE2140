@@ -25,8 +25,11 @@ ucs_aircrafts_gargoil_ii:
 	WithMoveAnimation:
 		ValidMovementTypes: Horizontal, Vertical, Turn
 	SpawnActorOnDeath:
-		Actor: ucs_aircrafts_gargoil_ii_husk
+		Actor: ucs_aircrafts_gargoil_ii_falling_husk
 		RequiresCondition: airborne
+	SpawnActorOnDeath@Ground:
+		Actor: ucs_aircrafts_gargoil_ii_husk
+		RequiresCondition: !airborne
 	Encyclopedia:
 		Category: UCS - Aircrafts
 		Order: 3
@@ -36,11 +39,17 @@ ucs_aircrafts_gargoil_ii:
 		Armament: Light
 		Description: A better, modernized version of its predecessor, the Gargoil Reconnaissance Plane, the GARGOIL II is ideal for directly attacking structures and individual units. Equipped with heavy rockets, this fast, compact fighting machine is a central element of the UCS Air Force. However, due to its light armor, the GARGOIL II should not be used against massed enemy units.
 
-ucs_aircrafts_gargoil_ii_husk:
-	Inherits: ^CoreAircraftHusk
+ucs_aircrafts_gargoil_ii_falling_husk:
+	Inherits: ^CoreAircraftFallingHusk
 	Tooltip:
 		Name: Gargoil II
 	RevealsShroud:
 		Range: 6c896
 	RenderSprites:
 		Image: ucs_aircrafts_gargoil_ii
+
+ucs_aircrafts_gargoil_ii_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (GARGOIL II)

@@ -19,6 +19,17 @@ ed_vehicles_mt201l:
 	#	Filename: SPRI1.MIX
 	#	Start: 136
 
+ed_vehicles_mt201l_husk:
+	idle:
+		Filename: vehicle_tank_medium_husk.vspr
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: turret_mt_201l_husk.vspr
+		Facings: -16
+		Offset: -1, -2
+		ZOffset: -256
+
 # TODO: remove after PR #20705
 ed_vehicles_mt201l.ucs:
 	Inherits: ed_vehicles_mt201l

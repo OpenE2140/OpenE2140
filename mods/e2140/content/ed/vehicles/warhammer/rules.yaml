@@ -57,6 +57,8 @@ ed_vehicles_warhammer:
 		Delay: 50
 		ResetOnFire: True
 		Count: 6
+	SpawnActorOnDeath:
+		Actor: ed_vehicles_warhammer_husk
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 13
@@ -66,3 +68,9 @@ ed_vehicles_warhammer:
 		Armament: Three heavy cannon
 		Description: The ED's newest development, the Warhammer has some unique properties. The extremely stable, heavy armor gives this tank a long life on the battlefield. Plus, it's equipped with enough firepower to be used as a SPIDER-killer.
   
+ed_vehicles_warhammer_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (WARHAMMER)

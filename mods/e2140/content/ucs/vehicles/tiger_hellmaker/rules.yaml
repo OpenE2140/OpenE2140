@@ -47,6 +47,8 @@ ucs_vehicles_tiger_hellmaker:
 		Count: 2
 	WithDamageOverlay:
 		Image: smoking_mech
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_tiger_hellmaker_husk
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 5
@@ -55,3 +57,10 @@ ucs_vehicles_tiger_hellmaker:
 		Armor: Heavy and bulletproof
 		Armament: Two napalm bomb firing devices
 		Description: The HellMaker is part of the second generation of TIGER-Series battle robots.\n\nThey have two devices for firing napalm-type bombs which can burn a complete army of small battle units to death within seconds. In combat with a light or middleweight Eurasian Dynasty tank, the DXC additive in the napalm will corrode and burn the tank’s armor.
+
+ucs_vehicles_tiger_hellmaker_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (TIGER HellMaker)
