@@ -2,13 +2,12 @@ smoke:
 	Defaults:
 		Filename: smoke.vspr
 		Length: 8
+		Tick: 140
 		ZOffset: 512
 	white_smoke:
 		BlendMode: Additive
-		Tick: 60
 	dark_smoke:
 		BlendMode: Subtractive
-		Tick: 140
 
 smoke_firearm:
 	Defaults:

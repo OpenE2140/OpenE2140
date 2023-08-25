@@ -21,10 +21,16 @@ ed_vehicles_ht30lr_laser:
 		Damage: 16
 		DamageTypes: Default
 		ValidTargets: Ground, Ship
-	Warhead@Effect: CreateEffect
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
 		Image: smoke
-		Explosions: white_smoke
-		ExplosionPalette:
+		Sequences: white_smoke
+		Delay: 4
 		ValidTargets: Ground, Water, Ship, Air
 
 ed_vehicles_ht30lr_missiles:
@@ -86,6 +92,17 @@ ed_vehicles_ht30lr_missiles:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Water, Ship, Air
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 
 ed_vehicles_ht30lr_missiles_air:
