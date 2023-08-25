@@ -21,3 +21,20 @@ ucs_vehicles_goliath_explode:
 		ExplosionPalette:
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Ship, Pipe
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Water, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe

@@ -16,3 +16,14 @@ shared_misc_landmine:
 		Range: 1c0, 1c512
 		Pieces: 2,2
 		ValidTargets: Ground
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Water, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe

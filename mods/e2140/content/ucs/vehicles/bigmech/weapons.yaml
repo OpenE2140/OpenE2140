@@ -58,6 +58,17 @@ ucs_vehicles_big_mech:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+	Warhead@Effect: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Water, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
 
 ucs_vehicles_big_mech_air:
 	Inherits: ucs_vehicles_big_mech

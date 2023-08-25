@@ -13,19 +13,16 @@
 
 using JetBrains.Annotations;
 using OpenRA.GameRules;
-using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.Common.Warheads;
 using OpenRA.Mods.OpenE2140.Effects;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Warheads;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Spawn a weapon(s) on warhead impact.")]
-public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
+public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 {
 	[Desc("The weapons to spawn.")]
 	public readonly string[] Weapons = Array.Empty<string>();
@@ -38,9 +35,6 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 
 	[Desc("The minimum and maximum distances the projectile may travel.")]
 	public readonly WDist[] Range = { WDist.FromCells(2), WDist.FromCells(5) };
-
-	[Desc("Whether to consider actors in determining whether the impact should happen. If false, only terrain will be considered.")]
-	public readonly bool ImpactActors = true;
 
 	[Desc(
 		"Whether to use Damage, Inaccuracy and Range modifiers from source actor. If the source actor does not exist in the world, "
@@ -71,22 +65,11 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 
 	public override void DoImpact(in Target target, WarheadArgs args)
 	{
-		if (target.Type == TargetType.Invalid)
-			return;
-
 		var firedBy = args.SourceActor;
 		var pos = new WPos(target.CenterPosition.X, target.CenterPosition.Y, Math.Max(0, target.CenterPosition.Z));
 		var world = firedBy.World;
 
-		var actorAtImpact = this.ImpactActors ? this.ActorTypeAtImpact(world, pos, firedBy) : ImpactActorType.None;
-
-		// Ignore the impact if there are only invalid actors within range
-		if (actorAtImpact == ImpactActorType.Invalid)
-			return;
-
-		// Ignore the impact if there are no valid actors and no valid terrain
-		// (impacts are allowed on valid actors sitting on invalid terrain!)
-		if (actorAtImpact == ImpactActorType.None && !this.IsValidAgainstTerrain(world, pos))
+		if (!this.IsValidAgainst(target, firedBy))
 			return;
 
 		for (var i = 0; this.WeaponInfos.Length > i; i++)
@@ -145,42 +128,5 @@ public class SpawnWeaponsWarhead : Warhead, IRulesetLoaded<WeaponInfo>
 				);
 			}
 		}
-	}
-
-	private ImpactActorType ActorTypeAtImpact(World world, WPos pos, Actor firedBy)
-	{
-		var anyInvalidActor = false;
-
-		// Check whether the impact position overlaps with an actor's hitshape
-		foreach (var victim in world.FindActorsOnCircle(pos, WDist.Zero))
-		{
-			if (!this.AffectsParent && victim == firedBy)
-				continue;
-
-			var activeShapes = victim.TraitsImplementing<HitShape>().Where(t => !t.IsTraitDisabled);
-
-			if (!activeShapes.Any(s => s.DistanceFromEdge(victim, pos).Length <= 0))
-				continue;
-
-			if (this.IsValidAgainst(victim, firedBy))
-				return ImpactActorType.Valid;
-
-			anyInvalidActor = true;
-		}
-
-		return anyInvalidActor ? ImpactActorType.Invalid : ImpactActorType.None;
-	}
-
-	private bool IsValidAgainstTerrain(World world, WPos pos)
-	{
-		var targetTypeAir = new BitSet<TargetableType>("Air");
-		var cell = world.Map.CellContaining(pos);
-
-		if (!world.Map.Contains(cell))
-			return false;
-
-		var dat = world.Map.DistanceAboveTerrain(pos);
-
-		return this.IsValidTarget(dat > this.AirThreshold ? targetTypeAir : world.Map.GetTerrainInfo(cell).TargetTypes);
 	}
 }
