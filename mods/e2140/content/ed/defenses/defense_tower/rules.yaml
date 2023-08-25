@@ -6,6 +6,11 @@ ed_defenses_defense_tower:
 		HP: 150
 	Building:
 		LocalCenterOffset: 0,40,0
+	HitShape:
+		TargetableOffsets: 25,0,0,   125,0,0
+		Type: Rectangle
+			TopLeft: -312, -376
+			BottomRight: 312, 332
 	TransformSequence:
 		Offset: -48,-32,0
 	Selectable:

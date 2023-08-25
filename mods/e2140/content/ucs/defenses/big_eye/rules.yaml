@@ -6,6 +6,11 @@ ucs_defenses_big_eye:
 		HP: 300
 	Building:
 		LocalCenterOffset: -16,-226,0
+	HitShape:
+		TargetableOffsets: -300,0,0,   -400,0,0
+		Type: Rectangle
+			TopLeft: -412, -276
+			BottomRight: 412, 732
 	TransformSequence:
 		Offset: -32,226,0
 	Selectable:
