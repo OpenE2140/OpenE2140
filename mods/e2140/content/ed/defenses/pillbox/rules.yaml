@@ -6,6 +6,11 @@ ed_defenses_pillbox:
 		HP: 900
 	Building:
 		LocalCenterOffset: 0,0,0
+	HitShape:
+		TargetableOffsets: 0,0,0,   100,0,0
+		Type: Rectangle
+			TopLeft: -412, -476
+			BottomRight: 412, 432
 	TransformSequence:
 		Offset: -45,0,0
 	Selectable:

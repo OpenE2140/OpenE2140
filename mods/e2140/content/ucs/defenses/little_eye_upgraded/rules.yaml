@@ -6,6 +6,11 @@ ucs_defenses_little_eye_upgraded:
 		HP: 150
 	Building:
 		LocalCenterOffset: 0,-80,0
+	HitShape:
+		TargetableOffsets: -100,0,0,   -200,0,0
+		Type: Rectangle
+			TopLeft: -312, -276
+			BottomRight: 312, 432
 	TransformSequence:
 		Offset: -48,80,0
 	Selectable:

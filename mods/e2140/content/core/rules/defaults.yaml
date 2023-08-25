@@ -232,10 +232,6 @@
 	Building:
 		Dimensions: 1,1
 		Footprint: x
-	# Correct Hitshape and selection box for all towers
-	HitShape:
-		Type: Circle
-			Radius: 512
 	# Defense towers are selectable.
 	Selectable:
 		Bounds: 1040, 960, 0, 0
