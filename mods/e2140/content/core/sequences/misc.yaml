@@ -80,3 +80,11 @@ disabledactor-indicator:
 	idle:
 		Filename: content/core/assets/disabledactor_indicator.png
 		Offset: 0,0
+
+icon:
+	nuke:
+		Filename: SPRI0.MIX
+		Start: 187
+	plasmablast:
+		Filename: SPRI0.MIX
+		Start: 186

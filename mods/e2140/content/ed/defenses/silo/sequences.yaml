@@ -1,0 +1,26 @@
+ed_defenses_silo:
+	Defaults:
+		Filename: building_silo.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	active:
+		Start: 4
+		Length: 7
+		Tick: 120
+	damaged-active:
+		Filename: content/ed/defenses/silo/building_silo.png
+		Length: 7
+		Tick: 120
+
+ed_mcu_silo:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 187
+
+ed_mcu_silo.ucs:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 187

@@ -1,0 +1,51 @@
+ucs_defenses_pb_cannon:
+	Report: 131.smp
+	ValidTargets: Ground, Water, Ship
+	TargetActorCenter: true
+	Warhead@Damage: SpreadDamage
+		Spread: 1c156
+		Falloff: 100, 75, 45, 35, 5
+		Damage: 1500
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship, Air
+	Warhead@Effect: CreateEffect
+		Image: plasmablast_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 22.smp
+		ValidTargets: Ground, Water, Ship, Air
+	Warhead@Cluster: FireCluster
+		Weapon: ucs_defenses_pb_cannon_cluster
+		RandomClusterCount: 20
+		Dimensions: 5,5
+		Footprint: xxxxx xxXxx xXXXx xxXxx xxxxx
+
+ucs_defenses_pb_cannon_cluster:
+	ValidTargets: Ground, Water, Ship
+	Projectile: Bullet
+		Speed: 350
+		Blockable: false
+		LaunchAngle: 0,64
+		Inaccuracy: 0c512
+		InaccuracyType: Absolute
+		Palette:
+		TrailPalette:
+		Shadow: False
+	Warhead@Damage: SpreadDamage
+		Spread: 256
+		Damage: 150
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@Effect: CreateEffect
+		Image: explosion
+		Explosions: plasma_explosion_big
+		ExplosionPalette:
+		ImpactSounds: 22.smp, 23.smp
+		ValidTargets: Ground, Ship, Air
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Structure, Ship, Pipe

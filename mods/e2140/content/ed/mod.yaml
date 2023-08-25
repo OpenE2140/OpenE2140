@@ -40,6 +40,7 @@ Rules:
 	e2140|content/ed/defenses/defense_tower_upgraded/rules.yaml	
 	e2140|content/ed/defenses/heavy_defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/rules.yaml
+	e2140|content/ed/defenses/silo/rules.yaml
 	e2140|content/ed/defenses/watch_tower/rules.yaml
 
 Sequences:
@@ -79,6 +80,7 @@ Sequences:
 	e2140|content/ed/defenses/defense_tower_upgraded/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/sequences.yaml
+	e2140|content/ed/defenses/silo/sequences.yaml
 	e2140|content/ed/defenses/watch_tower/sequences.yaml
 
 Voices:
@@ -109,3 +111,4 @@ Weapons:
 	e2140|content/ed/defenses/defense_tower_upgraded/weapons.yaml
 	e2140|content/ed/defenses/heavy_defense_tower/weapons.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/weapons.yaml
+	e2140|content/ed/defenses/silo/weapons.yaml

@@ -1,0 +1,17 @@
+ed_defenses_silo:
+	Inherits: Smudges
+	Report: 130.smp
+	ValidTargets: Ground, Water, Ship
+	TargetActorCenter: true
+	Warhead@Damage: SpreadDamage
+		Spread: 1c156
+		Falloff: 100, 75, 45, 35, 5
+		Damage: 2000
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship, Air
+	Warhead@Effect: CreateEffect
+		Image: nuclear_explosion
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground, Water, Ship, Air

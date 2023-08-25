@@ -1,0 +1,83 @@
+ed_defenses_silo:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Silo
+	Health:
+		HP: 500
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		LocalCenterOffset: -20,120,0
+	TransformSequence:
+		Image: core_buildingsequence_small
+		Offset: -24,-120,0
+	HitShape:
+		TargetableOffsets: 400,-150,0,   350,100,0,   50,-250,0,   -50,0,0
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 312
+	Selectable:
+		Bounds: 1024, 960, 0,-100
+	Power:
+		Amount: -100
+	NukePower:
+		Cursor: nuke
+		Icon: nuke
+		IconPalette:
+		BeaconPosterPalette:
+		ChargeInterval: 6500
+		Name: Nuclear rocket
+		Description: Launches a devastating nuclear rocket\nat a target location.
+		SelectTargetTextNotification: Select target.
+		InsufficientPowerTextNotification: Insufficient power.
+		BeginChargeTextNotification: Nuclear rocket preparing.
+		EndChargeTextNotification: Nuclear rocket ready.
+		IncomingTextNotification: Nuclear rocket launch detected.
+		MissileWeapon: ed_defenses_silo
+		MissileImage: projectile
+		MissileUp: nuclear_rocket_up
+		MissileDown: nuclear_rocket_down
+		MissileDelay: 5
+		MissilePalette:
+		SpawnOffset: 512,-64,0
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		DisplayRadarPing: True
+		TrailImage: trail
+		TrailSequences: trail_rocket_big
+		TrailPalette:
+		SupportPowerPaletteOrder: 20
+		FlightVelocity: 0c200
+		FlightDelay: 200
+		LaunchSound: 111.smp
+		StartFullyCharged: True
+		AllowMultiple: True
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	SupportPowerChargeBar:
+	WithSupportPowerActivationAnimation:
+	Encyclopedia:
+		Category: ED - Buildings
+		Order: 13
+		Animation: DATABASE/X13.FLC
+		Title: Launcher for Nuclear Rockets
+		Armor: Heavy
+		Armament: None
+		Resistance: High
+		Description: The whole apparatus is under ground. Only the gate with heavy armor-plating is above the ground, opening shortly before the launch of a rocket and closing immediately after.\n\nA launcher for nuclear rockets holds only one rocket and cannot be used after the rocket has been launched. With its heavy armor-plating it can still be used to support a defense line.
+
+ed_mcu_silo:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Silo
+	Transforms:
+		Offset: 0,0
+		IntoActor: ed_defenses_silo
+	Valued:
+		Cost: 1000
+	Buildable:
+		IconPalette:
+		Queue: Defense.ED
+		BuildDuration: 40
+		BuildPaletteOrder: 35
+	WithTextDecoration:
+		Text: Silo

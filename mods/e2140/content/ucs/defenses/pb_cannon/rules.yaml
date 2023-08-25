@@ -1,0 +1,81 @@
+ucs_defenses_pb_cannon:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: PB Cannon
+	Health:
+		HP: 500
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		LocalCenterOffset: 0,110,0
+	TransformSequence:
+		Image: core_buildingsequence_small
+		Offset: -48,-110,0
+	HitShape:
+		TargetableOffsets: 500,200,0,   500,-200,0,   50,200,0,   50,-200,0
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 312
+	Selectable:
+		Bounds: 1024, 960, 0,-200
+	Power:
+		Amount: -500
+	NukePower:
+		Cursor: plasmablast
+		Icon: plasmablast
+		IconPalette:
+		BeaconPosterPalette:
+		ChargeInterval: 8000
+		Name: Plasma Blast
+		Description: Fires a very strong plasma laser\nbeam at a target location.
+		SelectTargetTextNotification: Select target.
+		InsufficientPowerTextNotification: Insufficient power.
+		BeginChargeTextNotification: Plasma Blast preparing.
+		EndChargeTextNotification: Plasma Blast ready.
+		IncomingTextNotification: Plasma Blast launch detected.
+		MissileWeapon: ucs_defenses_pb_cannon
+		MissileImage: projectile
+		MissileUp: plasmablast_up
+		MissileDown: plasmablast_down
+		MissileDelay: 6
+		MissilePalette:
+		SpawnOffset: 512,0,0
+		DisplayTimerRelationships: Ally, Neutral, Enemy
+		DisplayRadarPing: True
+		TrailPalette:
+		SupportPowerPaletteOrder: 30
+		FlightVelocity: 0c200
+		FlightDelay: 200
+		LaunchSound: 112.smp
+		StartFullyCharged: True
+		AllowMultiple: True
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	SupportPowerChargeBar:
+	WithSupportPowerActivationAnimation:
+	Encyclopedia:
+		Category: UCS - Buildings
+		Order: 21
+		Animation: DATABASE/X21.FLC
+		Title: Plasma Blast
+		Armor: Protected from traditional weapons.
+		Armament: None
+		Resistance: Medium
+		Description: Plasma Blast is the latest UCS invention and currently the best mass destruction device in the world. A very strong plasma laser beam is fired, not to destroy but as a transport medium for large numbers of plasma bombs. Although the Plasma Blast can be fired as often as necessary, it does take a while for the generators to recharge.
+
+ucs_mcu_pb_cannon:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile PB Cannon
+	Transforms:
+		Offset: 0,0
+		IntoActor: ucs_defenses_pb_cannon
+	Valued:
+		Cost: 1500
+	Buildable:
+		IconPalette:
+		Queue: Defense.UCS
+		BuildDuration: 40
+		BuildPaletteOrder: 35
+	WithTextDecoration:
+		Text: PB Cannon

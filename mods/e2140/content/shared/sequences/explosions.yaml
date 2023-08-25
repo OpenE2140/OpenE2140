@@ -120,3 +120,19 @@ big_explosion:
 				Filename: GRAPH/SHCKV16.DAT
 		BlendMode: Additive
 		Length: 7
+
+plasmablast_explosion:
+	idle:
+		Combine:
+			0:
+				Filename: GRAPH/SHCKV00.DAT
+			1:
+				Filename: GRAPH/SHCKV01.DAT
+			2:
+				Filename: GRAPH/SHCKV02.DAT
+			3:
+				Filename: GRAPH/SHCKV03.DAT
+			4:
+				Filename: GRAPH/SHCKV04.DAT
+		BlendMode: Additive
+		Length: 5
