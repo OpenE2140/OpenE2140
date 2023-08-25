@@ -84,6 +84,13 @@ Cursors:
 		scroll-b:
 			Start: 47
 
+		nuke:
+			Start: 92
+			Length: 4
+		plasmablast:
+			Start: 4
+			Length: 4
+
 	content/core/assets/repairblocked.png:
 		repair-blocked:
 			Start: 0

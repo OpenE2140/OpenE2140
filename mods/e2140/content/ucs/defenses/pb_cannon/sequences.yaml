@@ -1,0 +1,22 @@
+ucs_defenses_pb_cannon:
+	Defaults:
+		Filename: building_pb_cannon.vspr
+	idle:
+	damaged-idle:
+		Start: 1
+	active:
+		Start: 2
+		Length: 9
+		Tick: 100
+
+ucs_mcu_pb_cannon:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI1.MIX
+		Start: 186
+
+ucs_mcu_pb_cannon.ed:
+	Inherits: shared_mcu
+	icon:
+		Filename: SPRI0.MIX
+		Start: 186

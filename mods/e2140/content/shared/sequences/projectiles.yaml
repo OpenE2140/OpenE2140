@@ -52,3 +52,13 @@ projectile:
 		InterpolatedFacings: 64
 		Facings: -16
 		ZOffset: -512
+	nuclear_rocket_up:
+		Filename: projectile_nuclear_rocket_up.vspr
+	nuclear_rocket_down:
+		Filename: projectile_nuclear_rocket_down.vspr
+	plasmablast_up:
+		Filename: projectile_plasmablast_up.vspr
+		BlendMode: Additive
+	plasmablast_down:
+		Filename: projectile_plasmablast_down.vspr
+		BlendMode: Additive

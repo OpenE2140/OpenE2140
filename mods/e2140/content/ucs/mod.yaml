@@ -38,6 +38,7 @@ Rules:
 	e2140|content/ucs/defenses/big_eye_upgraded/rules.yaml
 	e2140|content/ucs/defenses/little_eye/rules.yaml
 	e2140|content/ucs/defenses/little_eye_upgraded/rules.yaml
+	e2140|content/ucs/defenses/pb_cannon/rules.yaml
 	e2140|content/ucs/defenses/sdi_defense/rules.yaml
 
 Sequences:
@@ -75,6 +76,7 @@ Sequences:
 	e2140|content/ucs/defenses/big_eye_upgraded/sequences.yaml
 	e2140|content/ucs/defenses/little_eye/sequences.yaml
 	e2140|content/ucs/defenses/little_eye_upgraded/sequences.yaml
+	e2140|content/ucs/defenses/pb_cannon/sequences.yaml
 	e2140|content/ucs/defenses/sdi_defense/sequences.yaml
 
 Voices:
@@ -105,3 +107,4 @@ Weapons:
 	e2140|content/ucs/defenses/big_eye_upgraded/weapons.yaml
 	e2140|content/ucs/defenses/little_eye/weapons.yaml
 	e2140|content/ucs/defenses/little_eye_upgraded/weapons.yaml
+	e2140|content/ucs/defenses/pb_cannon/weapons.yaml

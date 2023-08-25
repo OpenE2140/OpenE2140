@@ -48,6 +48,18 @@ Generate:
 		idle: 97-105 16
 			Offsets: 98,104:-1,0 100,102:1,0
 
+	projectile_nuclear_rocket_up:
+		idle: 145
+
+	projectile_nuclear_rocket_down:
+		idle: 146
+
+	projectile_plasmablast_up:
+		idle: 147
+
+	projectile_plasmablast_down:
+		idle: 148
+
 	smoke:
 		idle: 169-176
 
@@ -112,3 +124,9 @@ Generate:
 
 	fire_big:
 		idle: 20-31
+
+	thruster_up:
+		idle: 57
+
+	thruster_down:
+		idle: 56

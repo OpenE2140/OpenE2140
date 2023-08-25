@@ -50,6 +50,8 @@ Player:
 	PlayerRadarTerrain:
 	# Collects observer stats.
 	PlayerStatistics:
+	# Enables support powers such as Plasma Blast.
+	SupportPowerManager:
 
 # Map editor specific player setup.
 EditorPlayer:
