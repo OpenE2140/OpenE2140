@@ -33,6 +33,18 @@ ucs_buildings_robot_factory:
 		Frames: 1,0
 		Length: 2
 		Tick: 100	
+	deploy:
+		Filename: content/ucs/buildings/robot_factory/mcu_deploy.png
+		Length: 30
+		ZOffset: 256
+	covered:
+		Filename: content/ucs/buildings/robot_factory/mcu_deploy.png
+		Start: 29
+		ZOffset: 256
+	uncover:
+		Filename: content/ucs/buildings/robot_factory/pyramid_uncover.png
+		Length: 8
+		ZOffset: 256
 
 ucs_mcu_robot_factory:
 	Inherits: shared_mcu
