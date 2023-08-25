@@ -40,7 +40,7 @@ shared_buildings_power_plant:
 		Gravity: 42
 		RandomRate: 0
 		Palette:
-		Offset: 200,256,0
+		Offset: 200,-1024,0
 		Image: power_plant_smoke
 		Sequences: chimney_smoke
 		RequiresCondition: !Transforming && Powered

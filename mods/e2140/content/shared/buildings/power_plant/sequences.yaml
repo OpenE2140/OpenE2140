@@ -42,9 +42,10 @@ shared_mcu_power_plant.ucs:
 power_plant_smoke:
 	chimney_smoke:
 		Filename: smoke.vspr
-		Offset: 0,-80,0
+		Offset: 0,0,0
 		Length: 8
 		Tick: 140
+		ZOffset: 2048
 		BlendMode: Additive
 	chimney_chamber:
 		Filename: smoke.vspr
