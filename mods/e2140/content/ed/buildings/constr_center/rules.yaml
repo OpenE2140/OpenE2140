@@ -95,7 +95,7 @@ ed_mcu_constr_center:
 	Buildable:
 		IconPalette:
 		Queue: Building.ED
-		BuildDuration: 40
+		BuildDuration: 163
 		BuildPaletteOrder: 40
 	WithTextDecoration:
 		Text: Constr. Center

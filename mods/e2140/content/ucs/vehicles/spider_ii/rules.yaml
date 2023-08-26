@@ -7,7 +7,7 @@ ucs_vehicles_spider_ii:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 100
+		BuildDuration: 113
 		BuildPaletteOrder: 70
 	Selectable:
 		Bounds: 960, 928, 0, 0

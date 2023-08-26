@@ -75,7 +75,7 @@ ucs_mcu_pb_cannon:
 	Buildable:
 		IconPalette:
 		Queue: Defense.UCS
-		BuildDuration: 40
+		BuildDuration: 113
 		BuildPaletteOrder: 35
 	WithTextDecoration:
 		Text: PB Cannon

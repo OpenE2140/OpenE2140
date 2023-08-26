@@ -7,7 +7,7 @@ ucs_vehicles_tiger_assault:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 40
+		BuildDuration: 88
 		BuildPaletteOrder: 40
 	Selectable:
 		Bounds: 960, 928, 0, 0

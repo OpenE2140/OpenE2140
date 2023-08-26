@@ -65,7 +65,7 @@ shared_mcu_mine:
 	Buildable:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
-		BuildDuration: 160
+		BuildDuration: 100
 		BuildPaletteOrder: 60
 	WithTextDecoration:
 		Text: Mine

@@ -9,7 +9,7 @@ ucs_ships_russ3:
 	Buildable:
 		IconPalette:
 		Queue: Ship.UCS
-		BuildDuration: 60
+		BuildDuration: 125
 		BuildPaletteOrder: 10
 	Selectable:
 		Bounds: 1344, 976, 0, 0

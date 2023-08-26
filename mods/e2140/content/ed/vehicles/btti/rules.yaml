@@ -8,7 +8,7 @@ ed_vehicles_btti:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.ED
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 100
 	Selectable:
 		Bounds: 640, 464, 0, 0

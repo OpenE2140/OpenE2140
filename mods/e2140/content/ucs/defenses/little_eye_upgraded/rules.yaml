@@ -35,7 +35,7 @@ ucs_mcu_little_eye_upgraded:
 	Buildable:
 		IconPalette:
 		Queue: Defense.UCS
-		BuildDuration: 40
+		BuildDuration: 75
 		BuildPaletteOrder: 15
 	WithTextDecoration:
 		Text: Little Eye Upgr.

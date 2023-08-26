@@ -68,7 +68,7 @@ ed_mcu_bio_center:
 	Buildable:
 		IconPalette:
 		Queue: Building.ED
-		BuildDuration: 40
+		BuildDuration: 100
 		BuildPaletteOrder: 20
 	WithTextDecoration:
 		Text: Bio-Center

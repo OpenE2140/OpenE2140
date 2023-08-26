@@ -7,7 +7,7 @@ ed_ships_wtrn:
 	Buildable:
 		IconPalette:
 		Queue: Ship.ED
-		BuildDuration: 60
+		BuildDuration: 125
 		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 1296, 1088, 0, 0

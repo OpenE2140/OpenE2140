@@ -41,7 +41,7 @@ ed_mcu_pillbox:
 	Buildable:
 		IconPalette:
 		Queue: Defense.ED
-		BuildDuration: 40
+		BuildDuration: 100
 		BuildPaletteOrder: 30
 	WithTextDecoration:
 		Text: Pillbox

@@ -11,7 +11,7 @@ shared_vehicles_bantha:
 	Buildable:
 		IconPalette:
 		Queue: Building.UCS, Building.ED, Teleport.UCS
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 110
 	Selectable:
 		Bounds: 1040, 1056, 0, 0

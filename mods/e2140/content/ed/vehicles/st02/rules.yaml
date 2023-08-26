@@ -8,7 +8,7 @@ ed_vehicles_st02:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.ED
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 768, 544, 0, 0

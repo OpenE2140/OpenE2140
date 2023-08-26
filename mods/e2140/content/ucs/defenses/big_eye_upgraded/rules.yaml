@@ -31,7 +31,7 @@ ucs_mcu_big_eye_upgraded:
 	Buildable:
 		IconPalette:
 		Queue: Defense.UCS
-		BuildDuration: 40
+		BuildDuration: 75
 		BuildPaletteOrder: 25
 	WithTextDecoration:
 		Text: Big Eye Upgr.

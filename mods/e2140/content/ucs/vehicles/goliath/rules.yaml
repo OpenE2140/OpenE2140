@@ -8,7 +8,7 @@ ucs_vehicles_goliath:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 140
 	Selectable:
 		Bounds: 896, 864, 0, 0

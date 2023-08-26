@@ -7,6 +7,7 @@ ed_infantry_a04:
 	Buildable:
 		IconPalette:
 		Queue: Infantry.ED
+		BuildDuration: 100
 		BuildPaletteOrder: 40
 	Health:
 		HP: 20

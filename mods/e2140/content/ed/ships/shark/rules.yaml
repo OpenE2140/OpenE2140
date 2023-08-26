@@ -8,7 +8,7 @@ ed_ships_shark:
 	Buildable:
 		IconPalette:
 		Queue: Ship.ED
-		BuildDuration: 60
+		BuildDuration: 113
 		BuildPaletteOrder: 10
 	Selectable:
 		Bounds: 704, 624, 0, 0

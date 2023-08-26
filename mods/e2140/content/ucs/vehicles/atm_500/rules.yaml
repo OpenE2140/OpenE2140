@@ -8,7 +8,7 @@ ucs_vehicles_atm_500:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 80
 	Selectable:
 		Bounds: 896, 688, 0, 0

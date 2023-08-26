@@ -48,7 +48,7 @@ shared_mcu_shelter:
 	Buildable:
 		IconPalette:
 		Queue: Defense.UCS, Defense.ED
-		BuildDuration: 160
+		BuildDuration: 100
 		BuildPaletteOrder: 35
 	WithTextDecoration:
 		Text: Shelter

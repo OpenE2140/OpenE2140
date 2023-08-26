@@ -56,7 +56,7 @@ ed_mcu_watch_tower:
 	Buildable:
 		IconPalette:
 		Queue: Defense.ED
-		BuildDuration: 40
+		BuildDuration: 100
 		BuildPaletteOrder: 50
 	WithTextDecoration:
 		Text: Watch Tower

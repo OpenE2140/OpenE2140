@@ -8,7 +8,7 @@ ed_vehicles_mt200:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.ED
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 30
 	Selectable:
 		Bounds: 896, 640, 0, 0
