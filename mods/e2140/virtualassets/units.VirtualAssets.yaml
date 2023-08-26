@@ -546,7 +546,7 @@ Generate:
 	vehicle_hb_bike_husk: Shadow Husk
 		idle: 531-539 16
 
-	vehicle_shadow: Shadow Player
+	vehicle_shadow: Shadow Tracks Player
 		idle: 540-548 16
 		move: 540-548 16 4
 
