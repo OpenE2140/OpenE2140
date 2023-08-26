@@ -8,7 +8,7 @@ ed_ships_kt30:
 	Buildable:
 		IconPalette:
 		Queue: Ship.ED
-		BuildDuration: 60
+		BuildDuration: 175
 		BuildPaletteOrder: 30
 	Selectable:
 		Bounds: 1984, 1792, 0, 0

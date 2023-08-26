@@ -8,7 +8,7 @@ ucs_vehicles_miner_bt:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 110
 	Selectable:
 		Bounds: 1088, 784, 0, 0

@@ -7,7 +7,7 @@ ucs_ships_ttre400:
 	Buildable:
 		IconPalette:
 		Queue: Ship.UCS
-		BuildDuration: 60
+		BuildDuration: 125
 		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 1104, 944, 0, 0

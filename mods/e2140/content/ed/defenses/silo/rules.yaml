@@ -77,7 +77,7 @@ ed_mcu_silo:
 	Buildable:
 		IconPalette:
 		Queue: Defense.ED
-		BuildDuration: 40
+		BuildDuration: 100
 		BuildPaletteOrder: 35
 	WithTextDecoration:
 		Text: Silo

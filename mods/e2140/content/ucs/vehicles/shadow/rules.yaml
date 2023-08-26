@@ -7,7 +7,7 @@ ucs_vehicles_shadow:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 60
+		BuildDuration: 150
 		BuildPaletteOrder: 120
 	Selectable:
 		Bounds: 960, 864, 0, 0

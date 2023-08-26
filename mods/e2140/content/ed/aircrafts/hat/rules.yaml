@@ -7,7 +7,7 @@ ed_aircrafts_hat:
 	Buildable:
 		IconPalette:
 		Queue: Aircraft.ED
-		BuildDuration: 60
+		BuildDuration: 100
 		BuildPaletteOrder: 20
 	Selectable:
 		Bounds: 1184, 1072, 0, 0

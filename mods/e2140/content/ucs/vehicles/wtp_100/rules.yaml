@@ -7,7 +7,7 @@ ucs_vehicles_wtp_100:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.UCS, Teleport.UCS
-		BuildDuration: 40
+		BuildDuration: 100
 		BuildPaletteOrder: 90
 	Selectable:
 		Bounds: 1664, 1472, 0, 0

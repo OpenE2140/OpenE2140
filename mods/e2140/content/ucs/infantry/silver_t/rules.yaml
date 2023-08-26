@@ -7,6 +7,7 @@ ucs_infantry_silver_t:
 	Buildable:
 		IconPalette:
 		Queue: Infantry.UCS
+		BuildDuration: 75
 		BuildPaletteOrder: 40
 	Health:
 		HP: 40

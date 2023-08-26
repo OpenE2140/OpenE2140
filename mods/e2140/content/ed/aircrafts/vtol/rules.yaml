@@ -8,7 +8,7 @@ ed_aircrafts_vtol:
 	Buildable:
 		IconPalette:
 		Queue: Aircraft.ED
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 40
 	Selectable:
 		Bounds: 992, 848, 0, 0

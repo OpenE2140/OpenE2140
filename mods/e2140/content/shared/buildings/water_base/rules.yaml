@@ -80,7 +80,7 @@ shared_mcu_water_base:
 	Buildable:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
-		BuildDuration: 160
+		BuildDuration: 113
 		BuildPaletteOrder: 80
 	WithTextDecoration:
 		Text: Water Base

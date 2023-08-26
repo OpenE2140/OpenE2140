@@ -87,7 +87,7 @@ shared_mcu_refinery:
 	Buildable:
 		IconPalette:
 		Queue: Building.UCS, Building.ED
-		BuildDuration: 160
+		BuildDuration: 100
 		BuildPaletteOrder: 50
 	WithTextDecoration:
 		Text: Refinery

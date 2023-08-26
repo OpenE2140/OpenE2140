@@ -7,7 +7,7 @@ ed_vehicles_screamer:
 	Buildable:
 		IconPalette:
 		Queue: Vehicle.ED
-		BuildDuration: 60
+		BuildDuration: 75
 		BuildPaletteOrder: 120
 	Selectable:
 		Bounds: 1024, 928, 0, 0
