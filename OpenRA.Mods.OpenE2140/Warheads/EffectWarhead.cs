@@ -16,8 +16,8 @@ public abstract class EffectWarhead : Warhead
 	/// <summary>
 	/// Checks if target is a valid type of actor.
 	/// </summary>
-	/// <param name="victim"></param>
-	/// <param name="firedBy"></param>
+	/// <param name="victim">Target actor.</param>
+	/// <param name="firedBy">Source actor.</param>
 	/// <returns></returns>
 	public override bool IsValidAgainst(Actor victim, Actor firedBy)
 	{
@@ -48,8 +48,8 @@ public abstract class EffectWarhead : Warhead
 	/// <summary>
 	/// Checks if target is a valid type.
 	/// </summary>
-	/// <param name="target"></param>
-	/// <param name="firedBy"></param>
+	/// <param name="target">Target coordinates.</param>
+	/// <param name="firedBy">Source actor.</param>
 	/// <returns></returns>
 	protected bool IsValidAgainst(in Target target, Actor firedBy)
 	{
@@ -69,7 +69,6 @@ public abstract class EffectWarhead : Warhead
 			// (impacts are allowed on valid actors sitting on invalid terrain!)
 			case ImpactActorType.None when !this.IsValidAgainst(world.Map, pos):
 				return false;
-
 			default:
 				return true;
 		}
