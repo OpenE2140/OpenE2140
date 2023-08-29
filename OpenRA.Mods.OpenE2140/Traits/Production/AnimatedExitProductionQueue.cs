@@ -106,7 +106,7 @@ public class AnimatedExitProductionQueue : ProductionQueue
 
 		var rules = this.Actor.World.Map.Rules;
 		Game.Sound.PlayNotification(rules, this.Actor.Owner, "Speech", this.Info.ReadyAudio, this.Actor.Owner.Faction.InternalName);
-		TextNotificationsManager.AddTransientLine(this.Info.ReadyTextNotification, this.Actor.Owner);
+		TextNotificationsManager.AddTransientLine(this.Actor.Owner, this.Info.ReadyTextNotification);
 	}
 
 	protected override void CancelProduction(string itemName, uint numberToCancel)

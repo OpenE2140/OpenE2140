@@ -151,7 +151,7 @@ public class PowerManager : ITick
 			return;
 
 		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.info.SpeechNotification, self.Owner.Faction.InternalName);
-		TextNotificationsManager.AddTransientLine(this.info.TextNotification, self.Owner);
+		TextNotificationsManager.AddTransientLine(self.Owner, this.info.TextNotification);
 
 		this.lastAdviceTime = Game.RunTime;
 	}
