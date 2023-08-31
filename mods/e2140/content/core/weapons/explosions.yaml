@@ -44,13 +44,41 @@ VehicleExploding:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
 		Delay: 20
-	Warhead@EffectShrapnels: SpawnWeapons
+	Warhead@EffectShrapnels1: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
-		Pieces: 5, 6
+		Pieces: 3, 4
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
-
+		Delays: 0
+	Warhead@EffectShrapnels2: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		Delays: 5
+	Warhead@EffectShrapnels3: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		Delays: 10
+	Warhead@EffectShrapnels4: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		Delays: 15
+	Warhead@EffectShrapnels5: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		Delays: 20
 AircraftExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
