@@ -5,10 +5,20 @@ Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on 
 Links:
 * [Discord server](https://discord.gg/KNcX5BxA37)
 * [Mod DB page](https://www.moddb.com/mods/opene2140)
+* [OpenE2140 channel on Dalek.zone](https://dalek.zone/c/opene2140/videos) (PeerTube)
 
 # Videos / Screenshots
 
-Video preview showcasing latest development:
+## Screenshots (September 2023)
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/d75532d4-bc0f-47e3-b292-5c63c6ddd1b2"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/d75532d4-bc0f-47e3-b292-5c63c6ddd1b2" height="200"></a>
+<a href="https://github-production-user-asset-6210df.s3.amazonaws.com/119738087/264778455-e0d21b3d-5f21-4468-9a0a-0b0972ef41e5.gif"><img src="https://github-production-user-asset-6210df.s3.amazonaws.com/119738087/264778455-e0d21b3d-5f21-4468-9a0a-0b0972ef41e5.gif" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/7e586d6e-a2e9-4729-a668-7db284f9c35b"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/7e586d6e-a2e9-4729-a668-7db284f9c35b" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/e800609f-846b-4abb-89e8-e404c9e08296"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/e800609f-846b-4abb-89e8-e404c9e08296" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/fd397d13-58ee-4341-93d6-8f11293a976f"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/fd397d13-58ee-4341-93d6-8f11293a976f" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/70f01e3a-ca04-4f38-98d2-4d4f24e36420"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/70f01e3a-ca04-4f38-98d2-4d4f24e36420" height="200"></a>
+
+
+## Video preview
 - [OpenE2140: Preview #4 (May 2023)](https://dalek.zone/w/qJBKYThEApfiexosS1iNKM)
 
 ## Screenshots (April 2023)
