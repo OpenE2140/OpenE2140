@@ -54,7 +54,7 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 	public readonly string Palette = "effect";
 
 	[Desc(
-		$"Change effect position each tick. List of triples (x,y,z) for each loop. ",
+		"Change effect position each tick. List of triples (x,y,z) for each loop. ",
 		$"Number of items must be equal or less than {nameof(TerrainTileAnimationInfo.LoopCount)}. By default effect does not move."
 	)]
 	public readonly WVec[] EffectMovement = Array.Empty<WVec>();
@@ -147,7 +147,7 @@ public class TerrainTileAnimation : ITick
 	{
 		private readonly TerrainTileAnimationInfo info;
 		private readonly WPos initialPosition;
-		private SpriteEffect? effect = null;
+		private SpriteEffect? effect;
 		private int delayTicks;
 		private int movementTicks;
 		private int loop;

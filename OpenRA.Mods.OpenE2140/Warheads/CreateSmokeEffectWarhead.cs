@@ -9,7 +9,7 @@ namespace OpenRA.Mods.OpenE2140.Warheads;
 [Desc("Create sprite effect on warhead impact.")]
 public class CreateSmokeEffectWarhead : EffectWarhead
 {
-	[FieldLoader.Require] 
+	[FieldLoader.Require]
 	[Desc("The time between individual particle creation. Two values mean actual lifetime will vary between them.")]
 	public readonly int[] Lifetime = Array.Empty<int>();
 
@@ -26,7 +26,7 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 	public readonly bool RandomFacing = true;
 
 	[Desc("Randomize particle turnrate.")]
-	public readonly int TurnRate = 0;
+	public readonly int TurnRate;
 
 	[Desc("The rate at which particle movement properties are reset.")]
 	public readonly int RandomRate = 4;
@@ -42,7 +42,7 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 	[PaletteReference(nameof(CreateSmokeEffectWarhead.IsPlayerPalette))]
 	public readonly string Palette = "effect";
 
-	public readonly bool IsPlayerPalette = false;
+	public readonly bool IsPlayerPalette;
 
 	public override void DoImpact(in Target target, WarheadArgs args)
 	{

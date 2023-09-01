@@ -17,6 +17,6 @@ public static class VariableExpressionExtensions
 			)
 			.ToArray();
 
-		return new IntegerExpression(expression.Expression + FormattableStringFactory.Create(format.Format, args).ToString());
+		return new IntegerExpression(expression.Expression + FormattableStringFactory.Create(format.Format, args));
 	}
 }

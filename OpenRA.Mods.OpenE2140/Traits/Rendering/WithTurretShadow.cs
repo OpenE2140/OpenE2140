@@ -56,7 +56,7 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 				anim,
 				() => t.Offset + this.Offset,
 				() => this.ZOffset,
-				(IRenderable renderable, bool renderUi) =>
+				(renderable, renderUi) =>
 				{
 					// When rendering inside UI, we cannot render shadow, so skip entire IRenderable
 					if (renderUi || renderable is not IModifyableRenderable mr)

@@ -23,13 +23,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Hcum;
 
 public class RepairAttack : Activity, IActivityNotifyStanceChanged
 {
-	private static readonly CVec[] AllowedDockDirections =
-	{
-		new CVec(-1,  0),
-		new CVec(0, -1),
-		new CVec(0,  1),
-		new CVec(1,  0),
-	};
+	private static readonly CVec[] AllowedDockDirections = { new CVec(-1, 0), new CVec(0, -1), new CVec(0, 1), new CVec(1, 0) };
 
 	private readonly AttackRepair attack;
 	private readonly Mobile mobile;
@@ -65,7 +59,8 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 		// The target may become hidden between the initial order request and the first tick (e.g. if queued)
 		// Moving to any position (even if quite stale) is still better than immediately giving up
 		if ((target.Type == TargetType.Actor && target.Actor.CanBeViewedByPlayer(self.Owner))
-			|| target.Type == TargetType.FrozenActor || target.Type == TargetType.Terrain)
+			|| target.Type == TargetType.FrozenActor
+			|| target.Type == TargetType.Terrain)
 		{
 			this.lastVisibleTarget = Target.FromPos(target.CenterPosition);
 			this.lastVisibleMinRange = this.attack.GetMinimumRangeVersusTarget(target);
@@ -103,6 +98,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 			// TODO: fix broken attack logic when trying to repair disabled HCU-M that is in docked position.
 			this.UndockFromTarget(self);
+
 			return true;
 		}
 
@@ -115,6 +111,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 		}
 
 		this.target = this.target.Recalculate(self.Owner, out var targetIsHiddenActor);
+
 		if (!targetIsHiddenActor && this.target.Type == TargetType.Actor)
 		{
 			this.lastVisibleTarget = Target.FromTargetPositions(this.target);
@@ -128,10 +125,12 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 		var pos = self.CenterPosition;
 		var checkTarget = this.useLastVisibleTarget ? this.lastVisibleTarget : this.target;
+
 		if (checkTarget.Actor == null || checkTarget.Actor.IsInWorld == false)
 		{
 			if (this.RepairState is (RepairState.Repairing or RepairState.DockingToTarget))
 				this.UndockFromTarget(self);
+
 			return true;
 		}
 
@@ -145,7 +144,10 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 					if (!this.allowMovement || this.lastVisibleMaxRange == WDist.Zero || this.lastVisibleMaxRange < this.lastVisibleMinRange)
 						return true;
 
-					this.QueueChild(this.mobile.MoveWithinRange(this.target, this.lastVisibleMinRange, this.lastVisibleMaxRange, checkTarget.CenterPosition, Color.Red));
+					this.QueueChild(
+						this.mobile.MoveWithinRange(this.target, this.lastVisibleMinRange, this.lastVisibleMaxRange, checkTarget.CenterPosition, Color.Red)
+					);
+
 					return false;
 				}
 
@@ -156,9 +158,11 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				var destination = self.World.Map.CenterOfSubCell(this.target.Actor.Location, targetSubCell);
 				var origin = self.World.Map.CenterOfSubCell(self.Location, this.mobile.FromSubCell);
 				var desiredFacing = (destination - origin).Yaw;
+
 				if (this.mobile.Facing != desiredFacing)
 				{
 					this.QueueChild(new Turn(self, desiredFacing));
+
 					return false;
 				}
 
@@ -166,6 +170,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				if (targetMobile?.CurrentMovementTypes != MovementType.None)
 				{
 					this.QueueChild(new Wait(5));
+
 					return false;
 				}
 
@@ -177,12 +182,14 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				return false;
 			}
+
 			case RepairState.DockingToTarget:
 			{
 				// Re-check if docking is still possible
 				if (this.target.Type == TargetType.Invalid || !this.CanDock(self, this.target.Actor))
 				{
 					this.RepairState = RepairState.MovingToTarget;
+
 					return false;
 				}
 
@@ -198,27 +205,32 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				this.QueueChild(new Drag(self, pos, repairPosition, length));
 				this.RepairState = RepairState.DockingToTarget;
+
 				//this.attack.DockingToTarget(self);
 
 				this.QueueChild(new CallFunc(() => this.RepairState = RepairState.Repairing, false));
 
 				break;
 			}
+
 			case RepairState.Repairing:
 			{
 				// Re-check if the target is still valid
 				if (this.target.Type == TargetType.Invalid)
 				{
 					this.UndockFromTarget(self);
+
 					return true;
 				}
 
 				// Check if target isn't moving, if so, undock and try moving to it again
 				var targetMobile = this.target.Actor.TraitOrDefault<Mobile>();
+
 				if (targetMobile.CurrentMovementTypes != MovementType.None)
 				{
 					this.UndockFromTarget(self);
 					this.RepairState = RepairState.MovingToTarget;
+
 					return false;
 				}
 
@@ -226,6 +238,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				if (this.target.Actor.Trait<Health>().DamageState == DamageState.Undamaged)
 				{
 					this.UndockFromTarget(self);
+
 					return true;
 				}
 
@@ -237,6 +250,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				break;
 			}
+
 			case RepairState.UndockingFromTarget:
 			{
 				// Is this necessary?
@@ -253,11 +267,18 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 		var length = (self.CenterPosition - returnPosition).Length / this.GetUndockSpeed(self);
 
 		this.QueueChild(new Drag(self, self.CenterPosition, returnPosition, length));
-		this.QueueChild(new CallFunc(() =>
-		{
-			foreach (var n in this.notifyRepair)
-				n.Undocked(self);
-		}, false));
+
+		this.QueueChild(
+			new CallFunc(
+				() =>
+				{
+					foreach (var n in this.notifyRepair)
+						n.Undocked(self);
+				},
+				false
+			)
+		);
+
 		this.RepairState = RepairState.UndockingFromTarget;
 
 		foreach (var n in this.notifyRepair)
@@ -265,23 +286,28 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 	}
 
 	private int GetDockSpeed()
-		=> this.mobile.Locomotor.MovementSpeedForCell(this.target.Actor.Location) * this.attack.Info.DockSpeedModifier / 100;
+	{
+		return this.mobile.Locomotor.MovementSpeedForCell(this.target.Actor.Location) * this.attack.Info.DockSpeedModifier / 100;
+	}
 
 	private int GetUndockSpeed(Actor self)
-		=> this.mobile.Locomotor.MovementSpeedForCell(self.Location) * this.attack.Info.DockSpeedModifier / 100;
+	{
+		return this.mobile.Locomotor.MovementSpeedForCell(self.Location) * this.attack.Info.DockSpeedModifier / 100;
+	}
 
 	private bool CanDock(Actor self, Actor target)
 	{
 		var targetMobile = target.TraitOrDefault<Mobile>();
+
 		if (targetMobile.CurrentMovementTypes != MovementType.None)
 			return false;
 
 		var cellDist = this.target.Actor.Location - self.Location;
-		if (!AllowedDockDirections.Contains(cellDist))
+
+		if (!RepairAttack.AllowedDockDirections.Contains(cellDist))
 			return false;
 
-		if (self.CenterPosition != self.World.Map.CenterOfCell(self.Location) ||
-			target.CenterPosition != self.World.Map.CenterOfCell(target.Location))
+		if (self.CenterPosition != self.World.Map.CenterOfCell(self.Location) || target.CenterPosition != self.World.Map.CenterOfCell(target.Location))
 			return false;
 
 		return true;

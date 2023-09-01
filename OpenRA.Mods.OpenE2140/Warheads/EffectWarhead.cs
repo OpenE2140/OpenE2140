@@ -24,7 +24,7 @@ public abstract class EffectWarhead : Warhead
 	[Desc("Whether to consider actors in determining whether the explosion should happen. If false, only terrain will be considered.")]
 	public readonly bool ImpactActors = true;
 
-	protected static readonly BitSet<TargetableType> TargetTypeAir = new("Air");
+	protected static readonly BitSet<TargetableType> TargetTypeAir = new BitSet<TargetableType>("Air");
 
 	/// <summary>
 	/// Checks if target is a valid type of actor.
@@ -73,6 +73,7 @@ public abstract class EffectWarhead : Warhead
 			// (impacts are allowed on valid actors sitting on invalid terrain!)
 			case ImpactActorType.None when !this.IsValidAgainst(world.Map, pos):
 				return false;
+
 			default:
 				return true;
 		}

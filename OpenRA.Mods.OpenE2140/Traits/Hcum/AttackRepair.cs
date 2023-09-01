@@ -62,11 +62,20 @@ public class AttackRepairInfo : AttackFrontalInfo, IRenderActorPreviewSpritesInf
 		var anim = new Animation(init.World, image, facing);
 		anim.Play(RenderSprites.NormalizeSequence(anim, init.GetDamageState(), this.IdleSequence));
 
-		WRot Orientation() => body.QuantizeOrientation(WRot.FromYaw(facing()), facings);
-		WVec Offset() => body.LocalToWorld(this.ArmOffset.Rotate(Orientation()));
+		WRot Orientation()
+		{
+			return body.QuantizeOrientation(WRot.FromYaw(facing()), facings);
+		}
+
+		WVec Offset()
+		{
+			return body.LocalToWorld(this.ArmOffset.Rotate(Orientation()));
+		}
+
 		int ZOffset()
 		{
 			var tmpOffset = Offset();
+
 			return -(tmpOffset.Y + tmpOffset.Z) + 1;
 		}
 
@@ -105,9 +114,7 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 
 		this.DefaultAnimation = new Animation(self.World, this.rs.GetImage(self), () => this.body.QuantizeFacing(this.facing.Orientation.Yaw));
 		this.DefaultAnimation.PlayRepeating(this.NormalizeSequence(self, this.Info.IdleSequence));
-		this.rs.Add(new AnimationWithOffset(this.DefaultAnimation,
-			() => this.TurretOffset(self),
-			() => false));
+		this.rs.Add(new AnimationWithOffset(this.DefaultAnimation, () => this.TurretOffset(self), () => false));
 	}
 
 	public string NormalizeSequence(Actor self, string sequence)
@@ -118,6 +125,7 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 	private WVec TurretOffset(Actor self)
 	{
 		var bodyOrientation = this.body.QuantizeOrientation(self.Orientation);
+
 		return this.body.LocalToWorld(this.Info.ArmOffset.Rotate(bodyOrientation));
 	}
 
@@ -135,7 +143,14 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 		return base.CanAttack(self, target);
 	}
 
-	public override Activity GetAttackActivity(Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
+	public override Activity GetAttackActivity(
+		Actor self,
+		AttackSource source,
+		in Target newTarget,
+		bool allowMove,
+		bool forceAttack,
+		Color? targetLineColor = null
+	)
 	{
 		return new RepairAttack(self, newTarget, allowMove, forceAttack, this, Color.Orange);
 	}

@@ -11,13 +11,16 @@
 
 #endregion
 
+using JetBrains.Annotations;
 using OpenRA.GameRules;
-using OpenRA.Mods.Common;
+using OpenRA.Graphics;
 using OpenRA.Mods.Common.Projectiles;
 using OpenRA.Traits;
+using Util = OpenRA.Mods.Common.Util;
 
 namespace OpenRA.Mods.OpenE2140.Projectiles;
 
+[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc($"Specialized type of {nameof(Bullet)} that can freeze when hitting target for a period of time.")]
 public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 {
@@ -27,9 +30,11 @@ public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 	[Desc("When frozen, use this image instead of the default one.")]
 	public readonly string? FrozenImage = null;
 
-	[SequenceReference(nameof(FrozenImage), allowNullImage: true)]
-	[Desc($"Loop a sequence of {nameof(FrozenImage)} from this list while this projectile is frozen. " +
-		$"Sequence is picked based on the sequence chosen from {nameof(Sequences)}")]
+	[SequenceReference(nameof(FreezingBulletInfo.FrozenImage), allowNullImage: true)]
+	[Desc(
+		$"Loop a sequence of {nameof(FreezingBulletInfo.FrozenImage)} from this list while this projectile is frozen. "
+		+ $"Sequence is picked based on the sequence chosen from {nameof(BulletInfo.Sequences)}"
+	)]
 	public readonly string[] FrozenSequences = { "idle" };
 
 	public override IProjectile Create(ProjectileArgs args)
@@ -46,8 +51,12 @@ public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 			throw new YamlException($"When {nameof(this.FrozenImage)} is specified, {nameof(this.Image)} has to be specified too.");
 
 		if (this.FrozenSequences.Length != this.Sequences.Length)
-			throw new YamlException($"When {nameof(this.FrozenImage)} is specified, number of sequences in {nameof(this.Sequences)} must match" +
-				$"number of sequences in {nameof(this.FrozenSequences)}");
+		{
+			throw new YamlException(
+				$"When {nameof(this.FrozenImage)} is specified, number of sequences in {nameof(this.Sequences)} must match"
+				+ $"number of sequences in {nameof(this.FrozenSequences)}"
+			);
+		}
 	}
 }
 
@@ -71,14 +80,14 @@ public class FreezingBullet : Bullet
 		if (this.state == State.Moving)
 		{
 			base.Tick(world);
+
 			return;
 		}
 
 		this.Animation?.Tick();
+
 		if (--this.frozenTicks <= 0)
-		{
 			world.AddFrameEndTask(w => w.Remove(this));
-		}
 	}
 
 	protected override void Explode(World world)
@@ -86,13 +95,13 @@ public class FreezingBullet : Bullet
 		if (this.frozenTicks == 0)
 		{
 			world.AddFrameEndTask(w => w.Remove(this));
+
 			return;
-		}	
+		}
 
 		var warheadArgs = new WarheadArgs(this.Args)
 		{
-			ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing),
-			ImpactPosition = pos,
+			ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing), ImpactPosition = this.pos
 		};
 
 		this.Args.Weapon.Impact(Target.FromPos(this.pos), warheadArgs);
@@ -101,16 +110,18 @@ public class FreezingBullet : Bullet
 
 		// Change bullet's sprite sequence to a appropriate one from FrozenSequences
 		var currentSequenceIndex = Array.IndexOf(this.info.Sequences, this.Animation.CurrentSequence.Name);
+
 		if (!string.IsNullOrEmpty(this.info.FrozenImage))
 			this.Animation.ChangeImage(this.info.FrozenImage, "");
+
 		this.Animation.PlayRepeating(this.info.FrozenSequences[currentSequenceIndex]);
 	}
 
-	public override IEnumerable<OpenRA.Graphics.IRenderable> Render(OpenRA.Graphics.WorldRenderer wr)
+	public override IEnumerable<IRenderable> Render(WorldRenderer wr)
 	{
 		if (!this.FlightLengthReached && this.state == State.Moving)
 			return base.Render(wr);
-		else
-			return base.RenderAnimation(wr);
+
+		return this.RenderAnimation(wr);
 	}
 }

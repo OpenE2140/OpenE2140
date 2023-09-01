@@ -13,11 +13,10 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Activites.Move;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Sounds;
-
-using Activites.Move;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Makes an actor play a sound while moving.")]
