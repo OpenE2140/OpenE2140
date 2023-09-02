@@ -102,8 +102,8 @@ ed_vehicles_ht30lr_missiles:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ed_vehicles_ht30lr_missiles_air:
 	Inherits: ed_vehicles_st02

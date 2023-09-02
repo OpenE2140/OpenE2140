@@ -66,8 +66,8 @@ ed_defenses_heavy_defense_tower:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ed_defenses_heavy_defense_tower_air:
 	Inherits: ed_vehicles_ht33r

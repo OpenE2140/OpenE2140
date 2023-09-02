@@ -66,8 +66,8 @@ ed_vehicles_ht33r:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ed_vehicles_ht33r_air:
 	Inherits: ed_vehicles_ht33r

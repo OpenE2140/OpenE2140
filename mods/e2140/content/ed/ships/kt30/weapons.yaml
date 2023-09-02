@@ -66,8 +66,8 @@ ed_ships_kt30:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ed_ships_kt30_air:
 	Inherits: ed_ships_kt30
@@ -144,8 +144,8 @@ ed_ships_kt30_secondary:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ed_ships_kt30_secondary_air:
 	Inherits: ed_ships_kt30_secondary

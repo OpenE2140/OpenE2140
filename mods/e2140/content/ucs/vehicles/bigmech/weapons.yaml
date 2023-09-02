@@ -67,8 +67,8 @@ ucs_vehicles_big_mech:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
 
 ucs_vehicles_big_mech_air:
 	Inherits: ucs_vehicles_big_mech
