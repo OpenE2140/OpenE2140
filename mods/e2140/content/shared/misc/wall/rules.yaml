@@ -33,6 +33,8 @@ shared_buildings_wall:
 	Explodes:
 		Weapon: WallExplosion
 		EmptyWeapon: WallExplosion
+	-HiddenUnderFog:
+	FrozenUnderFog:
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 25
