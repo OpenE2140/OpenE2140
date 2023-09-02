@@ -169,13 +169,13 @@ Palettes:
 Generate:
 	vehicle_mcu: Shadow Player Tracks
 		idle: 0-8 16
-			Offsets: 3:1,-3
+			Offsets: 3:1,-3 !0-2,4-8:-3,0 !3:-4,3
 		move: 0-8 16 4
-			Offsets: 3:1,-3
+			Offsets: 3:1,-3 !0-2,4-8:-3,0 !3:-4,3
 
 	vehicle_mcu_husk: Shadow Husk
 		idle: 0-8 16
-			Offsets: 3:1,-3
+			Offsets: 3:1,-3 !0-2,4-8:-3,0 !3:-4,3
 
 	vehicle_mcu_deploy_large: Shadow Player
 		deploy: 22-16
@@ -213,16 +213,16 @@ Generate:
 
 	vehicle_raptor_es: Player Shadow NoMuzzle
 		idle: 115,144,122,145,129,146,136,147,143 16
-			Offsets: 144,145,146,147:-5,0
+			Offsets: 144,145,146:-5,0 147:-5,-2 !115,122,129,136,143:-3,0 !147:0,2 !144,145,146:2,0
 		move: 109-143[0_6_1] 8
 			Offsets: 109:1,0 119:0,-2 133:0,-2 140:0,-2
 		muzzle: 115,144,122,145,129,146,136,147,143 16 3 Muzzle
-			Offsets: 144,145,146,147:-5,0
+			Offsets: 144,145,146:-5,0 147:-5,-2 !115,122,129,136,143:-3,0 !147:0,2 !144,145,146:2,0
 		move.turn: 115,111,122,118,129,125,136,132,143,139 8
 
 	vehicle_raptor_es_husk: Shadow Husk NoMuzzle
 		idle: 115,144,122,145,129,146,136,147,143 16
-			Offsets: 144,145,146,147:-5,0
+			Offsets: 144,145,146:-5,0 147:-5,-2 !115,122,129,136,143:-3,0 !147:0,2 !144,145,146:2,0
 
 	vehicle_raptor_ad: Player Shadow
 		idle: 154,184,161,183,168,185,175,186,182 16
@@ -246,10 +246,13 @@ Generate:
 
 	vehicle_hcu_m: Shadow Player Tracks
 		idle: 202-210 16
+			Offsets: 205,210:1,0 !202-204,206-209:2,0 !205,210:1,0
 		move: 202-210 16 4
+			Offsets: 205,210:1,0 !202-204,206-209:2,0 !205,210:1,0
 
 	vehicle_hcu_m_husk: Shadow Husk
 		idle: 202-210 16
+			Offsets: 205,210:1,0 !202-204,206-209:2,0 !205,210:1,0
 
 	turret_hcu_m: Shadow
 		idle: 211-219 16
@@ -299,48 +302,66 @@ Generate:
 
 	vehicle_tur: Shadow Player Tracks
 		idle: 277-285 16
+			Offsets: !277-285:1,0
 		move: 277-285 16 4
+			Offsets: !277-285:1,0
 		open: 286-287
 		opened: 287
 		close: 287-286
 
 	vehicle_tur_husk: Shadow Husk
 		idle: 277-285 16
+			Offsets: !277-285:1,0
 
 	vehicle_tank_small: Shadow Player Tracks
 		idle: 288-296 16
+			Offsets: !288-296:-1,0
 		move: 288-296 16 4
+			Offsets: !288-296:-1,0
 
 	vehicle_tank_small_husk: Shadow Husk
 		idle: 288-296 16
+			Offsets: !288-296:-1,0
 
 	vehicle_btti: Shadow Player Tracks NoMuzzle
 		idle: 297-305 16
+			Offsets: !297-305:2,0
 		move: 297-305 16 4
+			Offsets: !297-305:2,0
 		muzzle: 297-305 16 3 Muzzle
+			Offsets: !297-305:2,0
 
 	vehicle_btti_husk: Shadow Husk NoMuzzle
 		idle: 297-305 16
+			Offsets: !297-305:2,0
 
 	vehicle_tank_medium: Shadow Player Tracks
 		idle: 306-314 16
+			Offsets: !306-314:-1,0
 		move: 306-314 16 4
+			Offsets: !306-314:-1,0
 
 	vehicle_tank_medium_husk: Shadow Husk
 		idle: 306-314 16
+			Offsets: !306-314:-1,0
 
 	aircraft_storm: Player NoMuzzle
 		idle: 315-323 16
+			Offsets: !315-323:-2,0
 		muzzle: 315-323 16 3 Muzzle
+			Offsets: !315-323:-2,0
 
 	aircraft_storm_husk: Shadow Husk NoMuzzle
 		idle: 315-323 16
+			Offsets: !315-323:-2,0
 
 	aircraft_thunder: Player
 		idle: 324-332 16
+			Offsets: !324-332:-2,0
 
 	aircraft_thunder_husk: Shadow Husk
 		idle: 324-332 16
+			Offsets: !324-332:-2,0
 
 	vehicle_tank_large: Shadow Player Tracks
 		idle: 333-341 16
@@ -428,12 +449,15 @@ Generate:
 
 	turret_ht_34_j: Shadow
 		idle: 414-422 16
+			Offsets: !414-422:1,0
 
 	turret_ht_34_j_husk: Shadow Husk
 		idle: 414-422 16
+			Offsets: !414-422:1,0
 
 	turret_heavy_defense_tower_secondary: Shadow
 		idle: 414-422 16
+			Offsets: !414-422:1,0
 
 	turret_unknown: Shadow NoMuzzle
 		idle: 423-431 16
@@ -444,22 +468,28 @@ Generate:
 
 	turret_defense_tower_secondary: Shadow
 		idle: 432-440 16
-			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0
+			Offsets: 435:2,0 436,437:-2,0 438:-1,0 439:-2,0 440:-1,0 !432-434:1,0 !435:-1,0 !436,437:3,0 !438:2,0 !439:3,0 !440:0,0
 
 	turret_big_eye_secondary: Player
 		idle: 441-449 16
 
 	turret_little_eye: NoMuzzle
 		idle: 450-458 16
+			Offsets: !450-458:1,0
 		muzzle: 450-458 16 3 Muzzle
+			Offsets: !450-458:1,0
 
 	turret_defense_tower: NoMuzzle
 		idle: 450-458 16
+			Offsets: !450-458:1,0
 		muzzle: 450-458 16 3 Muzzle
+			Offsets: !450-458:1,0
 
 	turret_pillbox: Shadow Player NoMuzzle
 		idle: 459-467 16
+			Offsets: !459-467:1,0
 		muzzle: 459-467 16 3 Muzzle
+			Offsets: !459-467:1,0
 
 	turret_atm_500: Shadow NoMuzzle
 		idle: 468-476 16
@@ -493,11 +523,11 @@ Generate:
 
 	turret_big_eye:
 		idle: 477-485 16
-			Offsets: 479-481:1,0
+			Offsets: 479-481:1,0 !477,478,482-485:1,0 !479-481:0,0
 
 	turret_heavy_defense_tower:
 		idle: 477-485 16
-			Offsets: 479-481:1,0
+			Offsets: 479-481:1,0 !477,478,482-485:1,0 !479-481:0,0
 
 	ship_kt30: Shadow Player
 		idle: 486-494 16
@@ -513,11 +543,15 @@ Generate:
 
 	aircraft_hellwind: Player
 		idle: 504-512 16 EngineOff
+			Offsets: !504-512:2,0
 		move: 504-512 16 EngineOn
+			Offsets: !504-512:2,0
 		takeoff: 504-512 16 EngineTakeoff
+			Offsets: !504-512:2,0
 
 	aircraft_hellwind_husk: Husk
 		idle: 504-512 16 EngineOff
+			Offsets: !504-512:2,0
 
 	aircraft_gargoil: Player NoMuzzle
 		idle: 513-521 16 EngineOff
@@ -548,10 +582,13 @@ Generate:
 
 	vehicle_shadow: Shadow Tracks Player
 		idle: 540-548 16
+			Offsets: 548:0,-1
 		move: 540-548 16 4
+			Offsets: 548:0,-1
 
 	vehicle_shadow_husk: Shadow Husk
 		idle: 540-548 16
+			Offsets: 548:0,-1
 
 	vehicle_t100: Shadow Tracks
 		idle: 549-557 16
@@ -572,44 +609,50 @@ Generate:
 
 	vehicle_atm_500: Shadow Player Tracks
 		idle: 567-575 16
+			Offsets: !567-575:2,0
 		move: 567-575 16 4
+			Offsets: !567-575:2,0
 		open: 576-577
 		opened: 577
 		close: 577-576
 
 	vehicle_atm_500_husk: Shadow Husk
 		idle: 567-575 16
+			Offsets: !567-575:2,0
 
 	vehicle_screamer: Shadow Player Tracks
 		idle: 578-586 16
+			Offsets: !578-586:1,0
 		move: 578-586 16 4
+			Offsets: !578-586:1,0
 
 	vehicle_screamer_husk: Shadow Husk
 		idle: 578-586 16
+			Offsets: !578-586:1,0
 
 	turret_screamer: Shadow
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	turret_screamer_husk: Shadow Husk
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	turret_an_center: Shadow
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	turret_an_center_husk: Shadow Husk
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	turret_heavy_tech: Shadow
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	turret_heavy_tech_husk: Shadow Husk
 		idle: 587-595 16
-			Offsets: 587-595:-1,0
+			Offsets: !587-595:3,0
 
 	aircraft_hat: Player Rotors
 		idle: 596-604 16
@@ -623,19 +666,23 @@ Generate:
 
 	vehicle_miner: Shadow Player Tracks FlickerOff
 		idle: 607-615 16
+			Offsets: 611,613:1,0 !607-610,612,614,615:1,0 !611,613:0,0
 		move: 607-615 16 4
+			Offsets: 611,613:1,0 !607-610,612,614,615:1,0 !611,613:0,0
 		flicker: 607-615 16 2 FlickerOn
+			Offsets: 611,613:1,0 !607-610,612,614,615:1,0 !611,613:0,0
 
 	vehicle_miner_husk: Shadow Husk FlickerOff
 		idle: 607-615 16
+			Offsets: 611,613:1,0 !607-610,612,614,615:1,0 !611,613:0,0
 
 	ship_ttre_400: ShadowTTRE Player
 		idle: 616-624 16
-			Offsets: 616-624:-1,0
+			Offsets: !616-624:4,0
 
 	ship_ttre_400_husk: ShadowTTRE Husk
 		idle: 616-624 16
-			Offsets: 616-624:-1,0
+			Offsets: !616-624:4,0
 
 	ship_shark: Shadow Player
 		idle: 625-633 16
@@ -645,12 +692,17 @@ Generate:
 
 	ship_wtrn: Shadow Player
 		idle: 634-642 16
+			Offsets: !634-642:-2,0
 		open: 643-648 4
+			Offsets: !645,646:-2,0
 		opened: 643-648[1_1_0] 4
+			Offsets: !645,646:-2,0
 		close: 644-643,646-645,648-647 4
+			Offsets: !645,646:-2,0
 
 	ship_wtrn_husk: Shadow Husk
 		idle: 634-642 16
+			Offsets: !634-642:-2,0
 
 	rotor_slow:
 		idle: 649-652
@@ -797,9 +849,11 @@ Generate:
 
 	turret_spider_ii: Player
 		idle: 1162-1170 16
+			Offsets: !1162-1170:1,0
 
 	turret_spider_ii_husk: Husk
 		idle: 1162-1170 16
+			Offsets: !1162-1170:1,0
 
 	vehicle_big_mech: Shadow Player
 		idle: 1177,1206,1184,1207,1191,1208,1198,1209,1205 16
@@ -812,9 +866,11 @@ Generate:
 
 	vehicle_goliath: Shadow Player
 		idle: 1215-1223 16
+			Offsets: !1215-1223:1,0
 
 	vehicle_goliath_husk: Shadow Husk
 		idle: 1215-1223 16
+			Offsets: !1215-1223:1,0
 
 	aircraft_gargoil_ii: Player
 		idle: 1224-1232 16 EngineOff
@@ -826,10 +882,13 @@ Generate:
 
 	vehicle_warhammer: Shadow Player Tracks
 		idle: 1233-1241 16 WarhammerTracksIdle
+			Offsets: !1233-1241:-1,0
 		move: 1233-1241 16 4 WarhammerTracksMove
+			Offsets: !1233-1241:-1,0
 
 	vehicle_warhammer_husk: Shadow Husk
 		idle: 1233-1241 16
+			Offsets: !1233-1241:-1,0
 
 	turret_warhammer: Shadow Player NoMuzzle
 		idle: 1242-1250 16
@@ -848,8 +907,12 @@ Generate:
 
 	aircraft_nemezis: Player
 		idle: 1260-1268 16 EngineOff
+			Offsets: !1260-1268:1,0
 		move: 1260-1268 16 EngineOn
+			Offsets: !1260-1268:1,0
 		takeoff: 1260-1268 16 EngineTakeoff
+			Offsets: !1260-1268:1,0
 
 	aircraft_nemezis_husk: Husk
 		idle: 1260-1268 16 EngineOff
+			Offsets: !1260-1268:1,0
