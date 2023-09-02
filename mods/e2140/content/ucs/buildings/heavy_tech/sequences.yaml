@@ -35,11 +35,9 @@ ucs_buildings_heavy_tech:
 ucs_mcu_heavy_tech:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI1.MIX
-		Start: 168
+		Filename: content/ucs/buildings/heavy_tech/building_heavy_tech_icon_ucs.png
 
 ucs_mcu_heavy_tech.ed:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI0.MIX
-		Start: 168
+		Filename: content/ucs/buildings/heavy_tech/building_heavy_tech_icon_ed.png
