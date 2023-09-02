@@ -19,7 +19,7 @@ public class AttachedCargoInfo : CargoInfo
 	}
 }
 
-public class AttachedCargo : Cargo, IRender, ITick
+public class AttachedCargo : Cargo, IRender, ITick, INotifyPassengerEntered
 {
 	private readonly AttachedCargoInfo info;
 
@@ -50,10 +50,29 @@ public class AttachedCargo : Cargo, IRender, ITick
 			// Use reflection as we need to fake the actor to be in the world. Otherwise it wont attack!
 			actorType.GetProperty("IsInWorld", BindingFlags.Instance | BindingFlags.Public)?.SetValue(passenger, true);
 
+			// We need to whitelist traits which we want to tick. Some are incompatible with this approach, like shroud revealing.
 			foreach (var tick in passenger.TraitsImplementing<ITick>())
-				tick.Tick(passenger);
+			{
+				// TODO we might want this to be yaml settable, so we can simply extend it with other traits.
+
+				// This trait is required for units to actualy shoot. Otherwise they will aim but never attack.
+				if (tick is AttackTurreted)
+					tick.Tick(passenger);
+			}
 
 			actorType.GetProperty("IsInWorld", BindingFlags.Instance | BindingFlags.Public)?.SetValue(passenger, false);
+		}
+	}
+
+	void INotifyPassengerEntered.OnPassengerEntered(Actor self, Actor passenger)
+	{
+		foreach (var notifyAddedToWorld in passenger.TraitsImplementing<INotifyAddedToWorld>())
+		{
+			// TODO we might want this to be yaml settable, so we can simply extend it with other traits.
+
+			// This trait is required for shadow unit. Otherwise the cloak is broken upon entering.
+			if (notifyAddedToWorld is ProximityExternalCondition)
+				notifyAddedToWorld.AddedToWorld(passenger);
 		}
 	}
 

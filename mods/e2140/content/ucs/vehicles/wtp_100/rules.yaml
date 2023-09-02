@@ -24,6 +24,7 @@ ucs_vehicles_wtp_100:
 	-WithMoveAnimation:
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_wtp_100_husk
+	-Passenger:
 	AttachedCargo:
 		Types: Infantry, Vehicle
 		MaxWeight: 6
