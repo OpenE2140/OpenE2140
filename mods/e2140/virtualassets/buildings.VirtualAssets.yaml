@@ -91,7 +91,7 @@ Generate:
 		idle-lights: 26 Lights
 		damaged-idle: 27 WithoutLight
 		damaged-idle-lights: 27 Lights
-		rotor: 28-32
+		rotor: 28-32 8
 
 	building_tech_house: Shadow Player
 		idle: 33 WithoutLight

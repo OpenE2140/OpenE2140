@@ -12,10 +12,12 @@ shared_buildings_mine:
 		IgnoreWorldTint: true
 	rotor_up:
 		Filename: content/shared/buildings/mine/building_mine_rotor.png
+		#Start: 4
 		Length: 8
 		Tick: 60
 	rotor_down:
 		Filename: content/shared/buildings/mine/building_mine_rotor.png
+		#Start: 4
 		FlipX: True
 		Length: 8
 		Tick: 60
