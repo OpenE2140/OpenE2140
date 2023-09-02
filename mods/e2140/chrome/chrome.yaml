@@ -1,32 +1,68 @@
 ^Sidebar:
 	Image: chrome/assets/ucs_sidebar.png
+	Image2x: chrome/assets/ucs_sidebar-2x.png
+	Image3x: chrome/assets/ucs_sidebar-3x.png
 
 ^SidebarEd:
 	Image: chrome/assets/ed_sidebar.png
+	Image2x: chrome/assets/ed_sidebar-2x.png
+	Image3x: chrome/assets/ed_sidebar-3x.png
 
 ^Dialog:
 	Image: chrome/assets/dialog.png
+	Image2x: chrome/assets/dialog-2x.png
+	Image3x: chrome/assets/dialog-3x.png
 
 ^Glyphs:
 	Image: chrome/assets/glyphs.png
+	Image2x: chrome/assets/glyphs-2x.png
+	Image3x: chrome/assets/glyphs-3x.png
 
 ^LoadScreen:
 	Image: chrome/assets/loadscreen.png
+	Image2x: chrome/assets/loadscreen-2x.png
+	Image3x: chrome/assets/loadscreen-3x.png
 
 observer-scrollpanel-button:
 	Inherits: ^Dialog
-	PanelRegion: 769, 257, 3, 3, 120, 120, 3, 3
+		background: 773, 261, 118, 118
+		border-r: 892, 260, 3, 120
+		border-l: 769, 260, 3, 120
+		border-b: 772, 380, 120, 3
+		border-t: 772, 257, 120, 3
+		corner-tl: 769, 257, 3, 3
+		corner-tr: 892, 257, 3, 3
+		corner-bl: 769, 380, 3, 3
+		corner-br: 892, 380, 3, 3
 
 observer-scrollpanel-button-hover:
 	Inherits: observer-scrollpanel-button
 
 observer-scrollpanel-button-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 897, 257, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 901, 261, 118, 118
+		border-r: 1020, 260, 3, 120
+		border-l: 897, 260, 3, 120
+		border-b: 900, 380, 120, 3
+		border-t: 900, 257, 120, 3
+		corner-tl: 897, 257, 3, 3
+		corner-tr: 1020, 257, 3, 3
+		corner-bl: 897, 380, 3, 3
+		corner-br: 1020, 380, 3, 3
 
 observer-scrollpanel-button-disabled:
 	Inherits: ^Dialog
-	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 773, 389, 118, 118
+		border-r: 892, 388, 3, 120
+		border-l: 769, 388, 3, 120
+		border-b: 772, 508, 120, 3
+		border-t: 772, 385, 120, 3
+		corner-tl: 769, 385, 3, 3
+		corner-tr: 892, 385, 3, 3
+		corner-bl: 769, 508, 3, 3
+		corner-br: 892, 508, 3, 3
 
 observer-scrollheader:
 	Inherits: observer-scrollpanel-button-disabled
@@ -66,7 +102,16 @@ dialog2:
 # It's a Container, used in various places, like Hotkeys, ColorPicker, Asset Browser frames (looks like a pressed button)
 dialog3:
 	Inherits: ^Dialog
-	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 773, 389, 118, 118
+		border-r: 892, 388, 3, 120
+		border-l: 769, 388, 3, 120
+		border-b: 772, 508, 120, 3
+		border-t: 772, 385, 120, 3
+		corner-tl: 769, 385, 3, 3
+		corner-tr: 892, 385, 3, 3
+		corner-bl: 769, 508, 3, 3
+		corner-br: 892, 508, 3, 3
 
 # Used for tooltips and the video player
 dialog4:
@@ -149,32 +194,86 @@ progressbar-thumb:
 
 button:
 	Inherits: ^Dialog
-	PanelRegion: 513, 1, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 517, 5, 118, 118
+		border-r: 636, 4, 3, 120
+		border-l: 513, 4, 3, 120
+		border-b: 516, 124, 120, 3
+		border-t: 516, 1, 120, 3
+		corner-tl: 513, 1, 3, 3
+		corner-tr: 636, 1, 3, 3
+		corner-bl: 513, 124, 3, 3
+		corner-br: 636, 124, 3, 3
 
 # 5% lighter than a normal button (mouseover)
 button-hover:
 	Inherits: ^Dialog
-	PanelRegion: 513, 129, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 517, 133, 118, 118
+		border-r: 636, 132, 3, 120
+		border-l: 513, 132, 3, 120
+		border-b: 516, 252, 120, 3
+		border-t: 516, 129, 120, 3
+		corner-tl: 513, 129, 3, 3
+		corner-tr: 636, 129, 3, 3
+		corner-bl: 513, 252, 3, 3
+		corner-br: 636, 252, 3, 3
 
 button-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 641, 1, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 645, 5, 118, 118
+		border-r: 764, 4, 3, 120
+		border-l: 641, 4, 3, 120
+		border-b: 644, 124, 120, 3
+		border-t: 644, 1, 120, 3
+		corner-tl: 641, 1, 3, 3
+		corner-tr: 764, 1, 3, 3
+		corner-bl: 641, 124, 3, 3
+		corner-br: 764, 124, 3, 3
 
 # 50% grey (disabled button)
 button-disabled:
 	Inherits: ^Dialog
-	PanelRegion: 513, 257, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 517, 261, 118, 118
+		border-r: 636, 260, 3, 120
+		border-l: 513, 260, 3, 120
+		border-b: 516, 380, 120, 3
+		border-t: 516, 257, 120, 3
+		corner-tl: 513, 257, 3, 3
+		corner-tr: 636, 257, 3, 3
+		corner-bl: 513, 380, 3, 3
+		corner-br: 636, 380, 3, 3
 
 button-highlighted:
 	Inherits: ^Dialog
-	PanelRegion: 769, 257, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 773, 261, 118, 118
+		border-r: 892, 260, 3, 120
+		border-l: 769, 260, 3, 120
+		border-b: 772, 380, 120, 3
+		border-t: 772, 257, 120, 3
+		corner-tl: 769, 257, 3, 3
+		corner-tr: 892, 257, 3, 3
+		corner-bl: 769, 380, 3, 3
+		corner-br: 892, 380, 3, 3
 
 button-highlighted-hover:
 	Inherits: button-highlighted
 
 button-highlighted-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 897, 257, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 901, 261, 118, 118
+		border-r: 1020, 260, 3, 120
+		border-l: 897, 260, 3, 120
+		border-b: 900, 380, 120, 3
+		border-t: 900, 257, 120, 3
+		corner-tl: 897, 257, 3, 3
+		corner-tr: 1020, 257, 3, 3
+		corner-bl: 897, 380, 3, 3
+		corner-br: 1020, 380, 3, 3
 
 button-highlighted-disabled:
 	Inherits: button-highlighted
@@ -199,11 +298,29 @@ newsbutton-pressed:
 
 textfield:
 	Inherits: ^Dialog
-	PanelRegion: 769, 1, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 772, 4, 120, 120
+		border-r: 892, 4, 3, 120
+		border-l: 769, 4, 3, 120
+		border-b: 772, 124, 120, 3
+		border-t: 772, 1, 120, 3
+		corner-tl: 769, 1, 3, 3
+		corner-tr: 892, 1, 3, 3
+		corner-bl: 769, 124, 3, 3
+		corner-br: 892, 124, 3, 3
 
 textfield-hover:
 	Inherits: ^Dialog
-	PanelRegion: 897, 1, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 901, 5, 118, 118
+		border-r: 1020, 4, 3, 120
+		border-l: 897, 4, 3, 120
+		border-b: 900, 124, 120, 3
+		border-t: 900, 1, 120, 3
+		corner-tl: 897, 1, 3, 3
+		corner-tr: 1020, 1, 3, 3
+		corner-bl: 897, 124, 3, 3
+		corner-br: 1020, 124, 3, 3
 
 textfield-disabled:
 	Inherits: textfield
@@ -213,7 +330,16 @@ textfield-focused:
 
 scrollpanel-bg:
 	Inherits: ^Dialog
-	PanelRegion: 769, 385, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 773, 389, 118, 118
+		border-r: 892, 388, 3, 120
+		border-l: 769, 388, 3, 120
+		border-b: 772, 508, 120, 3
+		border-t: 772, 385, 120, 3
+		corner-tl: 769, 385, 3, 3
+		corner-tr: 892, 385, 3, 3
+		corner-bl: 769, 508, 3, 3
+		corner-br: 892, 508, 3, 3
 
 scrollpanel-button:
 	Inherits: button
@@ -285,7 +411,16 @@ checkmark-mute-highlighted:
 
 checkbox-hover:
 	Inherits: ^Dialog
-	PanelRegion: 897, 385, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 901, 389, 118, 118
+		border-r: 1020, 388, 3, 120
+		border-l: 897, 388, 3, 120
+		border-b: 900, 508, 120, 3
+		border-t: 900, 385, 120, 3
+		corner-tl: 897, 385, 3, 3
+		corner-tr: 1020, 385, 3, 3
+		corner-bl: 897, 508, 3, 3
+		corner-br: 1020, 508, 3, 3
 
 checkbox-pressed:
 	Inherits: checkbox-hover
@@ -325,11 +460,29 @@ scrollitem:
 
 scrollitem-hover:
 	Inherits: ^Dialog
-	PanelRegion: 769, 129, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 773, 133, 118, 118
+		border-r: 892, 132, 3, 120
+		border-l: 769, 132, 3, 120
+		border-b: 772, 252, 120, 3
+		border-t: 772, 129, 120, 3
+		corner-tl: 769, 129, 3, 3
+		corner-tr: 892, 129, 3, 3
+		corner-bl: 769, 252, 3, 3
+		corner-br: 892, 252, 3, 3
 
 scrollitem-pressed:
 	Inherits: ^Dialog
-	PanelRegion: 897, 129, 3, 3, 120, 120, 3, 3
+	Regions:
+		background: 901, 133, 118, 118
+		border-r: 1020, 132, 3, 120
+		border-l: 897, 132, 3, 120
+		border-b: 900, 252, 120, 3
+		border-t: 900, 129, 120, 3
+		corner-tl: 897, 129, 3, 3
+		corner-tr: 1020, 129, 3, 3
+		corner-bl: 897, 252, 3, 3
+		corner-br: 1020, 252, 3, 3
 
 scrollitem-highlighted:
 	Inherits: scrollitem-hover
