@@ -22,6 +22,16 @@ public class MixPalette
 	public MixPalette(Stream stream)
 	{
 		for (var i = 0; i < this.Colors.Length; i++)
-			this.Colors[i] = Color.FromArgb(i == 0 ? 0x00 : 0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
+		{
+			var r = stream.ReadUInt8();
+			var g = stream.ReadUInt8();
+			var b = stream.ReadUInt8();
+
+			// Pixels in the color range of the color remapping.
+			if (r == b && r != 0)
+				r--;
+
+			this.Colors[i] = Color.FromArgb(i == 0 ? 0x00 : 0xff, r, g, b);
+		}
 	}
 }
