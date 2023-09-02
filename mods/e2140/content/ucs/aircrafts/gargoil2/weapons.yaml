@@ -61,5 +61,5 @@ ucs_aircrafts_gargoil_ii:
 		Offset: 0,0,0
 		Image: smoke
 		Sequences: dark_smoke
-		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
