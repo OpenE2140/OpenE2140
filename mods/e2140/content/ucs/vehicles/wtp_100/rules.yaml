@@ -29,9 +29,12 @@ ucs_vehicles_wtp_100:
 	# Don't count WTP 100 as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
-	Cargo:
+	AttachedCargo:
 		Types: Infantry, Vehicle
 		MaxWeight: 6
+		UnloadVoice: Unload
+		UnloadCursor: exit
+		ZOffset: 64
 	WithCargoPipsDecoration:
 		Palette:
 		FullSequence: pip-blue
