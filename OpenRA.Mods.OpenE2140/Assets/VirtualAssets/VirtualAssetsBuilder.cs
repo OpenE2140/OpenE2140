@@ -166,26 +166,33 @@ public static class VirtualAssetsBuilder
 	private static List<FrameInfo> BuildFrameInfos(string frames, int facings, string? offsets)
 	{
 		var frameOffsets = new Dictionary<int, int2>();
+		var frameOffsetsFlipped = new Dictionary<int, int2>();
 
 		if (offsets != null)
 		{
 			foreach (var segment in offsets.Split(' ', StringSplitOptions.RemoveEmptyEntries))
 			{
-				var match = Regex.Match(segment, "^(\\d+(?:,\\d+|-\\d+)*):(-?\\d+),(-?\\d+)$");
+				var match = Regex.Match(segment, @"^(!?)(\d+(?:,\d+|-\d+)*):(-?\d+),(-?\d+)$");
 
 				if (!match.Success)
 					throw new Exception("Broken format!");
 
-				var offset = new int2(int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
+				var offset = new int2(int.Parse(match.Groups[3].Value), int.Parse(match.Groups[4].Value));
+				var flipped = match.Groups[1].Value == "!";
 
-				foreach (var rangeSegment in match.Groups[1].Value.Split(','))
+				foreach (var rangeSegment in match.Groups[2].Value.Split(','))
 				{
 					var rangeParts = rangeSegment.Split('-');
 					var first = int.Parse(rangeParts[0]);
 					var last = rangeParts.Length < 2 ? first : int.Parse(rangeParts[1]);
 
 					for (var i = first; i <= last; i++)
-						frameOffsets.Add(i, offset);
+					{
+						if (flipped)
+							frameOffsetsFlipped.Add(i, offset * -1);
+						else
+							frameOffsets.Add(i, offset);
+					}
 				}
 			}
 		}
@@ -201,7 +208,13 @@ public static class VirtualAssetsBuilder
 
 		for (var facing = facings / 2 - 1; facing > 0; facing--)
 		for (var j = 0; j < framesPerFacing; j++)
-			frameInfos.Add(frameInfos[facing * framesPerFacing + j] with { FlipX = true });
+		{
+			var frameInfo = frameInfos[facing * framesPerFacing + j];
+
+			frameInfos.Add(
+				frameInfo with { Offset = frameOffsetsFlipped.TryGetValue(frameInfo.Frame, out var offset) ? offset : frameInfo.Offset, FlipX = true }
+			);
+		}
 
 		return frameInfos;
 	}
