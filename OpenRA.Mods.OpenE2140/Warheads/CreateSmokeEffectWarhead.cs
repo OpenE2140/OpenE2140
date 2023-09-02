@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using OpenRA.GameRules;
 using OpenRA.Mods.Common.Effects;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Warheads;
@@ -53,7 +54,7 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 		if (!this.IsValidAgainst(target, firedBy))
 			return;
 
-		var facing = firedBy.TraitOrDefault<IFacing>();
+		var facing = firedBy.GetTraitOrDefault<IFacing>();
 		var offset = this.Offset;
 		var spawnFacing = !this.RandomFacing && facing != null ? facing.Facing : WAngle.FromFacing(world.LocalRandom.Next(256));
 

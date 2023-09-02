@@ -28,4 +28,10 @@ public static class ActorExtensions
 
 		return trait != null;
 	}
+
+	public static T? GetTraitOrDefault<T>(this Actor? actor)
+	{
+		var traitOrDefault = actor is { IsInWorld: true } ? actor.TraitOrDefault<T>() : default;
+		return traitOrDefault;
+	}
 }
