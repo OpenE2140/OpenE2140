@@ -3,9 +3,9 @@ Smudges:
 		SmudgeType: Clear
 		Chance: 20
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Water
+		InvalidTargets: Vehicle, Defense, Structure, Water
 	Warhead@SmudgeSand: LeaveSmudge
 		SmudgeType: Sand
 		Chance: 20
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Water
+		InvalidTargets: Vehicle, Defense, Structure, Water

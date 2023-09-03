@@ -26,4 +26,4 @@ shared_misc_landmine:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe

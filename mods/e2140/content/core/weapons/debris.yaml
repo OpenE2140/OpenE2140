@@ -20,7 +20,7 @@ weapon_debris:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Defense, Structure
 
 weapon_debris_slow:
 	Inherits: weapon_debris
