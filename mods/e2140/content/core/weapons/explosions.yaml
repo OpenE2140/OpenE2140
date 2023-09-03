@@ -49,35 +49,35 @@ VehicleExploding:
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 		Delays: 0
 	Warhead@EffectShrapnels2: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 		Delays: 5
 	Warhead@EffectShrapnels3: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 		Delays: 10
 	Warhead@EffectShrapnels4: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 		Delays: 15
 	Warhead@EffectShrapnels5: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 		Delays: 20
 AircraftExplosion:
 	ValidTargets: Ground, Water
@@ -143,13 +143,13 @@ PipeExplosion:
 		Range: 1c0, 1c512
 		Pieces: 2,3
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectSmoke: CreateSmokeEffect
 		Lifetime: 27
 		Speed: 5
@@ -160,7 +160,7 @@ PipeExplosion:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Water, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 
 WallExplosion:
 	Inherits: PipeExplosion

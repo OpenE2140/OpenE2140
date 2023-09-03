@@ -30,4 +30,4 @@ ucs_ships_russ3:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe

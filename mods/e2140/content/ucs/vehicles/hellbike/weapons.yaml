@@ -26,7 +26,7 @@ ucs_vehicles_hellbike:
 		Range: 0c256, 1c256
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectGround: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_3
@@ -39,7 +39,7 @@ ucs_vehicles_hellbike:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectSmoke: CreateSmokeEffect
 		Lifetime: 27
 		Speed: 5
@@ -50,4 +50,4 @@ ucs_vehicles_hellbike:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water

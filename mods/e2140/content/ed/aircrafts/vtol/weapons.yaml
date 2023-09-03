@@ -38,20 +38,20 @@ ed_aircrafts_vtol:
 		Range: 0c512, 1c0
 		Pieces: 3,4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Warhead@EffectSmoke: CreateSmokeEffect
 		Lifetime: 27
 		Speed: 5
@@ -62,4 +62,4 @@ ed_aircrafts_vtol:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water

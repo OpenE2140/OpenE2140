@@ -37,4 +37,4 @@ ed_defenses_heavy_defense_tower_upgraded:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure
+		InvalidTargets: Vehicle, Defense, Structure

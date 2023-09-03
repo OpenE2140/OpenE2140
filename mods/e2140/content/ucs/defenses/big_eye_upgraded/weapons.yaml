@@ -31,4 +31,4 @@ ucs_defenses_big_eye_upgraded:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe

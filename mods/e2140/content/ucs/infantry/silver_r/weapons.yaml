@@ -32,7 +32,7 @@ ucs_infantry_silver_r:
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@DamageAir: SpreadDamage
 		Spread: 128
 		Damage: 25
@@ -49,14 +49,14 @@ ucs_infantry_silver_r:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 
 ucs_infantry_silver_r_air:
 	Inherits: ucs_infantry_silver_r

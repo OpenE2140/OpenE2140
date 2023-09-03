@@ -31,4 +31,4 @@ ucs_infantry_silver_max:
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe

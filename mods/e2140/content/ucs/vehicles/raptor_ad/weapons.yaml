@@ -37,7 +37,7 @@ ucs_vehicles_raptor_ad:
 		Range: 0c512, 1c0
 		Pieces: 2,2
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@Effect: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_1, projectile_explosion_2
@@ -49,14 +49,14 @@ ucs_vehicles_raptor_ad:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 
 ucs_vehicles_raptor_ad_air:
 	Inherits: ucs_vehicles_raptor_ad

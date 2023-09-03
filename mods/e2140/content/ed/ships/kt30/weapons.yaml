@@ -43,20 +43,20 @@ ed_ships_kt30:
 		Range: 0c256, 0c756
 		Pieces: 4,5
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectRubble: CreateEffect
 		Image: rubble_big
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectSmoke: CreateSmokeEffect
 		Lifetime: 27
 		Speed: 5
@@ -67,7 +67,7 @@ ed_ships_kt30:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water
 
 ed_ships_kt30_air:
 	Inherits: ed_ships_kt30
@@ -115,26 +115,26 @@ ed_ships_kt30_secondary:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_smoke
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectActor: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_1, projectile_explosion_2
 		ExplosionPalette:
 		ImpactSounds: 15.smp
-		ValidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
 	Warhead@EffectSmoke: CreateSmokeEffect
 		Lifetime: 27
 		Speed: 5
@@ -145,7 +145,7 @@ ed_ships_kt30_secondary:
 		Image: smoke
 		Sequences: dark_smoke
 		ValidTargets: Ground, Ship, Air
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe, Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water
 
 ed_ships_kt30_secondary_air:
 	Inherits: ed_ships_kt30_secondary

@@ -4,7 +4,7 @@ ed_infantry_a01_machine_gun:
 	Range: 2c896
 	Report: 1.smp
 	ValidTargets: Ground, Water, Infantry
-	InvalidTargets: Vehicle, Structure, Ship, Pipe
+	InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Projectile: InstantHit
 		Inaccuracy: 0c128
 	Warhead@1Dam: SpreadDamage
@@ -23,19 +23,19 @@ ed_infantry_a01_machine_gun:
 		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Infantry, InfantryUCS, Ship
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash_firearm
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Infantry, InfantryUCS, Ship
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
 	Warhead@EffectSmoke: CreateEffect
 		Image: smoke_firearm
 		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
 		ExplosionPalette:
-		ValidTargets: Vehicle, Structure, InfantryUCS, Ship, Air
+		ValidTargets: Vehicle, Defense, Structure, InfantryUCS, Ship, Air
 	Warhead@EffectBlood: SpawnWeapons
 		Weapons: weapon_blood
 		Range: 0c256, 0c312
@@ -47,7 +47,7 @@ ed_infantry_a01_grenade:
 	ReloadDelay: 50
 	MinRange: 0c512
 	Range: 2c896
-	ValidTargets: Vehicle, Structure, Ship
+	ValidTargets: Vehicle, Defense, Structure, Ship
 	Burst: 1
 	Projectile: Bullet
 		Speed: 150
@@ -76,11 +76,11 @@ ed_infantry_a01_grenade:
 		Explosions: idle
 		ExplosionPalette:
 		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe
 	Warhead@EffectWater: CreateEffect
 		Image: water_splash
 		Explosions: idle
 		ExplosionPalette:
 		ImpactSounds: 20.smp, 21.smp
 		ValidTargets: Water
-		InvalidTargets: Vehicle, Structure, Ship, Pipe
+		InvalidTargets: Vehicle, Defense, Structure, Ship, Pipe

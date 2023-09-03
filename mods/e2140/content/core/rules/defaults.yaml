@@ -262,6 +262,9 @@
 	Explodes:
 		Weapon: DefenseTowerExplosion
 		EmptyWeapon: DefenseTowerExplosion
+	# Constructions can be targeted by anything which attacks ground.
+	Targetable:
+		TargetTypes: Ground, Defense
 
 # Base for all infantry.
 ^CoreInfantry:
@@ -566,7 +569,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship
+		ValidTargets: Ground, Water, Air, Ship, Defense
 		InvalidTargets: Structure
 
 # Grouped traits for standard vehicle turret behavior.
@@ -586,7 +589,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship
+		ValidTargets: Ground, Water, Air, Ship, Defense
 		InvalidTargets: Structure
 
 # Grouped traits for standard infantry attack behavior.
@@ -598,7 +601,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship
+		ValidTargets: Ground, Water, Air, Ship, Defense
 		InvalidTargets: Structure
 	# Grants condition when shooting.
 	GrantConditionOnAttack:
@@ -626,7 +629,7 @@
 	# Auto target enemies nearby.
 	AutoTarget:
 	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship
+		ValidTargets: Ground, Water, Air, Ship, Defense
 		InvalidTargets: Structure
 
 # Units can be cloaked by SHADOW unit.
