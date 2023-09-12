@@ -48,7 +48,7 @@ ed_vehicles_st01b:
 		Palette:
 		TerrainTypes: Sand, SandEdge
 		Type: CenterPosition
-		MovingInterval: 5
+		MovingInterval: 8
 		StartDelay: 0
 	Encyclopedia:
 		Category: ED - Vehicles
