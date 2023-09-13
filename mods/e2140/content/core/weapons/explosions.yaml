@@ -9,76 +9,14 @@ VehicleExplosion:
 
 VehicleExploding:
 	ValidTargets: Ground, Water
-	Warhead@Effect1: CreateEffect
-		Image: explosion
-		Explosions: unit_explosion_1, unit_explosion_2
-		ExplosionPalette:
-		ValidTargets: Ground, Water
-		ImpactSounds: 16.smp, 17.smp
-		Delay: 0
-	Warhead@Effect2: CreateEffect
-		Image: explosion
-		Explosions: projectile_explosion_3
-		ExplosionPalette:
-		ValidTargets: Ground, Water
-		ImpactSounds: 14.smp
-		Delay: 5
-	Warhead@Effect3: CreateEffect
-		Image: explosion
-		Explosions: unit_explosion_1, unit_explosion_2
-		ExplosionPalette:
-		ValidTargets: Ground, Water
-		ImpactSounds: 16.smp, 17.smp
-		Delay: 10
-	Warhead@Effect4: CreateEffect
-		Image: explosion
-		Explosions: projectile_explosion_3
-		ExplosionPalette:
-		ValidTargets: Ground, Water
-		ImpactSounds: 14.smp
-		Delay: 15
-	Warhead@Effect5: CreateEffect
-		Image: explosion
-		Explosions: unit_explosion_1, unit_explosion_2
-		ExplosionPalette:
-		ValidTargets: Ground, Water
-		ImpactSounds: 16.smp, 17.smp
-		Delay: 20
-	Warhead@EffectShrapnels1: SpawnWeapons
-		Weapons: weapon_debris_smoke
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: explosion_sequence, explosion_sequence_2, explosion_sequence, explosion_sequence_2, explosion_sequence
 		Range: 1c0, 1c512
-		Pieces: 3, 4
+		Inaccuracies: 0c256, 0c256, 0c256, 0c256, 0c256
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
-		Delays: 0
-	Warhead@EffectShrapnels2: SpawnWeapons
-		Weapons: weapon_debris_smoke
-		Range: 1c0, 1c512
-		Pieces: 3, 4
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
-		Delays: 5
-	Warhead@EffectShrapnels3: SpawnWeapons
-		Weapons: weapon_debris_smoke
-		Range: 1c0, 1c512
-		Pieces: 3, 4
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
-		Delays: 10
-	Warhead@EffectShrapnels4: SpawnWeapons
-		Weapons: weapon_debris_smoke
-		Range: 1c0, 1c512
-		Pieces: 3, 4
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
-		Delays: 15
-	Warhead@EffectShrapnels5: SpawnWeapons
-		Weapons: weapon_debris_smoke
-		Range: 1c0, 1c512
-		Pieces: 3, 4
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
-		Delays: 20
+		Delays: 0, 5, 10, 15, 20
+
 AircraftExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect
