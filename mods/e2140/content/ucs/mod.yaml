@@ -6,6 +6,7 @@ Missions:
 
 Rules:
 	e2140|content/ucs/rules.yaml
+	e2140|content/ucs/research.yaml
 	e2140|content/ucs/buildings/heavy_tech/rules.yaml
 	e2140|content/ucs/buildings/prod_center/rules.yaml
 	e2140|content/ucs/buildings/robot_factory/rules.yaml

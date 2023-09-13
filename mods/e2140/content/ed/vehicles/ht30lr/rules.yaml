@@ -10,6 +10,7 @@ ed_vehicles_ht30lr:
 		Queue: Vehicle.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 50
+		Prerequisites: LightLaser
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:

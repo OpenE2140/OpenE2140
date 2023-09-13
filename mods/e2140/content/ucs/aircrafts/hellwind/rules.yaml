@@ -10,6 +10,7 @@ ucs_aircrafts_hellwind:
 		Queue: Aircraft.UCS
 		BuildDuration: 100
 		BuildPaletteOrder: 20
+		Prerequisites: PlasmaBomb
 	Selectable:
 		Bounds: 1280, 1056, 0, 0
 	Health:

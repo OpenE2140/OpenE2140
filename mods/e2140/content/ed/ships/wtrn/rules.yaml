@@ -9,6 +9,7 @@ ed_ships_wtrn:
 		Queue: Ship.ED
 		BuildDuration: 125
 		BuildPaletteOrder: 20
+		Prerequisites: Engine
 	Selectable:
 		Bounds: 1296, 1088, 0, 0
 	Health:

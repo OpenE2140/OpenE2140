@@ -10,6 +10,7 @@ ed_aircrafts_storm:
 		Queue: Aircraft.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 30
+		Prerequisites: Flying
 	Selectable:
 		Bounds: 1312, 928, 0, 0
 	Health:

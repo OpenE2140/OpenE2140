@@ -10,6 +10,7 @@ ed_vehicles_st01b:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 10
+		Prerequisites: Engine
 	Selectable:
 		Bounds: 768, 544, 0, 0
 	Health:

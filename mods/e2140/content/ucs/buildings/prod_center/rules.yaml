@@ -100,5 +100,6 @@ ucs_mcu_prod_center:
 		Queue: Building.UCS
 		BuildDuration: 163
 		BuildPaletteOrder: 40
+		Prerequisites: NuclearEngine
 	WithTextDecoration:
 		Text: Prod. Center

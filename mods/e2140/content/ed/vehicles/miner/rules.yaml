@@ -10,6 +10,7 @@ ed_vehicles_miner:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 110
+		Prerequisites: AiMine
 	Selectable:
 		Bounds: 1008, 832, 0, 0
 	Health:

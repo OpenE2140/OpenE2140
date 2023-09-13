@@ -10,6 +10,7 @@ ucs_vehicles_miner_bt:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 110
+		Prerequisites: AiMine
 	Selectable:
 		Bounds: 1088, 784, 0, 0
 	Health:

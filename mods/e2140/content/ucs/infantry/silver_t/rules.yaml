@@ -9,6 +9,7 @@ ucs_infantry_silver_t:
 		Queue: Infantry.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 40
+		Prerequisites: Engine
 	Health:
 		HP: 40
 	RevealsShroud:

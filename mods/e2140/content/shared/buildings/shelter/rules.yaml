@@ -50,5 +50,6 @@ shared_mcu_shelter:
 		Queue: Defense.UCS, Defense.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 35
+		Prerequisites: NuclearReactor
 	WithTextDecoration:
 		Text: Shelter

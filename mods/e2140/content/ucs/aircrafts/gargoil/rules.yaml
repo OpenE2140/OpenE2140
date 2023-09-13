@@ -10,6 +10,7 @@ ucs_aircrafts_gargoil:
 		Queue: Aircraft.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 10
+		Prerequisites: Flying
 	Selectable:
 		Bounds: 960, 688, 0, 0
 	Health:

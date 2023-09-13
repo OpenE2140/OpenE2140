@@ -2,6 +2,7 @@ Notifications:
 	e2140|content/shared/notifications.yaml
 
 Rules:
+	e2140|content/shared/research.yaml
 	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/buildings/research_center/rules.yaml
 	e2140|content/shared/buildings/water_base/rules.yaml

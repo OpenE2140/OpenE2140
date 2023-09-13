@@ -29,6 +29,9 @@ shared_buildings_research_center:
 		Bounds: 2064, 1984, -140, 260
 	ProvidesPrerequisite:
 		Prerequisite: anypower
+	Researches:
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 5

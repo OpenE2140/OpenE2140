@@ -10,6 +10,7 @@ ed_ships_shark:
 		Queue: Ship.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 10
+		Prerequisites: Engine
 	Selectable:
 		Bounds: 704, 624, 0, 0
 	Health:

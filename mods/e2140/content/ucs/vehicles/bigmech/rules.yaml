@@ -10,6 +10,7 @@ ucs_vehicles_big_mech:
 		Queue: Vehicle.UCS
 		BuildDuration: 113
 		BuildPaletteOrder: 130
+		Prerequisites: Teleportation
 	Selectable:
 		Bounds: 1360, 1360, 0, 0
 	Health:

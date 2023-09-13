@@ -79,5 +79,6 @@ ed_mcu_silo:
 		Queue: Defense.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 35
+		Prerequisites: NuclearWeapons
 	WithTextDecoration:
 		Text: Silo

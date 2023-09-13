@@ -86,5 +86,6 @@ ucs_mcu_teleport:
 		Queue: Building.UCS
 		BuildDuration: 138
 		BuildPaletteOrder: 95
+		Prerequisites: Teleportation
 	WithTextDecoration:
 		Text: Teleport

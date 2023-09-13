@@ -82,6 +82,7 @@ shared_mcu_water_base:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 80
+		Prerequisites: Engine
 	WithTextDecoration:
 		Text: Water Base
 	Mobile:

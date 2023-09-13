@@ -13,6 +13,7 @@
 
 using System.Reflection;
 using JetBrains.Annotations;
+using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
@@ -61,6 +62,13 @@ public class AddFactionSuffixExLogic : ChromeLogic
 
 			ptw.Decorations += suffix;
 			ptw.RefreshCaches();
+		}
+
+		if (widget is ResearchPaletteWidget rpw)
+		{
+			rpw.Icons += suffix;
+			rpw.ClockAnimation += suffix;
+			rpw.Clock = new Animation(rpw.World, rpw.ClockAnimation);
 		}
 	}
 

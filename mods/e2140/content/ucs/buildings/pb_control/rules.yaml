@@ -47,5 +47,6 @@ ucs_mcu_pb_control:
 		Queue: Building.UCS
 		BuildDuration: 138
 		BuildPaletteOrder: 100
+		Prerequisites: PlasmaWeapons
 	WithTextDecoration:
 		Text: PB Control

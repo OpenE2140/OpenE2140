@@ -97,5 +97,6 @@ ed_mcu_constr_center:
 		Queue: Building.ED
 		BuildDuration: 163
 		BuildPaletteOrder: 40
+		Prerequisites: NuclearEngine
 	WithTextDecoration:
 		Text: Constr. Center

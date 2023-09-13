@@ -10,6 +10,7 @@ ed_vehicles_ht34j:
 		Queue: Vehicle.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 70
+		Prerequisites: IonCannon
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:

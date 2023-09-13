@@ -9,6 +9,7 @@ ucs_vehicles_spider:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 113
 		BuildPaletteOrder: 60
+		Prerequisites: LightPlasmaCannon
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

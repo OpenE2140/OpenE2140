@@ -13,6 +13,7 @@ shared_aircrafts_heavy_lifter:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 130
+		Prerequisites: Flying
 	Selectable:
 		Bounds: 992, 848, 0, 0
 	Health:

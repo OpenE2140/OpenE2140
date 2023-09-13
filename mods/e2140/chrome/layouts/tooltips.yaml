@@ -1,0 +1,49 @@
+Background@RESEARCH_TOOLTIP:
+	Logic: ResearchTooltipLogic
+	Background: dialog4
+	Width: 200
+	Height: 65
+	Children:
+		Label@NAME:
+			X: 7
+			Y: 3
+			Height: 23
+			Font: Bold
+		Label@HOTKEY:
+			Visible: false
+			Y: 3
+			Height: 23
+			TextColor: FFFF00
+			Font: Bold
+		Label@REQUIRES:
+			X: 7
+			Y: 26
+			Height: 15
+			Font: TinyBold
+		Label@DESC:
+			X: 7
+			Y: 27
+			Height: 2
+			Font: TinyBold
+			VAlign: Top
+		Image@COST_ICON:
+			Y: 5
+			Width: 16
+			Height: 16
+			ImageCollection: sidebar-bits
+			ImageName: production-tooltip-cost
+		Label@COST:
+			Y: 1
+			Height: 23
+			Font: Bold
+		Image@TIME_ICON:
+			X: 3
+			Y: 26
+			Width: 16
+			Height: 16
+			ImageCollection: sidebar-bits
+			ImageName: production-tooltip-time
+		Label@TIME:
+			Y: 22
+			Height: 23
+			Font: Bold

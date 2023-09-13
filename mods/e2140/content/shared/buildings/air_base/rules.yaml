@@ -142,5 +142,6 @@ shared_mcu_air_base:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 90
+		Prerequisites: Flying
 	WithTextDecoration:
 		Text: Air Base

@@ -10,6 +10,7 @@ ed_aircrafts_nemezis:
 		Queue: Aircraft.ED
 		BuildDuration: 150
 		BuildPaletteOrder: 50
+		Prerequisites: NuclearWeapons
 	Selectable:
 		Bounds: 1680, 1648, 0, 0
 	Health:

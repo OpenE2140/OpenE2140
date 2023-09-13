@@ -10,6 +10,7 @@ ucs_infantry_silver_max:
 		Queue: Infantry.UCS
 		BuildDuration: 100
 		BuildPaletteOrder: 30
+		Prerequisites: LightPlasmaCannon
 	Health:
 		HP: 28
 	RevealsShroud:

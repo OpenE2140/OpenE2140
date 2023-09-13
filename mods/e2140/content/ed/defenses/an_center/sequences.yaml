@@ -1,4 +1,4 @@
-ed_defenses_watch_tower:
+ed_defenses_an_center:
 	Defaults:
 		Filename: building_an_center.vspr
 	idle:
@@ -11,17 +11,17 @@ ed_defenses_watch_tower:
 		Start: 3
 		IgnoreWorldTint: true
 	idle-overlay:
-		Filename: content/ed/defenses/watch_tower/turret_an_center.png
+		Filename: content/ed/defenses/an_center/turret_an_center.png
 		Length: 16
 		Tick: 50
 
-ed_mcu_watch_tower:
+ed_mcu_an_center:
 	Inherits: shared_mcu
 	icon:
 		Filename: SPRI0.MIX
 		Start: 282
 
-ed_mcu_watch_tower.ucs:
+ed_mcu_an_center.ucs:
 	Inherits: shared_mcu
 	icon:
 		Filename: SPRI1.MIX

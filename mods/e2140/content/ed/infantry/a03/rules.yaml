@@ -10,6 +10,7 @@ ed_infantry_a03:
 		Queue: Infantry.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 30
+		Prerequisites: IonCannon
 	Health:
 		HP: 28
 	RevealsShroud:
