@@ -10,6 +10,7 @@ ucs_infantry_silver_r:
 		Queue: Infantry.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 20
+		Prerequisites: RocketEngine
 	Health:
 		HP: 28
 	RevealsShroud:

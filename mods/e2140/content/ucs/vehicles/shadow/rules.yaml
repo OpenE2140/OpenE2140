@@ -9,6 +9,7 @@ ucs_vehicles_shadow:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 150
 		BuildPaletteOrder: 120
+		Prerequisites: Teleportation
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:

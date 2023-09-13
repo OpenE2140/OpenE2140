@@ -9,6 +9,7 @@ ucs_ships_ttre400:
 		Queue: Ship.UCS
 		BuildDuration: 125
 		BuildPaletteOrder: 20
+		Prerequisites: AiMine
 	Selectable:
 		Bounds: 1104, 944, 0, 0
 	Health:

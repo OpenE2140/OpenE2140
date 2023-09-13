@@ -47,5 +47,6 @@ ed_mcu_bcc:
 		Queue: Building.ED
 		BuildDuration: 138
 		BuildPaletteOrder: 100
+		Prerequisites: NuclearWeapons
 	WithTextDecoration:
 		Text: BCC

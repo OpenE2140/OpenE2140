@@ -52,6 +52,8 @@ Player:
 	PlayerStatistics:
 	# Enables support powers such as Plasma Blast.
 	SupportPowerManager:
+	# Research system.
+	Research:
 
 # Map editor specific player setup.
 EditorPlayer:

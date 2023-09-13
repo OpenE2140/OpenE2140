@@ -51,5 +51,6 @@ ucs_mcu_big_eye:
 		Queue: Defense.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 20
+		Prerequisites: HeavyRockets
 	WithTextDecoration:
 		Text: Big Eye

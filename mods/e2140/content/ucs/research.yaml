@@ -1,0 +1,37 @@
+Player:
+	Researchable@PlasmaFusion:
+		Id: PlasmaFusion
+		Name: Plasma Fusion
+		Duration: 1500
+		Factions: ucs
+		Requires: Engine
+	Researchable@PlasmaCannon:
+		Id: PlasmaCannon
+		Name: Plasma Cannon
+		Duration: 2000
+		Factions: ucs
+		Requires: RocketEngine, PlasmaFusion
+	Researchable@LightPlasmaCannon:
+		Id: LightPlasmaCannon
+		Name: Light Plasma Cannon
+		Duration: 2500
+		Factions: ucs
+		Requires: PlasmaCannon
+	Researchable@Teleportation:
+		Id: Teleportation
+		Name: Teleportation
+		Duration: 3000
+		Factions: ucs
+		Requires: AiMine, LightPlasmaCannon
+	Researchable@PlasmaBomb:
+		Id: PlasmaBomb
+		Name: Plasma Bomb
+		Duration: 3500
+		Factions: ucs
+		Requires: Teleportation
+	Researchable@PlasmaWeapons:
+		Id: PlasmaWeapons
+		Name: Plasma Weapons
+		Duration: 4000
+		Factions: ucs
+		Requires: PlasmaBomb

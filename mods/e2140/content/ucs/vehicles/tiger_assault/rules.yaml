@@ -9,6 +9,7 @@ ucs_vehicles_tiger_assault:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 88
 		BuildPaletteOrder: 40
+		Prerequisites: RocketEngine
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

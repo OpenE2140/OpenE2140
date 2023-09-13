@@ -6,6 +6,7 @@ Missions:
 
 Rules:
 	e2140|content/ed/rules.yaml
+	e2140|content/ed/research.yaml
 	e2140|content/ed/buildings/constr_center/rules.yaml
 	e2140|content/ed/buildings/tech_house/rules.yaml
 	e2140|content/ed/buildings/bio_center/rules.yaml
@@ -41,7 +42,7 @@ Rules:
 	e2140|content/ed/defenses/heavy_defense_tower/rules.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/rules.yaml
 	e2140|content/ed/defenses/silo/rules.yaml
-	e2140|content/ed/defenses/watch_tower/rules.yaml
+	e2140|content/ed/defenses/an_center/rules.yaml
 
 Sequences:
 	e2140|content/ed/sequences.yaml
@@ -81,7 +82,7 @@ Sequences:
 	e2140|content/ed/defenses/heavy_defense_tower/sequences.yaml
 	e2140|content/ed/defenses/heavy_defense_tower_upgraded/sequences.yaml
 	e2140|content/ed/defenses/silo/sequences.yaml
-	e2140|content/ed/defenses/watch_tower/sequences.yaml
+	e2140|content/ed/defenses/an_center/sequences.yaml
 
 Voices:
 	e2140|content/ed/voices.yaml

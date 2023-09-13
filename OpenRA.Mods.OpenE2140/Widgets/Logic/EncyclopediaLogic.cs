@@ -17,9 +17,12 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.OpenE2140.Traits.Mcu;
+using OpenRA.Mods.OpenE2140.Traits.Research;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 using EncyclopediaInfo = OpenRA.Mods.OpenE2140.Traits.EncyclopediaInfo;
+using PowerInfo = OpenRA.Mods.OpenE2140.Traits.Power.PowerInfo;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
@@ -156,6 +159,9 @@ public class EncyclopediaLogic : ChromeLogic
 
 		this.previewWidget.SetPreview(actor, typeDictionary);
 
+		var mcu = this.modData.DefaultRules.Actors.Values.Where(actor => actor.HasTraitInfo<McuInfo>())
+			.FirstOrDefault(other => other.TraitInfoOrDefault<TransformsInfo>()?.IntoActor == actor.Name);
+
 		var text = string.Empty;
 
 		if (info != null)
@@ -176,7 +182,7 @@ public class EncyclopediaLogic : ChromeLogic
 				text += $"Resistance: {info.Resistance}\n";
 		}
 
-		var valued = actor.TraitInfoOrDefault<ValuedInfo>();
+		var valued = (mcu ?? actor).TraitInfoOrDefault<ValuedInfo>();
 
 		if (valued != null)
 			text += $"Price: {valued.Cost}\n";
@@ -191,6 +197,19 @@ public class EncyclopediaLogic : ChromeLogic
 				> 0 => $"Energy supplied: {power.Amount} energy units\n",
 				< 0 => $"Energy requirements: {power.Amount} energy units\n"
 			};
+		}
+
+		var buildable = (mcu ?? actor).TraitInfoOrDefault<BuildableInfo>();
+
+		if (buildable != null)
+		{
+			var research = this.modData.DefaultRules.Actors.Values.SelectMany(actor => actor.TraitInfos<ResearchableInfo>())
+				.Where(researchable => buildable.Prerequisites.Contains(researchable.Id))
+				.Select(researchable => researchable.Name)
+				.ToArray();
+
+			if (research.Any())
+				text += $"Research requirements: {string.Join(", ", research)}\n";
 		}
 
 		if (text != string.Empty)

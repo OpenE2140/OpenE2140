@@ -9,6 +9,7 @@ ucs_vehicles_wtp_100:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 100
 		BuildPaletteOrder: 90
+		Prerequisites: NuclearEngine
 	Selectable:
 		Bounds: 1664, 1472, 0, 0
 	Health:

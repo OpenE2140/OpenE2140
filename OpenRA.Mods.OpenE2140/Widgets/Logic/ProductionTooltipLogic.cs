@@ -15,6 +15,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.Common.Widgets.Logic;
+using OpenRA.Mods.OpenE2140.Traits.Research;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 using PowerInfo = OpenRA.Mods.OpenE2140.Traits.Power.PowerInfo;
@@ -86,105 +87,130 @@ public class ProductionTooltipLogic : ChromeLogic
 			var tooltip = actor.TraitInfos<TooltipInfo>().FirstOrDefault();
 			var power = actor.TraitInfos<PowerInfo>().Sum(i => i.Amount);
 
+			var missingResearch = player.PlayerActor.TraitsImplementing<Researchable>()
+				.Where(researchable => researchable.RemainingDuration != 0 && buildable.Prerequisites.Contains(researchable.Info.Id))
+				.Select(researchable => researchable.Info.Name)
+				.ToArray();
+
+			var x = padding.X;
+			var y = padding.Y;
+			var x2 = x;
+
 			// Name
 			nameLabel.Text = tooltip?.Name ?? actor.Name;
+
 			var nameSize = font.Measure(nameLabel.Text);
-			nameLabel.Bounds = new Rectangle(padding.X, padding.Y, nameSize.X, nameSize.Y);
+			nameLabel.Bounds = new Rectangle(x, y, nameSize.X, nameSize.Y);
+
+			y += nameLabel.Bounds.Height + padding.Y;
+			x2 = Math.Max(x2, nameLabel.Bounds.Right);
 
 			// Hotkey
 			hotkeyLabel.Visible = hotkey.IsValid();
-			hotkeyLabel.Bounds = new Rectangle(nameLabel.Bounds.Right + padding.X, nameLabel.Bounds.Y, 0, 0);
 
 			if (hotkeyLabel.Visible)
 			{
 				hotkeyLabel.Text = $"({hotkey.DisplayString()})";
+
 				var hotkeySize = font.Measure(hotkeyLabel.Text);
-				hotkeyLabel.Bounds.Width = hotkeySize.X;
-				hotkeyLabel.Bounds.Height = hotkeySize.Y;
+				hotkeyLabel.Bounds = new Rectangle(nameLabel.Bounds.Right + padding.X, nameLabel.Bounds.Y, hotkeySize.X, hotkeySize.Y);
+
+				x2 = Math.Max(x2, hotkeyLabel.Bounds.Right);
 			}
 
 			// Requires
-			// TODO Implement research
-			requiresLabel.Visible = false;
-			requiresLabel.Bounds = new Rectangle(nameLabel.Bounds.X, nameLabel.Bounds.Bottom + padding.Y, 0, 0);
+			requiresLabel.Visible = missingResearch.Any();
 
 			if (requiresLabel.Visible)
 			{
-				requiresLabel.Text = "UNIMPLEMENTED";
-				var requiredSize = font.Measure(hotkeyLabel.Text);
-				requiresLabel.Bounds.Width = requiredSize.X;
-				requiresLabel.Bounds.Height = requiredSize.Y;
+				requiresLabel.Text = string.Join(", ", missingResearch);
+				requiresLabel.TextColor = Color.Red;
+
+				var requiredSize = font.Measure(requiresLabel.Text);
+				requiresLabel.Bounds = new Rectangle(x, y, requiredSize.X, requiredSize.Y);
+
+				y += requiresLabel.Bounds.Height + padding.Y;
+				x2 = Math.Max(x2, requiresLabel.Bounds.Right);
 			}
 
 			// Description
 			descLabel.Visible = buildable.Description != string.Empty;
-			descLabel.Bounds = new Rectangle(requiresLabel.Bounds.X, requiresLabel.Bounds.Bottom + padding.Y, 0, 0);
 
 			if (descLabel.Visible)
 			{
 				descLabel.Text = buildable.Description.Replace("\\n", "\n");
+
 				var descSize = descFont.Measure(descLabel.Text);
-				descLabel.Bounds.Width = descSize.X;
-				descLabel.Bounds.Height = descSize.Y;
+				descLabel.Bounds = new Rectangle(x, y, descSize.X, descSize.Y);
+
+				y += descLabel.Bounds.Height + padding.Y;
+				x2 = Math.Max(x2, descLabel.Bounds.Right);
 			}
 
-			var iconOffset = new[] { hotkeyLabel.Bounds.Right, requiresLabel.Bounds.Right, descLabel.Bounds.Right }.Aggregate(Math.Max) + padding.X;
-			var labelOffset = iconOffset + iconWidth + padding.X;
-
-			powerIcon.Bounds.X = timeIcon.Bounds.X = costIcon.Bounds.X = iconOffset;
+			var y2 = y;
+			x = x2 + padding.X;
+			y = padding.Y;
+			var x3 = x + iconWidth + padding.X;
 
 			// Cost
 			costIcon.Visible = costLabel.Visible = cost != 0;
-			costLabel.Bounds = new Rectangle(labelOffset, padding.Y, 0, 0);
-			costIcon.Bounds.Y = costLabel.Bounds.Y;
 
-			if (costLabel.Visible)
+			if (costIcon.Visible)
 			{
 				costLabel.Text = cost.ToString();
-				var costSize = font.Measure(costLabel.Text);
 
 				costLabel.GetColor = () => cost < 0 ? Color.Green :
 					cost > pr.Cash + pr.Resources ? Color.Red : Color.White;
 
-				costLabel.Bounds.Width = costSize.X;
-				costLabel.Bounds.Height = costSize.Y;
+				costIcon.Bounds.X = x;
+				costIcon.Bounds.Y = y;
+
+				var costSize = font.Measure(costLabel.Text);
+				costLabel.Bounds = new Rectangle(x3, y, costSize.X, costSize.Y);
+
+				y += costLabel.Bounds.Height + padding.Y;
+				x2 = Math.Max(x2, costLabel.Bounds.Right);
 			}
 
 			// Time
 			timeIcon.Visible = timeLabel.Visible = buildable.BuildDuration != 0;
-			timeLabel.Bounds = new Rectangle(labelOffset, costLabel.Bounds.Bottom + padding.Y, 0, 0);
-			timeIcon.Bounds.Y = timeLabel.Bounds.Y;
 
 			if (timeLabel.Visible)
 			{
 				timeLabel.Text = formatBuildTime.Update(buildable.BuildDuration);
+
+				timeIcon.Bounds.X = x;
+				timeIcon.Bounds.Y = y;
+
 				var timeSize = font.Measure(timeLabel.Text);
-				timeLabel.Bounds.Width = timeSize.X;
-				timeLabel.Bounds.Height = timeSize.Y;
+				timeLabel.Bounds = new Rectangle(x3, y, timeSize.X, timeSize.Y);
+
+				y += timeLabel.Bounds.Height + padding.Y;
+				x2 = Math.Max(x2, timeLabel.Bounds.Right);
 			}
 
 			// Power
 			powerIcon.Visible = powerLabel.Visible = power != 0;
-			powerLabel.Bounds = new Rectangle(labelOffset, timeLabel.Bounds.Bottom + padding.Y, 0, 0);
-			powerIcon.Bounds.Y = powerLabel.Bounds.Y;
 
 			if (powerLabel.Visible)
 			{
 				powerLabel.Text = power.ToString();
-				var powerSize = font.Measure(powerLabel.Text);
 
 				powerLabel.GetColor = () => power > 0 ? Color.Green :
 					pm == null || power > pm.Power ? Color.Red : Color.White;
 
-				powerLabel.Bounds.Width = powerSize.X;
-				powerLabel.Bounds.Height = powerSize.Y;
+				powerIcon.Bounds.X = x;
+				powerIcon.Bounds.Y = y;
+
+				var powerSize = font.Measure(powerLabel.Text);
+				powerLabel.Bounds = new Rectangle(x3, y, powerSize.X, powerSize.Y);
+
+				y += powerLabel.Bounds.Height + padding.Y;
+				x2 = Math.Max(x2, powerLabel.Bounds.Right);
 			}
 
-			var width = new[] { costLabel.Bounds.Right, requiresLabel.Bounds.Right, timeLabel.Bounds.Right, powerLabel.Bounds.Right }.Aggregate(Math.Max);
-			var height = new[] { descLabel.Bounds.Bottom, powerLabel.Bounds.Bottom }.Aggregate(Math.Max);
-
-			widget.Bounds.Width = width + padding.X;
-			widget.Bounds.Height = height + padding.Y;
+			widget.Bounds.Width = x2 + padding.X;
+			widget.Bounds.Height = Math.Max(y2, y);
 		};
 	}
 }

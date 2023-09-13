@@ -20,3 +20,7 @@ Speech:
 		RestartGame: base|115.smp
 		ProductionInterrupted: extra|interrupted.wav
 		ProductionCancelled: extra|cancelled.wav
+		ResearchStarted: base|119.smp
+		ResearchComplete: base|122.smp
+		ResearchAborted: extra|cancelled.wav
+		ResearchAquired: base|122.smp

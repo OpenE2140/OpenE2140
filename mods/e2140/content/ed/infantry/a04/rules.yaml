@@ -9,6 +9,7 @@ ed_infantry_a04:
 		Queue: Infantry.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 40
+		Prerequisites: AiMine
 	Health:
 		HP: 20
 	RevealsShroud:

@@ -9,6 +9,7 @@ ucs_vehicles_spider_ii:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 113
 		BuildPaletteOrder: 70
+		Prerequisites: HeavyRockets
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

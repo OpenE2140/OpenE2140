@@ -10,6 +10,7 @@ ed_vehicles_ht33r:
 		Queue: Vehicle.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 60
+		Prerequisites: HeavyRockets
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:

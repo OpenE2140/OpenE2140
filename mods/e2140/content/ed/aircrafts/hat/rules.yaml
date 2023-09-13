@@ -9,6 +9,7 @@ ed_aircrafts_hat:
 		Queue: Aircraft.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 20
+		Prerequisites: Flying
 	Selectable:
 		Bounds: 1184, 1072, 0, 0
 	Health:

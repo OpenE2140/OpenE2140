@@ -27,3 +27,9 @@ ProductionTypeNaval: I
 	Description: Naval Tab
 	Types: Production
 	Contexts: Player
+
+ProductionTypeResearch: O
+	Description: Research Tab
+	Types: Production
+	Contexts: Player
+

@@ -10,6 +10,7 @@ ucs_vehicles_raptor_es:
 		Queue: Vehicle.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 20
+		Prerequisites: Engine
 	Selectable:
 		Bounds: 832, 928, 0, 0
 	Health:

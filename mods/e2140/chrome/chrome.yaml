@@ -1,12 +1,22 @@
-^Sidebar:
-	Image: chrome/assets/ucs_sidebar.png
-	Image2x: chrome/assets/ucs_sidebar-2x.png
-	Image3x: chrome/assets/ucs_sidebar-3x.png
+^SidebarUcs:
+	Image: chrome/assets/sidebar-ucs.png
+	Image2x: chrome/assets/sidebar-ucs-2x.png
+	Image3x: chrome/assets/sidebar-ucs-3x.png
 
 ^SidebarEd:
-	Image: chrome/assets/ed_sidebar.png
-	Image2x: chrome/assets/ed_sidebar-2x.png
-	Image3x: chrome/assets/ed_sidebar-3x.png
+	Image: chrome/assets/sidebar-ed.png
+	Image2x: chrome/assets/sidebar-ed-2x.png
+	Image3x: chrome/assets/sidebar-ed-3x.png
+
+^ResearchUcs:
+	Image: chrome/assets/research-ucs.png
+	Image2x: chrome/assets/research-ucs-2x.png
+	Image3x: chrome/assets/research-ucs-3x.png
+
+^ResearchEd:
+	Image: chrome/assets/research-ed.png
+	Image2x: chrome/assets/research-ed-2x.png
+	Image3x: chrome/assets/research-ed-3x.png
 
 ^Dialog:
 	Image: chrome/assets/dialog.png
@@ -614,27 +624,27 @@ stance-icons-highlighted:
 
 # Command bar:
 commandbar-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	Regions:
-		background: 0, 596, 434, 44
+		background: 0, 696, 434, 44
 
 command-button-ucs:
-	Inherits: ^Sidebar
-	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+	Inherits: ^SidebarUcs
+	PanelRegion: 0, 746, 3, 3, 29, 20, 3, 3
 command-button-ucs-hover:
-	Inherits: ^Sidebar
-	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+	Inherits: ^SidebarUcs
+	PanelRegion: 72, 746, 3, 3, 29, 20, 3, 3
 command-button-ucs-pressed:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+	Inherits: ^SidebarUcs
+	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
 command-button-ucs-highlighted:
-	Inherits: ^Sidebar
-	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+	Inherits: ^SidebarUcs
+	PanelRegion: 36, 746, 3, 3, 29, 20, 3, 3
 command-button-ucs-highlighted-hover:
 	Inherits: command-button-ucs-highlighted
 command-button-ucs-highlighted-pressed:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+	Inherits: ^SidebarUcs
+	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
 command-button-ucs-disabled:
 	Inherits: command-button-ucs
 command-button-ucs-highlighted-disabled:
@@ -642,70 +652,70 @@ command-button-ucs-highlighted-disabled:
 
 # Main sidebar artwork:
 sidebar-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	Regions:
-		background-sidebar: 52, 0, 214, 566
+		background-sidebar: 52, 0, 214, 648
 
 # Main buttons:
 sidebar-production-tab-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 281, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 sidebar-production-tab-ucs-hover:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 231, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 sidebar-production-tab-ucs-pressed:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 sidebar-production-tab-ucs-pressed-hover:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 sidebar-production-tab-ucs-highlighted:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 306, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 sidebar-production-tab-ucs-highlighted-hover:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 23, 256, 0, 0, 23, 31, 0, 0
 	PanelSides: Center
 
 # Sub buttons:
 sidebar-production-tab-button-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 24, 356, 3, 3, 22, 15, 3, 3
 
 sidebar-production-tab-button-ucs-hover:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 24, 380, 3, 3, 22, 15, 3, 3
 
 sidebar-production-tab-button-ucs-highlighted:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 24, 332, 3, 3, 22, 15, 3, 3
 
 sidebar-production-tab-button-ucs-highlighted-hover:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 24, 404, 3, 3, 22, 15, 3, 3
 
 # Unit production buttons:
 production-palette-button-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 267, 1, 4, 4, 51, 33, 4, 4
 
 production-palette-button-ucs-pressed:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	PanelRegion: 267, 43, 4, 4, 51, 33, 4, 4
 
 # Arrow buttons:
 production-tabs-decorations-ucs:
-	Inherits: ^Sidebar
+	Inherits: ^SidebarUcs
 	Regions:
 		right: 0, 356, 20, 20
 		right-hover: 0, 333, 20, 20
@@ -714,28 +724,28 @@ production-tabs-decorations-ucs:
 
 # Order buttons:
 sidebar-order-button-ucs:
-	Inherits: ^Sidebar
-	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 0, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ucs-hover:
-	Inherits: ^Sidebar
-	PanelRegion: 72, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 72, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ucs-highlighted:
-	Inherits: ^Sidebar
-	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 36, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ucs-highlighted-hover:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 108, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ucs-pressed:
-	Inherits: ^Sidebar
-	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 36, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ucs-pressed-hover:
-	Inherits: ^Sidebar
-	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+	Inherits: ^SidebarUcs
+	PanelRegion: 108, 775, 0, 0, 26, 26, 0, 0
 
 # Miscellaneous:
 power-icons-ucs:
@@ -783,31 +793,55 @@ sidebar-bits-ucs:
 		production-tooltip-cost: 137, 51, 16, 16
 		indicator-muted: 221, 42, 26, 24
 
+research-icons-ucs:
+	Inherits: ^ResearchUcs
+	Regions:
+		AiMine: 0, 0, 53, 35
+		LaserDetector: 53, 0, 53, 35
+		PlasmaBomb: 106, 0, 53, 35
+		LaserCannon: 159, 0, 53, 35
+		Engine: 0, 35, 53, 35
+		FastRepairing: 53, 35, 53, 35
+		RocketEngine: 106, 35, 53, 35
+		NuclearEngine: 159, 35, 53, 35
+		Teleportation: 0, 70, 53, 35
+		LightLaser: 53, 70, 53, 35
+		PlasmaWeapons: 106, 70, 53, 35
+		HeavyRockets: 159, 70, 53, 35
+		NuclearReactor: 0, 105, 53, 35
+		PlasmaFusion: 53, 105, 53, 35
+		LightPlasmaCannon: 106, 105, 53, 35
+		PlasmaCannon: 159, 105, 53, 35
+		HighMedicine: 0, 140, 53, 35
+		Flying: 53, 140, 53, 35
+		NuclearWeapons: 106, 140, 53, 35
+		IonCannon: 159, 140, 53, 35
+
 # ED
 
 # Command bar:
 commandbar-ed:
 	Inherits: ^SidebarEd
 	Regions:
-		background: 0, 596, 434, 44
+		background: 0, 696, 434, 44
 
 command-button-ed:
 	Inherits: ^SidebarEd
-	PanelRegion: 0, 646, 3, 3, 29, 20, 3, 3
+	PanelRegion: 0, 746, 3, 3, 29, 20, 3, 3
 command-button-ed-hover:
 	Inherits: ^SidebarEd
-	PanelRegion: 72, 646, 3, 3, 29, 20, 3, 3
+	PanelRegion: 72, 746, 3, 3, 29, 20, 3, 3
 command-button-ed-pressed:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
 command-button-ed-highlighted:
 	Inherits: ^SidebarEd
-	PanelRegion: 36, 646, 3, 3, 29, 20, 3, 3
+	PanelRegion: 36, 746, 3, 3, 29, 20, 3, 3
 command-button-ed-highlighted-hover:
 	Inherits: command-button-ed-highlighted
 command-button-ed-highlighted-pressed:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 646, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
 command-button-ed-disabled:
 	Inherits: command-button-ed
 command-button-ed-highlighted-disabled:
@@ -817,7 +851,7 @@ command-button-ed-highlighted-disabled:
 sidebar-ed:
 	Inherits: ^SidebarEd
 	Regions:
-		background-sidebar: 52, 0, 214, 566
+		background-sidebar: 52, 0, 214, 648
 
 # Main buttons:
 sidebar-production-tab-ed:
@@ -888,27 +922,27 @@ production-tabs-decorations-ed:
 # Order buttons:
 sidebar-order-button-ed:
 	Inherits: ^SidebarEd
-	PanelRegion: 0, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 0, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ed-hover:
 	Inherits: ^SidebarEd
-	PanelRegion: 72, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 72, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ed-highlighted:
 	Inherits: ^SidebarEd
-	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 36, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ed-highlighted-hover:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 108, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ed-pressed:
 	Inherits: ^SidebarEd
-	PanelRegion: 36, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 36, 775, 0, 0, 26, 26, 0, 0
 
 sidebar-order-button-ed-pressed-hover:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 675, 0, 0, 26, 26, 0, 0
+	PanelRegion: 108, 775, 0, 0, 26, 26, 0, 0
 
 # Miscellaneous:
 power-icons-ed:
@@ -955,3 +989,27 @@ sidebar-bits-ed:
 		production-tooltip-power: 102, 51, 16, 16
 		production-tooltip-cost: 68, 51, 16, 16
 		indicator-muted: 221, 17, 26, 24
+
+research-icons-ed:
+	Inherits: ^ResearchEd
+	Regions:
+		AiMine: 0, 0, 53, 35
+		LaserDetector: 53, 0, 53, 35
+		PlasmaBomb: 106, 0, 53, 35
+		LaserCannon: 159, 0, 53, 35
+		Engine: 0, 35, 53, 35
+		FastRepairing: 53, 35, 53, 35
+		RocketEngine: 106, 35, 53, 35
+		NuclearEngine: 159, 35, 53, 35
+		Teleportation: 0, 70, 53, 35
+		LightLaser: 53, 70, 53, 35
+		PlasmaWeapons: 106, 70, 53, 35
+		HeavyRockets: 159, 70, 53, 35
+		NuclearReactor: 0, 105, 53, 35
+		PlasmaFusion: 53, 105, 53, 35
+		LightPlasmaCannon: 106, 105, 53, 35
+		PlasmaCannon: 159, 105, 53, 35
+		HighMedicine: 0, 140, 53, 35
+		Flying: 53, 140, 53, 35
+		NuclearWeapons: 106, 140, 53, 35
+		IonCannon: 159, 140, 53, 35

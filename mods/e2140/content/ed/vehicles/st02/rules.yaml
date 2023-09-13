@@ -10,6 +10,7 @@ ed_vehicles_st02:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 20
+		Prerequisites: RocketEngine
 	Selectable:
 		Bounds: 768, 544, 0, 0
 	Health:

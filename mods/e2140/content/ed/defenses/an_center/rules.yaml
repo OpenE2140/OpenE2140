@@ -1,7 +1,7 @@
-ed_defenses_watch_tower:
+ed_defenses_an_center:
 	Inherits: ^CoreBuilding
 	Tooltip:
-		Name: Watch Tower
+		Name: AN Center
 	Health:
 		HP: 300
 	Power:
@@ -39,18 +39,18 @@ ed_defenses_watch_tower:
 		Category: ED - Buildings
 		Order: 17
 		Animation: DATABASE/MP2_TOW.FLC
-		Title: AN Center - Watch Tower
+		Title: AN Center
 		Armor: Light
 		Armament: None
 		Description: This structure has the same reconnaissance capabilities as a defence tower, but with a much larger radius.\n\nThis structure can cover large areas and make out SHADOW-camouflaged vehicles from great distances.
 
-ed_mcu_watch_tower:
+ed_mcu_an_center:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
-		Name: Mobile Watch Tower
+		Name: Mobile AN Center
 	Transforms:
 		Offset: 0,0
-		IntoActor: ed_defenses_watch_tower
+		IntoActor: ed_defenses_an_center
 	Valued:
 		Cost: 1200
 	Buildable:
@@ -58,5 +58,6 @@ ed_mcu_watch_tower:
 		Queue: Defense.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 50
+		Prerequisites: IonCannon
 	WithTextDecoration:
 		Text: Watch Tower

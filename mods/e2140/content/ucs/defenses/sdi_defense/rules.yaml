@@ -47,5 +47,6 @@ ucs_mcu_sdi_defense:
 		Queue: Defense.UCS
 		BuildDuration: 138
 		BuildPaletteOrder: 40
+		Prerequisites: PlasmaWeapons
 	WithTextDecoration:
 		Text: SDI Defence

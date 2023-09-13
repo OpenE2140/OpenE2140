@@ -309,7 +309,7 @@ Container@PLAYER_WIDGETS:
 			X: WINDOW_RIGHT - WIDTH
 			Y: 0
 			Width: 214
-			Height: 587
+			Height: 648
 			ImageCollection: sidebar
 			ImageName: background-sidebar
 			ClickThrough: false
@@ -559,47 +559,79 @@ Container@PLAYER_WIDGETS:
 									X: 3
 									Y: 3
 									ImageCollection: production-icons
-				Container@PRODUCTION_BACKGROUND:
-					X: 17
-					Y: 334
+						WorldButton@RESEARCH:
+							Logic: AddFactionSuffixLogic
+							X: 150
+							Width: 23
+							Height: 21
+							Background: sidebar-production-tab
+							TooltipText: Research
+							TooltipContainer: TOOLTIP_CONTAINER
+							Key: ProductionTypeResearch
+							Children:
+								Image@ICON:
+									Logic: AddFactionSuffixLogic
+									X: 3
+									Y: 3
+									ImageCollection: production-icons
+				Container@PRODUCTION_AND_RESEARCH:
+					Logic: ResearchLogic
 					Children:
-						Background@ICON_TEMPLATE:
-							Background: production-palette-button
-							Width: 59
-							Height: 41
-				ProductionPaletteEx@PRODUCTION_PALETTE:
-					Logic: AddFactionSuffixExLogic
-					X: 17
-					Y: 332
-					TooltipContainer: TOOLTIP_CONTAINER
-					Identifier: ProductionText
-					Columns: 3
-					Width: 200
-					IconSize: 59, 41
-					IconMargin: 0, 0
-					MaxIconRowOffset: 5
-					ReadyText: Ready
-					HoldText: On Hold
-					ClockPalette:
-					NotBuildablePalette:
-					SymbolsFont: SourceSansProSmall
-					QueuedOffset: 55,4
-					QueuedTextAlign: Right
-				ProductionTabsEx@PRODUCTION_TABS:
-					Logic: ProductionTabsLogic, AddFactionSuffixExLogic
-					PaletteWidget: PRODUCTION_PALETTE
-					TypesContainer: PRODUCTION_TYPES
-					BackgroundContainer: PRODUCTION_BACKGROUND
-					Identifier: TabNumber
-					ArrowButton:
-					TabWidth: 28
-					ArrowWidth: 20
-					TabButton: sidebar-production-tab-button
-					Decorations: production-tabs-decorations
-					X: 9
-					Y: 309
-					Width: 195
-					Height: 21
+						Container@PRODUCTION_BACKGROUND:
+							X: 17
+							Y: 334
+							Children:
+								Background@ICON_TEMPLATE:
+									Background: production-palette-button
+									Width: 59
+									Height: 41
+						ProductionPaletteEx@PRODUCTION_PALETTE:
+							Logic: AddFactionSuffixExLogic
+							X: 17
+							Y: 333
+							TooltipContainer: TOOLTIP_CONTAINER
+							Identifier: ProductionText
+							Columns: 3
+							Width: 200
+							IconSize: 59, 41
+							IconMargin: 0, 0
+							MaxIconRowOffset: 7
+							ReadyText: Ready
+							HoldText: On Hold
+							ClockPalette:
+							NotBuildablePalette:
+							SymbolsFont: SourceSansProSmall
+							QueuedOffset: 55,4
+							QueuedTextAlign: Right
+						ResearchPalette@RESEARCH_PALETTE:
+							Logic: AddFactionSuffixExLogic
+							X: 17
+							Y: 333
+							TooltipContainer: TOOLTIP_CONTAINER
+							Identifier: ProductionText
+							Columns: 3
+							Width: 200
+							IconSize: 59, 41
+							IconMargin: 0, 0
+							MaxIconRowOffset: 7
+							ClockPalette:
+							NotResearchablePalette:
+							Icons: research-icons
+						ProductionTabsEx@PRODUCTION_TABS:
+							Logic: ProductionTabsLogic, AddFactionSuffixExLogic
+							PaletteWidget: PRODUCTION_PALETTE
+							TypesContainer: PRODUCTION_TYPES
+							BackgroundContainer: PRODUCTION_BACKGROUND
+							Identifier: TabNumber
+							ArrowButton:
+							TabWidth: 28
+							ArrowWidth: 21
+							TabButton: sidebar-production-tab-button
+							Decorations: production-tabs-decorations
+							X: 9
+							Y: 309
+							Width: 196
+							Height: 21
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
 			X: WINDOW_RIGHT - WIDTH - 260

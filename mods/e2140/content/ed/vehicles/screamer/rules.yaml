@@ -9,6 +9,7 @@ ed_vehicles_screamer:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 120
+		Prerequisites: IonCannon
 	Selectable:
 		Bounds: 1024, 928, 0, 0
 	Health:

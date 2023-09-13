@@ -38,5 +38,6 @@ ed_mcu_defense_tower_upgraded:
 		Queue: Defense.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 15
+		Prerequisites: LaserCannon
 	WithTextDecoration:
 		Text: Defense Tower Upgr.

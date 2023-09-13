@@ -48,5 +48,6 @@ ed_mcu_pillbox:
 		Queue: Defense.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 30
+		Prerequisites: NuclearReactor
 	WithTextDecoration:
 		Text: Pillbox

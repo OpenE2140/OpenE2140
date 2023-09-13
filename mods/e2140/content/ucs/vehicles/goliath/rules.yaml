@@ -10,6 +10,7 @@ ucs_vehicles_goliath:
 		Queue: Vehicle.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 140
+		Prerequisites: AiMine
 	Selectable:
 		Bounds: 896, 864, 0, 0
 	Health:
