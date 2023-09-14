@@ -130,9 +130,10 @@ ModContent:
 			Sources: gog_soundtrack_extra, steam_soundtrack_extra
 
 	Sources:
-		e2140|installer/digital.yaml
 		e2140|installer/gog.yaml
 		e2140|installer/steam.yaml
+		e2140|installer/topwareshop.yaml
+		e2140|installer/zoom.yaml
 
 Translations:
 	common|languages/en.ftl
