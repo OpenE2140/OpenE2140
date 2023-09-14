@@ -1,4 +1,4 @@
-digital_en: Earth 2140 (Digital, English)
+topwareshop_en: Earth 2140 (TopWareShop, English)
 	Type: RegistryDirectory
 	RegistryPrefixes: HKEY_LOCAL_MACHINE\Software\, HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\, HKEY_CURRENT_USER\Software\, HKEY_CURRENT_USER\SOFTWARE\Wow6432Node\
 	RegistryKey: Reality Pump\Earth 2140
@@ -31,7 +31,7 @@ digital_en: Earth 2140 (Digital, English)
 					^SupportDir|Content/e2140/music/EARTH Theme - Track 8.ogg: music/8.ogg
 					^SupportDir|Content/e2140/music/Total Control - Track 9.ogg: music/9.ogg
 
-digital_de: Earth 2140 (Digital, German)
+topwareshop_de: Earth 2140 (TopWareShop, German)
 	Type: RegistryDirectory
 	RegistryPrefixes: HKEY_LOCAL_MACHINE\Software\, HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\, HKEY_CURRENT_USER\Software\, HKEY_CURRENT_USER\SOFTWARE\Wow6432Node\
 	RegistryKey: Reality Pump\Earth 2140

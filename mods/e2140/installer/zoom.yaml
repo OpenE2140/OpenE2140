@@ -1,4 +1,4 @@
-digital_en: Earth 2140 (Zoom, English)
+zoom: Earth 2140 (Zoom, English)
 	Type: RegistryDirectory
 	RegistryPrefixes: HKEY_LOCAL_MACHINE\Software\, HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\, HKEY_CURRENT_USER\Software\, HKEY_CURRENT_USER\SOFTWARE\Wow6432Node\
 	RegistryKey: ZOOM PLATFORM\Earth 2140 (Windows)
