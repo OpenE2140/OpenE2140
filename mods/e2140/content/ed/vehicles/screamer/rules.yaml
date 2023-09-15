@@ -22,6 +22,11 @@ ed_vehicles_screamer:
 		PauseOnCondition: VehicleDisabled
 	DetectCloaked:
 		Range: 4c896
+	ProximityExternalCondition:
+		Condition: VehicleInterfered
+		ValidRelationships: Enemy
+		Range: 4c896
+		RequiresCondition: !VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_screamer_husk
 	Encyclopedia:
