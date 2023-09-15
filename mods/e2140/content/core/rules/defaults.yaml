@@ -352,6 +352,7 @@
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
 	Inherits@3: ^DisabledActor
+	Inherits@4: ^InterferedActor
 	Armor:
 		Type: vehicle
 	# Vehicles can kill infantry by moving over them and set movement modifiers.
@@ -417,6 +418,7 @@
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
 	Inherits@3: ^DisabledActor
+	Inherits@4: ^InterferedActor
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
 		Type: aircraft
@@ -470,6 +472,12 @@
 	# Aircrafts units are visible on the radar when being on ground and in air.
 	AppearsOnRadar:
 		UseLocation: true
+	# Aircrafts will reject any order from player if they are interfered and not airborne.
+	RejectsOrders:
+		RequiresCondition: VehicleInterfered && !airborne
+	# Render an indicator that actor is interfered.
+	WithDecoration@Interference:
+		RequiresCondition: VehicleInterfered && !airborne
 
 # Base for all aircrafts husks
 ^CoreAircraftFallingHusk:
@@ -516,6 +524,7 @@
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
 	Inherits@3: ^DisabledActor
+	Inherits@4: ^InterferedActor
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
 		Type: vehicle
@@ -742,12 +751,14 @@
 		MinHP: 0
 		MaxHP: 5
 	# Render an indicator that actor is disabled.
-	WithDecoration:
+	WithDecoration@Disabled:
 		Image: disabledActor-indicator
 		Sequence: idle
 		Palette:
 		Position: Top
 		ValidRelationships: Ally, Enemy, Neutral
+		Offsets:
+			VehicleInterfered: -15, 0
 		RequiresCondition: VehicleDisabled
 	# Plays static sound when vehicle is disabled.
 	Voiced@Static:
@@ -843,3 +854,21 @@
 		Offset: 0,-128,0
 		Image: smoke
 		Sequences: dark_smoke
+
+# SCREAMER blocks orders of enemy units.
+^InterferedActor:
+	# Actors will reject any order from player if they are interfered.
+	RejectsOrders:
+		RequiresCondition: VehicleInterfered
+	# This allows using condition 'VehicleInterfered' which SCREAMER unit provides.
+	ExternalCondition@Interference:
+		Condition: VehicleInterfered
+	# Render an indicator that actor is interfered.
+	WithDecoration@Interference:
+		Image: interference-indicator
+		Sequence: idle
+		Palette:
+		Position: Top
+		Offsets:
+			VehicleDisabled: 15, 0
+		RequiresCondition: VehicleInterfered
