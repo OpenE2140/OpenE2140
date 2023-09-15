@@ -196,7 +196,17 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				// Calculate repair position
 				var vec = this.target.Actor.Location - self.Location;
 				var repairPosition = pos + new WVec(vec.X * 256, vec.Y * 256, 0);
-				var length = (pos - repairPosition).Length / this.GetDockSpeed();
+				var repairCell = self.World.Map.CellContaining(repairPosition);
+				var length = (pos - repairPosition).Length / this.GetDockSpeed(repairCell);
+
+				if (length <= 1)
+				{
+					// HCU-M is (somehow) already at repair position or really close, do the final move tick and change state
+					this.mobile.SetCenterPosition(self, repairPosition);
+					this.RepairState = RepairState.Repairing;
+
+					return false;
+				}
 
 				// do first move tick manually (to fake appearance of continuous movement)
 				var nextPos = WPos.Lerp(pos, repairPosition, 0, length - 1);
@@ -205,8 +215,6 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				this.QueueChild(new Drag(self, pos, repairPosition, length));
 				this.RepairState = RepairState.DockingToTarget;
-
-				//this.attack.DockingToTarget(self);
 
 				this.QueueChild(new CallFunc(() => this.RepairState = RepairState.Repairing, false));
 
@@ -264,7 +272,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 	private void UndockFromTarget(Actor self)
 	{
 		var returnPosition = self.World.Map.CenterOfCell(self.Location);
-		var length = (self.CenterPosition - returnPosition).Length / this.GetUndockSpeed(self);
+		var length = (self.CenterPosition - returnPosition).Length / this.GetDockSpeed(self.Location);
 
 		this.QueueChild(new Drag(self, self.CenterPosition, returnPosition, length));
 
@@ -285,14 +293,9 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 			n.Undocking(self);
 	}
 
-	private int GetDockSpeed()
+	private int GetDockSpeed(CPos cell)
 	{
-		return this.mobile.Locomotor.MovementSpeedForCell(this.target.Actor.Location) * this.attack.Info.DockSpeedModifier / 100;
-	}
-
-	private int GetUndockSpeed(Actor self)
-	{
-		return this.mobile.Locomotor.MovementSpeedForCell(self.Location) * this.attack.Info.DockSpeedModifier / 100;
+		return this.mobile.Locomotor.MovementSpeedForCell(cell) * this.attack.Info.DockSpeedModifier / 100;
 	}
 
 	private bool CanDock(Actor self, Actor target)
