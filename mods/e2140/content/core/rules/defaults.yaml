@@ -265,6 +265,10 @@
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground, Defense
+	# Defense towers are able to detect cloaked actors at close proximity.
+	DetectCloaked:
+		Range: 4c896
+		DetectionTypes: Cloak, UnderwaterCloak
 
 # Base for all infantry.
 ^CoreInfantry:
