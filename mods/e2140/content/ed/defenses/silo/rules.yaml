@@ -51,8 +51,7 @@ ed_defenses_silo:
 		LaunchSound: 111.smp
 		StartFullyCharged: True
 		AllowMultiple: True
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: Transforming || !Powered
 	SupportPowerChargeBar:
 	WithSupportPowerActivationAnimation:
 	Encyclopedia:

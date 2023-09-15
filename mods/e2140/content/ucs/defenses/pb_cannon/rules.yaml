@@ -49,8 +49,7 @@ ucs_defenses_pb_cannon:
 		LaunchSound: 112.smp
 		StartFullyCharged: True
 		AllowMultiple: True
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: Transforming || !Powered
 	SupportPowerChargeBar:
 	WithSupportPowerActivationAnimation:
 	Encyclopedia:
