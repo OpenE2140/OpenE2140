@@ -137,7 +137,12 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 		if (this.State != RepairState.Repairing)
 			return false;
 
-		if (target.Actor.TraitOrDefault<Mobile>()?.CurrentMovementTypes != MovementType.None)
+		var mobile = target.Actor.TraitOrDefault<Mobile>();
+		if (mobile != null && mobile.CurrentMovementTypes != MovementType.None)
+			return false;
+
+		var aircraft = target.Actor.TraitOrDefault<Aircraft>();
+		if (aircraft != null && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
 			return false;
 
 		return base.CanAttack(self, target);

@@ -167,7 +167,16 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				}
 
 				// If target is moving, wait a bit, before attempting to dock again.
-				if (targetMobile?.CurrentMovementTypes != MovementType.None)
+				if (targetMobile != null && targetMobile.CurrentMovementTypes != MovementType.None)
+				{
+					this.QueueChild(new Wait(5));
+
+					return false;
+				}
+
+				// If target is aircraft and is airborne, wait a bit, before attempting to dock again.
+				var targetAircraft = this.target.Actor.TraitOrDefault<Aircraft>();
+				if (targetAircraft != null && self.World.Map.DistanceAboveTerrain(this.target.CenterPosition).Length > 0)
 				{
 					this.QueueChild(new Wait(5));
 
@@ -233,8 +242,17 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				// Check if target isn't moving, if so, undock and try moving to it again
 				var targetMobile = this.target.Actor.TraitOrDefault<Mobile>();
+				if (targetMobile != null && targetMobile.CurrentMovementTypes != MovementType.None)
+				{
+					this.UndockFromTarget(self);
+					this.RepairState = RepairState.MovingToTarget;
 
-				if (targetMobile.CurrentMovementTypes != MovementType.None)
+					return false;
+				}
+
+				// If target is aircraft and is taking off, undock and try moving to it again
+				var targetAircraft = this.target.Actor.TraitOrDefault<Aircraft>();
+				if (targetAircraft != null && self.World.Map.DistanceAboveTerrain(this.target.CenterPosition).Length > 0)
 				{
 					this.UndockFromTarget(self);
 					this.RepairState = RepairState.MovingToTarget;
@@ -301,8 +319,11 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 	private bool CanDock(Actor self, Actor target)
 	{
 		var targetMobile = target.TraitOrDefault<Mobile>();
+		var targetAircraft = target.TraitOrDefault<Aircraft>();
 
-		if (targetMobile.CurrentMovementTypes != MovementType.None)
+		if (targetMobile != null && targetMobile.CurrentMovementTypes != MovementType.None)
+			return false;
+		if (targetAircraft != null && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
 			return false;
 
 		var cellDist = this.target.Actor.Location - self.Location;
