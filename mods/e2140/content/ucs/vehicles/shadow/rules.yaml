@@ -22,6 +22,8 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
+	DetectCloaked:
+		Range: 4c896
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_shadow_husk
 	Encyclopedia:
