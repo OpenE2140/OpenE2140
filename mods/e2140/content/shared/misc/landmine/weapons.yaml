@@ -1,4 +1,5 @@
 shared_misc_landmine:
+	Inherits: Smudges
 	Warhead@Damage: SpreadDamage
 		Spread: 256
 		Damage: 50

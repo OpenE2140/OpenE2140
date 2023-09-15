@@ -2,10 +2,12 @@ Smudges:
 	Warhead@SmudgeClear: LeaveSmudge
 		SmudgeType: Clear
 		Chance: 20
+		AffectsParent: true
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Defense, Structure, Water
 	Warhead@SmudgeSand: LeaveSmudge
 		SmudgeType: Sand
 		Chance: 20
+		AffectsParent: true
 		ValidTargets: Ground
 		InvalidTargets: Vehicle, Defense, Structure, Water
