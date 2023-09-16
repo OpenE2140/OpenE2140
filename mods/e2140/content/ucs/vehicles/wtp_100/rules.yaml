@@ -50,6 +50,7 @@ ucs_vehicles_wtp_100:
 			AsphaltRoad: 100
 			Water: 100
 			Shore: 100
+			Resources: 100
 
 ucs_vehicles_wtp_100_husk:
 	Inherits@1: ^Husk
