@@ -14,13 +14,12 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor can extract resources and eject resource crates.")]
-public class ResourceMineInfo : PausableConditionalTraitInfo, Requires<ConveyorBeltInfo>
+public class ResourceMineInfo : ConveyorBeltInfo
 {
 	[Desc("The maximum range this actor can dig for resources.")]
 	public readonly int Range = 5;
@@ -46,61 +45,69 @@ public class ResourceMineInfo : PausableConditionalTraitInfo, Requires<ConveyorB
 	}
 }
 
-public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, ITick
+public class ResourceMine : ConveyorBelt
 {
-	private readonly ConveyorBelt conveyorBelt;
+	private readonly ResourceMineInfo info;
+
 	private readonly IResourceLayer? resourceLayer;
 
-	private ResourceCrate? crate;
 	private int delay;
 
 	public ResourceMine(ResourceMineInfo info, ActorInitializer init)
 		: base(info)
 	{
-		this.conveyorBelt = init.Self.Trait<ConveyorBelt>();
+		this.info = info;
 		this.resourceLayer = init.World.WorldActor.TraitOrDefault<ResourceLayer>();
 	}
 
-	void ITick.Tick(Actor self)
+	protected override void TickInner(Actor self)
 	{
+		base.TickInner(self);
+
 		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
 			return;
 
-		this.delay = (this.delay + 1) % (this.Info.Delay + 1);
+		this.delay = (this.delay + 1) % (this.info.Delay + 1);
 
 		if (this.delay != 0)
 			return;
 
 		this.crate ??= self.World.CreateActor(
 				false,
-				this.Info.CrateActor,
+				this.info.CrateActor,
 				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
 			)
 			.Trait<ResourceCrate>();
 
-		var minable = Math.Min(this.Info.Force, this.Info.CrateSize - this.crate.Resources);
+		var minable = Math.Min(this.info.Force, this.info.CrateSize - this.crate.Resources);
 
 		if (minable > 0)
 		{
-			var mined = this.Info.EmptyForce;
+			var mined = this.info.EmptyForce;
 			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
-			for (var y = -this.Info.Range; y <= this.Info.Range && mined < minable; y++)
-			for (var x = -this.Info.Range; x <= this.Info.Range && mined < minable; x++)
+			for (var y = -this.info.Range; y <= this.info.Range && mined < minable; y++)
+			for (var x = -this.info.Range; x <= this.info.Range && mined < minable; x++)
 			{
 				var targetCell = centerCell + new CVec(y, x);
 
-				if ((targetCell - centerCell).Length <= this.Info.Range)
+				if ((targetCell - centerCell).Length <= this.info.Range)
 					mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
 			}
 
 			this.crate.Resources += mined;
 		}
 
-		if (this.crate.Resources < this.Info.CrateSize)
+		if (this.crate.Resources < this.info.CrateSize)
 			return;
 
-		if (this.conveyorBelt.Activate(self, this.crate))
+		if (this.Activate(self, this.crate))
 			this.crate = null;
+	}
+
+	protected override void Complete(Actor self)
+	{
+		// TODO Only when picked up by crate transporter!
+		this.crate = null;
 	}
 }

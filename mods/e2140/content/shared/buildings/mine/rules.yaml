@@ -7,9 +7,6 @@ shared_buildings_mine:
 	Power:
 		Amount: -200
 	ResourceMine:
-		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
-	EjectingConveyorBelt:
 		InsideOffset: 512,-512,0
 		EntryOffset: 1280
 		OutsideOffset: 1404,-512,0
@@ -18,10 +15,6 @@ shared_buildings_mine:
 		PauseOnCondition: !Powered
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
-		RequiresCondition: Powered
-	WithIdleOverlay@Belt-light:
-		Sequence: belt-lights
-		Offset: 402,1624,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
@@ -33,6 +26,10 @@ shared_buildings_mine:
 		Offset: 624,1328,0
 		RequiresCondition: !Transforming && BeltActive
 		PauseOnCondition: !Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 402,1624,0
+		RequiresCondition: Powered
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
 		Offset: 1680,-280,0
