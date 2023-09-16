@@ -1,0 +1,5 @@
+resources:
+	idle:
+		Filename: SPRO0.MIX
+		Start: 49
+		Length: 6
