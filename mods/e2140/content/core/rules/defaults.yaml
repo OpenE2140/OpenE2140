@@ -26,6 +26,7 @@
 	Building:
 		Dimensions: 1,1
 		Footprint: x
+		AllowPlacementOnResources: true
 	# Put decorations in own catgegory in map editor.
 	MapEditorData:
 		Categories: Decorations
@@ -88,7 +89,8 @@
 		Type: building
 	# Add building specific logic to Constructions.
 	Building:
-		TerrainTypes: Clear, Road
+		TerrainTypes: Clear, Road, Resources
+		AllowPlacementOnResources: true
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground, Structure
@@ -391,6 +393,7 @@
 			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
+			Resources: 100
 
 # Base for all vehicles
 ^CoreVehicle:
@@ -448,6 +451,7 @@
 			SandEdge: 50
 			Road: 100
 			AsphaltRoad: 100
+			Resources: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
 		Crushes: infantry, mine, husk
@@ -459,6 +463,7 @@
 			SandEdge: 100
 			Road: 100
 			AsphaltRoad: 100
+			Resources: 100
 
 # Base for all aircrafts
 ^CoreAircraft:
@@ -473,7 +478,7 @@
 	Aircraft:
 		TurnSpeed: 50
 		IdleBehavior: Land
-		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road
+		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road, Resources
 		CruiseAltitude: 1c256
 		AltitudeVelocity: 0c60
 		IdealSeparation: 1c0
@@ -844,7 +849,7 @@
 			Radius: 256
 	# Husk trait which allows keeping actor's facing when it's dead.
 	Husk:
-		AllowedTerrain: Clear, ClearTree, ClearPipe, Creek, Shore, Sand, SandEdge, Road
+		AllowedTerrain: Clear, ClearTree, ClearPipe, Creek, Shore, Sand, SandEdge, Road, Resources
 	# Decrease husk's HP over time.
 	ChangesHealth:
 		Step: -25
