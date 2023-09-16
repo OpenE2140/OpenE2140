@@ -18,6 +18,11 @@ Terrain:
 		TargetTypes: Ground
 		Color: 352608
 		AcceptsSmudgeType: Clear
+	TerrainType@Resources:
+		Type: Resources
+		TargetTypes: Ground
+		Color: BFC051
+		AcceptsSmudgeType: Clear
 	TerrainType@ClearTree:
 		Type: ClearTree
 		TargetTypes: Ground
