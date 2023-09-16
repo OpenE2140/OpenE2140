@@ -11,13 +11,11 @@ shared_buildings_mine:
 		Start: 3
 		IgnoreWorldTint: true
 	rotor_up:
-		Filename: content/shared/buildings/mine/building_mine_rotor.png
-		#Start: 4
+		Start: 4
 		Length: 8
 		Tick: 60
 	rotor_down:
-		Filename: content/shared/buildings/mine/building_mine_rotor.png
-		#Start: 4
+		Start: 4
 		FlipX: True
 		Length: 8
 		Tick: 60
@@ -32,6 +30,10 @@ shared_buildings_mine:
 		Start: 1
 		IgnoreWorldTint: true
 		ZOffset: 64
+	belt-eject:
+		Filename: belt.vspr
+		Start: 2
+		Length: 3
 
 shared_mcu_mine:
 	Inherits: shared_mcu

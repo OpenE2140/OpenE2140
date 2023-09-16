@@ -1,0 +1,4 @@
+crate:
+	idle:
+		Filename: crate.vspr
+		Facings: -8
