@@ -20,6 +20,9 @@ shared_aircrafts_heavy_lifter:
 		HP: 300
 	Aircraft:
 		Speed: 94
+	CrateTransporter:
+		Offset: 0,0,-192
+		ZOffset: 0
 	RevealsShroud:
 		Range: 2c896
 	WithMoveSound:
