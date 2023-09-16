@@ -1,5 +1,5 @@
 crate:
-	Inherits: ^CoreDecoration
+	Inherits: ^CoreVisibleActor
 	HitShape:
 		Type: Circle
 			Radius: 512
@@ -11,8 +11,12 @@ crate:
 	Interactable:
 	Targetable:
 		TargetTypes: Ground
-	Building:
-		Footprint: _
-	CustomChangesTerrain:
-		TerrainType: ClearTree
-	WithSpriteBody:
+	Mobile:
+		Locomotor: crate
+	WithFacingSpriteBody:
+
+# Crate special locomotor as it can not move itself, but is movable by other actors.
+^CoreWorld:
+	Locomotor@crate:
+		Name: crate
+		TerrainSpeeds:
