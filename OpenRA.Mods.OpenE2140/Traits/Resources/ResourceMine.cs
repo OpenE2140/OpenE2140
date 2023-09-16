@@ -14,13 +14,12 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor can extract resources and eject resource crates.")]
-public class ResourceMineInfo : PausableConditionalTraitInfo, Requires<ConveyorBeltInfo>
+public class ResourceMineInfo : ConveyorBeltInfo
 {
 	[Desc("The maximum range this actor can dig for resources.")]
 	public readonly int Range = 5;
@@ -46,23 +45,26 @@ public class ResourceMineInfo : PausableConditionalTraitInfo, Requires<ConveyorB
 	}
 }
 
-public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, ITick
+public class ResourceMine : ConveyorBelt
 {
-	private readonly ConveyorBelt conveyorBelt;
+	public new readonly ResourceMineInfo Info;
+
 	private readonly IResourceLayer? resourceLayer;
 
-	private ResourceCrate? crate;
 	private int delay;
 
 	public ResourceMine(Actor self, ResourceMineInfo info)
 		: base(info)
 	{
-		this.conveyorBelt = self.Trait<ConveyorBelt>();
+		this.Info = info;
+
 		this.resourceLayer = self.World.WorldActor.TraitOrDefault<ResourceLayer>();
 	}
 
-	void ITick.Tick(Actor self)
+	protected override void TickInner(Actor self)
 	{
+		base.TickInner(self);
+
 		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
 			return;
 
@@ -86,12 +88,14 @@ public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, ITick
 			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
 			for (var y = -this.Info.Range; y <= this.Info.Range && mined < minable; y++)
-			for (var x = -this.Info.Range; x <= this.Info.Range && mined < minable; x++)
 			{
-				var targetCell = centerCell + new CVec(y, x);
+				for (var x = -this.Info.Range; x <= this.Info.Range && mined < minable; x++)
+				{
+					var targetCell = centerCell + new CVec(y, x);
 
-				if ((targetCell - centerCell).Length <= this.Info.Range)
-					mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+					if ((targetCell - centerCell).Length <= this.Info.Range)
+						mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+				}
 			}
 
 			this.crate.Resources += mined;
@@ -100,7 +104,7 @@ public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, ITick
 		if (this.crate.Resources < this.Info.CrateSize)
 			return;
 
-		if (this.conveyorBelt.Activate(self, this.crate))
+		if (this.Activate(self, this.crate))
 			this.crate = null;
 	}
 }

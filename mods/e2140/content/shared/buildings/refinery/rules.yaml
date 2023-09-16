@@ -6,17 +6,29 @@ shared_buildings_refinery:
 		HP: 800
 	Power:
 		Amount: -300
+	ResourceRefinery:
+		InsideOffset: 1384,-512,0
+		EntryOffset: 1216
+		OutsideOffset: 512,-512,0
+		ZOffset: 128
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
-		RequiresCondition: Powered
-	WithIdleOverlay@Belt-light:
-		Sequence: belt-lights
-		Offset: 208,1644,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
 		Offset: 208,1644,0
 		RequiresCondition: !Transforming
+	WithIdleOverlay@BeltRetract:
+		Sequence: belt-retract
+		Offset: 424,1328,0
+		RequiresCondition: !Transforming && BeltActive
+		PauseOnCondition: !Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 208,1644,0
+		RequiresCondition: Powered
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
 	Building:
