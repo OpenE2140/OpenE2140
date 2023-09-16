@@ -109,10 +109,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	public IEnumerable<Actor> CrewMembers => this.crewMembers;
 	public int MemberCount => this.crewMembers.Count;
 
-	private enum State { Free, Locked }
-
-	private State state = State.Free;
-
 	public BuildingCrew(ActorInitializer init, BuildingCrewInfo info)
 		: base(info)
 	{
@@ -264,7 +260,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		this.reserves.Add(a);
 		this.reservedWeight += w;
-		this.LockForPickup(this.self);
 
 		return true;
 	}
@@ -276,33 +271,9 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		this.reservedWeight -= GetWeight(a);
 		this.reserves.Remove(a);
-		this.ReleaseLock(this.self);
 
 		if (this.loadingToken != Actor.InvalidConditionToken)
 			this.loadingToken = this.self.RevokeCondition(this.loadingToken);
-	}
-
-	// Prepare for transport pickup
-	private void LockForPickup(Actor self)
-	{
-		if (this.state == State.Locked)
-			return;
-
-		this.state = State.Locked;
-
-		self.CancelActivity();
-
-		self.QueueActivity(new WaitFor(() => this.state != State.Locked, false));
-	}
-
-	private void ReleaseLock(Actor self)
-	{
-		if (this.reservedWeight != 0)
-			return;
-
-		this.state = State.Free;
-
-		self.QueueActivity(new Wait(this.Info.AfterLoadDelay, false));
 	}
 
 	public string VoicePhraseForOrder(Actor self, Order order)
@@ -365,7 +336,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		{
 			this.reservedWeight -= w;
 			this.reserves.Remove(a);
-			this.ReleaseLock(self);
 
 			if (this.loadingToken != Actor.InvalidConditionToken)
 				this.loadingToken = self.RevokeCondition(this.loadingToken);
