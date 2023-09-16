@@ -18,42 +18,40 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly]
-[Desc("This version of the conveyor belt ejects resource crates.")]
-public class EjectingConveyorBeltInfo : ConveyorBeltInfo
+[Desc("This actor can accept resource crates and process them.")]
+public class ResourceRefineryInfo : ConveyorBeltInfo
 {
 	public override object Create(ActorInitializer init)
 	{
-		return new EjectingConveyorBelt(this);
+		return new ResourceRefinery(this);
 	}
 }
 
-public class EjectingConveyorBelt : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerChanged
+public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerChanged
 {
-	// TODO temporary => must be in refinery!
 	private PlayerResources? playerResources;
 
-	public EjectingConveyorBelt(ConveyorBeltInfo info)
+	public ResourceRefinery(ConveyorBeltInfo info)
 		: base(info)
 	{
 	}
 
-	protected override bool Complete(ResourceCrate crate)
-	{
-		// TODO Wait for crate pickup here.
-		this.playerResources?.GiveCash(crate.Resources);
-
-		return true;
-	}
-
-	// TODO temporary => must be in refinery!
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
 	{
 		this.playerResources = self.Owner.PlayerActor.TraitOrDefault<PlayerResources>();
 	}
 
-	// TODO temporary => must be in refinery!
 	void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner)
 	{
 		this.playerResources = newOwner.PlayerActor.TraitOrDefault<PlayerResources>();
+	}
+
+	protected override void Complete(Actor self)
+	{
+		if (this.crate == null)
+			return;
+
+		this.playerResources?.GiveCash(this.crate.Resources);
+		this.crate = null;
 	}
 }
