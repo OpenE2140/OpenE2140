@@ -112,8 +112,11 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 		if (this.crate == null || this.crate.Actor.CenterPosition == position)
 			return;
 
-		typeof(Building).GetField($"<{nameof(Building.CenterPosition)}>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic)
-			?.SetValue(this.crate.Actor.Trait<Building>(), position);
+		foreach (var mobile in this.crate.Actor.TraitsImplementing<Mobile>())
+		{
+			typeof(Mobile).GetProperty("CenterPosition", BindingFlags.Instance | BindingFlags.Public)?.SetValue(mobile, position);
+			typeof(Mobile).GetField("oldPos", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(mobile, mobile.CenterPosition);
+		}
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
