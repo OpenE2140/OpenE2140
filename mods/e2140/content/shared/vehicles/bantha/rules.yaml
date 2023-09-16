@@ -19,6 +19,9 @@ shared_vehicles_bantha:
 		HP: 400
 	Mobile:
 		Speed: 50
+	CrateTransporter:
+		Offset: 0,192,0
+		ZOffset: 192
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:
