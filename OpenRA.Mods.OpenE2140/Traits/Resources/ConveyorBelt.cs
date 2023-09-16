@@ -61,7 +61,7 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 
 	private int condition = Actor.InvalidConditionToken;
 	private int elapsed;
-	private ResourceCrate? crate;
+	protected ResourceCrate? crate;
 
 	private WVec DistanceBetweenEnds => this.Info.DistanceBetweenEnds;
 	private int DistanceMoved => Math.Min(this.elapsed * this.Info.Speed, this.DistanceBetweenEnds.Length);
@@ -87,6 +87,11 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 
 	void ITick.Tick(Actor self)
 	{
+		this.TickInner(self);
+	}
+
+	protected virtual void TickInner(Actor self)
+	{
 		if (this.crate == null || this.IsTraitDisabled || this.IsTraitPaused)
 			return;
 
@@ -102,8 +107,11 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 		if (this.condition != Actor.InvalidConditionToken)
 			this.condition = self.RevokeCondition(this.condition);
 
-		if (this.Complete(this.crate))
-			this.crate = null;
+		this.Complete(self);
+	}
+
+	protected virtual void Complete(Actor self)
+	{
 	}
 
 	private void UpdateCratePosition(WPos position)
@@ -176,10 +184,5 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 			result.AddRange(render.ScreenBounds(this.crate.Actor, wr));
 
 		return result;
-	}
-
-	protected virtual bool Complete(ResourceCrate crate)
-	{
-		return true;
 	}
 }
