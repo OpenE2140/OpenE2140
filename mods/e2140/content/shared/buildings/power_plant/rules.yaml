@@ -27,6 +27,8 @@ shared_buildings_power_plant:
 			BottomRight: 812, 812
 	Selectable:
 		Bounds: 2064, 1984, -50, 150
+	BuildingCrew:
+		MaxPopulation: 6
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Explodes:
