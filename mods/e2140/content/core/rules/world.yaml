@@ -34,13 +34,12 @@
 	Selection:
 	# Required for control groups support.
 	ControlGroups:
-	# WORKAROUND: temporary until either resources are implemented or translation linting is fixed
+	# Required to render resources.
 	ResourceRenderer:
 		ResourceTypes:
 			Resources:
 				Sequences: idle
 				Palette:
-				Image: mpspawn
 				Name: Resources
 
 # Ingame specific world setup.
@@ -136,8 +135,15 @@ World:
 		EffectMovement: -15,-15,0, -15,-15,0, -15,-15,0
 		Offset: 240,240,0
 		Palette:
-	# WORKAROUND: temporary until either resources are implemented or translation linting is fixed
-	DummyResourceLayer:
+	# Add resources to the world.
+	ResourceLayer:
+		RecalculateResourceDensity: true
+		ResourceTypes:
+			Resources:
+				ResourceIndex: 1
+				TerrainType: Resources
+				AllowedTerrainTypes: Clear
+				MaxDensity: 10000
 
 # Map editor specific world setup.
 EditorWorld:
@@ -151,10 +157,17 @@ EditorWorld:
 	MarkerLayerOverlay:
 	# Displays where buildings can be build.
 	BuildableTerrainOverlay:
-		AllowedTerrainTypes: Clear, Road
+		AllowedTerrainTypes: Clear, Road,Resources
 		Palette:
-	# Dummy, since resources are not implemented yet, but editor now requires a resource layer.
-	DummyResourceLayer:
+	# Add resources to the world.
+	EditorResourceLayer:
+		RecalculateResourceDensity: true
+		ResourceTypes:
+			Resources:
+				ResourceIndex: 1
+				TerrainType: Resources
+				AllowedTerrainTypes: Clear
+				MaxDensity: 10000
 	# Custom rendering.
 	EditorActorCustomRenderLayer:
 	# Annotations for Water Base and Dock in the editor.
