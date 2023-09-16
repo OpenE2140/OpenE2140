@@ -13,13 +13,14 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor can extract resources and eject resource crates.")]
-public class ResourceMineInfo : PausableConditionalTraitInfo
+public class ResourceMineInfo : PausableConditionalTraitInfo, Requires<ConveyorBeltInfo>
 {
 	[Desc("The maximum range this actor can dig for resources.")]
 	public readonly int Range = 5;
@@ -27,55 +28,79 @@ public class ResourceMineInfo : PausableConditionalTraitInfo
 	[Desc("The amount of resources which can be mined per tick.")]
 	public readonly int Force = 5;
 
+	[Desc("The amount of resources which can be mined per tick when empty.")]
+	public readonly int EmptyForce = 1;
+
+	[Desc("The amount of ticks between mining.")]
+	public readonly int Delay = 1;
+
+	[Desc("The amount of resources that will be put into a single crate.")]
+	public readonly int CrateSize = 500;
+
+	[Desc("The resource crate actor.")]
+	public readonly string CrateActor = "crate";
+
 	public override object Create(ActorInitializer init)
 	{
-		return new ResourceMine(this, init.World);
+		return new ResourceMine(this, init);
 	}
 }
 
-public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, INotifyAddedToWorld, INotifyOwnerChanged, ITick
+public class ResourceMine : PausableConditionalTrait<ResourceMineInfo>, ITick
 {
+	private readonly ConveyorBelt conveyorBelt;
 	private readonly IResourceLayer? resourceLayer;
 
-	private PlayerResources? playerResources;
+	private ResourceCrate? crate;
+	private int delay;
 
-	public ResourceMine(ResourceMineInfo info, OpenRA.World world)
+	public ResourceMine(ResourceMineInfo info, ActorInitializer init)
 		: base(info)
 	{
-		this.resourceLayer = world.WorldActor.TraitOrDefault<ResourceLayer>();
-	}
-
-	void INotifyAddedToWorld.AddedToWorld(Actor self)
-	{
-		this.playerResources = self.Owner.PlayerActor.TraitOrDefault<PlayerResources>();
-	}
-
-	void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner)
-	{
-		this.playerResources = newOwner.PlayerActor.TraitOrDefault<PlayerResources>();
+		this.conveyorBelt = init.Self.Trait<ConveyorBelt>();
+		this.resourceLayer = init.World.WorldActor.TraitOrDefault<ResourceLayer>();
 	}
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.IsTraitPaused || this.resourceLayer == null || this.playerResources == null)
+		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
 			return;
 
-		var centerCell = self.World.Map.CellContaining(self.CenterPosition);
+		this.delay = (this.delay + 1) % (this.Info.Delay + 1);
 
-		var remaining = this.Info.Force;
+		if (this.delay != 0)
+			return;
 
-		for (var y = -this.Info.Range; y <= this.Info.Range && remaining > 0; y++)
-		for (var x = -this.Info.Range; x <= this.Info.Range && remaining > 0; x++)
+		this.crate ??= self.World.CreateActor(
+				false,
+				this.Info.CrateActor,
+				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
+			)
+			.Trait<ResourceCrate>();
+
+		var minable = Math.Min(this.Info.Force, this.Info.CrateSize - this.crate.Resources);
+
+		if (minable > 0)
 		{
-			var targetCell = centerCell + new CVec(y, x);
+			var mined = this.Info.EmptyForce;
+			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
-			if (Math.Abs((targetCell - centerCell).Length) > this.Info.Range)
-				continue;
+			for (var y = -this.Info.Range; y <= this.Info.Range && mined < minable; y++)
+			for (var x = -this.Info.Range; x <= this.Info.Range && mined < minable; x++)
+			{
+				var targetCell = centerCell + new CVec(y, x);
 
-			var resource = this.resourceLayer.GetResource(targetCell);
-			remaining -= this.resourceLayer.RemoveResource(resource.Type, targetCell, remaining);
+				if ((targetCell - centerCell).Length <= this.Info.Range)
+					mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+			}
+
+			this.crate.Resources += mined;
 		}
 
-		this.playerResources.GiveCash(this.Info.Force - remaining);
+		if (this.crate.Resources < this.Info.CrateSize)
+			return;
+
+		if (this.conveyorBelt.Activate(self, this.crate))
+			this.crate = null;
 	}
 }

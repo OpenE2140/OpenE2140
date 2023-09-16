@@ -89,7 +89,7 @@
 		Type: building
 	# Add building specific logic to Constructions.
 	Building:
-		TerrainTypes: Clear, Road, Resources
+		TerrainTypes: Clear, Road
 		AllowPlacementOnResources: true
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
