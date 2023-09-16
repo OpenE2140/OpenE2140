@@ -9,6 +9,13 @@ shared_buildings_mine:
 	ResourceMine:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+	EjectingConveyorBelt:
+		InsideOffset: 512,-512,0
+		EntryOffset: 1280
+		OutsideOffset: 1404,-512,0
+		ZOffset: 1536
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
@@ -20,6 +27,12 @@ shared_buildings_mine:
 		Sequence: belt
 		Offset: 402,1624,0
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	WithIdleOverlay@BeltEject:
+		Sequence: belt-eject
+		Offset: 624,1328,0
+		RequiresCondition: !Transforming && BeltActive
+		PauseOnCondition: !Powered
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
 		Offset: 1680,-280,0
@@ -47,7 +60,7 @@ shared_buildings_mine:
 	TransformSequence:
 		Offset: 380,460,0
 	HitShape:
-		TargetableOffsets: 448,-750,0,   648,-50,0,   848,550,0,   -212,-750,0,   0,-50,0,   212,550,0,   -812,-750,0,   -612,-50,0,   -412,550,0
+		TargetableOffsets: 448,-750,0, 648,-50,0, 848,550,0, -212,-750,0, 0,-50,0, 212,550,0, -812,-750,0, -612,-50,0, -412,550,0
 		Type: Rectangle
 			TopLeft: -1024, -824
 			BottomRight: 824, 824
