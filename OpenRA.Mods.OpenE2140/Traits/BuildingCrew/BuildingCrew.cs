@@ -128,18 +128,18 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		//		var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
 		//			new TypeDictionary { new OwnerInit(this.self.Owner) });
 
-		//		this.cargo.Add(unit);
+		//		this.crewMembers.Add(unit);
 		//	}
 		//}
 		//else
 		//{
-		//	foreach (var u in info.InitialUnits)
-		//	{
-		//		var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
-		//			new TypeDictionary { new OwnerInit(this.self.Owner) });
+		foreach (var u in info.InitialUnits)
+		{
+			var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
+				new TypeDictionary { new OwnerInit(this.self.Owner) });
 
-		//		this.cargo.Add(unit);
-		//	}
+			this.crewMembers.Add(unit);
+		}
 		//}
 
 		this.facing = Exts.Lazy(this.self.TraitOrDefault<IFacing>);

@@ -29,6 +29,7 @@ shared_buildings_power_plant:
 		Bounds: 2064, 1984, -50, 150
 	BuildingCrew:
 		MaxPopulation: 6
+		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
 	WithBuildingCrewPipsDecoration:
 		Palette:
 		FullSequence: pip-blue
