@@ -12,7 +12,6 @@
 #endregion
 
 using OpenRA;
-using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
@@ -55,12 +54,13 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	[Desc("Cursor to display when unable to enter target actor.")]
 	public readonly string EnterBlockedCursor = "enter-blocked";
 
-	public override object Create(ActorInitializer init) { return new CrewMember(this); }
+	public override object Create(ActorInitializer init) { return new CrewMember(init.Self, this); }
 }
 
 public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredBuildingCrew, INotifyExitedBuildingCrew, INotifyKilled, IObservesVariables
 {
 	private const string OrderID = "EnterCrew";
+	private readonly Actor actor;
 	public readonly CrewMemberInfo Info;
 	public Actor? BuildingCrew;
 	private bool requireForceMove;
@@ -69,8 +69,9 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	public BuildingCrew? ReservedCrew { get; private set; }
 
-	public CrewMember(CrewMemberInfo info)
+	public CrewMember(Actor actor, CrewMemberInfo info)
 	{
+		this.actor = actor;
 		this.Info = info;
 	}
 
@@ -78,13 +79,14 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 	{
 		get
 		{
-			yield return new EnterAlliedActorTargeter<BuildingCrewInfo>(
-				OrderID,
-				5,
-				this.Info.EnterCursor,
-				this.Info.EnterBlockedCursor,
-				this.CanTarget,
-				this.CanEnter);
+			yield return new EnterActorTargeter<BuildingCrewInfo>(
+				order: OrderID,
+				priority: 5,
+				enterCursor: this.Info.EnterCursor,
+				enterBlockedCursor: this.Info.EnterBlockedCursor,
+				canTarget: this.CanTarget,
+				canTargetFrozen: this.CanTargetFrozen,
+				useEnterCursor: this.CanEnter);
 		}
 	}
 
@@ -98,12 +100,17 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	private bool CanTarget(Actor target, TargetModifiers modifiers)
 	{
-		return !this.requireForceMove || modifiers.HasModifier(TargetModifiers.ForceMove);
+		return !this.requireForceMove || modifiers.HasModifier(TargetModifiers.ForceMove) || target.Owner.RelationshipWith(this.actor.Owner) != PlayerRelationship.Ally;
+	}
+
+	private bool CanTargetFrozen(FrozenActor target, TargetModifiers modifiers)
+	{
+		return !this.requireForceMove || modifiers.HasModifier(TargetModifiers.ForceMove) || target.Owner.RelationshipWith(this.actor.Owner) != PlayerRelationship.Ally;
 	}
 
 	private bool CanEnter(Actor target)
 	{
-		return target.TryGetTrait<BuildingCrew>(out var crew) && !crew.IsTraitDisabled && crew.HasSpace();
+		return target.TryGetTrait<BuildingCrew>(out var crew) && !crew.IsTraitDisabled && crew.CanEnter(this.actor);
 	}
 
 	public string? VoicePhraseForOrder(Actor self, Order order)

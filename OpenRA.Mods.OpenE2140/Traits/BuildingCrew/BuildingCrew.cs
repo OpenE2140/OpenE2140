@@ -231,9 +231,16 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		return !this.IsEmpty() && this.CurrentAdjacentCells != null && this.CurrentAdjacentCells.Any(c => this.CrewMembers.Any(p => !p.IsDead && p.Trait<IPositionable>().CanEnterCell(c, null, check)));
 	}
 
-	public bool CanEnter(Actor a)
+	public bool CanEnter(Actor actor)
 	{
-		return !this.IsTraitDisabled && (this.reserves.Contains(a) || this.HasSpace());
+		if (this.IsTraitDisabled)
+			return false;
+
+		if (actor.Owner == this.self.Owner)
+			return this.reserves.Contains(actor) || this.HasSpace();
+
+		// Cannot enter buildings of allied players
+		return actor.Owner.RelationshipWith(this.self.Owner) != PlayerRelationship.Ally; 
 	}
 
 	internal bool ReserveSpace(Actor a)
