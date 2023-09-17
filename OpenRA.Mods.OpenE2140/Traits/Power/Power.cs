@@ -52,9 +52,12 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 
 	void INotifyOwnerChanged.OnOwnerChanged(Actor self, Player oldOwner, Player newOwner)
 	{
-		this.playerPower.Remove(self);
+		// Actor class always removes itself from world when changing owner (and re-adds itself once the transfer is complete).
+		// Methods AddedToWorld and RemovedFromWorld above correctly handle this.
+		// Adding this instance of Power trait to new player's PowerManager here (OnOwnerChanged) would cause AddedToWorld adding it second time.
+		// There's no other place INotifyOwnerChanged.OnOwnerChanged callback is invoked, so there's no need to handle scenario, where ownership change
+		// happens without actor being first removed from world (and added back after ownership has changed).
 		this.playerPower = newOwner.PlayerActor.Trait<PowerManager>();
-		this.playerPower.Add(self, this);
 	}
 
 	public void SetPowered(Actor self, bool powered)
