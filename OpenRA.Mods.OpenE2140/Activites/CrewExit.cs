@@ -59,9 +59,9 @@ public class CrewExit : Activity
 			.FirstOrDefault(s => s.SubCell != SubCell.Invalid);
 	}
 
-	private IEnumerable<CPos> BlockedExitCells(Actor passenger)
+	private IEnumerable<CPos> BlockedExitCells(Actor crewMember)
 	{
-		var pos = passenger.Trait<IPositionable>();
+		var pos = crewMember.Trait<IPositionable>();
 
 		// Find the cells that are blocked by transient actors
 		return this.buildingCrew.CurrentAdjacentCells

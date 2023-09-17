@@ -12,7 +12,6 @@
 #endregion
 
 using OpenRA.Mods.Common;
-using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
@@ -31,58 +30,58 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
 	[Desc("A list of actor types that are initially spawned into this actor.")]
 	public readonly string[] InitialUnits = Array.Empty<string>();
 
-	[Desc("When this actor is sold should all of its passengers be unloaded?")]
+	[Desc("When this actor is sold should all of its crew members be unloaded?")]
 	public readonly bool EjectOnSell = true;
 
-	[Desc("When this actor dies should all of its passengers be unloaded?")]
+	[Desc("When this actor dies should all of its crew members be unloaded?")]
 	public readonly bool EjectOnDeath = false;
 
 	[Desc("Terrain types that this actor is allowed to eject actors onto. Leave empty for all terrain types.")]
 	public readonly HashSet<string> UnloadTerrainTypes = new();
 
 	[VoiceReference]
-	[Desc("Voice to play when ordered to unload the passengers.")]
+	[Desc("Voice to play when ordered to unload the crew members.")]
 	public readonly string UnloadVoice = "Action";
 
 	[Desc("Radius to search for a load/unload location if the ordered cell is blocked.")]
 	public readonly WDist LoadRange = WDist.FromCells(5);
 
-	[Desc("Which direction the passenger will face (relative to the transport) when unloading.")]
-	public readonly WAngle PassengerFacing = new(512);
+	[Desc("Which direction the crew members will face (relative to the transport) when unloading.")]
+	public readonly WAngle CrewMemberFacing = new(512);
 
-	[Desc("Delay (in ticks) before continuing after loading a passenger.")]
+	[Desc("Delay (in ticks) before continuing after loading a crew member.")]
 	public readonly int AfterLoadDelay = 8;
 
-	[Desc("Delay (in ticks) before unloading the first passenger.")]
+	[Desc("Delay (in ticks) before unloading the first crew member.")]
 	public readonly int BeforeUnloadDelay = 8;
 
-	[Desc("Delay (in ticks) before continuing after unloading a passenger.")]
+	[Desc("Delay (in ticks) before continuing after unloading a crew member.")]
 	public readonly int AfterUnloadDelay = 25;
 
 	[CursorReference]
-	[Desc("Cursor to display when able to unload the passengers.")]
+	[Desc("Cursor to display when able to unload the crew member.")]
 	public readonly string UnloadCursor = "deploy";
 
 	[CursorReference]
-	[Desc("Cursor to display when unable to unload the passengers.")]
+	[Desc("Cursor to display when unable to unload the crew member.")]
 	public readonly string UnloadBlockedCursor = "deploy-blocked";
 
 	[GrantedConditionReference]
-	[Desc("The condition to grant to self while waiting for cargo to load.")]
+	[Desc("The condition to grant to self while waiting for crew member to enter.")]
 	public readonly string? LoadingCondition = null;
 
 	[GrantedConditionReference]
-	[Desc("The condition to grant to self while passengers are loaded.",
-		"Condition can stack with multiple passengers.")]
+	[Desc("The condition to grant to self while crew members are entering.",
+		"Condition can stack with multiple crew members.")]
 	public readonly string? LoadedCondition = null;
 
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
-	[Desc("Conditions to grant when specified actors are loaded inside the transport.",
+	[Desc("Conditions to grant when specified actors are loaded inside the building.",
 		"A dictionary of [actor name]: [condition].")]
-	public readonly Dictionary<string, string> PassengerConditions = new();
+	public readonly Dictionary<string, string> CrewMemberConditions = new();
 
 	[GrantedConditionReference]
-	public IEnumerable<string> LinterPassengerConditions => this.PassengerConditions.Values;
+	public IEnumerable<string> LinterCrewMemberConditions => this.CrewMemberConditions.Values;
 
 	public override object Create(ActorInitializer init) { return new BuildingCrew(init, this); }
 }
@@ -94,7 +93,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private readonly Actor self;
 	private readonly List<Actor> crewMembers = new();
 	private readonly HashSet<Actor> reserves = new();
-	private readonly Dictionary<string, Stack<int>> passengerTokens = new();
+	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
 	private int totalWeight = 0;
@@ -293,11 +292,11 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		crewMember ??= this.crewMembers.Last();
 		if (!this.crewMembers.Remove(crewMember))
-			throw new ArgumentException("Attempted to unload an actor that is not a passenger.");
+			throw new ArgumentException("Attempted to unload an actor that is not a crew member.");
 
 		this.totalWeight -= GetWeight(crewMember);
 
-		this.SetPassengerFacing(crewMember);
+		this.SetCrewMemberFacing(crewMember);
 
 		//foreach (var npe in self.TraitsImplementing<INotifyPassengerExited>())
 		//	npe.OnPassengerExited(self, passenger);
@@ -308,8 +307,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		var c = crewMember.Trait<CrewMember>();
 		c.BuildingCrew = null;
 
-		if (this.passengerTokens.TryGetValue(crewMember.Info.Name, out var passengerToken) && passengerToken.Count > 0)
-			self.RevokeCondition(passengerToken.Pop());
+		if (this.crewMemberTokens.TryGetValue(crewMember.Info.Name, out var crewMemberToken) && crewMemberToken.Count > 0)
+			self.RevokeCondition(crewMemberToken.Pop());
 
 		if (this.loadedTokens.Count > 0)
 			self.RevokeCondition(this.loadedTokens.Pop());
@@ -317,14 +316,14 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		return crewMember;
 	}
 
-	private void SetPassengerFacing(Actor passenger)
+	private void SetCrewMemberFacing(Actor crewMember)
 	{
 		if (this.facing.Value == null)
 			return;
 
-		var passengerFacing = passenger.TraitOrDefault<IFacing>();
-		if (passengerFacing != null)
-			passengerFacing.Facing = this.facing.Value.Facing + this.Info.PassengerFacing;
+		var crewMemberFacing = crewMember.TraitOrDefault<IFacing>();
+		if (crewMemberFacing != null)
+			crewMemberFacing.Facing = this.facing.Value.Facing + this.Info.CrewMemberFacing;
 	}
 
 	public void Load(Actor self, Actor a)
@@ -345,8 +344,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.initialised)
 			a.Trait<CrewMember>().BuildingCrew = self;
 
-		if (this.Info.PassengerConditions.TryGetValue(a.Info.Name, out var passengerCondition))
-			this.passengerTokens.GetOrAdd(a.Info.Name).Push(self.GrantCondition(passengerCondition));
+		if (this.Info.CrewMemberConditions.TryGetValue(a.Info.Name, out var crewMemberCondition))
+			this.crewMemberTokens.GetOrAdd(a.Info.Name).Push(self.GrantCondition(crewMemberCondition));
 
 		if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
 			this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));
@@ -357,21 +356,21 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.Info.EjectOnDeath)
 			while (!this.IsEmpty() && this.CanUnload(BlockedByActor.All))
 			{
-				var passenger = this.Unload(self);
+				var crewMember = this.Unload(self);
 				var cp = self.CenterPosition;
 				var inAir = self.World.Map.DistanceAboveTerrain(cp).Length != 0;
-				var positionable = passenger.Trait<IPositionable>();
-				positionable.SetPosition(passenger, self.Location);
+				var positionable = crewMember.Trait<IPositionable>();
+				positionable.SetPosition(crewMember, self.Location);
 
 				if (!inAir && positionable.CanEnterCell(self.Location, self, BlockedByActor.None))
 				{
-					self.World.AddFrameEndTask(w => w.Add(passenger));
-					var nbms = passenger.TraitsImplementing<INotifyBlockingMove>();
+					self.World.AddFrameEndTask(w => w.Add(crewMember));
+					var nbms = crewMember.TraitsImplementing<INotifyBlockingMove>();
 					foreach (var nbm in nbms)
-						nbm.OnNotifyBlockingMove(passenger, passenger);
+						nbm.OnNotifyBlockingMove(crewMember, crewMember);
 				}
 				else
-					passenger.Kill(e.Attacker);
+					crewMember.Kill(e.Attacker);
 			}
 
 		foreach (var c in this.crewMembers)
@@ -395,15 +394,15 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			return;
 
 		while (!this.IsEmpty())
-			this.SpawnPassenger(this.Unload(self));
+			this.SpawnCrewMember(this.Unload(self));
 	}
 
-	private void SpawnPassenger(Actor conqeuror)
+	private void SpawnCrewMember(Actor crewMember)
 	{
 		this.self.World.AddFrameEndTask(w =>
 		{
-			w.Add(conqeuror);
-			conqeuror.Trait<IPositionable>().SetPosition(conqeuror, this.self.Location);
+			w.Add(crewMember);
+			crewMember.Trait<IPositionable>().SetPosition(crewMember, this.self.Location);
 
 			// TODO: this won't work well for >1 actor as they should move towards the next enterable (sub) cell instead
 		});

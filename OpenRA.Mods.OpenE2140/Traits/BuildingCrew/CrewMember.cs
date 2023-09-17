@@ -67,17 +67,17 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 {
 	private const string OrderID = "EnterCrew";
 	public readonly CrewMemberInfo Info;
-	public Actor BuildingCrew;
+	public Actor? BuildingCrew;
 	private bool requireForceMove;
 	private int anyCargoToken = Actor.InvalidConditionToken;
 	private int specificCargoToken = Actor.InvalidConditionToken;
+
+	public BuildingCrew? ReservedCrew { get; private set; }
 
 	public CrewMember(CrewMemberInfo info)
 	{
 		this.Info = info;
 	}
-
-	public BuildingCrew ReservedCrew { get; private set; }
 
 	IEnumerable<IOrderTargeter> IIssueOrder.Orders
 	{
@@ -93,7 +93,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		}
 	}
 
-	public Order IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
 		if (order.OrderID == OrderID)
 			return new Order(order.OrderID, self, target, queued);
@@ -111,7 +111,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		return target.TryGetTrait<BuildingCrew>(out var crew) && !crew.IsTraitDisabled && crew.HasSpace();
 	}
 
-	public string VoicePhraseForOrder(Actor self, Order order)
+	public string? VoicePhraseForOrder(Actor self, Order order)
 	{
 		if (order.OrderString != OrderID)
 			return null;
@@ -210,6 +210,6 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	private void RequireForceMoveConditionChanged(Actor self, IReadOnlyDictionary<string, int> conditions)
 	{
-		this.requireForceMove = this.Info.RequireForceMoveCondition.Evaluate(conditions);
+		this.requireForceMove = this.Info.RequireForceMoveCondition?.Evaluate(conditions) ?? false;
 	}
 }

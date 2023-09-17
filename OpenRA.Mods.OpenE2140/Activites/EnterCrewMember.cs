@@ -57,7 +57,7 @@ public class EnterCrewMember : Enter
 	{
 		self.World.AddFrameEndTask(w =>
 		{
-			if (self.IsDead)
+			if (self.IsDead || this.buildingCrew == null)
 				return;
 
 			// Make sure the target hasn't changed while entering
