@@ -96,8 +96,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
-	private int totalWeight = 0;
-	private int reservedWeight = 0;
 	private int loadingToken = Actor.InvalidConditionToken;
 	private readonly Stack<int> loadedTokens = new();
 	private bool initialised;
@@ -122,7 +120,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		//if (runtimeCargoInit != null)
 		//{
 		//	this.cargo = runtimeCargoInit.Value.ToList();
-		//	this.totalWeight = this.cargo.Sum(c => GetWeight(c));
 		//}
 		//else if (cargoInit != null)
 		//{
@@ -133,8 +130,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		//		this.cargo.Add(unit);
 		//	}
-
-		//	this.totalWeight = this.cargo.Sum(c => GetWeight(c));
 		//}
 		//else
 		//{
@@ -145,8 +140,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		//		this.cargo.Add(unit);
 		//	}
-
-		//	this.totalWeight = this.cargo.Sum(c => GetWeight(c));
 		//}
 
 		this.facing = Exts.Lazy(this.self.TraitOrDefault<IFacing>);
@@ -184,8 +177,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		});
 	}
 
-	private static int GetWeight(Actor a) { return 1; }
-
 	public IEnumerable<IOrderTargeter> Orders
 	{
 		get
@@ -198,7 +189,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		}
 	}
 
-	public Order IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
 		if (order.OrderID == "Unload")
 			return new Order(order.OrderID, self, queued);
@@ -250,7 +241,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.reserves.Contains(a))
 			return true;
 
-		var w = GetWeight(a);
 		if (!this.HasSpace())
 			return false;
 
@@ -258,7 +248,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			this.loadingToken = this.self.GrantCondition(this.Info.LoadingCondition);
 
 		this.reserves.Add(a);
-		this.reservedWeight += w;
 
 		return true;
 	}
@@ -268,14 +257,13 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (!this.reserves.Contains(a) || this.self.IsDead)
 			return;
 
-		this.reservedWeight -= GetWeight(a);
 		this.reserves.Remove(a);
 
 		if (this.loadingToken != Actor.InvalidConditionToken)
 			this.loadingToken = this.self.RevokeCondition(this.loadingToken);
 	}
 
-	public string VoicePhraseForOrder(Actor self, Order order)
+	public string? VoicePhraseForOrder(Actor self, Order order)
 	{
 		if (order.OrderString != "Unload" || this.IsEmpty() || !self.HasVoice(this.Info.UnloadVoice))
 			return null;
@@ -283,7 +271,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		return this.Info.UnloadVoice;
 	}
 
-	public bool HasSpace() { return this.totalWeight + this.reservedWeight + 1 <= this.Info.MaxPopulation; }
+	public bool HasSpace() { return this.crewMembers.Count + this.reserves.Count + 1 <= this.Info.MaxPopulation; }
 	public bool IsEmpty() { return this.crewMembers.Count == 0; }
 
 	public Actor Peek() { return this.crewMembers.Last(); }
@@ -293,8 +281,6 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		crewMember ??= this.crewMembers.Last();
 		if (!this.crewMembers.Remove(crewMember))
 			throw new ArgumentException("Attempted to unload an actor that is not a crew member.");
-
-		this.totalWeight -= GetWeight(crewMember);
 
 		this.SetCrewMemberFacing(crewMember);
 
@@ -329,11 +315,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	public void Load(Actor self, Actor crewMember)
 	{
 		this.crewMembers.Add(crewMember);
-		var w = GetWeight(crewMember);
-		this.totalWeight += w;
 		if (this.reserves.Contains(crewMember))
 		{
-			this.reservedWeight -= w;
 			this.reserves.Remove(crewMember);
 
 			if (this.loadingToken != Actor.InvalidConditionToken)
