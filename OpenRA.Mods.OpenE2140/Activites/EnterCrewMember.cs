@@ -12,7 +12,6 @@
 #endregion
 
 using OpenRA.Mods.Common.Activities;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -68,8 +67,8 @@ public class EnterCrewMember : Enter
 			if (!this.buildingCrew.CanEnter(self))
 				return;
 
-			foreach (var inl in targetActor.TraitsImplementing<INotifyLoadCargo>())
-				inl.Loading(self);
+			foreach (var iecm in targetActor.TraitsImplementing<INotifyEnterCrewMember>())
+				iecm.Entering(self);
 
 			this.buildingCrew.Load(this.enterActor, self);
 			w.Remove(self);

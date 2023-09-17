@@ -25,22 +25,17 @@ namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 [Desc($"This actor can occupy other {nameof(BuildingCrew)} actors.")]
 public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 {
-	public readonly string? CargoType = null;
-
-	[Desc("If defined, use a custom pip type defined on the transport's WithCargoPipsDecoration.CustomPipSequences list.")]
-	public readonly string? CustomPipType = null;
-
 	[GrantedConditionReference]
-	[Desc("The condition to grant to when this actor is loaded inside any transport.")]
-	public readonly string? CargoCondition = null;
+	[Desc("The condition to grant to when this actor entered a building.")]
+	public readonly string? BuildingCrewCondition = null;
 
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
-	[Desc("Conditions to grant when this actor is loaded inside specified transport.",
+	[Desc("Conditions to grant when this actor entered inside of a building.",
 		"A dictionary of [actor name]: [condition].")]
-	public readonly Dictionary<string, string> CargoConditions = new();
+	public readonly Dictionary<string, string> BuildingCrewConditions = new();
 
 	[GrantedConditionReference]
-	public IEnumerable<string> LinterCargoConditions => this.CargoConditions.Values;
+	public IEnumerable<string> LinterBuildingCrewConditions => this.BuildingCrewConditions.Values;
 
 	[VoiceReference]
 	public readonly string Voice = "Action";
@@ -63,14 +58,14 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	public override object Create(ActorInitializer init) { return new CrewMember(this); }
 }
 
-public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredCargo, INotifyExitedCargo, INotifyKilled, IObservesVariables
+public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredBuildingCrew, INotifyExitedBuildingCrew, INotifyKilled, IObservesVariables
 {
 	private const string OrderID = "EnterCrew";
 	public readonly CrewMemberInfo Info;
 	public Actor? BuildingCrew;
 	private bool requireForceMove;
-	private int anyCargoToken = Actor.InvalidConditionToken;
-	private int specificCargoToken = Actor.InvalidConditionToken;
+	private int anyCrewMemberToken = Actor.InvalidConditionToken;
+	private int specificCrewMemberToken = Actor.InvalidConditionToken;
 
 	public BuildingCrew? ReservedCrew { get; private set; }
 
@@ -122,16 +117,16 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		return this.Info.Voice;
 	}
 
-	void INotifyEnteredCargo.OnEnteredCargo(Actor self, Actor cargo)
+	void INotifyEnteredBuildingCrew.OnEnteredBuildingCrew(Actor self, Actor buildingCrew)
 	{
-		if (this.anyCargoToken == Actor.InvalidConditionToken)
-			this.anyCargoToken = self.GrantCondition(this.Info.CargoCondition);
+		if (this.anyCrewMemberToken == Actor.InvalidConditionToken)
+			this.anyCrewMemberToken = self.GrantCondition(this.Info.BuildingCrewCondition);
 
-		if (this.specificCargoToken == Actor.InvalidConditionToken && this.Info.CargoConditions.TryGetValue(cargo.Info.Name, out var specificCargoCondition))
-			this.specificCargoToken = self.GrantCondition(specificCargoCondition);
+		if (this.specificCrewMemberToken == Actor.InvalidConditionToken && this.Info.BuildingCrewConditions.TryGetValue(buildingCrew.Info.Name, out var specificCrewMemberCondition))
+			this.specificCrewMemberToken = self.GrantCondition(specificCrewMemberCondition);
 
 		// Allow scripted / initial actors to move from the unload point back into the cell grid on unload
-		// This is handled by the RideTransport activity for player-loaded cargo
+		// This is handled by the EnterCrewMember activity for player-entered building crew
 		if (self.IsIdle)
 		{
 			// IMove is not used anywhere else in this trait, there is no benefit to caching it from Created.
@@ -141,13 +136,13 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		}
 	}
 
-	void INotifyExitedCargo.OnExitedCargo(Actor self, Actor cargo)
+	void INotifyExitedBuildingCrew.OnExitedBuildingCrew(Actor self, Actor buildingCrew)
 	{
-		if (this.anyCargoToken != Actor.InvalidConditionToken)
-			this.anyCargoToken = self.RevokeCondition(this.anyCargoToken);
+		if (this.anyCrewMemberToken != Actor.InvalidConditionToken)
+			this.anyCrewMemberToken = self.RevokeCondition(this.anyCrewMemberToken);
 
-		if (this.specificCargoToken != Actor.InvalidConditionToken)
-			this.specificCargoToken = self.RevokeCondition(this.specificCargoToken);
+		if (this.specificCrewMemberToken != Actor.InvalidConditionToken)
+			this.specificCrewMemberToken = self.RevokeCondition(this.specificCrewMemberToken);
 	}
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
@@ -197,7 +192,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		if (this.BuildingCrew == null)
 			return;
 
-		// Something killed us, but it wasn't our transport blowing up. Remove us from the cargo.
+		// Something killed us, but it wasn't our transport blowing up. Remove us from the building crew.
 		if (!this.BuildingCrew.IsDead)
 			this.BuildingCrew.Trait<BuildingCrew>().Unload(this.BuildingCrew, self);
 	}

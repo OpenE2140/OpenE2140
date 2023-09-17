@@ -156,32 +156,32 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		base.Created(self);
 
-		//if (this.cargo.Count > 0)
-		//{
-		//	foreach (var c in this.cargo)
-		//		if (this.Info.PassengerConditions.TryGetValue(c.Info.Name, out var passengerCondition))
-		//			this.passengerTokens.GetOrAdd(c.Info.Name).Push(self.GrantCondition(passengerCondition));
+		if (this.crewMembers.Count > 0)
+		{
+			foreach (var c in this.crewMembers)
+				if (this.Info.CrewMemberConditions.TryGetValue(c.Info.Name, out var crewMemberCondition))
+					this.crewMemberTokens.GetOrAdd(c.Info.Name).Push(self.GrantCondition(crewMemberCondition));
 
-		//	if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
-		//		this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));
-		//}
+			if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
+				this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));
+		}
 
-		//// Defer notifications until we are certain all traits on the transport are initialised
-		//self.World.AddFrameEndTask(w =>
-		//{
-		//	foreach (var c in this.cargo)
-		//	{
-		//		c.Trait<Passenger>().Transport = self;
+		// Defer notifications until we are certain all traits on the transport are initialised
+		self.World.AddFrameEndTask(w =>
+		{
+			foreach (var crewMember in this.crewMembers)
+			{
+				crewMember.Trait<CrewMember>().BuildingCrew = self;
 
-		//		foreach (var nec in c.TraitsImplementing<INotifyEnteredCargo>())
-		//			nec.OnEnteredCargo(c, self);
+				foreach (var nebc in crewMember.TraitsImplementing<INotifyEnteredBuildingCrew>())
+					nebc.OnEnteredBuildingCrew(crewMember, self);
 
-		//		foreach (var npe in self.TraitsImplementing<INotifyPassengerEntered>())
-		//			npe.OnPassengerEntered(self, c);
-		//	}
+				foreach (var ncme in self.TraitsImplementing<INotifyCrewMemberEntered>())
+					ncme.OnCrewMemberEntered(self, crewMember);
+			}
 
-		//	this.initialised = true;
-		//});
+			this.initialised = true;
+		});
 	}
 
 	private static int GetWeight(Actor a) { return 1; }
@@ -288,7 +288,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public Actor Peek() { return this.crewMembers.Last(); }
 
-	public Actor Unload(Actor self, Actor crewMember = null)
+	public Actor Unload(Actor self, Actor? crewMember = null)
 	{
 		crewMember ??= this.crewMembers.Last();
 		if (!this.crewMembers.Remove(crewMember))
@@ -298,11 +298,11 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		this.SetCrewMemberFacing(crewMember);
 
-		//foreach (var npe in self.TraitsImplementing<INotifyPassengerExited>())
-		//	npe.OnPassengerExited(self, passenger);
+		foreach (var npe in self.TraitsImplementing<INotifyCrewMemberExited>())
+			npe.OnCrewMemberExited(self, crewMember);
 
-		//foreach (var nec in passenger.TraitsImplementing<INotifyExitedCargo>())
-		//	nec.OnExitedCargo(passenger, self);
+		foreach (var nec in crewMember.TraitsImplementing<INotifyExitedBuildingCrew>())
+			nec.OnExitedBuildingCrew(crewMember, self);
 
 		var c = crewMember.Trait<CrewMember>();
 		c.BuildingCrew = null;
@@ -326,15 +326,15 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			crewMemberFacing.Facing = this.facing.Value.Facing + this.Info.CrewMemberFacing;
 	}
 
-	public void Load(Actor self, Actor a)
+	public void Load(Actor self, Actor crewMember)
 	{
-		this.crewMembers.Add(a);
-		var w = GetWeight(a);
+		this.crewMembers.Add(crewMember);
+		var w = GetWeight(crewMember);
 		this.totalWeight += w;
-		if (this.reserves.Contains(a))
+		if (this.reserves.Contains(crewMember))
 		{
 			this.reservedWeight -= w;
-			this.reserves.Remove(a);
+			this.reserves.Remove(crewMember);
 
 			if (this.loadingToken != Actor.InvalidConditionToken)
 				this.loadingToken = self.RevokeCondition(this.loadingToken);
@@ -342,10 +342,18 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		// Don't initialise (effectively twice) if this runs before the FrameEndTask from Created
 		if (this.initialised)
-			a.Trait<CrewMember>().BuildingCrew = self;
+		{
+			crewMember.Trait<CrewMember>().BuildingCrew = self;
 
-		if (this.Info.CrewMemberConditions.TryGetValue(a.Info.Name, out var crewMemberCondition))
-			this.crewMemberTokens.GetOrAdd(a.Info.Name).Push(self.GrantCondition(crewMemberCondition));
+			foreach (var nebc in crewMember.TraitsImplementing<INotifyEnteredBuildingCrew>())
+				nebc.OnEnteredBuildingCrew(crewMember, self);
+
+			foreach (var ncme in self.TraitsImplementing<INotifyCrewMemberEntered>())
+				ncme.OnCrewMemberEntered(self, crewMember);
+		}
+
+		if (this.Info.CrewMemberConditions.TryGetValue(crewMember.Info.Name, out var crewMemberCondition))
+			this.crewMemberTokens.GetOrAdd(crewMember.Info.Name).Push(self.GrantCondition(crewMemberCondition));
 
 		if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
 			this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));

@@ -24,7 +24,7 @@ public class CrewExit : Activity
 {
 	private readonly Actor self;
 	private readonly BuildingCrew buildingCrew;
-	private readonly INotifyUnloadCargo[] notifiers;
+	private readonly INotifyBuildingCrewExit[] notifiers;
 	private readonly bool unloadAll;
 	private readonly Mobile mobile;
 	private readonly bool assignTargetOnFirstRun;
@@ -41,7 +41,7 @@ public class CrewExit : Activity
 	{
 		this.self = self;
 		this.buildingCrew = self.Trait<BuildingCrew>();
-		this.notifiers = self.TraitsImplementing<INotifyUnloadCargo>().ToArray();
+		this.notifiers = self.TraitsImplementing<INotifyBuildingCrewExit>().ToArray();
 		this.unloadAll = unloadAll;
 		this.mobile = self.TraitOrDefault<Mobile>();
 		this.destination = destination;
@@ -90,8 +90,8 @@ public class CrewExit : Activity
 
 		if (this.buildingCrew.CanUnload())
 		{
-			foreach (var inu in this.notifiers)
-				inu.Unloading(self);
+			foreach (var inbce in this.notifiers)
+				inbce.Exiting(self);
 
 			var actor = this.buildingCrew.Peek();
 			var spawn = self.CenterPosition;
