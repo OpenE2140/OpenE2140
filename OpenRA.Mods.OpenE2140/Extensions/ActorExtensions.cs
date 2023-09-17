@@ -24,6 +24,12 @@ public static class ActorExtensions
 
 	public static bool TryGetTrait<T>(this Actor actor, [MaybeNullWhen(false)] out T trait)
 	{
+		if (actor.Disposed)
+		{
+			trait = default;
+			return false;
+		}
+
 		trait = actor.TraitOrDefault<T>();
 
 		return trait != null;
