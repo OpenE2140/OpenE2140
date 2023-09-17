@@ -338,6 +338,8 @@
 	# Infantry can enter Cargo actors.
 	Passenger:
 		CargoType: Infantry
+	# Infantry can be a crew member inside a building
+	CrewMember:
 
 # Add locomotor to world...
 ^CoreWorld:

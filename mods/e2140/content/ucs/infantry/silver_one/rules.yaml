@@ -17,7 +17,6 @@ ucs_infantry_silver_one:
 	Armament@PRIMARY:
 		Weapon: ucs_infantry_silver_one
 		MuzzlePalette:
-	CrewMember:
 	Encyclopedia:
 		Category: UCS - Infantry
 		Order: 1
