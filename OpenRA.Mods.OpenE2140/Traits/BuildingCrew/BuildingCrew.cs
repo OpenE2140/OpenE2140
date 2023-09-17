@@ -91,16 +91,18 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	INotifyOwnerChanged, INotifySold, INotifyActorDisposing, IIssueDeployOrder,
 	INotifyCreated, INotifyKilled, ITransformActorInitModifier
 {
+	private const string ExitBuildingOrderID = "ExitBuilding";
+
 	private readonly Actor self;
 	private readonly List<Actor> crewMembers = new();
 	private readonly HashSet<Actor> reserves = new();
 	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
+	private readonly CachedTransform<CPos, IEnumerable<CPos>> currentAdjacentCells;
 	private int loadingToken = Actor.InvalidConditionToken;
 	private readonly Stack<int> loadedTokens = new();
 	private bool initialised;
-	private readonly CachedTransform<CPos, IEnumerable<CPos>> currentAdjacentCells;
 
 	public IEnumerable<CPos> CurrentAdjacentCells => this.currentAdjacentCells.Update(this.self.Location);
 
@@ -185,14 +187,14 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			if (this.IsTraitDisabled)
 				yield break;
 
-			yield return new DeployOrderTargeter("Unload", 10,
+			yield return new DeployOrderTargeter(ExitBuildingOrderID, 10,
 				() => this.CanUnload() ? this.Info.UnloadCursor : this.Info.UnloadBlockedCursor);
 		}
 	}
 
 	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
-		if (order.OrderID == "Unload")
+		if (order.OrderID == ExitBuildingOrderID)
 			return new Order(order.OrderID, self, queued);
 
 		return null;
@@ -200,14 +202,14 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
 	{
-		return new Order("Unload", self, queued);
+		return new Order(ExitBuildingOrderID, self, queued);
 	}
 
 	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return true; }
 
 	public void ResolveOrder(Actor self, Order order)
 	{
-		if (order.OrderString == "Unload")
+		if (order.OrderString == ExitBuildingOrderID)
 		{
 			if (!order.Queued && !this.CanUnload())
 				return;
@@ -273,7 +275,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public string? VoicePhraseForOrder(Actor self, Order order)
 	{
-		if (order.OrderString != "Unload" || this.IsEmpty() || !self.HasVoice(this.Info.UnloadVoice))
+		if (order.OrderString != ExitBuildingOrderID || this.IsEmpty() || !self.HasVoice(this.Info.UnloadVoice))
 			return null;
 
 		return this.Info.UnloadVoice;

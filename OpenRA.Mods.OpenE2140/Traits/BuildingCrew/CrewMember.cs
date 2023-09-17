@@ -59,7 +59,8 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 
 public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredBuildingCrew, INotifyExitedBuildingCrew, INotifyKilled, IObservesVariables
 {
-	private const string OrderID = "EnterCrew";
+	private const string EnterBuildingOrderID = "EnterBuilding";
+
 	private readonly Actor actor;
 	public readonly CrewMemberInfo Info;
 	public Actor? BuildingCrew;
@@ -80,7 +81,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 		get
 		{
 			yield return new EnterActorTargeter<BuildingCrewInfo>(
-				order: OrderID,
+				order: EnterBuildingOrderID,
 				priority: 5,
 				enterCursor: this.Info.EnterCursor,
 				enterBlockedCursor: this.Info.EnterBlockedCursor,
@@ -92,7 +93,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
-		if (order.OrderID == OrderID)
+		if (order.OrderID == EnterBuildingOrderID)
 			return new Order(order.OrderID, self, target, queued);
 
 		return null;
@@ -115,7 +116,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	public string? VoicePhraseForOrder(Actor self, Order order)
 	{
-		if (order.OrderString != OrderID)
+		if (order.OrderString != EnterBuildingOrderID)
 			return null;
 
 		if (order.Target.Type != TargetType.Actor || !this.CanEnter(order.Target.Actor))
@@ -154,7 +155,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
-		if (order.OrderString != OrderID)
+		if (order.OrderString != EnterBuildingOrderID)
 			return;
 
 		// Enter orders are only valid for own/allied actors,
