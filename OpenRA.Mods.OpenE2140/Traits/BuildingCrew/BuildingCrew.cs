@@ -16,6 +16,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Activites;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -240,7 +241,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			return this.reserves.Contains(actor) || this.HasSpace();
 
 		// Cannot enter buildings of allied players
-		return actor.Owner.RelationshipWith(this.self.Owner) != PlayerRelationship.Ally; 
+		return actor.Owner.RelationshipWith(this.self.Owner) != PlayerRelationship.Ally;
 	}
 
 	internal bool ReserveSpace(Actor a)
@@ -321,6 +322,47 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public void Load(Actor self, Actor crewMember)
 	{
+		if (crewMember.Owner != self.Owner)
+		{
+			// conquer in progress
+			this.UnreserveSpace(crewMember);
+
+			if (this.crewMembers.Count > 0)
+			{
+				// dispose the first crew member inside the building
+				var defender = this.crewMembers[0];
+				this.crewMembers.RemoveAt(0);
+				if (defender.TryGetTrait<CrewMember>(out var k))
+					k.BuildingCrew = null;
+				defender.Kill(crewMember);
+
+				if (this.crewMemberTokens.TryGetValue(crewMember.Info.Name, out var crewMemberToken) && crewMemberToken.Count > 0)
+					self.RevokeCondition(crewMemberToken.Pop());
+
+				if (this.loadedTokens.Count > 0)
+					self.RevokeCondition(this.loadedTokens.Pop());
+
+				// TODO: figure out if the actor that entered the building should be killed and if so then how
+				// Might need to delay this after the conditions have been granted to it (to avoid actor lost notification and death animation)
+				// or even delay this to next tick (so the actor is actually inside the building).
+				crewMember.Kill(defender);
+
+				return;
+			}
+			else
+			{
+				// TODO: it's possible that multiple actors enter the building in the same tick
+				// Might need to store some kind of flag that indicates the actor's owner is changing (and who is the new owner)
+
+				// the original crew is gone, the building has been conquered, change owner
+				self.ChangeOwner(crewMember.Owner);
+
+				// INotifyBuildingConquered:
+
+				//Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.NotificationConquered, crewMember.Faction.InternalName);
+			}
+		}
+
 		this.crewMembers.Add(crewMember);
 		if (this.reserves.Contains(crewMember))
 		{
