@@ -340,6 +340,10 @@
 		CargoType: Infantry
 	# Infantry can be a crew member inside a building
 	CrewMember:
+		BuildingCrewCondition: InsideBuilding
+	# Don't play actor lost notification, if the infantry is in building
+	ActorLostNotification:
+		RequiresCondition: !InsideBuilding
 
 # Add locomotor to world...
 ^CoreWorld:
