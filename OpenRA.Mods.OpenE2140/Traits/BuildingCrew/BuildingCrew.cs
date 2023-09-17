@@ -106,7 +106,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public IEnumerable<CPos> CurrentAdjacentCells => this.currentAdjacentCells.Update(this.self.Location);
 
-	public IEnumerable<Actor> CrewMembers => this.crewMembers;
+	public IReadOnlyCollection<Actor> CrewMembers => this.crewMembers;
 	public int MemberCount => this.crewMembers.Count;
 
 	public BuildingCrew(ActorInitializer init, BuildingCrewInfo info)

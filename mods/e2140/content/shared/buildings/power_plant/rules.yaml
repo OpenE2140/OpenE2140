@@ -29,6 +29,12 @@ shared_buildings_power_plant:
 		Bounds: 2064, 1984, -50, 150
 	BuildingCrew:
 		MaxPopulation: 6
+	WithBuildingCrewPipsDecoration:
+		Palette:
+		FullSequence: pip-blue
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Explodes:
