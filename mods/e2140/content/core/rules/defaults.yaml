@@ -327,6 +327,10 @@
 		CrushedSequence: die-crushed
 		CrushedSequencePalette:
 		FallbackSequence: die
+		# Unlike other traits WithDeathAnimation uses SpriteEffect to render the animation, which is not tied to any actor.
+		# Which means it's going to be rendered regardless of whether the actor is in the world or not (i.e. inside a building).
+		# Therefore this trait has to be explicitely disabled, so it does not render the animation, when actor dies inside a building.
+		RequiresCondition: !InsideBuilding
 	# Infantry turns when idle.
 	TurnOnIdle:
 		MinDelay: 200
