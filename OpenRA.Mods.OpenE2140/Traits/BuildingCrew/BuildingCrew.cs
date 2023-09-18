@@ -104,6 +104,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private readonly Stack<int> loadedTokens = new();
 	private bool initialised;
 
+	private Player? conqueredByPlayer;
+
 	public IEnumerable<CPos> CurrentAdjacentCells => this.currentAdjacentCells.Update(this.self.Location);
 
 	public IReadOnlyCollection<Actor> CrewMembers => this.crewMembers;
@@ -324,7 +326,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public void Load(Actor self, Actor crewMember)
 	{
-		if (crewMember.Owner != self.Owner)
+		var effectiveOwner = this.conqueredByPlayer ?? self.Owner;
+		if (crewMember.Owner != effectiveOwner)
 		{
 			// conquer in progress
 			this.UnreserveSpace(crewMember);
@@ -344,24 +347,34 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				if (this.loadedTokens.Count > 0)
 					self.RevokeCondition(this.loadedTokens.Pop());
 
-				// TODO: figure out if the actor that entered the building should be killed and if so then how
-				// Might need to delay this after the conditions have been granted to it (to avoid actor lost notification and death animation)
-				// or even delay this to next tick (so the actor is actually inside the building).
+				crewMember.Trait<CrewMember>().BuildingCrew = self;
+
+				// Fake the attacker being actually in the building, by notifying other traits (mainly CrewMember, which grants its conditions).
+				// TODO: should the conditions be also granted?
+				foreach (var nebc in crewMember.TraitsImplementing<INotifyEnteredBuildingCrew>())
+					nebc.OnEnteredBuildingCrew(crewMember, self);
+
+				foreach (var ncme in self.TraitsImplementing<INotifyCrewMemberEntered>())
+					ncme.OnCrewMemberEntered(self, crewMember);
+
+				self.World.Remove(crewMember);
+				self.World.AddFrameEndTask(_ =>
+				{
 				crewMember.Kill(defender);
+				});
 
 				return;
 			}
 			else
 			{
-				// TODO: it's possible that multiple actors enter the building in the same tick
-				// Might need to store some kind of flag that indicates the actor's owner is changing (and who is the new owner)
-
 				// the original crew is gone, the building has been conquered, change owner
-				self.ChangeOwner(crewMember.Owner);
-
-				// INotifyBuildingConquered:
-
-				//Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.NotificationConquered, crewMember.Faction.InternalName);
+				this.conqueredByPlayer = crewMember.Owner;
+				var oldOwner = self.Owner;
+				self.World.AddFrameEndTask(_ =>
+				{
+					this.conqueredByPlayer = null;
+					self.ChangeOwnerSync(crewMember.Owner);
+				});
 			}
 		}
 
