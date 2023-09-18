@@ -15,6 +15,8 @@ shared_buildings_power_plant:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -470,-600,0
+	BuildingCrew:
+		MaxPopulation: 6
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: shared_buildings_power_plant
@@ -27,15 +29,6 @@ shared_buildings_power_plant:
 			BottomRight: 812, 812
 	Selectable:
 		Bounds: 2064, 1984, -50, 150
-	BuildingCrew:
-		MaxPopulation: 6
-		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
-	WithBuildingCrewPipsDecoration:
-		Palette:
-		FullSequence: pip-blue
-		PipStride: 6,0
-		Margin: 5,5
-		RequiresSelection: True
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Explodes:

@@ -15,6 +15,9 @@ ed_buildings_tech_house:
 		Dimensions: 3,3
 		Footprint: xx= xxx ===
 		LocalCenterOffset: -560,-815,0
+	BuildingCrew:
+		MaxPopulation: 6
+		InitialUnits: shared_infantry_civil2, shared_infantry_civil2
 	TransformSequence:
 		Offset: 540,750,0
 	HitShape:

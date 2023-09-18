@@ -13,6 +13,9 @@ ed_buildings_constr_center:
 		Dimensions: 3,3
 		Footprint: xxx xxx ==x
 		LocalCenterOffset: 100,-425,0
+	BuildingCrew:
+		MaxPopulation: 6
+		InitialUnits: shared_infantry_civil1, shared_infantry_civil1
 	HitShape:
 		TargetableOffsets: 724,-712,0,   524,100,0,   324,924,0,   -76,-712,0,   -276,100,0,   -476,924,0,   -850,-950,0
 		Type: Rectangle

@@ -8,6 +8,9 @@ ed_buildings_bio_center:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -480,-415,0
+	BuildingCrew:
+		MaxPopulation: 4
+		InitialUnits: ed_infantry_a01, ed_infantry_a01
 	TransformSequence:
 		Offset: 460,350,0
 	HitShape:
