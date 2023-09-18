@@ -57,7 +57,7 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	public override object Create(ActorInitializer init) { return new CrewMember(init.Self, this); }
 }
 
-public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredBuildingCrew, INotifyExitedBuildingCrew, INotifyKilled, IObservesVariables
+public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemovedFromWorld, INotifyEnteredBuildingCrew, INotifyExitedBuildingCrew, IObservesVariables
 {
 	private const string EnterBuildingOrderID = "EnterBuilding";
 
@@ -193,16 +193,6 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 		this.ReservedCrew.UnreserveSpace(self);
 		this.ReservedCrew = null;
-	}
-
-	void INotifyKilled.Killed(Actor self, AttackInfo e)
-	{
-		if (this.BuildingCrew == null)
-			return;
-
-		// Something killed us, but it wasn't our transport blowing up. Remove us from the building crew.
-		if (!this.BuildingCrew.IsDead)
-			this.BuildingCrew.Trait<BuildingCrew>().Unload(this.BuildingCrew, self);
 	}
 
 	IEnumerable<VariableObserver> IObservesVariables.GetVariableObservers()
