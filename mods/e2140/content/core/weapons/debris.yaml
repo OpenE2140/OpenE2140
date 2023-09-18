@@ -49,8 +49,7 @@ explosion_sequence:
 		Range: 1c0, 1c512
 		Pieces: 3, 4
 		ImpactActors: False
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Water
 	Warhead@Debris: CreateEffect
 		Image: smoke_debris
 		Explosions: idle
@@ -67,3 +66,8 @@ explosion_sequence_2:
 	Inherits: explosion_sequence
 	Warhead@Effect: CreateEffect
 		Explosions: projectile_explosion_3
+
+explosion_sequence_3:
+	Inherits: explosion_sequence
+	Warhead@Effect: CreateEffect
+		Explosions: projectile_explosion_1, projectile_explosion_2

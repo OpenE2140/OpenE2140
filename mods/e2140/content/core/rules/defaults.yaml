@@ -165,8 +165,15 @@
 		RequiresCondition: !Transforming
 	# This actor explodes when killed.
 	Explodes:
-		Weapon: BuildingExplosion
-		EmptyWeapon: BuildingExplosion
+		Weapon: BuildingExploding
+		EmptyWeapon: BuildingExploding
+	# Freezes building upon death for a moment before it is disposed.
+	FrozenOnDeath:
+		Duration: 42
+		Condition: IsDead
+	# Constructions require power (and can be manually powered down).
+	Power:
+		RequiresCondition: !Transforming && !PoweredDown && !IsDead
 
 # Base for all factories.
 ^CoreFactory:

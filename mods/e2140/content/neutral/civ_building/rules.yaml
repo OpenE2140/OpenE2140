@@ -13,3 +13,5 @@
 	-Power:
 	-WithDecoration@PowerDown:
 	-ToggleConditionOnOrder:
+	FrozenOnDeath:
+		-Condition:

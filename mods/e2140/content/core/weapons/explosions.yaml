@@ -40,6 +40,20 @@ BuildingExplosion:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
 
+BuildingExploding:
+	ValidTargets: Ground, Water
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: explosion_sequence, explosion_sequence, explosion_sequence, explosion_sequence_3, explosion_sequence, BuildingExplosion
+		Range: 1c0, 1c512
+		Inaccuracies: 0c756, 0c756, 0c756, 0c756, 0c756, 0c0
+		ValidTargets: Ground, Water
+		Delays: 0, 8, 16, 24, 32, 40
+
+PowerPlantExploding:
+	Inherits: BuildingExploding
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: explosion_sequence, explosion_sequence, explosion_sequence, explosion_sequence_3, explosion_sequence, PowerPlantExplosion
+
 DefenseTowerExplosion:
 	ValidTargets: Ground, Water
 	Warhead@Effect: CreateEffect

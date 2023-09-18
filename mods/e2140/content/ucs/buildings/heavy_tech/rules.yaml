@@ -63,7 +63,7 @@ ucs_buildings_heavy_tech:
 	WithIdleOverlay:
 		Palette:
 		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: !Powered || IsDead
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 3

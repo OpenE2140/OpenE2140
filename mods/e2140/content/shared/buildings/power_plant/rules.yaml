@@ -30,8 +30,8 @@ shared_buildings_power_plant:
 	ProvidesPrerequisite:
 		Prerequisite: anypower
 	Explodes:
-		Weapon: PowerPlantExplosion
-		EmptyWeapon: PowerPlantExplosion
+		Weapon: PowerPlantExploding
+		EmptyWeapon: PowerPlantExploding
 	FloatingSpriteEmitter:
 		Duration: -1
 		Lifetime: 27
