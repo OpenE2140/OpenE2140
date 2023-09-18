@@ -24,3 +24,4 @@ Speech:
 		ResearchComplete: base|122.smp
 		ResearchAborted: extra|cancelled.wav
 		ResearchAquired: base|122.smp
+		BuildingConquered: base|96.smp

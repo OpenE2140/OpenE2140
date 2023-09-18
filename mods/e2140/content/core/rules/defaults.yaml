@@ -183,6 +183,11 @@
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	# Play notification, when the building is conquered or lost to enemy.
+	BuildingConqueredNotification:
+		TextNotification: Building captured.
+		LoseNotification: BuildingLost
+		LoseTextNotification: Building lost to enemy.
 
 # Base for all factories.
 ^CoreFactory:
