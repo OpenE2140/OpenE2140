@@ -1,4 +1,6 @@
-﻿using OpenRA.Traits;
+﻿using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 
@@ -36,4 +38,10 @@ public interface INotifyEnterCrewMember
 public interface INotifyBuildingCrewExit
 {
 	void Exiting(Actor self);
+}
+
+[RequireExplicitImplementation]
+public interface INotifyBuildingConquered
+{
+	void OnConquering(Actor self, Actor conqueror, Player oldOwner, Player newOwner);
 }

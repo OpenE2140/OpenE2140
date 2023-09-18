@@ -360,7 +360,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				self.World.Remove(crewMember);
 				self.World.AddFrameEndTask(_ =>
 				{
-				crewMember.Kill(defender);
+					 crewMember.Kill(defender);
 				});
 
 				return;
@@ -374,6 +374,9 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				{
 					this.conqueredByPlayer = null;
 					self.ChangeOwnerSync(crewMember.Owner);
+
+					foreach (var t in self.TraitsImplementing<INotifyBuildingConquered>())
+						t.OnConquering(self, crewMember, oldOwner, self.Owner);
 				});
 			}
 		}
