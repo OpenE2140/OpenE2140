@@ -5,6 +5,7 @@ Speech:
 		ucs: smp1_
 	Notifications:
 		BaseAttack: base|127.smp
+		BuildingDestroyed: base|95.smp
 		BuildingLost: base|97.smp
 		InsufficientCash: base|109.smp
 		PowerOff: base|103.smp
