@@ -44,9 +44,6 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
 	[Desc("Voice to play when ordered to unload the crew members.")]
 	public readonly string UnloadVoice = "Action";
 
-	[Desc("Radius to search for a load/unload location if the ordered cell is blocked.")]
-	public readonly WDist LoadRange = WDist.FromCells(5);
-
 	[Desc("Which direction the crew members will face (relative to the transport) when unloading.")]
 	public readonly WAngle CrewMemberFacing = new(512);
 
@@ -216,7 +213,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			if (!order.Queued && !this.CanUnload())
 				return;
 
-			self.QueueActivity(order.Queued, new CrewExit(self, this.Info.LoadRange));
+			self.QueueActivity(order.Queued, new CrewExit(self));
 		}
 	}
 

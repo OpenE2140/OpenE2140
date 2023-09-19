@@ -26,26 +26,13 @@ public class CrewExit : Activity
 	private readonly BuildingCrew buildingCrew;
 	private readonly INotifyBuildingCrewExit[] notifiers;
 	private readonly bool unloadAll;
-	private readonly Mobile mobile;
-	private readonly bool assignTargetOnFirstRun;
-	private readonly WDist unloadRange;
-	private Target destination;
 
-	public CrewExit(Actor self, WDist unloadRange, bool unloadAll = true)
-		: this(self, Target.Invalid, unloadRange, unloadAll)
-	{
-		this.assignTargetOnFirstRun = true;
-	}
-
-	public CrewExit(Actor self, in Target destination, WDist unloadRange, bool unloadAll = true)
+	public CrewExit(Actor self, bool unloadAll = true)
 	{
 		this.self = self;
 		this.buildingCrew = self.Trait<BuildingCrew>();
 		this.notifiers = self.TraitsImplementing<INotifyBuildingCrewExit>().ToArray();
 		this.unloadAll = unloadAll;
-		this.mobile = self.TraitOrDefault<Mobile>();
-		this.destination = destination;
-		this.unloadRange = unloadRange;
 	}
 
 	public (CPos Cell, SubCell SubCell)? ChooseExitSubCell(Actor crewMember)
@@ -70,16 +57,6 @@ public class CrewExit : Activity
 
 	protected override void OnFirstRun(Actor self)
 	{
-		if (this.assignTargetOnFirstRun)
-			this.destination = Target.FromCell(self.World, self.Location);
-
-		// Move to the target destination
-		if (this.mobile != null)
-		{
-			var cell = self.World.Map.Clamp(this.self.World.Map.CellContaining(this.destination.CenterPosition));
-			this.QueueChild(new Common.Activities.Move(self, cell, this.unloadRange));
-		}
-
 		this.QueueChild(new Wait(this.buildingCrew.Info.BeforeUnloadDelay));
 	}
 
