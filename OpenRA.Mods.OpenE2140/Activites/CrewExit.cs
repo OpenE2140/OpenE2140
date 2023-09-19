@@ -25,14 +25,14 @@ public class CrewExit : Activity
 	private readonly Actor self;
 	private readonly BuildingCrew buildingCrew;
 	private readonly INotifyBuildingCrewExit[] notifiers;
-	private readonly bool unloadAll;
+	private readonly bool exitAll;
 
-	public CrewExit(Actor self, bool unloadAll = true)
+	public CrewExit(Actor self, bool exitAll = true)
 	{
 		this.self = self;
 		this.buildingCrew = self.Trait<BuildingCrew>();
 		this.notifiers = self.TraitsImplementing<INotifyBuildingCrewExit>().ToArray();
-		this.unloadAll = unloadAll;
+		this.exitAll = exitAll;
 	}
 
 	public (CPos Cell, SubCell SubCell)? ChooseExitSubCell(Actor crewMember)
@@ -59,7 +59,7 @@ public class CrewExit : Activity
 	{
 		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.buildingCrew.Info.ExitBuildingNotification, self.Owner.Faction.InternalName);
 
-		this.QueueChild(new Wait(this.buildingCrew.Info.BeforeUnloadDelay));
+		this.QueueChild(new Wait(this.buildingCrew.Info.BeforeExitDelay));
 	}
 
 	public override bool Tick(Actor self)
@@ -67,7 +67,7 @@ public class CrewExit : Activity
 		if (this.IsCanceling || this.buildingCrew.IsEmpty())
 			return true;
 
-		if (this.buildingCrew.CanUnload())
+		if (this.buildingCrew.CanExit())
 		{
 			foreach (var inbce in this.notifiers)
 				inbce.Exiting(self);
@@ -83,7 +83,7 @@ public class CrewExit : Activity
 				return false;
 			}
 
-			this.buildingCrew.Unload(self);
+			this.buildingCrew.Exit(self);
 			self.World.AddFrameEndTask(w =>
 			{
 				if (actor.Disposed)
@@ -100,10 +100,10 @@ public class CrewExit : Activity
 			});
 		}
 
-		if (!this.unloadAll || !this.buildingCrew.CanUnload())
+		if (!this.exitAll || !this.buildingCrew.CanExit())
 		{
-			if (this.buildingCrew.Info.AfterUnloadDelay > 0)
-				this.QueueChild(new Wait(this.buildingCrew.Info.AfterUnloadDelay, false));
+			if (this.buildingCrew.Info.AfterExitDelay > 0)
+				this.QueueChild(new Wait(this.buildingCrew.Info.AfterExitDelay, false));
 
 			return true;
 		}

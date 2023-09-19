@@ -70,7 +70,7 @@ public class EnterCrewMember : Enter
 			foreach (var iecm in targetActor.TraitsImplementing<INotifyEnterCrewMember>())
 				iecm.Entering(self);
 
-			this.buildingCrew.Load(this.enterActor, self);
+			this.buildingCrew.Enter(this.enterActor, self);
 			w.Remove(self);
 		});
 	}

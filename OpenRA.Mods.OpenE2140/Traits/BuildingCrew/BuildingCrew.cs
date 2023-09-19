@@ -31,50 +31,47 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
 	[Desc("A list of actor types that are initially spawned into this actor.")]
 	public readonly string[] InitialUnits = Array.Empty<string>();
 
-	[Desc("When this actor is sold should all of its crew members be unloaded?")]
+	[Desc("When this actor is sold, should all of its crew members exit the building?")]
 	public readonly bool EjectOnSell = true;
 
-	[Desc("When this actor dies should all of its crew members be unloaded?")]
+	[Desc("When this actor dies, should all of its crew members exit the building?")]
 	public readonly bool EjectOnDeath = false;
 
 	[Desc("Terrain types that this actor is allowed to eject actors onto. Leave empty for all terrain types.")]
-	public readonly HashSet<string> UnloadTerrainTypes = new();
+	public readonly HashSet<string> ExitTerrainTypes = new();
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when a crew member exits the building.")]
 	public readonly string? ExitBuildingNotification;
 
-	[Desc("Which direction the crew members will face (relative to the transport) when unloading.")]
+	[Desc("Which direction the crew members will face (relative to the transport) when exiting.")]
 	public readonly WAngle CrewMemberFacing = new(512);
 
-	[Desc("Delay (in ticks) before continuing after loading a crew member.")]
-	public readonly int AfterLoadDelay = 8;
+	[Desc("Delay (in ticks) before the first crew member exits.")]
+	public readonly int BeforeExitDelay = 0;
 
-	[Desc("Delay (in ticks) before unloading the first crew member.")]
-	public readonly int BeforeUnloadDelay = 8;
-
-	[Desc("Delay (in ticks) before continuing after unloading a crew member.")]
-	public readonly int AfterUnloadDelay = 25;
+	[Desc("Delay (in ticks) before continuing after a crew member exits.")]
+	public readonly int AfterExitDelay = 25;
 
 	[CursorReference]
-	[Desc("Cursor to display when able to unload the crew member.")]
-	public readonly string UnloadCursor = "deploy";
+	[Desc("Cursor to display when able to make the crew member exit the building.")]
+	public readonly string CrewExitCursor = "deploy";
 
 	[CursorReference]
-	[Desc("Cursor to display when unable to unload the crew member.")]
-	public readonly string UnloadBlockedCursor = "deploy-blocked";
+	[Desc("Cursor to display when unable to make the crew member exit building.")]
+	public readonly string CrewExitBlockedCursor = "deploy-blocked";
 
 	[GrantedConditionReference]
 	[Desc("The condition to grant to self while waiting for crew member to enter.")]
-	public readonly string? LoadingCondition = null;
+	public readonly string? EnteringCondition = null;
 
 	[GrantedConditionReference]
 	[Desc("The condition to grant to self while crew members are entering.",
 		"Condition can stack with multiple crew members.")]
-	public readonly string? LoadedCondition = null;
+	public readonly string? EnteredCondition = null;
 
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
-	[Desc("Conditions to grant when specified actors are loaded inside the building.",
+	[Desc("Conditions to grant when specified actors have entered inside the building.",
 		"A dictionary of [actor name]: [condition].")]
 	public readonly Dictionary<string, string> CrewMemberConditions = new();
 
@@ -97,8 +94,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
 	private readonly CachedTransform<CPos, IEnumerable<CPos>> currentAdjacentCells;
-	private int loadingToken = Actor.InvalidConditionToken;
-	private readonly Stack<int> loadedTokens = new();
+	private int enteringToken = Actor.InvalidConditionToken;
+	private readonly Stack<int> enteredTokens = new();
 	private bool initialised;
 
 	private Player? conqueredByPlayer;
@@ -112,7 +109,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		: base(info)
 	{
 		this.self = init.Self;
-		this.checkTerrainType = info.UnloadTerrainTypes.Count > 0;
+		this.checkTerrainType = info.ExitTerrainTypes.Count > 0;
 
 		this.currentAdjacentCells = new CachedTransform<CPos, IEnumerable<CPos>>(loc =>
 			Util.AdjacentCells(this.self.World, Target.FromActor(this.self)).Where(c => loc != c));
@@ -157,8 +154,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				if (this.Info.CrewMemberConditions.TryGetValue(c.Info.Name, out var crewMemberCondition))
 					this.crewMemberTokens.GetOrAdd(c.Info.Name).Push(self.GrantCondition(crewMemberCondition));
 
-			if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
-				this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));
+			if (!string.IsNullOrEmpty(this.Info.EnteredCondition))
+				this.enteredTokens.Push(self.GrantCondition(this.Info.EnteredCondition));
 		}
 
 		// Defer notifications until we are certain all traits on the transport are initialised
@@ -187,7 +184,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				yield break;
 
 			yield return new DeployOrderTargeter(ExitBuildingOrderID, 10,
-				() => this.CanUnload() ? this.Info.UnloadCursor : this.Info.UnloadBlockedCursor);
+				() => this.CanExit() ? this.Info.CrewExitCursor : this.Info.CrewExitBlockedCursor);
 		}
 	}
 
@@ -210,14 +207,14 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		if (order.OrderString == ExitBuildingOrderID)
 		{
-			if (!order.Queued && !this.CanUnload())
+			if (!order.Queued && !this.CanExit())
 				return;
 
 			self.QueueActivity(order.Queued, new CrewExit(self));
 		}
 	}
 
-	public bool CanUnload(BlockedByActor check = BlockedByActor.None)
+	public bool CanExit(BlockedByActor check = BlockedByActor.None)
 	{
 		if (this.IsTraitDisabled)
 			return false;
@@ -226,7 +223,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		{
 			var terrainType = this.self.World.Map.GetTerrainInfo(this.self.Location).Type;
 
-			if (!this.Info.UnloadTerrainTypes.Contains(terrainType))
+			if (!this.Info.ExitTerrainTypes.Contains(terrainType))
 				return false;
 		}
 
@@ -253,8 +250,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (!this.HasSpace())
 			return false;
 
-		if (this.loadingToken == Actor.InvalidConditionToken)
-			this.loadingToken = this.self.GrantCondition(this.Info.LoadingCondition);
+		if (this.enteringToken == Actor.InvalidConditionToken)
+			this.enteringToken = this.self.GrantCondition(this.Info.EnteringCondition);
 
 		this.reserves.Add(a);
 
@@ -268,16 +265,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 		this.reserves.Remove(a);
 
-		if (this.loadingToken != Actor.InvalidConditionToken)
-			this.loadingToken = this.self.RevokeCondition(this.loadingToken);
-	}
-
-	public string? VoicePhraseForOrder(Actor self, Order order)
-	{
-		if (order.OrderString != ExitBuildingOrderID || this.IsEmpty() || !self.HasVoice(this.Info.UnloadVoice))
-			return null;
-
-		return this.Info.UnloadVoice;
+		if (this.enteringToken != Actor.InvalidConditionToken)
+			this.enteringToken = this.self.RevokeCondition(this.enteringToken);
 	}
 
 	public bool HasSpace() { return this.crewMembers.Count + this.reserves.Count + 1 <= this.Info.MaxPopulation; }
@@ -285,11 +274,11 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public Actor Peek() { return this.crewMembers.Last(); }
 
-	public Actor Unload(Actor self, Actor? crewMember = null)
+	public Actor Exit(Actor self, Actor? crewMember = null)
 	{
 		crewMember ??= this.crewMembers.Last();
 		if (!this.crewMembers.Remove(crewMember))
-			throw new ArgumentException("Attempted to unload an actor that is not a crew member.");
+			throw new ArgumentException("Attempted to make an actor exit that is not a crew member.");
 
 		this.SetCrewMemberFacing(crewMember);
 
@@ -305,8 +294,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.crewMemberTokens.TryGetValue(crewMember.Info.Name, out var crewMemberToken) && crewMemberToken.Count > 0)
 			self.RevokeCondition(crewMemberToken.Pop());
 
-		if (this.loadedTokens.Count > 0)
-			self.RevokeCondition(this.loadedTokens.Pop());
+		if (this.enteredTokens.Count > 0)
+			self.RevokeCondition(this.enteredTokens.Pop());
 
 		return crewMember;
 	}
@@ -321,7 +310,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			crewMemberFacing.Facing = this.facing.Value.Facing + this.Info.CrewMemberFacing;
 	}
 
-	public void Load(Actor self, Actor crewMember)
+	public void Enter(Actor self, Actor crewMember)
 	{
 		var effectiveOwner = this.conqueredByPlayer ?? self.Owner;
 		if (crewMember.Owner != effectiveOwner)
@@ -341,8 +330,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				if (this.crewMemberTokens.TryGetValue(crewMember.Info.Name, out var crewMemberToken) && crewMemberToken.Count > 0)
 					self.RevokeCondition(crewMemberToken.Pop());
 
-				if (this.loadedTokens.Count > 0)
-					self.RevokeCondition(this.loadedTokens.Pop());
+				if (this.enteredTokens.Count > 0)
+					self.RevokeCondition(this.enteredTokens.Pop());
 
 				crewMember.Trait<CrewMember>().BuildingCrew = self;
 
@@ -383,8 +372,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		{
 			this.reserves.Remove(crewMember);
 
-			if (this.loadingToken != Actor.InvalidConditionToken)
-				this.loadingToken = self.RevokeCondition(this.loadingToken);
+			if (this.enteringToken != Actor.InvalidConditionToken)
+				this.enteringToken = self.RevokeCondition(this.enteringToken);
 		}
 
 		// Don't initialise (effectively twice) if this runs before the FrameEndTask from Created
@@ -402,16 +391,16 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.Info.CrewMemberConditions.TryGetValue(crewMember.Info.Name, out var crewMemberCondition))
 			this.crewMemberTokens.GetOrAdd(crewMember.Info.Name).Push(self.GrantCondition(crewMemberCondition));
 
-		if (!string.IsNullOrEmpty(this.Info.LoadedCondition))
-			this.loadedTokens.Push(self.GrantCondition(this.Info.LoadedCondition));
+		if (!string.IsNullOrEmpty(this.Info.EnteredCondition))
+			this.enteredTokens.Push(self.GrantCondition(this.Info.EnteredCondition));
 	}
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		if (this.Info.EjectOnDeath)
-			while (!this.IsEmpty() && this.CanUnload(BlockedByActor.All))
+			while (!this.IsEmpty() && this.CanExit(BlockedByActor.All))
 			{
-				var crewMember = this.Unload(self);
+				var crewMember = this.Exit(self);
 				var cp = self.CenterPosition;
 				var inAir = self.World.Map.DistanceAboveTerrain(cp).Length != 0;
 				var positionable = crewMember.Trait<IPositionable>();
@@ -449,7 +438,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			return;
 
 		while (!this.IsEmpty())
-			this.SpawnCrewMember(this.Unload(self));
+			this.SpawnCrewMember(this.Exit(self));
 	}
 
 	private void SpawnCrewMember(Actor crewMember)
