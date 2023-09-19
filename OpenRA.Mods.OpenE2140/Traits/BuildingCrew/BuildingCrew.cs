@@ -40,9 +40,9 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
 	[Desc("Terrain types that this actor is allowed to eject actors onto. Leave empty for all terrain types.")]
 	public readonly HashSet<string> UnloadTerrainTypes = new();
 
-	[VoiceReference]
-	[Desc("Voice to play when ordered to unload the crew members.")]
-	public readonly string UnloadVoice = "Action";
+	[NotificationReference("Speech")]
+	[Desc("Speech notification to play when a crew member exits the building.")]
+	public readonly string? ExitBuildingNotification;
 
 	[Desc("Which direction the crew members will face (relative to the transport) when unloading.")]
 	public readonly WAngle CrewMemberFacing = new(512);
@@ -84,7 +84,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
 	public override object Create(ActorInitializer init) { return new BuildingCrew(init, this); }
 }
 
-public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IResolveOrder, IOrderVoice,
+public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IResolveOrder,
 	INotifyOwnerChanged, INotifySold, INotifyActorDisposing, IIssueDeployOrder,
 	INotifyCreated, INotifyKilled, ITransformActorInitModifier
 {

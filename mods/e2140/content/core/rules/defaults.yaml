@@ -176,6 +176,7 @@
 		RequiresCondition: !Transforming && !PoweredDown && !IsDead
 	# Building has a crew.
 	BuildingCrew:
+		ExitBuildingNotification: LeavingBuilding
 	# Show pips for the building crew.
 	WithBuildingCrewPipsDecoration:
 		Palette:

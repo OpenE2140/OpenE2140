@@ -57,6 +57,8 @@ public class CrewExit : Activity
 
 	protected override void OnFirstRun(Actor self)
 	{
+		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.buildingCrew.Info.ExitBuildingNotification, self.Owner.Faction.InternalName);
+
 		this.QueueChild(new Wait(this.buildingCrew.Info.BeforeUnloadDelay));
 	}
 
