@@ -17,6 +17,16 @@ Visibility: Shellmap
 Categories: Maps
 
 Players:
+	PlayerReference@UCS_Player:
+		Name: UCS_Player
+		Faction: ucs
+		Color: F20F0F
+		Enemies: ED_Player
+	PlayerReference@ED_Player:
+		Name: ED_Player
+		Faction: ed
+		Color: 273C0A
+		Enemies: UCS_Player
 	PlayerReference@Neutral:
 		Name: Neutral
 		OwnsWorld: True
