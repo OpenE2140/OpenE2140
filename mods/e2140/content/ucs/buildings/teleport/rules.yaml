@@ -31,7 +31,7 @@ ucs_buildings_teleport:
 		SequenceOpen: teleportation-end
 		SoundsOpening: 129.smp
 		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: !Powered || IsDead
 		Produces: Teleport.UCS
 		Position: 0,0,0
 		ExitWaypointOffset: 0,512,0
