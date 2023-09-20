@@ -29,7 +29,6 @@ ed_buildings_bio_center:
 		Position: -1008,512,0
 	AnimatedExitProductionQueue:
 		Type: Infantry.ED
-		Factions: ed
 		Group: Infantry
 		LowPowerModifier: 150
 	ProductionBar:

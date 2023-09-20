@@ -33,7 +33,6 @@ ucs_buildings_robot_factory:
 		Position: -512,288,0
 	AnimatedExitProductionQueue:
 		Type: Infantry.UCS
-		Factions: ucs
 		Group: Infantry
 		LowPowerModifier: 150
 	ProductionBar:

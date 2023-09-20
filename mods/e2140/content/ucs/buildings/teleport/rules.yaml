@@ -37,7 +37,6 @@ ucs_buildings_teleport:
 		ExitWaypointOffset: 0,512,0
 	AnimatedExitProductionQueue:
 		Type: Teleport.UCS
-		Factions: ucs
 		Group: Vehicle
 		LowPowerModifier: 150
 		BuildDurationModifier: 1
