@@ -2,6 +2,7 @@ ucs_vehicles_hellbike:
 	ReloadDelay: 50
 	Range: 1c896
 	MinRange: 0c512
+	Report: napalm_bomb_launcher.wav
 	ValidTargets: Ground, Water, Ship
 	Burst: 2
 	BurstDelays: 12
