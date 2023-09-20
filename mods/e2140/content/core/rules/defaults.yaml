@@ -180,7 +180,7 @@
 	Inherits: ^CoreBuilding
 	Production:
 		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: !Powered || IsDead
 	ProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
@@ -199,7 +199,7 @@
 	-Production:
 	AnimatedExitProduction:
 		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: !Powered || IsDead
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
@@ -219,7 +219,7 @@
 	ElevatorProduction:
 		ZOffset: -1024
 		RequiresCondition: !Transforming
-		PauseOnCondition: !Powered
+		PauseOnCondition: !Powered || IsDead
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
