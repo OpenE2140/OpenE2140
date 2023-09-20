@@ -20,6 +20,7 @@ using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Research;
 using OpenRA.Primitives;
+using OpenRA.Traits;
 using OpenRA.Widgets;
 using EncyclopediaInfo = OpenRA.Mods.OpenE2140.Traits.EncyclopediaInfo;
 using PowerInfo = OpenRA.Mods.OpenE2140.Traits.Power.PowerInfo;
@@ -41,7 +42,7 @@ public class EncyclopediaLogic : ChromeLogic
 	private readonly ScrollItemWidget template;
 	private readonly ActorPreviewWidget previewWidget;
 	private readonly LoopedVideoPlayerWidget animationWidget;
-
+	private readonly Dictionary<string, string> allProductionQueues;
 	private ActorInfo? selectedActor;
 	private ScrollItemWidget? firstItem;
 
@@ -73,6 +74,13 @@ public class EncyclopediaLogic : ChromeLogic
 
 		var actorEncyclopediaPair = this.GetFilteredActorEncyclopediaPairs().ToArray();
 		var categories = actorEncyclopediaPair.Select(a => a.Value.Category).Distinct().OrderBy(string.IsNullOrWhiteSpace).ThenBy(s => s);
+
+		// preload faction and production queue data: necessary for determining actor's "default" faction
+		var factions = this.modData.DefaultRules.Actors[SystemActors.World].TraitInfos<FactionInfo>().Select(f => f.InternalName).ToArray();
+		this.allProductionQueues = this.modData.DefaultRules.Actors.Values
+			.SelectMany(a => a.TraitInfos<ProductionQueueInfo>().Select(q => new { Faction = factions.FirstOrDefault(f => q.Type.ToLowerInvariant().EndsWith(f)), Queue = q.Type })
+				.Where(x => x.Faction != null))
+			.ToDictionary(x => x.Queue, x => x.Faction!);
 
 		foreach (var category in categories)
 			this.CreateActorGroup(category, actorEncyclopediaPair.Where(a => a.Value.Category == category).OrderBy(a => a.Value.Order).Select(a => a.Key));
@@ -148,9 +156,20 @@ public class EncyclopediaLogic : ChromeLogic
 
 		this.animationWidget.SetVideo(info?.Animation);
 
+		// Check if there's MCU for this actor as for some information we don't really want to use the building actor.
+		var mcu = this.modData.DefaultRules.Actors.Values.Where(actor => actor.HasTraitInfo<McuInfo>())
+			.FirstOrDefault(other => other.TraitInfoOrDefault<TransformsInfo>()?.IntoActor == actor.Name);
+
+		// Pick player from shell map, which would become owner for the purposes of actor preview.
+		// Player is chosen based on which faction is considered "default" for it (e.g. ST 01B belongs to ED faction, while RAPTOR ES to UCS faction).
+		// If there are multiple "default" factions, pick world actor's owner, so the actor in the preview would have neutral color.
+		var factions = this.GetProducingFactions(mcu ?? actor).ToArray();
+		var player = (factions.Length == 1 ? this.world.Players.FirstOrDefault(p => p.Faction.InternalName == factions[0]) : null)
+			?? this.world.WorldActor.Owner;
+
 		var typeDictionary = new TypeDictionary
 		{
-			new OwnerInit(this.world.WorldActor.Owner), new FactionInit(this.world.WorldActor.Owner.PlayerReference.Faction)
+			new OwnerInit(player), new FactionInit(player.Faction.InternalName)
 		};
 
 		foreach (var actorPreviewInit in actor.TraitInfos<IActorPreviewInitInfo>())
@@ -158,9 +177,6 @@ public class EncyclopediaLogic : ChromeLogic
 			typeDictionary.Add(inits);
 
 		this.previewWidget.SetPreview(actor, typeDictionary);
-
-		var mcu = this.modData.DefaultRules.Actors.Values.Where(actor => actor.HasTraitInfo<McuInfo>())
-			.FirstOrDefault(other => other.TraitInfoOrDefault<TransformsInfo>()?.IntoActor == actor.Name);
 
 		var text = string.Empty;
 
@@ -224,5 +240,18 @@ public class EncyclopediaLogic : ChromeLogic
 		this.descriptionPanel.Layout.AdjustChildren();
 
 		this.descriptionPanel.ScrollToTop();
+	}
+
+	/// <summary>
+	///	Determines "default" factions, which can produce this actor (e.g. ST 01B belongs to ED faction, while RAPTOR ES to UCS faction),
+	///	depending on what production queues can produce this actor.
+	/// </summary>
+	private IEnumerable<string> GetProducingFactions(ActorInfo actor)
+	{
+		var buildable = actor.TraitInfoOrDefault<BuildableInfo>();
+		if (buildable == null)
+			return Enumerable.Empty<string>();
+
+		return buildable.Queue.Select(x => this.allProductionQueues.GetValueOrDefault(x)).OfType<string>().Distinct();
 	}
 }
