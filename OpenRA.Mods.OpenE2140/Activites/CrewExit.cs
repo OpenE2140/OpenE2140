@@ -91,11 +91,13 @@ public class CrewExit : Activity
 
 				var move = actor.Trait<IMove>();
 				var pos = actor.Trait<IPositionable>();
+				var crewMember = actor.Trait<CrewMember>();
 
 				pos.SetPosition(actor, exitSubCell.Value.Cell, exitSubCell.Value.SubCell);
 				pos.SetCenterPosition(actor, spawn);
 
-				actor.CancelActivity();
+				if (crewMember.Info.CancelActivitiesOnExit)
+					actor.CancelActivity();
 				w.Add(actor);
 			});
 		}

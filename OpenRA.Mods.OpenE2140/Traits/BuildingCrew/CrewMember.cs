@@ -54,6 +54,9 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	[Desc("Cursor to display when unable to enter target actor.")]
 	public readonly string EnterBlockedCursor = "enter-blocked";
 
+	[Desc("When exiting building, cancel all other activies.")]
+	public readonly bool CancelActivitiesOnExit = false;
+
 	public override object Create(ActorInitializer init) { return new CrewMember(init.Self, this); }
 }
 
