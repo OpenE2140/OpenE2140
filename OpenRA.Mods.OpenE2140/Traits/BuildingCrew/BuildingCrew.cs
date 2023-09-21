@@ -90,6 +90,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private readonly Actor self;
 	private readonly List<Actor> crewMembers = new();
 	private readonly HashSet<Actor> reservations = new();
+	private readonly HashSet<Actor> conquerReservations = new();
 	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
@@ -241,7 +242,10 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			return this.reservations.Contains(actor) || this.HasSpace();
 
 		// Cannot enter buildings of allied players
-		return actor.Owner.RelationshipWith(this.self.Owner) != PlayerRelationship.Ally;
+		if (actor.Owner.RelationshipWith(this.self.Owner) == PlayerRelationship.Ally)
+			return false;
+
+		return this.conquerReservations.Contains(actor) || this.CanConquer();
 	}
 
 	internal bool ReserveSpace(Actor a)
@@ -249,29 +253,45 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.reservations.Contains(a))
 			return true;
 
-		if (!this.HasSpace())
-			return false;
+		if (this.conquerReservations.Contains(a))
+			return true;
+
+		if (a.Owner != this.EffectiveOwner)
+		{
+			// Actor is attempting to conquer this building
+			if (!this.CanConquer())
+				return false;
+
+			this.conquerReservations.Add(a);
+		}
+		else
+		{
+			// Building's owner is sending actors into it
+			if (!this.HasSpace())
+				return false;
+			this.reservations.Add(a);
+		}
 
 		if (this.enteringToken == Actor.InvalidConditionToken)
 			this.enteringToken = this.self.GrantCondition(this.Info.EnteringCondition);
-
-		this.reservations.Add(a);
 
 		return true;
 	}
 
 	internal void UnreserveSpace(Actor a)
 	{
-		if (!this.reservations.Contains(a) || this.self.IsDead)
+		if (this.self.IsDead)
 			return;
 
-		this.reservations.Remove(a);
-
-		if (this.enteringToken != Actor.InvalidConditionToken)
-			this.enteringToken = this.self.RevokeCondition(this.enteringToken);
+		if (this.reservations.Remove(a) || this.conquerReservations.Remove(a))
+		{
+			if (this.enteringToken != Actor.InvalidConditionToken)
+				this.enteringToken = this.self.RevokeCondition(this.enteringToken);
+		}
 	}
 
 	public bool HasSpace() { return this.crewMembers.Count + this.reservations.Count + 1 <= this.Info.MaxPopulation; }
+	public bool CanConquer() { return this.conquerReservations.Count + 1 <= this.Info.MaxPopulation; }
 	public bool IsEmpty() { return this.crewMembers.Count == 0; }
 
 	public Actor Peek() { return this.crewMembers.Last(); }
