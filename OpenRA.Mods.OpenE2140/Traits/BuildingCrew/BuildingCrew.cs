@@ -89,7 +89,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	private readonly Actor self;
 	private readonly List<Actor> crewMembers = new();
-	private readonly HashSet<Actor> reserves = new();
+	private readonly HashSet<Actor> reservations = new();
 	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
@@ -236,7 +236,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			return false;
 
 		if (actor.Owner == this.self.Owner)
-			return this.reserves.Contains(actor) || this.HasSpace();
+			return this.reservations.Contains(actor) || this.HasSpace();
 
 		// Cannot enter buildings of allied players
 		return actor.Owner.RelationshipWith(this.self.Owner) != PlayerRelationship.Ally;
@@ -244,7 +244,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	internal bool ReserveSpace(Actor a)
 	{
-		if (this.reserves.Contains(a))
+		if (this.reservations.Contains(a))
 			return true;
 
 		if (!this.HasSpace())
@@ -253,23 +253,23 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.enteringToken == Actor.InvalidConditionToken)
 			this.enteringToken = this.self.GrantCondition(this.Info.EnteringCondition);
 
-		this.reserves.Add(a);
+		this.reservations.Add(a);
 
 		return true;
 	}
 
 	internal void UnreserveSpace(Actor a)
 	{
-		if (!this.reserves.Contains(a) || this.self.IsDead)
+		if (!this.reservations.Contains(a) || this.self.IsDead)
 			return;
 
-		this.reserves.Remove(a);
+		this.reservations.Remove(a);
 
 		if (this.enteringToken != Actor.InvalidConditionToken)
 			this.enteringToken = this.self.RevokeCondition(this.enteringToken);
 	}
 
-	public bool HasSpace() { return this.crewMembers.Count + this.reserves.Count + 1 <= this.Info.MaxPopulation; }
+	public bool HasSpace() { return this.crewMembers.Count + this.reservations.Count + 1 <= this.Info.MaxPopulation; }
 	public bool IsEmpty() { return this.crewMembers.Count == 0; }
 
 	public Actor Peek() { return this.crewMembers.Last(); }
@@ -368,9 +368,9 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		}
 
 		this.crewMembers.Add(crewMember);
-		if (this.reserves.Contains(crewMember))
+		if (this.reservations.Contains(crewMember))
 		{
-			this.reserves.Remove(crewMember);
+			this.reservations.Remove(crewMember);
 
 			if (this.enteringToken != Actor.InvalidConditionToken)
 				this.enteringToken = self.RevokeCondition(this.enteringToken);
