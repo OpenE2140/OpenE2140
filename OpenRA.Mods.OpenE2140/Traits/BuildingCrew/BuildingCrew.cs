@@ -100,6 +100,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	private Player? conqueredByPlayer;
 
+	private Player EffectiveOwner => this.conqueredByPlayer ?? this.self.Owner;
+
 	public IEnumerable<CPos> CurrentAdjacentCells => this.currentAdjacentCells.Update(this.self.Location);
 
 	public IReadOnlyCollection<Actor> CrewMembers => this.crewMembers;
@@ -235,7 +237,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		if (this.IsTraitDisabled)
 			return false;
 
-		if (actor.Owner == this.self.Owner)
+		if (actor.Owner == this.EffectiveOwner)
 			return this.reservations.Contains(actor) || this.HasSpace();
 
 		// Cannot enter buildings of allied players
@@ -312,8 +314,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public void Enter(Actor self, Actor crewMember)
 	{
-		var effectiveOwner = this.conqueredByPlayer ?? self.Owner;
-		if (crewMember.Owner != effectiveOwner)
+		if (crewMember.Owner != this.EffectiveOwner)
 		{
 			// conquer in progress
 			this.UnreserveSpace(crewMember);
@@ -358,6 +359,10 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				var oldOwner = self.Owner;
 				self.World.AddFrameEndTask(_ =>
 				{
+					// If another player has conquered this building in this same tick, don't change the building's owner.
+					if (this.conqueredByPlayer != crewMember.Owner)
+						return;
+
 					this.conqueredByPlayer = null;
 					self.ChangeOwnerSync(crewMember.Owner);
 
