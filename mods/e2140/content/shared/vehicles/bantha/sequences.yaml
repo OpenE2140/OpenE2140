@@ -7,6 +7,21 @@ shared_vehicles_bantha:
 		Start: 16
 		Length: 4
 		Facings: -16
+	extend:
+		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
+		Facings: -4
+		Length: 2
+		Tick: 100
+	extended:
+		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
+		Frames: 1, 3, 5, 7
+		Facings: -4
+	retract:
+		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
+		Frames: 1, 0, 3, 2, 5, 4, 7, 6
+		Facings: -4
+		Length: 2
+		Tick: 100
 	icon:
 		Filename: SPRI0.MIX
 		Start: 148
