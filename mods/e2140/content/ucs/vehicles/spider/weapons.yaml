@@ -4,8 +4,8 @@ ucs_vehicles_spider:
 	MinRange: 0c512
 	Report: 9.smp
 	ValidTargets: Ground, Water, Ship
-	Burst: 12
-	BurstDelays: 8
+	Burst: 24
+	BurstDelays: 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0, 8, 0
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false

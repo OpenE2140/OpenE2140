@@ -20,32 +20,18 @@ ucs_vehicles_tiger_assault:
 		Range: 5c896
 	Turreted:
 		Offset: 0,0,200
-	Armament@PRIMARY:
+	Armament@GROUND:
 		Weapon: ucs_vehicles_tiger_assault
-		Recoil: 64
-		RecoilRecovery: 38
-		LocalOffset: 300,-300,-100
+		Recoil: 128
+		RecoilRecovery: 76
+		LocalOffset: 300,-300,-100, 300,300,-100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
-	Armament@SECONDARY:
-		Weapon: ucs_vehicles_tiger_assault
-		Recoil: 64
-		RecoilRecovery: 38
-		LocalOffset: 300,300,-100
-		MuzzlePalette:
-		PauseOnCondition: !ammo
-	Armament@TERTIARY:
+	Armament@AIR:
 		Weapon: ucs_vehicles_tiger_assault_air
-		Recoil: 64
-		RecoilRecovery: 38
-		LocalOffset: 300,-300,-100
-		MuzzlePalette:
-		PauseOnCondition: !ammo
-	Armament@QUATERNARY:
-		Weapon: ucs_vehicles_tiger_assault_air
-		Recoil: 64
-		RecoilRecovery: 38
-		LocalOffset: 300,300,-100
+		Recoil: 128
+		RecoilRecovery: 76
+		LocalOffset: 300,-300,-100, 300,300,-100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveSound:

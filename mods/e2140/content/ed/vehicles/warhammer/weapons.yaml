@@ -5,8 +5,8 @@ ed_vehicles_warhammer:
 	MinRange: 0c512
 	Report: 3.smp
 	ValidTargets: Ground, Water
-	Burst: 4
-	BurstDelays: 25
+	Burst: 12
+	BurstDelays: 0, 0, 25, 0, 0, 25, 0, 0, 25, 0, 0
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false

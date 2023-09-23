@@ -19,39 +19,18 @@ ed_vehicles_warhammer:
 		Speed: 50
 	RevealsShroud:
 		Range: 5c896
-	Turreted:
-		Offset: 0,0,0
-	AttackTurreted:
-		Armaments: primary, secondary, tertiary
-	Armament@PRIMARY:
-		Name: primary
+	Armament:
 		Weapon: ed_vehicles_warhammer
 		Recoil: 80
 		RecoilRecovery: 38
-		LocalOffset: 700,200,0
-		LocalYaw: 0
+		LocalOffset: 700,200,0, 700,0,0, 700,-200,0
 		MuzzlePalette:
 		MuzzleSequence: muzzle
-		PauseOnCondition: !ammo
-	Armament@SECONDARY:
-		Name: secondary
-		Weapon: ed_vehicles_warhammer
-		LocalOffset: 700,0,0
-		LocalYaw: 0
-		MuzzlePalette:
-		PauseOnCondition: !ammo
-	Armament@TERTIARY:
-		Name: tertiary
-		Weapon: ed_vehicles_warhammer
-		LocalOffset: 700,-200,0
-		LocalYaw: 0
-		MuzzlePalette:
 		PauseOnCondition: !ammo
 	# Render muzzle overlay at correct offset using custom trait.
 	WithCustomMuzzleOverlay@muzzle:
 		ZeroOffset: true
 	AmmoPool:
-		Armaments: primary, secondary, tertiary, quaternary
 		Ammo: 12
 		AmmoCondition: ammo
 	ReloadAmmoPool:
