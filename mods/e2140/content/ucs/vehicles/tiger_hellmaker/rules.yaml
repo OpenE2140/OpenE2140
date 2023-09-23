@@ -20,18 +20,11 @@ ucs_vehicles_tiger_hellmaker:
 		Range: 2c896
 	Turreted:
 		Offset: 0,0,215
-	Armament@PRIMARY:
+	Armament:
 		Weapon: ucs_vehicles_tiger_hellmaker
-		Recoil: 32
-		RecoilRecovery: 14
-		LocalOffset: 200,-320,-100
-		MuzzlePalette:
-		PauseOnCondition: !ammo
-	Armament@SECONDARY:
-		Weapon: ucs_vehicles_tiger_hellmaker
-		Recoil: 32
-		RecoilRecovery: 14
-		LocalOffset: 200,320,-100
+		Recoil: 64
+		RecoilRecovery: 28
+		LocalOffset: 200,-320,-100, 200,320,-100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveSound:

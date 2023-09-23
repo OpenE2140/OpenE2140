@@ -31,22 +31,13 @@ ed_vehicles_ht30lr:
 	WithSpriteTurret@SECONDARY:
 		Sequence: turret_secondary
 		Turret: secondary
-	Armament@PRIMARY_LASER:
+	Armament@LASER:
 		Name: primary
 		Turret: primary
 		Weapon: ed_vehicles_ht30lr_laser
-		Recoil: 40
-		RecoilRecovery: 19
-		LocalOffset: 250,200,100
-		MuzzlePalette:
-		PauseOnCondition: !ammo
-	Armament@SECONDARY_LASER:
-		Name: primary
-		Turret: primary
-		Weapon: ed_vehicles_ht30lr_laser
-		Recoil: 40
-		RecoilRecovery: 19
-		LocalOffset: 250,-200,100
+		Recoil: 80
+		RecoilRecovery: 38
+		LocalOffset: 250,200,100, 250,-200,100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	Armament@MISSILES:

@@ -5,8 +5,8 @@ ucs_vehicles_tiger_assault:
 	MinRange: 0c512
 	Report: 5.smp
 	ValidTargets: Ground, Water, Ship
-	Burst: 4
-	BurstDelays: 13
+	Burst: 8
+	BurstDelays: 0, 13, 0, 13, 0, 13, 0
 	Projectile: Missile
 		Speed: 260
 		Arm: 2

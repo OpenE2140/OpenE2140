@@ -4,8 +4,8 @@ ed_vehicles_ht30lr_laser:
 	MinRange: 0c512
 	Report: 10.smp
 	ValidTargets: Ground, Water, Ship
-	Burst: 15
-	BurstDelays: 3
+	Burst: 30
+	BurstDelays: 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0
 	Projectile: LaserZap
 		HitAnimPalette:
 		LaunchEffectPalette:

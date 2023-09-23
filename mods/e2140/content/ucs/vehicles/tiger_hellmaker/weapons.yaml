@@ -4,8 +4,8 @@ ucs_vehicles_tiger_hellmaker:
 	MinRange: 0c512
 	Report: napalm_bomb_launcher.wav
 	ValidTargets: Ground, Water, Ship
-	Burst: 7
-	BurstDelays: 25
+	Burst: 14
+	BurstDelays: 0, 25, 0, 25, 0, 25, 0, 25, 0, 25, 0, 25, 0
 	Projectile: Bullet
 		Speed: 100
 		Blockable: false
