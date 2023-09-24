@@ -11,26 +11,39 @@
 
 #endregion
 
-using OpenRA.Mods.Common.Activities;
+using OpenRA.Activities;
+using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Activites;
 
-public class EnterCrewMember : Enter
+public class EnterCrewMember : Activity
 {
+	private enum EnterState { Approaching, Entering, Exiting, Finished }
+
 	private readonly CrewMember crewMember;
+	private readonly IMove move;
+	private readonly Color? targetLineColor;
+	private Target target;
+	private Target lastVisibleTarget;
+	private bool useLastVisibleTarget;
+	private EnterState lastState = EnterState.Approaching;
 	private Actor? enterActor;
 	private BuildingCrew? buildingCrew;
 
 	public EnterCrewMember(Actor self, in Target target, Color? targetLineColor)
-		: base(self, target, targetLineColor)
 	{
 		this.crewMember = self.Trait<CrewMember>();
+		this.move = self.Trait<IMove>();
+		this.target = target;
+		this.targetLineColor = targetLineColor;
+		this.ChildHasPriority = false;
 	}
 
-	protected override bool TryStartEnter(Actor self, Actor targetActor)
+	protected virtual bool TryStartEnter(Actor self, Actor targetActor)
 	{
 		this.enterActor = targetActor;
 		this.buildingCrew = targetActor.TraitOrDefault<BuildingCrew>();
@@ -46,13 +59,100 @@ public class EnterCrewMember : Enter
 		return true;
 	}
 
-	protected override void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
+	protected virtual void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
 	{
 		if (this.buildingCrew != null && this.buildingCrew.IsTraitDisabled)
 			this.Cancel(self, true);
 	}
 
-	protected override void OnEnterComplete(Actor self, Actor targetActor)
+
+	public override bool Tick(Actor self)
+	{
+		// Update our view of the target
+		this.target = this.target.Recalculate(self.Owner, out var targetIsHiddenActor);
+		if (!targetIsHiddenActor && this.target.Type == TargetType.Actor)
+			this.lastVisibleTarget = Target.FromTargetPositions(this.target);
+
+		this.useLastVisibleTarget = targetIsHiddenActor || !this.target.IsValidFor(self);
+
+		// Cancel immediately if the target died while we were entering it
+		if (!this.IsCanceling && this.useLastVisibleTarget && this.lastState == EnterState.Entering)
+			this.Cancel(self, true);
+
+		this.TickInner(self, this.target, this.useLastVisibleTarget);
+
+		// We need to wait for movement to finish before transitioning to
+		// the next state or next activity
+		if (!this.TickChild(self))
+			return false;
+
+		// Note that lastState refers to what we have just *finished* doing
+		switch (this.lastState)
+		{
+			case EnterState.Approaching:
+			{
+				// NOTE: We can safely cancel in this case because we know the
+				// actor has finished any in-progress move activities
+				if (this.IsCanceling)
+					return true;
+
+				// Lost track of the target
+				if (this.useLastVisibleTarget && this.lastVisibleTarget.Type == TargetType.Invalid)
+					return true;
+
+				// We are not next to the target - lets fix that
+				if (this.target.Type != TargetType.Invalid && !this.move.CanEnterTargetNow(self, this.target))
+				{
+					// Target lines are managed by this trait, so we do not pass targetLineColor
+					var initialTargetPosition = (this.useLastVisibleTarget ? this.lastVisibleTarget : this.target).CenterPosition;
+					this.QueueChild(this.move.MoveToTarget(self, this.target, initialTargetPosition));
+					return false;
+				}
+
+				// We are next to where we thought the target should be, but it isn't here
+				// There's not much more we can do here
+				if (this.useLastVisibleTarget || this.target.Type != TargetType.Actor)
+					return true;
+
+				// Are we ready to move into the target?
+				if (this.TryStartEnter(self, this.target.Actor))
+				{
+					this.lastState = EnterState.Entering;
+					this.QueueChild(this.move.MoveIntoTarget(self, this.target));
+					return false;
+				}
+
+				// Subclasses can cancel the activity during TryStartEnter
+				// Return immediately to avoid an extra tick's delay
+				if (this.IsCanceling)
+					return true;
+
+				return false;
+			}
+
+			case EnterState.Entering:
+			{
+				// Check that we reached the requested position
+				var targetPos = this.target.Positions.ClosestToIgnoringPath(self.CenterPosition);
+				if (!this.IsCanceling && self.CenterPosition == targetPos && this.target.Type == TargetType.Actor)
+					this.OnEnterComplete(self, this.target.Actor);
+
+				this.lastState = EnterState.Exiting;
+				return false;
+			}
+
+			case EnterState.Exiting:
+			{
+				this.QueueChild(this.move.ReturnToCell(self));
+				this.lastState = EnterState.Finished;
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	protected virtual void OnEnterComplete(Actor self, Actor targetActor)
 	{
 		self.World.AddFrameEndTask(w =>
 		{
@@ -85,5 +185,11 @@ public class EnterCrewMember : Enter
 		this.crewMember.Unreserve(self);
 
 		base.Cancel(self, keepQueue);
+	}
+
+	public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
+	{
+		if (this.targetLineColor != null)
+			yield return new TargetLineNode(this.useLastVisibleTarget ? this.lastVisibleTarget : this.target, this.targetLineColor.Value);
 	}
 }
