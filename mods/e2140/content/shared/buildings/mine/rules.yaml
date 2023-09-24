@@ -20,7 +20,7 @@ shared_buildings_mine:
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
 		Offset: 1680,-280,0
-		RequiresCondition: !Transforming
+		RequiresCondition: !Transforming && !damaged
 		PauseOnCondition: !Powered || IsDead
 	WithIdleOverlay@RotorDown:
 		Sequence: rotor_down
@@ -44,6 +44,8 @@ shared_buildings_mine:
 		Bounds: 3088, 1984, 340, 32
 	ProvidesPrerequisite:
 		Prerequisite: anypower
+	GrantConditionOnDamageState:
+		Condition: damaged
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 4
