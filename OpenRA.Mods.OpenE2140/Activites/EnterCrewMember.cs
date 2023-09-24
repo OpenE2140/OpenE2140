@@ -43,33 +43,26 @@ public class EnterCrewMember : Activity
 		this.ChildHasPriority = false;
 	}
 
-	protected virtual bool TryStartEnter(Actor self, Actor targetActor)
-	{
-		this.enterActor = targetActor;
-		this.buildingCrew = targetActor.TraitOrDefault<BuildingCrew>();
-
-		// Make sure we can still enter the building
-		// (but not before, because this may stop the actor in the middle of nowhere)
-		if (this.buildingCrew == null || this.buildingCrew.IsTraitDisabled || !this.crewMember.Reserve(self, this.buildingCrew))
-		{
-			this.Cancel(self, true);
-			return false;
-		}
-
-		return true;
-	}
-
-	protected virtual void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
-	{
-		if (this.buildingCrew != null && this.buildingCrew.IsTraitDisabled)
-			this.Cancel(self, true);
-	}
-
-
 	public override bool Tick(Actor self)
 	{
 		// Update our view of the target
 		this.target = this.target.Recalculate(self.Owner, out var targetIsHiddenActor);
+
+		// When current target gets invalidated, check if we can re-target existing actor (but only if we're entering or approaching!)
+		if (this.target.Type == TargetType.Invalid && this.lastState is EnterState.Entering or EnterState.Approaching)
+		{
+			if (this.target.FrozenActor != null)
+				this.target = Target.FromFrozenActor(this.target.FrozenActor);
+			else if (this.target.Actor != null)
+				this.target = Target.FromActor(this.target.Actor);
+
+			if (this.target.Type != TargetType.Invalid)
+			{
+				this.target = this.target.Recalculate(self.Owner, out targetIsHiddenActor);
+				this.lastState = EnterState.Approaching;
+			}
+		}
+
 		if (!targetIsHiddenActor && this.target.Type == TargetType.Actor)
 			this.lastVisibleTarget = Target.FromTargetPositions(this.target);
 
@@ -147,6 +140,28 @@ public class EnterCrewMember : Activity
 				this.lastState = EnterState.Finished;
 				return false;
 			}
+		}
+
+		return true;
+	}
+
+	protected virtual void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
+	{
+		if (this.buildingCrew != null && this.buildingCrew.IsTraitDisabled)
+			this.Cancel(self, true);
+	}
+
+	protected virtual bool TryStartEnter(Actor self, Actor targetActor)
+	{
+		this.enterActor = targetActor;
+		this.buildingCrew = targetActor.TraitOrDefault<BuildingCrew>();
+
+		// Make sure we can still enter the building
+		// (but not before, because this may stop the actor in the middle of nowhere)
+		if (this.buildingCrew == null || this.buildingCrew.IsTraitDisabled || !this.crewMember.Reserve(self, this.buildingCrew))
+		{
+			this.Cancel(self, true);
+			return false;
 		}
 
 		return true;
