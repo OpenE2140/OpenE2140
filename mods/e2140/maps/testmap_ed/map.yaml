@@ -19,7 +19,7 @@ Categories: Maps
 Players:
 	PlayerReference@ED_Player:
 		Name: ED_Player
-		AllowBots: False
+		AllowBots: True
 		Playable: True
 		Required: True
 		LockFaction: True
@@ -31,7 +31,7 @@ Players:
 		Enemies: UCS_AI
 	PlayerReference@UCS_AI:
 		Name: UCS_AI
-		Bot: campaign
+		Bot: test
 		Faction: ucs
 		LockColor: True
 		Color: F20F0F
