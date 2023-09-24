@@ -25,12 +25,12 @@ public class Pcx
 
 	public Pcx(Stream stream)
 	{
-		if (stream.ReadByte() != 0x0a)
+		if (stream.ReadUInt8() != 0x0a)
 			throw new Exception("Broken pcx file!");
 
-		var version = stream.ReadByte();
-		var encoding = stream.ReadByte();
-		var bpp = stream.ReadByte();
+		var version = stream.ReadUInt8();
+		var encoding = stream.ReadUInt8();
+		var bpp = stream.ReadUInt8();
 
 		if (version != 5 || encoding != 1 || bpp != 8)
 			throw new Exception("Broken pcx file!");
@@ -43,8 +43,8 @@ public class Pcx
 
 		stream.Position += 52; // dpi, ega palette
 
-		var reserved1 = stream.ReadByte();
-		var channels = stream.ReadByte();
+		var reserved1 = stream.ReadUInt8();
+		var channels = stream.ReadUInt8();
 		var lineWidth = stream.ReadUInt16();
 		var paletteType = stream.ReadUInt16();
 
@@ -71,12 +71,12 @@ public class Pcx
 				for (var x = 0; x < lineWidth;)
 				{
 					var count = 1;
-					var value = stream.ReadByte();
+					var value = stream.ReadUInt8();
 
 					if (value >> 6 == 0x3)
 					{
 						count = value & 0x3f;
-						value = stream.ReadByte();
+						value = stream.ReadUInt8();
 					}
 
 					for (var i = 0; i < count; i++)

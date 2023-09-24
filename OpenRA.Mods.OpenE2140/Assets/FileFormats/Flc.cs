@@ -128,8 +128,8 @@ public class Flc : IVideo
 
 					for (var chunk = 0; chunk < numChunks; chunk++)
 					{
-						var skipColors = stream.ReadByte();
-						var numColors = stream.ReadByte();
+						var skipColors = stream.ReadUInt8();
+						var numColors = (ushort)stream.ReadUInt8();
 
 						if (numColors == 0)
 							numColors = 256;
@@ -160,21 +160,21 @@ public class Flc : IVideo
 
 							for (var chunk = 0; chunk < numChunks; chunk++)
 							{
-								x += stream.ReadByte();
-								var count = (sbyte)stream.ReadByte();
+								x += stream.ReadUInt8();
+								var count = (sbyte)stream.ReadUInt8();
 
 								if (count > 0)
 								{
 									for (var j = 0; j < count; j++)
 									{
-										this.Draw(x++, y, stream.ReadByte());
-										this.Draw(x++, y, stream.ReadByte());
+										this.Draw(x++, y, stream.ReadUInt8());
+										this.Draw(x++, y, stream.ReadUInt8());
 									}
 								}
 								else
 								{
-									var index1 = stream.ReadByte();
-									var index2 = stream.ReadByte();
+									var index1 = stream.ReadUInt8();
+									var index2 = stream.ReadUInt8();
 
 									for (var j = 0; j < -count; j++)
 									{
@@ -200,17 +200,17 @@ public class Flc : IVideo
 
 					for (var y = firstLine; y < firstLine + numLines; y++)
 					{
-						var numChunks = stream.ReadByte();
+						var numChunks = stream.ReadUInt8();
 						var x = 0;
 
 						for (var chunk = 0; chunk < numChunks; chunk++)
 						{
-							x += stream.ReadByte();
-							var count = (sbyte)stream.ReadByte();
+							x += stream.ReadUInt8();
+							var count = (sbyte)stream.ReadUInt8();
 
 							if (count < 0)
 							{
-								var index = stream.ReadByte();
+								var index = stream.ReadUInt8();
 
 								for (var j = 0; j < -count; j++)
 									this.Draw(x++, y, index);
@@ -218,7 +218,7 @@ public class Flc : IVideo
 							else
 							{
 								for (var j = 0; j < count; j++)
-									this.Draw(x++, y, stream.ReadByte());
+									this.Draw(x++, y, stream.ReadUInt8());
 							}
 						}
 					}
@@ -230,16 +230,16 @@ public class Flc : IVideo
 				{
 					for (var y = 0; y < this.Height; y++)
 					{
-						var numChunks = stream.ReadByte();
+						var numChunks = stream.ReadUInt8();
 						var x = 0;
 
 						for (var chunk = 0; chunk < numChunks; chunk++)
 						{
-							var count = (sbyte)stream.ReadByte();
+							var count = (sbyte)stream.ReadUInt8();
 
 							if (count > 0)
 							{
-								var index = stream.ReadByte();
+								var index = stream.ReadUInt8();
 
 								for (var j = 0; j < count; j++)
 									this.Draw(x++, y, index);
@@ -247,7 +247,7 @@ public class Flc : IVideo
 							else
 							{
 								for (var j = 0; j < -count; j++)
-									this.Draw(x++, y, stream.ReadByte());
+									this.Draw(x++, y, stream.ReadUInt8());
 							}
 						}
 					}
@@ -258,7 +258,7 @@ public class Flc : IVideo
 				case 16:
 					for (var y = 0; y < this.Height; y++)
 					for (var x = 0; x < this.Width; x++)
-						this.Draw(x, y, stream.ReadByte());
+						this.Draw(x, y, stream.ReadUInt8());
 
 					break;
 
