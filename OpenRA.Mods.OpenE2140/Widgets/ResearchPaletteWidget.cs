@@ -133,7 +133,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 	public override void Tick()
 	{
-		 var newResearchables = this.World.LocalPlayer.PlayerActor.TraitsImplementing<Researchable>()
+		var newResearchables = this.World.LocalPlayer.PlayerActor.TraitsImplementing<Researchable>()
 			.Where(
 				e =>
 				{

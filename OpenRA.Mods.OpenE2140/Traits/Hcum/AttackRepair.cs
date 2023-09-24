@@ -138,10 +138,12 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 			return false;
 
 		var mobile = target.Actor.TraitOrDefault<Mobile>();
+
 		if (mobile != null && mobile.CurrentMovementTypes != MovementType.None)
 			return false;
 
 		var aircraft = target.Actor.TraitOrDefault<Aircraft>();
+
 		if (aircraft != null && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
 			return false;
 

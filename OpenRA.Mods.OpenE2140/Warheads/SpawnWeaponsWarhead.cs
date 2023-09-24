@@ -12,8 +12,8 @@
 #endregion
 
 using JetBrains.Annotations;
-using OpenRA.GameRules;
 using OpenRA.Effects;
+using OpenRA.GameRules;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Effects;
@@ -58,15 +58,16 @@ public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 			throw new YamlException($"Length of: '{nameof(this.Inaccuracies)}' must be equal to '{nameof(this.Weapons)}' or default single value.");
 
 		this.WeaponInfos = this.Weapons.Select(
-			w =>
-			{
-				var weaponToLower = w.ToLowerInvariant();
+				w =>
+				{
+					var weaponToLower = w.ToLowerInvariant();
 
-				if (!rules.Weapons.TryGetValue(weaponToLower, out var weapon))
-					throw new YamlException($"Weapons Ruleset does not contain an entry '{weaponToLower}'");
+					if (!rules.Weapons.TryGetValue(weaponToLower, out var weapon))
+						throw new YamlException($"Weapons Ruleset does not contain an entry '{weaponToLower}'");
 
-				return weapon;
-			})
+					return weapon;
+				}
+			)
 			.ToArray();
 	}
 
@@ -75,9 +76,7 @@ public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 		var firedBy = args.SourceActor;
 		var actorCenterPosition = new WPos(target.CenterPosition.X, target.CenterPosition.Y, Math.Max(0, target.CenterPosition.Z));
 		var world = firedBy.World;
-		var inaccuracies = this.Inaccuracies.Length > 1 
-			? this.Inaccuracies 
-			: Enumerable.Repeat(this.Inaccuracies[0], this.WeaponInfos.Length).ToArray();
+		var inaccuracies = this.Inaccuracies.Length > 1 ? this.Inaccuracies : Enumerable.Repeat(this.Inaccuracies[0], this.WeaponInfos.Length).ToArray();
 
 		if (!this.IsValidAgainst(target, firedBy))
 			return;
@@ -117,8 +116,7 @@ public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 					projectileArgs.Args.InaccuracyModifiers =
 						firedBy.TryGetTraitsImplementing<IInaccuracyModifier>().Select(a => a.GetInaccuracyModifier()).ToArray();
 
-					projectileArgs.Args.RangeModifiers = 
-						firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
+					projectileArgs.Args.RangeModifiers = firedBy.TryGetTraitsImplementing<IRangeModifier>().Select(a => a.GetRangeModifier()).ToArray();
 				}
 
 				var positionedTarget = Target.FromPos(weaponImpactPosition);

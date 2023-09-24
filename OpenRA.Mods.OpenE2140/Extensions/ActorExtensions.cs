@@ -27,6 +27,7 @@ public static class ActorExtensions
 		if (actor.Disposed)
 		{
 			trait = default;
+
 			return false;
 		}
 
@@ -38,6 +39,7 @@ public static class ActorExtensions
 	public static T? GetTraitOrDefault<T>(this Actor? actor)
 	{
 		var traitOrDefault = actor is { IsInWorld: true } ? actor.TraitOrDefault<T>() : default;
+
 		return traitOrDefault;
 	}
 }
