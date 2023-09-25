@@ -114,7 +114,7 @@ public class CrewMember : IIssueOrder, IResolveOrder, IOrderVoice, INotifyRemove
 
 	private bool CanEnter(Actor target)
 	{
-		return target.TryGetTrait<BuildingCrew>(out var crew) && !crew.IsTraitDisabled && crew.CanEnter(this.actor);
+		return target != null && target.TryGetTrait<BuildingCrew>(out var crew) && !crew.IsTraitDisabled && crew.CanEnter(this.actor);
 	}
 
 	public string? VoicePhraseForOrder(Actor self, Order order)
