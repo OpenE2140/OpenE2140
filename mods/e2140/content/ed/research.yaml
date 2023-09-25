@@ -2,36 +2,36 @@ Player:
 	Researchable@LaserDetector:
 		Id: LaserDetector
 		Name: Laser Detector
-		Duration: 1500
+		Duration: 400
+		Level: 1
 		Factions: ed
-		Requires: Engine
 	Researchable@LaserCannon:
 		Id: LaserCannon
 		Name: Laser Cannon
 		Duration: 2000
+		Level: 2
 		Factions: ed
-		Requires: RocketEngine, LaserDetector
 	Researchable@LightLaser:
 		Id: LightLaser
 		Name: Light Laser
-		Duration: 2500
+		Duration: 2000
+		Level: 2
 		Factions: ed
-		Requires: LaserCannon
 	Researchable@HighMedicine:
 		Id: HighMedicine
 		Name: High Medicine
-		Duration: 3000
+		Duration: 1000
+		Level: 3
 		Factions: ed
-		Requires: LightLaser
 	Researchable@IonCannon:
 		Id: IonCannon
 		Name: Ion Cannon
-		Duration: 3500
+		Duration: 4000
+		Level: 4
 		Factions: ed
-		Requires: AiMine, HighMedicine
 	Researchable@NuclearWeapons:
 		Id: NuclearWeapons
 		Name: Nuclear Weapons
-		Duration: 4000
+		Duration: 21000
+		Level: 5
 		Factions: ed
-		Requires: IonCannon

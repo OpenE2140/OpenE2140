@@ -65,8 +65,8 @@ public class ResearchTooltipLogic : ChromeLogic
 			var time = researchable.RemainingDuration
 				/ Math.Max(player.World.ActorsWithTrait<Researches>().Count(e => e.Actor.Owner == player && !e.Trait.IsTraitDisabled), 1);
 
-			var missingResearch = player.PlayerActor.TraitsImplementing<Researchable>()
-				.Where(other => other.RemainingDuration != 0 && researchable.Info.Requires.Contains(other.Info.Id))
+			var missingResearch = player.PlayerActor.Trait<Research>()
+				.GetMissingRequirements(researchable)
 				.Select(researchable => researchable.Info.Name)
 				.ToArray();
 
@@ -101,7 +101,7 @@ public class ResearchTooltipLogic : ChromeLogic
 
 			if (requiresLabel.Visible)
 			{
-				requiresLabel.Text = string.Join(", ", missingResearch);
+				requiresLabel.Text = missingResearch.Last();
 				requiresLabel.TextColor = Color.Red;
 
 				var requiredSize = font.Measure(requiresLabel.Text);

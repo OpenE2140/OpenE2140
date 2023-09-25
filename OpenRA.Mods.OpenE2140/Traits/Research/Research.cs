@@ -48,9 +48,11 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	public const string StopResearchOrder = "StopResearch";
 
 	private readonly ResearchInfo info;
+	private readonly Actor self;
 	private readonly Player player;
 	private readonly PlayerResources playerResources;
 	private readonly TechTree techTree;
+	private ResearchLimit? researchLimit;
 	private DeveloperMode? developerMode;
 	private readonly List<Researchable> researchables = new List<Researchable>();
 
@@ -62,6 +64,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	public Research(ResearchInfo info, Actor self)
 	{
 		this.info = info;
+		this.self = self;
 		this.player = self.Owner;
 		this.playerResources = self.Trait<PlayerResources>();
 		this.techTree = self.Trait<TechTree>();
@@ -69,6 +72,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
 	{
+		this.researchLimit = self.World.WorldActor.TraitOrDefault<ResearchLimit>();
 		this.developerMode = self.TraitOrDefault<DeveloperMode>();
 		this.researchables.AddRange(self.TraitsImplementing<Researchable>());
 	}
@@ -80,7 +84,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 		foreach (var researchable in this.researchables)
 		{
 			// Check whether this could be researched.
-			if (researchable.RemainingDuration == 0 || !this.HasRequirements(researchable))
+			if (researchable.RemainingDuration == 0 || this.GetMissingRequirements(researchable).Any())
 				continue;
 
 			// Check if the old owner had this research researched.
@@ -166,7 +170,10 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 		var researchable = this.researchables.FirstOrDefault(e => e.Info.Id == research);
 
 		// Check whether this could be researched.
-		if (researchable == null || researchable.RemainingDuration == 0 || !this.HasRequirements(researchable))
+		if (researchable == null || researchable.RemainingDuration == 0 || this.GetMissingRequirements(researchable).Any())
+			return;
+
+		if (this.researchLimit != null && this.developerMode is not { AllTech: true } && researchable.Info.Level > this.researchLimit.Limit)
 			return;
 
 		// Check for faction restrictions.
@@ -227,8 +234,26 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 		this.Current.PenaltySafeCost = this.Current.RemainingCost;
 	}
 
-	public bool HasRequirements(Researchable researchable)
+	public IEnumerable<Researchable> GetMissingRequirements(Researchable researchable)
 	{
-		return researchable.Info.Requires.All(require => this.researchables.First(researchable => researchable.Info.Id == require).RemainingDuration == 0);
+		var wasFound = false;
+
+		foreach (var other in this.researchables)
+		{
+			if (other == researchable)
+				wasFound = true;
+
+			if (other.Info.Factions.Any() && !other.Info.Factions.Contains(this.self.Owner.Faction.InternalName))
+				continue;
+
+			if (other.RemainingDuration == 0)
+				continue;
+
+			if (other.Info.Level < researchable.Info.Level)
+				yield return other;
+
+			if (other.Info.Level == researchable.Info.Level && !wasFound)
+				yield return other;
+		}
 	}
 }

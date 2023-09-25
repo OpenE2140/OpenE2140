@@ -84,6 +84,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 	public Researchable[] Researchables = Array.Empty<Researchable>();
 	private readonly Research research;
+	private readonly ResearchLimit researchLimit;
 	private readonly DeveloperMode developerMode;
 
 	private bool CanScrollDown => this.IconRowOffset < (this.Researchables.Length + this.Columns - 1) / this.Columns - this.MaxIconRowOffset;
@@ -104,6 +105,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 		this.GetTooltipIcon = () => this.TooltipIcon;
 		this.tooltipContainer = Exts.Lazy(() => Ui.Root.Get<TooltipContainerWidget>(this.TooltipContainer));
 		this.research = world.LocalPlayer.PlayerActor.TraitOrDefault<Research>();
+		this.researchLimit = world.WorldActor.TraitOrDefault<ResearchLimit>();
 		this.developerMode = world.LocalPlayer.PlayerActor.TraitOrDefault<DeveloperMode>();
 	}
 
@@ -140,18 +142,22 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 					if (e.RemainingDuration == 0)
 						return true;
 
+					if (this.developerMode is { AllTech: true })
+						return true;
+
+					if (e.Info.Level > this.researchLimit.Limit)
+						return false;
+
 					if (e.Info.Factions.Length == 0)
 						return true;
 
 					if (e.Info.Factions.Contains(this.World.LocalPlayer.Faction.InternalName))
 						return true;
 
-					if (this.developerMode is { AllTech: true })
-						return true;
-
 					return false;
 				}
 			)
+			.OrderBy(e => e.Info.Level)
 			.ToArray();
 
 		if (this.Researchables.SequenceEqual(newResearchables))
@@ -212,7 +218,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 	private bool HandleLeftClick(Researchable researchable)
 	{
-		if (researchable.RemainingDuration == 0 || !this.research.HasRequirements(researchable) || this.research.Current == researchable)
+		if (researchable.RemainingDuration == 0 || this.research.GetMissingRequirements(researchable).Any() || this.research.Current == researchable)
 			return false;
 
 		this.World.IssueOrder(new Order(Research.StartResearchOrder, this.World.LocalPlayer.PlayerActor, false) { TargetString = researchable.Info.Id });
@@ -297,10 +303,6 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 		foreach (var icon in this.icons.Values)
 		{
-			var wrongFaction = icon.Researchable.RemainingDuration > 0
-				&& icon.Researchable.Info.Factions.Any()
-				&& !icon.Researchable.Info.Factions.Contains(this.World.LocalPlayer.Faction.InternalName);
-
 			WidgetUtils.DrawSpriteCentered(ChromeProvider.GetImage(this.Icons, icon.Image), null, icon.Pos + this.iconOffset);
 
 			if (this.research.Current == icon.Researchable)
@@ -319,7 +321,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 				WidgetUtils.DrawSpriteCentered(this.Clock.Image, icon.IconClockPalette, icon.Pos + this.iconOffset);
 			}
-			else if ((icon.Researchable.RemainingDuration == 0 || !this.research.HasRequirements(icon.Researchable) || wrongFaction)
+			else if ((icon.Researchable.RemainingDuration == 0 || this.research.GetMissingRequirements(icon.Researchable).Any())
 				&& this.NotResearchable != null)
 				WidgetUtils.DrawSpriteCentered(this.NotResearchable.Image, icon.IconDarkenPalette, icon.Pos + this.iconOffset);
 		}

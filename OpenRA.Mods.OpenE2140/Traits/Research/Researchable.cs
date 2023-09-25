@@ -30,6 +30,9 @@ public class ResearchableInfo : TraitInfo, ITechTreePrerequisiteInfo
 	[Desc("The description for this research.")]
 	public readonly string Description = string.Empty;
 
+	[Desc("The level for this research.")]
+	public readonly int Level;
+
 	[Desc("The total duration for this research.")]
 	public readonly int Duration = 1;
 
@@ -38,9 +41,6 @@ public class ResearchableInfo : TraitInfo, ITechTreePrerequisiteInfo
 
 	[Desc("If set, only these factions can research this.")]
 	public readonly string[] Factions = Array.Empty<string>();
-
-	[Desc("If set, these researches must be researched before.")]
-	public readonly string[] Requires = Array.Empty<string>();
 
 	IEnumerable<string> ITechTreePrerequisiteInfo.Prerequisites(ActorInfo info)
 	{

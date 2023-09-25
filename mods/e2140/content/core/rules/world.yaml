@@ -63,6 +63,9 @@ World:
 	ScreenShaker:
 		MinMultiplier: -10,0
 		MaxMultiplier: 10,0
+	# Research level limit
+	ResearchLimit:
+		Limit: 5
 	# Used to manage beacons.
 	RadarPings:
 	# Required for the color picker.
