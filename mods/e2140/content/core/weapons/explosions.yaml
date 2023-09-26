@@ -39,6 +39,12 @@ BuildingExplosion:
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
+	Warhead@Damage: SpreadDamage
+		Falloff: 100, 100, 100, 100, 100
+		Spread: 0c512
+		Damage: 20
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
 
 BuildingExploding:
 	ValidTargets: Ground, Water
@@ -71,6 +77,12 @@ PowerPlantExplosion:
 		ExplosionPalette:
 		ValidTargets: Ground, Water
 		ImpactSounds: 16.smp, 17.smp
+	Warhead@Damage: SpreadDamage
+		Falloff: 100, 100, 100, 100, 100
+		Spread: 0c512
+		Damage: 20
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
 
 UcsInfantryExplosion:
 	ValidTargets: Ground, Water
