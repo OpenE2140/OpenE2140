@@ -17,6 +17,7 @@ shared_buildings_power_plant:
 		LocalCenterOffset: -470,-600,0
 	BuildingCrew:
 		MaxPopulation: 6
+		EntryCells: 0,2,   -1,2,   -1,1
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: shared_buildings_power_plant

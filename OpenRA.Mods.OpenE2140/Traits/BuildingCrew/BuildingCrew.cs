@@ -31,7 +31,11 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>
     [Desc("A list of actor types that are initially spawned into this actor.")]
     public readonly string[] InitialUnits = Array.Empty<string>();
 
-    [Desc("When this actor is sold, should all of its crew members exit the building?")]
+	[Desc("A list of 0 or more offsets for cells which serve as points of entry into the building (i.e. to one of the footprint cells)." +
+		"If none is defined, the future crew member can enter the building from any cell around the building.")]
+	public readonly CVec[] EntryCells = Array.Empty<CVec>();
+
+	[Desc("When this actor is sold, should all of its crew members exit the building?")]
     public readonly bool EjectOnSell = true;
 
     [Desc("When this actor dies, should all of its crew members exit the building?")]

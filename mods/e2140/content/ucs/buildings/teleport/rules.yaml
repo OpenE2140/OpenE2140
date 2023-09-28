@@ -10,6 +10,7 @@ ucs_buildings_teleport:
 		LocalCenterOffset: 0,-460,0
 	BuildingCrew:
 		MaxPopulation: 1
+		EntryCells: -1,1,   -1,2
 	TransformSequence:
 		Offset: -15,430,0
 	HitShape:

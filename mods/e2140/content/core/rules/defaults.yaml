@@ -177,6 +177,7 @@
 	# Building has a crew.
 	BuildingCrew:
 		ExitBuildingNotification: LeavingBuilding
+		EntryCells: 0,2,   -1,2
 	# Show pips for the building crew.
 	WithBuildingCrewPipsDecoration:
 		Palette:

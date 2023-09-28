@@ -28,17 +28,22 @@ public class EnterCrewMember : Activity
 	private readonly IMove move;
 	private readonly Color? targetLineColor;
 	private Target target;
+	private readonly Building targetBuilding;
+	private readonly BuildingCrew buildingCrew;
 	private Target lastVisibleTarget;
 	private bool useLastVisibleTarget;
 	private EnterState lastState = EnterState.Approaching;
 	private Actor? enterActor;
-	private BuildingCrew? buildingCrew;
+
+	private IEnumerable<CPos> BuildingOccupiedFootprintCells => this.targetBuilding.Info.FootprintTiles(this.target.Actor.Location, FootprintCellType.Occupied);
 
 	public EnterCrewMember(Actor self, in Target target, Color? targetLineColor)
 	{
 		this.crewMember = self.Trait<CrewMember>();
 		this.move = self.Trait<IMove>();
 		this.target = target;
+		this.targetBuilding = target.Actor.Trait<Building>();
+		this.buildingCrew = target.Actor.Trait<BuildingCrew>();
 		this.targetLineColor = targetLineColor;
 		this.ChildHasPriority = false;
 	}
@@ -94,24 +99,27 @@ public class EnterCrewMember : Activity
 					return true;
 
 				// We are not next to the target - lets fix that
-				if (this.target.Type != TargetType.Invalid && !this.move.CanEnterTargetNow(self, this.target))
+				if (this.target.Type != TargetType.Invalid && !this.CanEnterTargetNow(self, this.target))
 				{
 					// Target lines are managed by this trait, so we do not pass targetLineColor
 					var initialTargetPosition = (this.useLastVisibleTarget ? this.lastVisibleTarget : this.target).CenterPosition;
-					this.QueueChild(this.move.MoveToTarget(self, this.target, initialTargetPosition));
+					this.QueueChild(new MoveToBuildingEntrance(self, this.target, initialTargetPosition));
 					return false;
 				}
 
 				// We are next to where we thought the target should be, but it isn't here
 				// There's not much more we can do here
-				if (this.useLastVisibleTarget || this.target.Type != TargetType.Actor)
+				if (this.useLastVisibleTarget || this.target.Type != TargetType.Actor || this.target.Actor == null)
 					return true;
 
 				// Are we ready to move into the target?
 				if (this.TryStartEnter(self, this.target.Actor))
 				{
 					this.lastState = EnterState.Entering;
-					this.QueueChild(this.move.MoveIntoTarget(self, this.target));
+
+					var nearestFootprintCell = this.BuildingOccupiedFootprintCells.MinBy(cell => (self.World.Map.CenterOfCell(cell) - self.CenterPosition).HorizontalLengthSquared);
+
+					this.QueueChild(this.move.MoveIntoTarget(self, Target.FromCell(self.World, nearestFootprintCell)));
 					return false;
 				}
 
@@ -126,9 +134,9 @@ public class EnterCrewMember : Activity
 			case EnterState.Entering:
 			{
 				// Check that we reached the requested position
-				var targetPos = this.target.Positions.ClosestToIgnoringPath(self.CenterPosition);
-				if (!this.IsCanceling && self.CenterPosition == targetPos && this.target.Type == TargetType.Actor)
-					this.OnEnterComplete(self, this.target.Actor);
+				var targetPositions = this.BuildingOccupiedFootprintCells.Select(c => self.World.Map.CenterOfCell(c));
+				if (!this.IsCanceling && targetPositions.Contains(self.CenterPosition) && this.target.Type == TargetType.Actor)
+					this.OnEnterComplete(self, this.target.Actor!);
 
 				this.lastState = EnterState.Exiting;
 				return false;
@@ -145,20 +153,33 @@ public class EnterCrewMember : Activity
 		return true;
 	}
 
+	private bool CanEnterTargetNow(Actor self, Target target)
+	{
+		if (target.Type == TargetType.FrozenActor && !target.FrozenActor.IsValid)
+			return false;
+
+		IEnumerable<CPos> entryCells;
+		if (this.buildingCrew.Info.EntryCells.Length > 0)
+			entryCells = this.buildingCrew.Info.EntryCells.Select(c => target.Actor.Location + c);
+		else
+			entryCells = Util.AdjacentCells(self.World, target);
+
+		return self.Location == self.World.Map.CellContaining(target.CenterPosition) || entryCells.Any(c => c == self.Location);
+	}
+
 	protected virtual void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
 	{
-		if (this.buildingCrew != null && this.buildingCrew.IsTraitDisabled)
+		if (this.buildingCrew.IsTraitDisabled)
 			this.Cancel(self, true);
 	}
 
 	protected virtual bool TryStartEnter(Actor self, Actor targetActor)
 	{
 		this.enterActor = targetActor;
-		this.buildingCrew = targetActor.TraitOrDefault<BuildingCrew>();
 
 		// Make sure we can still enter the building
 		// (but not before, because this may stop the actor in the middle of nowhere)
-		if (this.buildingCrew == null || this.buildingCrew.IsTraitDisabled || !this.crewMember.Reserve(self, this.buildingCrew))
+		if (this.buildingCrew.IsTraitDisabled || !this.crewMember.Reserve(self, this.buildingCrew))
 		{
 			this.Cancel(self, true);
 			return false;
@@ -171,7 +192,7 @@ public class EnterCrewMember : Activity
 	{
 		self.World.AddFrameEndTask(w =>
 		{
-			if (self.IsDead || this.buildingCrew == null)
+			if (self.IsDead)
 				return;
 
 			// Make sure the target hasn't changed while entering
