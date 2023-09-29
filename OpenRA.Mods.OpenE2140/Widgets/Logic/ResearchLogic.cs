@@ -70,7 +70,7 @@ public class ResearchLogic : ChromeLogic
 		}
 	}
 
-	private void SwitchToResearch()
+	public void SwitchToResearch()
 	{
 		if (this.research.Visible)
 			return;

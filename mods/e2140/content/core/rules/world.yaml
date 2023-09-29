@@ -87,6 +87,9 @@ World:
 	# Select proper production tab when production building is selected
 	ProductionQueueFromSelection:
 		ProductionTabsWidget: PRODUCTION_TABS
+	# Select research tab when research center is selected.
+	ResearchFromSelection:
+		ResearchWidget: PRODUCTION_AND_RESEARCH
 	# Renders an effect at the order target locations.
 	OrderEffects:
 		TerrainFlashImage: moveflash
