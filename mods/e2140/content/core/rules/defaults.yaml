@@ -336,8 +336,10 @@
 		Sequence: shadow
 		Palette:
 	# Infantry can enter Cargo actors.
-	Passenger:
+	CustomPassenger:
 		CargoType: Infantry
+		# Keep passenger's activities on unload to make "ride and capture" attacks easier.
+		CancelActivitiesOnExit: false
 
 # Add locomotor to world...
 ^CoreWorld:
