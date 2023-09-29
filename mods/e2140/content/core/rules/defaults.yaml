@@ -356,8 +356,10 @@
 		Sequence: shadow
 		Palette:
 	# Infantry can enter Cargo actors.
-	Passenger:
+	CustomPassenger:
 		CargoType: Infantry
+		# Keep passenger's activities on unload to make "ride and capture" attacks easier.
+		CancelActivitiesOnExit: false
 	# Infantry can be a crew member inside a building
 	CrewMember:
 		BuildingCrewCondition: InsideBuilding
@@ -758,7 +760,7 @@
 		Range: 2c896
 		RequiresCondition: damaged
 	# Give a condition to infantry units which are inside BIO.
-	Passenger:
+	CustomPassenger:
 		CargoConditions: 
 			ed_vehicles_bio: insidebio
 
