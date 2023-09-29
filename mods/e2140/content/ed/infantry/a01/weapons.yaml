@@ -47,6 +47,7 @@ ed_infantry_a01_grenade:
 	ReloadDelay: 50
 	MinRange: 0c512
 	Range: 2c896
+	Report: grenade_throw.wav
 	ValidTargets: Vehicle, Defense, Structure, Ship
 	Burst: 1
 	Projectile: Bullet
