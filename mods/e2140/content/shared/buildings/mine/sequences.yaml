@@ -21,6 +21,10 @@ shared_buildings_mine:
 		FlipX: True
 		Length: 8
 		Tick: 60
+	rotor_shadow:
+		Filename: content/shared/buildings/mine/building_mine_shadow.png
+		Length: 8
+		Tick: 60
 	belt:
 		Filename: belt.vspr
 	belt-lights:

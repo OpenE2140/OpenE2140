@@ -27,6 +27,11 @@ shared_buildings_mine:
 		Offset: -340,-640,0
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
+	WithIdleOverlay@RotorDownShadow:
+		Sequence: rotor_shadow
+		Offset: -1620,-200,0
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered || IsDead
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
 	Building:
