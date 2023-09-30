@@ -4,8 +4,8 @@
 		Name: Abandoned building
 	Interactable:
 	Building:
-		Dimensions: 3,2
-		Footprint: xx_ xx_
+		Dimensions: 2,2
+		Footprint: xx xx
 
 urban_building_big1:
 	Inherits@1: ^UrbanBuilding
@@ -54,6 +54,9 @@ urban_building_big13:
 
 urban_building_big14:
 	Inherits@1: ^UrbanBuilding
+	Building:
+		Dimensions: 3,2
+		Footprint: xx_ xx_
 
 urban_building_big15:
 	Inherits@1: ^UrbanBuilding
