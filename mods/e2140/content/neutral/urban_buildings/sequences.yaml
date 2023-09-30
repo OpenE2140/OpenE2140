@@ -77,3 +77,27 @@ urban_building_big19:
 urban_building_big20:
 	idle:
 		Filename: content/neutral/urban_buildings/urban_building_big20.png
+
+urban_building_small1:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small1.png
+
+urban_building_small2:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small2.png
+
+urban_building_small3:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small3.png
+
+urban_building_small4:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small4.png
+
+urban_building_small5:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small5.png
+
+urban_building_small6:
+	idle:
+		Filename: content/neutral/urban_buildings/urban_building_small6.png
