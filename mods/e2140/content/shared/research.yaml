@@ -12,30 +12,30 @@ Player:
 	Researchable@NuclearEngine:
 		Id: NuclearEngine
 		Name: Nuclear Engine
-		Duration: 1000
+		Duration: 500
 		Level: 2
 	Researchable@RocketEngine:
 		Id: RocketEngine
 		Name: Rocket Engine
-		Duration: 500
+		Duration: 250
 		Level: 2
 	Researchable@Flying:
 		Id: Flying
 		Name: Flying
-		Duration: 5000
+		Duration: 1666
 		Level: 3
 	Researchable@HeavyRockets:
 		Id: HeavyRockets
 		Name: Heavy Rockets
-		Duration: 1000
+		Duration: 333
 		Level: 3
 	Researchable@FastRepairing:
 		Id: FastRepairing
 		Name: Fast Repairing
-		Duration: 2000
+		Duration: 500
 		Level: 4
 	Researchable@AiMine:
 		Id: AiMine
 		Name: AI Mine
-		Duration: 2000
+		Duration: 500
 		Level: 4

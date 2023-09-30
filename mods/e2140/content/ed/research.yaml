@@ -8,30 +8,30 @@ Player:
 	Researchable@LaserCannon:
 		Id: LaserCannon
 		Name: Laser Cannon
-		Duration: 2000
+		Duration: 1000
 		Level: 2
 		Factions: ed
 	Researchable@LightLaser:
 		Id: LightLaser
 		Name: Light Laser
-		Duration: 2000
+		Duration: 1000
 		Level: 2
 		Factions: ed
 	Researchable@HighMedicine:
 		Id: HighMedicine
 		Name: High Medicine
-		Duration: 1000
+		Duration: 333
 		Level: 3
 		Factions: ed
 	Researchable@IonCannon:
 		Id: IonCannon
 		Name: Ion Cannon
-		Duration: 4000
+		Duration: 1000
 		Level: 4
 		Factions: ed
 	Researchable@NuclearWeapons:
 		Id: NuclearWeapons
 		Name: Nuclear Weapons
 		Duration: 21000
-		Level: 5
+		Level: 4200
 		Factions: ed
