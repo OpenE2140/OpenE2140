@@ -87,3 +87,24 @@ urban_building_big19:
 
 urban_building_big20:
 	Inherits@1: ^UrbanBuilding
+
+urban_building_small1:
+	Inherits@1: ^UrbanBuilding
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+
+urban_building_small2:
+	Inherits@1: urban_building_small1
+
+urban_building_small3:
+	Inherits@1: urban_building_small1
+
+urban_building_small4:
+	Inherits@1: urban_building_small1
+
+urban_building_small5:
+	Inherits@1: urban_building_small1
+
+urban_building_small6:
+	Inherits@1: urban_building_small1
