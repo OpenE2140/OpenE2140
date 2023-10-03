@@ -1,4 +1,5 @@
-﻿using OpenRA.Mods.Common;
+﻿using System.Diagnostics;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
@@ -25,7 +26,12 @@ public class MoveToBuildingEntrance : MoveAdjacentTo
 			this.SearchCells.Clear();
 			this.searchCellsTick = self.World.WorldTick;
 
-			var entryCells = this.targetBuildingCrew.Info.EntryCells.Length == 0 ? Util.AdjacentCells(self.World, this.Target) : this.targetBuildingCrew.Info.EntryCells.Select(c => this.Target.Actor.Location + c);
+			Debug.Assert(this.targetBuildingCrew.Info.EntryCells.Length != 0, $"Building doesn't have any entry cells for BuildingCrew: {self}");
+			Debug.Assert(this.Target.Type == TargetType.Actor, $"Target is not actor: {this.Target}");
+
+			var entryCells = this.targetBuildingCrew.Info.EntryCells.Length > 0
+				? this.targetBuildingCrew.Info.EntryCells.Select(c => this.Target.Actor.Location + c)
+				: Util.AdjacentCells(self.World, this.Target);
 
 			foreach (var cell in entryCells)
 				if (this.Mobile.CanStayInCell(cell) && this.Mobile.CanEnterCell(cell))
