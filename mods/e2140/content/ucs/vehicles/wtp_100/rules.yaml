@@ -35,6 +35,7 @@ ucs_vehicles_wtp_100:
 		Description: The WTP 100 is an unarmed, amphibious air-cushion transporter with two conventional forms of impulsion giving it medium levels of speed on both land and water.\nThe WTP transports up to six small battle or five small units and a vehicle.\nBut you must load the lightweight battle units first.\nThe weapons of any vehicle being transported by the WTP 100 are fully functional.
 
 # WTP 100 has special locomotor as it can move on water.
+# In E2140 however, it has slighly lower speed on sand.
 ^CoreWorld:
 	Locomotor@vehicleWtp100:
 		Name: vehicleWtp100
@@ -42,8 +43,8 @@ ucs_vehicles_wtp_100:
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
-			Sand: 50
-			SandEdge: 50
+			Sand: 90
+			SandEdge: 90
 			Road: 100
 			AsphaltRoad: 100
 			Water: 100
