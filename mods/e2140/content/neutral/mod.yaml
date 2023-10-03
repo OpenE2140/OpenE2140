@@ -9,6 +9,7 @@ Rules:
 	e2140|content/neutral/civ_building/civ_building5/rules.yaml
 	e2140|content/neutral/civ_building/civ_building6/rules.yaml
 	e2140|content/neutral/urban_buildings/rules.yaml
+	e2140|content/neutral/urban2_buildings/rules.yaml
 
 Sequences:
 	e2140|content/neutral/trees/sequences.yaml
@@ -20,3 +21,4 @@ Sequences:
 	e2140|content/neutral/civ_building/civ_building5/sequences.yaml
 	e2140|content/neutral/civ_building/civ_building6/sequences.yaml
 	e2140|content/neutral/urban_buildings/sequences.yaml
+	e2140|content/neutral/urban2_buildings/sequences.yaml

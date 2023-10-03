@@ -1,0 +1,98 @@
+urban2_building_big1:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big1.png
+
+urban2_building_big2:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big2.png
+
+urban2_building_big3:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big3.png
+
+urban2_building_big4:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big4.png
+
+urban2_building_big5:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big5.png
+
+urban2_building_big6:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big6.png
+
+urban2_building_big7:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big7.png
+
+urban2_building_big8:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big8.png
+
+urban2_building_big9:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big9.png
+
+urban2_building_big10:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big10.png
+
+urban2_building_big11:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big11.png
+
+urban2_building_big12:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big12.png
+
+urban2_building_big13:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big13.png
+
+urban2_building_big14:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big14.png
+
+urban2_building_big15:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big15.png
+
+urban2_building_big16:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big16.png
+
+urban2_building_big17:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big17.png
+
+urban2_building_big18:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big18.png
+
+urban2_building_big19:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_big19.png
+
+urban2_building_small1:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_small1.png
+
+urban2_building_small2:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_small2.png
+		ZOffset: -1024
+
+urban2_building_small3:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_small3.png
+		ZOffset: -1024
+
+urban2_building_small4:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_small4.png
+
+urban2_building_small5:
+	idle:
+		Filename: content/neutral/urban2_buildings/urban2_building_small5.png
+
