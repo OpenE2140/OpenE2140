@@ -32,6 +32,10 @@ shared_buildings_power_plant:
 	Explodes:
 		Weapon: PowerPlantExploding
 		EmptyWeapon: PowerPlantExploding
+	SpawnActorOnDeath:
+		Actor: power_plant_crater
+		# Neutral player owns all craters
+		OwnerType: InternalName
 	FloatingSpriteEmitter:
 		Duration: -1
 		Lifetime: 27
@@ -77,3 +81,13 @@ shared_mcu_power_plant:
 		BuildPaletteOrder: 10
 	WithTextDecoration:
 		Text: Power Plant
+
+power_plant_crater:
+	Building:
+		Dimensions: 2,2
+		Footprint: xx xx
+		LocalCenterOffset: -470,-600,0
+	FrozenUnderFog:
+	# Use tiles from terrain template for the crater.
+	TerrainFromTemplate:
+		TemplateId: 30
