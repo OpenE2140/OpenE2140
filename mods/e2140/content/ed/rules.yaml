@@ -27,6 +27,9 @@ World:
 ^EdInfantry:
 	Inherits@1: ^CoreInfantry
 	Inherits@2: ^HealedByBio
+	Inherits@3: ^VulnerableToRadiation
+	Targetable:
+		TargetTypes: Ground, Infantry
 	Voiced:
 		VoiceSet: EdInfantryVoice
 	WithDeathAnimation:

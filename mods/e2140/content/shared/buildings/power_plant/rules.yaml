@@ -93,5 +93,9 @@ power_plant_crater:
 	# Use tiles from terrain template for the crater.
 	TerrainFromTemplate:
 		TemplateId: 30
+	# Power Plant crater deals damage to vulnerable units around it (such as Androids or Civils).
+	FireWarheads:
+		Weapons: PowerPlantCraterRadiation
+	 	Interval: 20
 	# Power Plant crater has specific radar signature.
 	CraterRadarSignature:
