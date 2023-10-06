@@ -1,4 +1,103 @@
 Player:
-	ModularBot@CampaignAI:
-		Name: Campaign Player AI
-		Type: campaign
+	ModularBot@TestAI:
+		Name: Test AI
+		Type: test
+	GrantConditionOnBotOwner@TestAI:
+		Condition: enable-test
+		Bots: test
+	BaseMCVBuilderBotModule@TestAI:
+		RequiresCondition: enable-test
+		ConstructionYardTypes: ucs_mcu_prod_center, ed_mcu_constr_center
+		VehiclesFactoryTypes: ucs_mcu_heavy_tech, ed_mcu_tech_house
+		RefineryTypes: shared_mcu_refinery
+		MineTypes: shared_mcu_mine
+		PowerTypes: shared_mcu_power_plant
+		BarracksTypes: ed_mcu_bio_center, ucs_mcu_robot_factory
+		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base
+		NavalProductionTypes: shared_mcu_water_base
+		DefenseTypes: shared_mcu_shelter, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
+		BuildingQueues: Building.ED, Building.UCS
+		DefenseQueues: Defense.ED, Defense.UCS
+		MCVAndBuilding:
+			ucs_mcu_prod_center: ucs_buildings_prod_center
+			ucs_mcu_pb_control: ucs_buildings_pb_control
+			ucs_mcu_robot_factory: ucs_buildings_robot_factory
+			ucs_mcu_teleport: ucs_buildings_teleport
+			ucs_mcu_heavy_tech: ucs_buildings_heavy_tech
+			ed_mcu_bcc: ed_buildings_bcc
+			ed_mcu_bio_center: ed_buildings_bio_center
+			ed_mcu_constr_center: ed_buildings_constr_center
+			ed_mcu_tech_house: ed_buildings_tech_house
+			shared_mcu_air_base: shared_buildings_air_base
+			shared_mcu_mine: shared_buildings_mine
+			shared_mcu_power_plant: shared_buildings_power_plant
+			shared_mcu_refinery: shared_buildings_refinery
+			shared_mcu_research_center: shared_buildings_research_center
+			shared_mcu_shelter: shared_buildings_shelter
+			shared_mcu_water_base: shared_buildings_water_base
+			ucs_mcu_pb_cannon: ucs_defenses_pb_cannon
+			ed_mcu_silo: ed_defenses_silo
+			ucs_mcu_sdi_defense: ucs_buildings_sdi_defense
+
+			ed_mcu_an_center: ed_defenses_an_center
+			ed_mcu_defense_tower: ed_defenses_defense_tower
+			ed_mcu_defense_tower_upgraded: ed_defenses_defense_tower_upgraded
+			ed_mcu_heavy_defense_tower: ed_defenses_heavy_defense_tower
+			ed_mcu_heavy_defense_tower_upgraded: ed_defenses_heavy_defense_tower_upgraded
+			ed_mcu_pillbox: ed_defenses_pillbox
+			ucs_mcu_big_eye: ucs_defenses_big_eye
+			ucs_mcu_big_eye_upgraded: ucs_defenses_big_eye_upgraded
+			ucs_mcu_little_eye: ucs_defenses_little_eye
+			ucs_mcu_little_eye_upgraded: ucs_defenses_little_eye_upgraded
+
+
+		MCVFractions:
+			ucs_mcu_prod_center: 1
+			ucs_mcu_pb_control: 1
+			ucs_mcu_robot_factory: 1
+			ucs_mcu_teleport: 1
+			ucs_mcu_heavy_tech: 1
+			ed_mcu_bcc: 1
+			ed_mcu_bio_center: 1
+			ed_mcu_constr_center: 1
+			ed_mcu_tech_house: 1
+			shared_mcu_air_base: 1
+			shared_mcu_research_center: 1
+			shared_mcu_shelter: 1
+			shared_mcu_water_base: 1
+			ucs_mcu_pb_cannon: 1
+			ed_mcu_silo: 1
+			ucs_mcu_sdi_defense: 1
+
+			ed_mcu_an_center: 1
+			ed_mcu_defense_tower: 1
+			ed_mcu_defense_tower_upgraded: 1
+			ed_mcu_heavy_defense_tower: 1
+			ed_mcu_heavy_defense_tower_upgraded: 1
+			ed_mcu_pillbox: 1
+			ucs_mcu_big_eye: 1
+			ucs_mcu_big_eye_upgraded: 1
+			ucs_mcu_little_eye: 1
+			ucs_mcu_little_eye_upgraded: 1
+
+		MCVLimits:
+			ucs_mcu_pb_cannon: 1
+			ed_mcu_silo: 1
+			ucs_mcu_sdi_defense: 1
+			ucs_mcu_robot_factory: 2
+			ed_mcu_bio_center: 2
+			ed_mcu_tech_house: 2
+			ucs_mcu_heavy_tech: 2
+			shared_mcu_air_base: 2
+			ed_mcu_constr_center: 2
+			ucs_mcu_prod_center: 2
+			shared_mcu_research_center: 1
+		MCVDelays:
+			ucs_mcu_pb_cannon: 500
+			ed_mcu_silo: 500
+			ucs_mcu_sdi_defense: 500
+
+	McvDeployManagerBotModule@TestAI:
+		RequiresCondition: enable-test
+		McvTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_telepor, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_shelter, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense,shared_mcu_shelter, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
+		DefenceMcvTypes: shared_mcu_shelter, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
