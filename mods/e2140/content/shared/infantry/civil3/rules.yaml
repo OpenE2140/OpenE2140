@@ -1,6 +1,7 @@
 shared_infantry_civil3:
 	Inherits@1: ^CoreInfantry
 	Inherits@2: ^HealedByBio
+	Inherits@3: ^VulnerableToRadiation
 	Tooltip:
 		Name: Civilian
 	Valued:

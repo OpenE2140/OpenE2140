@@ -735,6 +735,10 @@
 		CargoConditions: 
 			ed_vehicles_bio: insidebio
 
+^VulnerableToRadiation:
+	Targetable@Radiation:
+		TargetTypes: RadiationVulnerable
+
 # Actors can be disabled by ion weapons and repaired by HCU-M.
 ^DisabledActor:
 	# Actor can be autorepaired by friendly HCU-M.
