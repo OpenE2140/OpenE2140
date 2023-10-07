@@ -25,6 +25,19 @@ ucs_vehicles_wtp_100:
 	-WithMoveAnimation:
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_wtp_100_husk
+	-Passenger:
+	AttachedCargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 6
+		UnloadVoice: Unload
+		UnloadCursor: exit
+		ZOffset: 64
+	WithCargoPipsDecoration:
+		Palette:
+		FullSequence: pip-blue
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 12

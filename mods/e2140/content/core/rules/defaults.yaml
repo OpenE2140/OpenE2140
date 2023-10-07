@@ -2,7 +2,7 @@
 ^CoreVisibleActor:
 	# All our actors are sprite based and need to render sprites.
 	RenderSprites:
-        FactionImages:
+		FactionImages:
 	# At default fog hides every actor.
 	HiddenUnderFog:
 	# Allow actors to rotate and use facings.
@@ -396,6 +396,10 @@
 	SpeedMultiplier:
 		Modifier: 55
 		RequiresCondition: decreasedspeed
+	# Vehicle can enter Cargo actors.
+	Passenger:
+		CargoType: Vehicle
+		Weight: 6
 
 # Add locomotor to world...
 ^CoreWorld:
@@ -732,7 +736,7 @@
 		RequiresCondition: damaged
 	# Give a condition to infantry units which are inside BIO.
 	Passenger:
-		CargoConditions: 
+		CargoConditions:
 			ed_vehicles_bio: insidebio
 
 # Actors can be disabled by ion weapons and repaired by HCU-M.
