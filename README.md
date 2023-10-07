@@ -9,10 +9,10 @@ Links:
 
 # Videos
 
-- [OpenE2140: Preview #4 (May 2023)](https://dalek.zone/w/qJBKYThEApfiexosS1iNKM)
+- [OpenE2140: WTP 100 (work-in-progress)](https://dalek.zone/w/5PQVHZeiykAEUtauUHacXB) (September 2023)
+- [OpenE2140: Building crew (work-in-progress)](https://dalek.zone/w/s8USh5aPcZ9G97EDTc95AG) (September 2023)
 - [OpenE2140: Preview #5 (September 2023)](https://dalek.zone/w/gKjFswJPwu41fFrAX9TcRu)
-- [OpenE2140: Building crew (work-in-progress)](https://dalek.zone/w/s8USh5aPcZ9G97EDTc95AG)
-- [OpenE2140: WTP 100 (work-in-progress)](https://dalek.zone/w/5PQVHZeiykAEUtauUHacXB)
+- [OpenE2140: Preview #4 (May 2023)](https://dalek.zone/w/qJBKYThEApfiexosS1iNKM)
 
 # Screenshots
 
