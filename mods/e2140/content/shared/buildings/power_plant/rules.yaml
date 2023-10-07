@@ -86,7 +86,6 @@ power_plant_crater:
 	Building:
 		Dimensions: 2,2
 		Footprint: xx xx
-		LocalCenterOffset: -470,-600,0
 	FrozenUnderFog:
 	# Use tiles from terrain template for the crater.
 	TerrainFromTemplate:
