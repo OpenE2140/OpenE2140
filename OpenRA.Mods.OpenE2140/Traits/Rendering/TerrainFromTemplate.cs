@@ -37,6 +37,7 @@ public class TerrainFromTemplate : ConditionalTrait<TerrainFromTemplateInfo>
 	/// <summary>
 	/// Creates terrain cell dictionary from all tiles of terrain template, transforming each tile into <typeparamref name="T"/>.
 	/// </summary>
+	/// <param name="basePosition"><see cref="CPos"/> used as base position for calculating target cell positions.</param>
 	/// <param name="action">Delegate which receives tuple with cell position (in the map) and index of tile in the template.</param>
 	private Dictionary<CPos, T> CreateTerrainDictionary<T>(CPos basePosition, Func<(CPos pos, int i), T> action)
 	{
