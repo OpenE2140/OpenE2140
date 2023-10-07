@@ -18,7 +18,7 @@ ucs_buildings_pb_control:
 	TransformSequence:
 		Offset: 540,820,0
 	HitShape:
-		TargetableOffsets: 200,-300,0,   200,300,0,   -650,-300,0,   -650,300,0
+		TargetableOffsets: 200,-300,0, 200,300,0, -650,-300,0, -650,300,0
 		Type: Rectangle
 			TopLeft: -824, -450
 			BottomRight: 870, 1024

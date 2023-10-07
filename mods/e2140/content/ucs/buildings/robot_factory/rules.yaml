@@ -14,7 +14,7 @@ ucs_buildings_robot_factory:
 		Offset: 64,-16,0
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: -250,-650,0,   -250,-100,0,   -250,400,0,   550,-350,0,   550,100,0,   550,600,0
+		TargetableOffsets: -250,-650,0, -250,-100,0, -250,400,0, 550,-350,0, 550,100,0, 550,600,0
 		Type: Rectangle
 			TopLeft: -950, -700
 			BottomRight: 900, 750

@@ -21,7 +21,7 @@ shared_buildings_power_plant:
 		Offset: -180,-240,0
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: -600,-412,0,   -600,50,0,   -600,512,0,   324,-690,0,   324,-200,0,   324,312,0
+		TargetableOffsets: -600,-412,0, -600,50,0, -600,512,0, 324,-690,0, 324,-200,0, 324,312,0
 		Type: Rectangle
 			TopLeft: -1024, -924
 			BottomRight: 812, 812

@@ -19,7 +19,7 @@ ucs_buildings_heavy_tech:
 		Image: ucs_buildings_heavy_tech
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: 2324,-1124,0,   2324,-412,0,   2324,300,0,   1524,-1124,0,   1524,-412,0,   1524,300,0,   624,300,0
+		TargetableOffsets: 2324,-1124,0, 2324,-412,0, 2324,300,0, 1524,-1124,0, 1524,-412,0, 1524,300,0, 624,300,0
 		Type: Rectangle
 			TopLeft: -1424, -1824
 			BottomRight: 512, -256

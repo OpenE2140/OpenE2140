@@ -12,7 +12,7 @@ ucs_defenses_pb_cannon:
 		Image: core_buildingsequence_small
 		Offset: -48,-110,0
 	HitShape:
-		TargetableOffsets: 500,200,0,   500,-200,0,   50,200,0,   50,-200,0
+		TargetableOffsets: 500,200,0, 500,-200,0, 50,200,0, 50,-200,0
 		Type: Rectangle
 			TopLeft: -512, -512
 			BottomRight: 512, 312

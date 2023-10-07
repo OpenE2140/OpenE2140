@@ -7,7 +7,7 @@ neutral_building_civ_1:
 		Footprint: xxx xxx ===
 		LocalCenterOffset: -50,-530,0
 	HitShape:
-		TargetableOffsets: -512,-812,0,   0,-512,0,   624,0,0,   812,512,0,   -512,-312,0,   0,212,0,   212,712,0,   -600,412,0,   -400,912,0
+		TargetableOffsets: -512,-812,0, 0,-512,0, 624,0,0, 812,512,0, -512,-312,0, 0,212,0, 212,712,0, -600,412,0, -400,912,0
 		Type: Rectangle
 			TopLeft: -1024, -724
 			BottomRight: 1124, 724

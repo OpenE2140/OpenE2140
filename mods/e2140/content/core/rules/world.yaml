@@ -34,6 +34,13 @@
 	Selection:
 	# Required for control groups support.
 	ControlGroups:
+	# Required to render resources.
+	ResourceRenderer:
+		ResourceTypes:
+			Resources:
+				Sequences: idle
+				Palette:
+				Name: Resources
 
 # Ingame specific world setup.
 World:
@@ -126,6 +133,15 @@ World:
 		EffectMovement: -15,-15,0, -15,-15,0, -15,-15,0
 		Offset: 240,240,0
 		Palette:
+	# Add resources to the world.
+	ResourceLayer:
+		RecalculateResourceDensity: true
+		ResourceTypes:
+			Resources:
+				ResourceIndex: 1
+				TerrainType: Resources
+				AllowedTerrainTypes: Clear
+				MaxDensity: 10000
 
 # Map editor specific world setup.
 EditorWorld:
@@ -141,5 +157,14 @@ EditorWorld:
 	EditorActionManager:
 	# Displays where buildings can be build.
 	BuildableTerrainOverlay:
-		AllowedTerrainTypes: clear
+		AllowedTerrainTypes: Clear, Resources
 		Palette:
+	# Add resources to the world.
+	EditorResourceLayer:
+		RecalculateResourceDensity: true
+		ResourceTypes:
+			Resources:
+				ResourceIndex: 1
+				TerrainType: Resources
+				AllowedTerrainTypes: Clear
+				MaxDensity: 10000

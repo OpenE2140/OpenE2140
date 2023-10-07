@@ -11,7 +11,7 @@ ed_buildings_bio_center:
 	TransformSequence:
 		Offset: 460,350,0
 	HitShape:
-		TargetableOffsets: -250,-850,0,   -450,-200,0,   -650,400,0,   750,-512,0,   550,139,0,   350,739,0
+		TargetableOffsets: -250,-850,0, -450,-200,0, -650,400,0, 750,-512,0, 550,139,0, 350,739,0
 		Type: Rectangle
 			TopLeft: -1000, -900
 			BottomRight: 900, 750

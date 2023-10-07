@@ -21,7 +21,7 @@ shared_buildings_research_center:
 		Offset: 180,100,0
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: -400,-750,0,   -550,-150,0,   -700,350,0,   700,-600,0,   550,0,0,   400,600,0
+		TargetableOffsets: -400,-750,0, -550,-150,0, -700,350,0, 700,-600,0, 550,0,0, 400,600,0
 		Type: Rectangle
 			TopLeft: -1024, -1024
 			BottomRight: 756, 1024

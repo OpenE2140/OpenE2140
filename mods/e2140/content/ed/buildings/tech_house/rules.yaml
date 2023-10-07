@@ -18,7 +18,7 @@ ed_buildings_tech_house:
 	TransformSequence:
 		Offset: 540,750,0
 	HitShape:
-		TargetableOffsets:  1200,-224,0,  850,200,0,   412,600,0,   600,-524,0,  250,-100,0,   -212,300,0,    0,-824,0,  -450,-400,0,   -812,0,0
+		TargetableOffsets: 1200,-224,0, 850,200,0, 412,600,0, 600,-524,0, 250,-100,0, -212,300,0, 0,-824,0, -450,-400,0, -812,0,0
 		Type: Rectangle
 			TopLeft: -1024, -1024
 			BottomRight: 956, 656

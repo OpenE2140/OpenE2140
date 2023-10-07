@@ -21,7 +21,7 @@ ed_ships_shark:
 		Range: 3c896
 	Armament:
 		Weapon: ed_ships_shark
-		LocalOffset: 0,-100,0,   0,100,0
+		LocalOffset: 0,-100,0, 0,100,0
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AmmoPool:

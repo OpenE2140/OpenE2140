@@ -5,12 +5,12 @@ neutral_building_civ_2:
 	Building:
 		LocalCenterOffset: -450,-480,0
 	HitShape@Left:
-		TargetableOffsets: 0,-850,0,   0,-450,0,   -400,-850,0,   -400,-450,0,   256,-50,0
+		TargetableOffsets: 0,-850,0, 0,-450,0, -400,-850,0, -400,-450,0, 256,-50,0
 		Type: Rectangle
 			TopLeft: -1124, -324
 			BottomRight: 104, 624
 	HitShape@Right:
-		TargetableOffsets: 900,400,0,   900,750,0,   524,400,0,   524,750,0
+		TargetableOffsets: 900,400,0, 900,750,0, 524,400,0, 524,750,0
 		Type: Rectangle
 			TopLeft: 104, -824
 			BottomRight: 1004, 0

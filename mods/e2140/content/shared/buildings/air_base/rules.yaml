@@ -19,7 +19,7 @@ shared_buildings_air_base:
 	TransformSequence:
 		Offset: 512,0,0
 	HitShape:
-		TargetableOffsets: 512,-412,0,   512,412,0,   1524,-412,0,   1524,412,0
+		TargetableOffsets: 512,-412,0, 512,412,0, 1524,-412,0, 1524,412,0
 		Type: Rectangle
 			TopLeft: -1024, -1524
 			BottomRight: 1024, 524

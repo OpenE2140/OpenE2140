@@ -22,7 +22,7 @@ ucs_ships_russ3:
 		Range: 3c896
 	Armament:
 		Weapon: ucs_ships_russ3
-		LocalOffset: 0,-50,0,   0,50,0
+		LocalOffset: 0,-50,0, 0,50,0
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AmmoPool:

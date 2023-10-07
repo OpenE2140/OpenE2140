@@ -5,7 +5,7 @@ neutral_building_civ_5:
 	Building:
 		LocalCenterOffset: -500,-480,0
 	HitShape:
-		TargetableOffsets: 1024,-212,0,   650,139,0,   250,539,0,   524,-512,0,   150,-139,0,   -350,239,0,   24,-812,0,   -450,-439,0,   -850,-139,0
+		TargetableOffsets: 1024,-212,0, 650,139,0, 250,539,0, 524,-512,0, 150,-139,0, -350,239,0, 24,-812,0, -450,-439,0, -850,-139,0
 		Type: Rectangle
 			TopLeft: -1024, -824
 			BottomRight: 804, 724

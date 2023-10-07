@@ -104,11 +104,11 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 24,13
-	Actor34: shared_mcu_power_plant
+	Actor34: shared_mcu_mine
 		Owner: UCS_Player
 		Facing: 384
 		Location: 24,17
-	Actor35: ucs_mcu_heavy_tech
+	Actor35: shared_mcu_refinery
 		Owner: UCS_Player
 		Facing: 384
 		Location: 29,12

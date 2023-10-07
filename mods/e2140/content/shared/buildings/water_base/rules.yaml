@@ -102,3 +102,4 @@ shared_mcu_water_base:
 			AsphaltRoad: 100
 			Water: 100
 			Shore: 100
+			Resources: 100

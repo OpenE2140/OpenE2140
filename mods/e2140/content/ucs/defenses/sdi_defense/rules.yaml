@@ -18,7 +18,7 @@ ucs_buildings_sdi_defense:
 	TransformSequence:
 		Offset: 440,460,0
 	HitShape:
-		TargetableOffsets: 1000,100,0,   1000,600,0,   200,100,0,   200,600,0,   200,-400,0,   -700,-700,0,   -700,0,0
+		TargetableOffsets: 1000,100,0, 1000,600,0, 200,100,0, 200,600,0, 200,-400,0, -700,-700,0, -700,0,0
 		Type: Rectangle
 			TopLeft: -924, -824
 			BottomRight: 824, 824

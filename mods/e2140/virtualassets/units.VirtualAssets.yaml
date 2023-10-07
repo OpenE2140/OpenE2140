@@ -285,7 +285,7 @@ Generate:
 		idle: 245-253 16
 			Offsets: 251:-1,3
 
-	cargo: Shadow
+	crate: Shadow
 		idle: 257-265 16
 			Offsets: 259:1,-1 261:0,2 263:-1,-1
 

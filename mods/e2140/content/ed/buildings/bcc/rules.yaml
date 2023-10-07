@@ -18,7 +18,7 @@ ed_buildings_bcc:
 	TransformSequence:
 		Offset: 440,520,0
 	HitShape:
-		TargetableOffsets: 812,-412,0,   612,112,0,   412,612,0,   -212,-712,0,   -412,-212,0,   -612,312,0
+		TargetableOffsets: 812,-412,0, 612,112,0, 412,612,0, -212,-712,0, -412,-212,0, -612,312,0
 		Type: Rectangle
 			TopLeft: -1024, -800
 			BottomRight: 850, 950

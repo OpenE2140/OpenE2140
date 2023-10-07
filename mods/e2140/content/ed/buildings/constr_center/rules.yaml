@@ -14,7 +14,7 @@ ed_buildings_constr_center:
 		Footprint: xxx xxx ==x
 		LocalCenterOffset: 100,-425,0
 	HitShape:
-		TargetableOffsets: 724,-712,0,   524,100,0,   324,924,0,   -76,-712,0,   -276,100,0,   -476,924,0,   -850,-950,0
+		TargetableOffsets: 724,-712,0, 524,100,0, 324,924,0, -76,-712,0, -276,100,0, -476,924,0, -850,-950,0
 		Type: Rectangle
 			TopLeft: -1324, -724
 			BottomRight: 1324, 812

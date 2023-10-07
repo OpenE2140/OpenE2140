@@ -12,7 +12,7 @@ shared_buildings_shelter:
 		Image: core_buildingsequence_small
 		Offset: -48,160,0
 	HitShape:
-		TargetableOffsets: 400,-250,0,   400,250,0,   -200,-250,0,   -200,250,0,   -800,-250,0,   -800,250,0
+		TargetableOffsets: 400,-250,0, 400,250,0, -200,-250,0, -200,250,0, -800,-250,0, -800,250,0
 		Type: Rectangle
 			TopLeft: -512, -412
 			BottomRight: 512, 812

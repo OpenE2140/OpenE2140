@@ -17,7 +17,7 @@ ucs_buildings_prod_center:
 		Image: ucs_buildings_prod_center
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: 1256,-1124,0,   1256,-412,0,   1256,300,0,   512,-1124,0,   512,-412,0,   512,300,0,   -256,-1124,0
+		TargetableOffsets: 1256,-1124,0, 1256,-412,0, 1256,300,0, 512,-1124,0, 512,-412,0, 512,300,0, -256,-1124,0
 		Type: Rectangle
 			TopLeft: -1500, -1424
 			BottomRight: 500, 556
