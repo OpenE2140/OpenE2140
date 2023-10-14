@@ -42,7 +42,7 @@ ed_vehicles_st01b:
 		Count: 2
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_st01b_husk
-	LeavesTrails:
+	LeavesTrackTrails:
 		Image: tracks
 		Sequences: track_small
 		Palette:
@@ -50,6 +50,7 @@ ed_vehicles_st01b:
 		Type: CenterPosition
 		MovingInterval: 8
 		StartDelay: 0
+		ChangeFacingInstantly: true
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 1

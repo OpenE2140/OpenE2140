@@ -20,7 +20,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Terrain;
 public enum TrailType { Cell, CenterPosition }
 
 [Desc("Renders a sprite effect when leaving a cell.")]
-public class LeavesTrailsInfo : ConditionalTraitInfo, Requires<BodyOrientationInfo>
+public class LeavesTrackTrailsInfo : ConditionalTraitInfo, Requires<BodyOrientationInfo>
 {
 	[FieldLoader.Require]
 	public readonly string? Image;
@@ -50,6 +50,9 @@ public class LeavesTrailsInfo : ConditionalTraitInfo, Requires<BodyOrientationIn
 	[Desc("Display a trail while moving.")]
 	public readonly bool TrailWhileMoving = true;
 
+	[Desc("Instantly change facing.")]
+	public readonly bool ChangeFacingInstantly = false;
+
 	[Desc("Delay between trail updates when moving.")]
 	public readonly int MovingInterval = 0;
 
@@ -63,17 +66,17 @@ public class LeavesTrailsInfo : ConditionalTraitInfo, Requires<BodyOrientationIn
 	[Desc("Should the trail spawn relative to last position or current position?")]
 	public readonly bool SpawnAtLastPosition = true;
 
-	public override object Create(ActorInitializer init) { return new LeavesTrails(this, init.Self); }
+	public override object Create(ActorInitializer init) { return new LeavesTrackTrails(this, init.Self); }
 }
 
-public class LeavesTrails : ConditionalTrait<LeavesTrailsInfo>, ITick
+public class LeavesTrackTrails : ConditionalTrait<LeavesTrackTrailsInfo>, ITick
 {
 	private readonly BodyOrientation body;
 	private IFacing? facing;
 	private WAngle cachedFacing;
 	private int cachedInterval;
 
-	public LeavesTrails(LeavesTrailsInfo info, Actor self)
+	public LeavesTrackTrails(LeavesTrackTrailsInfo info, Actor self)
 		: base(info)
 	{
 		this.cachedInterval = this.Info.StartDelay;
@@ -129,8 +132,8 @@ public class LeavesTrails : ConditionalTrait<LeavesTrailsInfo>, ITick
 			{
 				var spawnFacing = this.Info.SpawnAtLastPosition ? this.cachedFacing : this.facing?.Facing ?? WAngle.Zero;
 
-				//if (previouslySpawned && previousSpawnCell == spawnCell)
-				//	spawnFacing = previousSpawnFacing;
+				if (!this.Info.ChangeFacingInstantly && this.previouslySpawned && this.previousSpawnCell == spawnCell)
+					spawnFacing = this.previousSpawnFacing;
 
 				var offsetRotation = this.Info.Offsets[this.offset].Rotate(this.body.QuantizeOrientation(self.Orientation));
 				var spawnPosition = this.Info.SpawnAtLastPosition ? this.cachedPosition : self.CenterPosition;
@@ -140,9 +143,9 @@ public class LeavesTrails : ConditionalTrait<LeavesTrailsInfo>, ITick
 				self.World.AddFrameEndTask(w => w.Add(new SpriteEffect(pos, spawnFacing, self.World, this.Info.Image,
 					this.Info.Sequences.Random(Game.CosmeticRandom), this.Info.Palette, this.Info.VisibleThroughFog)));
 
-				//previouslySpawned = true;
-				//previousSpawnCell = spawnCell;
-				//previousSpawnFacing = spawnFacing;
+				this.previouslySpawned = true;
+				this.previousSpawnCell = spawnCell;
+				this.previousSpawnFacing = spawnFacing;
 			}
 
 			this.cachedPosition = self.CenterPosition;
