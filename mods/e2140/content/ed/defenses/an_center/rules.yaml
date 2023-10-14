@@ -17,6 +17,7 @@ ed_defenses_an_center:
 		LocalCenterOffset: 0,-230,0
 	# AN Center doesn't have a crew.
 	-BuildingCrew:
+	-WithBuildingCrewPipsDecoration:
 	TransformSequence:
 		Image: core_buildingsequence_small
 		ConstructionTime: 100

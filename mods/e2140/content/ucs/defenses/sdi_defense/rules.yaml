@@ -17,6 +17,7 @@ ucs_buildings_sdi_defense:
 		LocalCenterOffset: -440,-512,0
 	# SDI Defence doesn't have crew.
 	-BuildingCrew:
+	-WithBuildingCrewPipsDecoration:
 	TransformSequence:
 		Offset: 440,460,0
 	HitShape:

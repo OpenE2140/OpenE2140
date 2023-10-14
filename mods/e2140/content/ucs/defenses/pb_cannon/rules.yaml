@@ -10,6 +10,7 @@ ucs_defenses_pb_cannon:
 		LocalCenterOffset: 0,110,0
 	# PB Cannon doesn't have crew.
 	-BuildingCrew:
+	-WithBuildingCrewPipsDecoration:
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Offset: -48,-110,0
