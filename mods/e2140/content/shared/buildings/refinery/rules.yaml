@@ -23,6 +23,8 @@ shared_buildings_refinery:
 		Dimensions: 3,3
 		Footprint: xxx x== ===
 		LocalCenterOffset: -390,-590,0
+	BuildingCrew:
+		MaxPopulation: 5
 	TransformSequence:
 		Offset: 360,540,0
 	HitShape@1:

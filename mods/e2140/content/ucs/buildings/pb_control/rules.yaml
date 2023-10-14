@@ -15,6 +15,9 @@ ucs_buildings_pb_control:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -550,-860,0
+	BuildingCrew:
+		MaxPopulation: 4
+		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
 	TransformSequence:
 		Offset: 540,820,0
 	HitShape:

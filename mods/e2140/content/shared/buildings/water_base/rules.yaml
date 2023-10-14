@@ -11,6 +11,9 @@ shared_buildings_water_base:
 		Footprint: xx xx
 		TerrainTypes: Shore, Water
 		LocalCenterOffset: -16,-160,0
+	BuildingCrew:
+		MaxPopulation: 4
+		InitialUnits: shared_infantry_civil2, shared_infantry_civil2
 	TransformSequence:
 		Offset: 512,570,0
 	HitShape:

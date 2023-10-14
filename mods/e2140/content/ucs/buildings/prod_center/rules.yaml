@@ -12,6 +12,9 @@ ucs_buildings_prod_center:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= =x=
+	BuildingCrew:
+		MaxPopulation: 6
+		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_prod_center

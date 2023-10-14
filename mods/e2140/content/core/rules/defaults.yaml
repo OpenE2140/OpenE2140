@@ -174,6 +174,22 @@
 	# Constructions require power (and can be manually powered down).
 	Power:
 		RequiresCondition: !Transforming && !PoweredDown && !IsDead
+	# Building has a crew.
+	BuildingCrew:
+		ExitBuildingNotification: LeavingBuilding
+		EntryCells: 0,2,   -1,2
+	# Show pips for the building crew.
+	WithBuildingCrewPipsDecoration:
+		Palette:
+		FullSequence: pip-blue
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
+	# Play notification, when the building is conquered or lost to enemy.
+	BuildingConqueredNotification:
+		TextNotification: Building captured.
+		LoseNotification: BuildingLost
+		LoseTextNotification: Building lost to enemy.
 
 # Base for all factories.
 ^CoreFactory:
@@ -327,6 +343,10 @@
 		CrushedSequence: die-crushed
 		CrushedSequencePalette:
 		FallbackSequence: die
+		# Unlike other traits WithDeathAnimation uses SpriteEffect to render the animation, which is not tied to any actor.
+		# Which means it's going to be rendered regardless of whether the actor is in the world or not (i.e. inside a building).
+		# Therefore this trait has to be explicitely disabled, so it does not render the animation, when actor dies inside a building.
+		RequiresCondition: !InsideBuilding
 	# Infantry turns when idle.
 	TurnOnIdle:
 		MinDelay: 200
@@ -338,6 +358,13 @@
 	# Infantry can enter Cargo actors.
 	Passenger:
 		CargoType: Infantry
+	# Infantry can be a crew member inside a building
+	CrewMember:
+		BuildingCrewCondition: InsideBuilding
+		Voice: Enter
+	# Don't play actor lost notification, if the infantry is in building
+	ActorLostNotification:
+		RequiresCondition: !InsideBuilding
 
 # Add locomotor to world...
 ^CoreWorld:

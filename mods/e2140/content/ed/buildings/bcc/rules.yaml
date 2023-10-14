@@ -15,6 +15,9 @@ ed_buildings_bcc:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -450,-562,0
+	BuildingCrew:
+		MaxPopulation: 4
+		InitialUnits: ed_infantry_a01
 	TransformSequence:
 		Offset: 440,520,0
 	HitShape:

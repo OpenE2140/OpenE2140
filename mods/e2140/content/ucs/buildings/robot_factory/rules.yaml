@@ -20,6 +20,9 @@ ucs_buildings_robot_factory:
 			BottomRight: 900, 750
 	Selectable:
 		Bounds: 2064, 1984, 0,176
+	BuildingCrew:
+		MaxPopulation: 4
+		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
 	Power:
 		Amount: -200
 	WithIdleOverlay@Powered:

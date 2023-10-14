@@ -8,6 +8,8 @@ ed_defenses_silo:
 		Dimensions: 1,1
 		Footprint: x
 		LocalCenterOffset: -20,120,0
+	# Silo doesn't have a crew.
+	-BuildingCrew:
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Offset: -24,-120,0

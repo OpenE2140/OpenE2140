@@ -8,6 +8,8 @@ ucs_defenses_pb_cannon:
 		Dimensions: 1,1
 		Footprint: x
 		LocalCenterOffset: 0,110,0
+	# PB Cannon doesn't have crew.
+	-BuildingCrew:
 	TransformSequence:
 		Image: core_buildingsequence_small
 		Offset: -48,-110,0

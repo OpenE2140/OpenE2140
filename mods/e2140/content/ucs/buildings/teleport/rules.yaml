@@ -8,6 +8,9 @@ ucs_buildings_teleport:
 		Dimensions: 3,3
 		Footprint: xxx xxx ===
 		LocalCenterOffset: 0,-460,0
+	BuildingCrew:
+		MaxPopulation: 1
+		EntryCells: -1,1,   -1,2
 	TransformSequence:
 		Offset: -15,430,0
 	HitShape:
