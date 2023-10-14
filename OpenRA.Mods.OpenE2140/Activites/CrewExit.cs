@@ -22,97 +22,99 @@ namespace OpenRA.Mods.OpenE2140.Activites;
 
 public class CrewExit : Activity
 {
-    private readonly Actor self;
+	private readonly Actor self;
 	private readonly bool exitAll;
 	private readonly bool playNotification;
-    private readonly BuildingCrew buildingCrew;
-    private readonly INotifyBuildingCrewExit[] notifiers;
+	private readonly BuildingCrew buildingCrew;
+	private readonly INotifyBuildingCrewExit[] notifiers;
 
 	public CrewExit(Actor self, bool exitAll = true, bool playNotification = true)
 	{
 		this.self = self;
-        this.exitAll = exitAll;
-        this.playNotification = playNotification;
+		this.exitAll = exitAll;
+		this.playNotification = playNotification;
 		this.buildingCrew = self.Trait<BuildingCrew>();
 		this.notifiers = self.TraitsImplementing<INotifyBuildingCrewExit>().ToArray();
 	}
 
 	public (CPos Cell, SubCell SubCell)? ChooseExitSubCell(Actor crewMember)
-    {
-        var pos = crewMember.Trait<IPositionable>();
+	{
+		var pos = crewMember.Trait<IPositionable>();
 
-        return this.buildingCrew.CurrentAdjacentCells
-            .Shuffle(this.self.World.SharedRandom)
-            .Select(c => (c, pos.GetAvailableSubCell(c)))
-            .Cast<(CPos, SubCell SubCell)>()
-            .FirstOrDefault(s => s.SubCell != SubCell.Invalid);
-    }
+		return this.buildingCrew.EntryCells
+			.Shuffle(this.self.World.SharedRandom)
+			.Select(c => (c, pos.GetAvailableSubCell(c)))
+			.Cast<(CPos, SubCell SubCell)?>().ToArray()
+			.FirstOrDefault(s => s?.SubCell != SubCell.Invalid);
+	}
 
-    private IEnumerable<CPos> BlockedExitCells(Actor crewMember)
-    {
-        var pos = crewMember.Trait<IPositionable>();
+	private IEnumerable<CPos> BlockedExitCells(Actor crewMember)
+	{
+		var pos = crewMember.Trait<IPositionable>();
 
-        // Find the cells that are blocked by transient actors
-        return this.buildingCrew.CurrentAdjacentCells
-            .Where(c => pos.CanEnterCell(c, null, BlockedByActor.All) != pos.CanEnterCell(c, null, BlockedByActor.None));
-    }
+		// Find the cells that are blocked by transient actors
+		return this.buildingCrew.EntryCells
+			.Where(c => pos.CanEnterCell(c, null, BlockedByActor.All) != pos.CanEnterCell(c, null, BlockedByActor.None));
+	}
 
 	protected override void OnFirstRun(Actor self)
 	{
 		if (this.playNotification)
 			Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.buildingCrew.Info.ExitBuildingNotification, self.Owner.Faction.InternalName);
 
-        this.QueueChild(new Wait(this.buildingCrew.Info.BeforeExitDelay));
-    }
+		this.QueueChild(new Wait(this.buildingCrew.Info.BeforeExitDelay));
+	}
 
-    public override bool Tick(Actor self)
-    {
-        if (this.IsCanceling || this.buildingCrew.IsEmpty())
-            return true;
+	public override bool Tick(Actor self)
+	{
+		if (this.IsCanceling || this.buildingCrew.IsEmpty())
+			return true;
 
-        if (this.buildingCrew.CanExit())
-        {
-            foreach (var inbce in this.notifiers)
-                inbce.Exiting(self);
+		if (this.buildingCrew.CanExit())
+		{
+			foreach (var inbce in this.notifiers)
+				inbce.Exiting(self);
 
-            var actor = this.buildingCrew.Peek();
-            var spawn = self.CenterPosition;
+			var actor = this.buildingCrew.Peek();
 
-            var exitSubCell = this.ChooseExitSubCell(actor);
-            if (exitSubCell == null)
-            {
-                self.NotifyBlocker(this.BlockedExitCells(actor));
-                this.QueueChild(new Wait(10));
-                return false;
-            }
+			var exitSubCell = this.ChooseExitSubCell(actor);
+			if (exitSubCell == null)
+			{
+				self.NotifyBlocker(this.BlockedExitCells(actor));
+				this.QueueChild(new Wait(10));
+				return false;
+			}
 
-            this.buildingCrew.Exit(self);
-            self.World.AddFrameEndTask(w =>
-            {
-                if (actor.Disposed)
-                    return;
+			var spawn = self.World.Map.CenterOfCell(
+				this.buildingCrew.NearesetFootprintCell(self.World.Map.CenterOfSubCell(exitSubCell.Value.Cell, exitSubCell.Value.SubCell)));
 
-                var move = actor.Trait<IMove>();
-                var pos = actor.Trait<IPositionable>();
-                var crewMember = actor.Trait<CrewMember>();
+			this.buildingCrew.Exit(self);
+			self.World.AddFrameEndTask(w =>
+			{
+				if (actor.Disposed)
+					return;
 
-                pos.SetPosition(actor, exitSubCell.Value.Cell, exitSubCell.Value.SubCell);
-                pos.SetCenterPosition(actor, spawn);
+				var move = actor.Trait<IMove>();
+				var pos = actor.Trait<IPositionable>();
+				var crewMember = actor.Trait<CrewMember>();
 
-                if (crewMember.Info.CancelActivitiesOnExit)
-                    actor.CancelActivity();
-                w.Add(actor);
-            });
-        }
+				pos.SetPosition(actor, exitSubCell.Value.Cell, exitSubCell.Value.SubCell);
+				pos.SetCenterPosition(actor, spawn);
 
-        if (!this.exitAll || !this.buildingCrew.CanExit())
-        {
-            if (this.buildingCrew.Info.AfterExitDelay > 0)
-                this.QueueChild(new Wait(this.buildingCrew.Info.AfterExitDelay, false));
+				if (crewMember.Info.CancelActivitiesOnExit)
+					actor.CancelActivity();
+				w.Add(actor);
+			});
+		}
 
-            return true;
-        }
+		if (!this.exitAll || !this.buildingCrew.CanExit())
+		{
+			if (this.buildingCrew.Info.AfterExitDelay > 0)
+				this.QueueChild(new Wait(this.buildingCrew.Info.AfterExitDelay, false));
 
-        return false;
-    }
+			return true;
+		}
+
+		return false;
+	}
 }

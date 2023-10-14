@@ -28,21 +28,17 @@ public class EnterCrewMember : Activity
 	private readonly IMove move;
 	private readonly Color? targetLineColor;
 	private Target target;
-	private readonly Building targetBuilding;
 	private readonly BuildingCrew buildingCrew;
 	private Target lastVisibleTarget;
 	private bool useLastVisibleTarget;
 	private EnterState lastState = EnterState.Approaching;
 	private Actor? enterActor;
 
-	private IEnumerable<CPos> BuildingOccupiedFootprintCells => this.targetBuilding.Info.FootprintTiles(this.target.Actor.Location, FootprintCellType.Occupied);
-
 	public EnterCrewMember(Actor self, in Target target, Color? targetLineColor)
 	{
 		this.crewMember = self.Trait<CrewMember>();
 		this.move = self.Trait<IMove>();
 		this.target = target;
-		this.targetBuilding = target.Actor.Trait<Building>();
 		this.buildingCrew = target.Actor.Trait<BuildingCrew>();
 		this.targetLineColor = targetLineColor;
 		this.ChildHasPriority = false;
@@ -117,7 +113,8 @@ public class EnterCrewMember : Activity
 				{
 					this.lastState = EnterState.Entering;
 
-					var nearestFootprintCell = this.BuildingOccupiedFootprintCells.MinBy(cell => (self.World.Map.CenterOfCell(cell) - self.CenterPosition).HorizontalLengthSquared);
+					//var nearestFootprintCell = this.BuildingOccupiedFootprintCells.MinBy(cell => (self.World.Map.CenterOfCell(cell) - self.CenterPosition).HorizontalLengthSquared);
+					var nearestFootprintCell = this.buildingCrew.NearesetFootprintCell(self.CenterPosition);
 
 					this.QueueChild(this.move.MoveIntoTarget(self, Target.FromCell(self.World, nearestFootprintCell)));
 					return false;
@@ -134,7 +131,7 @@ public class EnterCrewMember : Activity
 			case EnterState.Entering:
 			{
 				// Check that we reached the requested position
-				var targetPositions = this.BuildingOccupiedFootprintCells.Select(c => self.World.Map.CenterOfCell(c));
+				var targetPositions = this.buildingCrew.BuildingOccupiedFootprintCells.Select(c => self.World.Map.CenterOfCell(c));
 				if (!this.IsCanceling && targetPositions.Contains(self.CenterPosition) && this.target.Type == TargetType.Actor)
 					this.OnEnterComplete(self, this.target.Actor!);
 
@@ -158,13 +155,7 @@ public class EnterCrewMember : Activity
 		if (target.Type == TargetType.FrozenActor && !target.FrozenActor.IsValid)
 			return false;
 
-		IEnumerable<CPos> entryCells;
-		if (this.buildingCrew.Info.EntryCells.Length > 0)
-			entryCells = this.buildingCrew.Info.EntryCells.Select(c => target.Actor.Location + c);
-		else
-			entryCells = Util.AdjacentCells(self.World, target);
-
-		return self.Location == self.World.Map.CellContaining(target.CenterPosition) || entryCells.Any(c => c == self.Location);
+		return self.Location == self.World.Map.CellContaining(target.CenterPosition) || this.buildingCrew.EntryCells.Any(c => c == self.Location);
 	}
 
 	protected virtual void TickInner(Actor self, in Target target, bool targetIsDeadOrHiddenActor)
