@@ -115,8 +115,8 @@
 	SelectionDecorations:
 	# Play sound notification on destruction
 	ActorLostNotification:
-		Notification: BuildingLost
-		TextNotification: Structure lost.
+		Notification: BuildingDestroyed
+		TextNotification: Structure destroyed.
 	# The view radius of buildings.
 	RevealsShroud:
 		Range: 4c896

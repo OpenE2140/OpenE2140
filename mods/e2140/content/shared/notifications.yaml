@@ -4,6 +4,7 @@ Speech:
 		ed: smp0_
 		ucs: smp1_
 	Notifications:
+		BuildingDestroyed: base|95.smp
 		BaseAttack: base|127.smp
 		BuildingLost: base|97.smp
 		InsufficientCash: base|109.smp
