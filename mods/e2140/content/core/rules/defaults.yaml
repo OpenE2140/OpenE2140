@@ -177,6 +177,7 @@
 		RequiresCondition: !Transforming && !PoweredDown && !IsDead
 	# Building has a crew.
 	BuildingCrew:
+		RequiresCondition: !Transforming && !IsDead
 		ExitBuildingNotification: LeavingBuilding
 		EntryCells: 0,2,   -1,2
 	# Show pips for the building crew.
