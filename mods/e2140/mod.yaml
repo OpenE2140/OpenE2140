@@ -49,7 +49,6 @@ AssetBrowser:
 	SpriteExtensions: .png, .mix, .dat, .pcx, .vspr
 	VideoExtensions: .flc
 
-ModelSequenceFormat: PlaceholderModelSequence
 SpriteSequenceFormat: TilesetSpecificSpriteSequence
 
 DefaultOrderGenerator: UnitOrderGenerator
