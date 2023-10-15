@@ -103,6 +103,10 @@ public class CrewExit : Activity
 
 				if (crewMember.Info.CancelActivitiesOnExit)
 					actor.CancelActivity();
+
+				if (actor.CurrentActivity is null or Mobile.LeaveProductionActivity)
+					actor.QueueActivity(move.ReturnToCell(actor));
+
 				w.Add(actor);
 			});
 		}
