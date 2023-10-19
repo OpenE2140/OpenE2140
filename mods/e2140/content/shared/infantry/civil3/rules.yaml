@@ -2,6 +2,7 @@ shared_infantry_civil3:
 	Inherits@1: ^CoreInfantry
 	Inherits@2: ^HealedByBio
 	Inherits@3: ^VulnerableToRadiation
+	Inherits@4: ^CoreArmedSelfInfantry
 	Tooltip:
 		Name: Civilian
 	Valued:
@@ -12,3 +13,9 @@ shared_infantry_civil3:
 		Range: 2c896
 	Voiced:
 		VoiceSet: EdInfantryVoice
+	Armament:
+		Weapon: shared_infantry_civil3
+		MuzzlePalette:
+	WithAimAttackAnimation:
+		SequenceFire: shoot
+		SequenceAim: aim
