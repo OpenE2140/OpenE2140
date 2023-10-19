@@ -1,0 +1,41 @@
+shared_infantry_civil2:
+	ReloadDelay: 50
+	Range: 2c896
+	Report: pistol.wav
+	ValidTargets: Ground, Water, Ship
+	Projectile: InstantHit
+		Inaccuracy: 0c128
+	Warhead@1Dam: SpreadDamage
+		Spread: 24
+		Damage: 5
+		Versus:
+			infantry: 100
+			vehicle: 20
+			aircraft: 20
+			building: 20
+		DamageTypes: Default
+		ValidTargets: Ground, Ship
+		InvalidTargets: Tree, Pipe
+	Warhead@Effect: CreateEffect
+		Image: rubble_firearm
+		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash_firearm
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
+	Warhead@EffectSmoke: CreateEffect
+		Image: smoke_firearm
+		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
+		ExplosionPalette:
+		ValidTargets: Vehicle, Defense, Structure, InfantryUCS, Ship, Air
+	Warhead@EffectBlood: SpawnWeapons
+		Weapons: weapon_blood
+		Range: 0c256, 0c312
+		Pieces: 3,4
+		ValidTargets: Infantry

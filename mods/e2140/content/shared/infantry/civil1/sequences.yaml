@@ -13,6 +13,14 @@ shared_infantry_civil1:
 		Length: 4
 		Facings: -8
 		Tick: 60
+	shoot:
+		Filename: content/shared/infantry/civil1/infantry_civil1.png
+		Start: 8
+		Facings: -8
+		Tick: 100
+	aim:
+		Filename: content/shared/infantry/civil1/infantry_civil1.png
+		Facings: -8
 	shadow:
 		Filename: infantry_shadow.vspr
 		ZOffset: -256
