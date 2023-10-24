@@ -82,6 +82,8 @@ World:
 	PlayerCommands:
 	DevCommands:
 	DebugVisualizationCommands:
+	# Debug trait for rendering actor's occupied cells.
+	# ActorDebug:
 	# Used for the looping sounds.
 	WithWorldMoveSound:
 	# Select proper production tab when production building is selected
