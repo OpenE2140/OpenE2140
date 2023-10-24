@@ -25,8 +25,8 @@ public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificW
 	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
-	public FactionLabelWidget(World world)
-		: base(world)
+	public FactionLabelWidget(ModData modData, World world)
+		: base(modData, world)
 	{
 	}
 

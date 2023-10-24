@@ -26,8 +26,8 @@ public class IngamePowerWidget : WorldLabelWithTooltipWidget, IFactionSpecificWi
 	public readonly string Identifier = string.Empty;
 
 	[ObjectCreator.UseCtor]
-	public IngamePowerWidget(World world)
-		: base(world)
+	public IngamePowerWidget(ModData modData, World world)
+		: base(modData, world)
 	{
 	}
 
