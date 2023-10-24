@@ -137,6 +137,8 @@ ModContent:
 
 Translations:
 	common|languages/en.ftl
+	common|languages/chrome/en.ftl
+	common|languages/rules/en.ftl
 
 Include: chrome/mod.yaml
 
