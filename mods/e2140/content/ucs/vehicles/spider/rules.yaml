@@ -38,7 +38,7 @@ ucs_vehicles_spider:
 	ReloadAmmoPool:
 		Delay: 52
 		ResetOnFire: True
-		Count: 22
+		Count: 20
 	WithDamageOverlay:
 		Image: smoking_mech
 	SpawnActorOnDeath:
