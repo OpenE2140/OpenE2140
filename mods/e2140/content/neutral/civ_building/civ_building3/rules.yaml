@@ -16,3 +16,6 @@ neutral_building_civ_3:
 			BottomRight: 1004, 0
 	Selectable:
 		Bounds: 2064, 1984, 0,0
+	WithIdleOverlay@Patch:
+		Sequence: patch
+		Offset: -1148,-300,0

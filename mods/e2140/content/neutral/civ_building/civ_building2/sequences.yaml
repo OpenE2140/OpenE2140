@@ -4,3 +4,8 @@ neutral_building_civ_2:
 	idle:
 	damaged-idle:
 		Start: 1
+	patch:
+		Filename: content/neutral/civ_building/civ_building2/civ_building2_patch.png
+	damaged-patch:
+		Filename: content/neutral/civ_building/civ_building2/civ_building2_patch.png
+		Start: 1
