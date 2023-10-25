@@ -49,6 +49,7 @@
 	SelectionDecorations:
 	# Draw target lines.
 	DrawLineToTarget:
+		Palette:
 	# Enemy units must be destroyed to win a game.
 	MustBeDestroyed:
 	# Units sequences should always use facings.
