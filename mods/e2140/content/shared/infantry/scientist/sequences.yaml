@@ -1,0 +1,44 @@
+shared_infantry_scientist:
+	idle:
+		Filename: content/shared/infantry/scientist/scientist.png
+		Facings: -8
+	idle2:
+		Filename: content/shared/infantry/scientist/scientist.png
+		Start: 8
+		Facings: -8
+		Tick: 200
+	move:
+		Filename: content/shared/infantry/scientist/scientist.png
+		Start: 16
+		Length: 4
+		Facings: -8
+		Tick: 60
+	shadow:
+		Filename: infantry_shadow.vspr
+		ZOffset: -256
+	die:
+		Filename: content/shared/infantry/scientist/scientist-death.png
+		Length: 4
+		Tick: 80
+		Offset: 2,0
+	die-default:
+		Filename: content/shared/infantry/scientist/scientist-death.png
+		Length: 4
+		Tick: 80
+		Offset: 2,0
+	die-explode:
+		Filename: content/shared/infantry/scientist/scientist-death.png
+		Length: 4
+		Tick: 80
+		Offset: 2,0
+	die-burn:
+		Filename: content/shared/infantry/scientist/scientist-death.png
+		Length: 4
+		Tick: 80
+		Offset: 2,0
+	die-crushed:
+		Filename: content/shared/infantry/scientist/scientist-death.png
+		Start: 2
+		Length: 2
+		Tick: 2000
+		Offset: 2,0

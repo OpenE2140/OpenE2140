@@ -1,0 +1,14 @@
+shared_infantry_scientist:
+	Inherits@1: ^CoreInfantry
+	Inherits@2: ^HealedByBio
+	Inherits@3: ^VulnerableToRadiation
+	Tooltip:
+		Name: Scientist
+	Valued:
+		Cost: 50
+	Health:
+		HP: 30
+	RevealsShroud:
+		Range: 2c896
+	Voiced:
+		VoiceSet: EdInfantryVoice
