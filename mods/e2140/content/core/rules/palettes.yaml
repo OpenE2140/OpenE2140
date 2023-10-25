@@ -11,6 +11,16 @@
 		AllowModifiers: false
 	ColorPickerColorShift:
 		BasePalette: colorpicker
-	# TODO: remove after PR to DrawLineToTarget trait making palette optional is merged.
+	# TODO: remove all references to "terrain" palette in all (relevant) traits
 	PaletteFromGrayscale@terrain:
 		Name: terrain
+
+	# This is necessary for some widgets like SpriteWidget, which is used in the Asset Browser.
+	# But in order to get rid of it, we'd have to change some chrome definitions, that is included from mods/common.
+	# We currently don't need to change Asset Browser chrome definition, so we keep this palette here for compatibility purposes.
+	PaletteFromRGBA@chrome:
+		Name: chrome
+		R: 255
+		G: 255
+		B: 255
+		A: 255
