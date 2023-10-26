@@ -14,5 +14,6 @@
 	BuildingCrew:
 		RequiresCondition: !IsDead
 		MaxPopulation: 4
+		AllowCrewMemberExit: false
 	-WithDecoration@PowerDown:
 	-ToggleConditionOnOrder:
