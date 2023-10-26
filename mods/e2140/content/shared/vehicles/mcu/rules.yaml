@@ -21,6 +21,15 @@
 	RevealsShroud:
 		Range: 2c896
 	Mcu:
+	# Render MCU deployment overlay, when cursor hovers over the MCU.
+	McuDeployOverlay:
+	# MCU deployment preview: render building preview and building's footprint (using "overlay" sprites).
+	ActorPreviewPlaceBuildingPreview:
+		PreviewAlpha: 0.65
+		FootprintUnderPreview: None
+		ZOffset: -256
+	# MCU deployment preview: render rectangle of the building's footprint.
+	RectanglePlaceBuildingPreview:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
 	WithTextDecoration:
