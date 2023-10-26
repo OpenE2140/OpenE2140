@@ -11,7 +11,8 @@
 		-RequiresCondition:
 	-TransformSequence:
 	-Power:
+	BuildingCrew:
+		RequiresCondition: !IsDead
+		MaxPopulation: 4
 	-WithDecoration@PowerDown:
 	-ToggleConditionOnOrder:
-	FrozenOnDeath:
-		-Condition:
