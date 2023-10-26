@@ -34,6 +34,9 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>
 		"If none is defined, the future crew member can enter the building from any cell around the building.")]
 	public readonly CVec[] EntryCells = Array.Empty<CVec>();
 
+	[Desc("Are crew members allowed to exit the building?")]
+	public readonly bool AllowCrewMemberExit = true;
+
 	[Desc("When this actor is sold, should all of its crew members exit the building?")]
 	public readonly bool EjectOnSell = true;
 
@@ -226,7 +229,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public bool CanExit(BlockedByActor check = BlockedByActor.None)
 	{
-		if (this.IsTraitDisabled)
+		if (this.IsTraitDisabled || !this.Info.AllowCrewMemberExit)
 			return false;
 
 		if (this.checkTerrainType)
