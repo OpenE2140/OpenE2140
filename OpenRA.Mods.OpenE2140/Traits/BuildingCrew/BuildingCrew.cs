@@ -89,7 +89,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>
 
 public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IResolveOrder,
 	INotifyOwnerChanged, INotifySold, INotifyActorDisposing, IIssueDeployOrder,
-	INotifyCreated, INotifyKilled, ITransformActorInitModifier, INotifyDamage
+	INotifyCreated, INotifyKilled, INotifyDamage
 {
 	private const string ExitBuildingOrderID = "ExitBuilding";
 
@@ -513,21 +513,4 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		foreach (var p in this.CrewMembers)
 			p.ChangeOwner(newOwner);
 	}
-
-	void ITransformActorInitModifier.ModifyTransformActorInit(Actor self, TypeDictionary init)
-	{
-		init.Add(new RuntimeCargoInit(this.Info, this.CrewMembers.ToArray()));
-	}
 }
-
-//public class RuntimeCargoInit : ValueActorInit<Actor[]>, ISuppressInitExport
-//{
-//	public RuntimeCargoInit(TraitInfo info, Actor[] value)
-//		: base(info, value) { }
-//}
-
-//public class CargoInit : ValueActorInit<string[]>
-//{
-//	public CargoInit(TraitInfo info, string[] value)
-//		: base(info, value) { }
-//}
