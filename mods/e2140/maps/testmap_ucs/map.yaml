@@ -124,6 +124,7 @@ Actors:
 	Actor31: ucs_buildings_heavy_tech
 		Owner: UCS_Player
 		Location: 23,3
+		BuildingCrew: ed_infantry_a01, ed_infantry_a03, ucs_infantry_silver_r
 	Actor26: ucs_vehicles_t100
 		Owner: UCS_Player
 		Facing: 384
