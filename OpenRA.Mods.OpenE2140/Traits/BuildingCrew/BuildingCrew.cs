@@ -126,33 +126,27 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			? this.Info.EntryCells.Select(c => this.self.Location + c)
 			: Util.AdjacentCells(this.self.World, Target.FromActor(this.self));
 
-
-		//var runtimeCargoInit = init.GetOrDefault<RuntimeCargoInit>(info);
-		//var cargoInit = init.GetOrDefault<CargoInit>(info);
-		//if (runtimeCargoInit != null)
-		//{
-		//	this.cargo = runtimeCargoInit.Value.ToList();
-		//}
-		//else if (cargoInit != null)
-		//{
-		//	foreach (var u in cargoInit.Value)
-		//	{
-		//		var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
-		//			new TypeDictionary { new OwnerInit(this.self.Owner) });
-
-		//		this.crewMembers.Add(unit);
-		//	}
-		//}
-		//else
-		//{
-		foreach (var u in info.InitialUnits)
+		var buildingCrewInit = init.GetOrDefault<BuildingCrewInit>(info);
+		if (buildingCrewInit != null)
 		{
-			var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
-				new TypeDictionary { new OwnerInit(this.self.Owner) });
+			foreach (var u in buildingCrewInit.Value)
+			{
+				var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
+					new TypeDictionary { new OwnerInit(this.self.Owner) });
 
-			this.crewMembers.Add(unit);
+				this.crewMembers.Add(unit);
+			}
 		}
-		//}
+		else
+		{
+			foreach (var u in info.InitialUnits)
+			{
+				var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
+					new TypeDictionary { new OwnerInit(this.self.Owner) });
+
+				this.crewMembers.Add(unit);
+			}
+		}
 
 		this.facing = Exts.Lazy(this.self.TraitOrDefault<IFacing>);
 	}
@@ -513,4 +507,10 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		foreach (var p in this.CrewMembers)
 			p.ChangeOwner(newOwner);
 	}
+}
+
+public class BuildingCrewInit : ValueActorInit<string[]>
+{
+	public BuildingCrewInit(TraitInfo info, string[] value)
+		: base(info, value) { }
 }
