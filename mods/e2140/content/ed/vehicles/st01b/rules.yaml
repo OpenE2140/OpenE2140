@@ -1,6 +1,7 @@
 ed_vehicles_st01b:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesSmallTracks
 	Tooltip:
 		Name: ST 01B
 	Valued:
@@ -42,15 +43,6 @@ ed_vehicles_st01b:
 		Count: 2
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_st01b_husk
-	LeavesTrackTrails:
-		Image: tracks
-		Sequences: track_small
-		Palette:
-		TerrainTypes: Sand, SandEdge
-		Type: CenterPosition
-		MovingInterval: 8
-		StartDelay: 0
-		ChangeFacingInstantly: true
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 1

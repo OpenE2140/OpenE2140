@@ -1,5 +1,6 @@
 ucs_vehicles_shadow:
 	Inherits@1: ^UcsVehicle
+	Inherits@2: ^LeavesMedium2Tracks
 	Tooltip:
 		Name: SHADOW
 	Valued:

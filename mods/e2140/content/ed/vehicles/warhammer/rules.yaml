@@ -1,6 +1,7 @@
 ed_vehicles_warhammer:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesLargeTracks
 	Tooltip:
 		Name: WARHAMMER
 	Valued:

@@ -9,325 +9,325 @@ tracks:
 	track_small:
 		Combine:
 			0:
-				Filename: SPRO0.MIX
-				Frames: 24
+				Filename: tracks-wasteland.vspr
+				Frames: 0
 			1:
-				Filename: SPRO0.MIX
-				Frames: 25
+				Filename: tracks-wasteland.vspr
+				Frames: 1
 			2:
-				Filename: SPRO0.MIX
-				Frames: 26
+				Filename: tracks-wasteland.vspr
+				Frames: 2
 			3:
-				Filename: SPRO0.MIX
-				Frames: 27
+				Filename: tracks-wasteland.vspr
+				Frames: 3
 			4:
-				Filename: SPRO0.MIX
-				Frames: 28
+				Filename: tracks-wasteland.vspr
+				Frames: 4
 			5:
-				Filename: SPRO0.MIX
-				Frames: 27
+				Filename: tracks-wasteland.vspr
+				Frames: 3
 				FlipX: True
 			6:
-				Filename: SPRO0.MIX
-				Frames: 26
+				Filename: tracks-wasteland.vspr
+				Frames: 2
 				FlipX: True
 			7:
-				Filename: SPRO0.MIX
-				Frames: 25
+				Filename: tracks-wasteland.vspr
+				Frames: 1
 				FlipX: True
 			8:
-				Filename: SPRO0.MIX
-				Frames: 24
+				Filename: tracks-wasteland.vspr
+				Frames: 0
 				FlipX: True
 			9:
-				Filename: SPRO0.MIX
-				Frames: 25
+				Filename: tracks-wasteland.vspr
+				Frames: 1
 				FlipX: True
 				FlipY: True
 			10:
-				Filename: SPRO0.MIX
-				Frames: 26
+				Filename: tracks-wasteland.vspr
+				Frames: 2
 				FlipX: True
 				FlipY: True
 			11:
-				Filename: SPRO0.MIX
-				Frames: 27
+				Filename: tracks-wasteland.vspr
+				Frames: 3
 				FlipX: True
 				FlipY: True
 			12:
-				Filename: SPRO0.MIX
-				Frames: 28
+				Filename: tracks-wasteland.vspr
+				Frames: 4
 				FlipX: True
 				FlipY: True
 			13:
-				Filename: SPRO0.MIX
-				Frames: 27
+				Filename: tracks-wasteland.vspr
+				Frames: 3
 				FlipY: True
 			14:
-				Filename: SPRO0.MIX
-				Frames: 26
+				Filename: tracks-wasteland.vspr
+				Frames: 2
 				FlipY: True
 			15:
-				Filename: SPRO0.MIX
-				Frames: 25
+				Filename: tracks-wasteland.vspr
+				Frames: 1
 				FlipY: True
 	track_medium:
 		Combine:
 			0:
-				Filename: SPRO0.MIX
-				Frames: 29
+				Filename: tracks-wasteland.vspr
+				Frames: 5
 			1:
-				Filename: SPRO0.MIX
-				Frames: 30
+				Filename: tracks-wasteland.vspr
+				Frames: 6
 			2:
-				Filename: SPRO0.MIX
-				Frames: 31
+				Filename: tracks-wasteland.vspr
+				Frames: 7
 			3:
-				Filename: SPRO0.MIX
-				Frames: 32
+				Filename: tracks-wasteland.vspr
+				Frames: 8
 			4:
-				Filename: SPRO0.MIX
-				Frames: 33
+				Filename: tracks-wasteland.vspr
+				Frames: 9
 			5:
-				Filename: SPRO0.MIX
-				Frames: 32
+				Filename: tracks-wasteland.vspr
+				Frames: 8
 				FlipX: True
 			6:
-				Filename: SPRO0.MIX
-				Frames: 31
+				Filename: tracks-wasteland.vspr
+				Frames: 7
 				FlipX: True
 			7:
-				Filename: SPRO0.MIX
-				Frames: 30
+				Filename: tracks-wasteland.vspr
+				Frames: 6
 				FlipX: True
 			8:
-				Filename: SPRO0.MIX
-				Frames: 29
+				Filename: tracks-wasteland.vspr
+				Frames: 5
 				FlipX: True
 			9:
-				Filename: SPRO0.MIX
-				Frames: 30
+				Filename: tracks-wasteland.vspr
+				Frames: 6
 				FlipX: True
 				FlipY: True
 			10:
-				Filename: SPRO0.MIX
-				Frames: 31
+				Filename: tracks-wasteland.vspr
+				Frames: 7
 				FlipX: True
 				FlipY: True
 			11:
-				Filename: SPRO0.MIX
-				Frames: 32
+				Filename: tracks-wasteland.vspr
+				Frames: 8
 				FlipX: True
 				FlipY: True
 			12:
-				Filename: SPRO0.MIX
-				Frames: 33
+				Filename: tracks-wasteland.vspr
+				Frames: 9
 				FlipX: True
 				FlipY: True
 			13:
-				Filename: SPRO0.MIX
-				Frames: 32
+				Filename: tracks-wasteland.vspr
+				Frames: 8
 				FlipY: True
 			14:
-				Filename: SPRO0.MIX
-				Frames: 31
+				Filename: tracks-wasteland.vspr
+				Frames: 7
 				FlipY: True
 			15:
-				Filename: SPRO0.MIX
-				Frames: 30
+				Filename: tracks-wasteland.vspr
+				Frames: 6
 				FlipY: True
 	track_large:
 		Combine:
 			0:
-				Filename: SPRO0.MIX
-				Frames: 34
+				Filename: tracks-wasteland.vspr
+				Frames: 10
 			1:
-				Filename: SPRO0.MIX
-				Frames: 35
+				Filename: tracks-wasteland.vspr
+				Frames: 11
 			2:
-				Filename: SPRO0.MIX
-				Frames: 36
+				Filename: tracks-wasteland.vspr
+				Frames: 12
 			3:
-				Filename: SPRO0.MIX
-				Frames: 37
+				Filename: tracks-wasteland.vspr
+				Frames: 13
 			4:
-				Filename: SPRO0.MIX
-				Frames: 38
+				Filename: tracks-wasteland.vspr
+				Frames: 14
 			5:
-				Filename: SPRO0.MIX
-				Frames: 37
+				Filename: tracks-wasteland.vspr
+				Frames: 13
 				FlipX: True
 			6:
-				Filename: SPRO0.MIX
-				Frames: 36
+				Filename: tracks-wasteland.vspr
+				Frames: 12
 				FlipX: True
 			7:
-				Filename: SPRO0.MIX
-				Frames: 35
+				Filename: tracks-wasteland.vspr
+				Frames: 11
 				FlipX: True
 			8:
-				Filename: SPRO0.MIX
-				Frames: 34
+				Filename: tracks-wasteland.vspr
+				Frames: 10
 				FlipX: True
 			9:
-				Filename: SPRO0.MIX
-				Frames: 35
+				Filename: tracks-wasteland.vspr
+				Frames: 11
 				FlipX: True
 				FlipY: True
 			10:
-				Filename: SPRO0.MIX
-				Frames: 36
+				Filename: tracks-wasteland.vspr
+				Frames: 12
 				FlipX: True
 				FlipY: True
 			11:
-				Filename: SPRO0.MIX
-				Frames: 37
+				Filename: tracks-wasteland.vspr
+				Frames: 13
 				FlipX: True
 				FlipY: True
 			12:
-				Filename: SPRO0.MIX
-				Frames: 38
+				Filename: tracks-wasteland.vspr
+				Frames: 14
 				FlipX: True
 				FlipY: True
 			13:
-				Filename: SPRO0.MIX
-				Frames: 37
+				Filename: tracks-wasteland.vspr
+				Frames: 13
 				FlipY: True
 			14:
-				Filename: SPRO0.MIX
-				Frames: 36
+				Filename: tracks-wasteland.vspr
+				Frames: 12
 				FlipY: True
 			15:
-				Filename: SPRO0.MIX
-				Frames: 35
+				Filename: tracks-wasteland.vspr
+				Frames: 11
 				FlipY: True
 	track_medium2:
 		Combine:
 			0:
-				Filename: SPRO0.MIX
-				Frames: 39
+				Filename: tracks-wasteland.vspr
+				Frames: 15
 			1:
-				Filename: SPRO0.MIX
-				Frames: 40
+				Filename: tracks-wasteland.vspr
+				Frames: 16
 			2:
-				Filename: SPRO0.MIX
-				Frames: 41
+				Filename: tracks-wasteland.vspr
+				Frames: 17
 			3:
-				Filename: SPRO0.MIX
-				Frames: 42
+				Filename: tracks-wasteland.vspr
+				Frames: 18
 			4:
-				Filename: SPRO0.MIX
-				Frames: 43
+				Filename: tracks-wasteland.vspr
+				Frames: 19
 			5:
-				Filename: SPRO0.MIX
-				Frames: 42
+				Filename: tracks-wasteland.vspr
+				Frames: 18
 				FlipX: True
 			6:
-				Filename: SPRO0.MIX
-				Frames: 41
+				Filename: tracks-wasteland.vspr
+				Frames: 17
 				FlipX: True
 			7:
-				Filename: SPRO0.MIX
-				Frames: 40
+				Filename: tracks-wasteland.vspr
+				Frames: 16
 				FlipX: True
 			8:
-				Filename: SPRO0.MIX
-				Frames: 39
+				Filename: tracks-wasteland.vspr
+				Frames: 15
 				FlipX: True
 			9:
-				Filename: SPRO0.MIX
-				Frames: 40
+				Filename: tracks-wasteland.vspr
+				Frames: 16
 				FlipX: True
 				FlipY: True
 			10:
-				Filename: SPRO0.MIX
-				Frames: 41
+				Filename: tracks-wasteland.vspr
+				Frames: 17
 				FlipX: True
 				FlipY: True
 			11:
-				Filename: SPRO0.MIX
-				Frames: 42
+				Filename: tracks-wasteland.vspr
+				Frames: 18
 				FlipX: True
 				FlipY: True
 			12:
-				Filename: SPRO0.MIX
-				Frames: 43
+				Filename: tracks-wasteland.vspr
+				Frames: 19
 				FlipX: True
 				FlipY: True
 			13:
-				Filename: SPRO0.MIX
-				Frames: 42
+				Filename: tracks-wasteland.vspr
+				Frames: 18
 				FlipY: True
 			14:
-				Filename: SPRO0.MIX
-				Frames: 41
+				Filename: tracks-wasteland.vspr
+				Frames: 17
 				FlipY: True
 			15:
-				Filename: SPRO0.MIX
-				Frames: 40
+				Filename: tracks-wasteland.vspr
+				Frames: 16
 				FlipY: True
 	track_extra_large:
 		Combine:
 			0:
-				Filename: SPRO0.MIX
-				Frames: 44
+				Filename: tracks-wasteland.vspr
+				Frames: 20
 			1:
-				Filename: SPRO0.MIX
-				Frames: 45
+				Filename: tracks-wasteland.vspr
+				Frames: 21
 			2:
-				Filename: SPRO0.MIX
-				Frames: 46
+				Filename: tracks-wasteland.vspr
+				Frames: 22
 			3:
-				Filename: SPRO0.MIX
-				Frames: 47
+				Filename: tracks-wasteland.vspr
+				Frames: 23
 			4:
-				Filename: SPRO0.MIX
-				Frames: 48
+				Filename: tracks-wasteland.vspr
+				Frames: 24
 			5:
-				Filename: SPRO0.MIX
-				Frames: 47
+				Filename: tracks-wasteland.vspr
+				Frames: 23
 				FlipX: True
 			6:
-				Filename: SPRO0.MIX
-				Frames: 46
+				Filename: tracks-wasteland.vspr
+				Frames: 22
 				FlipX: True
 			7:
-				Filename: SPRO0.MIX
-				Frames: 45
+				Filename: tracks-wasteland.vspr
+				Frames: 21
 				FlipX: True
 			8:
-				Filename: SPRO0.MIX
-				Frames: 44
+				Filename: tracks-wasteland.vspr
+				Frames: 20
 				FlipX: True
 			9:
-				Filename: SPRO0.MIX
-				Frames: 45
+				Filename: tracks-wasteland.vspr
+				Frames: 21
 				FlipX: True
 				FlipY: True
 			10:
-				Filename: SPRO0.MIX
-				Frames: 46
+				Filename: tracks-wasteland.vspr
+				Frames: 22
 				FlipX: True
 				FlipY: True
 			11:
-				Filename: SPRO0.MIX
-				Frames: 47
+				Filename: tracks-wasteland.vspr
+				Frames: 23
 				FlipX: True
 				FlipY: True
 			12:
-				Filename: SPRO0.MIX
-				Frames: 48
+				Filename: tracks-wasteland.vspr
+				Frames: 24
 				FlipX: True
 				FlipY: True
 			13:
-				Filename: SPRO0.MIX
-				Frames: 47
+				Filename: tracks-wasteland.vspr
+				Frames: 23
 				FlipY: True
 			14:
-				Filename: SPRO0.MIX
-				Frames: 46
+				Filename: tracks-wasteland.vspr
+				Frames: 22
 				FlipY: True
 			15:
-				Filename: SPRO0.MIX
-				Frames: 45
+				Filename: tracks-wasteland.vspr
+				Frames: 21
 				FlipY: True

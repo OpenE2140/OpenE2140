@@ -1,6 +1,7 @@
 ucs_vehicles_t100:
 	Inherits@1: ^UcsVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesSmallTracks
 	Tooltip:
 		Name: T 100
 	Valued:

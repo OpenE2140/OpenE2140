@@ -1,6 +1,7 @@
 ed_vehicles_st02:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesSmallTracks
 	Tooltip:
 		Name: ST 02
 	Valued:

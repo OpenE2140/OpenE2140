@@ -1,5 +1,6 @@
 ^SharedVehicleMcu:
 	Inherits@1: ^CoreVehicle
+	Inherits@2: ^LeavesExtraLargeTracks
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	# MCU has "robotic" voice for both factions

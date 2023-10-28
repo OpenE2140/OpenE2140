@@ -12,6 +12,9 @@ Palettes:
 		253: 0 0 0 32
 		254: 0 0 0 64
 
+	Tracks: Merge
+		1-255: 0 0 0 60
+
 Generate:
 	wall: Shadow
 		idle-h1: 73
@@ -71,3 +74,10 @@ Generate:
 
 	water_mine: Shadow
 		idle: 71,72
+
+	tracks: Tracks
+		track_small: 24-28
+		track_medium: 29-33
+		track_large: 34-38
+		track_medium2: 39-43
+		track_extra_large: 44-48

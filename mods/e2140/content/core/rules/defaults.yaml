@@ -914,3 +914,39 @@
 		Offsets:
 			VehicleDisabled: 15, 0
 		RequiresCondition: VehicleInterfered
+
+# Actor leaves track trail on ground.
+^LeavesTracks:
+	LeavesTrackTrails:
+		Image: tracks
+		Palette:
+		TerrainTypes: Sand, SandEdge
+		Type: CenterPosition
+		MovingInterval: 8
+		StartDelay: 0
+		ChangeFacingInstantly: true
+
+^LeavesSmallTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_small
+
+^LeavesMediumTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_medium
+
+^LeavesLargeTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_large
+
+^LeavesMedium2Tracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_medium2
+
+^LeavesExtraLargeTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_extra_large

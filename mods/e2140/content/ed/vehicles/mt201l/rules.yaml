@@ -1,6 +1,7 @@
 ed_vehicles_mt201l:
 	Inherits@1: ^EdVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesMediumTracks
 	Tooltip:
 		Name: MT 201L
 	Valued:
