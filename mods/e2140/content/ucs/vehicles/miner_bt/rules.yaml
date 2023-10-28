@@ -1,6 +1,7 @@
 ucs_vehicles_miner_bt:
 	Inherits@1: ^UcsVehicle
 	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesMediumTracks
 	Tooltip:
 		Name: MINER BT
 	Valued:

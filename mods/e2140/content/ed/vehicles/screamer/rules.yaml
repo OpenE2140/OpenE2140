@@ -1,5 +1,6 @@
 ed_vehicles_screamer:
-	Inherits: ^EdVehicle
+	Inherits@1: ^EdVehicle
+	Inherits@2: ^LeavesMedium2Tracks
 	Tooltip:
 		Name: SCREAMER
 	Valued:
