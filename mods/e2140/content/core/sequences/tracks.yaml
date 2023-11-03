@@ -57,19 +57,23 @@ tracks:
 			12:
 				Filename: tracks-wasteland.vspr
 				Frames: 4
+				Offset: 0,5
 				FlipX: True
 				FlipY: True
 			13:
 				Filename: tracks-wasteland.vspr
 				Frames: 3
+				Offset: 0,5
 				FlipY: True
 			14:
 				Filename: tracks-wasteland.vspr
 				Frames: 2
+				Offset: 0,5
 				FlipY: True
 			15:
 				Filename: tracks-wasteland.vspr
 				Frames: 1
+				Offset: 0,5
 				FlipY: True
 	track_medium:
 		Combine:
@@ -122,25 +126,30 @@ tracks:
 			12:
 				Filename: tracks-wasteland.vspr
 				Frames: 9
+				Offset: 0,5
 				FlipX: True
 				FlipY: True
 			13:
 				Filename: tracks-wasteland.vspr
 				Frames: 8
+				Offset: 0,5
 				FlipY: True
 			14:
 				Filename: tracks-wasteland.vspr
 				Frames: 7
+				Offset: 0,5
 				FlipY: True
 			15:
 				Filename: tracks-wasteland.vspr
 				Frames: 6
+				Offset: 0,5
 				FlipY: True
 	track_large:
 		Combine:
 			0:
 				Filename: tracks-wasteland.vspr
 				Frames: 10
+				Offset: 2,0
 			1:
 				Filename: tracks-wasteland.vspr
 				Frames: 11
@@ -168,6 +177,7 @@ tracks:
 			8:
 				Filename: tracks-wasteland.vspr
 				Frames: 10
+				Offset: 2,0
 				FlipX: True
 			9:
 				Filename: tracks-wasteland.vspr
@@ -187,19 +197,23 @@ tracks:
 			12:
 				Filename: tracks-wasteland.vspr
 				Frames: 14
+				Offset: 0,5
 				FlipX: True
 				FlipY: True
 			13:
 				Filename: tracks-wasteland.vspr
 				Frames: 13
+				Offset: 0,5
 				FlipY: True
 			14:
 				Filename: tracks-wasteland.vspr
 				Frames: 12
+				Offset: 0,5
 				FlipY: True
 			15:
 				Filename: tracks-wasteland.vspr
 				Frames: 11
+				Offset: 0,5
 				FlipY: True
 	track_medium2:
 		Combine:
@@ -252,19 +266,23 @@ tracks:
 			12:
 				Filename: tracks-wasteland.vspr
 				Frames: 19
+				Offset: 0,5
 				FlipX: True
 				FlipY: True
 			13:
 				Filename: tracks-wasteland.vspr
 				Frames: 18
+				Offset: 0,5
 				FlipY: True
 			14:
 				Filename: tracks-wasteland.vspr
 				Frames: 17
+				Offset: 0,5
 				FlipY: True
 			15:
 				Filename: tracks-wasteland.vspr
 				Frames: 16
+				Offset: 0,5
 				FlipY: True
 	track_extra_large:
 		Combine:
@@ -317,17 +335,21 @@ tracks:
 			12:
 				Filename: tracks-wasteland.vspr
 				Frames: 24
+				Offset: 0,5
 				FlipX: True
 				FlipY: True
 			13:
 				Filename: tracks-wasteland.vspr
 				Frames: 23
+				Offset: 0,5
 				FlipY: True
 			14:
 				Filename: tracks-wasteland.vspr
 				Frames: 22
+				Offset: 0,5
 				FlipY: True
 			15:
 				Filename: tracks-wasteland.vspr
 				Frames: 21
+				Offset: 0,5
 				FlipY: True
