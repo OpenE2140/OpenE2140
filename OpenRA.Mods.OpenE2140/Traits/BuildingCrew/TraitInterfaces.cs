@@ -1,6 +1,4 @@
-﻿using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
-using OpenRA.Traits;
+﻿using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 

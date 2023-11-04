@@ -1,7 +1,5 @@
 ﻿using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.Common.Traits.Radar;
 using OpenRA.Primitives;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Radar;
 
