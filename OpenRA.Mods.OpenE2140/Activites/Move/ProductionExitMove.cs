@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Activities;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
@@ -23,6 +24,10 @@ namespace OpenRA.Mods.OpenE2140.Activites.Move;
 public class ProductionExitMove : Activity
 {
 	private enum ExitMoveState { None, Waiting, Dragging }
+
+	private const int NudgeEveryThisAttempt = 3;
+	private const int TicksToWait = 3;
+	private const int MaxWaitAttempts = 3;
 
 	private readonly Mobile mobile;
 	private readonly ISafeDragNotify[] safeDragNotify;
@@ -36,14 +41,14 @@ public class ProductionExitMove : Activity
 	private int waitTicks;
 	private int attempt;
 
-	public ProductionExitMove(Actor self, Actor producent, WPos end, int maxAttempts = 3)
+	public ProductionExitMove(Actor self, Actor producent, WPos end, int maxAttempts = MaxWaitAttempts)
 		: this(self, producent, maxAttempts)
 	{
 		this.end = end;
 		this.targetCell = self.World.Map.CellContaining(end);
 	}
 
-	public ProductionExitMove(Actor self, Actor producent, CPos targetCell, int maxAttempts = 3)
+	public ProductionExitMove(Actor self, Actor producent, CPos targetCell, int maxAttempts = MaxWaitAttempts)
 		: this(self, producent, maxAttempts)
 	{
 		this.targetCell = targetCell;
@@ -115,7 +120,9 @@ public class ProductionExitMove : Activity
 				{
 					this.attempt++;
 					this.state = ExitMoveState.Waiting;
-					this.waitTicks = 3;
+					this.waitTicks = TicksToWait;
+					if (this.attempt % NudgeEveryThisAttempt == 0)
+						self.NotifyBlocker(blockingActors);
 				}
 
 				break;
