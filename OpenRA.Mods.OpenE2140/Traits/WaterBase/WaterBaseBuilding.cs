@@ -11,6 +11,8 @@
 
 #endregion
 
+using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
@@ -23,8 +25,10 @@ public class WaterBaseBuildingInfo : TraitInfo
 	}
 }
 
-public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected
+public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDamage
 {
+	public const string WaterBaseDamageSyncType = "WaterBaseDamageSync";
+
 	private readonly Actor self;
 
 	public Actor? DockActor { get; private set; }
@@ -59,5 +63,19 @@ public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected
 	internal void OnSelected()
 	{
 		this.self.World.Selection.TryAdd(this.self);
+	}
+
+	void INotifyDamage.Damaged(Actor self, AttackInfo e)
+	{
+		this.waterBaseDock?.OnBaseDamaged(e);
+	}
+
+	internal void OnDockDamaged(AttackInfo e)
+	{
+		if (e.Damage.DamageTypes.Contains(WaterBaseBuilding.WaterBaseDamageSyncType))
+			return;
+
+		var damageType = e.Damage.DamageTypes.Union(new BitSet<DamageType>(WaterBaseDamageSyncType));
+		this.self.InflictDamage(e.Attacker, new Damage(e.Damage.Value, damageType));
 	}
 }

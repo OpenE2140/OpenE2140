@@ -27,7 +27,7 @@ public class WaterBaseDockInfo : TraitInfo
 	}
 }
 
-public class WaterBaseDock : INotifySelected
+public class WaterBaseDock : INotifySelected, INotifyDamage
 {
 	private readonly Actor self;
 
@@ -48,6 +48,20 @@ public class WaterBaseDock : INotifySelected
 				this.waterBaseBuilding.AssignDock(buildingActor, init.Self);
 			});
 		}
+	}
+
+	void INotifyDamage.Damaged(Actor self, AttackInfo e)
+	{
+		this.waterBaseBuilding?.OnDockDamaged(e);
+	}
+
+	internal void OnBaseDamaged(AttackInfo e)
+	{
+		if (e.Damage.DamageTypes.Contains(WaterBaseBuilding.WaterBaseDamageSyncType))
+			return;
+
+		var damageType = e.Damage.DamageTypes.Union(new BitSet<DamageType>(WaterBaseBuilding.WaterBaseDamageSyncType));
+		this.self.InflictDamage(e.Attacker, new Damage(e.Damage.Value, damageType));
 	}
 
 	void INotifySelected.Selected(Actor self)
