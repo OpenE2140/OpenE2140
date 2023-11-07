@@ -131,9 +131,14 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 		this.customState = CustomAnimationState.ElevatorDown;
 	}
 
-	protected override WPos GetSpawnLocation(Actor self, CPos exitCell)
+	protected override WPos GetSpawnPosition(Actor self, CPos exitCell)
 	{
-		return this.GetExitCellCenter(self);
+		return this.GetSpawnCellCenter(self);
+	}
+
+	protected WPos GetSpawnCellCenter(Actor self)
+	{
+		return self.World.Map.CenterOfCell(this.GetSpawnCell(self));
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer worldRenderer)
@@ -159,7 +164,7 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 		);
 
 		var renderables = actorPreviews
-			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, this.GetExitCellCenter(self) + new WVec(0, 0, this.GetElevatorHeight())))
+			.SelectMany(actorPreview => actorPreview.Render(worldRenderer, this.GetSpawnCellCenter(self) + new WVec(0, 0, this.GetElevatorHeight())))
 			.Select(
 				renderable => renderable is SpriteRenderable spriteRenderable
 					? spriteRenderable.WithZOffset(spriteRenderable.ZOffset + this.info.ZOffset)

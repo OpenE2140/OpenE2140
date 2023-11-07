@@ -315,7 +315,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				// Check if actor is no longer on the exit cell. Only checking whether actor has moved to
 				// exit cell might be insufficient and in rare cases can exit get stuck in this state.
 				// If produced actor is aircraft, it's sufficient, that it's airborne, to consider ejection process complete.
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -348,7 +348,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				}
 
 				// If aircraft is airborne or player has manually moved produced actor, end ejection process
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetExitCell(self))
+				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -484,22 +484,22 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			return;
 
 		var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
-		var spawnLocation = this.GetSpawnLocation(self, exit);
-		var exitCenter = self.World.Map.CellContaining(spawnLocation);
+		var spawnPosition = this.GetSpawnPosition(self, exit);
+		var spawnCell = self.World.Map.CellContaining(spawnPosition);
 
 		var initialFacing = this.productionInfo.ExitInfo.Facing
-			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnLocation, self.World.Map.CenterOfCell(exit));
+			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnPosition, self.World.Map.CenterOfCell(exit));
 
 		// Don't use CenterPositionInit as that will cause Mobile to queue an uncancelable ReturnToCellActivity.
 		// AnimatedExitProduction or other *Production classes based on AnimatedExitProduction might want to customize behavior of produced actor.
 
 		var inits = this.productionInfo.Inits;
-		inits.Add(new LocationInit(exitCenter));
+		inits.Add(new LocationInit(spawnCell));
 		inits.Add(new FacingInit(initialFacing));
 
 		// HACK: CenterPositionInit is necessary, because otherwise oldPos private field in Mobile trait remains 0,0,0 after actor is created
 		// this causes Mobile.UpdateMovement to determine that Actor has moved (from 0,0,0 to spawn offset)
-		inits.Add(new CenterPositionInit(spawnLocation));
+		inits.Add(new CenterPositionInit(spawnPosition));
 
 		base.DoProduction(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
 	}
@@ -510,11 +510,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	protected void DoProductionBase(Actor self, ActorInfo producee, ExitInfo? exitInfo, string productionType, TypeDictionary inits)
 	{
 		base.DoProduction(self, producee, exitInfo, productionType, inits);
-	}
-
-	protected virtual WPos GetSpawnLocation(Actor self, CPos exitCell)
-	{
-		return self.CenterPosition + this.info.Position;
 	}
 
 	// Called when we should close.
@@ -584,34 +579,34 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	protected virtual void OnUnitProduced(Actor self, Actor other, CPos exit)
 	{
-		var spawnLocation = this.GetSpawnLocation(self, exit);
+		var spawnPosition = this.GetSpawnPosition(self, exit);
 
 		if (other.TryGetTrait<Mobile>(out var mobile))
-			mobile.SetCenterPosition(other, spawnLocation);
+			mobile.SetCenterPosition(other, spawnPosition);
 		else if (other.TryGetTrait<Aircraft>(out var aircraft))
-			aircraft.SetCenterPosition(other, spawnLocation);
+			aircraft.SetCenterPosition(other, spawnPosition);
 	}
 
 	private Exit SelectAnyPassableExit(Actor self, ActorInfo producee, string productionType)
 	{
 		// Passable exit is cell, which is passable for produced actor, while ignoring any movable actors.
 		return this.SelectExit(
-			self,
-			producee,
-			productionType,
-			e => producee.TraitInfo<MobileInfo>()
-					?.CanEnterCell(self.World, self, self.Location + e.Info.ExitCell, ignoreActor: self, check: BlockedByActor.Immovable)
-				== true
-		);
+				self,
+				producee,
+				productionType,
+				e => producee.TraitInfo<MobileInfo>()
+						?.CanEnterCell(self.World, self, self.Location + e.Info.ExitCell, ignoreActor: self, check: BlockedByActor.Immovable)
+					== true
+			);
 	}
 
-	protected CPos GetExitCell(Actor self)
+	protected virtual WPos GetSpawnPosition(Actor self, CPos exitCell)
+	{
+		return self.CenterPosition + this.info.Position;
+	}
+
+	protected virtual CPos GetSpawnCell(Actor self)
 	{
 		return self.World.Map.CellContaining(self.CenterPosition + this.info.Position);
-	}
-
-	protected WPos GetExitCellCenter(Actor self)
-	{
-		return self.World.Map.CenterOfCell(this.GetExitCell(self));
 	}
 }
