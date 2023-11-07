@@ -10,6 +10,7 @@ shared_buildings_water_base_dock:
 		TerrainTypes: Water
 		LocalCenterOffset: 0,-400,0
 	HitShape:
+	NotifyRepairCallback:
 	WaterBaseDock:
 	# This actor explodes when killed.
 	Explodes:
@@ -88,4 +89,9 @@ shared_buildings_water_base_dock:
 	-ActorLostNotification:
 	-WithBuildingRepairDecoration:
 	-WithDecoration@PowerDown:
-	-RepairableBuilding:
+	RepairableBuilding:
+		-RequiresCondition:
+		-RepairingNotification:
+		-RepairingStoppedNotification:
+		RepairStep: 0
+		RepairDamageTypes: FakeRepair

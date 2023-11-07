@@ -19,7 +19,7 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
 
-public class WaterBaseDockInfo : TraitInfo
+public class WaterBaseDockInfo : TraitInfo, Requires<RepairableBuildingInfo>
 {
 	public override object Create(ActorInitializer init)
 	{
@@ -27,12 +27,17 @@ public class WaterBaseDockInfo : TraitInfo
 	}
 }
 
-public class WaterBaseDock : INotifySelected, INotifyDamage
+public class WaterBaseDock : INotifySelected, INotifyDamage, INotifyBuildingRepair
 {
+	public const string WaterBaseDockFakeRepairDamageType = "FakeRepair";
+
 	private readonly Actor self;
+	private readonly RepairableBuilding repairBuilding;
 
 	// TODO: shouldn't this be not null?
 	private WaterBaseBuilding? waterBaseBuilding;
+
+	public bool IsRepairActive => this.repairBuilding.RepairActive;
 
 	public WaterBaseDock(ActorInitializer init, WaterBaseDockInfo info)
 	{
@@ -48,6 +53,7 @@ public class WaterBaseDock : INotifySelected, INotifyDamage
 				this.waterBaseBuilding.AssignDock(buildingActor, init.Self);
 			});
 		}
+		this.repairBuilding = this.self.Trait<RepairableBuilding>();
 	}
 
 	void INotifyDamage.Damaged(Actor self, AttackInfo e)
@@ -57,7 +63,8 @@ public class WaterBaseDock : INotifySelected, INotifyDamage
 
 	internal void OnBaseDamaged(AttackInfo e)
 	{
-		if (e.Damage.DamageTypes.Contains(WaterBaseBuilding.WaterBaseDamageSyncType))
+		if (e.Damage.DamageTypes.Contains(WaterBaseBuilding.WaterBaseDamageSyncType) ||
+			e.Damage.DamageTypes.Contains(WaterBaseDock.WaterBaseDockFakeRepairDamageType))
 			return;
 
 		var damageType = e.Damage.DamageTypes.Union(new BitSet<DamageType>(WaterBaseBuilding.WaterBaseDamageSyncType));
@@ -72,6 +79,28 @@ public class WaterBaseDock : INotifySelected, INotifyDamage
 	internal void OnBaseSelected()
 	{
 		this.self.World.Selection.TryAdd(this.self);
+	}
+
+	void INotifyBuildingRepair.RepairStarted(Actor self)
+	{
+		if (this.waterBaseBuilding?.IsRepairActive == false)
+			this.waterBaseBuilding?.OnDockRepairStarted();
+	}
+
+	void INotifyBuildingRepair.RepairInterrupted(Actor self)
+	{
+		if (this.waterBaseBuilding?.IsRepairActive == true)
+			this.waterBaseBuilding?.OnDockRepairInterrupted();
+	}
+
+	internal void OnBaseRepairStarted()
+	{
+		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
+	}
+
+	internal void OnBaseRepairInterrupted()
+	{
+		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
 	}
 }
 

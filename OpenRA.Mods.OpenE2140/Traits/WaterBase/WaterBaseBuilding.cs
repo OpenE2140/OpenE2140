@@ -12,12 +12,13 @@
 #endregion
 
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
 
-public class WaterBaseBuildingInfo : TraitInfo
+public class WaterBaseBuildingInfo : TraitInfo, Requires<RepairableBuildingInfo>
 {
 	public override object Create(ActorInitializer init)
 	{
@@ -25,27 +26,30 @@ public class WaterBaseBuildingInfo : TraitInfo
 	}
 }
 
-public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDamage
+public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDamage, INotifyBuildingRepair
 {
 	public const string WaterBaseDamageSyncType = "WaterBaseDamageSync";
 
 	private readonly Actor self;
+    private readonly RepairableBuilding repairBuilding;
 
 	public Actor? DockActor { get; private set; }
+	public bool IsRepairActive => this.repairBuilding.RepairActive;
 
 	private WaterBaseDock? waterBaseDock;
 
 	public WaterBaseBuilding(Actor self)
 	{
 		this.self = self;
-	}
+        this.repairBuilding = self.Trait<RepairableBuilding>();
+    }
 
 	internal void AssignDock(Actor self, Actor dockActor)
 	{
 		this.DockActor = dockActor;
-        this.waterBaseDock = dockActor.Trait<WaterBaseDock>();
+		this.waterBaseDock = dockActor.Trait<WaterBaseDock>();
 
-        if (self.Owner != dockActor.Owner)
+		if (self.Owner != dockActor.Owner)
 			dockActor.ChangeOwner(self.Owner);
 	}
 
@@ -77,5 +81,27 @@ public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDa
 
 		var damageType = e.Damage.DamageTypes.Union(new BitSet<DamageType>(WaterBaseDamageSyncType));
 		this.self.InflictDamage(e.Attacker, new Damage(e.Damage.Value, damageType));
+	}
+
+	void INotifyBuildingRepair.RepairStarted(Actor self)
+	{
+		if (this.waterBaseDock?.IsRepairActive == false)
+			this.waterBaseDock.OnBaseRepairStarted();
+	}
+
+	void INotifyBuildingRepair.RepairInterrupted(Actor self)
+	{
+		if (this.waterBaseDock?.IsRepairActive == true)
+			this.waterBaseDock.OnBaseRepairInterrupted();
+	}
+
+	internal void OnDockRepairStarted()
+	{
+		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
+	}
+
+	internal void OnDockRepairInterrupted()
+	{
+		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
 	}
 }

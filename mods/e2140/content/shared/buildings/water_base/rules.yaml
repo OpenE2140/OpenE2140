@@ -23,7 +23,11 @@ shared_buildings_water_base:
 			BottomRight: 1024, 1024
 	Selectable:
 		Bounds: 2064, 1984, 0,220
+	NotifyRepairCallback:
 	WaterBaseBuilding:
+	RepairableBuilding:
+		# TODO: remove after power is implemented
+		-RequiresCondition:
 	ProvidesPrerequisite:
 	GrantConditionOnDamageState:
 		Condition: damaged
