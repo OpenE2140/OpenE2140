@@ -20,8 +20,8 @@ using OpenRA.Mods.OpenE2140.Extensions;
 namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-[Desc("Special Production trait to use with Teleport building (WIP).")]
-public class TeleportProductionInfo : AnimatedExitProductionInfo
+[Desc("Special Production trait that forces produced actors to move to specified waypoint before moving onto exit cell.")]
+public class ExitWaypointProductionInfo : AnimatedExitProductionInfo
 {
 	[Desc($"Position along which produced actor needs to pass before it can move to exit cell. When specified, overrides value specified in {nameof(ExitWaypoint)}")]
 	public readonly WVec? ExitWaypointOffset = null;
@@ -31,21 +31,21 @@ public class TeleportProductionInfo : AnimatedExitProductionInfo
 
 	public override object Create(ActorInitializer init)
 	{
-		return new TeleportProduction(init, this);
+		return new ExitWaypointProduction(init, this);
 	}
 }
 
-public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
+public class ExitWaypointProduction : AnimatedExitProduction, ISafeDragNotify
 {
 	private enum CustomProductionState
 	{
 		None, MovingToExitWaypoint
 	}
 
-	private readonly TeleportProductionInfo info;
+	private readonly ExitWaypointProductionInfo info;
 	private CustomProductionState customState = CustomProductionState.None;
 
-	public TeleportProduction(ActorInitializer init, TeleportProductionInfo info)
+	public ExitWaypointProduction(ActorInitializer init, ExitWaypointProductionInfo info)
 		: base(init, info)
 	{
 		this.info = info;

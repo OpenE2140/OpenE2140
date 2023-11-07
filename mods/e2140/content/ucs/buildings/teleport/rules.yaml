@@ -28,7 +28,7 @@ ucs_buildings_teleport:
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
 	-AnimatedExitProduction:
-	TeleportProduction:
+	ExitWaypointProduction:
 		SequenceOpening: teleportation-start
 		SequenceOpenLoop: false
 		SequenceOpen: teleportation-end
