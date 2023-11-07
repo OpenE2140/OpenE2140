@@ -45,7 +45,7 @@ ed_buildings_tech_house:
 	ProvidesPrerequisite:
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
-		LineInitialOffset: 1024,0,0
+		LineInitialOffset: 1584,815,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: 1,2
