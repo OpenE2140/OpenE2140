@@ -11,6 +11,14 @@ shared_buildings_water_base_dock:
 		LocalCenterOffset: 0,-400,0
 	HitShape:
 	WaterBaseDock:
+	# This actor explodes when killed.
+	Explodes:
+		Weapon: WaterBaseExploding
+		EmptyWeapon: WaterBaseExploding
+	# Freezes building upon death for a moment before it is disposed.
+	FrozenOnDeath:
+		Duration: 42
+		Condition: IsDead
 	ExitWaypointProduction:
 		Produces: Ship.ED, Ship.UCS
 		RequiresCondition: !Transforming

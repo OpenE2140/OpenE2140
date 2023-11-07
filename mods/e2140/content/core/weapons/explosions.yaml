@@ -53,6 +53,15 @@ BuildingExploding:
 		Inaccuracies: 0c756, 0c756, 0c756, 0c756, 0c756, 0c0
 		ValidTargets: Ground, Water
 		Delays: 0, 8, 16, 24, 32, 40
+		
+WaterBaseExploding:
+	ValidTargets: Ground, Water
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: BuildingExplosion
+		Range: 1c0, 1c512
+		Inaccuracies: 0c0
+		ValidTargets: Ground, Water
+		Delays: 40
 
 PowerPlantExploding:
 	Inherits: BuildingExploding
