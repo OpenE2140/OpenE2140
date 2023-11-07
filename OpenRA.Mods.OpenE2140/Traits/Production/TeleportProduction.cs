@@ -23,9 +23,11 @@ namespace OpenRA.Mods.OpenE2140.Traits.Production;
 [Desc("Special Production trait to use with Teleport building (WIP).")]
 public class TeleportProductionInfo : AnimatedExitProductionInfo
 {
-	[FieldLoader.Require]
-	[Desc("Position along which produced actor needs to pass before, it can move to exit cell.")]
-	public readonly WVec ExitWaypointOffset = WVec.Zero;
+	[Desc($"Position along which produced actor needs to pass before it can move to exit cell. When specified, overrides value specified in {nameof(ExitWaypoint)}")]
+	public readonly WVec? ExitWaypointOffset = null;
+
+	[Desc("Cell along which produced actor needs to pass before it can move to exit cell. Cell is relative to cell, on which the produced actor is spawned.")]
+	public readonly CVec? ExitWaypoint = null;
 
 	public override object Create(ActorInitializer init)
 	{
@@ -54,7 +56,7 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		if (this.productionInfo == null)
 			return;
 
-		if (this.info.ExitWaypointOffset == WVec.Zero)
+		if (this.GetWaypointPosition(self) is not WPos waypointPosition)
 		{
 			base.Eject(self);
 
@@ -62,11 +64,11 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		}
 
 		var exit = self.Location + this.productionInfo.ExitInfo.ExitCell;
-		var spawnLocation = this.GetSpawnLocation(self, exit);
-		var initialFacing = AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnLocation, this.GetExitWaypointOffset(self));
+		var spawnPosition = this.GetSpawnPosition(self, exit);
+		var initialFacing = AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnPosition, waypointPosition);
 
 		var inits = this.productionInfo.Inits;
-		inits.Add(new LocationInit(this.GetExitCell(self)));
+		inits.Add(new LocationInit(this.GetSpawnCell(self)));
 		inits.Add(new FacingInit(initialFacing));
 
 		this.DoProductionBase(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
@@ -102,7 +104,7 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 	{
 		base.OnUnitProduced(self, other, exit);
 
-		if (this.info.ExitWaypointOffset == WVec.Zero)
+		if (this.GetWaypointPosition(self) is not WPos waypointPosition)
 			return;
 
 		if (!other.TryGetTrait<Mobile>(out var mobile))
@@ -113,18 +115,22 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		this.State = AnimationState.Custom;
 		this.customState = CustomProductionState.MovingToExitWaypoint;
 
-		other.QueueActivity(new ProductionExitMove(other, self, this.GetExitWaypointOffset(self)));
+		other.QueueActivity(new ProductionExitMove(other, self, waypointPosition, 50));
 	}
 
-	private WPos GetExitWaypointOffset(Actor self)
+
+	private WPos? GetWaypointPosition(Actor self)
 	{
-		return self.CenterPosition + this.info.Position + this.info.ExitWaypointOffset;
+		if (this.info.ExitWaypointOffset != null)
+			return self.CenterPosition + this.info.Position + this.info.ExitWaypointOffset;
+		else if (this.info.ExitWaypoint != null)
+			return self.World.Map.CenterOfCell(this.GetSpawnCell(self) + this.info.ExitWaypoint.Value);
+		return null;
 	}
 
 	void ISafeDragNotify.SafeDragFailed(Actor self, Actor movingActor)
 	{
 		// TODO: should retry logic be here ???
-		//this.customState = CustomProductionState.RetryMove;
 	}
 
 	void ISafeDragNotify.SafeDragComplete(Actor self, Actor movingActor)
@@ -136,7 +142,7 @@ public class TeleportProduction : AnimatedExitProduction, ISafeDragNotify
 		this.customState = CustomProductionState.None;
 
 		// It's necessary to bypass AnimatedExitProduction here and move State and queue ProductionExitMove now.
-		// The reason is that if we delay this until next tick of AnimatedExitProduction is undesirable (produced actor stops for one tick).
+		// The reason is that if we delay this until next tick of AnimatedExitProduction, produced actor stops for one tick (which is undesirable).
 		this.State = AnimationState.Ejecting;
 
 		var actor = this.productionInfo.Actor;
