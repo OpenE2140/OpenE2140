@@ -13,6 +13,7 @@
 
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -26,7 +27,7 @@ public class WaterBaseDockInfo : TraitInfo
 	}
 }
 
-public class WaterBaseDock
+public class WaterBaseDock : INotifySelected
 {
 	private readonly Actor self;
 
@@ -47,6 +48,16 @@ public class WaterBaseDock
 				this.waterBaseBuilding.AssignDock(buildingActor, init.Self);
 			});
 		}
+	}
+
+	void INotifySelected.Selected(Actor self)
+	{
+		this.waterBaseBuilding?.OnSelected();
+	}
+
+	internal void OnBaseSelected()
+	{
+		this.self.World.Selection.TryAdd(this.self);
 	}
 }
 

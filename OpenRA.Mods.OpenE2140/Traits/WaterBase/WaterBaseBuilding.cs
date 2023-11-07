@@ -23,7 +23,7 @@ public class WaterBaseBuildingInfo : TraitInfo
 	}
 }
 
-public class WaterBaseBuilding : INotifyOwnerChanged
+public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected
 {
 	private readonly Actor self;
 
@@ -49,5 +49,15 @@ public class WaterBaseBuilding : INotifyOwnerChanged
 	{
 		if (this.DockActor?.Owner != newOwner)
 			this.DockActor?.ChangeOwner(newOwner);
+	}
+
+	void INotifySelected.Selected(Actor self)
+	{
+		this.waterBaseDock?.OnBaseSelected();
+	}
+
+	internal void OnSelected()
+	{
+		this.self.World.Selection.TryAdd(this.self);
 	}
 }
