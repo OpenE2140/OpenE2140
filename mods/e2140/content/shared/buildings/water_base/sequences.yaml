@@ -4,12 +4,6 @@ shared_buildings_water_base:
 	idle:
 	damaged-idle:
 		Start: 1
-	dock:
-		Start: 2
-		ZOffset: 512
-	damaged-dock:
-		Start: 3
-		ZOffset: 512
 	patch:
 		Filename: content/shared/buildings/water_base/building_water_base_patch.png
 

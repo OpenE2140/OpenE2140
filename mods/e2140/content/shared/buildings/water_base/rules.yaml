@@ -1,5 +1,5 @@
 shared_buildings_water_base:
-	Inherits: ^CoreFactory
+	Inherits: ^CoreBuilding
 	Tooltip:
 		Name: Water Base
 	Health:
@@ -23,38 +23,8 @@ shared_buildings_water_base:
 			BottomRight: 1024, 1024
 	Selectable:
 		Bounds: 2064, 1984, 0,220
-	Production:
-		Produces: Ship.ED, Ship.UCS
-	-ProductionQueue:
-	ProductionQueue@ED:
-		Type: Ship.ED
-		Factions: ed
-		Group: Ship
-		LowPowerModifier: 150
-		ReadyAudio: ProductionComplete
-		QueuedAudio: ProductionStarted
-		OnHoldAudio: ProductionInterrupted
-		CancelledAudio: ProductionCancelled
-		InfiniteBuildLimit: 10
-	ProductionQueue@UCS:
-		Type: Ship.UCS
-		Factions: ucs
-		Group: Ship
-		LowPowerModifier: 150
-		ReadyAudio: ProductionComplete
-		QueuedAudio: ProductionStarted
-		OnHoldAudio: ProductionInterrupted
-		CancelledAudio: ProductionCancelled
-		InfiniteBuildLimit: 10
-	ProductionBar@ED:
-		ProductionType: Ship.ED
-	ProductionBar@UCS:
-		ProductionType: Ship.UCS
+	WaterBaseBuilding:
 	ProvidesPrerequisite:
-	Exit:
-		SpawnOffset: -496,1690,0
-		Facing: 500
-		ExitCell: 0,2
 	GrantConditionOnDamageState:
 		Condition: damaged
 	# Water Base has loose remappable pixels when it's damaged. This overlay sprite covers that.

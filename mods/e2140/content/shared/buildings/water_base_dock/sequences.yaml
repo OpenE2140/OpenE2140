@@ -1,0 +1,9 @@
+shared_buildings_water_base_dock:
+	Defaults:
+		Filename: building_water_base.vspr
+		Offset: 4,0,0
+		ZOffset: 1536
+	idle:
+		Start: 2
+	damaged-idle:
+		Start: 3

@@ -6,6 +6,7 @@ Rules:
 	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/buildings/research_center/rules.yaml
 	e2140|content/shared/buildings/water_base/rules.yaml
+	e2140|content/shared/buildings/water_base_dock/rules.yaml
 	e2140|content/shared/buildings/refinery/rules.yaml
 	e2140|content/shared/buildings/shelter/rules.yaml
 	e2140|content/shared/buildings/mine/rules.yaml	
@@ -31,6 +32,7 @@ Sequences:
 	e2140|content/shared/buildings/power_plant/sequences.yaml
 	e2140|content/shared/buildings/research_center/sequences.yaml
 	e2140|content/shared/buildings/water_base/sequences.yaml
+	e2140|content/shared/buildings/water_base_dock/sequences.yaml
 	e2140|content/shared/buildings/refinery/sequences.yaml
 	e2140|content/shared/buildings/shelter/sequences.yaml
 	e2140|content/shared/buildings/mine/sequences.yaml
