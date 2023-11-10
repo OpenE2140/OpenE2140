@@ -105,3 +105,10 @@ public interface ICustomBuildingInfo
 
 	IEnumerable<CPos> Tiles(CPos location);
 }
+
+public interface INotifyBuildingRepair
+{
+    void RepairStarted(Actor self);
+
+    void RepairInterrupted(Actor self);
+}
