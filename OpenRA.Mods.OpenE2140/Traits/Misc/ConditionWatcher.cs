@@ -46,9 +46,9 @@ public class ConditionWatcher : IObservesVariables
 			var newState = this.Condition.Evaluate(conditions);
 			if (newState != this.IsEnabled)
 			{
-				this.OnChange(newState);
-
 				this.IsEnabled = newState;
+
+				this.OnChange(newState);
 			}
 		}
 	}

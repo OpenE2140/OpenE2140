@@ -4,6 +4,8 @@ shared_buildings_water_base_dock:
 		Name: Water Base Dock
 	Health:
 		HP: 900
+	Power:
+		Amount: -200
 	Building:
 		Dimensions: 1,2
 		Footprint: x +
@@ -24,8 +26,7 @@ shared_buildings_water_base_dock:
 		Produces: Ship.ED, Ship.UCS
 		RequiresCondition: !Transforming
 		# TODO power
-		PauseOnCondition: IsDead
-		# PauseOnCondition: !Powered || IsDead
+		PauseOnCondition: !Powered || IsDead
 		ExitWaypoint: 0,1,0
 	ProvidesPrerequisite:
 	MarkActorProducer:
@@ -82,13 +83,15 @@ shared_buildings_water_base_dock:
 		ExitCell: 1,2
 	Targetable:
 		TargetTypes: Ground, Water, Structure
-	-Power:
 	# ToggleConditionOnOrder: ???
 	# TODO: disable selection decorations
-	-SelectionDecorations:
+	# -SelectionDecorations:
 	-ActorLostNotification:
 	-WithBuildingRepairDecoration:
 	-WithDecoration@PowerDown:
+	ToggleConditionOnOrder:
+		-DisabledSpeech:
+		-EnabledSpeech:
 	RepairableBuilding:
 		-RequiresCondition:
 		-RepairingNotification:

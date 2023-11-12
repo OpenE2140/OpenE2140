@@ -14,7 +14,9 @@
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.Misc;
 using OpenRA.Primitives;
+using OpenRA.Support;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
@@ -27,12 +29,15 @@ public class WaterBaseDockInfo : TraitInfo, Requires<RepairableBuildingInfo>
 	}
 }
 
-public class WaterBaseDock : INotifySelected, INotifyDamage, INotifyBuildingRepair
+public class WaterBaseDock : INotifySelected, INotifyDamage, INotifyBuildingRepair, IObservesVariables
 {
 	public const string WaterBaseDockFakeRepairDamageType = "FakeRepair";
 
+	private static readonly BooleanExpression PoweredDown = new BooleanExpression("PoweredDown");
+
 	private readonly Actor self;
 	private readonly RepairableBuilding repairBuilding;
+	private readonly ConditionWatcher watcher;
 
 	// TODO: shouldn't this be not null?
 	private WaterBaseBuilding? waterBaseBuilding;
@@ -54,7 +59,11 @@ public class WaterBaseDock : INotifySelected, INotifyDamage, INotifyBuildingRepa
 			});
 		}
 		this.repairBuilding = this.self.Trait<RepairableBuilding>();
+		this.watcher = new ConditionWatcher()
+			.Watch(PoweredDown, x => this.waterBaseBuilding?.OnDockPoweredDown(x));
 	}
+
+	IEnumerable<VariableObserver> IObservesVariables.GetVariableObservers() => this.watcher.GetVariableObservers();
 
 	void INotifyDamage.Damaged(Actor self, AttackInfo e)
 	{
@@ -101,6 +110,12 @@ public class WaterBaseDock : INotifySelected, INotifyDamage, INotifyBuildingRepa
 	internal void OnBaseRepairInterrupted()
 	{
 		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
+	}
+
+	internal void OnBasePoweredDown(bool isEnabled)
+	{
+		if (this.watcher.IsEnabled(PoweredDown) != isEnabled)
+			WaterBaseUtils.TogglePoweredDownState(this.self);
 	}
 }
 

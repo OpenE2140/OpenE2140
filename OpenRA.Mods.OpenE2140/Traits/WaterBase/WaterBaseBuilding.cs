@@ -13,7 +13,9 @@
 
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.Misc;
 using OpenRA.Primitives;
+using OpenRA.Support;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
@@ -26,12 +28,15 @@ public class WaterBaseBuildingInfo : TraitInfo, Requires<RepairableBuildingInfo>
 	}
 }
 
-public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDamage, INotifyBuildingRepair
+public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDamage, INotifyBuildingRepair, IObservesVariables
 {
 	public const string WaterBaseDamageSyncType = "WaterBaseDamageSync";
 
+	private static readonly BooleanExpression PoweredDown = new BooleanExpression("PoweredDown");
+
 	private readonly Actor self;
-    private readonly RepairableBuilding repairBuilding;
+	private readonly RepairableBuilding repairBuilding;
+	private readonly ConditionWatcher watcher;
 
 	public Actor? DockActor { get; private set; }
 	public bool IsRepairActive => this.repairBuilding.RepairActive;
@@ -41,8 +46,12 @@ public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDa
 	public WaterBaseBuilding(Actor self)
 	{
 		this.self = self;
-        this.repairBuilding = self.Trait<RepairableBuilding>();
-    }
+		this.repairBuilding = self.Trait<RepairableBuilding>();
+		this.watcher = new ConditionWatcher()
+			.Watch(PoweredDown, x => this.waterBaseDock?.OnBasePoweredDown(x));
+	}
+
+	IEnumerable<VariableObserver> IObservesVariables.GetVariableObservers() => this.watcher.GetVariableObservers();
 
 	internal void AssignDock(Actor self, Actor dockActor)
 	{
@@ -103,5 +112,11 @@ public class WaterBaseBuilding : INotifyOwnerChanged, INotifySelected, INotifyDa
 	internal void OnDockRepairInterrupted()
 	{
 		this.repairBuilding.RepairBuilding(this.self, this.self.Owner);
+	}
+
+	internal void OnDockPoweredDown(bool isEnabled)
+	{
+		if (this.watcher.IsEnabled(PoweredDown) != isEnabled)
+			WaterBaseUtils.TogglePoweredDownState(this.self);
 	}
 }

@@ -4,8 +4,8 @@ shared_buildings_water_base:
 		Name: Water Base
 	Health:
 		HP: 900
-	Power:
-		Amount: -200
+	# Power is defined on the dock actor, the main building's power is just faked.
+	-Power:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
