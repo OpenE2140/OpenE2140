@@ -42,4 +42,12 @@ public static class ActorExtensions
 
 		return traitOrDefault;
 	}
+
+	public static void GrantOrRevokeCondition(this Actor actor, ref int token, bool isEnabled, string condition)
+	{
+		if (isEnabled && token == Actor.InvalidConditionToken)
+			token = actor.GrantCondition(condition);
+		else if (!isEnabled && token != Actor.InvalidConditionToken)
+			token = actor.RevokeCondition(token);
+	}
 }
