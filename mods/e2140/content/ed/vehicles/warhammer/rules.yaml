@@ -40,6 +40,9 @@ ed_vehicles_warhammer:
 		Count: 6
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_warhammer_husk
+	# Warhammer needs special offsets for its tracks.
+	LeavesTrackTrails:
+		Sequences: track_warhammer
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 13
