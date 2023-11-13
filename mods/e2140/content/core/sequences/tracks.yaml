@@ -353,3 +353,83 @@ tracks:
 				Frames: 21
 				Offset: 0,5
 				FlipY: True
+	track_warhammer:
+		Combine:
+			0:
+				Filename: tracks-wasteland.vspr
+				Frames: 10
+			1:
+				Filename: tracks-wasteland.vspr
+				Frames: 11
+				Offset: 0,4
+			2:
+				Filename: tracks-wasteland.vspr
+				Frames: 12
+				Offset: 0,4
+			3:
+				Filename: tracks-wasteland.vspr
+				Frames: 13
+				Offset: 0,4
+			4:
+				Filename: tracks-wasteland.vspr
+				Frames: 14
+				Offset: 0,4
+			5:
+				Filename: tracks-wasteland.vspr
+				Frames: 13
+				FlipX: True
+				Offset: 0,4
+			6:
+				Filename: tracks-wasteland.vspr
+				Frames: 12
+				FlipX: True
+				Offset: 0,4
+			7:
+				Filename: tracks-wasteland.vspr
+				Frames: 11
+				FlipX: True
+				Offset: 0,4
+			8:
+				Filename: tracks-wasteland.vspr
+				Frames: 10
+				FlipX: True
+				Offset: 0,8
+			9:
+				Filename: tracks-wasteland.vspr
+				Frames: 11
+				FlipX: True
+				FlipY: True
+				Offset: 0,8
+			10:
+				Filename: tracks-wasteland.vspr
+				Frames: 12
+				FlipX: True
+				FlipY: True
+				Offset: 0,8
+			11:
+				Filename: tracks-wasteland.vspr
+				Frames: 13
+				FlipX: True
+				FlipY: True
+				Offset: 0,8
+			12:
+				Filename: tracks-wasteland.vspr
+				Frames: 14
+				Offset: 0,10
+				FlipX: True
+				FlipY: True
+			13:
+				Filename: tracks-wasteland.vspr
+				Frames: 13
+				Offset: 0,10
+				FlipY: True
+			14:
+				Filename: tracks-wasteland.vspr
+				Frames: 12
+				Offset: 0,10
+				FlipY: True
+			15:
+				Filename: tracks-wasteland.vspr
+				Frames: 11
+				Offset: 0,10
+				FlipY: True
