@@ -21,7 +21,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
 [Desc("Renders deploy overlay when cursor is hovered over MCU. Attach to MCU actor.")]
-public class McuDeployOverlayInfo : TraitInfo, Requires<TransformsInfo>
+public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>
 {
 	// TODO: make configurable in the Settings
 	[Desc("When true, the overlay is visible on all selected MCUs when cursor hovers over one of them (otherwise only the MCU under cursor has the overlay visible).")]
@@ -40,6 +40,7 @@ public class McuDeployOverlay : ITick, IRender
 	private readonly ActorInfo mcuActor;
 	private readonly ActorInfo buildingActor;
 	private readonly BuildingInfo buildingInfo;
+	private readonly ITransformsInfo transformsInfo;
 
 	public McuDeployOverlay(Actor self, McuDeployOverlayInfo info)
 	{
@@ -48,6 +49,7 @@ public class McuDeployOverlay : ITick, IRender
 		this.mcuActor = self.Info;
 		this.buildingActor = McuUtils.GetTargetBuilding(self.World, this.mcuActor)!;
 		this.buildingInfo = this.buildingActor.TraitInfo<BuildingInfo>();
+		this.transformsInfo = self.Info.TraitInfo<ITransformsInfo>();
 	}
 
 	void ITick.Tick(Actor self)
@@ -58,7 +60,7 @@ public class McuDeployOverlay : ITick, IRender
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 	{
 		if (!self.World.Selection.Contains(self) || self.World.OrderGenerator is null)
-			return Enumerable.Empty<IRenderable>();
+			yield break;
 
 		var mi = new MouseInput
 		{
@@ -81,11 +83,11 @@ public class McuDeployOverlay : ITick, IRender
 		}
 
 		if (!found)
-			return Enumerable.Empty<IRenderable>();
+			yield break;
 
 		// code will likely need to change in order to properly support preview for Mine and Water Base (or will need custom previews)
 
-		var topLeft = self.Location + self.Trait<Transforms>().Info.Offset;
+		var topLeft = self.Location + this.transformsInfo.Offset;
 
 		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 
@@ -97,6 +99,12 @@ public class McuDeployOverlay : ITick, IRender
 			footprint.Add(t, self.World.IsCellBuildable(t, this.buildingActor, this.buildingInfo, self) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 		}
 
+		foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
+			yield return r;
+	}
+
+	private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
+	{
 		var previewGeneratorInfos = this.mcuActor.TraitInfos<IPlaceBuildingPreviewGeneratorInfo>();
 		if (previewGeneratorInfos.Any())
 		{
@@ -110,16 +118,13 @@ public class McuDeployOverlay : ITick, IRender
 				foreach (var o in api.ActorPreviewInits(this.buildingActor, ActorPreviewType.PlaceBuilding))
 					td.Add(o);
 
-			var result = Enumerable.Empty<IRenderable>();
 			foreach (var gen in previewGeneratorInfos)
 			{
 				var preview = gen.CreatePreview(wr, this.buildingActor, td);
-				result = result.Concat(preview.Render(wr, topLeft, footprint));
+				foreach (var r in preview.Render(wr, topLeft, footprint))
+					yield return r;
 			}
-			return result;
 		}
-
-		return Enumerable.Empty<IRenderable>();
 	}
 
 	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)

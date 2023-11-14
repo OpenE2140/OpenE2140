@@ -22,9 +22,9 @@ public static class McuUtils
 		if (!mcuActor.HasTraitInfo<McuInfo>())
 			throw new ArgumentException($"Actor '{mcuActor.Name}' does not have Mcu trait (maybe it's not an MCU?)", nameof(mcuActor));
 
-		var transforms = mcuActor.TraitInfos<TransformsInfo>().FirstOrDefault();
+		var targetActor = GetTargetBuilding(mcuActor);
 
-		return transforms != null ? world.Map.Rules.Actors[transforms.IntoActor] : null;
+		return targetActor != null ? world.Map.Rules.Actors[targetActor] : null;
 	}
 
 	public static ActorInfo? GetMcuActor(OpenRA.World world, ActorInfo buildingActor)
@@ -34,6 +34,11 @@ public static class McuUtils
 
 		return world.Map.Rules.Actors.Values
 			.Where(a => a.HasTraitInfo<McuInfo>())
-			.FirstOrDefault(a => a.TraitInfos<ITransformsInfo>().Any(t => t.IntoActor == buildingActor.Name));
+			.FirstOrDefault(a => GetTargetBuilding(a) == buildingActor.Name);
+	}
+
+	private static string? GetTargetBuilding(ActorInfo mcuActor)
+	{
+		return mcuActor.TraitInfoOrDefault<ITransformsInfo>()?.IntoActor;
 	}
 }
