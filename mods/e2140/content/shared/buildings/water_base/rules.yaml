@@ -50,8 +50,14 @@ shared_mcu_water_base:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
 		Name: Mobile Water Base
-	Transforms:
+	-Transforms:
+	WaterBaseTransforms:
 		IntoActor: shared_buildings_water_base
+		DockActor: shared_buildings_water_base_dock
+		Offset: -1, -1
+		DeployBlockedCursor: generic-blocked
+		Facing: 512
+		Voice: Unload
 	Valued:
 		Cost: 1200
 	Buildable:

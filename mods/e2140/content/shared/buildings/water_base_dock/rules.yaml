@@ -12,6 +12,12 @@ shared_buildings_water_base_dock:
 		TerrainTypes: Water
 		LocalCenterOffset: 0,-400,0
 	HitShape:
+	WithSpriteBody:
+		RequiresCondition: !Transforming
+	TransformSequence:
+		Image: core_buildingsequence_small
+		Condition: Transforming
+		ConstructionTime: 135
 	NotifyRepairCallback:
 	WaterBaseDock:
 	# This actor explodes when killed.
