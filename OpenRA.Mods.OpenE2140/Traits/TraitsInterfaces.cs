@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Primitives;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits;
 
@@ -37,3 +38,17 @@ public interface IProduceActorInitModifier
     /// </remarks>
     void ModifyActorInit(Actor self, TypeDictionary init);
 }
+
+[RequireExplicitImplementation]
+public interface ITransformsInfo : ITraitInfoInterface
+{
+	string? IntoActor { get; }
+
+	CVec Offset { get; }
+}
+
+public interface ITransforms
+{
+	bool CanDeploy(Actor self);
+}
+
