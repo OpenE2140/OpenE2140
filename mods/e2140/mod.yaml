@@ -63,6 +63,7 @@ ServerTraits:
 	PlayerPinger
 	MasterServerPinger
 	LobbySettingsNotification
+	SkirmishLogic
 
 MapGrid:
 	TileSize: 64, 64
