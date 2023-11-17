@@ -2,7 +2,7 @@
 ^CoreVisibleActor:
 	# All our actors are sprite based and need to render sprites.
 	RenderSprites:
-        FactionImages:
+		FactionImages:
 	# At default fog hides every actor.
 	HiddenUnderFog:
 	# Allow actors to rotate and use facings.
@@ -763,7 +763,7 @@
 		RequiresCondition: damaged
 	# Give a condition to infantry units which are inside BIO.
 	CustomPassenger:
-		CargoConditions: 
+		CargoConditions:
 			ed_vehicles_bio: insidebio
 
 ^VulnerableToRadiation:

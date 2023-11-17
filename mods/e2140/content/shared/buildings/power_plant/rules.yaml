@@ -96,6 +96,6 @@ power_plant_crater:
 	# Power Plant crater deals damage to vulnerable units around it (such as Androids or Civils).
 	FireWarheads:
 		Weapons: PowerPlantCraterRadiation
-	 	Interval: 20
+		Interval: 20
 	# Power Plant crater has specific radar signature.
 	CraterRadarSignature:

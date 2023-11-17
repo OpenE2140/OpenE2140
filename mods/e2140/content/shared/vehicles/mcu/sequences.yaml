@@ -1,4 +1,4 @@
-﻿shared_mcu:
+shared_mcu:
 	Defaults:
 		Filename: vehicle_mcu.vspr
 	idle:

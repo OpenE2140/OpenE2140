@@ -10,7 +10,7 @@ weapon_debris:
 		FrozenImage: debris_ground
 		FrozenSequences: debris1, debris2, debris3, debris4, debris5, debris6
 		FreezeForTicks: 15
-		Palette: 
+		Palette:
 		TrailPalette:
 		Shadow: true
 		ShadowColor: 00000046

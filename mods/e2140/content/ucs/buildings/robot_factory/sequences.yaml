@@ -32,7 +32,7 @@ ucs_buildings_robot_factory:
 		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
 		Frames: 1,0
 		Length: 2
-		Tick: 100	
+		Tick: 100
 	deploy:
 		Filename: content/ucs/buildings/robot_factory/mcu_deploy.png
 		Length: 30

@@ -7,5 +7,5 @@ weapon_blood:
 		LaunchAngle: 125, 175
 		Image: blood
 		Sequences: blood1, blood2, blood3, blood4
-		Palette: 
+		Palette:
 		TrailPalette:

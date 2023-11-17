@@ -31,7 +31,7 @@ ed_vehicles_miner:
 ed_vehicles_miner_husk:
 	idle:
 		Filename: vehicle_miner_husk.vspr
-		Facings: -16	
+		Facings: -16
 		ZOffset: -512
 	turret:
 		Filename: turret_unknown_husk.vspr

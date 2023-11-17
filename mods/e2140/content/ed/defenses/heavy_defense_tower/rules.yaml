@@ -40,7 +40,7 @@ ed_defenses_heavy_defense_tower:
 ed_mcu_heavy_defense_tower:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:
-		Name: Mobile Heavy Def. Tower 
+		Name: Mobile Heavy Def. Tower
 	Transforms:
 		Offset: 0,0
 		IntoActor: ed_defenses_heavy_defense_tower
@@ -53,4 +53,4 @@ ed_mcu_heavy_defense_tower:
 		BuildPaletteOrder: 20
 		Prerequisites: HeavyRockets
 	WithTextDecoration:
-		Text: Heavy Def. Tower 
+		Text: Heavy Def. Tower
