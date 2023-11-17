@@ -53,7 +53,7 @@ public class ProductionTooltipLogic : ChromeLogic
 		var descFont = Game.Renderer.Fonts[descLabel.Font];
 		var formatBuildTime = new CachedTransform<int, string>(time => WidgetUtils.FormatTime(time, world.Timestep));
 
-		var padding = nameLabel.Bounds.Location;
+		var padding = nameLabel.Bounds.ToRectangle().Location;
 		var iconWidth = timeIcon.Bounds.Width;
 
 		tooltipContainer.BeforeRender = () =>
@@ -100,7 +100,7 @@ public class ProductionTooltipLogic : ChromeLogic
 			nameLabel.Text = tooltip?.Name ?? actor.Name;
 
 			var nameSize = font.Measure(nameLabel.Text);
-			nameLabel.Bounds = new Rectangle(x, y, nameSize.X, nameSize.Y);
+			nameLabel.Bounds = new WidgetBounds(x, y, nameSize.X, nameSize.Y);
 
 			y += nameLabel.Bounds.Height + padding.Y;
 			x2 = Math.Max(x2, nameLabel.Bounds.Right);
@@ -113,7 +113,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				hotkeyLabel.Text = $"({hotkey.DisplayString()})";
 
 				var hotkeySize = font.Measure(hotkeyLabel.Text);
-				hotkeyLabel.Bounds = new Rectangle(nameLabel.Bounds.Right + padding.X, nameLabel.Bounds.Y, hotkeySize.X, hotkeySize.Y);
+				hotkeyLabel.Bounds = new WidgetBounds(nameLabel.Bounds.Right + padding.X, nameLabel.Bounds.Y, hotkeySize.X, hotkeySize.Y);
 
 				x2 = Math.Max(x2, hotkeyLabel.Bounds.Right);
 			}
@@ -127,7 +127,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				requiresLabel.TextColor = Color.Red;
 
 				var requiredSize = font.Measure(requiresLabel.Text);
-				requiresLabel.Bounds = new Rectangle(x, y, requiredSize.X, requiredSize.Y);
+				requiresLabel.Bounds = new WidgetBounds(x, y, requiredSize.X, requiredSize.Y);
 
 				y += requiresLabel.Bounds.Height + padding.Y;
 				x2 = Math.Max(x2, requiresLabel.Bounds.Right);
@@ -141,7 +141,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				descLabel.Text = buildable.Description.Replace("\\n", "\n");
 
 				var descSize = descFont.Measure(descLabel.Text);
-				descLabel.Bounds = new Rectangle(x, y, descSize.X, descSize.Y);
+				descLabel.Bounds = new WidgetBounds(x, y, descSize.X, descSize.Y);
 
 				y += descLabel.Bounds.Height + padding.Y;
 				x2 = Math.Max(x2, descLabel.Bounds.Right);
@@ -166,7 +166,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				costIcon.Bounds.Y = y;
 
 				var costSize = font.Measure(costLabel.Text);
-				costLabel.Bounds = new Rectangle(x3, y, costSize.X, costSize.Y);
+				costLabel.Bounds = new WidgetBounds(x3, y, costSize.X, costSize.Y);
 
 				y += costLabel.Bounds.Height + padding.Y;
 				x2 = Math.Max(x2, costLabel.Bounds.Right);
@@ -183,7 +183,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				timeIcon.Bounds.Y = y;
 
 				var timeSize = font.Measure(timeLabel.Text);
-				timeLabel.Bounds = new Rectangle(x3, y, timeSize.X, timeSize.Y);
+				timeLabel.Bounds = new WidgetBounds(x3, y, timeSize.X, timeSize.Y);
 
 				y += timeLabel.Bounds.Height + padding.Y;
 				x2 = Math.Max(x2, timeLabel.Bounds.Right);
@@ -203,7 +203,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				powerIcon.Bounds.Y = y;
 
 				var powerSize = font.Measure(powerLabel.Text);
-				powerLabel.Bounds = new Rectangle(x3, y, powerSize.X, powerSize.Y);
+				powerLabel.Bounds = new WidgetBounds(x3, y, powerSize.X, powerSize.Y);
 
 				y += powerLabel.Bounds.Height + padding.Y;
 				x2 = Math.Max(x2, powerLabel.Bounds.Right);
