@@ -68,20 +68,3 @@ shared_mcu_water_base:
 		Prerequisites: Engine
 	WithTextDecoration:
 		Text: Water Base
-	Mobile:
-		Locomotor: vehicleWaterMcu
-
-# TODO: Temporary solution so MCU can deploy on shore and water tiles.
-^CoreWorld:
-	Locomotor@vehicleWaterMcu:
-		Name: vehicleWaterMcu
-		Crushes: infantry, mine
-		CrushDamageTypes: Crush
-		TerrainSpeeds:
-			Clear: 100
-			Sand: 50
-			SandEdge: 50
-			Road: 100
-			AsphaltRoad: 100
-			Water: 100
-			Shore: 100
