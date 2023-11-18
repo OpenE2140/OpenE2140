@@ -58,6 +58,8 @@ shared_mcu_water_base:
 		DeployBlockedCursor: generic-blocked
 		Facing: 512
 		Voice: Unload
+	# Water Base has custom MCU deploy overlay.
+	WaterBaseMcuDeployOverlay:
 	Valued:
 		Cost: 1200
 	Buildable:
