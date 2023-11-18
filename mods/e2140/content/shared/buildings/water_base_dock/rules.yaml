@@ -20,6 +20,13 @@ shared_buildings_water_base_dock:
 		ConstructionTime: 135
 	NotifyRepairCallback:
 	WaterBaseDock:
+	# Deployment preview: render building preview and building's footprint (using "overlay" sprites).
+	ActorPreviewPlaceBuildingPreview:
+		PreviewAlpha: 0.65
+		FootprintUnderPreview: None
+		ZOffset: -256
+	# MCU deployment overlay: render rectangle of the dock's footprint.
+	RectangleMcuDeployOverlay:
 	# This actor explodes when killed.
 	Explodes:
 		Weapon: WaterBaseExploding

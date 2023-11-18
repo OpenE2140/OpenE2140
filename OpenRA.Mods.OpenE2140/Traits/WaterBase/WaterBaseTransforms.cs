@@ -327,19 +327,12 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		private readonly bool queued;
 		private readonly Actor self;
 		private readonly WaterBaseTransforms transforms;
-		private readonly Sprite validTile;
-		private readonly float validAlpha;
 
 		public PlaceDockOrderGenerator(Actor self, bool queued)
 		{
 			this.queued = queued;
 			this.self = self;
 			this.transforms = self.Trait<WaterBaseTransforms>();
-
-			var sequences = self.World.Map.Sequences;
-			var validSequence = sequences.GetSequence("overlay", "build-valid");
-			this.validTile = validSequence.GetSprite(0);
-			this.validAlpha = validSequence.GetAlpha(0);
 		}
 
 		protected override IEnumerable<Order> OrderInner(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
@@ -366,7 +359,40 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		{
 			var lastMousePos = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
 
-			yield return new SpriteRenderable(this.validTile, world.Map.CenterOfCell(lastMousePos), WVec.Zero, -511, null, 1f, this.validAlpha, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+			var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
+
+			foreach (var t in this.transforms.DockBuildingInfo.Tiles(lastMousePos))
+			{
+				footprint.Add(t, this.transforms.CanPlaceDock(lastMousePos) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+			}
+
+			foreach (var r in this.RenderPlaceBuildingPreviews(this.self, wr, lastMousePos, footprint))
+				yield return r;
+		}
+
+		// TODO: maybe refactor with McuDeployOverlay ?
+		private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
+		{
+			var previewGeneratorInfos = this.transforms.DockActorInfo.TraitInfos<IPlaceBuildingPreviewGeneratorInfo>();
+			if (previewGeneratorInfos.Any())
+			{
+				var td = new TypeDictionary()
+				{
+					new FactionInit(self.Owner.Faction.InternalName),
+					new OwnerInit(self.Owner),
+				};
+
+				foreach (var api in this.transforms.DockActorInfo.TraitInfos<IActorPreviewInitInfo>())
+					foreach (var o in api.ActorPreviewInits(this.transforms.DockActorInfo, ActorPreviewType.PlaceBuilding))
+						td.Add(o);
+
+				foreach (var gen in previewGeneratorInfos)
+				{
+					var preview = gen.CreatePreview(wr, this.transforms.DockActorInfo, td);
+					foreach (var r in preview.Render(wr, topLeft, footprint))
+						yield return r;
+				}
+			}
 		}
 
 		protected override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, OpenRA.World world) { yield break; }
