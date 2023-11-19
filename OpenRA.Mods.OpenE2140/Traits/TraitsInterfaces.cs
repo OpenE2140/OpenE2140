@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Orders;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -57,6 +58,18 @@ public interface ITransformsInfo : ITraitInfoInterface
 	string? IntoActor { get; }
 
 	CVec Offset { get; }
+}
+
+public interface ICustomMcuDeployOverlayGenerator
+{
+	ICustomMcuDeployOverlay CreateOverlay(Actor self, WorldRenderer wr, ActorInfo intoActor);
+}
+
+public interface ICustomMcuDeployOverlay
+{
+	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
+
+	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
 }
 
 public interface ITransforms

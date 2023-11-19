@@ -29,7 +29,7 @@ public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>
 	}
 }
 
-public class McuDeployOverlay : ITick, ITransformsPreview
+public class McuDeployOverlay : ITransformsPreview
 {
 	public McuDeployOverlayInfo Info { get; }
 
@@ -48,28 +48,41 @@ public class McuDeployOverlay : ITick, ITransformsPreview
 		this.transformsInfo = self.Info.TraitInfo<ITransformsInfo>();
 	}
 
-	void ITick.Tick(Actor self)
-	{
-		// Currently noop
-	}
 	public IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
-		// code will likely need to change in order to properly support preview for Mine and Water Base (or will need custom previews)
-
 		var topLeft = self.Location + this.transformsInfo.Offset;
 
-		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
+		var footprint = this.GetBuildingFootprint(self, topLeft);
 
-		// TODO: resources:
-		// footprint.Add(t, MakeCellType(isCloseEnough && world.IsCellBuildable(t, actorInfo, buildingInfo) && (resourceLayer == null || resourceLayer.GetResource(t).Type == null)));
+		foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
+			yield return r;
+
+		foreach (var r in this.RenderTransformsPreviews(self, wr, o => o.Render(self, wr, topLeft, footprint)))
+			yield return r;
+	}
+
+	public IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr)
+	{
+		var topLeft = self.Location + this.transformsInfo.Offset;
+		var footprint = this.GetBuildingFootprint(self, topLeft);
+
+		//foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
+		//	yield return r;
+
+		foreach (var r in this.RenderTransformsPreviews(self, wr, o => o.RenderAnnotations(self, wr, topLeft, footprint)))
+			yield return r;
+	}
+
+	private Dictionary<CPos, PlaceBuildingCellType> GetBuildingFootprint(Actor self, CPos topLeft)
+	{
+		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 
 		foreach (var t in this.buildingInfo.Tiles(topLeft))
 		{
 			footprint.Add(t, self.World.IsCellBuildable(t, this.buildingActor, this.buildingInfo, self) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 		}
 
-		foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
-			yield return r;
+		return footprint;
 	}
 
 	private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
@@ -93,6 +106,20 @@ public class McuDeployOverlay : ITick, ITransformsPreview
 				foreach (var r in preview.Render(wr, topLeft, footprint))
 					yield return r;
 			}
+		}
+	}
+
+	private IEnumerable<IRenderable> RenderTransformsPreviews(
+		Actor self,
+		WorldRenderer wr,
+		Func<ICustomMcuDeployOverlay, IEnumerable<IRenderable>> renderFunc)
+	{
+		var generators = self.TraitsImplementing<ICustomMcuDeployOverlayGenerator>();
+		foreach (var generator in generators)
+		{
+			var preview = generator.CreateOverlay(self, wr, this.buildingActor);
+			foreach (var r in renderFunc(preview))
+				yield return r;
 		}
 	}
 }
