@@ -17,6 +17,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Research;
 using OpenRA.Primitives;
@@ -162,7 +163,7 @@ public class EncyclopediaLogic : ChromeLogic
 
 		// Check if there's MCU for this actor as for some information we don't really want to use the building actor.
 		var mcu = this.modData.DefaultRules.Actors.Values.Where(actor => actor.HasTraitInfo<McuInfo>())
-			.FirstOrDefault(other => other.TraitInfoOrDefault<TransformsInfo>()?.IntoActor == actor.Name);
+			.FirstOrDefault(other => other.TraitInfoOrDefault<ITransformsInfo>()?.IntoActor == actor.Name);
 
 		// Pick player from shell map, which would become owner for the purposes of actor preview.
 		// Player is chosen based on which faction is considered "default" for it (e.g. ST 01B belongs to ED faction, while RAPTOR ES to UCS faction).

@@ -40,6 +40,17 @@ public interface IProduceActorInitModifier
     void ModifyActorInit(Actor self, TypeDictionary init);
 }
 
+public interface INotifyTransform
+{
+	void TransformCanceled(Actor self);
+
+	void BeforeTransform(Actor self);
+
+	void OnTransform(Actor self);
+
+	void AfterTransform(Actor toActor);
+}
+
 [RequireExplicitImplementation]
 public interface ITransformsInfo : ITraitInfoInterface
 {
@@ -60,4 +71,13 @@ public interface IOrderPreviewRender
 	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
 
 	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
+}
+
+public interface ITransformsPreview
+{
+	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr) { yield break; }
+
+	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
+
+	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
 }

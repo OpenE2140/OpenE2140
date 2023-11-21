@@ -34,6 +34,6 @@ public static class McuUtils
 
 		return world.Map.Rules.Actors.Values
 			.Where(a => a.HasTraitInfo<McuInfo>())
-			.FirstOrDefault(a => a.TraitInfos<TransformsInfo>().Any(t => t.IntoActor == buildingActor.Name));
+			.FirstOrDefault(a => a.TraitInfos<ITransformsInfo>().Any(t => t.IntoActor == buildingActor.Name));
 	}
 }
