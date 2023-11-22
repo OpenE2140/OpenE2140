@@ -23,17 +23,13 @@ namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 [Desc("Renders deploy overlay when cursor is hovered over MCU. Attach to MCU actor.")]
 public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>
 {
-	// TODO: make configurable in the Settings
-	[Desc("When true, the overlay is visible on all selected MCUs when cursor hovers over one of them (otherwise only the MCU under cursor has the overlay visible).")]
-	public readonly bool VisibleOnAllSelectedMcus = true;
-
 	public override object Create(ActorInitializer init)
 	{
 		return new McuDeployOverlay(init.Self, this);
 	}
 }
 
-public class McuDeployOverlay : ITick, IRender
+public class McuDeployOverlay : ITick, ITransformsPreview
 {
 	public McuDeployOverlayInfo Info { get; }
 
@@ -57,34 +53,8 @@ public class McuDeployOverlay : ITick, IRender
 		// Currently noop
 	}
 
-	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> ITransformsPreview.RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
-		if (!self.World.Selection.Contains(self) || self.World.OrderGenerator is null)
-			yield break;
-
-		var mi = new MouseInput
-		{
-			Location = Viewport.LastMousePos,
-			Button = Game.Settings.Game.MouseButtonPreference.Action,
-			Modifiers = Game.GetModifierKeys()
-		};
-
-		var cell = wr.Viewport.ViewToWorld(mi.Location);
-		var worldPixel = wr.Viewport.ViewToWorldPx(mi.Location);
-		var found = false;
-		foreach (var actor in self.World.Selection.Actors)
-		{
-			var orders = self.World.OrderGenerator.Order(self.World, self.Location, worldPixel, mi);
-			if (orders.Any(o => o.OrderString == "DeployTransform" && (o.Subject == self || this.Info.VisibleOnAllSelectedMcus)))
-			{
-				found = true;
-				break;
-			}
-		}
-
-		if (!found)
-			yield break;
-
 		// code will likely need to change in order to properly support preview for Mine and Water Base (or will need custom previews)
 
 		var topLeft = self.Location + this.transformsInfo.Offset;
@@ -125,10 +95,5 @@ public class McuDeployOverlay : ITick, IRender
 					yield return r;
 			}
 		}
-	}
-
-	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)
-	{
-		return Enumerable.Empty<Rectangle>();
 	}
 }
