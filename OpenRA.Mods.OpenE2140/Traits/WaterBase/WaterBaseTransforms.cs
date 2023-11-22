@@ -18,6 +18,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using static OpenRA.Mods.OpenE2140.Traits.Mcu.Mcu;
@@ -88,15 +89,18 @@ public class WaterBaseTransformsInfo : PausableConditionalTraitInfo, ITransforms
 	}
 }
 
-public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, IOrderPreviewRender, INotifyTransform, ITransforms
+public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsInfo>,
+	IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, IOrderPreviewRender, INotifyTransform, ITransforms, IRenderAboveShroud, IRenderAnnotations
 {
 	private const string BeginPlaceDockOrderID = "BeginPlaceWaterBaseDock";
 	private const string BuildWaterBaseOrderID = "BuildWaterBase";
 
 	private readonly Actor self;
 	private readonly string faction;
+    
+	private McuDeployOverlay? mcuDeployOverlay;
 
-	public ActorInfo ActorInfo { get; private set; }
+    public ActorInfo ActorInfo { get; private set; }
 	public BuildingInfo BuildingInfo { get; private set; }
 	public ActorInfo DockActorInfo { get; private set; }
 	public BuildingInfo DockBuildingInfo { get; private set; }
@@ -111,6 +115,13 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		this.BuildingInfo = this.ActorInfo.TraitInfoOrDefault<BuildingInfo>();
 		this.DockBuildingInfo = this.DockActorInfo.TraitInfoOrDefault<BuildingInfo>();
 		this.faction = init.GetValue<FactionInit, string>(this.self.Owner.Faction.InternalName);
+	}
+
+	protected override void Created(Actor self)
+	{
+		base.Created(self);
+
+		this.mcuDeployOverlay = this.self.TraitOrDefault<McuDeployOverlay>();
 	}
 
 	public string? VoicePhraseForOrder(Actor self, Order order)
@@ -346,16 +357,41 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			this.self.World.ControlGroups.AddToControlGroup(dockActor, controlGroup.Value);
 	}
 
+	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
+	{
+		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
+			return Enumerable.Empty<IRenderable>();
+
+		return this.mcuDeployOverlay.RenderAboveShroud(self, wr);
+	}
+
+	bool IRenderAboveShroud.SpatiallyPartitionable => false;
+
+	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
+	{
+		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
+			return Enumerable.Empty<IRenderable>();
+
+		return this.mcuDeployOverlay.RenderAnnotations(self, wr);
+	}
+
+	bool IRenderAnnotations.SpatiallyPartitionable => false;
+
+	private static bool IsDockPlacementActive(Actor self)
+	{
+		return self.World.OrderGenerator is PlaceDockOrderGenerator o && o.Self == self;
+	}
+
 	private class PlaceDockOrderGenerator : OrderGenerator
 	{
+		public readonly Actor Self;
 		private readonly bool queued;
-		private readonly Actor self;
 		private readonly WaterBaseTransforms transforms;
 
 		public PlaceDockOrderGenerator(Actor self, bool queued)
 		{
+			this.Self = self;
 			this.queued = queued;
-			this.self = self;
 			this.transforms = self.Trait<WaterBaseTransforms>();
 		}
 
@@ -369,7 +405,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Action && this.transforms.CanPlaceDock(cell))
 			{
-				yield return new Order(BuildWaterBaseOrderID, this.self, Target.FromCell(world, cell), this.queued);
+				yield return new Order(BuildWaterBaseOrderID, this.Self, Target.FromCell(world, cell), this.queued);
 			}
 		}
 
@@ -390,7 +426,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 				footprint.Add(t, this.transforms.CanPlaceDock(lastMousePos) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 			}
 
-			foreach (var r in this.RenderPlaceBuildingPreviews(this.self, wr, lastMousePos, footprint))
+			foreach (var r in this.RenderPlaceBuildingPreviews(this.Self, wr, lastMousePos, footprint))
 				yield return r;
 		}
 
