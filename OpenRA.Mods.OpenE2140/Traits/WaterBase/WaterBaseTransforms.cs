@@ -88,7 +88,7 @@ public class WaterBaseTransformsInfo : PausableConditionalTraitInfo, ITransforms
 	}
 }
 
-public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, INotifyTransform, ITransforms
+public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, IOrderPreviewRender, INotifyTransform, ITransforms
 {
 	private const string BeginPlaceDockOrderID = "BeginPlaceWaterBaseDock";
 	private const string BuildWaterBaseOrderID = "BuildWaterBase";
@@ -277,6 +277,30 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		}
 
 		this.self.QueueActivity(queued, this.GetTransformActivity());
+	}
+
+	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr)
+	{
+		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
+		foreach (var item in previewTraits)
+			foreach (var r in item.Render(self, wr))
+				yield return r;
+	}
+
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr)
+	{
+		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
+		foreach (var item in previewTraits)
+			foreach (var r in item.RenderAboveShroud(self, wr))
+				yield return r;
+	}
+
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr)
+	{
+		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
+		foreach (var item in previewTraits)
+			foreach (var r in item.RenderAnnotations(self, wr))
+				yield return r;
 	}
 
 	void INotifyTransform.TransformCanceled(Actor self)
