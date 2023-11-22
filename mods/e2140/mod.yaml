@@ -52,7 +52,7 @@ AssetBrowser:
 
 SpriteSequenceFormat: TilesetSpecificSpriteSequence
 
-DefaultOrderGenerator: UnitOrderGenerator
+DefaultOrderGenerator: ExtendedUnitOrderGenerator
 
 SupportsMapsFrom: e2140
 

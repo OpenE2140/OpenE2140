@@ -11,6 +11,7 @@
 
 #endregion
 
+using OpenRA.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -52,3 +53,11 @@ public interface ITransforms
 	bool CanDeploy(Actor self);
 }
 
+public interface IOrderPreviewRender
+{
+	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr);
+
+	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
+
+	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
+}
