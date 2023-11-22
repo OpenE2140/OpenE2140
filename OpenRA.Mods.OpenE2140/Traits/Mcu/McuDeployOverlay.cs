@@ -52,8 +52,7 @@ public class McuDeployOverlay : ITick, ITransformsPreview
 	{
 		// Currently noop
 	}
-
-	IEnumerable<IRenderable> ITransformsPreview.RenderAboveShroud(Actor self, WorldRenderer wr)
+	public IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
 		// code will likely need to change in order to properly support preview for Mine and Water Base (or will need custom previews)
 
