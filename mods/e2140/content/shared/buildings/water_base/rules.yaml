@@ -9,7 +9,7 @@ shared_buildings_water_base:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
-		TerrainTypes: Shore, Water
+		TerrainTypes: Clear, Shore, Road
 		LocalCenterOffset: -524,-680,0
 	BuildingCrew:
 		MaxPopulation: 4
