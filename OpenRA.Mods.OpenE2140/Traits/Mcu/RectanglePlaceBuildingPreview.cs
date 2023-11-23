@@ -13,48 +13,38 @@
 
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
-using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
-public class RectanglePlaceBuildingPreviewInfo : TraitInfo<RectanglePlaceBuildingPreview>, IPlaceBuildingPreviewGeneratorInfo
+public class RectangleMcuDeployOverlayInfo : TraitInfo<RectangleMcuDeployOverlay> { }
+
+public class RectangleMcuDeployOverlay : ICustomMcuDeployOverlayGenerator
 {
-	IPlaceBuildingPreview IPlaceBuildingPreviewGeneratorInfo.CreatePreview(WorldRenderer wr, ActorInfo ai, TypeDictionary init)
+	ICustomMcuDeployOverlay ICustomMcuDeployOverlayGenerator.CreateOverlay(Actor self, WorldRenderer wr, ActorInfo intoActor)
 	{
-		return new RectanglePlaceBuildingPreviewPreview(wr, ai);
+		return new RectangleMcuDeployOverlayRenderer();
 	}
 }
 
-public class RectanglePlaceBuildingPreview { }
-
-public class RectanglePlaceBuildingPreviewPreview : IPlaceBuildingPreview
+public class RectangleMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 {
-	private readonly WVec centerOffset;
-	private readonly int2 topLeftScreenOffset;
-
-	public RectanglePlaceBuildingPreviewPreview(WorldRenderer wr, ActorInfo ai)
+	IEnumerable<IRenderable> ICustomMcuDeployOverlay.Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
-		var world = wr.World;
-		this.centerOffset = ai.TraitInfo<BuildingInfo>().CenterOffset(world);
-		this.topLeftScreenOffset = -wr.ScreenPxOffset(this.centerOffset);
+		return Enumerable.Empty<IRenderable>();
 	}
 
-	IEnumerable<IRenderable> IPlaceBuildingPreview.Render(WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
+	IEnumerable<IRenderable> ICustomMcuDeployOverlay.RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
 		var b = GetBounds(footprint);
-		var rect = Rectangle.FromLTRB(b.topLeft.X, b.topLeft.Y, b.bottomRight.X, b.bottomRight.Y);
 
-		// Convert from WDist to pixels
-		var size = new int2(rect.Width * wr.TileSize.Width / wr.TileScale, rect.Height * wr.TileSize.Height / wr.TileScale);
-
-		var xy = wr.ScreenPxPosition(b.topLeft);
-		var renderRect = new Rectangle(xy, new Size(size.X, size.Y));
+		var size = wr.ScreenPxPosition(b.bottomRight) - wr.ScreenPxPosition(b.topLeft);
+		var renderRect = new Rectangle(wr.ScreenPxPosition(b.topLeft), new Size(size.X, size.Y));
 
 		var color = footprint.Values.Any(c => c.HasFlag(PlaceBuildingCellType.Invalid)) ? Color.Red : Color.Green;
 
-		yield return new BuildingPreviewRectangleRenderable(b.topLeft, renderRect, color);
+		yield return new BuildingOverlayRectangleRenderable(b.topLeft, renderRect, color);
 	}
 
 	private static (WPos topLeft, WPos bottomRight) GetBounds(Dictionary<CPos, PlaceBuildingCellType> footprint)
@@ -75,14 +65,5 @@ public class RectanglePlaceBuildingPreviewPreview : IPlaceBuildingPreview
 		return (new WPos(1024 * left, 1024 * top, 0),
 			new WPos(1024 * right + 1024, 1024 * bottom + 1024, 0));
 	}
-
-	IEnumerable<IRenderable> IPlaceBuildingPreview.RenderAnnotations(WorldRenderer wr, CPos topLeft)
-	{
-		return Enumerable.Empty<IRenderable>();
-	}
-
-	void IPlaceBuildingPreview.Tick() { }
-
-	int2 IPlaceBuildingPreview.TopLeftScreenOffset => this.topLeftScreenOffset;
 }
 

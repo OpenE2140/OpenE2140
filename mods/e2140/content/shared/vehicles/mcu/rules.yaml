@@ -28,8 +28,8 @@
 		PreviewAlpha: 0.65
 		FootprintUnderPreview: None
 		ZOffset: -256
-	# MCU deployment preview: render rectangle of the building's footprint.
-	RectanglePlaceBuildingPreview:
+	# MCU deployment overlay: render rectangle of the building's footprint.
+	RectangleMcuDeployOverlay:
 	Selectable:
 		Bounds: 1392, 1072, 0, 0
 	WithTextDecoration:
