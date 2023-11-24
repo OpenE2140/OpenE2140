@@ -88,5 +88,6 @@ ed_mcu_tech_house:
 		Queue: Building.ED
 		BuildDuration: 125
 		BuildPaletteOrder: 30
+		Prerequisites: anypower
 	WithTextDecoration:
 		Text: Tech House

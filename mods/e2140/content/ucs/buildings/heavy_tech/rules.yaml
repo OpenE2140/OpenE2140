@@ -91,5 +91,6 @@ ucs_mcu_heavy_tech:
 		Queue: Building.UCS
 		BuildDuration: 125
 		BuildPaletteOrder: 30
+		Prerequisites: anypower
 	WithTextDecoration:
 		Text: Heavy Tech

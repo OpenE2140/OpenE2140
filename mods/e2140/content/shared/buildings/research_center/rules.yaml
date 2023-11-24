@@ -58,5 +58,6 @@ shared_mcu_research_center:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 70
+		Prerequisites: anypower
 	WithTextDecoration:
 		Text: Research Center

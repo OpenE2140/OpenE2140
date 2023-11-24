@@ -40,7 +40,6 @@ shared_buildings_refinery:
 	Selectable:
 		Bounds: 3088, 1950, 384, 128
 	ProvidesPrerequisite:
-		Prerequisite: anypower
 	GrantConditionOnDamageState:
 		Condition: damaged
 	# TODO Smoke should only come out from chimey when resources are delivered inside Refinery.
@@ -91,5 +90,6 @@ shared_mcu_refinery:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 50
+		Prerequisites: anypower
 	WithTextDecoration:
 		Text: Refinery

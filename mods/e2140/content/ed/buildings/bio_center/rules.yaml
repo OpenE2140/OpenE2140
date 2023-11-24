@@ -72,5 +72,6 @@ ed_mcu_bio_center:
 		Queue: Building.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 20
+		Prerequisites: anypower
 	WithTextDecoration:
 		Text: Bio-Center
