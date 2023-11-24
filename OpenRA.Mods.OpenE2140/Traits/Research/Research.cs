@@ -256,4 +256,50 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 				yield return other;
 		}
 	}
+
+	public void HideUnbuildableActors(Actor self)
+	{
+		if (this.researchLimit == null)
+			return;
+
+		var techTree = self.Owner.PlayerActor.Trait<TechTree>();
+		var queues = self.TraitsImplementing<ProductionQueue>();
+		var shouldUpdateTechTree = false;
+		foreach (var queue in queues)
+		{
+			if (!queue.Enabled)
+				return;
+
+			var producibles = AllBuildables(self, queue.Info.Type);
+
+			foreach (var actorInfo in producibles)
+			{
+				var buildable = actorInfo.TraitInfo<BuildableInfo>();
+				var researchTechs = buildable.Prerequisites
+					.Select(p => this.researchables.FirstOrDefault(r => r.Info.Id == p))
+					.Where(r => r != null && r.Info.Level > this.researchLimit.Limit).ToArray();
+
+				if (researchTechs.Any())
+				{
+					shouldUpdateTechTree = true;
+
+					// Hiding works by adding prerequisite that will cause actor being hidden in ProductionPaletteWidget.
+					// Enabling All Tech dev command will continue to work as expected, because if it's enabled, all prerequisites are ignored.
+					techTree.Add(actorInfo.Name, new[] { "~disabled" }, 0, queue);
+				}
+			} 
+		}
+
+		if (shouldUpdateTechTree)
+			techTree.Update();
+
+		IEnumerable<ActorInfo> AllBuildables(Actor self, string category)
+		{
+			return self.World.Map.Rules.Actors.Values
+				.Where(x =>
+					x.Name[0] != '^' &&
+					x.HasTraitInfo<BuildableInfo>() &&
+					x.TraitInfo<BuildableInfo>().Queue.Contains(category));
+		}
+	}
 }

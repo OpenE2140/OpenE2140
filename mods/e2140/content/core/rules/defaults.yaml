@@ -196,6 +196,8 @@
 # Base for all factories.
 ^CoreFactory:
 	Inherits: ^CoreBuilding
+	# Hides actors, which prerequisite technologies can't be researched due to research limit restriction (if enabled).
+	HideUnbuildableActors:
 	Production:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
