@@ -7,10 +7,10 @@ shared_buildings_water_base:
 	Power:
 		Amount: -200
 	Building:
-		Dimensions: 2,2
-		Footprint: xx xx
+		Dimensions: 3,3
+		Footprint: xx= xx= ===
 		TerrainTypes: Shore, Water
-		LocalCenterOffset: -16,-160,0
+		LocalCenterOffset: -524,-680,0
 	BuildingCrew:
 		MaxPopulation: 4
 		InitialUnits: shared_infantry_civil2, shared_infantry_civil2
