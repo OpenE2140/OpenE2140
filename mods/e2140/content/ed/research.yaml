@@ -33,5 +33,5 @@ Player:
 		Id: NuclearWeapons
 		Name: Nuclear Weapons
 		Duration: 21000
-		Level: 4200
+		Level: 5
 		Factions: ed
