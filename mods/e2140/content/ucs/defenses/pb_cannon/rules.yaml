@@ -79,6 +79,6 @@ ucs_mcu_pb_cannon:
 		Queue: Defense.UCS
 		BuildDuration: 113
 		BuildPaletteOrder: 35
-		Prerequisites: PlasmaWeapons
+		Prerequisites: PlasmaWeapons, ucs_buildings_pb_control
 	WithTextDecoration:
 		Text: PB Cannon

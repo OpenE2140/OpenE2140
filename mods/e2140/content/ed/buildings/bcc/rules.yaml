@@ -27,6 +27,8 @@ ed_buildings_bcc:
 			BottomRight: 850, 950
 	Selectable:
 		Bounds: 2064, 1984, -64, 64
+	ProvidesPrerequisite:
+		RequiresCondition: !Transforming && Powered
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 12
