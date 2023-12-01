@@ -27,6 +27,8 @@ ucs_buildings_pb_control:
 			BottomRight: 870, 1024
 	Selectable:
 		Bounds: 2064, 1984, 32, 370
+	ProvidesPrerequisite:
+		RequiresCondition: !Transforming && Powered
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 20
