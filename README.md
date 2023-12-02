@@ -89,7 +89,7 @@ Support the developer by buying the original game using links listed in the sect
 At the moment, we're looking for these people:
 - Video editor (for occasional preview videos like the ones above).
 - Artwork artist - if you are talented artist and you would like to provide extra assets such as building props, don't hesitate and join us!
-- Programmer/coder - if you are familiar with OpenRA codebase and know C# language in general, you can go ahead and help us with working on [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything.
+- Programmer/coder - if you are familiar with OpenRA codebase and know C# language in general, you can go ahead and help us by working on [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything.
 
 Contact us over at [our Discord server](https://discord.gg/KNcX5BxA37).
 
