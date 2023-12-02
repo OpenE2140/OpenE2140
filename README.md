@@ -68,7 +68,7 @@ Links:
 
 ## Game assets
 
-This project does not include any libre assets and original game files are required to run this project. You can acquire required assets from the following websites:
+This project does not include any libre assets and original game files are required to run this project. You can acquire required assets by buying Earth 2140 on any of the following websites:
 
 - [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
 - [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
@@ -82,13 +82,14 @@ Huge thanks for OpenRA devs and contributors for all the great work done on Open
 
 Special thanks to original development team at Reality Pump Studios for making Earth 2140, an amazing game this mod recreates!
 
+Support the developer by buying the original game using links listed in the section [Game assets](#game-assets) above.
+
 ## Contributing
 
 At the moment, we're looking for these people:
 - Video editor (for occasional preview videos like the ones above).
 - Artwork artist - if you are talented artist and you would like to provide extra assets such as building props, don't hesitate and join us!
-- Programmer/Coder - if you know OpenRA codebase and know C# language in general, you can go ahead and help us with resolving [issues](https://github.com/OpenE2140/OpenE2140/issues). However contact us before you start working on any of those issues.
-
+- Programmer/coder - if you are familiar OpenRA codebase and know C# language in general, you can go ahead and help us with working on [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything.
 
 Contact us over at [our Discord server](https://discord.gg/KNcX5BxA37).
 
