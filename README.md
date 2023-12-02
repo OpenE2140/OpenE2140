@@ -58,7 +58,6 @@ Links:
 	* reskinned glyphs
 	* custom cursors
 	* custom effects
-	* custom resource sprites (work in progress)
 	* yaml coding support
 - Disembo
 	* custom animations for MCU deployment
@@ -66,6 +65,14 @@ Links:
 	* custom rally point artwork
 - [michal-mad](https://github.com/michal-mad)
 	* programming
+
+## Game assets
+
+This project does not include any libre assets and original game files are required to run this project. You can acquire required assets from the following websites:
+
+- [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
+- [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
+- [Earth 2140 (Zoom Platform)](https://www.zoom-platform.com/product/earth-2140-trilogy)
 
 ## Special thanks!
 
@@ -75,14 +82,13 @@ Huge thanks for OpenRA devs and contributors for all the great work done on Open
 
 Special thanks to original development team at Reality Pump Studios for making Earth 2140, an amazing game this mod recreates!
 
-Support the developer by buying the original game:
-- [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
-- [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
-
 ## Contributing
 
 At the moment, we're looking for these people:
-- video editor (for occasional preview videos like the ones above)
+- Video editor (for occasional preview videos like the ones above).
+- Artwork artist - if you are talented artist and you would like to provide extra assets such as building props, don't hesitate and join us!
+- Programmer/Coder - if you know OpenRA codebase and know C# language in general, you can go ahead and help us with resolving [issues](https://github.com/OpenE2140/OpenE2140/issues). However contact us before you start working on any of those issues.
+
 
 Contact us over at [our Discord server](https://discord.gg/KNcX5BxA37).
 
