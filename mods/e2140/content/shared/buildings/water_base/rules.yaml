@@ -25,6 +25,10 @@ shared_buildings_water_base:
 		Bounds: 2064, 1984, 0,220
 	NotifyRepairCallback:
 	WaterBaseBuilding:
+		# In E2140 at least one shore tile is required for Water Base.
+		# Make sure all terrain types used in the condition are also defined in Building.TerrainTypes
+		# TODO: remove this requirement
+		AllowedTerrainTypesCondition: (Clear || Road) && Shore
 	RepairableBuilding:
 		# TODO: remove after power is implemented
 		-RequiresCondition:

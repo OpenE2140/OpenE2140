@@ -97,11 +97,11 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 	private readonly Actor self;
 	private readonly string faction;
-    
+
 	private McuDeployOverlay? mcuDeployOverlay;
 
-    public ActorInfo ActorInfo { get; private set; }
-	public BuildingInfo BuildingInfo { get; private set; }
+	public ActorInfo ActorInfo { get; private set; }
+	public CustomBuildingInfo CustomBuildingInfo { get; private set; }
 	public ActorInfo DockActorInfo { get; private set; }
 	public BuildingInfo DockBuildingInfo { get; private set; }
 	public CPos? DockLocation { get; private set; }
@@ -112,7 +112,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		this.self = init.Self;
 		this.ActorInfo = this.self.World.Map.Rules.Actors[info.IntoActor];
 		this.DockActorInfo = this.self.World.Map.Rules.Actors[info.DockActor];
-		this.BuildingInfo = this.ActorInfo.TraitInfoOrDefault<BuildingInfo>();
+		this.CustomBuildingInfo = this.ActorInfo.TraitInfoOrDefault<CustomBuildingInfo>();
 		this.DockBuildingInfo = this.DockActorInfo.TraitInfoOrDefault<BuildingInfo>();
 		this.faction = init.GetValue<FactionInit, string>(this.self.Owner.Faction.InternalName);
 	}
@@ -135,8 +135,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			return false;
 
 		// First check, if the main building can be deployed at current location.
-		var footprintCells = this.BuildingInfo.Tiles(self.Location + this.Info.Offset).ToList();
-		if (footprintCells.Any(c => !this.self.World.IsCellBuildable(c, this.ActorInfo, this.BuildingInfo, this.self)))
+		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self))
 			return false;
 
 		// Now check, if there are any cells in buildable radius, where the dock can be placed.
@@ -176,7 +175,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 	public WPos GetCenterOfFootprint()
 	{
-		var footprint = this.BuildingInfo.Tiles(this.self.Location + this.Info.Offset);
+		var footprint = this.CustomBuildingInfo.Tiles(this.self.Location + this.Info.Offset);
 		var (topLeft, bottomRight) = GetBounds(footprint);
 
 		return topLeft + (bottomRight - topLeft) / 2;
@@ -203,7 +202,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
 	{
-		return AIUtils.ClearBlockersOrders(this.BuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
+		return AIUtils.ClearBlockersOrders(this.CustomBuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
 	}
 
 	public Activity GetTransformActivity()
