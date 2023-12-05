@@ -9,6 +9,10 @@ Terrain:
 		Type: Shore
 		TargetTypes: Ground
 		Color: B09C78
+	TerrainType@Creek:
+		Type: Creek
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Clear:
 		Type: Clear
 		TargetTypes: Ground
@@ -439,7 +443,7 @@ Templates:
 			2: Water
 			3: Water
 
-	# Shore tiles
+	# Creek tiles
 	Template@105:
 		Id: 105
 		Images: SPRT3.MIX
@@ -447,7 +451,7 @@ Templates:
 		Categories: Shore
 		Frames: 133
 		Tiles:
-			0: Clear
+			0: Creek
 	Template@106:
 		Id: 106
 		Images: SPRT3.MIX
@@ -455,7 +459,9 @@ Templates:
 		Categories: Shore
 		Frames: 134
 		Tiles:
-			0: Clear
+			0: Creek
+
+	# Shore tiles
 	Template@107:
 		Id: 107
 		Images: SPRT3.MIX

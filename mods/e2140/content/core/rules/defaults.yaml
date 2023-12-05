@@ -382,6 +382,7 @@
 			Clear: 100
 			ClearTree: 100
 			ClearPipe: 100
+			Creek: 100
 			Sand: 100
 			SandEdge: 100
 			Road: 100
@@ -438,6 +439,7 @@
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
+			Creek: 50
 			Sand: 50
 			SandEdge: 50
 			Road: 100
@@ -448,6 +450,7 @@
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
+			Creek: 100
 			Sand: 100
 			SandEdge: 100
 			Road: 100
@@ -466,7 +469,7 @@
 	Aircraft:
 		TurnSpeed: 50
 		IdleBehavior: Land
-		LandableTerrainTypes: Clear, Shore, Sand, Road
+		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road
 		CruiseAltitude: 1c256
 		AltitudeVelocity: 0c60
 		IdealSeparation: 1c0
@@ -832,7 +835,7 @@
 			Radius: 256
 	# Husk trait which allows keeping actor's facing when it's dead.
 	Husk:
-		AllowedTerrain: Clear, ClearTree, ClearPipe, Shore, Sand, SandEdge, Road
+		AllowedTerrain: Clear, ClearTree, ClearPipe, Creek, Shore, Sand, SandEdge, Road
 	# Decrease husk's HP over time.
 	ChangesHealth:
 		Step: -25

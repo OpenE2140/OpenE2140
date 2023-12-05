@@ -43,6 +43,7 @@ ucs_vehicles_wtp_100:
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
+			Creek: 100
 			Sand: 90
 			SandEdge: 90
 			Road: 100
