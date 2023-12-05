@@ -94,3 +94,14 @@ public interface ITransformsPreview
 
 	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
 }
+
+public interface ICustomBuildingInfo
+{
+	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore);
+
+	bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null);
+
+	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
+
+	IEnumerable<CPos> Tiles(CPos location);
+}
