@@ -80,7 +80,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 {
 	private readonly Actor self;
 	private readonly ActorInfo actorInfo;
-	private readonly BuildingInfo buildingInfo;
+	private readonly ICustomBuildingInfo? customBuildingInfo;
 	private readonly string faction;
 
 	public Transforms(ActorInitializer init, TransformsInfo info)
@@ -88,7 +88,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 	{
 		this.self = init.Self;
 		this.actorInfo = this.self.World.Map.Rules.Actors[info.IntoActor];
-		this.buildingInfo = this.actorInfo.TraitInfoOrDefault<BuildingInfo>();
+		this.customBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(this.actorInfo);
 		this.faction = init.GetValue<FactionInit, string>(this.self.Owner.Faction.InternalName);
 	}
 
@@ -102,12 +102,14 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
-		return this.buildingInfo == null || this.self.World.CanPlaceBuilding(self.Location + this.Info.Offset, this.actorInfo, this.buildingInfo, self);
+		return this.customBuildingInfo == null || this.customBuildingInfo.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self);
 	}
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
 	{
-		return AIUtils.ClearBlockersOrders(this.buildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
+		return this.customBuildingInfo == null
+			? Enumerable.Empty<Order>()
+			: AIUtils.ClearBlockersOrders(this.customBuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
 	}
 
 	public Activity GetTransformActivity()
