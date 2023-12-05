@@ -35,7 +35,7 @@ public class McuDeployOverlay : ITransformsPreview
 
 	private readonly ActorInfo mcuActor;
 	private readonly ActorInfo buildingActor;
-	private readonly BuildingInfo buildingInfo;
+	private readonly ICustomBuildingInfo customBuildingInfo;
 	private readonly ITransformsInfo transformsInfo;
 
 	public McuDeployOverlay(Actor self, McuDeployOverlayInfo info)
@@ -44,15 +44,14 @@ public class McuDeployOverlay : ITransformsPreview
 
 		this.mcuActor = self.Info;
 		this.buildingActor = McuUtils.GetTargetBuilding(self.World, this.mcuActor)!;
-		this.buildingInfo = this.buildingActor.TraitInfo<BuildingInfo>();
+		this.customBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(this.buildingActor)!;
 		this.transformsInfo = self.Info.TraitInfo<ITransformsInfo>();
 	}
 
 	public IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
 		var topLeft = self.Location + this.transformsInfo.Offset;
-
-		var footprint = this.GetBuildingFootprint(self, topLeft);
+		var footprint = this.customBuildingInfo.GetBuildingPlacementFootprint(self.World, topLeft, self);
 
 		foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
 			yield return r;
@@ -64,25 +63,13 @@ public class McuDeployOverlay : ITransformsPreview
 	public IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr)
 	{
 		var topLeft = self.Location + this.transformsInfo.Offset;
-		var footprint = this.GetBuildingFootprint(self, topLeft);
+		var footprint = this.customBuildingInfo.GetBuildingPlacementFootprint(self.World, topLeft, self);
 
 		//foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
 		//	yield return r;
 
 		foreach (var r in this.RenderTransformsPreviews(self, wr, o => o.RenderAnnotations(self, wr, topLeft, footprint)))
 			yield return r;
-	}
-
-	private Dictionary<CPos, PlaceBuildingCellType> GetBuildingFootprint(Actor self, CPos topLeft)
-	{
-		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
-
-		foreach (var t in this.buildingInfo.Tiles(topLeft))
-		{
-			footprint.Add(t, self.World.IsCellBuildable(t, this.buildingActor, this.buildingInfo, self) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
-		}
-
-		return footprint;
 	}
 
 	private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
