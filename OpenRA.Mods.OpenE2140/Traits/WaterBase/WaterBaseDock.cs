@@ -15,17 +15,35 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Misc;
+using OpenRA.Mods.OpenE2140.Traits.World.Editor;
 using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
 
-public class WaterBaseDockInfo : TraitInfo, Requires<RepairableBuildingInfo>
+public class WaterBaseDockInfo : TraitInfo, Requires<RepairableBuildingInfo>, IEditorActorOptions, INotifyEditorPlacementInfo
 {
 	public override object Create(ActorInitializer init)
 	{
 		return new WaterBaseDock(init, this);
+	}
+
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	{
+		return world.WorldActor.Trait<WaterBaseEditor>().GetWaterDockActorOptions(ai, world, this);
+	}
+
+	object? INotifyEditorPlacementInfo.AddedToEditor(EditorActorPreview preview, OpenRA.World editorWorld)
+	{
+		editorWorld.WorldActor.Trait<WaterBaseEditor>().OnActorAdded(preview);
+
+		return null;
+	}
+
+	void INotifyEditorPlacementInfo.RemovedFromEditor(EditorActorPreview preview, OpenRA.World editorWorld, object data)
+	{
+		editorWorld.WorldActor.Trait<WaterBaseEditor>().OnActorRemoved(preview);
 	}
 }
 
@@ -123,5 +141,7 @@ public class WaterBaseDockInit : ValueActorInit<ActorInitActorReference>, ISingl
 {
 	public WaterBaseDockInit(Actor actor)
 		: base(actor) { }
+	public WaterBaseDockInit(ActorInitActorReference actorInitActorReference)
+		: base(actorInitActorReference) { }
 }
 
