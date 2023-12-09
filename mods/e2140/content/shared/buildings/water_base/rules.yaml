@@ -14,6 +14,7 @@ shared_buildings_water_base:
 	BuildingCrew:
 		MaxPopulation: 4
 		InitialUnits: shared_infantry_civil2, shared_infantry_civil2
+		EntryCells: 0,2,   -1,2,   -1,1,   1,2,   2,2,   2,1
 	TransformSequence:
 		Offset: 512,570,0
 	HitShape:
