@@ -20,7 +20,6 @@ ed_defenses_an_center:
 	-WithBuildingCrewPipsDecoration:
 	TransformSequence:
 		Image: core_buildingsequence_small
-		ConstructionTime: 100
 		Offset: -48,232,0
 	HitShape:
 		TargetableOffsets: -200,0,0,   -300,0,0
