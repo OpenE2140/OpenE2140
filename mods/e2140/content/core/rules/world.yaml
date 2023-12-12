@@ -146,5 +146,7 @@ EditorWorld:
 		Palette:
 	# Dummy, since resources are not implemented yet, but editor now requires a resource layer.
 	EditorResourceLayer:
+	# Custom rendering.
+	EditorActorCustomRenderLayer:
 	# Custom support for Water Base.
 	WaterBaseEditor:
