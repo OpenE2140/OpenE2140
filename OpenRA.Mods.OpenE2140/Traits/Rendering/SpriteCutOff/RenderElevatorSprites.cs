@@ -16,9 +16,8 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
-using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Cutoff sprites before rendering, used for the elevator.")]
@@ -32,8 +31,6 @@ public class RenderElevatorSpritesInfo : RenderSpritesInfo
 
 public class RenderElevatorSprites : RenderSprites
 {
-	private static readonly TypeFieldHelper<Sprite> SpriteFieldHelper = ReflectionHelper.GetTypeFieldHelper<Sprite>(typeof(SpriteRenderable), "sprite");
-
 	private readonly RenderSpritesReflectionHelper reflectionHelper;
 
 	public RenderElevatorSprites(ActorInitializer init, RenderSpritesInfo info)
@@ -51,43 +48,10 @@ public class RenderElevatorSprites : RenderSprites
 			(anim, renderables) =>
 			{
 				if (anim is CutOffAnimationWithOffset elevatorAnimation)
-					RenderElevatorSprites.PostProcess(renderables, elevatorAnimation.CutOff());
+					SpriteCutOffHelper.ApplyCutOff(renderables, _ => elevatorAnimation.CutOff(), elevatorAnimation.Direction);
 			}
 		);
 
 		return renderables;
-	}
-
-	public static void PostProcess(IEnumerable<IRenderable> renderables, int bottom)
-	{
-		foreach (var renderable in renderables.OfType<SpriteRenderable>())
-		{
-			var sprite = RenderElevatorSprites.SpriteFieldHelper.GetValue(renderable);
-
-			if (sprite == null)
-				continue;
-
-			var height = sprite.Bounds.Height;
-			var offset = sprite.Offset.Y;
-			var current = renderable.Offset.Y - renderable.Offset.Z + height * 16 / 2;
-
-			if (current > bottom)
-			{
-				height = Math.Max(height - (current - bottom) / 16, 0);
-				offset -= (sprite.Bounds.Height - height) / 2f;
-			}
-
-			RenderElevatorSprites.SpriteFieldHelper.SetValue(
-				renderable,
-				new Sprite(
-					sprite.Sheet,
-					new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, sprite.Bounds.Width, height),
-					sprite.ZRamp,
-					new float3(sprite.Offset.X, offset, sprite.Offset.Z),
-					sprite.Channel,
-					sprite.BlendMode
-				)
-			);
-		}
 	}
 }

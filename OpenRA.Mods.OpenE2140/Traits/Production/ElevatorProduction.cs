@@ -17,7 +17,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Graphics;
-using OpenRA.Mods.OpenE2140.Traits.Rendering;
+using OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -70,7 +70,8 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 			() => this.info.Position + new WVec(0, 0, this.GetElevatorHeight()),
 			() => this.IsTraitDisabled || this.State is AnimationState.Closed or AnimationState.Opening or AnimationState.Closing,
 			_ => this.info.ZOffset,
-			() => this.info.Position.Y + this.info.CutOff * 16
+			() => this.info.Position.Y + this.info.CutOff * 16,
+			CutOffDirection.Bottom
 		);
 
 		animationElevator.Animation.PlayRepeating(this.info.SequenceElevator);
@@ -171,8 +172,7 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 					: renderable
 			)
 			.ToArray();
-
-		RenderElevatorSprites.PostProcess(renderables, this.GetElevatorHeight() + this.info.CutOff * 16);
+		SpriteCutOffHelper.ApplyCutOff(renderables, _ => this.GetElevatorHeight() + this.info.CutOff * 16, CutOffDirection.Bottom);
 
 		return renderables;
 	}
