@@ -24,6 +24,9 @@ namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
 
 public class ProductionExitRenderSpritesInfo : RenderSpritesInfo
 {
+	[Desc("Apply this offset to cut-off row (in pixels). Use this to further tweak the cut-off point.")]
+	public readonly int OffsetCutOff;
+
 	public override object Create(ActorInitializer init)
 	{
 		return new ProductionExitRenderSprites(init, this);
@@ -34,9 +37,13 @@ public class ProductionExitRenderSprites : RenderSprites
 {
 	private readonly RenderSpritesReflectionHelper reflectionHelper;
 
-	public ProductionExitRenderSprites(ActorInitializer init, RenderSpritesInfo info)
+	public new ProductionExitRenderSpritesInfo Info { get; }
+
+	public ProductionExitRenderSprites(ActorInitializer init, ProductionExitRenderSpritesInfo info)
 		: base(init, info)
 	{
+		this.Info = info;
+
 		this.reflectionHelper = new RenderSpritesReflectionHelper(this);
 	}
 
@@ -77,7 +84,7 @@ public class ProductionExitRenderSprites : RenderSprites
 						if (spriteRenderable.Offset != WVec.Zero)
 							cutOffPos -= spriteRenderable.Pos - spriteRenderable.Offset - cellTopEdgeWPos;
 
-						return cutOffPos.Y;
+						return cutOffPos.Y + this.Info.OffsetCutOff;
 					},
 					CutOffDirection.Top);
 			}
