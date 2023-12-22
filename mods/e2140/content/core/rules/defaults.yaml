@@ -569,6 +569,12 @@
 	Inherits@2: ^Cloakable
 	Inherits@3: ^DisabledActor
 	Inherits@4: ^InterferedActor
+	# Ships need custom RenderSprites trait to properly cut-off their sprites when exiting the Water Base dock.
+	-RenderSprites:
+	ProductionExitRenderSprites:
+		FactionImages:
+		# Tweak this value in conjunction with spawn offsets of Water Base Dock's exits.
+		OffsetCutOff: 128
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
 		Type: vehicle
