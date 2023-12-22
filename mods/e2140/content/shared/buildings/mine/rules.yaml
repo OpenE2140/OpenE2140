@@ -49,8 +49,6 @@ shared_buildings_mine:
 			BottomRight: 824, 824
 	Selectable:
 		Bounds: 3088, 1984, 340, 32
-	ProvidesPrerequisite:
-		Prerequisite: anypower
 	GrantConditionOnDamageState:
 		Condition: damaged
 	Encyclopedia:
