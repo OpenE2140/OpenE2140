@@ -76,7 +76,6 @@
 		TextNotification: Unit lost.
 	# Unit is added to the observer stats.
 	UpdatesPlayerStatistics:
-	ProducerMark:
 
 # Base for all buildings and towers.
 ^CoreConstruction:

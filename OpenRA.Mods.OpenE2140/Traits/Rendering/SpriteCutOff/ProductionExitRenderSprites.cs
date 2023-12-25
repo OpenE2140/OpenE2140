@@ -36,6 +36,9 @@ public class ProductionExitRenderSpritesInfo : RenderSpritesInfo
 public class ProductionExitRenderSprites : RenderSprites
 {
 	private readonly RenderSpritesReflectionHelper reflectionHelper;
+	private readonly Lazy<Actor>? producer;
+
+	private Actor? Producer => this.producer?.Value;
 
 	public new ProductionExitRenderSpritesInfo Info { get; }
 
@@ -44,6 +47,7 @@ public class ProductionExitRenderSprites : RenderSprites
 	{
 		this.Info = info;
 
+		this.producer = init.GetOrDefault<ActorProducerInit>()?.Value?.Actor(init.Self.World);
 		this.reflectionHelper = new RenderSpritesReflectionHelper(this);
 	}
 
@@ -57,11 +61,10 @@ public class ProductionExitRenderSprites : RenderSprites
 
 	private IEnumerable<IRenderable> RenderCutOffSprites(Actor self, WorldRenderer worldRenderer)
 	{
-		var producer = self.TraitOrDefault<ProducerMark>()?.Producer;
-		if (producer == null)
+		if (this.Producer == null)
 			return Enumerable.Empty<IRenderable>();
 
-		var cellTopEdgeWPos = producer.CenterPosition + (producer.Exits()?.FirstOrDefault()?.Info?.SpawnOffset ?? WVec.Zero);
+		var cellTopEdgeWPos = this.Producer.CenterPosition + (this.Producer.Exits()?.FirstOrDefault()?.Info?.SpawnOffset ?? WVec.Zero);
 		var cellTopEdge = worldRenderer.ScreenPxPosition(cellTopEdgeWPos);
 
 		return this.reflectionHelper.RenderAnimations(

@@ -11,21 +11,27 @@
 
 #endregion
 
-using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common;
+using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Production;
 
+[Desc($"Marks all produced actors with the actor that produced them by adding {nameof(ActorProducerInit)} to {nameof(TypeDictionary)} the actor is created with.")]
 public class MarkActorProducerInfo : TraitInfo<MarkActorProducer>
 {
 }
 
-public class MarkActorProducer : INotifyProduction
+public class MarkActorProducer : IProduceActorInitModifier
 {
-	void INotifyProduction.UnitProduced(Actor self, Actor other, CPos exit)
+	void IProduceActorInitModifier.ModifyActorInit(Actor self, TypeDictionary init)
 	{
-		var mark = other.TraitOrDefault<ProducerMark>();
-		if (mark != null)
-			mark.Producer = self;
+		init.Add(new ActorProducerInit(self));
 	}
+}
+
+public class ActorProducerInit : ValueActorInit<ActorInitActorReference>, ISingleInstanceInit
+{
+	public ActorProducerInit(Actor actor)
+		: base(actor) { }
 }
