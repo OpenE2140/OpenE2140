@@ -51,6 +51,11 @@ public class ExitWaypointProduction : AnimatedExitProduction, ISafeDragNotify
 		this.info = info;
 	}
 
+	protected override WPos GetSpawnPosition(Actor self, CPos exitCell)
+	{
+		return base.GetSpawnPosition(self, exitCell) + (this.productionInfo?.ExitInfo.SpawnOffset ?? WVec.Zero);
+	}
+
 	protected override void Eject(Actor self)
 	{
 		if (this.productionInfo == null)
@@ -110,7 +115,7 @@ public class ExitWaypointProduction : AnimatedExitProduction, ISafeDragNotify
 		if (!other.TryGetTrait<Mobile>(out var mobile))
 			return;
 
-		mobile.SetCenterPosition(other, self.CenterPosition + this.info.Position);
+		mobile.SetCenterPosition(other, this.GetSpawnPosition(self, exit));
 
 		this.State = AnimationState.Custom;
 		this.customState = CustomProductionState.MovingToExitWaypoint;
