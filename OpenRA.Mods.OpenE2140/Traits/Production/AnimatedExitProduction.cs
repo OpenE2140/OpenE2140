@@ -118,6 +118,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	}
 
 	private readonly AnimatedExitProductionInfo info;
+	private readonly List<IProduceActorInitModifier> actorInitModifiers;
 
 	protected readonly RenderSprites RenderSprites;
 	private AnimatedExitProductionQueue[] productionQueues = Array.Empty<AnimatedExitProductionQueue>();
@@ -156,6 +157,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		: base(init, info)
 	{
 		this.info = info;
+		this.actorInitModifiers = init.Self.TraitsImplementing<IProduceActorInitModifier>().ToList();
 
 		this.RenderSprites = init.Self.Trait<RenderSprites>();
 
@@ -501,7 +503,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		// this causes Mobile.UpdateMovement to determine that Actor has moved (from 0,0,0 to spawn offset)
 		inits.Add(new CenterPositionInit(spawnPosition));
 
-		base.DoProduction(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
+		//base.DoProduction(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
+		this.DoProductionBase(self, this.productionInfo.Producee, null, this.productionInfo.ProductionType, inits);
 	}
 
 	/// <summary>
@@ -509,6 +512,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	/// </summary>
 	protected void DoProductionBase(Actor self, ActorInfo producee, ExitInfo? exitInfo, string productionType, TypeDictionary inits)
 	{
+		this.actorInitModifiers.ForEach(m => m.ModifyActorInit(self, inits));
+
 		base.DoProduction(self, producee, exitInfo, productionType, inits);
 	}
 
