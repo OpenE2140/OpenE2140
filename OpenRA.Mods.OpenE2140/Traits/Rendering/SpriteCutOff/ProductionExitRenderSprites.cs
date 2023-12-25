@@ -15,13 +15,17 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Activites.Move;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Mods.OpenE2140.Traits.Production;
-using static OpenRA.Mods.Common.Traits.Mobile;
+using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
 
+[Desc($"Custom version of {nameof(RenderSprites)}, which cuts off all sprites of the actor when leaving production actor.",
+	$"Requires {nameof(ActorProducerInit)} present in {nameof(ActorInitializer)}'s {nameof(TypeDictionary)}. " +
+	$"{nameof(MarkActorProducer)} trait adds this actor init object, so attach it to the production actor.")]
 public class ProductionExitRenderSpritesInfo : RenderSpritesInfo
 {
 	[Desc("Apply this offset to cut-off row (in pixels). Use this to further tweak the cut-off point.")]
@@ -53,19 +57,34 @@ public class ProductionExitRenderSprites : RenderSprites
 
 	public override IEnumerable<IRenderable> Render(Actor self, WorldRenderer worldRenderer)
 	{
-		if (self.CurrentActivity is not (LeaveProductionActivity or ProductionExitMove or ReturnToCellActivity))
+		if (this.Producer == null || !this.ShouldCutOff(self))
 			return base.Render(self, worldRenderer);
 
 		return this.RenderCutOffSprites(self, worldRenderer);
 	}
 
-	private IEnumerable<IRenderable> RenderCutOffSprites(Actor self, WorldRenderer worldRenderer)
+	private bool ShouldCutOff(Actor self)
 	{
 		if (this.Producer == null)
-			return Enumerable.Empty<IRenderable>();
+			return false;
 
-		var cellTopEdgeWPos = this.Producer.CenterPosition + (this.Producer.Exits()?.FirstOrDefault()?.Info?.SpawnOffset ?? WVec.Zero);
-		var cellTopEdge = worldRenderer.ScreenPxPosition(cellTopEdgeWPos);
+		// Don't crop sprites, if the actor has already fully left the production actor
+		if (self.CurrentActivity is not (Mobile.LeaveProductionActivity or ProductionExitMove or Mobile.ReturnToCellActivity))
+			return false;
+
+		// Stop cropping sprites, when produced actor reaches certain distance from cut off point.
+		return (GetCutOffPoint(this.Producer) - self.CenterPosition).ToWDist() <= WDist.FromCells(1);
+	}
+
+	private static WPos GetCutOffPoint(Actor producer)
+	{
+		return producer.CenterPosition + (producer.Exits()?.FirstOrDefault()?.Info?.SpawnOffset ?? WVec.Zero);
+	}
+
+	private IEnumerable<IRenderable> RenderCutOffSprites(Actor self, WorldRenderer worldRenderer)
+	{
+		var cutOffPoint = GetCutOffPoint(this.Producer!);
+		var cellTopEdge = worldRenderer.ScreenPxPosition(cutOffPoint);
 
 		return this.reflectionHelper.RenderAnimations(
 			self,
@@ -85,7 +104,7 @@ public class ProductionExitRenderSprites : RenderSprites
 						var cutOffPos = worldRenderer.ProjectedPosition(cellTopEdge - renderBounds.Location);
 
 						if (spriteRenderable.Offset != WVec.Zero)
-							cutOffPos -= spriteRenderable.Pos - spriteRenderable.Offset - cellTopEdgeWPos;
+							cutOffPos -= spriteRenderable.Pos - spriteRenderable.Offset - cutOffPoint;
 
 						return cutOffPos.Y + this.Info.OffsetCutOff;
 					},
