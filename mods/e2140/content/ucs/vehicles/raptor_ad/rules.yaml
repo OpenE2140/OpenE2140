@@ -24,12 +24,12 @@ ucs_vehicles_raptor_ad:
 		Name: shadow
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_raptor_ad
-		LocalOffset: 100,-200,0, 100,200,0
+		LocalOffset: 100,-100,100, 100,100,100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Weapon: ucs_vehicles_raptor_ad_air
-		LocalOffset: 100,-200,0, 100,200,0
+		LocalOffset: 100,-100,100, 100,100,100
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	WithMoveSound:
