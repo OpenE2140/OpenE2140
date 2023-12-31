@@ -29,4 +29,25 @@ public static class WaterBaseUtils
 			trait.ResolveOrder(self, new Order("PowerDown", self, false));
 		}
 	}
+
+	public static ActorInfo FindWaterBaseMcuActor(Ruleset rules)
+	{
+		return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseTransformsInfo>());
+	}
+
+	public static ActorInfo FindWaterBaseBuildingActor(Ruleset rules)
+	{
+		return rules.Actors[FindWaterBaseMcuActor(rules).TraitInfo<WaterBaseTransformsInfo>().IntoActor];
+	}
+
+	public static WaterBaseTransformsInfo? FindWaterBaseMcuTransformsFromBuildingActor(Ruleset rules, ActorInfo buildingActor)
+	{
+		return rules.Actors.Values.FirstOrDefault(a => a.TraitInfoOrDefault<WaterBaseTransformsInfo>()?.IntoActor == buildingActor.Name)
+			?.TraitInfoOrDefault<WaterBaseTransformsInfo>();
+	}
+
+	public static ActorInfo FindWaterBaseDockActor(Ruleset rules)
+	{
+		return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseDockInfo>());
+	}
 }
