@@ -148,5 +148,7 @@ EditorWorld:
 	EditorResourceLayer:
 	# Custom rendering.
 	EditorActorCustomRenderLayer:
+	# Annotations for Water Base and Dock in the editor.
+	WaterBaseAnnotationLayer:
 	# Custom support for Water Base.
 	WaterBaseEditor:
