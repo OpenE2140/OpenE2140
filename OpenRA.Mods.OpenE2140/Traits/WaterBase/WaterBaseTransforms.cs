@@ -175,29 +175,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 	public WPos GetCenterOfFootprint()
 	{
-		var footprint = this.CustomBuildingInfo.Tiles(this.self.Location + this.Info.Offset);
-		var (topLeft, bottomRight) = GetBounds(footprint);
-
-		return topLeft + (bottomRight - topLeft) / 2;
-	}
-
-	private static (WPos topLeft, WPos bottomRight) GetBounds(IEnumerable<CPos> cells)
-	{
-		var left = int.MaxValue;
-		var right = int.MinValue;
-		var top = int.MaxValue;
-		var bottom = int.MinValue;
-
-		foreach (var cell in cells)
-		{
-			left = Math.Min(left, cell.X);
-			right = Math.Max(right, cell.X);
-			top = Math.Min(top, cell.Y);
-			bottom = Math.Max(bottom, cell.Y);
-		}
-
-		return (new WPos(1024 * left, 1024 * top, 0),
-			new WPos(1024 * right + 1024, 1024 * bottom + 1024, 0));
+		return this.CustomBuildingInfo.GetCenterOfFootprint(this.self.Location + this.Info.Offset);
 	}
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
