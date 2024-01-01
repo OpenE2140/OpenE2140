@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.OpenE2140.Traits;
@@ -36,7 +35,7 @@ public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 		return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? Enumerable.Empty<IRenderable>();
 	}
 
-	private static UnitOrderResult? GetOrderPreviewRender(WorldRenderer wr)
+	private static UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)
 	{
 		var screenPos = Viewport.LastMousePos;
 		var cell = wr.Viewport.ViewToWorld(screenPos);
@@ -54,47 +53,31 @@ public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 		var ordersWithPreview = wr.World.Selection.Actors
 			.Select(a => OrderForUnit(a, target, cell, mi))
 			.OfType<UnitOrderResult>()
+			.Select(r => new UnitOrderResultWrapper(r))
 			.Where(x => x.Order != null && x.OrderPreview != null);
 
 		return ordersWithPreview.MaxByOrDefault(x => x.Order!.OrderPriority);
 	}
 
-	// TODO: PR to make these method protected (+ UnitOrderResult class)
-	private static Target TargetForInput(World world, CPos cell, int2 worldPixel, MouseInput mi)
+	private record UnitOrderResultWrapper(UnitOrderResult UnitOrderResult)
 	{
-		return (Target)typeof(UnitOrderGenerator).GetMethod("TargetForInput", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, new object[] { world, cell, worldPixel, mi })!;
-	}
-	private static UnitOrderResult? OrderForUnit(Actor self, Target target, CPos xy, MouseInput mi)
-	{
-		var obj = typeof(UnitOrderGenerator).GetMethod("OrderForUnit", BindingFlags.Static | BindingFlags.NonPublic)!.Invoke(null, new object[] { self, target, xy, mi })!;
-		if (obj == null)
-			return null;
+		public IOrderTargeter? Order => this.UnitOrderResult.Order;
 
-		var type = obj.GetType();
-
-		return new UnitOrderResult(
-			(Actor)type.GetField("Actor")!.GetValue(obj)!,
-			type.GetField("Order")!.GetValue(obj) as IOrderTargeter,
-			(IIssueOrder)type.GetField("Trait")!.GetValue(obj)!);
-	}
-
-	private record UnitOrderResult(Actor Actor, IOrderTargeter? Order, IIssueOrder Trait)
-	{
-		public IOrderPreviewRender? OrderPreview => this.Trait as IOrderPreviewRender;
+		public IOrderPreviewRender? OrderPreview => this.UnitOrderResult.Trait as IOrderPreviewRender;
 
 		public IEnumerable<IRenderable>? Render(WorldRenderer wr)
 		{
-			return this.OrderPreview?.Render(this.Actor, wr);
+			return this.OrderPreview?.Render(this.UnitOrderResult.Actor, wr);
 		}
 
 		public IEnumerable<IRenderable>? RenderAboveShroud(WorldRenderer wr)
 		{
-			return this.OrderPreview?.RenderAboveShroud(this.Actor, wr);
+			return this.OrderPreview?.RenderAboveShroud(this.UnitOrderResult.Actor, wr);
 		}
 
 		public IEnumerable<IRenderable>? RenderAnnotations(WorldRenderer wr)
 		{
-			return this.OrderPreview?.RenderAnnotations(this.Actor, wr);
+			return this.OrderPreview?.RenderAnnotations(this.UnitOrderResult.Actor, wr);
 		}
 	}
 }
