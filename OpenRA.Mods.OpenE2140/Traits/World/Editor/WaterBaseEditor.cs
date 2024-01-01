@@ -6,6 +6,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Primitives;
 using OpenRA.Traits;
+using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Traits.World.Editor;
 
@@ -19,17 +20,26 @@ public class WaterBaseEditorInfo : TraitInfo, Requires<EditorActorLayerInfo>
 	}
 }
 
-public class WaterBaseEditor : ITickRender
+public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 {
 	private readonly List<EditorActorPreview> addedActors = new List<EditorActorPreview>();
 
+	private readonly Lazy<EditorViewportControllerWidget> editor = Exts.Lazy(() => Ui.Root.Get<EditorViewportControllerWidget>("MAP_EDITOR"));
+
+	private EditorViewportControllerWidget Editor => this.editor.Value;
+
 	private readonly EditorActorLayer editorActorLayer;
+	private readonly ActorInfo waterBaseDockActor;
 	private readonly CachedTransform<int2, Rectangle> mapRectangle;
 	private readonly WDist maximumDockDistance;
+
+	private bool worldLoaded;
 
 	public WaterBaseEditor(Actor self)
 	{
 		this.editorActorLayer = self.Trait<EditorActorLayer>();
+
+		this.waterBaseDockActor = WaterBaseUtils.FindWaterBaseDockActor(self.World.Map.Rules);
 
 		var tileSize = self.World.Map.Grid.TileSize;
 		this.mapRectangle = new CachedTransform<int2, Rectangle>(size => Rectangle.FromLTRB(0, 0, size.X * tileSize.Width, size.Y * tileSize.Height));
@@ -43,35 +53,59 @@ public class WaterBaseEditor : ITickRender
 
 	void ITickRender.TickRender(WorldRenderer wr, Actor self)
 	{
+		if (!this.worldLoaded)
+			return;
+
 		if (this.addedActors.Count > 0)
 		{
-			this.ProcessNewActors(self, this.addedActors);
+			this.ProcessNewActors(wr, self, this.addedActors);
 			this.addedActors.Clear();
 		}
 	}
 
-	private void ProcessNewActors(Actor self, IEnumerable<EditorActorPreview> addedActors)
+	void IPostWorldLoaded.PostWorldLoaded(OpenRA.World w, WorldRenderer wr)
+	{
+		this.worldLoaded = true;
+	}
+
+	private void ProcessNewActors(WorldRenderer wr, Actor self, IEnumerable<EditorActorPreview> addedActors)
 	{
 		var allActors = Exts.Lazy(() => this.GetAllActors(self.World).ToArray());
 
 		foreach (var actor in addedActors)
 		{
-			if (!actor.Info.HasTraitInfo<WaterBaseDockInfo>())
-				continue;
+			if (actor.Info.HasTraitInfo<WaterBaseDockInfo>())
+				this.TryLinkingDock(allActors.Value, actor);
+			else if (actor.Info.HasTraitInfo<WaterBaseBuildingInfo>())
+				this.TrySelectingDockActor(wr, allActors.Value, actor);
+		}
+	}
 
-			// Check if this Dock is already linked to a Water Base.
-			if (actor.GetInitOrDefault<WaterBaseDockInit>() != null)
-				continue;
+	private void TrySelectingDockActor(WorldRenderer wr, IEnumerable<EditorActorPreview> allActors, EditorActorPreview actor)
+	{
+		var pairedWaterBases = allActors.Where(a => a.Info.HasTraitInfo<WaterBaseDockInfo>())
+			.Select(a => a.GetInitOrDefault<WaterBaseDockInit>()?.Value?.InternalName)
+			.OfType<string>()
+			.ToArray();
 
+		if (!pairedWaterBases.Contains(actor.ID))
+			this.Editor.SetBrush(new EditorActorBrush(this.Editor, this.waterBaseDockActor, actor.Owner, wr));
+	}
+
+	private void TryLinkingDock(IEnumerable<EditorActorPreview> allActors, EditorActorPreview actor)
+	{
+		// Check if this Dock is already linked to a Water Base.
+		if (actor.GetInitOrDefault<WaterBaseDockInit>() == null)
+		{
 			// Try to find Water Bases, which are not linked with any docks.
-			var pairedWaterBases = allActors.Value.Where(a => a.Info.HasTraitInfo<WaterBaseDockInfo>())
+			var pairedWaterBases = allActors.Where(a => a.Info.HasTraitInfo<WaterBaseDockInfo>())
 				.Select(a => a.GetInitOrDefault<WaterBaseDockInit>()?.Value?.InternalName)
 				.OfType<string>()
 				.ToArray();
 
-			var freeWaterBases = allActors.Value
+			var freeWaterBases = allActors
 				.Where(a => a.Info.HasTraitInfo<WaterBaseBuildingInfo>())
-				.Except(allActors.Value.Where(p => pairedWaterBases.Contains(p.ID)));
+				.Except(allActors.Where(p => pairedWaterBases.Contains(p.ID)));
 
 			// Only try to link Water Base, which is in acceptable range of the Dock
 			var freeWaterBaseInRange = freeWaterBases
@@ -89,6 +123,10 @@ public class WaterBaseEditor : ITickRender
 
 	public void OnActorAdded(EditorActorPreview editorActor)
 	{
+		// ignore newly added actors, while the world is loading
+		if (!this.worldLoaded)
+			return;
+
 		this.addedActors.Add(editorActor);
 	}
 
