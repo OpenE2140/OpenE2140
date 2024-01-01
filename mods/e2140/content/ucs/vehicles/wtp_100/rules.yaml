@@ -39,7 +39,7 @@ ucs_vehicles_wtp_100:
 ^CoreWorld:
 	Locomotor@vehicleWtp100:
 		Name: vehicleWtp100
-		Crushes: infantry, mine
+		Crushes: infantry, mine, husk
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
