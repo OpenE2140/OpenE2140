@@ -436,7 +436,7 @@
 ^CoreWorld:
 	Locomotor@vehicle:
 		Name: vehicle
-		Crushes: infantry, mine
+		Crushes: infantry, mine, husk
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
@@ -447,7 +447,7 @@
 			AsphaltRoad: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
-		Crushes: infantry, mine
+		Crushes: infantry, mine, husk
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
@@ -608,7 +608,7 @@
 ^CoreWorld:
 	Locomotor@ship:
 		Name: ship
-		Crushes: mine
+		Crushes: mine, husk
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Water: 100
@@ -851,10 +851,15 @@
 	# Generic name for husks.
 	Tooltip:
 		GenericName: Destroyed Vehicle
-	# Husks explode when killed or they disappear.
+	# Husks explode if killed or disappear.
 	Explodes:
 		Weapon: VehicleExplosion
 		EmptyWeapon: VehicleExplosion
+	# Husks can be crushed by other vehicles.
+	Crushable:
+		CrushClasses: husk
+		WarnProbability: 0
+		CrushedByFriendlies: True
 
 # Husk throws a turret if it has it.
 ^HuskThrowsTurret:
