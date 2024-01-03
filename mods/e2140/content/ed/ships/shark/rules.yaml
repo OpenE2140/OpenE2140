@@ -43,7 +43,7 @@ ed_ships_shark:
 		Description: Its high velocity and its torpedoes make the SHARK ideal for quick attacks aimed at destroying enemy marine units. How-ever, SHARK is completely helpless against landbased or air-borne attacks.\n\nA SHARK should avoid direct confrontation and use its speed to get enough distance between itself and the enemy
 
 ed_ships_shark_husk:
-	Inherits@1: ^Husk
+	Inherits@1: ^ShipHusk
 	Inherits@2: ^HuskBurnsSmallFire
 	Tooltip:
 		Name: Husk (SHARK)

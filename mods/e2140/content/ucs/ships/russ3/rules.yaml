@@ -50,7 +50,7 @@ ucs_ships_russ3:
 		Description: The RUSS III is the latest model of the reliable RUSS-series. These small, fast submarines have been used for various tasks for decades. The RUSS III is the latest version, fitted with a high-performance, low-noise motor. But what makes this submarine so special is its stealth device which makes it invisible to enemy airplanes and helicopters, even when it’s just beneath the water’s surface.\n\nIt’s conventional torpedo launcher, is enough to destroy any target moving on the water.\n\nThe RUSS III can only be seen by the enemy when it fires its torpedoes.
 
 ucs_ships_russ3_husk:
-	Inherits@1: ^Husk
+	Inherits@1: ^ShipHusk
 	Inherits@2: ^HuskBurnsSmallFire
 	Tooltip:
 		Name: Husk (RUSS 3)
