@@ -62,7 +62,7 @@ public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 
 public class FreezingBullet : Bullet
 {
-	private enum State { Moving, Freezed }
+	private enum State { Moving, Frozen }
 
 	private readonly FreezingBulletInfo info;
 	private State state = State.Moving;
@@ -106,7 +106,7 @@ public class FreezingBullet : Bullet
 
 		this.Args.Weapon.Impact(Target.FromPos(this.pos), warheadArgs);
 
-		this.state = State.Freezed;
+		this.state = State.Frozen;
 
 		// Change bullet's sprite sequence to a appropriate one from FrozenSequences
 		var currentSequenceIndex = Array.IndexOf(this.info.Sequences, this.Animation.CurrentSequence.Name);
