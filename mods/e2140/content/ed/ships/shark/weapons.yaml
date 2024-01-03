@@ -6,7 +6,7 @@ ed_ships_shark:
 	ValidTargets: Water, Ship
 	Burst: 2
 	BurstDelays: 13
-	Projectile: Missile
+	Projectile: Torpedo
 		Speed: 160
 		Blockable: false
 		Image: projectile
