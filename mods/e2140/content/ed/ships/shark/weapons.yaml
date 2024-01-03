@@ -6,11 +6,16 @@ ed_ships_shark:
 	ValidTargets: Water, Ship
 	Burst: 2
 	BurstDelays: 13
-	Projectile: Bullet
+	Projectile: Missile
 		Speed: 160
 		Blockable: false
 		Image: projectile
 		Sequences: torpedo
+		HomingActivationDelay: 9999999
+		Blockable: true
+		Gravity: 0
+		BoundToTerrainType: Water
+		RangeLimit: 9999999
 		Palette:
 		TrailPalette:
 	Warhead@Damage: SpreadDamage
