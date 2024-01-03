@@ -14,6 +14,7 @@ ed_ships_shark:
 		HomingActivationDelay: 9999999
 		Blockable: true
 		Gravity: 0
+		BlockingIgnoreSourceActor: true
 		BoundToTerrainType: Water
 		RangeLimit: 9999999
 		Palette:

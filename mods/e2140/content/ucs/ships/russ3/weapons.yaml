@@ -14,6 +14,7 @@ ucs_ships_russ3:
 		HomingActivationDelay: 9999999
 		Blockable: true
 		Gravity: 0
+		BlockingIgnoreSourceActor: true
 		BoundToTerrainType: Water
 		RangeLimit: 20480
 		Palette:
