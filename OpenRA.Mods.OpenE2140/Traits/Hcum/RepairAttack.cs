@@ -23,7 +23,8 @@ namespace OpenRA.Mods.OpenE2140.Traits.Hcum;
 
 public class RepairAttack : Activity, IActivityNotifyStanceChanged
 {
-	private static readonly CVec[] AllowedDockDirections = { new CVec(-1, 0), new CVec(0, -1), new CVec(0, 1), new CVec(1, 0) };
+	private static readonly int NonDiagonalDockDistance = 256;
+	private static readonly int DiagonalDockDistance = 470;
 
 	private readonly AttackRepair attack;
 	private readonly Mobile mobile;
@@ -188,9 +189,6 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				// Ready to dock to target
 				this.RepairState = RepairState.DockingToTarget;
 
-				foreach (var n in this.notifyRepair)
-					n.Docking(self);
-
 				return false;
 			}
 
@@ -206,11 +204,12 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 				// Calculate repair position
 				var vec = this.target.Actor.Location - self.Location;
-				var repairPosition = pos + new WVec(vec.X * 256, vec.Y * 256, 0);
+				var isDiagonal = vec.X != 0 && vec.Y != 0;
+				var repairPosition = pos + new WVec(vec.X, vec.Y, 0) * (isDiagonal ? DiagonalDockDistance : NonDiagonalDockDistance);
 				var repairCell = self.World.Map.CellContaining(repairPosition);
-				var length = (pos - repairPosition).Length / this.GetDockSpeed(repairCell);
+				var ticksToDock = (pos - repairPosition).Length / this.GetDockSpeed(repairCell);
 
-				if (length <= 1)
+				if (ticksToDock <= 1)
 				{
 					// HCU-M is (somehow) already at repair position or really close, do the final move tick and change state
 					this.mobile.SetCenterPosition(self, repairPosition);
@@ -220,14 +219,17 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				}
 
 				// do first move tick manually (to fake appearance of continuous movement)
-				var nextPos = WPos.Lerp(pos, repairPosition, 0, length - 1);
+				var nextPos = WPos.Lerp(pos, repairPosition, 0, ticksToDock - 1);
 
 				this.mobile.SetCenterPosition(self, nextPos);
 
-				this.QueueChild(new Drag(self, pos, repairPosition, length));
+				this.QueueChild(new Drag(self, pos, repairPosition, ticksToDock));
 				this.RepairState = RepairState.DockingToTarget;
 
 				this.QueueChild(new CallFunc(() => this.RepairState = RepairState.Repairing, false));
+
+				foreach (var n in this.notifyRepair)
+					n.Docking(self, ticksToDock - 1);
 
 				break;
 			}
@@ -333,9 +335,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 		if (targetAircraft != null && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
 			return false;
 
-		var cellDist = this.target.Actor.Location - self.Location;
-
-		if (!RepairAttack.AllowedDockDirections.Contains(cellDist))
+		if (!Util.ExpandFootprint(self.Location, true).Contains(this.target.Actor.Location))
 			return false;
 
 		if (self.CenterPosition != self.World.Map.CenterOfCell(self.Location) || target.CenterPosition != self.World.Map.CenterOfCell(target.Location))

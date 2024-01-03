@@ -1,6 +1,6 @@
 shared_vehicles_hcum:
 	ReloadDelay: 10
-	Range: 1c128
+	Range: 1c896
 	Projectile: InstantHit
 	ValidTargets: DamagedUnit
 	TargetActorCenter: true

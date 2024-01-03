@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Activities;
+using OpenRA.Effects;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -162,9 +163,15 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 		return new RepairAttack(self, newTarget, allowMove, forceAttack, this, Color.Orange);
 	}
 
-	void INotifyRepair.Docking(Actor self)
+	void INotifyRepair.Docking(Actor self, int ticksToDock)
 	{
-		this.DefaultAnimation.PlayThen(this.Info.DockingSequence, () => this.DefaultAnimation.PlayRepeating(this.Info.RepairSequence));
+		var delay = ticksToDock - this.DefaultAnimation.GetSequence(this.Info.DockingSequence).Length - 5;
+		if (delay > 0)
+			self.World.Add(new DelayedAction(delay, PlayAnimation));
+		else
+			PlayAnimation();
+
+		void PlayAnimation() => this.DefaultAnimation.PlayThen(this.Info.DockingSequence, () => this.DefaultAnimation.PlayRepeating(this.Info.RepairSequence));
 	}
 
 	void INotifyRepair.Repairing(Actor self)
