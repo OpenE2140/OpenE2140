@@ -697,7 +697,6 @@
 		RequiresCondition: shadowcloak
 		InitialDelay: 0
 		CloakDelay: 90
-		Palette:
 		UncloakOn: None
 		EffectPalette:
 	# This allows using condition 'shadowcloak' which SHADOW unit provides.

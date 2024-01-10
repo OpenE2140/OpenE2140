@@ -36,7 +36,6 @@ ucs_ships_russ3:
 	-ExternalCondition:
 	Cloak@Underwater:
 		CloakType: UnderwaterCloak
-		Palette:
 		EffectPalette:
 	SpawnActorOnDeath:
 		Actor: ucs_ships_russ3_husk

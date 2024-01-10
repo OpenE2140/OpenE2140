@@ -18,7 +18,6 @@ shared_misc_landmine:
 		EmptyWeapon: shared_misc_landmine
 	Cloak:
 		UncloakOn: Attack
-		Palette:
 		EffectPalette:
 		DetectionTypes: LandMine
 		InitialDelay: 0
