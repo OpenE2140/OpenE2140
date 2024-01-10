@@ -134,7 +134,7 @@ public class ProductionTooltipLogic : ChromeLogic
 			}
 
 			// Description
-			descLabel.Visible = buildable.Description != string.Empty;
+			descLabel.Visible = !string.IsNullOrEmpty(buildable.Description);
 
 			if (descLabel.Visible)
 			{
