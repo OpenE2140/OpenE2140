@@ -97,9 +97,10 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 			// it moves to the center of the cell, thus becomes accessible to other HCU-M.
 
 			// TODO: fix broken attack logic when trying to repair disabled HCU-M that is in docked position.
-			this.UndockFromTarget(self);
+			if (this.RepairState != RepairState.None)
+				this.UndockFromTarget(self);
 
-			return true;
+			return false;
 		}
 
 		if (this.IsCanceling)
@@ -282,7 +283,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 
 			case RepairState.UndockingFromTarget:
 			{
-				// Is this necessary?
+				this.attack.State = RepairState.None;
 				break;
 			}
 		}
@@ -301,6 +302,8 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 			new CallFunc(
 				() =>
 				{
+					this.RepairState = RepairState.None;
+
 					foreach (var n in this.notifyRepair)
 						n.Undocked(self);
 				},
