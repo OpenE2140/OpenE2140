@@ -492,9 +492,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		var initialFacing = this.productionInfo.ExitInfo.Facing
 			?? AnimatedExitProduction.GetInitialFacing(this.productionInfo.Producee, spawnPosition, self.World.Map.CenterOfCell(exit));
 
-		// Don't use CenterPositionInit as that will cause Mobile to queue an uncancelable ReturnToCellActivity.
-		// AnimatedExitProduction or other *Production classes based on AnimatedExitProduction might want to customize behavior of produced actor.
-
 		var inits = this.productionInfo.Inits;
 		inits.Add(new LocationInit(spawnCell));
 		inits.Add(new FacingInit(initialFacing));
@@ -567,13 +564,11 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 	void INotifyProduction.UnitProduced(Actor self, Actor other, CPos exit)
 	{
-		// HACK: ReturnToCellActivity activity is queued because CenterPositionInit was used when creating Actor.
-		// Unfortunately this is necessary, because otherwise oldPos private field in Mobile trait remains 0,0,0 after actor is created.
-		// this causes Mobile.UpdateMovement to determine that Actor has moved (from 0,0,0 to spawn offset)
+		// HACK: LeaveProductionActivity activity is queued because CenterPositionInit was used when creating Actor (see Eject() above).
+		// We need to cancel bypass it via reflection, since it is not cancellable.
 
-		// TODO: PR to make ReturnToCellActivity on actor creation optional when CenterPositionInit is used
-
-		if (other.CurrentActivity is Mobile.ReturnToCellActivity)
+		// TODO: PR to make LeaveProductionActivity on actor creation optional when CenterPositionInit is used
+		if (other.CurrentActivity is Mobile.LeaveProductionActivity)
 			other.GetType().GetField("currentActivity", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(other, other.CurrentActivity.NextActivity);
 
 		this.OnUnitProduced(self, other, exit);
