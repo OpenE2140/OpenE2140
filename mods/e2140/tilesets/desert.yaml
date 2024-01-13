@@ -320,6 +320,8 @@ Templates:
 		Frames: 120
 		Tiles:
 			0: SandEdge
+	# Tiles 121 and 122 of red desert tileset are swapped in game assets, they need to be swapped back here.
+	# Otherwise desert tileset won't be swappable with other symmetric tilesets (0-5).
 	Template@84:
 		Id: 84
 		Images: SPRT1.MIX
