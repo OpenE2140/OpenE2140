@@ -325,7 +325,7 @@ Templates:
 		Images: SPRT1.MIX
 		Size: 1,1
 		Categories: Terrain
-		Frames: 121
+		Frames: 122
 		Tiles:
 			0: SandEdge
 	Template@85:
@@ -333,7 +333,7 @@ Templates:
 		Images: SPRT1.MIX
 		Size: 1,1
 		Categories: Terrain
-		Frames: 122
+		Frames: 121
 		Tiles:
 			0: SandEdge
 	Template@86:
