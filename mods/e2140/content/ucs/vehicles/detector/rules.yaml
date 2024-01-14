@@ -1,0 +1,42 @@
+ucs_vehicles_detector:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^LeavesMedium2Tracks
+	Tooltip:
+		Name: DETECTOR
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS, Teleport.UCS
+		BuildDuration: 75
+		BuildPaletteOrder: 200
+		Prerequisites: Teleportation
+	Selectable:
+		Bounds: 960, 864, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 4c896
+	WithIdleOverlay:
+		Palette:
+		PauseOnCondition: VehicleDisabled
+	DetectCloaked:
+		Range: 4c896
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_detector_husk
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 15
+		Title: DETECTOR
+		Armor: Medium
+		Armament: None
+		Description: The DETECTOR can disable the camouflage device used by the rouge UCS' SHADOW units. It works at longer ranges than the SHADOW.
+
+ucs_vehicles_detector_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (DETECTOR)
