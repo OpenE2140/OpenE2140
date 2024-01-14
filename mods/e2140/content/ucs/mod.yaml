@@ -26,6 +26,7 @@ Rules:
 	e2140|content/ucs/vehicles/atm_500/rules.yaml
 	e2140|content/ucs/vehicles/goliath/rules.yaml
 	e2140|content/ucs/vehicles/miner_bt/rules.yaml
+	e2140|content/ucs/vehicles/detector/rules.yaml
 	e2140|content/ucs/aircrafts/gargoil/rules.yaml
 	e2140|content/ucs/aircrafts/hellwind/rules.yaml
 	e2140|content/ucs/aircrafts/gargoil2/rules.yaml
@@ -63,6 +64,7 @@ Sequences:
 	e2140|content/ucs/vehicles/atm_500/sequences.yaml
 	e2140|content/ucs/vehicles/goliath/sequences.yaml
 	e2140|content/ucs/vehicles/miner_bt/sequences.yaml
+	e2140|content/ucs/vehicles/detector/sequences.yaml	
 	e2140|content/ucs/aircrafts/gargoil/sequences.yaml
 	e2140|content/ucs/aircrafts/hellwind/sequences.yaml
 	e2140|content/ucs/aircrafts/gargoil2/sequences.yaml
