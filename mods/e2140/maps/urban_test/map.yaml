@@ -39,6 +39,12 @@ Players:
 		Enemies: Creeps
 
 Actors:
+	spawn0: mpspawn
+		Owner: Neutral
+		Location: 9,6
+	spawn1: mpspawn
+		Owner: Neutral
+		Location: 27,27
 	Actor0: neutral_tree02
 		Owner: Neutral
 		Location: 20,24
@@ -117,9 +123,12 @@ Actors:
 	Actor25: neutral_tree03
 		Owner: Neutral
 		Location: 2,2
-	Actor26: mpspawn
+	Actor28: neutral_tree03
 		Owner: Neutral
-		Location: 6,3
-	Actor27: mpspawn
+		Location: 24,3
+	Actor29: neutral_tree06
 		Owner: Neutral
-		Location: 29,30
+		Location: 27,3
+	Actor30: neutral_tree02
+		Owner: Neutral
+		Location: 31,28
