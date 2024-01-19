@@ -26,15 +26,15 @@ ed_buildings_tech_house:
 			TopLeft: -1024, -1024
 			BottomRight: 956, 656
 	HitShape@Elevator:
-		TargetableOffsets: -1224,1600,0
+		TargetableOffsets: -1280,1590,0
 		Type: Rectangle
-			TopLeft: 1256, 356
-			BottomRight: 2012, 1112
+			TopLeft: 1186, 426
+			BottomRight: 1942, 1182
 	Selectable:
 		Bounds: 2064, 1984, 0, 0
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 1575, 750, 0
+		Position: 1575, 820, 0
 		CutOff: 29
 		Produces: Vehicle.ED
 	AnimatedExitProductionQueue:
@@ -45,7 +45,7 @@ ed_buildings_tech_house:
 	ProvidesPrerequisite:
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
-		LineInitialOffset: 1584,815,0
+		LineInitialOffset: 1584,885,0
 	# SpawnOffset is not used in ElevatorProduction (spawn offset is calculated precisely from elevator cell's center).
 	Exit@Exit1:
 		ExitCell: 1,2
