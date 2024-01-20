@@ -31,6 +31,12 @@ ed_vehicles_screamer:
 		RequiresCondition: !VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_screamer_husk
+	# SCREAMERS are immune to each other.
+	-RejectsOrders:
+	-ExternalCondition@Interference:
+	-WithDecoration@Interference:
+	WithDecoration@Disabled:
+		-Offsets:
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 12
