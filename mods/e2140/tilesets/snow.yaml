@@ -256,54 +256,6 @@ Templates:
 		Frames: 118
 		Tiles:
 			0: SandEdge
-	Template@76:
-		Id: 76
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 113
-		Tiles:
-			0: SandEdge
-	Template@77:
-		Id: 77
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 114
-		Tiles:
-			0: SandEdge
-	Template@78:
-		Id: 78
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 115
-		Tiles:
-			0: SandEdge
-	Template@79:
-		Id: 79
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 116
-		Tiles:
-			0: SandEdge
-	Template@80:
-		Id: 80
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 117
-		Tiles:
-			0: SandEdge
-	Template@81:
-		Id: 81
-		Images: SPRT4.MIX
-		Size: 1,1
-		Categories: Terrain
-		Frames: 118
-		Tiles:
-			0: SandEdge
 	Template@82:
 		Id: 82
 		Images: SPRT4.MIX
