@@ -399,13 +399,13 @@ Container@PLAYER_WIDGETS:
 				Container@RADAR:
 					Logic: IngameRadarDisplayLogic
 					X: 11
-					Y: 31
+					Y: 41
 					Children:
 						LogicTicker@RADAR_TICKER:
 						Radar@RADAR_MINIMAP:
 							WorldInteractionController: INTERACTION_CONTROLLER
-							Width: 193
-							Height: 216
+							Width: 194
+							Height: 195
 				Container@SIDEBAR_MONEYBIN:
 					X: 23
 					Y: 250
