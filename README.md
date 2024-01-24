@@ -16,6 +16,11 @@ Links:
 
 # Screenshots
 
+### Screenshots (January 2024)
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3563c453-02e1-43ec-bc89-8a25e966e57d" height="200"></a>
+<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3f46ef30-ed13-4e65-a3dc-e7b1a0af4340" height="200"></a>
+
 <details>
 	<summary>Screenshots (September 2023)</summary>
 	<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/d75532d4-bc0f-47e3-b292-5c63c6ddd1b2"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/d75532d4-bc0f-47e3-b292-5c63c6ddd1b2" height="200"></a>
