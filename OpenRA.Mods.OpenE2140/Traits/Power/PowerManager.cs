@@ -26,10 +26,21 @@ public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 	public readonly int AdviceInterval = 10000;
 
 	[Desc("Interval (in ticks) at which to to cycle the power actors on low power.")]
-	public readonly int PowerCycleInterval = 3;
+	public readonly int PowerCycleInterval = 5;
 
 	[Desc("Percentage of how much generated energy can be used (for all buildings), when there's low power.")]
 	public readonly int UsableEnergyWhenLowPowerPercent = 80;
+
+	[Desc("Low power state: threshold for decreasing number of buildings powered in one power cycle")]
+	public readonly int LowPowerThresholdDiff = 200;
+
+	[Desc("Low power state: how many buildings can be powered in one power cycle. This number is baseline, when the power deficit is smallest.")]
+	public readonly int LowPowerInitialGroupSize = 5;
+
+	[Desc("Low power state: how many Power Plants can increase number of buildings in one power cycle",
+		"Each Power Plant adds an extra building to total number of buildings, which can be powered in one power cycle. " +
+		"This value is a limit, beyond which the number of buildings is not increased anymore.")]
+	public readonly int LowPowerExtraGroupsLimit = 4;
 
 	[NotificationReference("Speech")]
 	public readonly string? SpeechNotification;
@@ -45,7 +56,6 @@ public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 public class PowerManager : ITick
 {
 	private readonly PowerManagerInfo info;
-
 	private readonly DeveloperMode devMode;
 
 	private readonly Dictionary<Actor, Power> powers = new Dictionary<Actor, Power>();
@@ -54,7 +64,7 @@ public class PowerManager : ITick
 	public int PowerGenerated { get; private set; }
 	public int PowerConsumed { get; private set; }
 
-	private int? firstLowPower;
+	private int? currentLowPowerGroup;
 	private long lastAdviceTime;
 
 	public PowerManager(Actor self, PowerManagerInfo info)
@@ -96,8 +106,12 @@ public class PowerManager : ITick
 		else if (this.Power < 0)
 			remaining = remaining * this.info.UsableEnergyWhenLowPowerPercent / 100;
 
-		var powered = 0;
+		var powerPlantCount = this.powers.Values.Count(p => !p.IsTraitDisabled && p.Info.Amount > 0);
 
+		var powered = 0;
+		var lowPowered = new List<(Actor, Power)>(this.powers.Count);
+
+		// This loop handles only powered down buildings, buildings, which generate power and remaining buildings, which do not cause low power state.
 		for (var i = 0; i < this.powers.Count; i++)
 		{
 			var (actor, power) = this.powers.ElementAt(i);
@@ -128,23 +142,52 @@ public class PowerManager : ITick
 			}
 			else
 			{
-				this.firstLowPower ??= i;
-
-				power.SetPowered(actor, this.firstLowPower == i);
+				lowPowered.Add((actor, power));
 			}
 		}
 
+		// Check, if there's enough power
 		if (remaining >= 0)
 		{
-			this.firstLowPower = null;
+			this.currentLowPowerGroup = null;
 
 			return;
 		}
 
-		if (self.World.WorldTick % this.info.PowerCycleInterval == 0 && this.firstLowPower != null)
+		// When in low power state, in each power cycle a group of buildings are powered
+		// Size of the group is dependent on how big is the power deficit and how many power plants player has
+		var maxLowerPowerGroupSize = 1;
+		if (this.Power < 0 && powerPlantCount > 0)
 		{
-			// cycle only between buildings that are causing low power state.
-			this.firstLowPower = powered + (int)(this.firstLowPower - powered + 1) % (this.powers.Count - powered + 1);
+			// Calculate group size
+			maxLowerPowerGroupSize =
+				this.info.LowPowerInitialGroupSize    // start with the initial group size
+				+ (
+					remaining + 1   // +1 means that the thresholds are inclusive
+				) / this.info.LowPowerThresholdDiff;  // divide with the threshold. This gives the number of buildings that can be powered
+
+			// Each power plant adds one additional building to the group (up to a specified limit)
+			maxLowerPowerGroupSize += Math.Min(this.info.LowPowerExtraGroupsLimit, powerPlantCount - 1);
+			if (maxLowerPowerGroupSize < 1)
+				maxLowerPowerGroupSize = 1;
+		}
+
+		// Give power to buildings, which are supposed to be online in current power cycle
+		for (var i = 0; i < lowPowered.Count; i++)
+		{
+			var (actor, power) = lowPowered[i];
+			this.currentLowPowerGroup ??= 0;
+
+			var shouldGetPower = i / maxLowerPowerGroupSize == this.currentLowPowerGroup;
+
+			power.SetPowered(actor, shouldGetPower);
+		}
+
+		if (self.World.WorldTick % this.info.PowerCycleInterval == 0 && this.currentLowPowerGroup != null)
+		{
+			// Calculate next group to power on in next power cycle.
+			var div = Exts.IntegerDivisionRoundingAwayFromZero(lowPowered.Count, maxLowerPowerGroupSize);
+			this.currentLowPowerGroup = (this.currentLowPowerGroup + 1) % Math.Max(2, div);
 		}
 
 		if (Game.RunTime <= this.lastAdviceTime + this.info.AdviceInterval)
