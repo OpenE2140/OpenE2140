@@ -234,7 +234,12 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			return;
 
 		// If no exit was specified, pick one (even if it isn't free)
-		exitInfo ??= this.SelectAnyPassableExit(self, producee, productionType).Info;
+		exitInfo ??= this.SelectAnyPassableExit(self, producee, productionType)?.Info;
+		if (exitInfo == null)
+		{
+			// there's literaly no passable exit around, don't produce the actor now
+			return;
+		}
 
 		this.productionInfo = new ProductionInfo(producee, exitInfo, productionType, inits, null, null);
 
@@ -392,8 +397,11 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				// still no exit available, try picking any other passable ...
 				var randomExit = this.SelectAnyPassableExit(self, this.productionInfo.Producee, this.productionInfo.ProductionType);
-				exitCell = self.Location + randomExit.Info.ExitCell;
-				this.productionInfo = this.productionInfo with { ExitInfo = randomExit.Info };
+				if (randomExit != null)
+				{
+					exitCell = self.Location + randomExit.Info.ExitCell;
+					this.productionInfo = this.productionInfo with { ExitInfo = randomExit.Info };
+				}
 
 				// ... and nudge any actors at that cell
 				this.NudgeBlockingActors(self, exitCell, actor);
@@ -587,7 +595,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			aircraft.SetCenterPosition(other, spawnPosition);
 	}
 
-	private Exit SelectAnyPassableExit(Actor self, ActorInfo producee, string productionType)
+	private Exit? SelectAnyPassableExit(Actor self, ActorInfo producee, string productionType)
 	{
 		// Passable exit is cell, which is passable for produced actor, while ignoring any movable actors.
 		return this.SelectExit(
