@@ -26,7 +26,7 @@ public class PowerInfo : ConditionalTraitInfo
 
 public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRemovedFromWorld, INotifyOwnerChanged
 {
-	private PowerManager playerPower;
+	private PowerManagerBase playerPower;
 
 	private int token = Actor.InvalidConditionToken;
 
@@ -40,7 +40,7 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 	public Power(Actor self, PowerInfo info)
 		: base(info)
 	{
-		this.playerPower = self.Owner.PlayerActor.Trait<PowerManager>();
+		this.playerPower = self.Owner.PlayerActor.Trait<PowerManagerBase>();
 	}
 
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
@@ -60,7 +60,7 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 		// Adding this instance of Power trait to new player's PowerManager here (OnOwnerChanged) would cause AddedToWorld adding it second time.
 		// There's no other place INotifyOwnerChanged.OnOwnerChanged callback is invoked, so there's no need to handle scenario, where ownership change
 		// happens without actor being first removed from world (and added back after ownership has changed).
-		this.playerPower = newOwner.PlayerActor.Trait<PowerManager>();
+		this.playerPower = newOwner.PlayerActor.Trait<PowerManagerBase>();
 	}
 
 	public void SetPowered(Actor self, bool powered)

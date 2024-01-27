@@ -15,11 +15,11 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.Common.Widgets.Logic;
+using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Mods.OpenE2140.Traits.Research;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 using PowerInfo = OpenRA.Mods.OpenE2140.Traits.Power.PowerInfo;
-using PowerManager = OpenRA.Mods.OpenE2140.Traits.Power.PowerManager;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 
@@ -33,7 +33,7 @@ public class ProductionTooltipLogic : ChromeLogic
 			new AddFactionSuffixLogic(widget.Get<Widget>(id), player.World);
 
 		var world = player.World;
-		var pm = player.PlayerActor.TraitOrDefault<PowerManager>();
+		var pm = player.PlayerActor.TraitOrDefault<PowerManagerBase>();
 		var pr = player.PlayerActor.Trait<PlayerResources>();
 
 		widget.IsVisible = () => getTooltipIcon() != null && getTooltipIcon()?.Actor != null;

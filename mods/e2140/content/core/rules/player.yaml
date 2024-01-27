@@ -30,7 +30,7 @@ Player:
 	# Player always has access to radar
 	ProvidesRadar:
 	# Manage power for buildings
-	PowerManager:
+	ModernPowerManager:
 		SpeechNotification: LowPower
 		TextNotification: Low power.
 		# Currently mimicking original game's behavior, by being able to use all generated power when in low power state.

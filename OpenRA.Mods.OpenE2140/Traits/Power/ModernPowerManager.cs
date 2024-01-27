@@ -1,30 +1,13 @@
-﻿#region Copyright & License Information
-
-/*
- * Copyright (c) The OpenE2140 Developers and Contributors
- * This file is part of OpenE2140, which is free software. It is made
- * available to you under the terms of the GNU General Public License
- * as published by the Free Software Foundation, either version 3 of
- * the License, or (at your option) any later version. For more
- * information, see COPYING.
- */
-
-#endregion
-
-using JetBrains.Annotations;
-using OpenRA.Mods.Common.Traits;
+﻿using JetBrains.Annotations;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Power;
 
 [TraitLocation(SystemActors.Player)]
-[Desc("Earth specific variant of the PowerManager trait.")]
+[Desc("Earth specific variant of the PowerManager trait. This is the modern version, with improved behavior.")]
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
+public class ModernPowerManagerInfo : PowerManagerBaseInfo
 {
-	[Desc("Interval (in milliseconds) at which to warn the player of low power.")]
-	public readonly int AdviceInterval = 10000;
-
 	[Desc("Interval (in ticks) at which to to cycle the power actors on low power.")]
 	public readonly int PowerCycleInterval = 5;
 
@@ -42,79 +25,41 @@ public class PowerManagerInfo : TraitInfo, Requires<DeveloperModeInfo>
 		"This value is a limit, beyond which the number of buildings is not increased anymore.")]
 	public readonly int LowPowerExtraGroupsLimit = 4;
 
-	[NotificationReference("Speech")]
-	public readonly string? SpeechNotification;
-
-	public readonly string? TextNotification;
-
 	public override object Create(ActorInitializer init)
 	{
-		return new PowerManager(init.Self, this);
+		return new ModernPowerManager(init.Self, this);
 	}
 }
 
-public class PowerManager : ITick
+public class ModernPowerManager : PowerManagerBase
 {
-	private readonly PowerManagerInfo info;
-	private readonly DeveloperMode devMode;
-
-	private readonly Dictionary<Actor, Power> powers = new Dictionary<Actor, Power>();
-
-	public int Power { get; private set; }
-	public int PowerGenerated { get; private set; }
-	public int PowerConsumed { get; private set; }
-
+	private readonly ModernPowerManagerInfo info;
 	private int? currentLowPowerGroup;
-	private long lastAdviceTime;
 
-	public PowerManager(Actor self, PowerManagerInfo info)
+	public ModernPowerManager(Actor self, ModernPowerManagerInfo info)
+		: base(self, info)
 	{
 		this.info = info;
-
-		this.devMode = self.Trait<DeveloperMode>();
 	}
 
-	public void Add(Actor actor, Power power)
+	protected override PlayerPowerState TickInner(Actor self)
 	{
-		this.powers.Add(actor, power);
-	}
-
-	public void Remove(Actor actor)
-	{
-		this.powers.Remove(actor);
-	}
-
-	void ITick.Tick(Actor self)
-	{
-		this.PowerGenerated = 0;
-		this.PowerConsumed = 0;
-
-		foreach (var power in this.powers.Values.Where(power => !power.IsTraitDisabled))
-		{
-			if (power.Info.Amount > 0)
-				this.PowerGenerated += power.Info.Amount;
-			else
-				this.PowerConsumed += -power.Info.Amount;
-		}
-
-		this.Power = this.PowerGenerated - this.PowerConsumed;
-
 		var remaining = this.PowerGenerated;
 
-		if (this.devMode.UnlimitedPower)
+		if (this.DevMode.UnlimitedPower)
 			remaining = int.MaxValue;
 		else if (this.Power < 0)
 			remaining = remaining * this.info.UsableEnergyWhenLowPowerPercent / 100;
 
-		var powerPlantCount = this.powers.Values.Count(p => !p.IsTraitDisabled && p.Info.Amount > 0);
+		var powerPlantCount = this.Powers.Values.Count(p => !p.IsTraitDisabled && p.Info.Amount > 0);
 
 		var powered = 0;
-		var lowPowered = new List<(Actor, Power)>(this.powers.Count);
+		var lowPowered = new List<(Actor, Power)>(this.Powers.Count);
 
 		// This loop handles only powered down buildings, buildings, which generate power and remaining buildings, which do not cause low power state.
-		for (var i = 0; i < this.powers.Count; i++)
+		for (var i = 0; i < this.Powers.Count; i++)
 		{
-			var (actor, power) = this.powers.ElementAt(i);
+			var (actor, power) = this.Powers.ElementAt(i);
 
 			if (power.IsTraitDisabled)
 			{
@@ -151,7 +96,7 @@ public class PowerManager : ITick
 		{
 			this.currentLowPowerGroup = null;
 
-			return;
+			return PlayerPowerState.Ok;
 		}
 
 		// When in low power state, in each power cycle a group of buildings are powered
@@ -190,12 +135,6 @@ public class PowerManager : ITick
 			this.currentLowPowerGroup = (this.currentLowPowerGroup + 1) % Math.Max(2, div);
 		}
 
-		if (Game.RunTime <= this.lastAdviceTime + this.info.AdviceInterval)
-			return;
-
-		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.info.SpeechNotification, self.Owner.Faction.InternalName);
-		TextNotificationsManager.AddTransientLine(self.Owner, this.info.TextNotification);
-
-		this.lastAdviceTime = Game.RunTime;
+		return PlayerPowerState.LowPower;
 	}
 }
