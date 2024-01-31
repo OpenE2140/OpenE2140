@@ -67,6 +67,18 @@ Templates:
 			3: Clear
 			4: Clear
 
+	# Extra clear tiles
+	Template@343:
+		Id: 343
+		Images: SPRT3.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 197, 198
+		Tiles:
+			0: Clear
+			1: Clear
+
 	# Large, unpassable rocks
 	Template@1:
 		Id: 1
