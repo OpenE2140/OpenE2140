@@ -617,6 +617,24 @@ stance-icons-highlighted:
 		return-fire: 34, 153, 16, 16
 		hold-fire: 51, 153, 16, 16
 
+# Map editor glyphs
+editor:
+	Inherits: ^Glyphs
+	Regions:
+		tiles: 35, 171, 16, 16
+		overlays: 52, 171, 16, 16
+		tools: 69, 171, 16, 16
+
+production-icons:
+	Inherits: ^Glyphs
+	Regions:
+		infantry: 34, 68, 16, 16
+
+sidebar-bits:
+	Inherits: ^Glyphs
+	Regions:
+		production-tooltip-time: 87, 171, 16, 16
+
 ##########################
 # Faction-specific stuff
 
