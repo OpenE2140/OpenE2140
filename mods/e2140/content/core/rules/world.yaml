@@ -136,7 +136,6 @@ EditorWorld:
 	EditorActorLayer:
 	# Selecting, Copying, Pasting Support for map editor.
 	EditorSelectionLayer:
-		Palette:
 	# Cursor attached stuff.
 	EditorCursorLayer:
 	# Undo / Redo support.
@@ -145,3 +144,5 @@ EditorWorld:
 	BuildableTerrainOverlay:
 		AllowedTerrainTypes: clear
 		Palette:
+	# Dummy, since resources are not implemented yet, but editor now requires a resource layer.
+	EditorResourceLayer:
