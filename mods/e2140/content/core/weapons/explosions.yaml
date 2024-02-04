@@ -1,20 +1,19 @@
 VehicleExplosion:
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Vehicle, Ship
 	Warhead@Effect: CreateEffect
 		Image: explosion
 		Explosions: unit_explosion_1, unit_explosion_2
 		ExplosionPalette:
-		ValidTargets: Ground, Water
+		ValidTargets: Ground, Water, Vehicle, Ship
 		ImpactSounds: 16.smp, 17.smp
 
 VehicleExploding:
-	ValidTargets: Ground, Water
+	ValidTargets: Ground, Water, Vehicle, Ship
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: explosion_sequence, explosion_sequence_2, explosion_sequence, explosion_sequence_2, explosion_sequence
 		Range: 1c0, 1c512
 		Inaccuracies: 0c256, 0c256, 0c256, 0c256, 0c256
-		ValidTargets: Ground
-		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+		ValidTargets: Ground, Water, Vehicle, Ship
 		Delays: 0, 5, 10, 15, 20
 
 AircraftExplosion:
