@@ -30,7 +30,7 @@ ucs_vehicles_detector_husk:
 		ZOffset: -256
 
 # TODO: remove after PR #20705
-ucs_vehicles_detector_husk.ed:
+ucs_vehicles_detector.ed:
 	Inherits: ucs_vehicles_detector
 	icon:
 		Filename: content/ucs/vehicles/detector/vehicle_detector_icon_ed.png
