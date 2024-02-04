@@ -32,8 +32,8 @@ ucs_infantry_silver_r:
 	#	Start: 118
 
 # TODO: remove after PR #20705
-ucs_infantry_silver_one.ed:
-	Inherits: ucs_infantry_silver_one
+ucs_infantry_silver_r.ed:
+	Inherits: ucs_infantry_silver_r
 	icon:
 		Filename: SPRI0.MIX
 		Start: 118

@@ -26,5 +26,5 @@ ucs_infantry_silver_t:
 ucs_infantry_silver_t.ed:
 	Inherits: ucs_infantry_silver_t
 	icon:
-		Filename: SPRI1.MIX
+		Filename: SPRI0.MIX
 		Start: 120
