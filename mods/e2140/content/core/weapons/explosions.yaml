@@ -130,3 +130,18 @@ WallExplosion:
 	Warhead@EffectShrapnels: SpawnWeapons
 		Weapons: weapon_debris_structure
 		Pieces: 3,4
+
+HuskExplosion:
+	ValidTargets: Ground, Water, Vehicle, Ship
+	Warhead@Effect: CreateEffect
+		Image: explosion
+		Explosions: unit_explosion_1, unit_explosion_2
+		ExplosionPalette:
+		ValidTargets: Ground, Water, Vehicle, Ship
+		ImpactSounds: 16.smp, 17.smp
+	Warhead@Damage: SpreadDamage
+		Falloff: 100, 100, 100, 80, 60
+		Spread: 0c125
+		Damage: 8
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship, Vehicle, Ship
