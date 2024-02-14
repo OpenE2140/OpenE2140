@@ -853,8 +853,8 @@
 		GenericName: Destroyed Vehicle
 	# Husks explode if killed or disappear.
 	Explodes:
-		Weapon: VehicleExplosion
-		EmptyWeapon: VehicleExplosion
+		Weapon: HuskExplosion
+		EmptyWeapon: HuskExplosion
 	# Husks can be crushed by other vehicles.
 	Crushable:
 		CrushClasses: husk
