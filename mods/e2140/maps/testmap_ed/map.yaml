@@ -25,7 +25,7 @@ Players:
 		LockFaction: True
 		Faction: ed
 		LockColor: True
-		Color: 273C0A
+		Color: 345100
 		LockSpawn: True
 		LockTeam: True
 		Enemies: UCS_AI
@@ -399,5 +399,20 @@ Actors:
 	Actor94: shared_buildings_water_base
 		Owner: ED_Player
 		Location: 29,25
+	Actor95: ed_buildings_tech_house
+		Owner: UCS_AI
+		Location: 28,10
+	Actor96: ucs_buildings_heavy_tech
+		Owner: ED_Player
+		Location: 26,14
+	Actor97: ucs_buildings_robot_factory
+		Owner: ED_Player
+		Location: 30,13
+	Actor98: ucs_buildings_robot_factory
+		Owner: UCS_AI
+		Location: 30,16
+	Actor99: ucs_buildings_heavy_tech
+		Owner: UCS_AI
+		Location: 26,18
 
 Rules: rules.yaml

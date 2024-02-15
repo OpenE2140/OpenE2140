@@ -5,12 +5,22 @@
 		BasePalette: greyscale
 	PlayerColorShift:
 		BasePalette: player
+		MinHue: 0.83
+		MaxHue: 0.84
+		ReferenceHue: 0.835
+		ReferenceSaturation: 1
+		ReferenceValue: 0.405
 	ColorPickerPalette@colorpicker:
 		Name: colorpicker
 		BasePalette: greyscale
 		AllowModifiers: false
 	ColorPickerColorShift:
 		BasePalette: colorpicker
+		MinHue: 0.83
+		MaxHue: 0.84
+		ReferenceHue: 0.835
+		ReferenceSaturation: 1
+		ReferenceValue: 0.405
 	# TODO: remove all references to "terrain" palette in all (relevant) traits
 	PaletteFromGrayscale@terrain:
 		Name: terrain

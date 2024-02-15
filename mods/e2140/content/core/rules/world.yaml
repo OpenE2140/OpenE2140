@@ -75,7 +75,7 @@ World:
 			ucs: ucs_colorpicker
 			ed: ed_colorpicker
 		# Colors: green (ED default), red (UCS default), light gray, orange, dark gray, purple
-		PresetColors: 273C0A, F20F0F, 4A4D4A, 7B4100, 393439, 29345A
+		PresetColors: 345100, F20F0F, 6b6d6b, 9c5d00, 343634, 2e4f9c
 	# Required for chat commands.
 	ChatCommands:
 	HelpCommand:
