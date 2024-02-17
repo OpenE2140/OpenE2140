@@ -141,6 +141,13 @@ public class EnterCrewMember : Activity
 
 			case EnterState.Exiting:
 			{
+				// It's possible that another EnterCrewMember activity has been queued with the same target building.
+				// If so, exit immediately, the next EnterCrewMember activity will pick up where the current EnterCrewMember activity has left off.
+				if (this.IsCanceling && this.NextActivity is EnterCrewMember nextEnter && nextEnter.target.Actor == this.enterActor)
+				{
+					return true;
+				}
+
 				this.QueueChild(this.move.ReturnToCell(self));
 				this.lastState = EnterState.Finished;
 				return false;
