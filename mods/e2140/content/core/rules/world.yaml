@@ -142,7 +142,7 @@ EditorWorld:
 	EditorActionManager:
 	# Displays where buildings can be build.
 	BuildableTerrainOverlay:
-		AllowedTerrainTypes: clear
+		AllowedTerrainTypes: Clear, Road
 		Palette:
 	# Dummy, since resources are not implemented yet, but editor now requires a resource layer.
 	EditorResourceLayer:
