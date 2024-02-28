@@ -8,7 +8,7 @@ Links:
 * [OpenE2140 channel on Dalek.zone](https://dalek.zone/c/opene2140/videos) (PeerTube)
 
 # Videos
-
+- [OpenE2140: Preview 6 (February 2024)](https://dalek.zone/w/vXNL2vLURLmqEKCF3cDueP)
 - [OpenE2140: WTP 100 (work-in-progress)](https://dalek.zone/w/5PQVHZeiykAEUtauUHacXB) (September 2023)
 - [OpenE2140: Building crew (work-in-progress)](https://dalek.zone/w/s8USh5aPcZ9G97EDTc95AG) (September 2023)
 - [OpenE2140: Preview #5 (September 2023)](https://dalek.zone/w/gKjFswJPwu41fFrAX9TcRu)
