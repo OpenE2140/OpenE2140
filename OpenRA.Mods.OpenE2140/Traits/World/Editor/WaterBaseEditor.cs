@@ -130,14 +130,14 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		this.addedActors.Add(editorActor);
 	}
 
-	public void OnActorRemoved(EditorActorPreview preview) { }
+	public void OnActorRemoved(EditorActorPreview _) { }
 
 	private IEnumerable<EditorActorPreview> GetAllActors(OpenRA.World world)
 	{
 		return this.editorActorLayer.PreviewsInBox(this.mapRectangle.Update(world.Map.MapSize));
 	}
 
-	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo ai, OpenRA.World world, WaterBaseDockInfo info)
+	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo _, OpenRA.World world, WaterBaseDockInfo info)
 	{
 		var labels = this.GetAllActors(world)
 			.Where(p => p.Info.HasTraitInfo<WaterBaseBuildingInfo>())
