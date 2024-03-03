@@ -346,5 +346,9 @@ Actors:
 	Actor80: shared_buildings_water_base
 		Owner: UCS_Player
 		Location: 29,25
+	Actor81: shared_buildings_water_base_dock
+		Owner: UCS_Player
+		Location: 28,28
+		WaterBaseDock: Actor80
 
 Rules: rules.yaml

@@ -414,5 +414,9 @@ Actors:
 	Actor99: ucs_buildings_heavy_tech
 		Owner: UCS_AI
 		Location: 26,18
+	Actor100: shared_buildings_water_base_dock
+		Owner: ED_Player
+		Location: 29,28
+		WaterBaseDock: Actor94
 
 Rules: rules.yaml
