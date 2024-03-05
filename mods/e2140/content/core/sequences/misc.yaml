@@ -93,3 +93,9 @@ icon:
 	plasmablast:
 		Filename: SPRI0.MIX
 		Start: 186
+
+camera:
+	idle:
+		Filename: SPRI0.MIX
+		Start: 100
+		Length: 1
