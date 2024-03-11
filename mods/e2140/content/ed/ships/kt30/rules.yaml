@@ -76,7 +76,7 @@ ed_ships_kt30:
 		Description: The KT 30 is a medium-sized battleship with heavy armor-plating and heavy weapons. Its disadvantage is its low speed but its heavy armorplating and its two rocket launchers with self-guided missiles, both small and large, make it a force to be reckoned with. The KT 30 can be used to fight hostile ships or buildings that are close to shore. You can use the small rockets against air-attacks. These features gave the KT 30 the nickname “swimming castle”.
 
 ed_ships_kt30_husk:
-	Inherits@1: ^Husk
+	Inherits@1: ^ShipHusk
 	Inherits@2: ^HuskThrowsTurret
 	Inherits@3: ^HuskBurnsBigFire
 	Tooltip:

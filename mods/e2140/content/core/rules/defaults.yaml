@@ -598,6 +598,8 @@
 	Explodes:
 		Weapon: VehicleExploding
 		EmptyWeapon: VehicleExploding
+	# Block projectiles (ships should block only torpedoes, but that's not possible now).
+	BlocksProjectiles:
 	# Ships smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
@@ -866,6 +868,12 @@
 		CrushClasses: husk
 		WarnProbability: 0
 		CrushedByFriendlies: True
+
+# Ship husks need special behavior.
+^ShipHusk:
+	Inherits: ^Husk
+	# Ship husks also block projectiles (ships should block only torpedoes, but that's not possible now).
+	BlocksProjectiles:
 
 # Husk throws a turret if it has it.
 ^HuskThrowsTurret:
