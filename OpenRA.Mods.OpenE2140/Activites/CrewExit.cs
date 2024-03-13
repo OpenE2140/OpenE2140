@@ -16,7 +16,6 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
-using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Activites;
 
@@ -37,24 +36,14 @@ public class CrewExit : Activity
 		this.notifiers = self.TraitsImplementing<INotifyBuildingCrewExit>().ToArray();
 	}
 
-	public (CPos Cell, SubCell SubCell)? ChooseExitSubCell(Actor crewMember)
-	{
-		var pos = crewMember.Trait<IPositionable>();
-
-		return this.buildingCrew.EntryCells
-			.Shuffle(this.self.World.SharedRandom)
-			.Select(c => (c, pos.GetAvailableSubCell(c)))
-			.Cast<(CPos, SubCell SubCell)?>().ToArray()
-			.FirstOrDefault(s => s?.SubCell != SubCell.Invalid);
-	}
-
 	private IEnumerable<CPos> BlockedExitCells(Actor crewMember)
 	{
 		var pos = crewMember.Trait<IPositionable>();
 
 		// Find the cells that are blocked by transient actors
-		return this.buildingCrew.EntryCells
-			.Where(c => pos.CanEnterCell(c, null, BlockedByActor.All) != pos.CanEnterCell(c, null, BlockedByActor.None));
+		return this.buildingCrew.Entrances
+			.Where(e => pos.CanEnterCell(e.EntryCell, null, BlockedByActor.All) != pos.CanEnterCell(e.EntryCell, null, BlockedByActor.None))
+			.Select(e => e.EntryCell);
 	}
 
 	protected override void OnFirstRun(Actor self)
@@ -77,16 +66,15 @@ public class CrewExit : Activity
 
 			var actor = this.buildingCrew.Peek();
 
-			var exitSubCell = this.ChooseExitSubCell(actor);
-			if (exitSubCell == null)
+			var freeEntrance = this.buildingCrew.RandomCrewEntranceOrDefault(actor);
+			if (freeEntrance == null)
 			{
 				self.NotifyBlocker(this.BlockedExitCells(actor));
 				this.QueueChild(new Wait(10));
 				return false;
 			}
 
-			var spawn = self.World.Map.CenterOfCell(
-				this.buildingCrew.NearesetFootprintCell(self.World.Map.CenterOfSubCell(exitSubCell.Value.Cell, exitSubCell.Value.SubCell)));
+			var spawn = freeEntrance.Value.entrance.GetExitOffset();
 
 			this.buildingCrew.Exit(self);
 			self.World.AddFrameEndTask(w =>
@@ -98,7 +86,7 @@ public class CrewExit : Activity
 				var pos = actor.Trait<IPositionable>();
 				var crewMember = actor.Trait<CrewMember>();
 
-				pos.SetPosition(actor, exitSubCell.Value.Cell, exitSubCell.Value.SubCell);
+				pos.SetPosition(actor, freeEntrance.Value.entrance.EntryCell, freeEntrance.Value.subCell);
 				pos.SetCenterPosition(actor, spawn);
 
 				if (crewMember.Info.CancelActivitiesOnExit)

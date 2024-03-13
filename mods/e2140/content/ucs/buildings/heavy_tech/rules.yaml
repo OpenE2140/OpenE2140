@@ -17,7 +17,10 @@ ucs_buildings_heavy_tech:
 	BuildingCrew:
 		MaxPopulation: 6
 		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
-		EntryCells: 1,2,   2,2
+	BuildingCrewEntrance@1:
+		EntryCell: 1,2
+	BuildingCrewEntrance@2:
+		EntryCell: 2,2
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_heavy_tech

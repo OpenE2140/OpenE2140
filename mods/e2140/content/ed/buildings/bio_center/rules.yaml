@@ -11,6 +11,7 @@ ed_buildings_bio_center:
 	BuildingCrew:
 		MaxPopulation: 4
 		InitialUnits: ed_infantry_a01, ed_infantry_a01
+		DefaultEntranceOffset: -1008,512,0
 	TransformSequence:
 		Offset: 460,350,0
 	HitShape:
@@ -38,15 +39,15 @@ ed_buildings_bio_center:
 		ProductionType: Infantry.ED
 	ProvidesPrerequisite:
 	Exit@Exit1:
-		SpawnOffset: -400, 200, 0
+		# SpawnOffset: -400, 200, 0
 		ExitCell: -1,2
 		Facing: 384
 	Exit@Exit2:
-		SpawnOffset: -400, 200, 0
+		# SpawnOffset: -400, 200, 0
 		ExitCell: 0,2
 		Facing: 500
 	Exit@Exit3:
-		SpawnOffset: -400, 200, 0
+		# SpawnOffset: -400, 200, 0
 		ExitCell: 1,2
 		Facing: 650
 	Encyclopedia:

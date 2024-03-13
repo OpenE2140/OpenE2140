@@ -26,12 +26,9 @@ public class MoveToBuildingEntrance : MoveAdjacentTo
 			this.SearchCells.Clear();
 			this.searchCellsTick = self.World.WorldTick;
 
-			Debug.Assert(this.targetBuildingCrew.Info.EntryCells.Length != 0, $"Building doesn't have any entry cells for BuildingCrew: {self}");
 			Debug.Assert(this.Target.Type == TargetType.Actor, $"Target is not actor: {this.Target}");
 
-			var entryCells = this.targetBuildingCrew.Info.EntryCells.Length > 0
-				? this.targetBuildingCrew.Info.EntryCells.Select(c => this.Target.Actor.Location + c)
-				: Util.AdjacentCells(self.World, this.Target);
+			var entryCells = this.targetBuildingCrew.Entrances.Select(c => c.EntryCell);
 
 			foreach (var cell in entryCells)
 				if (this.Mobile.CanStayInCell(cell) && this.Mobile.CanEnterCell(cell))

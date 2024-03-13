@@ -16,7 +16,10 @@ shared_buildings_air_base:
 		Footprint: =xxx xxx= ====
 	BuildingCrew:
 		MaxPopulation: 5
-		EntryCells: 1,2,   2,2
+	BuildingCrewEntrance@1:
+		EntryCell: 1,2
+	BuildingCrewEntrance@2:
+		EntryCell: 2,2
 	# Air Base has atypical footprint and needs customization to its construction process.
 	# Cell, at which the MCU deploys needs to be the same as bottom-right cell of core Air Base sprite.
 	TransformSequence:

@@ -179,7 +179,10 @@
 	BuildingCrew:
 		RequiresCondition: !Transforming && !IsDead
 		ExitBuildingNotification: LeavingBuilding
-		EntryCells: 0,2,   -1,2
+	BuildingCrewEntrance@1:
+		EntryCell: 0,2
+	BuildingCrewEntrance@2:
+		EntryCell: -1,2
 	# Show pips for the building crew.
 	WithBuildingCrewPipsDecoration:
 		Palette:

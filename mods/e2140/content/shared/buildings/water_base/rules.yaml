@@ -14,7 +14,36 @@ shared_buildings_water_base:
 	BuildingCrew:
 		MaxPopulation: 4
 		InitialUnits: shared_infantry_civil2, shared_infantry_civil2
-		EntryCells: 0,2,   -1,2,   -1,1,   1,2,   2,2,   2,1
+	BuildingCrewEntrance@1:
+		EntryCell: 0,2
+		Priority: 3
+	BuildingCrewEntrance@2:
+		EntryCell: -1,2
+		Priority: 3
+	BuildingCrewEntrance@3:
+		EntryCell: -1,1
+		Priority: 2
+	BuildingCrewEntrance@4:
+		EntryCell: 1,2
+		Priority: 2
+	BuildingCrewEntrance@5:
+		EntryCell: 2,2
+		Priority: 2
+	BuildingCrewEntrance@6:
+		EntryCell: 1,1
+		Priority: 2
+	BuildingCrewEntrance@North1:
+		EntryCell: -1,-1
+		Priority: 1
+	BuildingCrewEntrance@North2:
+		EntryCell: 0,-1
+		Priority: 1
+	BuildingCrewEntrance@North3:
+		EntryCell: 1,-1
+		Priority: 1
+	BuildingCrewEntrance@North4:
+		EntryCell: 2,-1
+		Priority: 1
 	TransformSequence:
 		Offset: 512,570,0
 	HitShape:

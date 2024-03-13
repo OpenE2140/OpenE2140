@@ -23,6 +23,7 @@ ucs_buildings_robot_factory:
 	BuildingCrew:
 		MaxPopulation: 4
 		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
+		DefaultEntranceOffset: -512,288,0
 	Power:
 		Amount: -200
 	WithIdleOverlay@Powered:

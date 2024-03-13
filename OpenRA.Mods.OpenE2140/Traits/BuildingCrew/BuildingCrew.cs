@@ -22,7 +22,7 @@ using OpenRA.Traits;
 namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 
 [Desc("This actor has crew and can be conquered.")]
-public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>
+public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Requires<BuildingCrewEntranceInfo>
 {
 	[Desc("The maximum number of crew members this actor can have.")]
 	public readonly int MaxPopulation = 0;
@@ -84,6 +84,10 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>
 	[GrantedConditionReference]
 	public IEnumerable<string> LinterCrewMemberConditions => this.CrewMemberConditions.Values;
 
+	[Desc("Default value for offset towards which the entering actor is moving to enter the building. Relative to the center of the building actor.",
+		"If null, center of the nearest footprint cell is chosen.")]
+	public readonly WVec? DefaultEntranceOffset;
+
 	public override object Create(ActorInitializer init) { return new BuildingCrew(init, this); }
 }
 
@@ -110,7 +114,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public IEnumerable<CPos> BuildingOccupiedFootprintCells { get; }
 
-	public IEnumerable<CPos> EntryCells { get; }
+	public IReadOnlyList<BuildingCrewEntrance> Entrances { get; private set; } = Array.Empty<BuildingCrewEntrance>();
 
 	public IReadOnlyCollection<Actor> CrewMembers => this.crewMembers;
 	public int MemberCount => this.crewMembers.Count;
@@ -120,11 +124,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		this.self = init.Self;
 		this.checkTerrainType = info.ExitTerrainTypes.Count > 0;
+		this.Entrances = this.self.TraitsImplementing<BuildingCrewEntrance>().ToArray();
 		this.BuildingOccupiedFootprintCells = this.self.Info.TraitInfo<BuildingInfo>().FootprintTiles(this.self.Location, FootprintCellType.Occupied);
-
-		this.EntryCells = this.Info.EntryCells.Length > 0
-			? this.Info.EntryCells.Select(c => this.self.Location + c)
-			: Util.AdjacentCells(this.self.World, Target.FromActor(this.self));
 
 		var buildingCrewInit = init.GetOrDefault<BuildingCrewInit>(info);
 		if (buildingCrewInit != null)
@@ -234,7 +235,28 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				return false;
 		}
 
-		return !this.IsEmpty() && this.EntryCells != null && this.EntryCells.Any(c => this.CrewMembers.Any(p => !p.IsDead && p.Trait<IPositionable>().CanEnterCell(c, null, check)));
+		return !this.IsEmpty() && this.Entrances.Any(e => this.CrewMembers.Any(p => !p.IsDead && p.Trait<IPositionable>().CanEnterCell(e.EntryCell, null, check)));
+	}
+
+	public (BuildingCrewEntrance entrance, SubCell subCell)? RandomCrewEntranceOrDefault(Actor crewMember)
+	{
+		if (crewMember.Disposed)
+			return null;
+
+		var pos = crewMember.Trait<IPositionable>();
+
+		foreach (var g in this.Entrances.GroupBy(e => e.Info.Priority))
+		{
+			var shuffled = g.Shuffle(this.self.World.SharedRandom);
+
+			var valid = shuffled
+				.Select(e => (entrance: e, subCell: pos.GetAvailableSubCell(e.EntryCell))).ToArray()
+				.FirstOrDefault(e => e.subCell is not SubCell.Invalid);
+			if (valid.entrance != null)
+				return valid;
+		}
+
+		return null;
 	}
 
 	public bool CanEnter(Actor actor)
