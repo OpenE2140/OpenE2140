@@ -36,7 +36,7 @@ public class CheckWaterBases : ILintMapPass
 				emitError($"Water Base Dock actor `{dock.Key}` is not linked with any Water Base building.");
 			else if (!waterBases.ContainsKey(dockInit.Value.Value))
 			{
-				var incorrectActor =  map.ActorDefinitions.FirstOrDefault(n => n.Key == dockInit.Value.Value);
+				var incorrectActor = map.ActorDefinitions.FirstOrDefault(n => n.Key == dockInit.Value.Value);
 				if (incorrectActor != null)
 					emitError($"Water Base Dock actor `{dock.Key}` is linked with an actor `{dockInit.Value.Value}`, which is not a Water Base but `{incorrectActor.Value.Value}`.");
 				else

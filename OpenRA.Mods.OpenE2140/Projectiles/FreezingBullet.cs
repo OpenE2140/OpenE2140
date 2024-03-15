@@ -101,7 +101,8 @@ public class FreezingBullet : Bullet
 
 		var warheadArgs = new WarheadArgs(this.Args)
 		{
-			ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing), ImpactPosition = this.pos
+			ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing),
+			ImpactPosition = this.pos
 		};
 
 		this.Args.Weapon.Impact(Target.FromPos(this.pos), warheadArgs);

@@ -287,7 +287,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 					// Enabling All Tech dev command will continue to work as expected, because if it's enabled, all prerequisites are ignored.
 					techTree.Add(actorInfo.Name, new[] { "~disabled" }, 0, queue);
 				}
-			} 
+			}
 		}
 
 		if (shouldUpdateTechTree)
