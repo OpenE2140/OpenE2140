@@ -166,6 +166,13 @@ Palettes:
 		3:
 			220: 24 28 24
 
+	PlayerATM500: Merge
+		248: 10 9 8
+		249: 119 0 119
+		250: 136 0 136
+		251: 153 0 153
+		252: 170 0 170
+
 Generate:
 	vehicle_mcu: Shadow Player Tracks
 		idle: 0-8 16
@@ -609,7 +616,7 @@ Generate:
 		idle: 558-566 16
 			Offsets: 558,559,561,562-564:1,0 560:1,-1 565:1,1 566:0,2
 
-	vehicle_atm_500: Shadow Player Tracks
+	vehicle_atm_500: Shadow PlayerATM500 Tracks
 		idle: 567-575 16
 			Offsets: !567-575:2,0
 		move: 567-575 16 4
