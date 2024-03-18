@@ -135,6 +135,13 @@ Palettes:
 		251: 153 0 153
 		252: 170 0 170
 
+	PlayerUCS: Merge
+		248: 10 9 8
+		249: 119 0 119
+		250: 136 0 136
+		251: 153 0 153
+		252: 170 0 170
+
 	Shadow: Merge
 		253: 0 0 0 32
 		254: 0 0 0 64
@@ -165,13 +172,6 @@ Palettes:
 			220: 41 44 41
 		3:
 			220: 24 28 24
-
-	PlayerATM500: Merge
-		248: 10 9 8
-		249: 119 0 119
-		250: 136 0 136
-		251: 153 0 153
-		252: 170 0 170
 
 Generate:
 	vehicle_mcu: Shadow Player Tracks
@@ -210,7 +210,7 @@ Generate:
 	turret_tiger_hellmaker_husk: Husk
 		idle: 91-99 16
 
-	turret_spider: Player
+	turret_spider: PlayerUCS
 		idle: 100-108 16
 			Offsets: 101:-2,-1 102,103:2,-1 104:2,0 106:0,1 107:-1,0
 
@@ -616,7 +616,7 @@ Generate:
 		idle: 558-566 16
 			Offsets: 558,559,561,562-564:1,0 560:1,-1 565:1,1 566:0,2
 
-	vehicle_atm_500: Shadow PlayerATM500 Tracks
+	vehicle_atm_500: Shadow PlayerUCS Tracks
 		idle: 567-575 16
 			Offsets: !567-575:2,0
 		move: 567-575 16 4
