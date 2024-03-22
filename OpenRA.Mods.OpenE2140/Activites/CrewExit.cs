@@ -21,7 +21,6 @@ namespace OpenRA.Mods.OpenE2140.Activites;
 
 public class CrewExit : Activity
 {
-	private readonly Actor self;
 	private readonly bool exitAll;
 	private readonly bool playNotification;
 	private readonly BuildingCrew buildingCrew;
@@ -29,7 +28,6 @@ public class CrewExit : Activity
 
 	public CrewExit(Actor self, bool exitAll = true, bool playNotification = true)
 	{
-		this.self = self;
 		this.exitAll = exitAll;
 		this.playNotification = playNotification;
 		this.buildingCrew = self.Trait<BuildingCrew>();
