@@ -10,6 +10,8 @@ ed_defenses_silo:
 		LocalCenterOffset: -20,120,0
 	# Silo doesn't have a crew.
 	-BuildingCrew:
+	-BuildingCrewEntrance@1:
+	-BuildingCrewEntrance@2:
 	-WithBuildingCrewPipsDecoration:
 	TransformSequence:
 		Image: core_buildingsequence_small
