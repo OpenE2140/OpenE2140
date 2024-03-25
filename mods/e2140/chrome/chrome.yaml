@@ -627,6 +627,7 @@ editor:
 		actors: 120, 171, 16, 16
 		tools: 69, 171, 16, 16
 		history: 86, 171, 16, 16
+		erase: 137, 171, 16, 16
 
 production-icons:
 	Inherits: ^Glyphs
