@@ -140,6 +140,7 @@ EditorWorld:
 	EditorCursorLayer:
 	# Undo / Redo support.
 	EditorActionManager:
+	MarkerLayerOverlay:
 	# Displays where buildings can be build.
 	BuildableTerrainOverlay:
 		AllowedTerrainTypes: Clear, Road
