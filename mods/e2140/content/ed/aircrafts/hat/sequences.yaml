@@ -17,6 +17,14 @@ ed_aircrafts_hat:
 	unload:
 		Filename: aircraft_hat.vspr
 		Start: 82
+	patch1:
+		Filename: content/ed/aircrafts/hat/aircraft_hat_patch_1.png
+		Offset: -8,16
+		Facings: -16
+	patch2:
+		Filename: content/ed/aircrafts/hat/aircraft_hat_patch_2.png
+		Offset: -6,-9
+		Facings: -16
 	icon:
 		Filename: SPRI0.MIX
 		Start: 160

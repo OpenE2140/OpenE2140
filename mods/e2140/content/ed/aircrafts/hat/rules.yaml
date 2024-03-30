@@ -34,6 +34,12 @@ ed_aircrafts_hat:
 		RequiresSelection: True
 	WithFacingSpriteBody:
 		PauseOnCondition: VehicleDisabled
+	WithFacingSpriteBody@Patch1:
+		Sequence: patch1
+		Name: patch1
+	WithFacingSpriteBody@Patch2:
+		Sequence: patch2
+		Name: patch2
 	SpawnActorOnDeath@Airborne:
 		Actor: ed_aircrafts_hat_falling_husk
 		RequiresCondition: airborne
