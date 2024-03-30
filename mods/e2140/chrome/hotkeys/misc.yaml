@@ -2,3 +2,8 @@ PowerDown: X
 	Description: Power-down mode
 	Types: OrderGenerator
 	Contexts: Player
+
+BuildWall: L
+	Description: Build wall
+	Types: OrderGenerator
+	Contexts: Player

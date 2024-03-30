@@ -632,6 +632,32 @@ Container@PLAYER_WIDGETS:
 							Y: 309
 							Width: 196
 							Height: 21
+		# Temporary panel, until the unit panel is implemented
+		Container@CUSTOM_COMMANDS:
+			Logic: CustomCommandsLogic
+			X: WINDOW_WIDTH - WIDTH - 450
+			Y: WINDOW_HEIGHT - HEIGHT - 7
+			Width: 136
+			Height: 26
+			Children:
+				Button@BUILD_WALL:
+					Logic: AddFactionSuffixLogic
+					X: 0
+					Y: 0
+					Width: 34
+					Height: 26
+					Background: command-button
+					Key: BuildWall
+					DisableKeySound: true
+					TooltipText: Build wall
+					TooltipDesc: Selected units will build a wall.\n\nLeft-click icon then right-click on empty terrain.
+					TooltipContainer: TOOLTIP_CONTAINER
+					Children:
+						Image@ICON:
+							X: 4
+							Y: 1
+							ImageCollection: command-icons
+							ImageName: wall
 		Container@HPF_ROOT:
 			Logic: LoadIngameHierarchicalPathFinderOverlayLogic
 			X: WINDOW_WIDTH - WIDTH - 260
