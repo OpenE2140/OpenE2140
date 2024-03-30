@@ -10,7 +10,7 @@ shared_buildings_wall:
 	HitShape:
 		Type: Circle
 			Radius: 512
-	WithWallSpriteBody:
+	WithAnimatedWallSpriteBody:
 		Type: wall
 		RequiresCondition: WallConstruction
 		StartSequence: constructing
