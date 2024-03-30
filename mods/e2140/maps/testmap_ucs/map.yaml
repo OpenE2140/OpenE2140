@@ -350,5 +350,9 @@ Actors:
 		Owner: UCS_Player
 		Location: 28,28
 		WaterBaseDock: Actor80
+	Actor82: ucs_vehicles_miner_bt
+		Owner: UCS_Player
+		Facing: 384
+		Location: 27,8
 
 Rules: rules.yaml
