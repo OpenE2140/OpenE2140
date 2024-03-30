@@ -12,6 +12,7 @@ shared_buildings_wall:
 			Radius: 512
 	WithWallSpriteBody:
 		Type: wall
+		RequiresCondition: WallConstruction
 		StartSequence: constructing
 		Palette:
 	MapEditorData:

@@ -112,3 +112,14 @@ public interface INotifyBuildingRepair
 
 	void RepairInterrupted(Actor self);
 }
+
+public interface INotifyWallBuilding
+{
+	void WallBuilding(Actor self, CPos location);
+
+	void WallBuildingCompleted(Actor self, CPos location);
+
+	void WallCreated(Actor self, Actor wall);
+
+	void WallBuildingCanceled(Actor self, CPos location);
+}
