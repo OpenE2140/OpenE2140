@@ -37,23 +37,45 @@ ucs_vehicles_miner_bt:
 		AbilityCursor: minePlace
 		PreLayDelay: 10
 		AfterLayingDelay: 0
-	AmmoPool:
+	AmmoPool@Mines:
 		Name: Mines
 		Armaments:
 		Ammo: 5
-	ReloadAmmoPool:
+	ReloadAmmoPool@Mines:
 		AmmoPool: Mines
 		Delay: 500
 		Count: 1
+	WithAmmoPipsDecoration@Mines:
+		AmmoPools: Mines
+		FullSequence: pip-grey
+		Palette:
+		PipStride: 6,0
+		Margin: 5,5
+		RequiresSelection: True
 	Rearmable:
 		RearmActors:
 		AmmoPools: Mines
+	AmmoPool@Walls:
+		Name: Walls
+		Ammo: 5
+		Armaments:
+	ReloadAmmoPool@Walls:
+		AmmoPool: Walls
+		Delay: 500
+		Count: 1
 	WallBuilder:
 		Wall: shared_buildings_wall
 		PreBuildDelay: 10
 		AmmoPoolName: Walls
 		Voice: Unload
 		WallConstructionCondition: WallConstruction
+	WithAmmoPipsDecoration@Walls:
+		AmmoPools: Walls
+		FullSequence: pip-red
+		Palette:
+		PipStride: 6,0
+		Margin: 5,10
+		RequiresSelection: True
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
@@ -62,12 +84,6 @@ ucs_vehicles_miner_bt:
 	WithCustomBodyAnimation@Minelaying:
 		RequiresCondition: Minelaying
 		Sequence: flicker
-	WithAmmoPipsDecoration:
-		FullSequence: pip-grey
-		Palette:
-		PipStride: 6,0
-		Margin: 5,5
-		RequiresSelection: True
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_miner_bt_husk
 	Encyclopedia:
