@@ -18,6 +18,13 @@ ucs_vehicles_atm_500:
 		Facings: -16
 		Tick: 50
 		Offset: 1,0
+	open:
+		Filename: content/ucs/vehicles/atm_500/vehicle_atm_500_door.png
+		Facings: -16
+	unload:
+		Filename: content/ucs/vehicles/atm_500/vehicle_atm_500_door.png
+		Start: 16
+		Facings: -16
 	icon:
 		Filename: SPRI1.MIX
 		Start: 142

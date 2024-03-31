@@ -13,6 +13,13 @@ ed_vehicles_bio:
 		Length: 2
 		Tick: 80
 		Facings: -16
+	open:
+		Filename: content/ed/vehicles/bio/vehicle_bio_door.png
+		Facings: -16
+	unload:
+		Filename: content/ed/vehicles/bio/vehicle_bio_door.png
+		Start: 16
+		Facings: -16
 	icon:
 		Filename: SPRI0.MIX
 		Start: 145
