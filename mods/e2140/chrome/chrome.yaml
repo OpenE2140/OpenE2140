@@ -594,6 +594,8 @@ command-icons:
 		stop-disabled: 150, 232, 24, 24
 		queue-orders: 175, 207, 24, 24
 		queue-orders-disabled: 175, 232, 24, 24
+		wall: 200, 207, 24, 24
+		wall-disabled: 200, 232, 24, 24
 
 command-icons-highlighted:
 	Inherits: command-icons
