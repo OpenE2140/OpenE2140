@@ -28,7 +28,7 @@ ed_defenses_pillbox:
 		Image: water_splash_firearm
 		Explosions: idle
 		ExplosionPalette:
-		ImpactSounds: 20.smp, 21.smp
+		ImpactSounds: small_water_splash_1.wav, small_water_splash_2.wav, small_water_splash_3.wav
 		ValidTargets: Water
 		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
 	Warhead@EffectSmoke: CreateEffect
