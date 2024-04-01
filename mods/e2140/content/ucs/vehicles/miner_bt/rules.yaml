@@ -81,8 +81,10 @@ ucs_vehicles_miner_bt:
 		DetectionTypes: LandMine
 	GrantConditionOnMinelaying:
 		Condition: Minelaying
-	WithCustomBodyAnimation@Minelaying:
-		RequiresCondition: Minelaying
+	GrantConditionOnWallBuilding:
+		Condition: WallBuilding
+	WithCustomBodyAnimation@MinelayingWallBuilding:
+		RequiresCondition: Minelaying || WallBuilding
 		Sequence: flicker
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_miner_bt_husk
