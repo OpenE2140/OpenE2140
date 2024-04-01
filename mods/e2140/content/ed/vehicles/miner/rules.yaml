@@ -39,7 +39,7 @@ ed_vehicles_miner:
 		AfterLayingDelay: 0
 	AmmoPool:
 		Name: Mines
-		Armaments: WeaponMines
+		Armaments:
 		Ammo: 5
 	ReloadAmmoPool:
 		AmmoPool: Mines
@@ -51,7 +51,10 @@ ed_vehicles_miner:
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
-	WithDeployMineAnimation:
+	GrantConditionOnMinelaying:
+		Condition: Minelaying
+	WithCustomBodyAnimation@Minelaying:
+		RequiresCondition: Minelaying
 		Sequence: flicker
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey

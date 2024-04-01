@@ -17,10 +17,11 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
-public class WithDeployMineAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>, Requires<MinelayerInfo>
+[Desc("Plays custom animation while the trait is enabled/unpaused.")]
+public class WithCustomBodyAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>
 {
 	[SequenceReference]
-	[Desc("Displayed while laying mine.")]
+	[Desc("Sequence to play while active.")]
 	public readonly string Sequence = string.Empty;
 
 	[Desc("Which sprite body to modify.")]
@@ -28,33 +29,29 @@ public class WithDeployMineAnimationInfo : ConditionalTraitInfo, Requires<WithSp
 
 	public override object Create(ActorInitializer init)
 	{
-		return new WithDeployMineAnimation(init, this);
+		return new WithCustomBodyAnimation(init, this);
 	}
 }
 
-public class WithDeployMineAnimation : ConditionalTrait<WithDeployMineAnimationInfo>, INotifyMineLaying
+public class WithCustomBodyAnimation : ConditionalTrait<WithCustomBodyAnimationInfo>
 {
 	private readonly WithSpriteBody wsb;
 
-	public WithDeployMineAnimation(ActorInitializer init, WithDeployMineAnimationInfo info)
+	public WithCustomBodyAnimation(ActorInitializer init, WithCustomBodyAnimationInfo info)
 		: base(info)
 	{
 		this.wsb = init.Self.TraitsImplementing<WithSpriteBody>().Single(w => w.Info.Name == this.Info.Body);
 	}
 
-	void INotifyMineLaying.MineLaid(Actor self, Actor mine)
+	protected override void TraitEnabled(Actor self)
 	{
-		this.wsb.CancelCustomAnimation(self);
-	}
-
-	void INotifyMineLaying.MineLaying(Actor self, CPos location)
-	{
-		if (!this.IsTraitDisabled && !this.wsb.IsTraitDisabled && !string.IsNullOrEmpty(this.Info.Sequence))
+		if (!string.IsNullOrEmpty(this.Info.Sequence))
 			this.wsb.PlayCustomAnimationRepeating(self, this.Info.Sequence);
 	}
 
-	void INotifyMineLaying.MineLayingCanceled(Actor self, CPos location)
+	protected override void TraitDisabled(Actor self)
 	{
-		this.wsb.CancelCustomAnimation(self);
+		if (!string.IsNullOrEmpty(this.Info.Sequence))
+			this.wsb.CancelCustomAnimation(self);
 	}
 }

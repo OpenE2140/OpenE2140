@@ -24,7 +24,7 @@ ed_infantry_a04:
 		AfterLayingDelay: 0
 	AmmoPool:
 		Name: Mines
-		Armaments: WeaponMines
+		Armaments:
 		Ammo: 5
 	ReloadAmmoPool:
 		AmmoPool: Mines
@@ -37,7 +37,10 @@ ed_infantry_a04:
 	DetectCloaked:
 		Range: 2c896
 		DetectionTypes: LandMine
-	WithDeployMineAnimation:
+	GrantConditionOnMinelaying:
+		Condition: Minelaying
+	WithCustomBodyAnimation@Minelaying:
+		RequiresCondition: Minelaying
 		Sequence: deploy
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey
