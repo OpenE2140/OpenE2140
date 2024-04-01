@@ -12,4 +12,4 @@ shared_buildings_wall:
 	constructing:
 		Start: 48
 		Length: 48
-		Tick: 100
+		Tick: 400
