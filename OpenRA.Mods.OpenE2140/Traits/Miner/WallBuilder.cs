@@ -43,6 +43,15 @@ public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 	[Desc("Ammo the wall builder consumes per wall node.")]
 	public readonly int AmmoUsage = 1;
 
+	[Desc("Sprite overlay to use for valid wall cells.")]
+	public readonly string TileValidName = "build-valid";
+
+	[Desc("Sprite overlay to use for invalid wall cells.")]
+	public readonly string TileInvalidName = "build-invalid";
+
+	[Desc("Sprite overlay to use for wall cells hidden behind fog or shroud.")]
+	public readonly string TileUnknownName = "build-unknown";
+
 	public override object Create(ActorInitializer init)
 	{
 		return new WallBuilder(this);
@@ -52,6 +61,7 @@ public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 public class WallBuilder : ConditionalTrait<WallBuilderInfo>, IResolveOrder, ITick, IOrderVoice, INotifyWallBuilding
 {
 	public const string BuildWallOrderID = "BuildWall";
+	public const string BuildWallLineOrderID = "BuildWallLine";
 
 	private CPos? newWallLocation;
 	private Actor? newWallActor;
@@ -63,14 +73,31 @@ public class WallBuilder : ConditionalTrait<WallBuilderInfo>, IResolveOrder, ITi
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
-		if (order.OrderString != BuildWallOrderID)
-			return;
+		if (order.OrderString == BuildWallOrderID)
+		{
+			var targetCell = self.World.Map.CellContaining(order.Target.CenterPosition);
+			if (!this.IsCellAcceptable(self, targetCell))
+				return;
 
-		var targetCell = self.World.Map.CellContaining(order.Target.CenterPosition);
-		if (!this.IsCellAcceptable(self, targetCell))
-			return;
+			self.QueueActivity(order.Queued, new BuildWall(self, targetCell));
+		}
+		else if (order.OrderString == BuildWallLineOrderID)
+		{
+			var startPosition = order.ExtraLocation;
+			var endPosition = self.World.Map.CellContaining(order.Target.CenterPosition);
 
-		self.QueueActivity(order.Queued, new BuildWall(self, targetCell));
+			var cells = this.GetLineBuildCells(self, startPosition, endPosition);
+			var queued = order.Queued;
+			foreach (var cell in cells)
+			{
+				if (!this.IsCellAcceptable(self, cell))
+					return;
+
+				self.QueueActivity(queued, new BuildWall(self, cell));
+
+				queued = true;
+			}
+		}
 	}
 
 	public bool IsCellAcceptable(Actor self, CPos cell)
@@ -83,6 +110,39 @@ public class WallBuilder : ConditionalTrait<WallBuilderInfo>, IResolveOrder, ITi
 
 		var terrainType = self.World.Map.GetTerrainInfo(cell).Type;
 		return this.Info.TerrainTypes.Contains(terrainType);
+	}
+
+	public CPos? GetNearestValidLineBuildPosition(Actor self, CPos startPosition, CPos endPosition)
+	{
+		if (!self.World.Map.Contains(startPosition) || !self.World.Map.Contains(endPosition))
+			return null;
+
+		var diff = startPosition - endPosition;
+		if (diff.X == 0 || diff.Y == 0)
+			return endPosition;
+
+		var candidate = diff.X > diff.Y ? new CPos(startPosition.X, endPosition.Y) : new CPos(endPosition.X, startPosition.Y);
+
+		return !self.World.Map.Contains(candidate) ? null : candidate;
+	}
+
+	public IEnumerable<CPos> GetLineBuildCells(Actor self, CPos startPosition, CPos endPosition)
+	{
+		if (startPosition == endPosition)
+			yield break;
+
+		var validEndPosition = this.GetNearestValidLineBuildPosition(self, startPosition, endPosition);
+		if (validEndPosition == null)
+			yield break;
+
+		var diff = validEndPosition.Value - startPosition;
+		var norm = diff / diff.Length;
+		var x = startPosition.X;
+		var y = startPosition.Y;
+		for (var i = 0; i <= diff.Length; i++)
+		{
+			yield return new CPos(x + norm.X * i, y + norm.Y * i);
+		}
 	}
 
 	void ITick.Tick(Actor self)
@@ -121,7 +181,7 @@ public class WallBuilder : ConditionalTrait<WallBuilderInfo>, IResolveOrder, ITi
 
 	string? IOrderVoice.VoicePhraseForOrder(Actor self, Order order)
 	{
-		if (order.OrderString == BuildWallOrderID)
+		if (order.OrderString == BuildWallOrderID || order.OrderString == BuildWallLineOrderID)
 			return this.Info.Voice;
 
 		return null;
