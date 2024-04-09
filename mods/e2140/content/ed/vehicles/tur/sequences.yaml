@@ -7,6 +7,13 @@ ed_vehicles_tur:
 		Start: 16
 		Length: 4
 		Facings: -16
+	open:
+		Filename: content/ed/vehicles/tur/vehicle_tur_door.png
+		Facings: -16
+	unload:
+		Filename: content/ed/vehicles/tur/vehicle_tur_door.png
+		Start: 16
+		Facings: -16
 	icon:
 		Filename: SPRI0.MIX
 		Start: 144
