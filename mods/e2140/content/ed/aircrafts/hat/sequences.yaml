@@ -11,12 +11,12 @@ ed_aircrafts_hat:
 		Length: 4
 		Facings: -16
 	open:
-		Filename: aircraft_hat.vspr
-		Start: 80
-		Length: 4
+		Filename: content/ed/aircrafts/hat/aircraft_hat_door.png
+		Facings: -16
 	unload:
-		Filename: aircraft_hat.vspr
-		Start: 82
+		Filename: content/ed/aircrafts/hat/aircraft_hat_door.png
+		Start: 16
+		Facings: -16
 	patch1:
 		Filename: content/ed/aircrafts/hat/aircraft_hat_patch_1.png
 		Offset: -8,16
