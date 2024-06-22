@@ -22,8 +22,11 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Allows unit to carry a resource crate.")]
-public class CrateTransporterInfo : TraitInfo, Requires<IFacingInfo>
+public class CrateTransporterInfo : DockClientBaseInfo, Requires<IFacingInfo>
 {
+	[Desc("Docking type.")]
+	public readonly BitSet<DockType> DockingType = new("Load", "Unload");
+
 	[Desc("Crate offset.")]
 	public readonly WVec Offset;
 
@@ -32,11 +35,11 @@ public class CrateTransporterInfo : TraitInfo, Requires<IFacingInfo>
 
 	public override object Create(ActorInitializer init)
 	{
-		return new CrateTransporter(this, init.Self);
+		return new CrateTransporter(init.Self, this);
 	}
 }
 
-public class CrateTransporter : IRender, ITick, INotifyAddedToWorld
+public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, ITick, INotifyAddedToWorld
 {
 	private readonly CrateTransporterInfo info;
 
@@ -44,7 +47,10 @@ public class CrateTransporter : IRender, ITick, INotifyAddedToWorld
 
 	private ResourceCrate? crate;
 
-	public CrateTransporter(CrateTransporterInfo info, Actor self)
+	public override BitSet<DockType> GetDockType => this.info.DockingType;
+
+	public CrateTransporter(Actor self, CrateTransporterInfo info)
+		: base(self, info)
 	{
 		this.info = info;
 		this.facing = self.TraitOrDefault<IFacing>();
@@ -53,12 +59,36 @@ public class CrateTransporter : IRender, ITick, INotifyAddedToWorld
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
 	{
 		// TODO temp for testing.
-		this.crate = self.World.CreateActor(
-				false,
-				"crate",
-				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
-			)
-			.Trait<ResourceCrate>();
+		//this.crate = self.World.CreateActor(
+		//		false,
+		//		"crate",
+		//		new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
+		//	)
+		//	.Trait<ResourceCrate>();
+	}
+
+	// Need to override CanDockAt, since we need to know status of the host (either Mine or Refinery)
+	public override bool CanDockAt(Actor hostActor, IDockHost host, bool forceEnter = false, bool ignoreOccupancy = false)
+	{
+		if (!base.CanDockAt(hostActor, host, forceEnter, ignoreOccupancy))
+			return false;
+
+		if (host is ResourceMine)
+			return this.crate == null;
+		else
+			return this.crate != null;
+	}
+
+	public override bool OnDockTick(Actor self, Actor hostActor, IDockHost host)
+	{
+		if (this.IsTraitDisabled) return true;
+
+		if (host is ResourceMine resourceMine)
+		{
+			this.crate = resourceMine.RemoveCrate();
+		}
+
+		return true;
 	}
 
 	void ITick.Tick(Actor self)
