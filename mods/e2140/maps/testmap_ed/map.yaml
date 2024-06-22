@@ -402,23 +402,25 @@ Actors:
 	Actor95: ed_buildings_tech_house
 		Owner: UCS_AI
 		Location: 28,10
-	Actor96: ucs_buildings_heavy_tech
-		Owner: ED_Player
-		Location: 26,14
 	Actor97: ucs_buildings_robot_factory
 		Owner: ED_Player
 		Location: 30,13
 	Actor98: ucs_buildings_robot_factory
 		Owner: UCS_AI
 		Location: 30,16
-	Actor99: ucs_buildings_heavy_tech
-		Owner: UCS_AI
-		Location: 26,18
 	Actor100: shared_buildings_water_base_dock
 		Owner: ED_Player
 		Location: 29,28
 		WaterBaseDock: Actor94
-	Actor101: ed_vehicles_miner
+	Actor96: shared_mcu_refinery
+		Owner: ED_Player
+		Facing: 384
+		Location: 26,15
+	Actor99: shared_mcu_mine
+		Owner: ED_Player
+		Facing: 384
+		Location: 21,16
+	Actor105: ed_vehicles_miner
 		Owner: ED_Player
 		Facing: 384
 		Location: 29,7
