@@ -13,6 +13,14 @@ shared_buildings_mine:
 		ZOffset: 1536
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+		# DockHost
+		Type: Load
+		DockOffset: 1024,1024,0
+		DockAngle: 512
+		DockWait: 1
+		IsDragRequired: true
+		DragOffset: 1404,113,0
+		DragLength: 20
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered

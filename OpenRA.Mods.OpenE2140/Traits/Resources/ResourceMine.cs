@@ -52,9 +52,10 @@ public class ResourceMine : ConveyorBelt
 	private readonly IResourceLayer? resourceLayer;
 
 	private int delay;
+	private ResourceCrate? crateBeingMined;
 
 	public ResourceMine(ResourceMineInfo info, ActorInitializer init)
-		: base(info)
+		: base(init.Self, info)
 	{
 		this.info = info;
 		this.resourceLayer = init.World.WorldActor.TraitOrDefault<ResourceLayer>();
@@ -64,7 +65,9 @@ public class ResourceMine : ConveyorBelt
 	{
 		base.TickInner(self);
 
-		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
+		// TODO: support trait pausing (necessary for power management)
+		//if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
+		if (this.IsTraitDisabled || this.resourceLayer == null)
 			return;
 
 		this.delay = (this.delay + 1) % (this.info.Delay + 1);
@@ -72,14 +75,14 @@ public class ResourceMine : ConveyorBelt
 		if (this.delay != 0)
 			return;
 
-		this.crate ??= self.World.CreateActor(
+		this.crateBeingMined ??= self.World.CreateActor(
 				false,
 				this.info.CrateActor,
 				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
 			)
 			.Trait<ResourceCrate>();
 
-		var minable = Math.Min(this.info.Force, this.info.CrateSize - this.crate.Resources);
+		var minable = Math.Min(this.info.Force, this.info.CrateSize - this.crateBeingMined.Resources);
 
 		if (minable > 0)
 		{
@@ -95,19 +98,34 @@ public class ResourceMine : ConveyorBelt
 					mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
 			}
 
-			this.crate.Resources += mined;
+			this.crateBeingMined.Resources += mined;
 		}
 
-		if (this.crate.Resources < this.info.CrateSize)
+		if (this.crateBeingMined.Resources < this.info.CrateSize)
 			return;
 
-		if (this.Activate(self, this.crate))
-			this.crate = null;
+		if (this.Activate(self, this.crateBeingMined))
+			this.crateBeingMined = null;
 	}
 
 	protected override void Complete(Actor self)
 	{
 		// TODO Only when picked up by crate transporter!
-		this.crate = null;
+		//this.crate = null;
+	}
+
+	//public ResourceCrate OnCrateLoaded(Actor self)
+	//{
+	//	var crate = this.crate;
+	//	this.crate = null;
+	//	return crate;
+	//}
+
+	public override bool IsDockingPossible(Actor clientActor, IDockClient client, bool ignoreReservations = false)
+	{
+		if (!base.IsDockingPossible(clientActor, client, ignoreReservations))
+			return false;
+
+		return this.crate != null;
 	}
 }

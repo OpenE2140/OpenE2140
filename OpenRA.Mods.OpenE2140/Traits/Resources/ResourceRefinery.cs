@@ -24,7 +24,7 @@ public class ResourceRefineryInfo : ConveyorBeltInfo
 {
 	public override object Create(ActorInitializer init)
 	{
-		return new ResourceRefinery(this);
+		return new ResourceRefinery(init.Self, this);
 	}
 }
 
@@ -32,8 +32,8 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 {
 	private PlayerResources? playerResources;
 
-	public ResourceRefinery(ConveyorBeltInfo info)
-		: base(info)
+	public ResourceRefinery(Actor self, ConveyorBeltInfo info)
+		: base(self, info)
 	{
 	}
 
@@ -52,7 +52,9 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 	{
 		base.TickInner(self);
 
-		if (this.IsTraitDisabled || this.IsTraitPaused)
+		// TODO: support trait pausing (necessary for power management)
+		//if (this.IsTraitDisabled || this.IsTraitPaused)
+		if (this.IsTraitDisabled)
 			return;
 
 		if (this.crate != null || self.World.WorldTick % 100 != 0)
@@ -79,5 +81,13 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 
 		this.playerResources?.GiveCash(this.crate.Resources);
 		this.crate = null;
+	}
+
+	public override bool IsDockingPossible(Actor clientActor, IDockClient client, bool ignoreReservations = false)
+	{
+		if (!base.IsDockingPossible(clientActor, client, ignoreReservations))
+			return false;
+
+		return this.crate == null;
 	}
 }
