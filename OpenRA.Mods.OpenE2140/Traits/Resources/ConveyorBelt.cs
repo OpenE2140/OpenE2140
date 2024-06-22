@@ -23,7 +23,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor has a conveyor belt.")]
-public class ConveyorBeltInfo : PausableConditionalTraitInfo
+public class ConveyorBeltInfo : DockHostInfo
 {
 	[GrantedConditionReference]
 	[Desc("Condition to grant while animating.")]
@@ -51,11 +51,11 @@ public class ConveyorBeltInfo : PausableConditionalTraitInfo
 
 	public override object Create(ActorInitializer init)
 	{
-		return new ConveyorBelt(this);
+		return new ConveyorBelt(init.Self, this);
 	}
 }
 
-public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, IRender
+public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 {
 	private static readonly TypeFieldHelper<Sprite> SpriteFieldHelper = ReflectionHelper.GetTypeFieldHelper<Sprite>(typeof(SpriteRenderable), "sprite");
 
@@ -66,9 +66,12 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 	private WVec DistanceBetweenEnds => this.Info.DistanceBetweenEnds;
 	private int DistanceMoved => Math.Min(this.elapsed * this.Info.Speed, this.DistanceBetweenEnds.Length);
 
-	public ConveyorBelt(ConveyorBeltInfo info)
-		: base(info)
+    public new ConveyorBeltInfo Info;
+
+    public ConveyorBelt(Actor self, ConveyorBeltInfo info)
+		: base(self, info)
 	{
+		this.Info = info;
 	}
 
 	public bool Activate(Actor self, ResourceCrate crate)
@@ -85,6 +88,16 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 		return true;
 	}
 
+	public ResourceCrate? RemoveCrate(Actor self)
+	{
+		var crate = this.crate;
+
+		if (crate != null)
+			this.crate = null;
+
+		return crate;
+	}
+
 	void ITick.Tick(Actor self)
 	{
 		this.TickInner(self);
@@ -92,7 +105,8 @@ public class ConveyorBelt : PausableConditionalTrait<ConveyorBeltInfo>, ITick, I
 
 	protected virtual void TickInner(Actor self)
 	{
-		if (this.crate == null || this.IsTraitDisabled || this.IsTraitPaused)
+		// TODO: support trait pausing (necessary for power management)
+		if (this.crate == null || this.IsTraitDisabled) // || this.IsTraitPaused)
 			return;
 
 		this.elapsed++;
