@@ -52,9 +52,10 @@ public class ResourceMine : ConveyorBelt
 	private readonly IResourceLayer? resourceLayer;
 
 	private int delay;
+	private ResourceCrate? crateBeingMined;
 
 	public ResourceMine(Actor self, ResourceMineInfo info)
-		: base(info)
+		: base(self, info)
 	{
 		this.Info = info;
 
@@ -65,7 +66,9 @@ public class ResourceMine : ConveyorBelt
 	{
 		base.TickInner(self);
 
-		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
+		// TODO: support trait pausing (necessary for power management)
+		//if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
+		if (this.IsTraitDisabled || this.resourceLayer == null)
 			return;
 
 		this.delay = (this.delay + 1) % (this.Info.Delay + 1);
@@ -73,14 +76,14 @@ public class ResourceMine : ConveyorBelt
 		if (this.delay != 0)
 			return;
 
-		this.crate ??= self.World.CreateActor(
+		this.crateBeingMined ??= self.World.CreateActor(
 				false,
 				this.Info.CrateActor,
 				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
 			)
 			.Trait<ResourceCrate>();
 
-		var minable = Math.Min(this.Info.Force, this.Info.CrateSize - this.crate.Resources);
+		var minable = Math.Min(this.Info.Force, this.Info.CrateSize - this.crateBeingMined.Resources);
 
 		if (minable > 0)
 		{
@@ -98,13 +101,26 @@ public class ResourceMine : ConveyorBelt
 				}
 			}
 
-			this.crate.Resources += mined;
+			this.crateBeingMined.Resources += mined;
 		}
 
-		if (this.crate.Resources < this.Info.CrateSize)
+		if (this.crateBeingMined.Resources < this.Info.CrateSize)
 			return;
 
-		if (this.Activate(self, this.crate))
+		if (this.Activate(self, this.crateBeingMined))
+			this.crateBeingMined = null;
+	}
+
+	public ResourceCrate? RemoveCrate()
+	{
+		if (this.crate == null || this.crate?.Resources < this.Info.CrateSize)
+			return null;
+
+		var crate = this.crate;
+
+		if (crate != null)
 			this.crate = null;
+
+		return crate;
 	}
 }
