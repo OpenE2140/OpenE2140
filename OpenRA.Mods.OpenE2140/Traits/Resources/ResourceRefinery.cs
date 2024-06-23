@@ -56,22 +56,6 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 		//if (this.IsTraitDisabled || this.IsTraitPaused)
 		if (this.IsTraitDisabled)
 			return;
-
-		if (this.crate != null || self.World.WorldTick % 100 != 0)
-			return;
-
-		this.Activate(
-			self,
-			self.World.CreateActor(
-					false,
-					"crate",
-					new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
-				)
-				.Trait<ResourceCrate>()
-		);
-
-		if (this.crate != null)
-			this.crate.Resources = 500;
 	}
 
 	protected override void Complete(Actor self)
@@ -80,6 +64,7 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 			return;
 
 		this.playerResources?.GiveCash(this.crate.Resources);
+		this.crate.Actor.Dispose();
 		this.crate = null;
 	}
 
