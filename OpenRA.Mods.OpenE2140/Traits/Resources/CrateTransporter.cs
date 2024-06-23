@@ -75,8 +75,10 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 		if (host is ResourceMine)
 			return this.crate == null;
-		else
+		else if (host is ResourceRefinery)
 			return this.crate != null;
+
+		return false;
 	}
 
 	public override bool OnDockTick(Actor self, Actor hostActor, IDockHost host)
@@ -86,6 +88,11 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		if (host is ResourceMine resourceMine)
 		{
 			this.crate = resourceMine.RemoveCrate(hostActor);
+		}
+		else if (host is ResourceRefinery resourceRefinery && this.crate != null)
+		{
+			resourceRefinery.Activate(hostActor, this.crate);
+			this.crate = null;
 		}
 
 		return true;
