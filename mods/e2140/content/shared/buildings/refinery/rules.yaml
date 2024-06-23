@@ -13,6 +13,22 @@ shared_buildings_refinery:
 		ZOffset: 128
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+		# DockHost
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+
+		# South side (default)
+		DockOffset: 1414,590,0
+		DockAngle: 512
+		DragOffset: 1404,185,0
+		DragLength: 20
+
+		# North side
+		# DockOffset: 1024,-1024,0
+		# DockAngle: 0
+		# DragOffset: 1404,-913,0
+		# DragLength: 26
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
@@ -67,7 +83,7 @@ shared_buildings_refinery:
 		Offset: -512,112,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && !damaged
+		RequiresCondition: !Transforming && Powered && !damaged && BeltActive
 	FloatingSpriteEmitter@Damaged:
 		Duration: -1
 		Lifetime: 27
@@ -79,7 +95,7 @@ shared_buildings_refinery:
 		Offset: -512,812,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && damaged
+		RequiresCondition: !Transforming && Powered && damaged && BeltActive
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 3

@@ -52,6 +52,7 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 			return;
 
 		this.playerResources?.GiveCash(this.crate.Resources);
+		this.crate.Actor.Dispose();
 		this.crate = null;
 	}
 }
