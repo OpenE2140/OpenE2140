@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -82,8 +81,7 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 		this.condition = self.GrantCondition(this.Info.Condition);
 		this.elapsed = 0;
 		this.crate = crate;
-
-		this.UpdateCratePosition(self.CenterPosition + this.Info.InsideOffset);
+		this.crate.SubActor.ParentActor = self;
 
 		return true;
 	}
@@ -93,7 +91,11 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 		var crate = this.crate;
 
 		if (crate != null)
+		{
 			this.crate = null;
+
+			crate.SubActor.ParentActor = null;
+		}
 
 		return crate;
 	}
@@ -111,11 +113,7 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 
 		this.elapsed++;
 
-		var distance = this.DistanceBetweenEnds;
-
-		this.UpdateCratePosition(self.CenterPosition + this.Info.InsideOffset + distance * this.DistanceMoved / distance.Length);
-
-		if (this.DistanceMoved != distance.Length)
+		if (this.DistanceMoved != this.DistanceBetweenEnds.Length)
 			return;
 
 		if (this.condition != Actor.InvalidConditionToken)
@@ -128,18 +126,6 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 	{
 	}
 
-	private void UpdateCratePosition(WPos position)
-	{
-		if (this.crate == null || this.crate.Actor.CenterPosition == position)
-			return;
-
-		foreach (var mobile in this.crate.Actor.TraitsImplementing<Mobile>())
-		{
-			typeof(Mobile).GetProperty("CenterPosition", BindingFlags.Instance | BindingFlags.Public)?.SetValue(mobile, position);
-			typeof(Mobile).GetField("oldPos", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(mobile, mobile.CenterPosition);
-		}
-	}
-
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 	{
 		var result = new List<IRenderable>();
@@ -149,8 +135,15 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 
 		var cutOff = self.CenterPosition.X + this.Info.EntryOffset;
 
+		var renderablesOffset = this.Info.InsideOffset;
+		if (this.elapsed != 0)
+			renderablesOffset += this.DistanceBetweenEnds * this.DistanceMoved / this.DistanceBetweenEnds.Length;
+
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
-			foreach (var renderable in render.Render(this.crate.Actor, wr).Select(e => e.WithZOffset(this.Info.ZOffset)).OfType<SpriteRenderable>())
+			foreach (var renderable in render
+				.Render(this.crate.Actor, wr).Select(e => e
+					.WithZOffset(this.Info.ZOffset)
+					.OffsetBy(renderablesOffset)).OfType<SpriteRenderable>())
 			{
 				if (renderable.Pos.X >= cutOff)
 				{
