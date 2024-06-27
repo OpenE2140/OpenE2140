@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -22,7 +21,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Allows unit to carry a resource crate.")]
-public class CrateTransporterInfo : DockClientBaseInfo, Requires<IFacingInfo>
+public class CrateTransporterInfo : DockClientBaseInfo
 {
 	[Desc("Docking type.")]
 	public readonly BitSet<DockType> DockingType = new("Load", "Unload");
@@ -39,12 +38,10 @@ public class CrateTransporterInfo : DockClientBaseInfo, Requires<IFacingInfo>
 	}
 }
 
-public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, ITick, INotifyAddedToWorld
+public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled
 {
+	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
-
-	private readonly IFacing facing;
-
 	private ResourceCrate? crate;
 
 	public override BitSet<DockType> GetDockType => this.info.DockingType;
@@ -52,22 +49,10 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	public CrateTransporter(Actor self, CrateTransporterInfo info)
 		: base(self, info)
 	{
+		this.actor = self;
 		this.info = info;
-		this.facing = self.TraitOrDefault<IFacing>();
 	}
 
-	void INotifyAddedToWorld.AddedToWorld(Actor self)
-	{
-		// TODO temp for testing.
-		//this.crate = self.World.CreateActor(
-		//		false,
-		//		"crate",
-		//		new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
-		//	)
-		//	.Trait<ResourceCrate>();
-	}
-
-	// Need to override CanDockAt, since we need to know status of the host (either Mine or Refinery)
 	public override bool CanDockAt(Actor hostActor, IDockHost host, bool forceEnter = false, bool ignoreOccupancy = false)
 	{
 		if (!base.CanDockAt(hostActor, host, forceEnter, ignoreOccupancy))
@@ -88,45 +73,37 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		if (host is ResourceMine resourceMine)
 		{
 			this.crate = resourceMine.RemoveCrate();
+			if (this.crate != null)
+				this.crate.SubActor.ParentActor = self;
+			else
+				return false;
 		}
 		else if (host is ResourceRefinery resourceRefinery && this.crate != null)
 		{
-			resourceRefinery.Activate(hostActor, this.crate);
-			this.crate = null;
+			if (resourceRefinery.Activate(hostActor, this.crate))
+				this.crate = null;
+			else
+				return false;
 		}
 
 		return true;
-	}
-
-	void ITick.Tick(Actor self)
-	{
-		this.UpdateCratePositionAndRotation(self.CenterPosition + this.info.Offset.Rotate(this.facing.Orientation), this.facing.Facing);
-	}
-
-	private void UpdateCratePositionAndRotation(WPos position, WAngle facing)
-	{
-		if (this.crate == null)
-			return;
-
-		foreach (var mobile in this.crate.Actor.TraitsImplementing<Mobile>())
-		{
-			mobile.Facing = facing;
-
-			typeof(Mobile).GetProperty("CenterPosition", BindingFlags.Instance | BindingFlags.Public)?.SetValue(mobile, position);
-			typeof(Mobile).GetField("oldFacing", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(mobile, mobile.Facing);
-			typeof(Mobile).GetField("oldPos", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(mobile, mobile.CenterPosition);
-		}
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 	{
 		var result = new List<IRenderable>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
-			result.AddRange(render.Render(this.crate.Actor, wr).Select(e => e.WithZOffset(this.info.ZOffset)));
+		{
+			result.AddRange(
+				render.Render(this.crate.Actor, wr)
+				.Select(e => e
+					.OffsetBy(this.info.Offset.Rotate(this.actor.Orientation))
+					.WithZOffset(this.info.ZOffset)));
+		}
 
 		return result;
 	}
@@ -135,12 +112,17 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		var result = new List<Rectangle>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
 			result.AddRange(render.ScreenBounds(this.crate.Actor, wr));
 
 		return result;
+	}
+
+	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
 	}
 }

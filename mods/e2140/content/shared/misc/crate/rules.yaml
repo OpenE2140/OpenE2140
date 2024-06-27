@@ -11,17 +11,12 @@ crate:
 	Interactable:
 	Targetable:
 		TargetTypes: Ground
-	Mobile:
-		Locomotor: crate
+	SubActor:
+		AttachedCondition: attached
 	WithFacingSpriteBody:
 	WithFacingSpriteBody@shadow:
 		Sequence: shadow
 		Name: shadow
-		# TODO
-		# RequiresCondition: 
-
-# Crate special locomotor as it can not move itself, but is movable by other actors.
-^CoreWorld:
-	Locomotor@crate:
-		Name: crate
-		TerrainSpeeds:
+		RequiresCondition: !attached
+	MapEditorData:
+		Categories: Resources

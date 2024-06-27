@@ -119,7 +119,11 @@ public class ResourceMine : ConveyorBelt
 		var crate = this.crate;
 
 		if (crate != null)
+		{
 			this.crate = null;
+
+			crate.SubActor.ParentActor = null;
+		}
 
 		return crate;
 	}
