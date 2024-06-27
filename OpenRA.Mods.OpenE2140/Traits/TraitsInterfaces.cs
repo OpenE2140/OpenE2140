@@ -125,3 +125,8 @@ public interface INotifyWallBuilding
 
 	void WallBuildingCanceled(Actor self, CPos location);
 }
+
+public interface ISubActor
+{
+	void OnParentKilled(Actor self, Actor parentActor);
+}

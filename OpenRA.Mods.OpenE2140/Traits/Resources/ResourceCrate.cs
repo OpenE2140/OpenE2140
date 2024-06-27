@@ -12,13 +12,14 @@
 #endregion
 
 using JetBrains.Annotations;
+using OpenRA.Mods.OpenE2140.Traits.SubActors;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly]
 [Desc("This actor is a resource crate.")]
-public class ResourceCrateInfo : TraitInfo
+public class ResourceCrateInfo : TraitInfo, Requires<SubActorInfo>
 {
 	public override object Create(ActorInitializer init)
 	{
@@ -29,11 +30,13 @@ public class ResourceCrateInfo : TraitInfo
 public class ResourceCrate
 {
 	public readonly Actor Actor;
+	public readonly SubActor SubActor;
 
 	public int Resources;
 
 	public ResourceCrate(Actor self)
 	{
 		this.Actor = self;
+		this.SubActor = self.Trait<SubActor>();
 	}
 }
