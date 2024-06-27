@@ -90,12 +90,14 @@ public class ResourceMine : ConveyorBelt
 			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
 			for (var y = -this.info.Range; y <= this.info.Range && mined < minable; y++)
-			for (var x = -this.info.Range; x <= this.info.Range && mined < minable; x++)
 			{
-				var targetCell = centerCell + new CVec(y, x);
+				for (var x = -this.info.Range; x <= this.info.Range && mined < minable; x++)
+				{
+					var targetCell = centerCell + new CVec(y, x);
 
-				if ((targetCell - centerCell).Length <= this.info.Range)
-					mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+					if ((targetCell - centerCell).Length <= this.info.Range)
+						mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+				}
 			}
 
 			this.crateBeingMined.Resources += mined;

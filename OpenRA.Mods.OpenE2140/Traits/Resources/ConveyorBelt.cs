@@ -11,7 +11,6 @@
 
 #endregion
 
-using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -55,7 +54,7 @@ public class ConveyorBeltInfo : DockHostInfo
 	}
 }
 
-public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
+public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag, ISubActorParent
 {
 	private static readonly TypeFieldHelper<Sprite> SpriteFieldHelper = ReflectionHelper.GetTypeFieldHelper<Sprite>(typeof(SpriteRenderable), "sprite");
 
@@ -74,6 +73,19 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 		this.Info = info;
 	}
 
+	WVec ISubActorParent.SubActorOffset
+	{
+		get
+		{
+			if (this.elapsed == 0)
+				return this.Info.InsideOffset;
+
+			var offset = this.DistanceBetweenEnds * this.DistanceMoved / this.DistanceBetweenEnds.Length;
+
+			return this.Info.InsideOffset + offset;
+		}
+	}
+
 	public bool Activate(Actor self, ResourceCrate crate)
 	{
 		if (this.crate != null)
@@ -82,8 +94,7 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 		this.condition = self.GrantCondition(this.Info.Condition);
 		this.elapsed = 0;
 		this.crate = crate;
-
-		this.UpdateCratePosition(self.CenterPosition + this.Info.InsideOffset);
+		this.crate.ParentActor = self;
 
 		return true;
 	}
@@ -93,7 +104,11 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 		var crate = this.crate;
 
 		if (crate != null)
+		{
 			this.crate = null;
+
+			crate.ParentActor = null;
+		}
 
 		return crate;
 	}
@@ -111,14 +126,10 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 
 		this.elapsed++;
 
-		var distance = this.DistanceBetweenEnds;
+        if (this.DistanceMoved != this.DistanceBetweenEnds.Length)
+            return;
 
-		this.UpdateCratePosition(self.CenterPosition + this.Info.InsideOffset + distance * this.DistanceMoved / distance.Length);
-
-		if (this.DistanceMoved != distance.Length)
-			return;
-
-		if (this.condition != Actor.InvalidConditionToken)
+        if (this.condition != Actor.InvalidConditionToken)
 			this.condition = self.RevokeCondition(this.condition);
 
 		this.Complete(self);
@@ -126,18 +137,6 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag
 
 	protected virtual void Complete(Actor self)
 	{
-	}
-
-	private void UpdateCratePosition(WPos position)
-	{
-		if (this.crate == null || this.crate.Actor.CenterPosition == position)
-			return;
-
-		foreach (var mobile in this.crate.Actor.TraitsImplementing<Mobile>())
-		{
-			typeof(Mobile).GetProperty("CenterPosition", BindingFlags.Instance | BindingFlags.Public)?.SetValue(mobile, position);
-			typeof(Mobile).GetField("oldPos", BindingFlags.Instance | BindingFlags.NonPublic)?.SetValue(mobile, mobile.CenterPosition);
-		}
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)

@@ -11,12 +11,4 @@ crate:
 	Interactable:
 	Targetable:
 		TargetTypes: Ground
-	Mobile:
-		Locomotor: crate
 	WithFacingSpriteBody:
-
-# Crate special locomotor as it can not move itself, but is movable by other actors.
-^CoreWorld:
-	Locomotor@crate:
-		Name: crate
-		TerrainSpeeds:
