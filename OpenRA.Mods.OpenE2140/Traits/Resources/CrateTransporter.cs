@@ -13,7 +13,10 @@
 
 using JetBrains.Annotations;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -21,7 +24,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Allows unit to carry a resource crate.")]
-public class CrateTransporterInfo : DockClientBaseInfo
+public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRenderActorPreviewSpritesInfo
 {
 	[Desc("Docking type.")]
 	public readonly BitSet<DockType> DockingType = new("Load", "Unload");
@@ -32,9 +35,63 @@ public class CrateTransporterInfo : DockClientBaseInfo
 	[Desc("Crate z offset.")]
 	public readonly int ZOffset;
 
+	[Desc("Display order for the initial resources slider in the map editor.")]
+	public readonly int EditorInitialResourcesDisplayOrder = 3;
+
+	[Desc("Maximum amount of the initial resources slider in the map editor.")]
+	public readonly int EditorMaximumInitialResourcesDisplayOrder = 500;
+
+	[Desc("The resource crate actor. Make sure it's the same for ResourceMine actor.")]
+	public readonly string CrateActor = "crate";
+
 	public override object Create(ActorInitializer init)
 	{
-		return new CrateTransporter(init.Self, this);
+		return new CrateTransporter(init, this);
+	}
+
+	IEnumerable<IActorPreview> IRenderActorPreviewSpritesInfo.RenderPreviewSprites(ActorPreviewInitializer init, string image, int facings, PaletteReference p)
+	{
+		if (!this.EnabledByDefault)
+			yield break;
+
+		var resourceInit = init.GetOrDefault<ResourcesInit>();
+		if (resourceInit == null || resourceInit.Value == 0 || this.CrateActor == null)
+			yield break;
+
+		var body = init.Actor.TraitInfo<BodyOrientationInfo>();
+		var crateActor = init.World.Map.Rules.Actors[this.CrateActor];
+		image = crateActor.TraitInfo<RenderSpritesInfo>().GetImage(crateActor, init.GetValue<FactionInit, string>(this));
+
+		var facing = init.GetFacing();
+
+		var anim = new Animation(init.World, image, () => body.QuantizeFacing(facing(), facings));
+		anim.Play("idle");
+
+		yield return new SpriteActorPreview(
+			anim,
+			() => this.Offset.Rotate(body.QuantizeOrientation(WRot.FromYaw(facing()), facings)),
+			() => this.ZOffset,
+			null);
+	}
+
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	{
+		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0, this.EditorMaximumInitialResourcesDisplayOrder, 20,
+			actor =>
+			{
+				var init = actor.GetInitOrDefault<ResourcesInit>(this);
+				if (init != null)
+					return init.Value;
+
+				return 0;
+			},
+			(actor, value) =>
+			{
+				if (value > 0)
+					actor.ReplaceInit(new ResourcesInit((int)value), this);
+				else
+					actor.RemoveInit<ResourcesInit>();
+			});
 	}
 }
 
@@ -46,11 +103,31 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 	public override BitSet<DockType> GetDockType => this.info.DockingType;
 
-	public CrateTransporter(Actor self, CrateTransporterInfo info)
-		: base(self, info)
+	public CrateTransporter(ActorInitializer init, CrateTransporterInfo info)
+		: base(init.Self, info)
 	{
-		this.actor = self;
+		this.actor = init.Self;
 		this.info = info;
+
+		var resourcesInit = init.GetOrDefault<ResourcesInit>();
+		if (resourcesInit != null && resourcesInit.Value > 0)
+		{
+			init.World.AddFrameEndTask(w =>
+			{
+				var crateActor = w.CreateActor(
+					false,
+					this.info.CrateActor,
+					new TypeDictionary
+					{
+						new ParentActorInit(this.actor),
+						new LocationInit(this.actor.Location),
+						new OwnerInit(this.actor.Owner),
+						resourcesInit
+					});
+				this.crate = crateActor.Trait<ResourceCrate>();
+				this.crate.SubActor.ParentActor = this.actor;
+			});
+		}
 	}
 
 	public override bool CanDockAt(Actor hostActor, IDockHost host, bool forceEnter = false, bool ignoreOccupancy = false)
