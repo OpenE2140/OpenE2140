@@ -94,7 +94,7 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag, ISubActorPa
 		this.condition = self.GrantCondition(this.Info.Condition);
 		this.elapsed = 0;
 		this.crate = crate;
-		this.crate.ParentActor = self;
+		this.crate.SubActor.ParentActor = self;
 
 		return true;
 	}
@@ -107,7 +107,7 @@ public class ConveyorBelt : DockHost, ITick, IRender, IDockHostDrag, ISubActorPa
 		{
 			this.crate = null;
 
-			crate.ParentActor = null;
+			crate.SubActor.ParentActor = null;
 		}
 
 		return crate;

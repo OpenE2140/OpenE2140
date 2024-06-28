@@ -38,7 +38,7 @@ public class CrateTransporterInfo : DockClientBaseInfo
 	}
 }
 
-public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, ISubActorParent
+public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, ISubActorParent, INotifyKilled
 {
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
@@ -76,11 +76,11 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		{
 			this.crate = resourceMine.RemoveCrate(hostActor);
 			if (this.crate != null)
-				this.crate.ParentActor = self;
+				this.crate.SubActor.ParentActor = self;
 		}
 		else if (host is ResourceRefinery resourceRefinery && this.crate != null)
 		{
-			this.crate.ParentActor = null;
+			this.crate.SubActor.ParentActor = null;
 			resourceRefinery.Activate(hostActor, this.crate);
 			this.crate = null;
 		}
@@ -92,7 +92,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		var result = new List<IRenderable>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
@@ -105,12 +105,17 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		var result = new List<Rectangle>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
 			result.AddRange(render.ScreenBounds(this.crate.Actor, wr));
 
 		return result;
+	}
+
+	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
 	}
 }

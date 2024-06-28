@@ -11,4 +11,5 @@ crate:
 	Interactable:
 	Targetable:
 		TargetTypes: Ground
+	SubActor:
 	WithFacingSpriteBody:
