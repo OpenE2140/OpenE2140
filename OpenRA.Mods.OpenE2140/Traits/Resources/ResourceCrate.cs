@@ -12,6 +12,7 @@
 #endregion
 
 using JetBrains.Annotations;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.SubActors;
 using OpenRA.Traits;
 
@@ -19,11 +20,31 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly]
 [Desc("This actor is a resource crate.")]
-public class ResourceCrateInfo : TraitInfo, Requires<SubActorInfo>
+public class ResourceCrateInfo : TraitInfo, IEditorActorOptions, Requires<SubActorInfo>
 {
+	[Desc("Display order for the initial resources slider in the map editor")]
+	public readonly int EditorInitialResourcesDisplayOrder = 3;
+
+	[Desc("Maximum amount of the initial resources slider in the map editor")]
+	public readonly int EditorMaximumInitialResourcesDisplayOrder = 500;
+
 	public override object Create(ActorInitializer init)
 	{
-		return new ResourceCrate(init.Self);
+		return new ResourceCrate(init);
+	}
+
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	{
+		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0, this.EditorMaximumInitialResourcesDisplayOrder, 20,
+			actor =>
+			{
+				var init = actor.GetInitOrDefault<ResourcesInit>(this);
+				if (init != null)
+					return init.Value;
+
+				return 500;
+			},
+			(actor, value) => actor.ReplaceInit(new ResourcesInit((int)value), this));
 	}
 }
 
@@ -34,9 +55,21 @@ public class ResourceCrate
 
 	public int Resources;
 
-	public ResourceCrate(Actor self)
+	public ResourceCrate(ActorInitializer init)
 	{
-		this.Actor = self;
-		this.SubActor = self.Trait<SubActor>();
+		this.Actor = init.Self;
+		this.SubActor = this.Actor.Trait<SubActor>();
+
+		var resourcesInit = init.GetOrDefault<ResourcesInit>();
+		if (resourcesInit != null)
+			this.Resources = resourcesInit.Value;
 	}
+}
+
+public class ResourcesInit : ValueActorInit<int>, ISingleInstanceInit
+{
+	public ResourcesInit(int value)
+		: base(value) { }
+
+	public override int Value => Math.Max(0, base.Value);
 }

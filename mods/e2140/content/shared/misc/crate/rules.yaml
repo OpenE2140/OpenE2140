@@ -13,3 +13,6 @@ crate:
 		TargetTypes: Ground
 	SubActor:
 	WithFacingSpriteBody:
+	MapEditorData:
+		Categories: Resources
+
