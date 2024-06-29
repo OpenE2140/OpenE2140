@@ -23,6 +23,7 @@ shared_vehicles_bantha:
 	CrateTransporter:
 		Offset: 0,192,0
 		ZOffset: 192
+	WithDockingAnimation:
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:
