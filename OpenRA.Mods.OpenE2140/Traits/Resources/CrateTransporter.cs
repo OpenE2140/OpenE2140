@@ -166,6 +166,11 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		return true;
 	}
 
+	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
+	}
+
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
 	{
 		var result = new List<IRenderable>();
@@ -196,10 +201,5 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 			result.AddRange(render.ScreenBounds(this.crate.Actor, wr));
 
 		return result;
-	}
-
-	void INotifyKilled.Killed(Actor self, AttackInfo e)
-	{
-		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
 	}
 }
