@@ -54,7 +54,7 @@ public class ConveyorBeltInfo : DockHostInfo
 	}
 }
 
-public class ConveyorBelt : DockHost, ITick, IRender
+public class ConveyorBelt : DockHost, ITick, IRender, INotifyKilled
 {
 	private static readonly TypeFieldHelper<Sprite> SpriteFieldHelper = ReflectionHelper.GetTypeFieldHelper<Sprite>(typeof(SpriteRenderable), "sprite");
 
@@ -71,6 +71,17 @@ public class ConveyorBelt : DockHost, ITick, IRender
 		: base(self, info)
 	{
 		this.Info = info;
+	}
+
+	// HACK: DockHost does not have an extension point for INotifyKilled.Killed()
+	// Destroying the crate would probably be better when the building explodes, but overriding INotifyActorDisposing.Disposing()
+	// is not possible without reflection (see INotifyActorDisposing.Disposing() in DockHost).
+	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
+
+		// call base
+		this.UnreserveAll();
 	}
 
 	public bool Activate(Actor self, ResourceCrate crate)
@@ -117,7 +128,7 @@ public class ConveyorBelt : DockHost, ITick, IRender
 	{
 		var result = new List<IRenderable>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		var cutOff = self.CenterPosition.X + this.Info.EntryOffset;
@@ -171,7 +182,7 @@ public class ConveyorBelt : DockHost, ITick, IRender
 	{
 		var result = new List<Rectangle>();
 
-		if (this.crate == null)
+		if (this.crate == null || this.crate.Actor.Disposed)
 			return result;
 
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
