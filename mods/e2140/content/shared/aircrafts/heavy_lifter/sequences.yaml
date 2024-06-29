@@ -2,9 +2,9 @@ shared_aircrafts_heavy_lifter:
 	idle:
 		Filename: aircraft_heavy_lifter.vspr
 		Facings: -16
-	vertical:
-		Filename: aircraft_heavy_lifter.vspr
-		Start: 16
+	lift:
+		Filename: content/shared/aircrafts/heavy_lifter/aircraft_heavy_lifter.png
+		Facings: -8
 	icon:
 		Filename: SPRI0.MIX
 		Start: 164
