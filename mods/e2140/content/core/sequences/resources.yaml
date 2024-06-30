@@ -1,5 +1,4 @@
 resources:
 	idle:
-		Filename: SPRO0.MIX
-		Start: 49
+		Filename: content/core/assets/resources.png
 		Length: 6
