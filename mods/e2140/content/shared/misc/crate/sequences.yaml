@@ -2,3 +2,7 @@ crate:
 	idle:
 		Filename: crate.vspr
 		Facings: -16
+	shadow:
+		Filename: content/shared/misc/crate/crate_shadow.png
+		Facings: -16
+		Length: 1

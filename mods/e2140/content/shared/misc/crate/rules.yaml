@@ -14,6 +14,11 @@ crate:
 	Mobile:
 		Locomotor: crate
 	WithFacingSpriteBody:
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow
+		# TODO
+		# RequiresCondition: 
 
 # Crate special locomotor as it can not move itself, but is movable by other actors.
 ^CoreWorld:
