@@ -7,23 +7,16 @@ shared_vehicles_bantha:
 		Start: 16
 		Length: 4
 		Facings: -16
-	extend:
+	dock:
 		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
-		Facings: -4
+		Facings: -8
 		Length: 2
 		Tick: 100
 		Offset: 0,2
-	extended:
+	dock-loop:
 		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
-		Frames: 1, 3, 5, 7
-		Facings: -4
-		Offset: 0,2
-	retract:
-		Filename: content/shared/vehicles/bantha/vehicle_bantha.png
-		Frames: 1, 0, 3, 2, 5, 4, 7, 6
-		Facings: -4
-		Length: 2
-		Tick: 100
+		Frames: 1, 3, 5, 7, 9, 11, 13, 15
+		Facings: -8
 		Offset: 0,2
 	icon:
 		Filename: SPRI0.MIX
