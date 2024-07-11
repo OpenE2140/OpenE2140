@@ -134,7 +134,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 
 	private IEnumerable<EditorActorPreview> GetAllActors(OpenRA.World world)
 	{
-		return this.editorActorLayer.PreviewsInBox(this.mapRectangle.Update(world.Map.MapSize));
+		return this.editorActorLayer.PreviewsInScreenBox(this.mapRectangle.Update(world.Map.MapSize));
 	}
 
 	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo _, OpenRA.World world, WaterBaseDockInfo info)
