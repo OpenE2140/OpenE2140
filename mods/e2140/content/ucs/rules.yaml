@@ -70,6 +70,17 @@ World:
 		VoiceSet: UcsVehicleVoice
 		RequiresCondition: !VehicleDisabled
 
+# UCS Mech husk throws a turret.
+^HuskThrowsTurretUCSMech:
+	ThrowsParticle@Turret:
+		Anim: turret
+		MinThrowRange: 0c356
+		MaxThrowRange: 0c456
+		MinThrowAngle: 100
+		MaxThrowAngle: 200
+		Velocity: 35
+		TurnSpeed: 50
+
 ucs_colorpicker:
 	Inherits: ucs_vehicles_tiger_assault
 	RenderSprites:

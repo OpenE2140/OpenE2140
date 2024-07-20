@@ -64,7 +64,7 @@ ucs_vehicles_spider_ii:
 
 ucs_vehicles_spider_ii_husk:
 	Inherits@1: ^Husk
-	Inherits@2: ^HuskThrowsTurret
+	Inherits@2: ^HuskThrowsTurretUCSMech
 	Inherits@3: ^HuskBurnsBigFire
 	Tooltip:
 		Name: Husk (SPIDER II)
