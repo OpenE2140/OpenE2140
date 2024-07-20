@@ -30,7 +30,7 @@ ucs_vehicles_spider_ii:
 
 ucs_vehicles_spider_ii_husk:
 	idle:
-		Filename: vehicle_mech_husk.vspr
+		Filename: content/ucs/assets/vehicle_mech_husk.png
 		Facings: -8
 		ZOffset: -512
 	turret:

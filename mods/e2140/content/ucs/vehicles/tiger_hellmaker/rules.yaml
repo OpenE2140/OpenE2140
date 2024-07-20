@@ -54,7 +54,7 @@ ucs_vehicles_tiger_hellmaker:
 
 ucs_vehicles_tiger_hellmaker_husk:
 	Inherits@1: ^Husk
-	Inherits@2: ^HuskThrowsTurret
+	Inherits@2: ^HuskThrowsTurretUCSMech
 	Inherits@3: ^HuskBurnsBigFire
 	Tooltip:
 		Name: Husk (TIGER HellMaker)

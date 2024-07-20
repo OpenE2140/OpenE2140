@@ -61,7 +61,7 @@ ucs_vehicles_tiger_assault:
 
 ucs_vehicles_tiger_assault_husk:
 	Inherits@1: ^Husk
-	Inherits@2: ^HuskThrowsTurret
+	Inherits@2: ^HuskThrowsTurretUCSMech
 	Inherits@3: ^HuskBurnsBigFire
 	Tooltip:
 		Name: Husk (TIGER Assault)
