@@ -171,7 +171,7 @@ Cursors:
 			Start: 0
 
 	content/core/assets/beacon.png:
-		ability:
+		beacon:
 			Start: 0
 			Length: 4
 
