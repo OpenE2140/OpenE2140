@@ -215,7 +215,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		if (order.OrderString == ExitBuildingOrderID)
 		{
-			if (!order.Queued && !this.CanExit())
+			if (!this.CanExit())
 				return;
 
 			self.QueueActivity(order.Queued, new CrewExit(self));
