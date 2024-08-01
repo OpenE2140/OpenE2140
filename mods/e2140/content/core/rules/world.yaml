@@ -94,8 +94,12 @@ World:
 		ResearchWidget: PRODUCTION_AND_RESEARCH
 	# Renders an effect at the order target locations.
 	OrderEffects:
-		TerrainFlashImage: moveflash
-		TerrainFlashSequence: idle
+		TerrainFlashImage: orderflash
+		TerrainFlashSequence: move
+	CustomOrderEffects:
+		TerrainFlashImage: orderflash
+		TerrainFlashSequence: attack
+		ValidOrders: Attack, ForceAttack
 	# Implementation for faction specific sprites.
 	FactionRenderSprites:
 		Factions: ucs, ed
