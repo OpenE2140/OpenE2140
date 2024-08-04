@@ -6,17 +6,45 @@ shared_buildings_refinery:
 		HP: 800
 	Power:
 		Amount: -300
+	ResourceRefinery:
+		InsideOffset: 1384,-512,0
+		EntryOffset: 1216
+		OutsideOffset: 512,-512,0
+		ZOffset: 1336
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+		# DockHost
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+
+		# South side (default)
+		DockOffset: 1024,1024,0
+		DockAngle: 512
+		DragOffset: 1404,185,0
+		DragLength: 20
+
+		# North side
+		# DockOffset: 1024,-1024,0
+		# DockAngle: 0
+		# DragOffset: 1404,-913,0
+		# DragLength: 26
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
-		RequiresCondition: Powered
-	WithIdleOverlay@Belt-light:
-		Sequence: belt-lights
-		Offset: 208,1624,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
 		Offset: 208,1624,0
 		RequiresCondition: !Transforming
+	WithIdleOverlay@BeltRetract:
+		Sequence: belt-retract
+		Offset: 424,1328,0
+		RequiresCondition: !Transforming && BeltActive
+		PauseOnCondition: !Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 208,1624,0
+		RequiresCondition: Powered
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
 	Building:
@@ -54,7 +82,7 @@ shared_buildings_refinery:
 		Offset: -512,112,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && !damaged
+		RequiresCondition: !Transforming && Powered && !damaged && BeltActive
 	FloatingSpriteEmitter@Damaged:
 		Duration: -1
 		Lifetime: 27
@@ -66,7 +94,7 @@ shared_buildings_refinery:
 		Offset: -512,812,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && damaged
+		RequiresCondition: !Transforming && Powered && damaged && BeltActive
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 3

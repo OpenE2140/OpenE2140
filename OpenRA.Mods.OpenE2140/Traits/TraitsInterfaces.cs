@@ -112,3 +112,13 @@ public interface INotifyBuildingRepair
 
 	void RepairInterrupted(Actor self);
 }
+
+public interface ISubActorParent
+{
+	WVec SubActorOffset { get; }
+}
+
+public interface ISubActor
+{
+	void OnParentKilled(Actor self, Actor parentActor);
+}

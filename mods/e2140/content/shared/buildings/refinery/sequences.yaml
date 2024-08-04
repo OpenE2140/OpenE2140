@@ -17,6 +17,10 @@ shared_buildings_refinery:
 		Start: 1
 		IgnoreWorldTint: true
 		ZOffset: 64
+	belt-retract:
+		Filename: belt.vspr
+		Start: 5
+		Length: 3
 
 shared_mcu_refinery:
 	Inherits: shared_mcu
