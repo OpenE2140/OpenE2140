@@ -15,6 +15,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Traits.Power;
+using OpenRA.Primitives;
 using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
