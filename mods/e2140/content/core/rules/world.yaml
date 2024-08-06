@@ -34,6 +34,14 @@
 	Selection:
 	# Required for control groups support.
 	ControlGroups:
+	# WORKAROUND: temporary until either resources are implemented or translation linting is fixed
+	ResourceRenderer:
+		ResourceTypes:
+			Resources:
+				Sequences: idle
+				Palette:
+				Image: mpspawn
+				Name: Resources
 
 # Ingame specific world setup.
 World:
@@ -128,6 +136,15 @@ World:
 		EffectMovement: -15,-15,0, -15,-15,0, -15,-15,0
 		Offset: 240,240,0
 		Palette:
+	# WORKAROUND: temporary until either resources are implemented or translation linting is fixed
+	ResourceLayer:
+		RecalculateResourceDensity: true
+		ResourceTypes:
+			Resources:
+				ResourceIndex: 1
+				TerrainType: Resources
+				AllowedTerrainTypes: Clear
+				MaxDensity: 10000
 
 # Map editor specific world setup.
 EditorWorld:
