@@ -27,6 +27,7 @@ Player:
 		CircleSequence:
 		BeaconSequence: idle
 		Duration: 250
+		BeaconCursor: beacon
 	# Player always has access to radar
 	ProvidesRadar:
 	# Manage power for buildings
