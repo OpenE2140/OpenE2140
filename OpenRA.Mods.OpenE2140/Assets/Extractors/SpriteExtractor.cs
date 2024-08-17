@@ -49,9 +49,12 @@ public static class SpriteExtractor
 			);
 		}
 
-		var data = sheetBaker.Bake(out var width, out var height, out var offsetX, out var offsetY);
+		var data = sheetBaker.Bake(out var width, out var height, out var offsetX, out var offsetY, out var frameSize);
 
-		var embeddedData = new Dictionary<string, string> { { "Offset", $"{offsetX},{offsetY}" } };
+		var embeddedData = new Dictionary<string, string> {
+			{ "Offset", $"{offsetX},{offsetY}" },
+			{ "FrameSize", $"{frameSize.Width},{frameSize.Height}" }
+		};
 
 		new Png(data, SpriteFrameType.Bgra32, width, height, null, embeddedData).Save(outputFile);
 	}

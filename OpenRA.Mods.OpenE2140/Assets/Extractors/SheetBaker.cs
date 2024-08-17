@@ -27,7 +27,7 @@ public class SheetBaker
 		this.channels = channels;
 	}
 
-	public byte[] Bake(out int width, out int height, out int offsetX, out int offsetY)
+	public byte[] Bake(out int width, out int height, out int offsetX, out int offsetY, out Size frameSize)
 	{
 		if (!this.Frames.Any())
 		{
@@ -35,6 +35,7 @@ public class SheetBaker
 			height = 1;
 			offsetX = 0;
 			offsetY = 0;
+			frameSize = new Size();
 
 			return new byte[this.channels];
 		}
@@ -51,6 +52,7 @@ public class SheetBaker
 		height = framesY * frameRectangle.Height;
 		offsetX = frameRectangle.X;
 		offsetY = frameRectangle.Y;
+		frameSize = size;
 
 		var data = new byte[width * height * this.channels];
 
