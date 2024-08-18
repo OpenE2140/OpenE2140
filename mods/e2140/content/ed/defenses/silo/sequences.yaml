@@ -12,6 +12,7 @@ ed_defenses_silo:
 		Filename: content/ed/defenses/silo/building_silo.png
 		Length: 7
 		Tick: 120
+		Offset: 0,-1
 
 ed_mcu_silo:
 	Inherits: shared_mcu
