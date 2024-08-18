@@ -119,5 +119,31 @@ public class MixFrame
 			default:
 				throw new Exception("Unknown MixSprite type " + type);
 		}
+
+		// Some sprites have sizes non-dividable by two. When OpenRA renders sprites, the origin is in the middle of the sprite
+		// (not top-left corner like in E2140). Unfortunately with sprites, which have size non-dividable by two, this means that the sprite
+		// will be distorted, when rendered. This is the origin of the sprite will not be exactly aligned at a pixel (since diving odd number results
+		// in non-integer number) and since OpenRA rounds the numbers (when it comes to rendering sprites), the rendered sprites will usually shrink a bit.
+
+		// This hack aligns both width and height of the sprite to a number dividable by two, hence the rounding does not happen anymore.
+		// Unfortunately this means that the sprites are tiny bit larger than they need to be, plus many sprites will need adjusting their offsets
+		// to make them look good again. Unfortunately this means that the sprites will take a bit more memory than they need, plus many sprites
+		// will need their offsets adjusted. But this is a one-time thing, on the other hand the memory usage should be looked into,
+		// when optimizing the code in the future.
+		{
+			if (this.Height % 2 == 0 && this.Width % 2 == 0)
+				return;
+
+			var width = this.Width + this.Width % 2;
+			var height = this.Height + this.Height % 2;
+			var pixels = new byte[width * height];
+
+			for (var y = 0; y < this.Height; y++)
+				Array.Copy(this.Pixels, y * this.Width, pixels, (y + this.Height % 2) * width + this.Width % 2, this.Width);
+
+			this.Width = (ushort)width;
+			this.Height = (ushort)height;
+			this.Pixels = pixels;
+		}
 	}
 }
