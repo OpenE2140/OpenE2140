@@ -12,11 +12,13 @@
 #endregion
 
 using JetBrains.Annotations;
+using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -40,6 +42,14 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 
 	[Desc("Maximum amount of the initial resources slider in the map editor.")]
 	public readonly int EditorMaximumInitialResourcesDisplayOrder = 500;
+
+	[SequenceReference]
+	[Desc("Displayed when docking to refinery.")]
+	public readonly string DockSequence = "dock";
+
+	[SequenceReference]
+	[Desc("Looped while unloading at refinery.")]
+	public readonly string DockLoopSequence = "dock-loop";
 
 	[Desc("The resource crate actor. Make sure it's the same for ResourceMine actor.")]
 	public readonly string CrateActor = "crate";
@@ -100,8 +110,11 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
 	private ResourceCrate? crate;
+	private bool? dockingInProgress;
 
 	public override BitSet<DockType> GetDockType => this.info.DockingType;
+
+	public WVec CrateOffset { get; set; }
 
 	public CrateTransporter(ActorInitializer init, CrateTransporterInfo info)
 		: base(init.Self, info)
@@ -145,24 +158,47 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 	public override bool OnDockTick(Actor self, Actor hostActor, IDockHost host)
 	{
-		if (this.IsTraitDisabled) return true;
+		if (this.IsTraitDisabled)
+			return true;
 
-		if (host is ResourceMine resourceMine)
+		if (this.dockingInProgress == null)
 		{
-			this.crate = resourceMine.RemoveCrate(hostActor);
+			var currentActivity = self.CurrentActivity.ActivitiesImplementing<Activity>().First();
+			currentActivity.QueueChild(new ConveyorBeltLoadUnloadCrate(self, (ConveyorBelt)host, hostActor));
+
+			this.dockingInProgress = true;
+		}
+
+		return !this.dockingInProgress.Value;
+	}
+
+	public override void OnDockCompleted(Actor self, Actor hostActor, IDockHost host)
+	{
+		this.dockingInProgress = null;
+	}
+
+	internal bool OnConveyorBeltDockTick(Actor self, ConveyorBelt conveyorBelt, Actor conveyorBeltActor)
+	{
+		if (conveyorBelt is ResourceMine resourceMine)
+		{
+			this.crate = resourceMine.RemoveCrate(conveyorBeltActor);
 			if (this.crate != null)
 				this.crate.SubActor.ParentActor = self;
 		}
-		else if (host is ResourceRefinery resourceRefinery && this.crate != null)
+		else if (conveyorBelt is ResourceRefinery resourceRefinery && this.crate != null)
 		{
 			this.crate.SubActor.ParentActor = null;
-			resourceRefinery.Activate(hostActor, this.crate);
+			resourceRefinery.Activate(conveyorBeltActor, this.crate);
 			this.crate = null;
 		}
 
 		return true;
 	}
-
+	
+	internal void OnConveyorBeltUndock()
+	{
+		this.dockingInProgress = false;
+	}
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
@@ -180,8 +216,8 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 			result.AddRange(
 				render.Render(this.crate.Actor, wr)
 				.Select(e => e
-					.OffsetBy(this.info.Offset.Rotate(this.actor.Orientation))
-					.WithZOffset(this.info.ZOffset)));
+					.OffsetBy((this.info.Offset + this.CrateOffset).Rotate(this.actor.Orientation))
+					.WithZOffset(this.info.ZOffset * 6)));
 		}
 
 		return result;

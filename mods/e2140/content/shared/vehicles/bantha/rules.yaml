@@ -24,6 +24,7 @@ shared_vehicles_bantha:
 	CrateTransporter:
 		Offset: 0,192,0
 		ZOffset: 192
+		UnloadVoice: Unload
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:
