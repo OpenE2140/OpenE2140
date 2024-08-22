@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
@@ -17,7 +16,7 @@ public class MoveToBuildingEntrance : MoveAdjacentTo
 		this.targetBuildingCrew = target.Actor.Trait<BuildingCrew>();
 	}
 
-	protected override List<CPos> CalculatePathToTarget(Actor self, BlockedByActor check)
+	protected override (bool AlreadyAtDestination, List<CPos> Path) CalculatePathToTarget(Actor self, BlockedByActor check)
 	{
 		// PERF: Assume that candidate cells don't change within a tick to avoid repeated queries
 		// when Move enumerates different BlockedByActor values.
@@ -31,13 +30,20 @@ public class MoveToBuildingEntrance : MoveAdjacentTo
 			var entryCells = this.targetBuildingCrew.Entrances.Select(c => c.EntryCell);
 
 			foreach (var cell in entryCells)
+			{
 				if (this.Mobile.CanStayInCell(cell) && this.Mobile.CanEnterCell(cell))
+				{
+					if (cell == self.Location)
+						return (true, PathFinder.NoPath);
+
 					this.SearchCells.Add(cell);
+				}
+			}
 		}
 
 		if (this.SearchCells.Count == 0)
-			return PathFinder.NoPath;
+			return (false, PathFinder.NoPath);
 
-		return this.Mobile.PathFinder.FindPathToTargetCells(self, self.Location, this.SearchCells, check);
+		return (false, this.Mobile.PathFinder.FindPathToTargetCells(self, self.Location, this.SearchCells, check));
 	}
 }
