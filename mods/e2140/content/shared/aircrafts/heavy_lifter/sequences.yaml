@@ -5,6 +5,7 @@ shared_aircrafts_heavy_lifter:
 	lift:
 		Filename: content/shared/aircrafts/heavy_lifter/aircraft_heavy_lifter.png
 		Facings: -8
+		Offset: 1,0
 	icon:
 		Filename: SPRI0.MIX
 		Start: 164

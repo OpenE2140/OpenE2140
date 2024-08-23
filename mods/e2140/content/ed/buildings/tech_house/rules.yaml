@@ -34,7 +34,7 @@ ed_buildings_tech_house:
 		Bounds: 2064, 1984, 0, 0
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 1575, 820, 0
+		Position: 1575, 770, 0
 		CutOff: 29
 		Produces: Vehicle.ED
 	AnimatedExitProductionQueue:

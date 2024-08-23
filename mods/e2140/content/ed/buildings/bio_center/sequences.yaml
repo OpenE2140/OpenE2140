@@ -14,12 +14,15 @@ ed_buildings_bio_center:
 		Start: 4
 		Length: 2
 		Tick: 100
+		Offset: 1,0
 	open:
 		Start: 6
+		Offset: 1,0
 	closing:
 		Start: 7
 		Length: 2
 		Tick: 100
+		Offset: 1,0
 	damaged-opening:
 		Filename: content/ed/buildings/bio_center/bio_center_damaged_door.png
 		Frames: 0,1

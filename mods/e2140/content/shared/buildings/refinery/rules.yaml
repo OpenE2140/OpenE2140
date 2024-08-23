@@ -11,11 +11,11 @@ shared_buildings_refinery:
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt-light:
 		Sequence: belt-lights
-		Offset: 208,1624,0
+		Offset: 208,1644,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
-		Offset: 208,1624,0
+		Offset: 208,1644,0
 		RequiresCondition: !Transforming
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered

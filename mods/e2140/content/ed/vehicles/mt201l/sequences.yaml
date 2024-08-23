@@ -10,7 +10,7 @@ ed_vehicles_mt201l:
 	turret:
 		Filename: turret_mt_201l.vspr
 		Facings: -16
-		Offset: -1, -2
+		Offset: 0, -2
 	icon:
 		Filename: SPRI0.MIX
 		Start: 136
@@ -27,7 +27,7 @@ ed_vehicles_mt201l_husk:
 	turret:
 		Filename: turret_mt_201l_husk.vspr
 		Facings: -16
-		Offset: -1, -2
+		Offset: 0, -2
 		ZOffset: -256
 
 # TODO: remove after PR #20705

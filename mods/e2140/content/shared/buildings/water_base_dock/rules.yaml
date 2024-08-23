@@ -10,7 +10,7 @@ shared_buildings_water_base_dock:
 		Dimensions: 1,2
 		Footprint: x +
 		TerrainTypes: Water
-		LocalCenterOffset: 0,-400,0
+		LocalCenterOffset: -20,-400,0
 	HitShape:
 	WithSpriteBody:
 		RequiresCondition: !Transforming

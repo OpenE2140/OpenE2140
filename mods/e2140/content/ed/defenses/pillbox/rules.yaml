@@ -5,7 +5,7 @@ ed_defenses_pillbox:
 	Health:
 		HP: 900
 	Building:
-		LocalCenterOffset: 0,0,0
+		LocalCenterOffset: 70,70,0
 	HitShape:
 		TargetableOffsets: 0,0,0,   100,0,0
 		Type: Rectangle

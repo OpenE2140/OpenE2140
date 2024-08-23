@@ -5,7 +5,7 @@ ucs_defenses_little_eye_upgraded:
 	Health:
 		HP: 150
 	Building:
-		LocalCenterOffset: 0,-80,0
+		LocalCenterOffset: 0,40,0
 	HitShape:
 		TargetableOffsets: -100,0,0,   -200,0,0
 		Type: Rectangle

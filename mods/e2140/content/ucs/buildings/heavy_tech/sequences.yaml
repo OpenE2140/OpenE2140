@@ -1,11 +1,11 @@
 ucs_buildings_heavy_tech:
 	Defaults:
 		Filename: building_heavy_tech.vspr
-		Offset: -22, -54, 0
+		Offset: -24, -51, 0
 	idle:
 	idle-overlay:
 		Filename: content/ucs/buildings/heavy_tech/turret_heavy_tech.png
-		Offset: -18, -114
+		Offset: -20, -111
 		Length: 16
 		Tick: 50
 	idle-lights:
