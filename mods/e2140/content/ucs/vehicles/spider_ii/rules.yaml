@@ -20,7 +20,7 @@ ucs_vehicles_spider_ii:
 		Range: 6c896
 	Turreted:
 		TurnSpeed: 30
-		Offset: 0,0,300
+		Offset: 0,0,340
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_spider_ii
 		Recoil: 64

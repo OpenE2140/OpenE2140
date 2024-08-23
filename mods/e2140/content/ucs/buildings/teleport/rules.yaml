@@ -7,7 +7,7 @@ ucs_buildings_teleport:
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xxx ===
-		LocalCenterOffset: 0,-460,0
+		LocalCenterOffset: -42,-460,0
 	BuildingCrew:
 		MaxPopulation: 1
 	BuildingCrewEntrance@1:

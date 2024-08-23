@@ -1,7 +1,7 @@
 shared_buildings_air_base:
 	Defaults:
 		Filename: building_air_base.vspr
-		Offset: 1,-45,0
+		Offset: 1,-46,0
 		ZOffset: -1024
 	idle:
 	idle-lights:
@@ -15,38 +15,38 @@ shared_buildings_air_base:
 	helipad-left:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 0
-		Offset: -93, -6
+		Offset: -93, -8
 	helipad-left-lights:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 2
-		Offset: -93, -6
+		Offset: -93, -8
 		IgnoreWorldTint: true
 	damaged-helipad-left:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 1
-		Offset: -93, -6
+		Offset: -93, -8
 	damaged-helipad-left-lights:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 2
-		Offset: -93, -6
+		Offset: -93, -8
 		IgnoreWorldTint: true
 	helipad-right:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 3
-		Offset: 95, -59
+		Offset: 94, -60
 	helipad-right-lights:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 5
-		Offset: 95, -59
+		Offset: 94, -60
 		IgnoreWorldTint: true
 	damaged-helipad-right:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 4
-		Offset: 95, -59
+		Offset: 94, -60
 	damaged-helipad-right-lights:
 		Filename: content/shared/buildings/air_base/air_base_helipad.png
 		Start: 5
-		Offset: 95, -59
+		Offset: 94, -60
 		IgnoreWorldTint: true
 
 shared_mcu_air_base:

@@ -5,7 +5,7 @@ ed_defenses_heavy_defense_tower_upgraded:
 	Health:
 		HP: 300
 	Building:
-		LocalCenterOffset: 0,-226,0
+		LocalCenterOffset: 0,-206,0
 	HitShape:
 		TargetableOffsets: -300,0,0,   -400,0,0
 		Type: Rectangle

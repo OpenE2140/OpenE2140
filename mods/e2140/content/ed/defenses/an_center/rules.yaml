@@ -14,7 +14,7 @@ ed_defenses_an_center:
 	Building:
 		Dimensions: 1,1
 		Footprint: x
-		LocalCenterOffset: 0,-230,0
+		LocalCenterOffset: 20,-240,0
 	# AN Center doesn't have a crew.
 	-BuildingCrew:
 	-BuildingCrewEntrance@1:
@@ -33,7 +33,7 @@ ed_defenses_an_center:
 	RevealsShroud:
 		Range: 12c896
 	WithIdleOverlay:
-		Offset: -256,32,0
+		Offset: -256,16,0
 		Palette:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered

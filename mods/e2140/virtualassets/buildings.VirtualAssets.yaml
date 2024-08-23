@@ -188,6 +188,7 @@ Generate:
 		opening: 77-78
 		open: 79
 		overlay: 80
+			Offsets: 80:2,16
 		closing: 78-77
 		elevator: 81
 
@@ -195,7 +196,9 @@ Generate:
 		closed: 82
 		opening: 83-84
 		open: 85
+			Offsets: 85:0,-8
 		overlay: 86
+			Offsets: 86:0,22
 		closing: 84-83
 		elevator: 87
 

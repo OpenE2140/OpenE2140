@@ -12,7 +12,7 @@ ed_buildings_constr_center:
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xxx ==x
-		LocalCenterOffset: 100,-425,0
+		LocalCenterOffset: 100,-410,0
 	BuildingCrew:
 		MaxPopulation: 6
 		InitialUnits: shared_infantry_civil1, shared_infantry_civil1
@@ -32,7 +32,7 @@ ed_buildings_constr_center:
 		Bounds: 3088, 1950, -100, -40
 	ElevatorProduction:
 		Image: ed_elevator
-		Position: 900, 1450, 0
+		Position: 900, 1435, 0
 		CutOff: 35
 		Produces: Building.ED, Defense.ED
 	-AnimatedExitProductionQueue:

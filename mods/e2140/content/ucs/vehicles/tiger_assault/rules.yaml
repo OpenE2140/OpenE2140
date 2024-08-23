@@ -19,7 +19,7 @@ ucs_vehicles_tiger_assault:
 	RevealsShroud:
 		Range: 5c896
 	Turreted:
-		Offset: 0,0,200
+		Offset: 0,0,205
 	Armament@GROUND:
 		Weapon: ucs_vehicles_tiger_assault
 		Recoil: 128

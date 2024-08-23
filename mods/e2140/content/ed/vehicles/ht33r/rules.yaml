@@ -21,7 +21,7 @@ ed_vehicles_ht33r:
 	RevealsShroud:
 		Range: 6c896
 	Turreted:
-		Offset: 0,0,160
+		Offset: 0,0,180
 	Armament@PRIMARY:
 		Weapon: ed_vehicles_ht33r
 		Recoil: 80

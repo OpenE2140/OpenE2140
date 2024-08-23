@@ -14,25 +14,31 @@ ucs_buildings_robot_factory:
 		Start: 4
 		Length: 2
 		Tick: 100
+		Offset: 0,-1
 	open:
 		Start: 6
+		Offset: 0,-1
 	closing:
 		Start: 7
 		Length: 2
 		Tick: 100
+		Offset: 0,-1
 	damaged-opening:
 		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
 		Frames: 0,1
 		Length: 2
 		Tick: 100
+		Offset: 0,-1
 	damaged-open:
 		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
 		Frames: 1
+		Offset: 0,-1
 	damaged-closing:
 		Filename: content/ucs/buildings/robot_factory/robot_factory_damaged_door.png
 		Frames: 1,0
 		Length: 2
 		Tick: 100
+		Offset: 0,-1
 	deploy:
 		Filename: content/ucs/buildings/robot_factory/mcu_deploy.png
 		Length: 30
