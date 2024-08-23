@@ -7,7 +7,7 @@ ucs_buildings_robot_factory:
 	Building:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
-		LocalCenterOffset: -520,-660,0
+		LocalCenterOffset: -520,-640,0
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_robot_factory

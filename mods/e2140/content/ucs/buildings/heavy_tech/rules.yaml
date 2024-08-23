@@ -39,8 +39,8 @@ ucs_buildings_heavy_tech:
 		Bounds: 2064, 1984, -513, -495
 	ElevatorProduction:
 		Image: ucs_elevator
-		Position: -960, 128, 0
-		CutOff: 35
+		Position: -1000, 158, 0
+		CutOff: 33
 		Produces: Vehicle.UCS
 	AnimatedExitProductionQueue:
 		Type: Vehicle.UCS

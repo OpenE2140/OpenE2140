@@ -7,7 +7,7 @@ shared_buildings_shelter:
 	Building:
 		Dimensions: 1, 2
 		Footprint: x =
-		LocalCenterOffset: 0,-680,0
+		LocalCenterOffset: 20,-660,0
 	BuildingCrew:
 		MaxPopulation: 5
 	TransformSequence:

@@ -6,11 +6,9 @@ ucs_elevator:
 		Length: 2
 		Tick: 100
 	open:
-		Offset: 0, -8
 		Start: 3
 		ZOffset: -512
 	overlay:
-		Offset: 0, 22
 		Start: 4
 	elevator:
 		Offset: -3, -1

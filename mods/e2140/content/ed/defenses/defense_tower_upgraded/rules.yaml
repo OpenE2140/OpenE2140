@@ -5,7 +5,7 @@ ed_defenses_defense_tower_upgraded:
 	Health:
 		HP: 150
 	Building:
-		LocalCenterOffset: 0,40,0
+		LocalCenterOffset: -20,40,0
 	HitShape:
 		TargetableOffsets: -100,0,0,   -200,0,0
 		Type: Rectangle

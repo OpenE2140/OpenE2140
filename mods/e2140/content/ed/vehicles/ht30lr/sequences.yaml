@@ -10,11 +10,11 @@ ed_vehicles_ht30lr:
 	turret:
 		Filename: turret_ht_30_lr.vspr
 		Facings: -16
-		Offset: 1, -7
+		Offset: 1, -8
 	turret_secondary:
 		Filename: turret_ht_30_lr_secondary.vspr
 		Facings: -16
-		Offset: 0, 0
+		Offset: 0, -1
 	icon:
 		Filename: SPRI0.MIX
 		Start: 139

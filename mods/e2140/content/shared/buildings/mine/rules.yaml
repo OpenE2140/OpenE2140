@@ -37,7 +37,7 @@ shared_buildings_mine:
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xx= ===
-		LocalCenterOffset: -380,-520,0
+		LocalCenterOffset: -370,-520,0
 	BuildingCrew:
 		MaxPopulation: 6
 	TransformSequence:
