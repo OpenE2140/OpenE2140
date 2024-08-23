@@ -4,6 +4,10 @@ Sources:
 Palettes:
 	Lights: Merge
 		0-243,248-255: 0 0 0 0
+		244: 16 24 80
+		245: 40 44 200
+		246: 56 64 240
+		247: 80 84 240
 
 	WithoutLight: Merge
 		244: 0 0 0
