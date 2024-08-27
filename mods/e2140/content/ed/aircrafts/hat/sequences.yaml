@@ -17,13 +17,9 @@ ed_aircrafts_hat:
 		Filename: content/ed/aircrafts/hat/aircraft_hat_door.png
 		Start: 16
 		Facings: -16
-	patch1:
-		Filename: content/ed/aircrafts/hat/aircraft_hat_patch_1.png
-		Offset: -8,16
-		Facings: -16
-	patch2:
-		Filename: content/ed/aircrafts/hat/aircraft_hat_patch_2.png
-		Offset: -6,-9
+	patch:
+		Filename: content/ed/aircrafts/hat/aircraft_hat_patch.png
+		Offset: -8,4
 		Facings: -16
 	icon:
 		Filename: SPRI0.MIX
