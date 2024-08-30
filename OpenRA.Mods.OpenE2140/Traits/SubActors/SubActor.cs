@@ -187,8 +187,27 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 	public void SetLocation(CPos location, WPos? centerPosition = null)
 	{
 		this.RemoveInfluence();
+
 		this.location = location;
 		this.centerPosition = centerPosition.GetValueOrDefault(this.Actor.World.Map.CenterOfCell(location));
+
 		this.AddInfluence();
+	}
+
+	internal void UnloadComplete()
+	{
+		this.RemoveInfluence();
+
+		this.Actor.World.AddFrameEndTask(w =>
+		{
+			if (!this.Actor.IsInWorld)
+			{
+				w.Add(this.Actor);
+
+				this.AddInfluence();
+
+				this.Actor.World.UpdateMaps(this.Actor, this);
+			}
+		});
 	}
 }
