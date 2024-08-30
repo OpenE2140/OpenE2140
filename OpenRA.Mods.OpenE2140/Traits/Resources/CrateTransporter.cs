@@ -16,6 +16,7 @@ using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
+using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
@@ -50,6 +51,21 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 	[SequenceReference]
 	[Desc("Looped while unloading at refinery.")]
 	public readonly string DockLoopSequence = "dock-loop";
+
+	[VoiceReference]
+	[Desc("Voice to be played when ordered to unload.")]
+	public readonly string UnloadVoice = "Action";
+
+	[Desc("Percentage modifier to apply to movement speed while docking to conveyor belt or (un)loading crate to/from ground.")]
+	public readonly int DockSpeedModifier = 70;
+
+	[CursorReference]
+	[Desc("Cursor to display when unloading crate.")]
+	public readonly string CrateUnloadCursor = "deliver";
+
+	[CursorReference]
+	[Desc("Cursor to display when unloading crate.")]
+	public readonly string CrateUnloadBlockedCursor = "generic-blocked";
 
 	[Desc("The resource crate actor. Make sure it's the same for ResourceMine actor.")]
 	public readonly string CrateActor = "crate";
@@ -105,10 +121,13 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 	}
 }
 
-public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled
+public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
 {
+	private const string UnloadResourceCrateOrderID = "UnloadResourceCrate";
+
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
+	private readonly Mobile mobile;
 	private ResourceCrate? crate;
 	private bool? dockingInProgress;
 
@@ -121,6 +140,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		this.actor = init.Self;
 		this.info = info;
+		this.mobile = this.actor.Trait<Mobile>();
 
 		var resourcesInit = init.GetOrDefault<ResourcesInit>();
 		if (resourcesInit != null && resourcesInit.Value > 0)
@@ -197,11 +217,41 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 		return true;
 	}
-	
+
 	internal void OnConveyorBeltUndock()
 	{
 		this.dockingInProgress = false;
 	}
+
+	public bool CanUnload()
+	{
+		return this.crate != null;
+	}
+
+	internal bool CanUnloadAt(Actor self, CPos targetLocation)
+	{
+		return !self.World.ActorMap.AnyActorsAt(targetLocation, SubCell.FullCell, a => a != self);
+	}
+
+	internal void ReserveUnloadLocation(CPos targetLocation)
+	{
+		if (this.crate == null)
+			return;
+
+		// We need to block target cell (until the unload is complete) so that no other actor can enter it while the unloading is in progress.
+		// Current solution makes use of CrateTransporter's Mobile implementing IOccupySpace by returning both FromCell and ToCell (if they differ).
+
+		// Unfortunately this hacky solution is necessary. If the cell is to be blocked by the crate itself,
+		// it's necessary to add the crate actor to the world and that causes more issues (when it comes to the crate unload feature).
+		// So the crate is added to world at the very last moment: i.e. when the crate (SubActor) is detached from CrateTransporter.
+		this.mobile.SetLocation(targetLocation, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
+	}
+
+	internal void UnloadComplete()
+	{
+		this.mobile.SetLocation(this.mobile.ToCell, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
+	}
+
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
@@ -238,4 +288,64 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 		return result;
 	}
+
+	public void UnloadCrate(CPos targetLocation)
+	{
+		if (this.crate == null)
+			return;
+
+		this.crate.SubActor.SetLocation(targetLocation);
+		this.crate.SubActor.UnloadComplete();
+
+		this.UnloadComplete();
+
+		this.crate.SubActor.ParentActor = null;
+
+		this.crate = null;
+	}
+
+	void IResolveOrder.ResolveOrder(Actor self, Order order)
+	{
+		if (order.OrderString == UnloadResourceCrateOrderID)
+		{
+			if (!order.Queued && !this.CanUnload())
+				return;
+
+			self.QueueActivity(order.Queued, new CrateUnload(self));
+		}
+	}
+
+	string? IOrderVoice.VoicePhraseForOrder(Actor self, Order order)
+	{
+		if (this.IsTraitDisabled)
+			return null;
+
+		if (order.OrderString == UnloadResourceCrateOrderID)
+			return this.info.UnloadVoice;
+
+		return null;
+	}
+
+	IEnumerable<IOrderTargeter> IIssueOrder.Orders
+	{
+		get
+		{
+			yield return new DeployOrderTargeter(UnloadResourceCrateOrderID, 5, () => this.crate != null ? this.info.CrateUnloadCursor : this.info.CrateUnloadBlockedCursor);
+		}
+	}
+
+	Order? IIssueOrder.IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+	{
+		if (order.OrderID == UnloadResourceCrateOrderID)
+			return new Order(order.OrderID, self, target, queued);
+
+		return null;
+	}
+
+	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
+	{
+		return new Order(UnloadResourceCrateOrderID, self, queued);
+	}
+
+	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitDisabled && (queued || this.crate != null); }
 }
