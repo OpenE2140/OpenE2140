@@ -64,8 +64,12 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 	public readonly string CrateUnloadCursor = "deliver";
 
 	[CursorReference]
-	[Desc("Cursor to display when unloading crate.")]
-	public readonly string CrateUnloadBlockedCursor = "generic-blocked";
+	[Desc("Cursor to display when loading crate.")]
+	public readonly string CrateLoadCursor = "pickup";
+
+	[CursorReference]
+	[Desc("Cursor to display when loading or unloading crate is not possible.")]
+	public readonly string CrateLoadUnloadBlockedCursor = "generic-blocked";
 
 	[Desc("The resource crate actor. Make sure it's the same for ResourceMine actor.")]
 	public readonly string CrateActor = "crate";
@@ -124,6 +128,7 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
 {
 	private const string UnloadResourceCrateOrderID = "UnloadResourceCrate";
+	private const string LoadResourceCrateOrderID = "LoadResourceCrate";
 
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
@@ -228,6 +233,11 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		return this.crate != null;
 	}
 
+	public bool CanLoad(Actor crateActor)
+	{
+		return !crateActor.Disposed && crateActor.IsInWorld && crateActor.Info.HasTraitInfo<ResourceCrateInfo>();
+	}
+
 	internal bool CanUnloadAt(Actor self, CPos targetLocation)
 	{
 		return !self.World.ActorMap.AnyActorsAt(targetLocation, SubCell.FullCell, a => a != self);
@@ -304,6 +314,13 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		this.crate = null;
 	}
 
+	public void LoadCrate(Actor self, Actor crateActor)
+	{
+		this.crate = crateActor.Trait<ResourceCrate>();
+		this.crate.SubActor.LoadComplete();
+		this.crate.SubActor.ParentActor = self;
+	}
+
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
 		if (order.OrderString == UnloadResourceCrateOrderID)
@@ -312,6 +329,13 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 				return;
 
 			self.QueueActivity(order.Queued, new CrateUnload(self));
+		}
+		else if (order.OrderString == LoadResourceCrateOrderID)
+		{
+			if (!order.Queued && order.Target.Type == TargetType.Actor && !this.CanLoad(order.Target.Actor))
+				return;
+
+			self.QueueActivity(order.Queued, new CrateLoad(self, order.Target));
 		}
 	}
 
@@ -323,6 +347,9 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		if (order.OrderString == UnloadResourceCrateOrderID)
 			return this.info.UnloadVoice;
 
+		if (order.OrderString == LoadResourceCrateOrderID)
+			return this.info.UnloadVoice;
+
 		return null;
 	}
 
@@ -330,13 +357,16 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		get
 		{
-			yield return new DeployOrderTargeter(UnloadResourceCrateOrderID, 5, () => this.crate != null ? this.info.CrateUnloadCursor : this.info.CrateUnloadBlockedCursor);
+			if (this.crate != null)
+				yield return new DeployOrderTargeter(UnloadResourceCrateOrderID, 5, () => this.crate != null ? this.info.CrateUnloadCursor : this.info.CrateLoadUnloadBlockedCursor);
+			else
+				yield return new CrateLoadTargeter(this, LoadResourceCrateOrderID, 5);
 		}
 	}
 
 	Order? IIssueOrder.IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
-		if (order.OrderID == UnloadResourceCrateOrderID)
+		if (order.OrderID is UnloadResourceCrateOrderID or LoadResourceCrateOrderID)
 			return new Order(order.OrderID, self, target, queued);
 
 		return null;
@@ -348,4 +378,27 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	}
 
 	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitDisabled && (queued || this.crate != null); }
+
+	private class CrateLoadTargeter : UnitOrderTargeter
+	{
+		private readonly CrateTransporter crateTransporter;
+
+		public CrateLoadTargeter(CrateTransporter crateTransporter, string order, int priority)
+			: base(order, priority, crateTransporter.Info.CrateLoadCursor, true, true)
+		{
+			this.crateTransporter = crateTransporter;
+		}
+
+		public override bool CanTargetActor(Actor self, Actor target, TargetModifiers modifiers, ref string cursor)
+		{
+			cursor = this.crateTransporter.Info.CrateLoadCursor;
+			return target.Info.HasTraitInfo<ResourceCrateInfo>();
+		}
+
+		public override bool CanTargetFrozenActor(Actor self, FrozenActor target, TargetModifiers modifiers, ref string cursor)
+		{
+			// Resource crates are hidden beneath fog, so they can never be frozen.
+			return false;
+		}
+	}
 }
