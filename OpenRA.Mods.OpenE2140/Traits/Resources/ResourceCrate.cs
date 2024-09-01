@@ -53,6 +53,8 @@ public class ResourceCrate
 	public readonly Actor Actor;
 	public readonly SubActor SubActor;
 
+	public Actor? ReservedTransporter { get; private set; }
+
 	public int Resources;
 
 	public ResourceCrate(ActorInitializer init)
@@ -63,6 +65,28 @@ public class ResourceCrate
 		var resourcesInit = init.GetOrDefault<ResourcesInit>();
 		if (resourcesInit != null)
 			this.Resources = resourcesInit.Value;
+	}
+
+	public bool ReserveTransporter(Actor transporterActor)
+	{
+		if (this.ReservedTransporter == transporterActor)
+			return true;
+
+		if (this.ReservedTransporter == null)
+		{
+			this.ReservedTransporter = transporterActor;
+			return true;
+		}
+
+		return false;
+	}
+
+	public void UnreserveTransporter()
+	{
+		if (this.ReservedTransporter == null)
+			return;
+
+		this.ReservedTransporter = null;
 	}
 }
 

@@ -210,4 +210,15 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 			}
 		});
 	}
+
+	internal void LoadComplete()
+	{
+		this.Actor.World.RemoveFromMaps(this.Actor, this);
+
+		this.Actor.World.AddFrameEndTask(w =>
+		{
+			if (this.Actor.IsInWorld)
+				w.Remove(this.Actor);
+		});
+	}
 }
