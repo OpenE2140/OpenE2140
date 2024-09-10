@@ -13,22 +13,36 @@ shared_buildings_refinery:
 		ZOffset: 128
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+	SharedDockHost@PortSouth:
+		RequiresCondition: !Transforming
+
 		# DockHost
+		GroupType: Unload
 		Type: Unload
 		IsDragRequired: true
 		DockWait: 1
-
-		# South side (default)
+		
+		# South side
 		DockOffset: 1414,590,0
 		DockAngle: 512
 		DragOffset: 1404,185,0
 		DragLength: 20
+	
+	SharedDockHost@PortNorth:
+		RequiresCondition: !Transforming
 
+		# DockHost
+		GroupType: Unload
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+		
 		# North side
-		# DockOffset: 1024,-1024,0
-		# DockAngle: 0
-		# DragOffset: 1404,-913,0
-		# DragLength: 26
+		DockOffset: 1024,-1024,0
+		DockAngle: 0
+		DragOffset: 1404,-913,0
+		DragLength: 26
+		
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered

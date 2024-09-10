@@ -189,7 +189,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		if (this.dockingInProgress == null)
 		{
 			var currentActivity = self.CurrentActivity.ActivitiesImplementing<Activity>().First();
-			currentActivity.QueueChild(new ConveyorBeltLoadUnloadCrate(self, (ConveyorBelt)host, hostActor));
+			currentActivity.QueueChild(new ConveyorBeltLoadUnloadCrate(self, hostActor.Trait<ConveyorBelt>(), hostActor));
 
 			this.dockingInProgress = true;
 		}
