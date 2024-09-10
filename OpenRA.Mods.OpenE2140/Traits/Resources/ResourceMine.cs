@@ -55,7 +55,7 @@ public class ResourceMine : ConveyorBelt
 	private ResourceCrate? crateBeingMined;
 
 	public ResourceMine(ResourceMineInfo info, ActorInitializer init)
-		: base(init.Self, info)
+		: base(info)
 	{
 		this.info = info;
 		this.resourceLayer = init.World.WorldActor.TraitOrDefault<ResourceLayer>();
@@ -65,9 +65,7 @@ public class ResourceMine : ConveyorBelt
 	{
 		base.TickInner(self);
 
-		// TODO: support trait pausing (necessary for power management)
-		//if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
-		if (this.IsTraitDisabled || this.resourceLayer == null)
+		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
 			return;
 
 		this.delay = (this.delay + 1) % (this.info.Delay + 1);

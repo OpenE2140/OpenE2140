@@ -23,7 +23,7 @@ public class ResourceRefineryInfo : ConveyorBeltInfo
 {
 	public override object Create(ActorInitializer init)
 	{
-		return new ResourceRefinery(init.Self, this);
+		return new ResourceRefinery(this);
 	}
 }
 
@@ -31,8 +31,8 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 {
 	private PlayerResources? playerResources;
 
-	public ResourceRefinery(Actor self, ConveyorBeltInfo info)
-		: base(self, info)
+	public ResourceRefinery(ConveyorBeltInfo info)
+		: base(info)
 	{
 	}
 
