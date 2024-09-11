@@ -43,6 +43,21 @@ shared_buildings_refinery:
 		DragOffset: 1404,-913,0
 		DragLength: 26
 		
+	SharedDockHost@PortEast:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		GroupType: Unload
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+		
+		# East side
+		DockOffset: 2438,-434,0
+		DockAngle: 768
+		DragOffset: 2238,-434,0
+		DragLength: 20
+	
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered

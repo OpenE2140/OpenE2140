@@ -42,6 +42,21 @@ shared_buildings_mine:
 		DockAngle: 0
 		DragOffset: 1404,-1035,0
 		DragLength: 26
+		
+	SharedDockHost@PortEast:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		GroupType: Load
+		Type: Load
+		IsDragRequired: true
+		DockWait: 1
+		
+		# East side
+		DockOffset: 2418,-504,0
+		DockAngle: 768
+		DragOffset: 2218,-504,0
+		DragLength: 20
 
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
