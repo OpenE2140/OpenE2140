@@ -92,7 +92,8 @@ shared_buildings_refinery:
 			TopLeft: -1024, 412
 			BottomRight: 0, 1024
 	Selectable:
-		Bounds: 3088, 1950, 384, 128
+		Polygon: 394,132, 3492,132 , 3492,1119, 1544,1119, 1544,2076, 394,2076
+		DecorationBounds: 3088, 1950, 384, 128
 	ProvidesPrerequisite:
 		RequiresCondition: !Transforming
 	GrantConditionOnDamageState:
