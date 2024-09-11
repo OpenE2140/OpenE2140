@@ -20,6 +20,7 @@ shared_vehicles_bantha:
 	Mobile:
 		Speed: 50
 	DockClientManager:
+		OccupancyCostModifier: 150
 		Voice: Unload
 	CrateTransporter:
 		Offset: 0,192,0
