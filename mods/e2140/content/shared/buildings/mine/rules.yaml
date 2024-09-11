@@ -106,7 +106,8 @@ shared_buildings_mine:
 			TopLeft: -1024, -824
 			BottomRight: 824, 824
 	Selectable:
-		Bounds: 3088, 1984, 340, 32
+		Polygon: 344,32, 3436,32, 3436,832, 2608,832, 2608,2016, 344,2016
+		DecorationBounds: 3088, 1984, 340, 32
 	GrantConditionOnDamageState:
 		Condition: damaged
 	Encyclopedia:
