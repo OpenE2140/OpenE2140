@@ -112,3 +112,8 @@ public interface INotifyBuildingRepair
 
 	void RepairInterrupted(Actor self);
 }
+
+public interface ISubActor
+{
+	void OnParentKilled(Actor self, Actor parentActor);
+}
