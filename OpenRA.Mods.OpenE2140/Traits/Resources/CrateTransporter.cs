@@ -132,7 +132,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
-	private readonly Mobile mobile;
+	private readonly Mobile? mobile;
 	private ResourceCrate? crate;
 	private bool? dockingInProgress;
 
@@ -145,7 +145,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		this.actor = init.Self;
 		this.info = info;
-		this.mobile = this.actor.Trait<Mobile>();
+		this.mobile = this.actor.TraitOrDefault<Mobile>();
 
 		var resourcesInit = init.GetOrDefault<ResourcesInit>();
 		if (resourcesInit != null && resourcesInit.Value > 0)
@@ -254,12 +254,12 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		// Unfortunately this hacky solution is necessary. If the cell is to be blocked by the crate itself,
 		// it's necessary to add the crate actor to the world and that causes more issues (when it comes to the crate unload feature).
 		// So the crate is added to world at the very last moment: i.e. when the crate (SubActor) is detached from CrateTransporter.
-		this.mobile.SetLocation(targetLocation, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
+		this.mobile?.SetLocation(targetLocation, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
 	}
 
 	internal void UnloadComplete()
 	{
-		this.mobile.SetLocation(this.mobile.ToCell, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
+		this.mobile?.SetLocation(this.mobile.ToCell, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
 	}
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
