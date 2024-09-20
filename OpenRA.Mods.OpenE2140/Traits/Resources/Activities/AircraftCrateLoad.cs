@@ -14,6 +14,8 @@
 using OpenRA.Activities;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -21,14 +23,22 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public class AircraftCrateLoad : CrateLoadBase
 {
-	private readonly Aircraft aircraft;
 	private readonly AircraftCrateTransporterInfo info;
+	private readonly Aircraft aircraft;
+	private readonly WithSpriteBody wsb;
+	private readonly int liftSequenceFacings;
+	private readonly int idleSequenceFacings;
+	private WAngle desiredFacing;
 
 	public AircraftCrateLoad(Actor self, in Target crateActor, AircraftCrateTransporterInfo info)
 		: base(self, crateActor)
 	{
-		this.aircraft = self.Trait<Aircraft>();
 		this.info = info;
+
+		this.aircraft = self.Trait<Aircraft>();
+		this.wsb = self.Trait<WithSpriteBody>();
+		this.liftSequenceFacings = this.wsb.DefaultAnimation.GetSequence(this.info.DockSequence).Facings;
+		this.idleSequenceFacings = this.wsb.DefaultAnimation.GetSequence(this.wsb.Info.Sequence).Facings;
 	}
 
 	protected override void InitialMoveToCrate(Actor self, Target target)
@@ -44,7 +54,7 @@ public class AircraftCrateLoad : CrateLoadBase
 
 	protected override void StartUndocking(Actor self, Action continuationCallback)
 	{
-		// TODO
+		this.wsb.CancelCustomAnimation(self);
 		continuationCallback();
 	}
 
@@ -71,13 +81,33 @@ public class AircraftCrateLoad : CrateLoadBase
 	{
 		var turnAngle = this.aircraft.Facing;
 
-		var desiredFacing = this.info.AllowedDockAngles.FirstOrDefault(a => a.Angle >= turnAngle.Angle);
-		desiredFacing = target.Actor.Trait<IFacing>().Facing;
-		// TODO: pick facing, which will take least amount of time for Heavy Lifter to turn to.
-		if ((this.aircraft.Facing - desiredFacing).Angle > 512)
-			desiredFacing = new WAngle(desiredFacing.Angle - 1024);
+		// First, pick closest allowed angle
+		this.desiredFacing = AircraftCrateTransporter.GetDockAngle(
+			target.Actor.Orientation,
+			this.info.AllowedDockAngles,
+			this.liftSequenceFacings,
+			this.idleSequenceFacings);
 
-		this.QueueChild(new LandOnCrate(this.aircraft, target, () => desiredFacing, this.info.LandAltitude));
+		// Then flip the facing, if will less amount of time for Heavy Lifter to turn to
+		if ((this.aircraft.Facing - this.desiredFacing).Angle > 256 && (this.desiredFacing - this.aircraft.Facing).Angle > 256)
+			this.desiredFacing = new WAngle(this.desiredFacing.Angle + 512);
+
+		this.QueueChild(new LandOnCrate(this.aircraft, target, () => this.desiredFacing, this.info.LandAltitude));
+	}
+
+	protected override void OnDragging(Actor self)
+	{
+		if (this.IsCanceling)
+		{
+			this.wsb.CancelCustomAnimation(self);
+			return;
+		}
+
+		if (this.aircraft.Facing == this.desiredFacing
+			&& !this.wsb.DefaultAnimation.IsPlayingSequence(this.info.DockSequence))
+		{
+			this.wsb.DefaultAnimation.Play(this.info.DockSequence);
+		}
 	}
 
 	protected override void StartUndragging(Actor self)

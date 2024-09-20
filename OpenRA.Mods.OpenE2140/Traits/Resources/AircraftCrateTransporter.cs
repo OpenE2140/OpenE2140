@@ -1,4 +1,5 @@
 ﻿using OpenRA.Activities;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Traits;
@@ -22,6 +23,7 @@ public class AircraftCrateTransporterInfo : CrateTransporterInfo
 public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositionOffset
 {
 	private readonly Actor self;
+	private readonly Aircraft aircraft;
 	private readonly BodyOrientation body;
 
 	public new AircraftCrateTransporterInfo Info;
@@ -32,6 +34,7 @@ public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositio
 		this.Info = info;
 
 		this.self = init.Self;
+		this.aircraft = init.Self.Trait<Aircraft>();
 		this.body = init.Self.Trait<BodyOrientation>();
 	}
 
@@ -55,5 +58,49 @@ public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositio
 	protected override Activity GetCrateLoadActivity(Actor self, Order order)
 	{
 		return new AircraftCrateLoad(self, order.Target, this.Info);
+	}
+
+	public static WAngle GetDockAngle(WRot orientation, WAngle[] allowedDockAngles, int newSequenceFacings, int? originalSequenceFacings)
+	{
+		// TODO: this does not work properly, if sequence facings don't match allowed dock angles
+		var angles = allowedDockAngles
+			.OrderBy(x =>
+			{
+				// Quantizing to 8 facings directly from original Aircraft's orientation can sometimes pick facing in the opposite direction
+				// than the facing quantized to 16 facings.
+				// Quantizing the facing twice (first to 16 facings and then to 8 facings) solves some of the cases.
+				// However this formula can still sometimes can produce incorrect facing:
+				// - Heavy Lifter's facing changes in the same tick as the GetDockAngle() is called
+				// - the quantized facing is changed (i.e. sprite needs to change), but the new sprite has not been rendered yet
+				// - the dock angle is however calculated from the new angle
+				// - this is caused by how the Fly activity changes Aircraft's position and facing
+
+				var f0 = Util.QuantizeFacing(orientation.Yaw, originalSequenceFacings != null ? originalSequenceFacings.Value : newSequenceFacings);
+				var f1 = Util.QuantizeFacing(f0, newSequenceFacings);
+
+				return new WAngle((x.Angle - f1.Angle) * Util.GetTurnDirection(orientation.Yaw, x)).Angle;
+			}).ToArray();
+		return angles.FirstOrDefault();
+	}
+
+	/// <summary>
+	/// Calculates delay for lift animation for specified altitude. Uses <see cref="AircraftInfo.AltitudeVelocity"/> to properly calculate the delay.
+	/// </summary>
+	/// <param name="landAltitude">Altitude at which the <see cref="AircraftCrateTransporter"/> is going to land.</param>
+	/// <returns>Delay in ticks, after which the lift animation should start.</returns>
+	public int GetLiftAnimationStartDelay(int landAltitude)
+	{
+		var minAltitudeForAnimationStart = 768;
+
+		var dat = this.self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition);
+		if (dat.Length <= landAltitude)
+			return 0;
+
+		var diff = dat.Length - landAltitude;
+
+		// The animation should start playing at approximately half of the distance between current Aircraft's altitude and land altitude.
+		// However, we need to give enough time for the crate transporter to be able to "open its hooks" for the crate,
+		// so we define minimum altitude at which the animation needs to start playing.
+		return Math.Max(diff - minAltitudeForAnimationStart, 0) / this.aircraft.Info.AltitudeVelocity.Length;
 	}
 }
