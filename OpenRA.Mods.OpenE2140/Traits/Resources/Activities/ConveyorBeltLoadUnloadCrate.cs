@@ -12,6 +12,7 @@
 #endregion
 
 using OpenRA.Activities;
+using OpenRA.Mods.Common.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
@@ -29,6 +30,7 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 	private readonly CrateTransporter crateTransporter;
 	private readonly ConveyorBelt conveyorBelt;
 	private readonly Actor conveyorBeltActor;
+	private readonly bool isAircraft;
 
 	private DockState state = DockState.None;
 
@@ -42,6 +44,7 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 		this.conveyorBeltActor = conveyorBeltActor;
 
 		this.state = DockState.Docking;
+		this.isAircraft = self.Info.HasTraitInfo<AircraftInfo>();
 
 		this.IsInterruptible = false;
 	}
@@ -54,7 +57,10 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 				break;
 			case DockState.Docking:
 			{
-				this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Docking, () => this.state = DockState.Docked));
+				if (this.isAircraft)
+					this.state = DockState.Docked;
+				else
+					this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Docking, () => this.state = DockState.Docked));
 				break;
 			}
 			case DockState.Undocking:
@@ -80,7 +86,10 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 			}
 			case DockState.Undocking:
 			{
-				this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Undocking, () => this.state = DockState.Complete));
+				if (this.isAircraft)
+					this.state = DockState.Complete;
+				else
+					this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Undocking, () => this.state = DockState.Complete));
 				break;
 			}
 			case DockState.Complete:

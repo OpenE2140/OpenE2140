@@ -13,6 +13,17 @@ shared_buildings_mine:
 		ZOffset: 128
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+
+	AircraftConveyorBeltDock@HeavyLifter:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: AircraftLoad
+		IsDragRequired: false
+		DockWait: 1
+		
+		DockOffset: 1404,-512,0
+	
 	SharedDockHost@PortSouth:
 		RequiresCondition: !Transforming
 
