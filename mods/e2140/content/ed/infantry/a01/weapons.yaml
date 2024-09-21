@@ -68,7 +68,7 @@ ed_infantry_a01_grenade:
 		ValidTargets: Ground, Ship
 	Warhead@Effect: CreateEffect
 		Image: explosion
-		Explosions: projectile_explosion_1, projectile_explosion_2
+		Explosions: projectile_explosion_4, projectile_explosion_5
 		ExplosionPalette:
 		ImpactSounds: 15.smp
 		ValidTargets: Ground, Ship, Air
