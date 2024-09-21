@@ -10,6 +10,10 @@ explosion:
 	projectile_explosion_3:
 		Filename: projectile_explosion_3.vspr
 		Offset: 0, -16
+	projectile_explosion_4:
+		Filename: content/core/assets/projectile_explosion_4.png
+	projectile_explosion_5:
+		Filename: content/core/assets/projectile_explosion_5.png
 	unit_explosion_1:
 		Filename: unit_explosion_1.vspr
 		Tick: 60
