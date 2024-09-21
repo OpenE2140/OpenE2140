@@ -14,7 +14,7 @@
 	TerrainRenderer:
 	# Shroud rendering setup.
 	ShroudRenderer:
-		Index: 0, 240, 16, 32, 64, 128, 144, 48, 96, 192, 1, 2, 4, 8, 10, 5, 9, 3, 6, 12 , 176, 112, 224, 208, 130, 20, 40, 65, 24, 33, 66, 132
+		Index: 0, 240, 16, 32, 64, 128, 144, 48, 96, 192, 1, 2, 4, 8, 10, 5, 9, 3, 6, 12 , 176, 112, 224, 208, 130, 20, 40, 65, 24, 33, 66, 132, 80, 160
 		UseExtendedIndex: true
 		ShroudPalette:
 		FogPalette:
