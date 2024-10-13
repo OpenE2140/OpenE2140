@@ -12,7 +12,6 @@
 #endregion
 
 using OpenRA.Activities;
-using OpenRA.Mods.Common.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
@@ -30,21 +29,21 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 	private readonly CrateTransporter crateTransporter;
 	private readonly ConveyorBelt conveyorBelt;
 	private readonly Actor conveyorBeltActor;
-	private readonly bool isAircraft;
+	private readonly IConveyorBeltDockHost conveyorBeltDockHost;
 
 	private DockState state = DockState.None;
 
 	// Perhaps use this.crateTransporter.Crate != null to distinguish between loading and unloading?
 	private bool IsLoading => this.conveyorBelt is ResourceMine;
 
-	public ConveyorBeltLoadUnloadCrate(Actor self, ConveyorBelt conveyorBelt, Actor conveyorBeltActor)
+	public ConveyorBeltLoadUnloadCrate(Actor self, IConveyorBeltDockHost dockHost, Actor conveyorBeltActor)
 	{
 		this.crateTransporter = self.Trait<CrateTransporter>();
-		this.conveyorBelt = conveyorBelt;
+		this.conveyorBelt = conveyorBeltActor.Trait<ConveyorBelt>();
 		this.conveyorBeltActor = conveyorBeltActor;
+		this.conveyorBeltDockHost = dockHost;
 
 		this.state = DockState.Docking;
-		this.isAircraft = self.Info.HasTraitInfo<AircraftInfo>();
 
 		this.IsInterruptible = false;
 	}
@@ -57,10 +56,9 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 				break;
 			case DockState.Docking:
 			{
-				if (this.isAircraft)
-					this.state = DockState.Docked;
-				else
-					this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Docking, () => this.state = DockState.Docked));
+				this.QueueChild(this.conveyorBeltDockHost.GetInnerDockActivity(
+					this.conveyorBeltActor, self, () => this.state = DockState.Docked, new(this.IsLoading, DockAnimation.Docking)));
+
 				break;
 			}
 			case DockState.Undocking:
@@ -86,10 +84,9 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 			}
 			case DockState.Undocking:
 			{
-				if (this.isAircraft)
-					this.state = DockState.Complete;
-				else
-					this.QueueChild(new ResourceCrateMovementActivity(self, this.IsLoading, DockAnimation.Undocking, () => this.state = DockState.Complete));
+				this.QueueChild(this.conveyorBeltDockHost.GetInnerDockActivity(
+					this.conveyorBeltActor, self, () => this.state = DockState.Complete, new(this.IsLoading, DockAnimation.Undocking)));
+
 				break;
 			}
 			case DockState.Complete:
