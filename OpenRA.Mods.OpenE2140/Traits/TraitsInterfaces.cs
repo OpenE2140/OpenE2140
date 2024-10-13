@@ -11,8 +11,10 @@
 
 #endregion
 
+using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
+using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -130,3 +132,11 @@ public interface ISubActor
 {
 	void OnParentKilled(Actor self, Actor parentActor);
 }
+
+public interface IConveyorBeltDockHost
+{
+	Activity GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context);
+}
+
+public record class ConveyorBeltInnerDockContext(bool IsLoading, DockAnimation Animation);
+

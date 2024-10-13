@@ -24,7 +24,7 @@ shared_buildings_refinery:
 		
 		DockOffset: 1384,-512,0
 
-	SharedDockHost@PortSouth:
+	ConveyorBeltDock@PortSouth:
 		RequiresCondition: !Transforming
 
 		# DockHost
@@ -38,7 +38,7 @@ shared_buildings_refinery:
 		DragOffset: 1404,185,0
 		DragLength: 20
 	
-	SharedDockHost@PortNorth:
+	ConveyorBeltDock@PortNorth:
 		RequiresCondition: !Transforming
 
 		# DockHost
@@ -52,7 +52,7 @@ shared_buildings_refinery:
 		DragOffset: 1404,-913,0
 		DragLength: 26
 		
-	SharedDockHost@PortEast:
+	ConveyorBeltDock@PortEast:
 		RequiresCondition: !Transforming
 
 		# Sequences for crate movement during (un)load animation
