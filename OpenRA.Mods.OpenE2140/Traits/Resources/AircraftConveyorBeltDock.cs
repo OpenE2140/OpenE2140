@@ -15,7 +15,7 @@ public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 	}
 }
 
-public class AircraftConveyorBeltDock : SharedDockHost
+public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 {
 	public AircraftConveyorBeltDock(Actor self, AircraftConveyorBeltDockInfo info)
 		: base(self, info)
@@ -58,5 +58,12 @@ public class AircraftConveyorBeltDock : SharedDockHost
 		dockActivity.Queue(new TakeOff(clientActor));
 
 		moveToDockActivity.QueueChild(new ReleaseDockHostLock(this, dockActivity));
+	}
+
+	Activity IConveyorBeltDockHost.GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context)
+	{
+		// TODO: animation
+		continuationCallback();
+		return null!;
 	}
 }
