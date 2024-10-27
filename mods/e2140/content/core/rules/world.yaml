@@ -151,8 +151,6 @@ EditorWorld:
 	Inherits: ^CoreWorld
 	# Displays actors in editor.
 	EditorActorLayer:
-	# Selecting, Copying, Pasting Support for map editor.
-	EditorSelectionLayer:
 	# Cursor attached stuff.
 	EditorCursorLayer:
 	# Undo / Redo support.

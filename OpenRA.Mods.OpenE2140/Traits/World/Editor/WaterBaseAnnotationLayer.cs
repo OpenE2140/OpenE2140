@@ -14,10 +14,12 @@
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Primitives;
 using OpenRA.Traits;
+using OpenRA.Widgets;
 
 namespace OpenRA.Mods.OpenE2140.Traits.World.Editor;
 
@@ -37,26 +39,31 @@ public class WaterBaseAnnotationLayerInfo : TraitInfo, Requires<EditorActorCusto
 	[Desc("Width (in pixels) of the Water Base <-> Dock link end node markers.")]
 	public readonly int LinkMarkerWidth = 2;
 
-	public override object Create(ActorInitializer init) { return new WaterBaseAnnotationLayer(init.Self, this); }
+	public override object Create(ActorInitializer init) { return new WaterBaseAnnotationLayer(this); }
 }
 
-public class WaterBaseAnnotationLayer : ICustomEditorRender
+public class WaterBaseAnnotationLayer : ICustomEditorRender, IWorldLoaded
 {
 	private static readonly SpriteFont AnnotationFont = Game.Renderer.Fonts["Bold"];
 
 	private readonly WaterBaseAnnotationLayerInfo info;
-	private readonly EditorCursorLayer editorCursor;
+	private EditorViewportControllerWidget? editorViewportControllerWidget;
 
-	public WaterBaseAnnotationLayer(Actor self, WaterBaseAnnotationLayerInfo info)
+	public WaterBaseAnnotationLayer(WaterBaseAnnotationLayerInfo info)
 	{
 		this.info = info;
-		this.editorCursor = self.Trait<EditorCursorLayer>();
+	}
+
+	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
+	{
+		this.editorViewportControllerWidget = Ui.Root.Get<EditorViewportControllerWidget>("MAP_EDITOR");
 	}
 
 	IEnumerable<IRenderable> ICustomEditorRender.RenderAnnotations(WorldRenderer wr, CustomRenderContext context)
 	{
+		var cursorActor = this.GetCurrentActor();
+
 		var cursorPosition = wr.ProjectedPosition(wr.Viewport.ViewToWorldPx(Viewport.LastMousePos));
-		var cursorActor = this.editorCursor.Actor;
 
 		// Remember all Water Bases, which are linked with a Dock. Used for Water Base annotations (see below).
 		var waterBasesWithLinkedDocks = new Dictionary<string, int>();
@@ -144,5 +151,17 @@ public class WaterBaseAnnotationLayer : ICustomEditorRender
 				}
 			}
 		}
+	}
+
+	private EditorActorPreview? GetCurrentActor()
+	{
+		if (this.editorViewportControllerWidget?.CurrentBrush is EditorDefaultBrush editorDefaultBrush
+			&& editorDefaultBrush.Selection.Actor != null)
+			return editorDefaultBrush.Selection.Actor;
+
+		if (this.editorViewportControllerWidget?.CurrentBrush is EditorActorBrush editorActorBrush)
+			return editorActorBrush.Preview;
+
+		return null;
 	}
 }
