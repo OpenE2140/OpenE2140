@@ -97,28 +97,34 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		// Check if this Dock is already linked to a Water Base.
 		if (actor.GetInitOrDefault<WaterBaseDockInit>() == null)
 		{
-			// Try to find Water Bases, which are not linked with any docks.
-			var pairedWaterBases = allActors.Where(a => a.Info.HasTraitInfo<WaterBaseDockInfo>())
-				.Select(a => a.GetInitOrDefault<WaterBaseDockInit>()?.Value?.InternalName)
-				.OfType<string>()
-				.ToArray();
-
-			var freeWaterBases = allActors
-				.Where(a => a.Info.HasTraitInfo<WaterBaseBuildingInfo>())
-				.Except(allActors.Where(p => pairedWaterBases.Contains(p.ID)));
-
-			// Only try to link Water Base, which is in acceptable range of the Dock
-			var freeWaterBaseInRange = freeWaterBases
-				.Select(a => new { FootprintCenter = a.Info.TraitInfo<WaterBaseBuildingInfo>().GetCenterOfFootprint(a.GetInitOrDefault<LocationInit>().Value), Actor = a })
-				.Where(x => (x.FootprintCenter - actor.CenterPosition).ToWDist() <= this.maximumDockDistance)
-				.Select(x => x.Actor)
-				.ToArray();
+			var freeWaterBaseInRange = this.GetFreeWaterBasesInRange(allActors, actor);
 			if (freeWaterBaseInRange.Length > 0)
 			{
 				// Automatically link first free Water Base to this Dock.
 				actor.ReplaceInit(new WaterBaseDockInit(new ActorInitActorReference(freeWaterBaseInRange.First().ID)));
 			}
 		}
+	}
+
+	private EditorActorPreview[] GetFreeWaterBasesInRange(IEnumerable<EditorActorPreview> allActors, EditorActorPreview actor)
+	{
+		// Try to find Water Bases, which are not linked with any docks.
+		var pairedWaterBases = allActors.Where(a => a.Info.HasTraitInfo<WaterBaseDockInfo>())
+			.Select(a => a.GetInitOrDefault<WaterBaseDockInit>()?.Value?.InternalName)
+			.OfType<string>()
+			.ToArray();
+
+		var freeWaterBases = allActors
+			.Where(a => a.Info.HasTraitInfo<WaterBaseBuildingInfo>())
+			.Except(allActors.Where(p => pairedWaterBases.Contains(p.ID)));
+
+		// Only try to link Water Base, which is in acceptable range of the Dock
+		var freeWaterBaseInRange = freeWaterBases
+			.Select(a => new { FootprintCenter = a.Info.TraitInfo<WaterBaseBuildingInfo>().GetCenterOfFootprint(a.GetInitOrDefault<LocationInit>().Value), Actor = a })
+			.Where(x => (x.FootprintCenter - actor.CenterPosition).ToWDist() <= this.maximumDockDistance)
+			.Select(x => x.Actor)
+			.ToArray();
+		return freeWaterBaseInRange;
 	}
 
 	public void OnActorAdded(EditorActorPreview editorActor)
@@ -139,13 +145,24 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 
 	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo _, OpenRA.World world, WaterBaseDockInfo info)
 	{
-		var labels = this.GetAllActors(world)
-			.Where(p => p.Info.HasTraitInfo<WaterBaseBuildingInfo>())
-			.ToDictionary(p => p.ID, p => p.ID);
-		labels.Add("", "");
+		var allActors = this.GetAllActors(world);
 
 		yield return new EditorActorDropdown("Water Base", 11,
-			_ => labels,
+			actor =>
+			{
+				// Allow linking only Water Bases, which is in acceptable range of the Dock.
+				var labels = this.GetFreeWaterBasesInRange(allActors, actor).ToDictionary(p => p.ID, p => p.ID);
+
+				// Include currently linked Water Base.
+				var init = actor.GetInitOrDefault<WaterBaseDockInit>();
+				if (!string.IsNullOrEmpty(init?.Value?.InternalName))
+					labels.Add(init.Value.InternalName, init.Value.InternalName);
+
+				// Add empty value to allow unlinking the Water Base.
+				labels.Add("", "");
+
+				return labels;
+			},
 			(actor, labels) =>
 			{
 				var init = actor.GetInitOrDefault<WaterBaseDockInit>(info);
