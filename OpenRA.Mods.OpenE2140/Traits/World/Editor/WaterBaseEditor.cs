@@ -145,8 +145,8 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		labels.Add("", "");
 
 		yield return new EditorActorDropdown("Water Base", 11,
-			labels,
-			(actor) =>
+			_ => labels,
+			(actor, labels) =>
 			{
 				var init = actor.GetInitOrDefault<WaterBaseDockInit>(info);
 				var actorName = init?.Value?.InternalName ?? "";
