@@ -31,7 +31,7 @@ shared_buildings_water_base_dock:
 	# MCU deployment overlay: render rectangle of the dock's footprint.
 	RectangleMcuDeployOverlay:
 	# This actor explodes when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: WaterBaseExploding
 		EmptyWeapon: WaterBaseExploding
 	# Freezes building upon death for a moment before it is disposed.

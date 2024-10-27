@@ -33,7 +33,7 @@ shared_buildings_power_plant:
 		Bounds: 2064, 1984, -50, 150
 	ProvidesPrerequisite:
 		Prerequisite: anypower
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: PowerPlantExploding
 		EmptyWeapon: PowerPlantExploding
 	SpawnActorOnDeath:

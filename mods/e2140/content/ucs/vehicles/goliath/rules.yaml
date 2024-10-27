@@ -19,9 +19,9 @@ ucs_vehicles_goliath:
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
-	Explodes@Default:
+	FireWarheadsOnDeath@Default:
 		RequiresCondition: !triggered
-	Explodes@Triggered:
+	FireWarheadsOnDeath@Triggered:
 		Weapon: ucs_vehicles_goliath_explode
 		EmptyWeapon: ucs_vehicles_goliath_explode
 		DamageSource: Killer

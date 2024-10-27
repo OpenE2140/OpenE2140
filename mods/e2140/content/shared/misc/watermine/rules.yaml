@@ -13,7 +13,7 @@ shared_misc_watermine:
 		HP: 10
 	Armor:
 		Type: vehicle
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: shared_misc_watermine
 		EmptyWeapon: shared_misc_watermine
 	Cloak:

@@ -58,7 +58,7 @@ World:
 	Inherits: ^CoreInfantry
 	Voiced:
 		VoiceSet: UcsInfantryVoice
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: UcsInfantryExplosion
 		EmptyWeapon: UcsInfantryExplosion
 	Targetable:

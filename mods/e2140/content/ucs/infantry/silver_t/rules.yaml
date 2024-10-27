@@ -14,7 +14,7 @@ ucs_infantry_silver_t:
 		HP: 40
 	RevealsShroud:
 		Range: 2c896
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: ucs_infantry_silver_t_explode
 		EmptyWeapon: ucs_infantry_silver_t_explode
 		DamageSource: Killer

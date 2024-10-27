@@ -30,7 +30,7 @@ shared_buildings_wall:
 		AddToAssetsValue: false
 	MustBeDestroyed:
 		RequiredForShortGame: false
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: WallExplosion
 		EmptyWeapon: WallExplosion
 	-HiddenUnderFog:

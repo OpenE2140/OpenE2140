@@ -165,7 +165,7 @@
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 	# This actor explodes when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: BuildingExploding
 		EmptyWeapon: BuildingExploding
 	# Freezes building upon death for a moment before it is disposed.
@@ -290,7 +290,7 @@
 	WithSpriteBody:
 		RequiresCondition: !Transforming
 	# Towers explode when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: DefenseTowerExplosion
 		EmptyWeapon: DefenseTowerExplosion
 	# Constructions can be targeted by anything which attacks ground.
@@ -420,7 +420,7 @@
 		Voice: Escort
 	Guardable:
 	# This actor explodes when killed.
-	Explodes@Default:
+	FireWarheadsOnDeath@Default:
 		Weapon: VehicleExploding
 		EmptyWeapon: VehicleExploding
 	# Vehicles smoke when they're heavily damaged.
@@ -506,7 +506,7 @@
 		Voice: Escort
 	Guardable:
 	# This actor explodes when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: VehicleExploding
 		EmptyWeapon: VehicleExploding
 		RequiresCondition: !airborne
@@ -548,7 +548,7 @@
 	# Husks are not counted towards player's army.
 	-UpdatesPlayerStatistics:
 	# This actor explodes when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: AircraftExplosion
 		EmptyWeapon: AircraftExplosion
 		RequiresCondition: !airborne
@@ -598,7 +598,7 @@
 		Voice: Escort
 	Guardable:
 	# This actor explodes when killed.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: VehicleExploding
 		EmptyWeapon: VehicleExploding
 	# Ships smoke when they're heavily damaged.
@@ -861,7 +861,7 @@
 	Tooltip:
 		GenericName: Destroyed Vehicle
 	# Husks explode if killed or disappear.
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: HuskExplosion
 		EmptyWeapon: HuskExplosion
 	# Husks can be crushed by other vehicles.

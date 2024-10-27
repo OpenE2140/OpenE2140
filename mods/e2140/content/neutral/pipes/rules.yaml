@@ -10,7 +10,7 @@
 	Interactable:
 	Targetable:
 		TargetTypes: Ground, Pipe
-	Explodes:
+	FireWarheadsOnDeath:
 		Weapon: PipeExplosion
 		EmptyWeapon: PipeExplosion
 	ExplosivePipe:
