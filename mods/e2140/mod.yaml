@@ -7,26 +7,27 @@ Metadata:
 
 PackageFormats: Wd, VirtualAssets
 
-Packages:
-	~^SupportDir|Content/e2140/: game
-	^EngineDir
-	$e2140: e2140
-	^EngineDir|mods/common: common
-	~game|FLC.WD: flc
-	~game|GRAPH.WD: graph
-	~game|MENU.WD: menu
-	~game|MIX.WD: mix
-	~game|PIRO.WD: piro
-	~game|SMP0.WD: smp0_base
-	~game|SMP1.WD: smp1_base
-	e2140|content/ed/sounds: smp0_extra
-	e2140|content/ucs/sounds: smp1_extra
-	e2140|content/shared/sounds: extra
-	e2140|virtualassets/buildings.VirtualAssets.yaml: buildings
-	e2140|virtualassets/misc.VirtualAssets.yaml: misc
-	e2140|virtualassets/objects.VirtualAssets.yaml: objects
-	e2140|virtualassets/units.VirtualAssets.yaml: units
-	e2140|virtualassets/cursors.VirtualAssets.yaml: cursors
+FileSystem: DefaultFileSystem
+	Packages:
+		~^SupportDir|Content/e2140/: game
+		^EngineDir
+		$e2140: e2140
+		^EngineDir|mods/common: common
+		~game|FLC.WD: flc
+		~game|GRAPH.WD: graph
+		~game|MENU.WD: menu
+		~game|MIX.WD: mix
+		~game|PIRO.WD: piro
+		~game|SMP0.WD: smp0_base
+		~game|SMP1.WD: smp1_base
+		e2140|content/ed/sounds: smp0_extra
+		e2140|content/ucs/sounds: smp1_extra
+		e2140|content/shared/sounds: extra
+		e2140|virtualassets/buildings.VirtualAssets.yaml: buildings
+		e2140|virtualassets/misc.VirtualAssets.yaml: misc
+		e2140|virtualassets/objects.VirtualAssets.yaml: objects
+		e2140|virtualassets/units.VirtualAssets.yaml: units
+		e2140|virtualassets/cursors.VirtualAssets.yaml: cursors
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS
@@ -36,9 +37,7 @@ MapFolders:
 	e2140|maps: System
 	~^SupportDir|maps/e2140/{DEV_VERSION}: User
 
-Assemblies:
-	^BinDir|OpenRA.Mods.OpenE2140.dll
-	^BinDir|OpenRA.Mods.Common.dll
+Assemblies: OpenRA.Mods.OpenE2140.dll, OpenRA.Mods.Common.dll
 
 SoundFormats: Wav, Ogg, Mp3, Smp
 SpriteFormats: PngSheet, MixSprite, DatSprite, PcxSprite, VirtualSprite
