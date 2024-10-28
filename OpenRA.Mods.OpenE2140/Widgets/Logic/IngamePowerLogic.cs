@@ -23,10 +23,10 @@ namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 [UsedImplicitly]
 public class IngamePowerLogic : ChromeLogic
 {
-	[TranslationReference("usage", "capacity")]
+	[FluentReference("usage", "capacity")]
 	private const string PowerUsage = "label-power-usage";
 
-	[TranslationReference]
+	[FluentReference]
 	private const string Infinite = "label-infinite-power";
 
 	[ObjectCreator.UseCtor]
@@ -37,16 +37,16 @@ public class IngamePowerLogic : ChromeLogic
 
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
-		var unlimitedCapacity = TranslationProvider.GetString(IngamePowerLogic.Infinite);
+		var unlimitedCapacity = FluentProvider.GetString(IngamePowerLogic.Infinite);
 
 		powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
 		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
 		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
 
 		var tooltipTextCached = new CachedTransform<(string, string), string>(
-			((string usage, string capacity) args) => TranslationProvider.GetString(
+			((string usage, string capacity) args) => FluentProvider.GetString(
 				IngamePowerLogic.PowerUsage,
-				Translation.Arguments("usage", args.usage, "capacity", args.capacity)
+				FluentProvider.GetString("usage", args.usage, "capacity", args.capacity)
 			)
 		);
 

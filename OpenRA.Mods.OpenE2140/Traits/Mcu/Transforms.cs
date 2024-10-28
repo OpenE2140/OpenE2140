@@ -46,7 +46,7 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 	[Desc("Speech notification to play when transforming.")]
 	public readonly string? TransformNotification;
 
-	[TranslationReference(optional: true)]
+	[FluentReference(optional: true)]
 	[Desc("Text notification to display when transforming.")]
 	public readonly string? TransformTextNotification;
 
@@ -54,7 +54,7 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 	[Desc("Speech notification to play when the transformation is blocked.")]
 	public readonly string? NoTransformNotification;
 
-	[TranslationReference(optional: true)]
+	[FluentReference(optional: true)]
 	[Desc("Text notification to display when the transformation is blocked.")]
 	public readonly string? NoTransformTextNotification;
 

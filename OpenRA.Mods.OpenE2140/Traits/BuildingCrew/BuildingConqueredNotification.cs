@@ -21,7 +21,7 @@ public class BuildingConqueredNotificationInfo : ConditionalTraitInfo
 	[Desc("Speech notification to play to the new owner.")]
 	public readonly string Notification = "BuildingConquered";
 
-	[TranslationReference(optional: true)]
+	[FluentReference(optional: true)]
 	[Desc("Text notification to display to the new owner.")]
 	public readonly string? TextNotification;
 
@@ -32,7 +32,7 @@ public class BuildingConqueredNotificationInfo : ConditionalTraitInfo
 	[Desc("Speech notification to play to the old owner.")]
 	public readonly string? LoseNotification;
 
-	[TranslationReference(optional: true)]
+	[FluentReference(optional: true)]
 	[Desc("Text notification to display to the old owner.")]
 	public readonly string? LoseTextNotification;
 
