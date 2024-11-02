@@ -25,4 +25,9 @@ public class ReleaseDockHostLock : Activity
 	{
 		this.sharedDockHost.ReleaseLock(self);
 	}
+
+	protected override void OnActorDispose(Actor self)
+	{
+		this.OnLastRun(self);
+	}
 }

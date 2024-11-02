@@ -57,4 +57,10 @@ public class DockHostLock : Activity
 		if (this.hasDockStarted && (this.releaseOnFinish || this.wasCanceled))
 			this.sharedDockHost.ReleaseLock(self);
 	}
+
+	protected override void OnActorDispose(Actor self)
+	{
+		// CrateTransporter was destroyed, immediately release the lock (regardless of whether it should be held or not)
+		this.sharedDockHost.ReleaseLock(self);
+	}
 }
