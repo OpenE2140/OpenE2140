@@ -1,0 +1,116 @@
+Metadata:
+	Title: OpenE2140 (content)
+	Version: {DEV_VERSION}
+	Hidden: true
+
+PackageFormats: Wd, VirtualAssets
+
+FileSystem: DefaultFileSystem
+	Packages:
+		^EngineDir
+		^EngineDir|mods/common-content: content
+		^EngineDir|mods/common: common
+		$e2140-content: e2140content
+
+Rules:
+	content|rules.yaml
+
+Cursors:
+	content|cursors.yaml
+
+Chrome:
+	content|chrome.yaml
+
+Assemblies: OpenRA.Mods.OpenE2140.dll, OpenRA.Mods.Common.dll
+
+ChromeLayout:
+	content|content.yaml
+
+Notifications:
+	content|notifications.yaml
+
+LoadScreen: ModContentLoadScreen
+	Image: ^EngineDir|mods/common-content/chrome.png
+	Image2x: ^EngineDir|mods/common-content/chrome-2x.png
+	Image3x: ^EngineDir|mods/common-content/chrome-3x.png
+
+ChromeMetrics:
+	common|metrics.yaml
+	content|metrics.yaml
+
+Translations:
+	common|languages/en.ftl
+	content|languages/en.ftl
+	content|languages/chrome/en.ftl
+
+Fonts:
+	Tiny:
+		Font: common|FreeSans.ttf
+		Size: 10
+		Ascender: 8
+	TinyBold:
+		Font: common|FreeSansBold.ttf
+		Size: 10
+		Ascender: 8
+	Regular:
+		Font: common|FreeSans.ttf
+		Size: 14
+		Ascender: 11
+	Bold:
+		Font: common|FreeSansBold.ttf
+		Size: 14
+		Ascender: 11
+	MediumBold:
+		Font: common|FreeSansBold.ttf
+		Size: 18
+		Ascender: 14
+	BigBold:
+		Font: common|FreeSansBold.ttf
+		Size: 24
+		Ascender: 18
+
+ModContent:
+	Mod: e2140
+	InstallPromptMessage: OpenE2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
+	HeaderMessage: Game content may be extracted from an\nexisting digital install.
+	Packages:
+		ContentPackage@base:
+			Title: Game Files
+			Identifier: base
+			TestFiles: ^SupportDir|Content/e2140/MIX.WD
+			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
+			Required: true
+		ContentPackage@music:
+			Title: Game Music
+			Identifier: music
+			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg
+			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
+		ContentPackage@soundtrack_mp2:
+			Title: Mission Pack 2 Soundtrack Music
+			Identifier: soundtrack
+			TestFiles: ^SupportDir|Content/e2140/music/Mission Pack 2 - Track 10.mp3
+			Sources: gog_soundtrack_mp2
+		ContentPackage@soundtrack_extra:
+			Title: Extra Soundtrack Music
+			Identifier: soundtrack_extra
+			TestFiles: ^SupportDir|Content/e2140/music/EARTH Theme.mp3
+			Sources: gog_soundtrack_extra, steam_soundtrack_extra
+		ContentPackage@soundtrack_vocals:
+			Title: Vocals Soundtrack Music
+			Identifier: soundtrack_vocals
+			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Vocals.mp3
+			Sources: gog_soundtrack_extra, steam_soundtrack_extra
+
+	Sources:
+		e2140content|installer/gog.yaml
+		e2140content|installer/steam.yaml
+		e2140content|installer/topwareshop.yaml
+		e2140content|installer/zoom.yaml
+
+SoundFormats:
+
+SpriteFormats: PngSheet
+
+TerrainFormat: DefaultTerrain
+
+SpriteSequenceFormat: DefaultSpriteSequence

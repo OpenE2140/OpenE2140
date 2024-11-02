@@ -7,27 +7,31 @@ Metadata:
 
 PackageFormats: Wd, VirtualAssets
 
-FileSystem: DefaultFileSystem
+FileSystem: ContentInstallerFileSystem
 	Packages:
-		~^SupportDir|Content/e2140/: game
+		~^SupportDir|Content/e2140: content
 		^EngineDir
 		$e2140: e2140
 		^EngineDir|mods/common: common
-		~game|FLC.WD: flc
-		~game|GRAPH.WD: graph
-		~game|MENU.WD: menu
-		~game|MIX.WD: mix
-		~game|PIRO.WD: piro
-		~game|SMP0.WD: smp0_base
-		~game|SMP1.WD: smp1_base
 		e2140|content/ed/sounds: smp0_extra
 		e2140|content/ucs/sounds: smp1_extra
 		e2140|content/shared/sounds: extra
+	
+	ContentPackages:
+		content|FLC.WD: flc
+		content|GRAPH.WD: graph
+		content|MENU.WD: menu
+		content|MIX.WD: mix
+		content|PIRO.WD: piro
+		content|SMP0.WD: smp0_base
+		content|SMP1.WD: smp1_base
 		e2140|virtualassets/buildings.VirtualAssets.yaml: buildings
 		e2140|virtualassets/misc.VirtualAssets.yaml: misc
 		e2140|virtualassets/objects.VirtualAssets.yaml: objects
 		e2140|virtualassets/units.VirtualAssets.yaml: units
 		e2140|virtualassets/cursors.VirtualAssets.yaml: cursors
+	
+	ContentInstallerMod: e2140-content
 
 ModCredits:
 	ModCreditsFile: e2140|CREDITS
@@ -97,43 +101,6 @@ GameSpeeds:
 			Name: options-game-speed.fastest
 			Timestep: 20
 			OrderLatency: 6
-
-ModContent:
-	InstallPromptMessage: OpenE2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
-	HeaderMessage: Game content may be extracted from an\nexisting digital install.
-	Packages:
-		ContentPackage@base:
-			Title: Game Files
-			Identifier: base
-			TestFiles: ^SupportDir|Content/e2140/MIX.WD
-			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
-			Required: true
-		ContentPackage@music:
-			Title: Game Music
-			Identifier: music
-			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg
-			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
-		ContentPackage@soundtrack_mp2:
-			Title: Mission Pack 2 Soundtrack Music
-			Identifier: soundtrack
-			TestFiles: ^SupportDir|Content/e2140/music/Mission Pack 2 - Track 10.mp3
-			Sources: gog_soundtrack_mp2
-		ContentPackage@soundtrack_extra:
-			Title: Extra Soundtrack Music
-			Identifier: soundtrack_extra
-			TestFiles: ^SupportDir|Content/e2140/music/EARTH Theme.mp3
-			Sources: gog_soundtrack_extra, steam_soundtrack_extra
-		ContentPackage@soundtrack_vocals:
-			Title: Vocals Soundtrack Music
-			Identifier: soundtrack_vocals
-			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Vocals.mp3
-			Sources: gog_soundtrack_extra, steam_soundtrack_extra
-
-	Sources:
-		e2140|installer/gog.yaml
-		e2140|installer/steam.yaml
-		e2140|installer/topwareshop.yaml
-		e2140|installer/zoom.yaml
 
 Translations:
 	common|languages/en.ftl

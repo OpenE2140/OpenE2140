@@ -4,7 +4,7 @@ steam_en: Earth 2140 (Steam, English)
 	IDFiles:
 		classic/E2140.exe: d009935c8936ecae9149d0c6217da6d0eb550022
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -15,7 +15,7 @@ steam_en: Earth 2140 (Steam, English)
 					^SupportDir|Content/e2140/PIRO.WD: classic/PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: classic/SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: classic/SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
@@ -35,7 +35,7 @@ steam_de: Earth 2140 (Steam, German)
 	IDFiles:
 		classic/E2140.exe: 3c9426e80be90091db49bedc43efaafb702e1cd4
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -46,7 +46,7 @@ steam_de: Earth 2140 (Steam, German)
 					^SupportDir|Content/e2140/PIRO.WD: classic/PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: classic/SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: classic/SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
@@ -66,7 +66,7 @@ steam_soundtrack_extra: Earth 2140 Extra Soundtrack (Steam)
 	IDFiles:
 		Soundtrack/01. EARTH Theme.mp3: 5b5a25f65cc6815d7ca8ee8c469dfc3f7831c79f
 	Install:
-		ContentPackage:
+		ContentPackage@soundtrack_extra:
 			Name: soundtrack_extra
 			Actions:
 				Copy: .
@@ -79,7 +79,7 @@ steam_soundtrack_extra: Earth 2140 Extra Soundtrack (Steam)
 					^SupportDir|Content/e2140/music/Bubbles' Revenge.mp3: Soundtrack/11 - Bubbles' Revenge.mp3
 					^SupportDir|Content/e2140/music/Big Journey.mp3: Soundtrack/12 - Big Journey.mp3
 					^SupportDir|Content/e2140/music/Space.mp3: Soundtrack/15 - Space.mp3
-		ContentPackage:
+		ContentPackage@soundtrack_vocals:
 			Name: soundtrack_vocals
 			Actions:
 				Copy: .

@@ -6,7 +6,7 @@ topwareshop_en: Earth 2140 (TopWareShop, English)
 	IDFiles:
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -17,7 +17,7 @@ topwareshop_en: Earth 2140 (TopWareShop, English)
 					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
@@ -39,7 +39,7 @@ topwareshop_de: Earth 2140 (TopWareShop, German)
 	IDFiles:
 		E2140.exe: 3c9426e80be90091db49bedc43efaafb702e1cd4
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -50,7 +50,7 @@ topwareshop_de: Earth 2140 (TopWareShop, German)
 					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .

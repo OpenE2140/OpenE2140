@@ -4,7 +4,7 @@ gog: Earth 2140 (GoG, English)
 	IDFiles:
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -15,7 +15,7 @@ gog: Earth 2140 (GoG, English)
 					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
@@ -55,7 +55,7 @@ gog_soundtrack_extra: Earth 2140 Extra Soundtrack (GoG)
 	IDFiles:
 		!Downloads/earth_2140_original_ost_mp3.zip: 80b55f2ac60feae835c5cf9a376af53a2237b126
 	Install:
-		ContentPackage:
+		ContentPackage@soundtrack_extra:
 			Name: soundtrack_extra
 			Actions:
 				ExtractZip: !Downloads/earth_2140_original_ost_mp3.zip
@@ -68,7 +68,7 @@ gog_soundtrack_extra: Earth 2140 Extra Soundtrack (GoG)
 					^SupportDir|Content/e2140/music/Bubbles' Revenge.mp3: earth_2140_original_ost_mp3/11 - Bubbles' Revenge.mp3
 					^SupportDir|Content/e2140/music/Big Journey.mp3: earth_2140_original_ost_mp3/12 - Big Journey.mp3
 					^SupportDir|Content/e2140/music/Space.mp3: earth_2140_original_ost_mp3/15 - Space.mp3
-		ContentPackage:
+		ContentPackage@soundtrack_vocals:
 			Name: soundtrack_vocals
 			Actions:
 				ExtractZip: !Downloads/earth_2140_original_ost_mp3.zip

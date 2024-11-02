@@ -6,7 +6,7 @@ zoom: Earth 2140 (Zoom, English)
 	IDFiles:
 		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
 	Install:
-		ContentPackage:
+		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
@@ -17,7 +17,7 @@ zoom: Earth 2140 (Zoom, English)
 					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
 					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
 					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
-		ContentPackage:
+		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
