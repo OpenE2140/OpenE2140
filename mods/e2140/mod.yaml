@@ -9,10 +9,10 @@ PackageFormats: Wd, VirtualAssets
 
 FileSystem: ContentInstallerFileSystem
 	Packages:
-		~^SupportDir|Content/e2140: content
 		^EngineDir
 		$e2140: e2140
 		^EngineDir|mods/common: common
+		~^SupportDir|Content/e2140: content
 		e2140|content/ed/sounds: smp0_extra
 		e2140|content/ucs/sounds: smp1_extra
 		e2140|content/shared/sounds: extra
