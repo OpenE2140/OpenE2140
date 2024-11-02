@@ -21,7 +21,7 @@ Cursors:
 Chrome:
 	content|chrome.yaml
 
-Assemblies: OpenRA.Mods.Common.dll, OpenRA.Mods.OpenE2140.dll
+Assemblies: OpenRA.Mods.OpenE2140.dll, OpenRA.Mods.Common.dll
 
 ChromeLayout:
 	content|content.yaml
