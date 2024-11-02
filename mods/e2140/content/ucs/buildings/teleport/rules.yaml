@@ -38,6 +38,7 @@ ucs_buildings_teleport:
 		SequenceOpenLoop: false
 		SequenceOpen: teleportation-end
 		SoundsOpening: 129.smp
+		UpdateFactionOnOwnerChange: true
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
 		Produces: Teleport.UCS

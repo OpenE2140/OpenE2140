@@ -39,6 +39,7 @@ shared_buildings_water_base_dock:
 		Duration: 42
 		Condition: IsDead
 	ExitWaypointProduction:
+		UpdateFactionOnOwnerChange: true
 		Produces: Ship.ED, Ship.UCS
 		RequiresCondition: !Transforming
 		# TODO power

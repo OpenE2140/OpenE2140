@@ -204,6 +204,7 @@
 	Production:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
+		UpdateFactionOnOwnerChange: true
 	ProductionQueue:
 		QueuedAudio: ProductionStarted
 		ReadyAudio: ProductionComplete
@@ -224,6 +225,7 @@
 	AnimatedExitProduction:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
+		UpdateFactionOnOwnerChange: true
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
@@ -244,6 +246,7 @@
 		ZOffset: -1024
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered || IsDead
+		UpdateFactionOnOwnerChange: true
 	-ProductionQueue:
 	AnimatedExitProductionQueue:
 		QueuedAudio: ProductionStarted
