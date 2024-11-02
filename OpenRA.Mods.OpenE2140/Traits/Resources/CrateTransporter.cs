@@ -335,7 +335,7 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 			if (!order.Queued && order.Target.Type == TargetType.Actor && !this.CanLoad(order.Target.Actor))
 				return;
 
-			self.QueueActivity(order.Queued, new CrateLoad(self, order.Target));
+			self.QueueActivity(order.Queued, this.mobile != null ? new MobileCrateLoad(self, order.Target) : new AircraftCrateLoad(self, order.Target));
 		}
 	}
 
