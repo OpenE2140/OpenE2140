@@ -1,6 +1,4 @@
 Player:
-	PlayerResources:
-		DefaultCash: 99999
 	-ConquestVictoryConditions:
 
 World:

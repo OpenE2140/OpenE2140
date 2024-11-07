@@ -1,0 +1,24 @@
+crate:
+	Inherits: ^CoreVisibleActor
+	HitShape:
+		Type: Circle
+			Radius: 512
+	Tooltip:
+		Name: Resource Crate
+	Health:
+		HP: 150
+	ResourceCrate:
+	Interactable:
+	Targetable:
+		TargetTypes: Ground
+	SubActor:
+	WithFacingSpriteBody:
+	WithFacingSpriteBody@shadow:
+		Sequence: shadow
+		Name: shadow
+		# TODO
+		# RequiresCondition: 
+
+	MapEditorData:
+		Categories: Resources
+

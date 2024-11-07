@@ -19,6 +19,12 @@ shared_vehicles_bantha:
 		HP: 400
 	Mobile:
 		Speed: 50
+	DockClientManager:
+		Voice: Unload
+	CrateTransporter:
+		Offset: 0,192,0
+		ZOffset: 192
+		UnloadVoice: Unload
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:
