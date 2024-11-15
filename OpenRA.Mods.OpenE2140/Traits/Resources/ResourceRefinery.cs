@@ -46,13 +46,11 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 		this.playerResources = newOwner.PlayerActor.TraitOrDefault<PlayerResources>();
 	}
 
-	protected override void Complete(Actor self)
+	protected override void Complete(Actor self, ResourceCrate crate)
 	{
-		if (this.crate == null)
-			return;
+		this.playerResources?.GiveCash(crate.Resources);
+		crate.Actor.Dispose();
 
-		this.playerResources?.GiveCash(this.crate.Resources);
-		this.crate.Actor.Dispose();
-		this.crate = null;
+		this.OnCrateProcessed();
 	}
 }

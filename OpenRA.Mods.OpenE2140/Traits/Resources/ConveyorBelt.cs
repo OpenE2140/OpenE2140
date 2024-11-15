@@ -60,7 +60,7 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 
 	private int condition = Actor.InvalidConditionToken;
 	private int elapsed;
-	protected ResourceCrate? crate;
+	private ResourceCrate? crate;
 
 	private WVec DistanceBetweenEnds => this.Info.DistanceBetweenEnds;
 	private int DistanceMoved => Math.Min(this.elapsed * this.Info.Speed, this.DistanceBetweenEnds.Length);
@@ -110,11 +110,16 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 		if (this.condition != Actor.InvalidConditionToken)
 			this.condition = self.RevokeCondition(this.condition);
 
-		this.Complete(self);
+		this.Complete(self, this.crate);
 	}
 
-	protected virtual void Complete(Actor self)
+	protected virtual void Complete(Actor self, ResourceCrate crate)
 	{
+	}
+
+	protected void OnCrateProcessed()
+	{
+		this.crate = null;
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
