@@ -17,7 +17,6 @@ shared_buildings_refinery:
 		RequiresCondition: !Transforming
 
 		# DockHost
-		GroupType: Unload
 		Type: Unload
 		IsDragRequired: true
 		DockWait: 1
@@ -32,7 +31,6 @@ shared_buildings_refinery:
 		RequiresCondition: !Transforming
 
 		# DockHost
-		GroupType: Unload
 		Type: Unload
 		IsDragRequired: true
 		DockWait: 1
@@ -47,7 +45,6 @@ shared_buildings_refinery:
 		RequiresCondition: !Transforming
 
 		# DockHost
-		GroupType: Unload
 		Type: Unload
 		IsDragRequired: true
 		DockWait: 1
