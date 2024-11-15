@@ -53,6 +53,7 @@ public class ResourceMine : ConveyorBelt
 
 	private int delay;
 	private ResourceCrate? crateBeingMined;
+	private ResourceCrate? availableCrate;
 
 	public ResourceMine(Actor self, ResourceMineInfo info)
 		: base(info)
@@ -109,16 +110,27 @@ public class ResourceMine : ConveyorBelt
 			this.crateBeingMined = null;
 	}
 
+	protected override void Complete(Actor self, ResourceCrate crate)
+	{
+		this.availableCrate = crate;
+	}
+
+	protected override bool TryAcquireLockInner(Actor clientActor)
+	{
+		return this.availableCrate != null;
+	}
+
 	public ResourceCrate? RemoveCrate()
 	{
-		if (this.crate == null || this.crate?.Resources < this.Info.CrateSize)
+		if (this.availableCrate == null)
 			return null;
 
-		var crate = this.crate;
+		var crate = this.availableCrate;
 
 		if (crate != null)
 		{
-			this.crate = null;
+			this.availableCrate = null;
+			this.OnCrateProcessed();
 
 			crate.SubActor.ParentActor = null;
 		}
