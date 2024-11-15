@@ -32,10 +32,31 @@ public class AircraftConveyorBeltDock : SharedDockHost
 			|| aircraft.GetPosition().Z != AircraftCrateLoad.LoadAltitude.Length)
 		{
 			moveCooldownHelper.NotifyMoveQueued();
-			moveToDockActivity.QueueChild(aircraft.MoveOntoTarget(clientActor, Target.FromActor(self), this.DockPosition - self.CenterPosition, this.Info.DockAngle));
+			moveToDockActivity.QueueChild(aircraft.MoveToTarget(clientActor, Target.FromPos(this.DockPosition), null, null));
+
+			// Acquire lock early and keep it until the docking is complete
+			moveToDockActivity.QueueChild(new DockHostLock(this,
+				new AircraftCrateLoad.LandOnCrate(aircraft, Target.FromActor(self), () => this.Info.DockAngle, new(128)), releaseOnFinish: false));
 			return true;
 		}
 
 		return false;
+	}
+
+	public override void QueueDockActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client)
+	{
+		var dockActivity = new GenericDockSequence(
+			clientActor,
+			client,
+			self,
+			this,
+			this.Info.DockWait,
+			this.Info.IsDragRequired,
+			this.Info.DragOffset,
+			this.Info.DragLength);
+
+		dockActivity.Queue(new TakeOff(clientActor));
+
+		moveToDockActivity.QueueChild(new ReleaseDockHostLock(this, dockActivity));
 	}
 }
