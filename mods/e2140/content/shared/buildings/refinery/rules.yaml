@@ -6,6 +6,13 @@ shared_buildings_refinery:
 		HP: 800
 	Power:
 		Amount: -300
+	FreeActor:
+		# TODO: support changing actor based on presence of Air Base and researched Flying technology
+		Actor: shared_vehicles_bantha
+		# Actor: shared_aircrafts_heavy_lifter
+		SpawnOffset: 2,1
+		Facing: 512
+		RequiresCondition: !Transforming
 	ResourceRefinery:
 		InsideOffset: 1384,-512,0
 		EntryOffset: 1216
