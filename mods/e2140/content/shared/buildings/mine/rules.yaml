@@ -10,7 +10,7 @@ shared_buildings_mine:
 		InsideOffset: 512,-512,0
 		EntryOffset: 1260
 		OutsideOffset: 1404,-512,0
-		ZOffset: 128
+		ZOffset: 588
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
 
