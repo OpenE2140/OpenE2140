@@ -138,7 +138,7 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
 			foreach (var renderable in render
 				.Render(this.crate.Actor, wr).Select(e => e
-					.WithZOffset(this.Info.ZOffset * 5)
+					.WithZOffset(this.Info.ZOffset)
 					.OffsetBy(renderablesOffset)).OfType<SpriteRenderable>())
 			{
 				if (renderable.Pos.X >= cutOff)
