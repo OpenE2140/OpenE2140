@@ -23,6 +23,7 @@ shared_buildings_mine:
 		DockWait: 1
 		
 		DockOffset: 1404,-512,0
+		AllowedDockAngles: 0, 512
 	
 	ConveyorBeltDock@PortSouth:
 		RequiresCondition: !Transforming
