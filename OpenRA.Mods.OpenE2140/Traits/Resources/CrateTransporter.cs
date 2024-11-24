@@ -277,10 +277,14 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		foreach (var render in this.crate.Actor.TraitsImplementing<IRender>())
 		{
 			result.AddRange(
-				render.Render(this.crate.Actor, wr)
-				.Select(e => e
-					.OffsetBy((this.info.Offset + this.CrateOffset).Rotate(this.actor.Orientation))
-					.WithZOffset(this.info.ZOffset * 4)));
+				render
+					.Render(this.crate.Actor, wr)
+					.Select(e => e
+						.OffsetBy((this.info.Offset + this.CrateOffset).Rotate(this.actor.Orientation))
+						.WithZOffset(this.info.ZOffset)
+						.AsDecoration()
+					)
+				);
 		}
 
 		return result;

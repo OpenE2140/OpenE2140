@@ -29,7 +29,7 @@ shared_aircrafts_heavy_lifter:
 		DockSequence: lift
 		DockLoopSequence: lift
 		Offset: 0,0,-192
-		ZOffset: 128
+		ZOffset: 577
 		UnloadVoice: Unload
 	RevealsShroud:
 		Range: 2c896
