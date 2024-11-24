@@ -24,7 +24,7 @@ shared_vehicles_bantha:
 		Voice: Unload
 	CrateTransporter:
 		Offset: 0,192,0
-		ZOffset: 192
+		ZOffset: 820
 		UnloadVoice: Unload
 	RevealsShroud:
 		Range: 2c896
