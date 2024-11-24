@@ -1,6 +1,8 @@
 ﻿using OpenRA.Activities;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Traits;
@@ -9,6 +11,9 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 {
+	[Desc("List of angles, which the aircraft crate transporter can dock into this dock host.")]
+	public readonly WAngle[] AllowedDockAngles = { new(0) };
+
 	public override object Create(ActorInitializer init)
 	{
 		return new AircraftConveyorBeltDock(init.Self, this);
@@ -17,9 +22,12 @@ public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 
 public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 {
+	public new readonly AircraftConveyorBeltDockInfo Info;
+
 	public AircraftConveyorBeltDock(Actor self, AircraftConveyorBeltDockInfo info)
 		: base(self, info)
 	{
+		this.Info = info;
 	}
 
 	public override bool QueueMoveActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client, MoveCooldownHelper moveCooldownHelper)
@@ -28,11 +36,10 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 
 		// Make sure the actor is at the dock and at correct facing.
 		if (!clientActor.CenterPosition.EqualsHorizontally(this.DockPosition)
-			|| aircraft.Facing != this.Info.DockAngle
+			|| this.Info.AllowedDockAngles.IndexOf(aircraft.Facing) == -1
 			|| aircraft.GetPosition().Z != AircraftCrateLoad.LoadAltitude.Length)
 		{
 			moveCooldownHelper.NotifyMoveQueued();
-			moveToDockActivity.QueueChild(aircraft.MoveToTarget(clientActor, Target.FromPos(this.DockPosition), null, null));
 
 			// Acquire lock early and keep it until the docking is complete
 			moveToDockActivity.QueueChild(new DockHostLock(this,
@@ -65,5 +72,41 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 		// TODO: animation
 		continuationCallback();
 		return null!;
+	}
+
+	private class AircraftMoveToConveyorBelt : Activity
+	{
+		private readonly Aircraft aircraft;
+		private readonly AircraftConveyorBeltDock aircraftConveyorBeltDock;
+		private readonly CrateTransporter crateTransporter;
+
+		private WPos DockPosition => this.aircraftConveyorBeltDock.DockPosition;
+
+		private WAngle[] AllowedDockAngles => this.aircraftConveyorBeltDock.Info.AllowedDockAngles;
+
+		public AircraftMoveToConveyorBelt(Actor self, AircraftConveyorBeltDock aircraftConveyorBeltDock)
+		{
+			this.aircraft = self.Trait<Aircraft>();
+			this.aircraftConveyorBeltDock = aircraftConveyorBeltDock;
+			this.crateTransporter = self.Trait<CrateTransporter>();
+		}
+
+		protected override void OnFirstRun(Actor self)
+		{
+			this.QueueChild(this.aircraft.MoveToTarget(self, Target.FromPos(this.DockPosition), null, null));
+
+			var sequence = self.Trait<WithSpriteBody>().DefaultAnimation.GetSequence(this.crateTransporter.Info.DockSequence);
+
+			// TODO: make landing altitude configurable
+			WDist landingAltitude = new(128);
+
+			// Acquire lock now (i.e. before the landing starts) and keep it until the docking is complete
+			this.QueueChild(new DockHostLock(this.aircraftConveyorBeltDock,
+				new AircraftCrateLoad.LandOnCrate(this.aircraft, Target.FromActor(self), GetDockAngle, landingAltitude), releaseOnFinish: false));
+
+			WAngle GetDockAngle() => this.AllowedDockAngles
+				.OrderBy(x => new WAngle((x.Angle - Util.QuantizeFacing(self.Orientation.Yaw, sequence.Facings).Angle) * Util.GetTurnDirection(self.Orientation.Yaw, x)).Angle)
+				.FirstOrDefault();
+		}
 	}
 }
