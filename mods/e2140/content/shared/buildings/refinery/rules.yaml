@@ -28,9 +28,11 @@ shared_buildings_refinery:
 		Type: AircraftUnload
 		IsDragRequired: false
 		DockWait: 1
-		
 		DockOffset: 1384,-512,0
+		
+		# TODO: make crate on the conveyor belt keep its facing
 		AllowedDockAngles: 0, 128, 256, 384, 512, 640, 768, 896
+		LandAltitude: 128
 
 	ConveyorBeltDock@PortSouth:
 		RequiresCondition: !Transforming
