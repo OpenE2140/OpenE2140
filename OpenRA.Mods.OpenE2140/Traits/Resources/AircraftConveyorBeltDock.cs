@@ -78,7 +78,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 	{
 		private readonly Aircraft aircraft;
 		private readonly AircraftConveyorBeltDock aircraftConveyorBeltDock;
-		private readonly CrateTransporter crateTransporter;
+		private readonly AircraftCrateTransporter crateTransporter;
 
 		private WPos DockPosition => this.aircraftConveyorBeltDock.DockPosition;
 
@@ -88,7 +88,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 		{
 			this.aircraft = self.Trait<Aircraft>();
 			this.aircraftConveyorBeltDock = aircraftConveyorBeltDock;
-			this.crateTransporter = self.Trait<CrateTransporter>();
+			this.crateTransporter = self.Trait<AircraftCrateTransporter>();
 		}
 
 		protected override void OnFirstRun(Actor self)
