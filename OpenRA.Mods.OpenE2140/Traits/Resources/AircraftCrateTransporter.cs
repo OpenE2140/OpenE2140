@@ -9,7 +9,7 @@ public class AircraftCrateTransporterInfo : CrateTransporterInfo
 	public readonly WAngle[] AllowedDockAngles = { new(0) };
 
 	[Desc("Altitude at which the aircraft considers itself landed with a resource crate loaded.")]
-	public readonly WDist LandAltitude = new(128);
+	public readonly WDist LandAltitude = new(210);
 
 	public override object Create(ActorInitializer init)
 	{
@@ -25,6 +25,12 @@ public class AircraftCrateTransporter : CrateTransporter
 		: base(init, info)
 	{
 		this.Info = info;
+	}
+
+	protected override Activity GetCrateUnloadActivity(Actor self, Order order)
+	{
+		CPos? targetLocation = order.Target.Type != TargetType.Invalid ? self.World.Map.CellContaining(order.Target.CenterPosition) : null;
+		return new AircraftCrateUnload(self, targetLocation, this.Info);
 	}
 
 	protected override Activity GetCrateLoadActivity(Actor self, Order order)
