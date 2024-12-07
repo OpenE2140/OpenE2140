@@ -20,7 +20,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public abstract class CrateLoadBase : Activity
 {
-	private enum LoadState { MovingToLoad, Drag, Dock, Loop, Undock, Undrag, Complete }
+	private enum LoadState { MovingToLoad, Drag, Dragging, Dock, Loop, Undock, Undrag, Complete }
 
 	protected readonly CrateTransporter CrateTransporter;
 	protected readonly ResourceCrate ResourceCrate;
@@ -95,7 +95,6 @@ public abstract class CrateLoadBase : Activity
 				}
 
 				this.state = LoadState.Drag;
-				this.ChildHasPriority = true;
 
 				return false;
 			}
@@ -109,7 +108,22 @@ public abstract class CrateLoadBase : Activity
 
 				this.StartDragging(self, this.target);
 
-				this.state = LoadState.Dock;
+				this.state = LoadState.Dragging;
+
+				return false;
+			}
+			case LoadState.Dragging:
+			{
+				if (this.TickChild(self))
+				{
+					this.state = LoadState.Dock;
+
+					this.ChildHasPriority = true;
+				}
+				else
+				{
+					this.OnDragging(self);
+				}
 
 				return false;
 			}
@@ -171,6 +185,8 @@ public abstract class CrateLoadBase : Activity
 	protected abstract void StartUndragging(Actor self);
 
 	protected abstract void StartDragging(Actor self, Target target);
+
+	protected virtual void OnDragging(Actor self) { }
 
 	protected abstract bool TryGetDockToDockPosition(Actor self, Target target, bool targetIsHiddenActor);
 
