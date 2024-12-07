@@ -1,6 +1,7 @@
 ﻿using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
@@ -23,6 +24,12 @@ public class MobileCrateTransporter : CrateTransporter
 		this.Info = info;
 
 		this.mobile = init.Self.Trait<Mobile>();
+	}
+
+	protected override Activity GetCrateUnloadActivity(Actor self, Order order)
+	{
+		CPos? targetLocation = order.Target.Type != TargetType.Invalid ? self.World.Map.CellContaining(order.Target.CenterPosition) : null;
+		return new MobileCrateUnload(self, targetLocation);
 	}
 
 	protected override Activity GetCrateLoadActivity(Actor self, Order order)
