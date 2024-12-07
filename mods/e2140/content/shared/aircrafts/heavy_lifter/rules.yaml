@@ -24,7 +24,7 @@ shared_aircrafts_heavy_lifter:
 	DockClientManager:
 		OccupancyCostModifier: 150
 		Voice: Unload
-	CrateTransporter:
+	AircraftCrateTransporter:
 		DockingType: AircraftUnload, AircraftLoad
 		DockSequence: lift
 		DockLoopSequence: lift
