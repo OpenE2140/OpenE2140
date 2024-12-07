@@ -21,15 +21,14 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public class AircraftCrateLoad : CrateLoadBase
 {
-	public static WDist LoadAltitude = new(128);
-	public static WAngle[] AllowedDockAngles = { new(0), new(128), new(256), new(384), new(512), new(640), new(768), new(896) };
-
 	private readonly Aircraft aircraft;
+	private readonly AircraftCrateTransporterInfo info;
 
-	public AircraftCrateLoad(Actor self, in Target crateActor)
+	public AircraftCrateLoad(Actor self, in Target crateActor, AircraftCrateTransporterInfo info)
 		: base(self, crateActor)
 	{
 		this.aircraft = self.Trait<Aircraft>();
+		this.info = info;
 	}
 
 	protected override void InitialMoveToCrate(Actor self, Target target)
@@ -53,7 +52,7 @@ public class AircraftCrateLoad : CrateLoadBase
 	{
 		return target.Type == TargetType.Actor
 			&& (target.Actor.Location - self.Location).Length == 0
-			&& self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition) >= LoadAltitude;
+			&& self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition) >= this.info.LandAltitude;
 	}
 
 	protected override bool TryGetDockToDockPosition(Actor self, Target target, bool targetIsHiddenActor)
@@ -72,13 +71,13 @@ public class AircraftCrateLoad : CrateLoadBase
 	{
 		var turnAngle = this.aircraft.Facing;
 
-		var desiredFacing = AllowedDockAngles.FirstOrDefault(a => a.Angle >= turnAngle.Angle);
+		var desiredFacing = this.info.AllowedDockAngles.FirstOrDefault(a => a.Angle >= turnAngle.Angle);
 		desiredFacing = target.Actor.Trait<IFacing>().Facing;
 		// TODO: pick facing, which will take least amount of time for Heavy Lifter to turn to.
 		if ((this.aircraft.Facing - desiredFacing).Angle > 512)
 			desiredFacing = new WAngle(desiredFacing.Angle - 1024);
 
-		this.QueueChild(new LandOnCrate(this.aircraft, target, () => desiredFacing, LoadAltitude));
+		this.QueueChild(new LandOnCrate(this.aircraft, target, () => desiredFacing, this.info.LandAltitude));
 	}
 
 	protected override void StartUndragging(Actor self)

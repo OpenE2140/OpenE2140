@@ -28,6 +28,7 @@ shared_aircrafts_heavy_lifter:
 		DockingType: AircraftUnload, AircraftLoad
 		DockSequence: lift
 		DockLoopSequence: lift
+		AllowedDockAngles: 0, 128, 256, 384, 512, 640, 768, 896
 		Offset: 0,0,-192
 		ZOffset: 577
 		UnloadVoice: Unload
