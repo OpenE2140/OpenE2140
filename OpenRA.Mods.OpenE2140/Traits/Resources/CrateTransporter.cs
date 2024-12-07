@@ -310,7 +310,8 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 			if (!order.Queued && !this.CanUnload())
 				return;
 
-			self.QueueActivity(order.Queued, new CrateUnload(self));
+			var activity = this.GetCrateUnloadActivity(self, order);
+			self.QueueActivity(order.Queued, activity);
 		}
 		else if (order.OrderString == LoadResourceCrateOrderID)
 		{
@@ -321,6 +322,8 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 			self.QueueActivity(order.Queued, activity);
 		}
 	}
+
+	protected abstract Activity GetCrateUnloadActivity(Actor self, Order order);
 
 	protected abstract Activity GetCrateLoadActivity(Actor self, Order order);
 
