@@ -22,7 +22,7 @@ shared_vehicles_bantha:
 	DockClientManager:
 		OccupancyCostModifier: 150
 		Voice: Unload
-	CrateTransporter:
+	MobileCrateTransporter:
 		Offset: 0,192,0
 		ZOffset: 820
 		UnloadVoice: Unload
