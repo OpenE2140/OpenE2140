@@ -27,7 +27,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Allows unit to carry a resource crate.")]
-public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRenderActorPreviewSpritesInfo
+public abstract class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRenderActorPreviewSpritesInfo
 {
 	[Desc("Docking type.")]
 	public readonly BitSet<DockType> DockingType = new("Load", "Unload");
@@ -73,11 +73,6 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 
 	[Desc("The resource crate actor. Make sure it's the same for ResourceMine actor.")]
 	public readonly string CrateActor = "crate";
-
-	public override object Create(ActorInitializer init)
-	{
-		return new CrateTransporter(init, this);
-	}
 
 	IEnumerable<IActorPreview> IRenderActorPreviewSpritesInfo.RenderPreviewSprites(ActorPreviewInitializer init, string image, int facings, PaletteReference p)
 	{
@@ -125,14 +120,13 @@ public class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOptions, IRe
 	}
 }
 
-public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
+public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
 {
 	private const string UnloadResourceCrateOrderID = "UnloadResourceCrate";
 	private const string LoadResourceCrateOrderID = "LoadResourceCrate";
 
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
-	private readonly Mobile? mobile;
 	private ResourceCrate? crate;
 	private bool? dockingInProgress;
 
@@ -145,7 +139,6 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 	{
 		this.actor = init.Self;
 		this.info = info;
-		this.mobile = this.actor.TraitOrDefault<Mobile>();
 
 		var resourcesInit = init.GetOrDefault<ResourcesInit>();
 		if (resourcesInit != null && resourcesInit.Value > 0)
@@ -243,25 +236,6 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		return !self.World.ActorMap.AnyActorsAt(targetLocation, SubCell.FullCell, a => a != self);
 	}
 
-	internal void ReserveUnloadLocation(CPos targetLocation)
-	{
-		if (this.crate == null)
-			return;
-
-		// We need to block target cell (until the unload is complete) so that no other actor can enter it while the unloading is in progress.
-		// Current solution makes use of CrateTransporter's Mobile implementing IOccupySpace by returning both FromCell and ToCell (if they differ).
-
-		// Unfortunately this hacky solution is necessary. If the cell is to be blocked by the crate itself,
-		// it's necessary to add the crate actor to the world and that causes more issues (when it comes to the crate unload feature).
-		// So the crate is added to world at the very last moment: i.e. when the crate (SubActor) is detached from CrateTransporter.
-		this.mobile?.SetLocation(targetLocation, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
-	}
-
-	internal void UnloadComplete()
-	{
-		this.mobile?.SetLocation(this.mobile.ToCell, SubCell.FullCell, this.mobile.ToCell, SubCell.FullCell);
-	}
-
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
@@ -323,6 +297,10 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 		this.crate = crateActor.Trait<ResourceCrate>();
 		this.crate.SubActor.LoadComplete();
 		this.crate.SubActor.ParentActor = self;
+
+	}
+	internal virtual void UnloadComplete()
+	{
 	}
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
@@ -339,9 +317,12 @@ public class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, I
 			if (!order.Queued && order.Target.Type == TargetType.Actor && !this.CanLoad(order.Target.Actor))
 				return;
 
-			self.QueueActivity(order.Queued, this.mobile != null ? new MobileCrateLoad(self, order.Target) : new AircraftCrateLoad(self, order.Target));
+			var activity = this.GetCrateLoadActivity(self, order);
+			self.QueueActivity(order.Queued, activity);
 		}
 	}
+
+	protected abstract Activity GetCrateLoadActivity(Actor self, Order order);
 
 	string? IOrderVoice.VoicePhraseForOrder(Actor self, Order order)
 	{
