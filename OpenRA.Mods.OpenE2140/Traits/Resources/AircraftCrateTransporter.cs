@@ -1,5 +1,7 @@
 ﻿using OpenRA.Activities;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
+using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
@@ -9,7 +11,7 @@ public class AircraftCrateTransporterInfo : CrateTransporterInfo
 	public readonly WAngle[] AllowedDockAngles = { new(0) };
 
 	[Desc("Altitude at which the aircraft considers itself landed with a resource crate loaded.")]
-	public readonly WDist LandAltitude = new(210);
+	public readonly WDist LandAltitude = WDist.Zero;
 
 	public override object Create(ActorInitializer init)
 	{
@@ -17,14 +19,31 @@ public class AircraftCrateTransporterInfo : CrateTransporterInfo
 	}
 }
 
-public class AircraftCrateTransporter : CrateTransporter
+public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositionOffset
 {
+	private readonly Actor self;
+	private readonly BodyOrientation body;
+
 	public new AircraftCrateTransporterInfo Info;
 
 	public AircraftCrateTransporter(ActorInitializer init, AircraftCrateTransporterInfo info)
 		: base(init, info)
 	{
 		this.Info = info;
+
+		this.self = init.Self;
+		this.body = init.Self.Trait<BodyOrientation>();
+	}
+
+	WVec IAircraftCenterPositionOffset.PositionOffset
+	{
+		get
+		{
+			if (!this.HasCrate) return WVec.Zero;
+
+			var localOffset = new WVec(0, 0, -this.Info.LandAltitude.Length).Rotate(this.body.QuantizeOrientation(this.self.Orientation));
+			return this.body.LocalToWorld(localOffset);
+		}
 	}
 
 	protected override Activity GetCrateUnloadActivity(Actor self, Order order)

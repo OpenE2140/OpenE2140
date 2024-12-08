@@ -130,6 +130,8 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 	private ResourceCrate? crate;
 	private bool? dockingInProgress;
 
+	public bool HasCrate => this.crate != null;
+
 	public override BitSet<DockType> GetDockType => this.info.DockingType;
 
 	public WVec CrateOffset { get; set; }
