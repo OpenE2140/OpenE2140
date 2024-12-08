@@ -32,6 +32,13 @@ shared_aircrafts_heavy_lifter:
 		Offset: 0,0,-192
 		ZOffset: 577
 		UnloadVoice: Unload
+		
+		# Unforunately there's a bug in Aircraft trait, when the code for granting/revoking airborne condition does not take into account
+		# the position offsets. This means that aircraft with non-zero offset (on Z axis) is never considered as landed, which causes issues
+		# (like units targeting only ground units not being able to damage this aircraft).
+		
+		# After the bug is fixed, uncomment LandAltitude value.
+		# LandAltitude: 210
 	RevealsShroud:
 		Range: 2c896
 	WithMoveSound:

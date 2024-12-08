@@ -18,7 +18,7 @@ public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 	public readonly WAngle[] AllowedDockAngles = { new(0) };
 
 	[Desc($"Altitude at which the aircraft considers itself landed with on top of the {nameof(AircraftConveyorBeltDockInfo)}.")]
-	public readonly WDist LandAltitude = new(128);
+	public readonly WDist LandAltitude = WDist.Zero;
 
 	public override object Create(ActorInitializer init)
 	{
