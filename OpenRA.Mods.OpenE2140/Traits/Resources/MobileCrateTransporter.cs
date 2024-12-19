@@ -7,6 +7,24 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 public class MobileCrateTransporterInfo : CrateTransporterInfo, Requires<MobileInfo>
 {
+	[Desc("Sequence for crate movement during load animation")]
+	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), Required = true)]
+	public readonly CrateMoveSequence LoadSequence = null!;
+
+	[Desc("Sequence for crate movement during unload animation")]
+	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), Required = true)]
+	public readonly CrateMoveSequence UnloadSequence = null!;
+
+	private static object LoadLoadCrateMoveSequence(MiniYaml parentNode)
+	{
+		return CrateMoveSequence.Load(parentNode, nameof(LoadSequence));
+	}
+
+	private static object LoadUnloadCrateMoveSequence(MiniYaml parentNode)
+	{
+		return CrateMoveSequence.Load(parentNode, nameof(UnloadSequence));
+	}
+
 	public override object Create(ActorInitializer init)
 	{
 		return new MobileCrateTransporter(init, this);
