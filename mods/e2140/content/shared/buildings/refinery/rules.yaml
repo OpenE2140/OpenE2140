@@ -14,10 +14,10 @@ shared_buildings_refinery:
 		Facing: 512
 		RequiresCondition: !Transforming
 	ResourceRefinery:
-		InsideOffset: 1384,-512,0
+		InsideOffset: 1384,-450,0
 		EntryOffset: 1216
-		OutsideOffset: 512,-512,0
-		ZOffset: 588
+		OutsideOffset: 512,-450,0
+		ZOffset: 570
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
 
