@@ -23,12 +23,15 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 public class MobileCrateLoad : CrateLoadBase
 {
 	private readonly Mobile mobile;
+	private readonly MobileCrateTransporter mobileCrateTransporter;
 	private readonly MoveCooldownHelper moveCooldownHelper;
 
 	public MobileCrateLoad(Actor self, in Target crateActor)
 		: base(self, crateActor)
 	{
 		this.mobile = self.Trait<Mobile>();
+		this.mobileCrateTransporter = self.Trait<MobileCrateTransporter>();
+
 		this.moveCooldownHelper = new MoveCooldownHelper(self.World, this.mobile);
 	}
 
@@ -40,12 +43,12 @@ public class MobileCrateLoad : CrateLoadBase
 
 	protected override void StartDocking(Actor self, Action continuationCallback)
 	{
-		this.QueueChild(new ResourceCrateMovementActivity(self, true, DockAnimation.Docking, continuationCallback));
+		this.QueueChild(new ResourceCrateMovementActivity(self, true, DockAnimation.Docking, this.mobileCrateTransporter.Info.LoadSequence, continuationCallback));
 	}
 
 	protected override void StartUndocking(Actor self, Action continuationCallback)
 	{
-		this.QueueChild(new ResourceCrateMovementActivity(self, true, DockAnimation.Undocking, continuationCallback));
+		this.QueueChild(new ResourceCrateMovementActivity(self, true, DockAnimation.Undocking, this.mobileCrateTransporter.Info.LoadSequence, continuationCallback));
 	}
 
 	protected override bool CanLoadCrateNow(Actor self, Target target)
