@@ -37,12 +37,12 @@ public class MobileCrateUnload : CrateUnloadBase
 
 	protected override void StartDocking(Actor self, Action continuationCallback)
 	{
-		this.QueueChild(new ResourceCrateMovementActivity(self, false, DockAnimation.Docking, continuationCallback));
+		this.QueueChild(new ResourceCrateMovementActivity(self, false, DockAnimation.Docking, this.mobileCrateTransporter.Info.UnloadSequence, continuationCallback));
 	}
 
 	protected override void StartUndocking(Actor self, Action continuationCallback)
 	{
-		this.QueueChild(new ResourceCrateMovementActivity(self, false, DockAnimation.Undocking, continuationCallback));
+		this.QueueChild(new ResourceCrateMovementActivity(self, false, DockAnimation.Undocking, this.mobileCrateTransporter.Info.UnloadSequence, continuationCallback));
 	}
 
 	protected override bool TryGetDockToDockPosition(Actor self, CPos targetLocation)

@@ -47,6 +47,14 @@ shared_buildings_refinery:
 		DockAngle: 512
 		DragOffset: 1404,185,0
 		DragLength: 20
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 440, 250, 150, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 6
+			Offsets: 0, 20, 150, 250, 440
 	
 	ConveyorBeltDock@PortNorth:
 		RequiresCondition: !Transforming
@@ -62,16 +70,24 @@ shared_buildings_refinery:
 		DragOffset: 1404,-913,0
 		DragLength: 26
 		
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 270, 180, 110, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 110, 180, 270
+		
 	ConveyorBeltDock@PortEast:
 		RequiresCondition: !Transforming
 
-		# Sequences for crate movement during (un)load animation
+		# Custom sequences for crate movement during (un)load animation
 		LoadSequence:
 			Delays: 0, 3, 5, 2, 2
-			Offsets: 400, 250, 150, 20, 0
+			Offsets: 500, 330, 200, 20, 0
 		UnloadSequence:
 			Delays: 0, 2, 2, 5, 3
-			Offsets: 0, 20, 150, 250, 400
+			Offsets: 0, 20, 200, 330, 500
 
 		# DockHost
 		Type: Unload

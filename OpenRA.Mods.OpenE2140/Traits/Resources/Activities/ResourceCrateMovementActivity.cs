@@ -19,9 +19,6 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public class ResourceCrateMovementActivity : Activity
 {
-	private readonly CrateMoveSequence unloadCrateSequence = new CrateMoveSequence(new[] { 0, 2, 2, 5, 3 }, new[] { 0, 20, 150, 250, 400 });
-	private readonly CrateMoveSequence loadCrateSequence = new CrateMoveSequence(new[] { 0, 3, 5, 2, 2 }, new[] { 400, 250, 150, 20, 0 });
-
 	private enum DockState
 	{
 		None,
@@ -48,6 +45,7 @@ public class ResourceCrateMovementActivity : Activity
 		Actor self,
 		bool isLoading,
 		DockAnimation dockAnimation,
+		CrateMoveSequence crateMoveSequence,
 		Action continuationCallback)
 	{
 		this.wsb = self.Trait<WithSpriteBody>();
@@ -55,9 +53,9 @@ public class ResourceCrateMovementActivity : Activity
 
 		this.isLoading = isLoading;
 		this.continuationCallback = continuationCallback;
+		this.crateMoveSequence = crateMoveSequence;
 		this.state = dockAnimation == DockAnimation.Docking ? DockState.Docking : DockState.Undocking;
 
-		this.crateMoveSequence = isLoading ? this.loadCrateSequence : this.unloadCrateSequence;
 		this.IsInterruptible = false;
 	}
 
@@ -198,6 +196,4 @@ public class ResourceCrateMovementActivity : Activity
 	{
 		this.crateTransporter.CrateOffset = new WVec(0, 1, 0) * crateMoveSequence.Offsets[this.currentIndex];
 	}
-
-	private record class CrateMoveSequence(int[] Delays, int[] Offsets);
 }

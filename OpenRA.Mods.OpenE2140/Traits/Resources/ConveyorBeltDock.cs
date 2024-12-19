@@ -6,36 +6,22 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 public class ConveyorBeltDockInfo : SharedDockHostInfo
 {
-	public static CrateMoveSequence DefaultLoadSequence = new CrateMoveSequence(new[] { 0, 3, 5, 2, 2 }, new[] { 400, 250, 150, 20, 0 });
-	public static CrateMoveSequence DefaultUnloadSequence = new CrateMoveSequence(new[] { 0, 2, 2, 5, 3 }, new[] { 0, 20, 150, 250, 400 });
-
-	// TODO: use just single sequence definition (for loading), generate unloading sequence from the loading
-
 	[Desc("Sequence for crate movement during load animation")]
-	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence))]
-	public readonly CrateMoveSequence LoadSequence = DefaultLoadSequence;
+	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), Required = true)]
+	public readonly CrateMoveSequence LoadSequence = null!;
 
 	[Desc("Sequence for crate movement during unload animation")]
-	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence))]
-	public readonly CrateMoveSequence UnloadSequence = DefaultUnloadSequence;
+	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), Required = true)]
+	public readonly CrateMoveSequence UnloadSequence = null!;
 
 	private static object LoadLoadCrateMoveSequence(MiniYaml parentNode)
 	{
-		return LoadCrateMoveSequence(parentNode, nameof(LoadSequence)) ?? DefaultLoadSequence;
+		return CrateMoveSequence.Load(parentNode, nameof(LoadSequence));
 	}
 
 	private static object LoadUnloadCrateMoveSequence(MiniYaml parentNode)
 	{
-		return LoadCrateMoveSequence(parentNode, nameof(UnloadSequence)) ?? DefaultUnloadSequence;
-	}
-
-	private static object? LoadCrateMoveSequence(MiniYaml parentNode, string key)
-	{
-		var node = parentNode.NodeWithKeyOrDefault(key);
-		if (node == null)
-			return null;
-
-		return FieldLoader.Load<CrateMoveSequence>(node.Value);
+		return CrateMoveSequence.Load(parentNode, nameof(UnloadSequence));
 	}
 
 	public override object Create(ActorInitializer init)
@@ -52,18 +38,34 @@ public class CrateMoveSequence
 	public CrateMoveSequence()
 	{
 	}
+
 	public CrateMoveSequence(int[] delays, int[] offsets)
 	{
 		this.Delays = delays;
 		this.Offsets = offsets;
 	}
+
+	public static CrateMoveSequence Load(MiniYaml parentNode, string key)
+	{
+		var node = parentNode.NodeWithKeyOrDefault(key) ?? throw new YamlException($"{key} not defined");
+
+		return FieldLoader.Load<CrateMoveSequence>(node.Value);
+	}
 }
 
 public class ConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 {
+	private readonly CrateMoveSequence loadSequence;
+	private readonly CrateMoveSequence unloadSequence;
+
+	public new readonly ConveyorBeltDockInfo Info;
+
 	public ConveyorBeltDock(Actor self, ConveyorBeltDockInfo info)
 		: base(self, info)
 	{
+		this.Info = info;
+		this.loadSequence = info.LoadSequence;
+		this.unloadSequence = info.UnloadSequence;
 	}
 
 	public override bool IsDockingPossible(Actor clientActor, IDockClient client, bool ignoreReservations = false)
@@ -81,6 +83,8 @@ public class ConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 
 	Activity IConveyorBeltDockHost.GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context)
 	{
-		return new ResourceCrateMovementActivity(clientActor, context.IsLoading, context.Animation, continuationCallback);
+		return new ResourceCrateMovementActivity(clientActor, context.IsLoading, context.Animation,
+			crateMoveSequence: context.IsLoading ? this.loadSequence : this.unloadSequence,
+			continuationCallback);
 	}
 }
