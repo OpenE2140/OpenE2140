@@ -39,6 +39,9 @@ shared_aircrafts_heavy_lifter:
 		
 		# After the bug is fixed, uncomment LandAltitude value.
 		# LandAltitude: 210
+	CrateTransporterRoutine:
+		# Delay starting routine when created using FreeActor so that CrateTransporter does not move through the construction pyramid (of the Refinery).
+		FreeActorDelayRoutine: 10
 	RevealsShroud:
 		Range: 2c896
 	WithMoveSound:
