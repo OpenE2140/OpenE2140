@@ -34,6 +34,9 @@ shared_vehicles_bantha:
 		UnloadSequence:
 			Delays: 0, 2, 2, 5, 3
 			Offsets: 0, 20, 150, 250, 400
+	CrateTransporterRoutine:
+		# Delay starting routine when created using FreeActor so that CrateTransporter does not move through the construction pyramid (of the Refinery).
+		FreeActorDelayRoutine: 10
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:
