@@ -132,7 +132,12 @@ shared_buildings_mine:
 		Dimensions: 3,3
 		Footprint: xxx xx= ===
 		LocalCenterOffset: -370,-520,0
-		TerrainTypes: Resources
+		TerrainTypes: Clear, Road, Resources
+	ResourceMineCustomBuilding:
+		# In E2140 at least one Resources tile is required for Mine.
+		# Make sure all terrain types used in the condition are also defined in Building.TerrainTypes
+		# TODO: remove this requirement
+		AllowedTerrainTypesCondition: Resources
 	BuildingCrew:
 		MaxPopulation: 6
 	TransformSequence:
