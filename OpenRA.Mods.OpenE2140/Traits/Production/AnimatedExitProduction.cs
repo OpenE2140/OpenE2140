@@ -295,34 +295,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
 
-				if (this.productionInfo.Producee.HasTraitInfo<AircraftInfo>())
-				{
-					// Aircraft do not need custom logic to handle their exit from this Production trait.
-					// So just store the creation activity (likely going to be AssociateWithAirfieldActivity) for handling rally point.
-					this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.CurrentActivity };
-				}
-				else if (this.NudgeBlockingActors(self, exitCell, actor))
-					this.State = AnimationState.WaitingForEjection;
-				else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not ProductionExitMove))
-				{
-					// Abort all activites except ProductionExitMove to prevent player from delaying the exit.
-					actor.CancelActivity();
-
-					// Using standard MoveTo always moves actor from one cell center to another (or subcell in case of actor located within subcell)
-					// Using activity similar to LocalMove (i.e. Drag) *is* necessary, because that moves actor from precise WPos to another WPos
-					// ProductionExitMove is safer variant of Drag that does checks not to move onto blocked cell.
-
-					var activity = new ProductionExitMove(actor, self, self.World.Map.CenterOfCell(exitCell));
-
-					// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
-					this.productionInfo = this.productionInfo with { ExitMoveActivity = activity };
-					actor.QueueActivity(this.productionInfo.ExitMoveActivity);
-				}
-
 				// Check if actor is no longer on the exit cell. Only checking whether actor has moved to
 				// exit cell might be insufficient and in rare cases can exit get stuck in this state.
-				// If produced actor is aircraft, it's sufficient, that it's airborne, to consider ejection process complete.
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
+				// If produced actor is aircraft, consider ejection process complete.
+				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
@@ -330,11 +306,52 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 					this.productionInfo = null;
 
 					this.Close(self);
+					break;
 				}
 
-				// If current exit cell is still blocked after some time, try again in next state (WaitingForEjection),
+				// Only Mobile actors need custom logic to handle their exit from this Production trait.
+				if (this.productionInfo.Producee.HasTraitInfo<MobileInfo>())
+				{
+					if (this.NudgeBlockingActors(self, exitCell, actor))
+						this.State = AnimationState.WaitingForEjection;
+					else if (actor.CurrentActivity is null || (actor.CurrentActivity is not Move && actor.CurrentActivity is not ProductionExitMove))
+					{
+						// Abort all activites except ProductionExitMove to prevent player from delaying the exit.
+						actor.CancelActivity();
+
+						// Using standard MoveTo always moves actor from one cell center to another (or subcell in case of actor located within subcell)
+						// Using activity similar to LocalMove (i.e. Drag) *is* necessary, because that moves actor from precise WPos to another WPos
+						// ProductionExitMove is safer variant of Drag that does checks not to move onto blocked cell.
+
+						var activity = new ProductionExitMove(actor, self, self.World.Map.CenterOfCell(exitCell));
+
+						// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
+						this.productionInfo = this.productionInfo with { ExitMoveActivity = activity };
+						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
+					}
+				}
+				else if (actor.TryGetTrait<Aircraft>(out var aircraft))
+				{
+					// When Aircraft is produced, the exit should be closed immediately
+					if (this.rallyPoint == null)
+						this.QueuePathToRallyPoint(this.productionInfo);
+					else
+						actor.QueueActivity(aircraft.MoveTo(exitCell));
+
+					this.lastProducedUnit = this.productionInfo;
+					this.productionInfo = null;
+
+					this.Close(self);
+					break;
+				}
+
+				// If produced actor cannot exit exit cell after some time, try again in next state (WaitingForEjection),
 				// which can pick another exit.
-				if (this.stateAge++ >= this.info.EjectionWaitLimit)
+				if (this.stateAge++ >= this.info.EjectionWaitLimit && this.GetSpawnPosition(self, exitCell) == actor.CenterPosition)
+					this.State = AnimationState.WaitingForEjection;
+
+				// Just failsafe
+				if (this.stateAge >= this.info.EjectionWaitLimit * 2)
 					this.State = AnimationState.WaitingForEjection;
 
 				break;
@@ -354,8 +371,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 					break;
 				}
 
-				// If aircraft is airborne or player has manually moved produced actor, end ejection process
-				if (actor.TraitOrDefault<Aircraft>()?.AtLandAltitude == false || self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
+				// If player has manually moved produced actor, end ejection process
+				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
 
