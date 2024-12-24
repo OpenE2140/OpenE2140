@@ -97,7 +97,7 @@ public interface ITransformsPreview
 	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
 }
 
-public interface ICustomBuildingInfo
+public interface ICustomBuildingInfo : ITraitInfoInterface
 {
 	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore);
 
