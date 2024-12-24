@@ -170,6 +170,8 @@ shared_mcu_mine:
 		Name: Mobile Mine
 	Transforms:
 		IntoActor: shared_buildings_mine
+	# Mine has custom MCU deploy overlay.
+	ResourceMineMcuDeployOverlay:
 	Valued:
 		Cost: 800
 	Buildable:
