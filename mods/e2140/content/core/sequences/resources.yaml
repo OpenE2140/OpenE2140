@@ -2,3 +2,7 @@ resources:
 	idle:
 		Filename: content/core/assets/resources.png
 		Length: 6
+
+overlay:
+	build-resources:
+		Filename: content/core/assets/overlay_resources.png
