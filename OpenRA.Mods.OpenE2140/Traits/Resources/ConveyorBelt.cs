@@ -14,6 +14,7 @@
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -109,6 +110,14 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 		if (this.crate == null || this.IsTraitDisabled || this.IsTraitPaused)
 			return;
 
+		if (!this.TryProgress(self, this.crate))
+		{
+			self.GrantOrRevokeCondition(ref this.condition, false, this.Info.Condition);
+			return;
+		}
+		else
+			self.GrantOrRevokeCondition(ref this.condition, true, this.Info.Condition);
+
 		this.elapsed++;
 
 		if (this.DistanceMoved != this.DistanceBetweenEnds.Length)
@@ -118,6 +127,11 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 			this.condition = self.RevokeCondition(this.condition);
 
 		this.Complete(self, this.crate);
+	}
+
+	protected virtual bool TryProgress(Actor self, ResourceCrate crate)
+	{
+		return true;
 	}
 
 	protected virtual void Complete(Actor self, ResourceCrate crate)
