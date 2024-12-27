@@ -82,7 +82,7 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 
 	public bool Activate(Actor self, ResourceCrate crate)
 	{
-		if (this.crate != null)
+		if (this.crate != null || !this.ActivateInner(self, crate))
 			return false;
 
 		if (this.condition == Actor.InvalidConditionToken)
@@ -91,6 +91,11 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 		this.crate = crate;
 		this.crate.SubActor.ParentActor = self;
 
+		return true;
+	}
+
+	protected virtual bool ActivateInner(Actor self, ResourceCrate crate)
+	{
 		return true;
 	}
 
