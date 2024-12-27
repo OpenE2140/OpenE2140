@@ -20,6 +20,7 @@ shared_buildings_refinery:
 		ZOffset: 570
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+		DelayCrateProcessing: 66
 
 	AircraftConveyorBeltDock@HeavyLifter:
 		RequiresCondition: !Transforming
@@ -155,7 +156,7 @@ shared_buildings_refinery:
 		Offset: -512,112,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && !damaged && BeltActive
+		RequiresCondition: !Transforming && Powered && !damaged && ProcessingCrate
 	FloatingSpriteEmitter@Damaged:
 		Duration: -1
 		Lifetime: 27
@@ -167,7 +168,7 @@ shared_buildings_refinery:
 		Offset: -512,812,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && damaged && BeltActive
+		RequiresCondition: !Transforming && Powered && damaged && ProcessingCrate
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 3
