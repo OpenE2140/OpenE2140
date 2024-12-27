@@ -62,6 +62,8 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 	private int elapsed;
 	private ResourceCrate? crate;
 
+	protected bool HasCrate => this.crate != null;
+
 	private WVec DistanceBetweenEnds => this.Info.DistanceBetweenEnds;
 	private int DistanceMoved => Math.Min(this.elapsed * this.Info.Speed, this.DistanceBetweenEnds.Length);
 
