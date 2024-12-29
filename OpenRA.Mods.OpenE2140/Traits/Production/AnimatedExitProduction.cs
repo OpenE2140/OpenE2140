@@ -301,6 +301,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
+					this.NotifyProducedUnit(self, actor);
 
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
@@ -337,6 +338,8 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 						this.QueuePathToRallyPoint(this.productionInfo);
 					else
 						actor.QueueActivity(aircraft.MoveTo(exitCell));
+
+					this.NotifyProducedUnit(self, actor);
 
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
@@ -375,6 +378,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
 					this.QueuePathToRallyPoint(this.productionInfo);
+					this.NotifyProducedUnit(self, actor);
 
 					this.lastProducedUnit = this.productionInfo;
 					this.productionInfo = null;
@@ -443,6 +447,12 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			default:
 				throw new ArgumentOutOfRangeException(nameof(this.state), "Unknown state.");
 		}
+	}
+
+	private void NotifyProducedUnit(Actor self, Actor actor)
+	{
+		foreach (var notifier in actor.TryGetTraitsImplementing<INotifyActorProduced>())
+			notifier.OnProduced(actor, self);
 	}
 
 	private void QueuePathToRallyPoint(ProductionInfo productionInfo)

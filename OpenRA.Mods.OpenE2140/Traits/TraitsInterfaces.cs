@@ -140,3 +140,7 @@ public interface IConveyorBeltDockHost
 
 public record class ConveyorBeltInnerDockContext(bool IsLoading, DockAnimation Animation);
 
+public interface INotifyActorProduced
+{
+	void OnProduced(Actor self, Actor producent);
+}
