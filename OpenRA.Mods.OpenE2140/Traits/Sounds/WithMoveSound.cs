@@ -72,7 +72,7 @@ public class WithMoveSound : INotifyCreated, INotifyMoving, INotifyRemovedFromWo
 		if (this.mobile != null)
 			enableSound = type != MovementType.None && (this.mobile.IsMovingBetweenCells || self.CurrentActivity is ProductionExitMove);
 		else if (this.aircraft != null)
-			enableSound = type != MovementType.None && !this.aircraft.AtLandAltitude;
+			enableSound = type != MovementType.None || !this.aircraft.AtLandAltitude;
 
 		if (enableSound)
 			this.worldTrait?.Enable(self, this.info.Sound);
