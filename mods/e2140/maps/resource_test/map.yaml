@@ -1,0 +1,169 @@
+MapFormat: 12
+
+RequiresMod: e2140
+
+Title: resource_test
+
+Author: dummy
+
+Tileset: SANDY
+
+MapSize: 66,66
+
+Bounds: 1,1,64,64
+
+Visibility: Lobby
+
+Categories: Maps
+
+Players:
+	PlayerReference@UCS_Player:
+		Name: UCS_Player
+		AllowBots: False
+		Playable: True
+		Required: True
+		LockFaction: True
+		Faction: ucs
+		LockColor: True
+		Color: F20F0F
+		LockSpawn: True
+		LockTeam: True
+		Enemies: UCS_AI
+	PlayerReference@UCS_AI:
+		Name: UCS_AI
+		Playable: True
+		Faction: ucs
+		Enemies: UCS_Player
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+
+Actors:
+	Actor_bantha1: shared_vehicles_bantha
+		Owner: UCS_Player
+		Location: 38,31
+		Facing: 384
+		Resources: 500
+	Actor_bantha2: shared_aircrafts_heavy_lifter
+		Owner: UCS_Player
+		Location: 30,26
+		Facing: 384
+	Actor_bantha3: shared_aircrafts_heavy_lifter
+		Owner: UCS_Player
+		Location: 30,34
+		Facing: 384
+	Actor_bantha4: shared_aircrafts_heavy_lifter
+		Owner: UCS_Player
+		Location: 30,35
+		Facing: 384
+	Actor_bantha5: shared_vehicles_bantha
+		Owner: UCS_Player
+		Location: 31,32
+		Facing: 384
+	Actor_bantha6: shared_aircrafts_heavy_lifter
+		Owner: UCS_Player
+		Location: 31,33
+		Facing: 384
+	Actor_crate: crate
+		Owner: UCS_Player
+		Location: 35,34
+		Facing: 512
+	Actor_mine: shared_buildings_mine
+		Owner: UCS_Player
+		Location: 30,28
+	Actor_refinery: shared_buildings_refinery
+		Owner: UCS_Player
+		Location: 36,28
+		FreeActor: False
+	Actor_refinery2: shared_buildings_refinery
+		Owner: UCS_Player
+		Location: 30,22
+		FreeActor: False
+	Actor_powerplant: shared_buildings_power_plant
+		Owner: UCS_Player
+		Location: 36,23
+	Actor_spider: ucs_vehicles_spider
+		Owner: UCS_Player
+		Location: 36,35
+		Facing: 512
+	Actor_assault1: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Location: 36,37
+		Facing: 512
+	Actor_assault2: ucs_vehicles_tiger_assault
+		Owner: UCS_Player
+		Location: 36,38
+		Facing: 512
+	Actor_refinery_mcu: shared_mcu_refinery
+		Owner: UCS_Player
+		Location: 38,35
+		Facing: 512
+	Actor_enemy_crate: crate
+		Owner: UCS_AI
+		Location: 43,34
+		Facing: 512
+	Actor_enemy_bantha: shared_vehicles_bantha
+		Owner: UCS_AI
+		Location: 45,34
+		Facing: 512
+	Actor_prodcenter: ucs_buildings_prod_center
+		Owner: UCS_Player
+		Location: 25,28
+	Actor_mine_mcu: shared_mcu_mine
+		Owner: UCS_Player
+		Location: 25,34
+		Facing: 384
+	Actor19: shared_mcu_water_base
+		Owner: UCS_Player
+		Facing: 384
+		Location: 30,43
+	Actor20: ucs_infantry_silver_one
+		Owner: UCS_AI
+		Facing: 384
+		Location: 47,33
+		SubCell: 1
+	Actor21: ucs_infantry_silver_one
+		Owner: UCS_AI
+		Facing: 384
+		Location: 47,34
+		SubCell: 1
+	Actor22: ucs_infantry_silver_one
+		Owner: UCS_AI
+		Facing: 384
+		Location: 48,33
+		SubCell: 1
+	Actor23: ucs_infantry_silver_one
+		Owner: UCS_AI
+		Facing: 384
+		Location: 48,34
+		SubCell: 1
+	Actor24: shared_mcu_air_base
+		Owner: UCS_Player
+		Facing: 384
+		Location: 21,28
+	Actor25: shared_buildings_research_center
+		Owner: UCS_Player
+		Location: 25,25
+	Actor26: ucs_buildings_heavy_tech
+		Owner: UCS_Player
+		Location: 42,28
+	Actor27: shared_mcu_refinery
+		Owner: UCS_Player
+		Facing: 384
+		Location: 16,28
+	Actor28: shared_mcu_refinery
+		Owner: UCS_Player
+		Facing: 384
+		Location: 18,31
+
+Rules:
+	Player:
+		-ConquestVictoryConditions:
+	World:
+		-SpawnStartingUnits:
+		-MapStartingLocations:
+	shared_buildings_mine:
+		ResourceMine:
+			Force: 500
