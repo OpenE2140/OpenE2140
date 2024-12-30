@@ -19,6 +19,24 @@ shared_vehicles_bantha:
 		HP: 400
 	Mobile:
 		Speed: 50
+	DockClientManager:
+		OccupancyCostModifier: 150
+		Voice: Unload
+	MobileCrateTransporter:
+		Offset: 0,192,0
+		ZOffset: 806
+		UnloadVoice: Unload
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 400, 250, 150, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 150, 250, 400
+	CrateTransporterRoutine:
+		# Delay starting routine when created using FreeActor so that CrateTransporter does not move through the construction pyramid (of the Refinery).
+		FreeActorDelayRoutine: 10
 	RevealsShroud:
 		Range: 2c896
 	SpawnActorOnDeath:

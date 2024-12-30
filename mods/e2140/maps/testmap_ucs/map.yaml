@@ -350,5 +350,23 @@ Actors:
 		Owner: UCS_Player
 		Location: 28,28
 		WaterBaseDock: Actor80
+	Actor82: shared_buildings_refinery
+		Owner: UCS_Player
+		Location: 25,19
+	Actor83: shared_buildings_mine
+		Owner: UCS_Player
+		Location: 20,19
+	Actor84: shared_vehicles_bantha
+		Owner: UCS_Player
+		Facing: 384
+		Location: 23,22
+	Actor85: shared_vehicles_bantha
+		Owner: UCS_Player
+		Facing: 384
+		Location: 23,23
+	Actor86: shared_vehicles_bantha
+		Owner: UCS_Player
+		Facing: 384
+		Location: 23,24
 
 Rules: rules.yaml
