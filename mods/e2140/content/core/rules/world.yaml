@@ -137,14 +137,7 @@ World:
 		Offset: 240,240,0
 		Palette:
 	# WORKAROUND: temporary until either resources are implemented or translation linting is fixed
-	ResourceLayer:
-		RecalculateResourceDensity: true
-		ResourceTypes:
-			Resources:
-				ResourceIndex: 1
-				TerrainType: Resources
-				AllowedTerrainTypes: Clear
-				MaxDensity: 10000
+	DummyResourceLayer:
 
 # Map editor specific world setup.
 EditorWorld:
@@ -161,7 +154,7 @@ EditorWorld:
 		AllowedTerrainTypes: Clear, Road
 		Palette:
 	# Dummy, since resources are not implemented yet, but editor now requires a resource layer.
-	EditorResourceLayer:
+	DummyResourceLayer:
 	# Custom rendering.
 	EditorActorCustomRenderLayer:
 	# Annotations for Water Base and Dock in the editor.
