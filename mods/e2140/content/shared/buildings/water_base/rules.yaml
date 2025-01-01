@@ -78,6 +78,7 @@ shared_buildings_water_base:
 		# TODO: remove after power is implemented
 		-RequiresCondition:
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	GrantConditionOnDamageState:
 		Condition: damaged
 	# Water Base has loose remappable pixels when it's damaged. This overlay sprite covers that.

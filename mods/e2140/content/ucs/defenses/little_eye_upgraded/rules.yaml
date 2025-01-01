@@ -42,6 +42,6 @@ ucs_mcu_little_eye_upgraded:
 		Queue: Defense.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 15
-		Prerequisites: HeavyRockets
+		Prerequisites: RocketEngine, ucs_buildings_robot_factory
 	WithTextDecoration:
 		Text: Little Eye Upgr.

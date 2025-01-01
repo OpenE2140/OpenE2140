@@ -28,7 +28,7 @@ ucs_buildings_pb_control:
 	Selectable:
 		Bounds: 2064, 1984, 32, 370
 	ProvidesPrerequisite:
-		RequiresCondition: !Transforming && Powered
+		RequiresCondition: !Transforming
 	Encyclopedia:
 		Category: UCS - Buildings
 		Order: 20
@@ -52,6 +52,6 @@ ucs_mcu_pb_control:
 		Queue: Building.UCS
 		BuildDuration: 138
 		BuildPaletteOrder: 100
-		Prerequisites: PlasmaWeapons
+		Prerequisites: PlasmaWeapons, shared_buildings_research_center
 	WithTextDecoration:
 		Text: PB Control

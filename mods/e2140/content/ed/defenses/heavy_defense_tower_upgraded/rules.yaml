@@ -38,6 +38,6 @@ ed_mcu_heavy_defense_tower_upgraded:
 		Queue: Defense.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 25
-		Prerequisites: IonCannon
+		Prerequisites: IonCannon, ed_buildings_tech_house
 	WithTextDecoration:
 		Text: Heavy Def. Tower Upgr.

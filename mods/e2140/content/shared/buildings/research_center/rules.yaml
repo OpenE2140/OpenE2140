@@ -30,6 +30,8 @@ shared_buildings_research_center:
 			BottomRight: 756, 1024
 	Selectable:
 		Bounds: 2064, 1984, -140, 260
+	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	Researches:
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered

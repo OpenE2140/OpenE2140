@@ -46,6 +46,7 @@ shared_buildings_water_base_dock:
 		PauseOnCondition: !Powered || IsDead
 		ExitWaypoint: 0,1,0
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	MarkActorProducer:
 	AnimatedExitProductionQueue@ED:
 		Type: Ship.ED

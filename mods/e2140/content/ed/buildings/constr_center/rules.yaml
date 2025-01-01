@@ -57,6 +57,7 @@ ed_buildings_constr_center:
 	ProductionBar@Defense:
 		ProductionType: Defense.ED
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
 		LineInitialOffset: 924,1500,0

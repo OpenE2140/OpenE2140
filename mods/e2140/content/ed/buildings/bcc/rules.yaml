@@ -28,7 +28,7 @@ ed_buildings_bcc:
 	Selectable:
 		Bounds: 2064, 1984, -64, 64
 	ProvidesPrerequisite:
-		RequiresCondition: !Transforming && Powered
+		RequiresCondition: !Transforming
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 12
@@ -52,6 +52,6 @@ ed_mcu_bcc:
 		Queue: Building.ED
 		BuildDuration: 138
 		BuildPaletteOrder: 100
-		Prerequisites: NuclearWeapons
+		Prerequisites: anypower, NuclearWeapons, shared_buildings_research_center
 	WithTextDecoration:
 		Text: BCC

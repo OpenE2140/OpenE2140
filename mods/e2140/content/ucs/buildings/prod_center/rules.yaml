@@ -58,6 +58,7 @@ ucs_buildings_prod_center:
 	ProductionBar@Defense:
 		ProductionType: Defense.UCS
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
 		LineInitialOffset: -30,1035,0

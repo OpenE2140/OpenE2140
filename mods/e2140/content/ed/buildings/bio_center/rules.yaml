@@ -38,6 +38,7 @@ ed_buildings_bio_center:
 	ProductionBar:
 		ProductionType: Infantry.ED
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	Exit@Exit1:
 		# SpawnOffset: -400, 200, 0
 		ExitCell: -1,2

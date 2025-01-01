@@ -32,6 +32,7 @@ shared_buildings_power_plant:
 	Selectable:
 		Bounds: 2064, 1984, -50, 150
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 		Prerequisite: anypower
 	FireWarheadsOnDeath:
 		Weapon: PowerPlantExploding

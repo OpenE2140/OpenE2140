@@ -40,6 +40,7 @@ shared_buildings_refinery:
 	Selectable:
 		Bounds: 3088, 1950, 384, 128
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	GrantConditionOnDamageState:
 		Condition: damaged
 	# TODO Smoke should only come out from chimey when resources are delivered inside Refinery.

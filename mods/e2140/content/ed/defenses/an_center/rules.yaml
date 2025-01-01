@@ -62,6 +62,6 @@ ed_mcu_an_center:
 		Queue: Defense.ED
 		BuildDuration: 100
 		BuildPaletteOrder: 50
-		Prerequisites: IonCannon
+		Prerequisites: anypower, IonCannon
 	WithTextDecoration:
 		Text: Watch Tower

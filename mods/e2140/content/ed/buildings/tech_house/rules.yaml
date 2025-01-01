@@ -43,6 +43,7 @@ ed_buildings_tech_house:
 	ProductionBar:
 		ProductionType: Vehicle.ED
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	# Specify offset, where the first point of rally point line should be rendered. 
 	CustomRallyPoint:
 		LineInitialOffset: 1584,885,0

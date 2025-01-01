@@ -42,6 +42,7 @@ ucs_buildings_robot_factory:
 	ProductionBar:
 		ProductionType: Infantry.UCS
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	Exit@Exit1:
 		ExitCell: -1,2
 		Facing: 384

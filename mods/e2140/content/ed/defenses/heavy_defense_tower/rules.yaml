@@ -51,6 +51,6 @@ ed_mcu_heavy_defense_tower:
 		Queue: Defense.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 20
-		Prerequisites: HeavyRockets
+		Prerequisites: HeavyRockets, ed_buildings_tech_house
 	WithTextDecoration:
 		Text: Heavy Def. Tower

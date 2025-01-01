@@ -70,6 +70,7 @@ shared_buildings_air_base:
 	ProductionBar@UCS:
 		ProductionType: Aircraft.UCS
 	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
 	Exit@Exit1:
 		SpawnOffset: 1500, -900, 0
 		ExitCell: 4,0
@@ -148,6 +149,6 @@ shared_mcu_air_base:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 90
-		Prerequisites: Flying
+		Prerequisites: anypower, Flying
 	WithTextDecoration:
 		Text: Air Base
