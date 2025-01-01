@@ -8,6 +8,11 @@ ucs_defenses_pb_cannon:
 		Start: 2
 		Length: 9
 		Tick: 100
+	damaged-active:
+		Filename: content/ucs/defenses/pb_cannon/building_pb_cannon.png
+		Length: 9
+		Tick: 100
+		Offset: 5, -5
 
 ucs_mcu_pb_cannon:
 	Inherits: shared_mcu
