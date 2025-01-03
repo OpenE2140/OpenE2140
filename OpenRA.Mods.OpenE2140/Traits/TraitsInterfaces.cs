@@ -104,6 +104,8 @@ public interface ICustomBuildingInfo
 	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
 
 	IEnumerable<CPos> Tiles(CPos location);
+
+	WPos GetCenterOfFootprint(CPos location);
 }
 
 public interface INotifyBuildingRepair
