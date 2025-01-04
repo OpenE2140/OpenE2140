@@ -55,6 +55,8 @@ public class ResourceMine : ConveyorBelt
 	private ResourceCrate? crateBeingMined;
 	private ResourceCrate? availableCrate;
 
+	public bool IsDepleted { get; private set; }
+
 	public ResourceMine(Actor self, ResourceMineInfo info)
 		: base(info)
 	{
@@ -86,7 +88,7 @@ public class ResourceMine : ConveyorBelt
 
 		if (minable > 0)
 		{
-			var mined = this.Info.EmptyForce;
+			var mined = 0;
 			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
 			for (var y = -this.Info.Range; y <= this.Info.Range && mined < minable; y++)
@@ -98,6 +100,13 @@ public class ResourceMine : ConveyorBelt
 					if ((targetCell - centerCell).Length <= this.Info.Range)
 						mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
 				}
+			}
+
+			if (mined == 0)
+			{
+				this.IsDepleted = true;
+
+				mined = this.Info.EmptyForce;
 			}
 
 			this.crateBeingMined.Resources += mined;
