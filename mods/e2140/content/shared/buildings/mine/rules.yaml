@@ -7,6 +7,7 @@ shared_buildings_mine:
 	Power:
 		Amount: -200
 	ResourceMine:
+		Range: 2
 		InsideOffset: 512,-554,0
 		EntryOffset: 1260
 		OutsideOffset: 1404,-554,0
