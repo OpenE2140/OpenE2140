@@ -14,6 +14,9 @@ shared_buildings_mine:
 		ZOffset: 620
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+	ResourceMineOverlay:
+		MiningAreaBorderColor: 8F8F00FF
+		MiningAreaBorderShape: Square			# Square/Circle/None
 
 	AircraftConveyorBeltDock@HeavyLifter:
 		RequiresCondition: !Transforming
