@@ -176,6 +176,8 @@ shared_mcu_mine:
 		IntoActor: shared_buildings_mine
 	# Mine has custom MCU deploy overlay.
 	ResourceMineMcuDeployOverlay:
+		MinableCellsInMiningAreaBorderColor: 8F8F00FF
+		MinableAreaBorderShape: Square			# Square/Circle/None
 	Valued:
 		Cost: 800
 	Buildable:
