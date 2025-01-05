@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Collections.Immutable;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
@@ -43,6 +44,22 @@ public class ResourceMineInfo : ConveyorBeltInfo
 	{
 		return new ResourceMine(init.Self, this);
 	}
+
+	public IEnumerable<CPos> GetCellsInMiningArea(CPos centerCell)
+	{
+		var range = this.Range;
+
+		for (var y = -range; y <= range; y++)
+		{
+			for (var x = -range; x <= range; x++)
+			{
+				var vec = new CVec(y, x);
+
+				if (vec.Length <= range)
+					yield return centerCell + vec;
+			}
+		}
+	}
 }
 
 public class ResourceMine : ConveyorBelt
@@ -55,6 +72,8 @@ public class ResourceMine : ConveyorBelt
 	private ResourceCrate? crateBeingMined;
 	private ResourceCrate? availableCrate;
 
+	public IReadOnlyList<CPos> CellsInMiningArea { get; }
+
 	public bool IsDepleted { get; private set; }
 
 	public ResourceMine(Actor self, ResourceMineInfo info)
@@ -63,6 +82,13 @@ public class ResourceMine : ConveyorBelt
 		this.Info = info;
 
 		this.resourceLayer = self.World.WorldActor.TraitOrDefault<ResourceLayer>();
+
+		var customBuildingInfo = self.Info.TraitInfoOrDefault<ICustomBuildingInfo>();
+
+		// Mineable cells never change (because Mine's position cannot change), so precalculate them on creation
+		this.CellsInMiningArea = this.Info.GetCellsInMiningArea(
+				self.World.Map.CellContaining(customBuildingInfo.GetCenterOfFootprint(self.Location))
+			).ToImmutableList();
 	}
 
 	protected override void TickInner(Actor self)
@@ -89,17 +115,12 @@ public class ResourceMine : ConveyorBelt
 		if (minable > 0)
 		{
 			var mined = 0;
-			var centerCell = self.World.Map.CellContaining(self.CenterPosition);
 
-			for (var y = -this.Info.Range; y <= this.Info.Range && mined < minable; y++)
+			foreach (var targetCell in this.CellsInMiningArea)
 			{
-				for (var x = -this.Info.Range; x <= this.Info.Range && mined < minable; x++)
-				{
-					var targetCell = centerCell + new CVec(y, x);
-
-					if ((targetCell - centerCell).Length <= this.Info.Range)
-						mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
-				}
+				mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
+				if (mined >= minable)
+					break;
 			}
 
 			if (mined == 0)
