@@ -13,6 +13,7 @@
 
 using System.Collections.Immutable;
 using JetBrains.Annotations;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 
@@ -30,6 +31,9 @@ public class ResourceMineInfo : ConveyorBeltInfo
 
 	[Desc("The amount of resources which can be mined per tick when empty.")]
 	public readonly int EmptyForce = 1;
+
+	[Desc("If true, cells being mined are shuffled before each mining tick.")]
+	public readonly bool ShuffleMinableCells = false;
 
 	[Desc("The amount of ticks between mining.")]
 	public readonly int Delay = 1;
@@ -116,7 +120,11 @@ public class ResourceMine : ConveyorBelt
 		{
 			var mined = 0;
 
-			foreach (var targetCell in this.CellsInMiningArea)
+			IEnumerable<CPos> minableCells = this.CellsInMiningArea;
+			if (this.Info.ShuffleMinableCells)
+				minableCells = minableCells.Shuffle(self.World.SharedRandom);
+
+			foreach (var targetCell in minableCells)
 			{
 				mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
 				if (mined >= minable)
