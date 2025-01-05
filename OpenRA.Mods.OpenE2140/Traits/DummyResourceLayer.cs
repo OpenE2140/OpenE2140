@@ -25,14 +25,16 @@ public class DummyResourceLayerInfo : TraitInfo, IResourceLayerInfo
 
 public class DummyResourceLayer : IResourceLayer
 {
+	private readonly DummyResourceLayerInfo info;
+
 	public DummyResourceLayer(DummyResourceLayerInfo info)
 	{
-		this.Info = info;
+		this.info = info;
 	}
 
 	bool IResourceLayer.IsEmpty => true;
 
-	public IResourceLayerInfo Info { get; }
+	IResourceLayerInfo IResourceLayer.Info => this.info;
 
 	event Action<CPos, string> IResourceLayer.CellChanged { add { } remove { } }
 
