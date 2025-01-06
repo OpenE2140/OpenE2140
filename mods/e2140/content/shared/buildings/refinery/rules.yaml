@@ -6,13 +6,18 @@ shared_buildings_refinery:
 		HP: 800
 	Power:
 		Amount: -300
-	FreeActor:
-		# TODO: support changing actor based on presence of Air Base and researched Flying technology
-		Actor: shared_vehicles_bantha
-		# Actor: shared_aircrafts_heavy_lifter
+	# Spawn free crate transporter with Refinery.
+	# If player has researched Flying and has built Air Base, spawn Heavy Lifter.
+	# Otherwise they get just Buntha.
+	SpawnActorOnCondition:
+		ActorConditions:
+			shared_vehicles_bantha: !Transforming && !FreeHeavyLifter
+			shared_aircrafts_heavy_lifter: !Transforming && FreeHeavyLifter
 		SpawnOffset: 2,1
 		Facing: 512
-		RequiresCondition: !Transforming
+	GrantConditionOnPrerequisite@Flying:
+		Condition: FreeHeavyLifter
+		Prerequisites: Flying, shared_buildings_air_base
 	ResourceRefinery:
 		InsideOffset: 1384,-450,0
 		EntryOffset: 1216
