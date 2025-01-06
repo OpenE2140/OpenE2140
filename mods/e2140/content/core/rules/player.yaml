@@ -54,6 +54,8 @@ Player:
 	SupportPowerManager:
 	# Research system.
 	Research:
+	# Allows using GrantConditionOnPrerequisite on actors.
+	GrantConditionOnPrerequisiteManager:
 
 # Map editor specific player setup.
 EditorPlayer:

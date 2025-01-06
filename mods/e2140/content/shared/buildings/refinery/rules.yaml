@@ -6,17 +6,122 @@ shared_buildings_refinery:
 		HP: 800
 	Power:
 		Amount: -300
+	# Spawn free crate transporter with Refinery.
+	# If player has researched Flying and has built Air Base, spawn Heavy Lifter.
+	# Otherwise they get just Buntha.
+	SpawnActorOnCondition:
+		ActorConditions:
+			shared_vehicles_bantha: !Transforming && !FreeHeavyLifter
+			shared_aircrafts_heavy_lifter: !Transforming && FreeHeavyLifter
+		SpawnOffset: 2,1
+		Facing: 512
+	GrantConditionOnPrerequisite@Flying:
+		Condition: FreeHeavyLifter
+		Prerequisites: Flying, shared_buildings_air_base
+	ResourceRefinery:
+		InsideOffset: 1384,-450,0
+		EntryOffset: 1216
+		OutsideOffset: 512,-450,0
+		ZOffset: 570
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+		DelayCrateProcessing: 66
+
+	AircraftConveyorBeltDock@HeavyLifter:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: AircraftUnload
+		IsDragRequired: false
+		DockWait: 1
+		DockOffset: 1384,-512,0
+		
+		# TODO: make crate on the conveyor belt keep its facing
+		AllowedDockAngles: 0, 128, 256, 384, 512, 640, 768, 896
+		LandAltitude: 128
+
+	ConveyorBeltDock@PortSouth:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+		
+		# South side
+		DockOffset: 1414,590,0
+		DockAngle: 512
+		DragOffset: 1404,185,0
+		DragLength: 20
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 440, 250, 150, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 6
+			Offsets: 0, 20, 150, 250, 440
+	
+	ConveyorBeltDock@PortNorth:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+		
+		# North side
+		DockOffset: 1024,-1024,0
+		DockAngle: 0
+		DragOffset: 1404,-913,0
+		DragLength: 26
+		
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 270, 180, 110, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 110, 180, 270
+		
+	ConveyorBeltDock@PortEast:
+		RequiresCondition: !Transforming
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 500, 330, 200, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 200, 330, 500
+
+		# DockHost
+		Type: Unload
+		IsDragRequired: true
+		DockWait: 1
+		
+		# East side
+		DockOffset: 2438,-434,0
+		DockAngle: 768
+		DragOffset: 2238,-434,0
+		DragLength: 20
+	
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
-		RequiresCondition: Powered
-	WithIdleOverlay@Belt-light:
-		Sequence: belt-lights
-		Offset: 208,1644,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
 		Offset: 208,1644,0
 		RequiresCondition: !Transforming
+	WithIdleOverlay@BeltRetract:
+		Sequence: belt-retract
+		Offset: 424,1328,0
+		RequiresCondition: !Transforming && BeltActive
+		PauseOnCondition: !Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 208,1644,0
+		RequiresCondition: Powered
 	WithNightLightSource:
 		RequiresCondition: !Transforming && Powered
 	Building:
@@ -38,7 +143,8 @@ shared_buildings_refinery:
 			TopLeft: -1024, 412
 			BottomRight: 0, 1024
 	Selectable:
-		Bounds: 3088, 1950, 384, 128
+		Polygon: 394,132, 3492,132 , 3492,1119, 1544,1119, 1544,2076, 394,2076
+		DecorationBounds: 3088, 1950, 384, 128
 	ProvidesPrerequisite:
 		RequiresCondition: !Transforming
 	GrantConditionOnDamageState:
@@ -55,7 +161,7 @@ shared_buildings_refinery:
 		Offset: -512,112,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && !damaged
+		RequiresCondition: !Transforming && Powered && !damaged && ProcessingCrate
 	FloatingSpriteEmitter@Damaged:
 		Duration: -1
 		Lifetime: 27
@@ -67,7 +173,7 @@ shared_buildings_refinery:
 		Offset: -512,812,0
 		Image: refinery_smoke
 		Sequences: chimney_smoke
-		RequiresCondition: !Transforming && Powered && damaged
+		RequiresCondition: !Transforming && Powered && damaged && ProcessingCrate
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 3

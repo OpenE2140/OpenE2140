@@ -11,8 +11,10 @@
 
 #endregion
 
+using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
+using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -95,7 +97,7 @@ public interface ITransformsPreview
 	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
 }
 
-public interface ICustomBuildingInfo
+public interface ICustomBuildingInfo : ITraitInfoInterface
 {
 	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore);
 
@@ -104,6 +106,8 @@ public interface ICustomBuildingInfo
 	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
 
 	IEnumerable<CPos> Tiles(CPos location);
+
+	WPos GetCenterOfFootprint(CPos location);
 }
 
 public interface INotifyBuildingRepair
@@ -111,4 +115,21 @@ public interface INotifyBuildingRepair
 	void RepairStarted(Actor self);
 
 	void RepairInterrupted(Actor self);
+}
+
+public interface ISubActor
+{
+	void OnParentKilled(Actor self, Actor parentActor);
+}
+
+public interface IConveyorBeltDockHost
+{
+	Activity GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context);
+}
+
+public record class ConveyorBeltInnerDockContext(bool IsLoading, DockAnimation Animation);
+
+public interface INotifyActorProduced
+{
+	void OnProduced(Actor self, Actor producent);
 }
