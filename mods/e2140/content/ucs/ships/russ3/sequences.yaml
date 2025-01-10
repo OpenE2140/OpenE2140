@@ -8,6 +8,9 @@ ucs_ships_russ3:
 	icon:
 		Filename: SPRI1.MIX
 		Start: 157
+	idle-overlay:
+		Filename: content/ucs/ships/russ3/russ3_teamcolor.png
+		Facings: -16
 	# TODO: Enable after PR #20705 is merged in OpenRA
 	#icon-ucs:
 	#	Filename: SPRI0.MIX

@@ -37,8 +37,12 @@ ucs_ships_russ3:
 	Cloak@Underwater:
 		CloakType: UnderwaterCloak
 		EffectPalette:
+		CloakedCondition: cloaked
 	SpawnActorOnDeath:
 		Actor: ucs_ships_russ3_husk
+	WithIdleOverlay@TeamColorPatch:
+		IsPlayerPalette: True
+		RequiresCondition: !cloaked
 	Encyclopedia:
 		Category: UCS - Ships
 		Order: 2
