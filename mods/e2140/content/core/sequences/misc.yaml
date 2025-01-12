@@ -99,3 +99,9 @@ camera:
 		Filename: SPRI0.MIX
 		Start: 78
 		Length: 1
+
+waypoint:
+	idle:
+		Filename: SPRI0.MIX
+		Start: 100
+		Length: 1

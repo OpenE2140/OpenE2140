@@ -15,3 +15,17 @@ camera:
 		Image: camera
 	MapEditorData:
 		Categories: System
+
+waypoint:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: Waypoint
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+	BodyOrientation:
+		QuantizedFacings: 1
+	MapEditorData:
+		Categories: System
