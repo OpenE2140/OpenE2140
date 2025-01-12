@@ -97,5 +97,5 @@ icon:
 camera:
 	idle:
 		Filename: SPRI0.MIX
-		Start: 100
+		Start: 78
 		Length: 1
