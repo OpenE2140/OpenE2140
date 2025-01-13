@@ -1,6 +1,27 @@
 Sources:
 	SPRI1.MIX:
 
+Palettes:
+	BluePixelRemove: Merge
+		102: 0 0 0 0
+
 Generate:
+	wallPlace_cursor: BluePixelRemove
+		idle: 16-19
+			Offsets: 19:0,1
+	waterMinePlace_cursor:
+		idle: 36-39
+			Offsets: 36:1,1 37:1,1 38:0,1 39:1,1
+	minePlace_cursor:
+		idle: 48-51
+			Offsets: 50:-1,0 51:-1,0
+	mineRemove_cursor:
+		idle: 52-55
+			Offsets: 55:-1,0
+	pickup_cursor:
+		idle: 56-59
+			Offsets: 58:1,0 59:1,0
+	deliver_cursor: BluePixelRemove
+		idle: 68-71
 	repair_cursor:
 		idle: 72-75

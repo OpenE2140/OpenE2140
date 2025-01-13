@@ -40,14 +40,8 @@ Cursors:
 		guard:
 			Start: 28
 			Length: 4
-		pickup:
-			Start: 56
-			Length: 4
 		heal:
 			Start: 64
-			Length: 4
-		deliver:
-			Start: 68
 			Length: 4
 		repair:
 			Start: 72
@@ -58,21 +52,8 @@ Cursors:
 		deploy-blocked:
 			Start: 24
 			Length: 4
-
-		waterMinePlace:
-			Start: 36
-			Length: 4
 		waterMineRemove:
 			Start: 40
-			Length: 4
-		minePlace:
-			Start: 48
-			Length: 4
-		mineRemove:
-			Start: 52
-			Length: 4
-		wallPlace:
-			Start: 16
 			Length: 4
 
 		scroll-r:
@@ -89,6 +70,36 @@ Cursors:
 			Length: 4
 		plasmablast:
 			Start: 4
+			Length: 4
+
+	wallPlace_cursor.vspr:
+		wallPlace:
+			Start: 0
+			Length: 4
+
+	deliver_cursor.vspr:
+		deliver:
+			Start: 0
+			Length: 4
+
+	waterMinePlace_cursor.vspr:
+		waterMinePlace:
+			Start: 0
+			Length: 4
+
+	minePlace_cursor.vspr:
+		minePlace:
+			Start: 0
+			Length: 4
+
+	mineRemove_cursor.vspr:
+		mineRemove:
+			Start: 0
+			Length: 4
+
+	pickup_cursor.vspr:
+		pickup:
+			Start: 0
 			Length: 4
 
 	content/core/assets/repairblocked.png:
