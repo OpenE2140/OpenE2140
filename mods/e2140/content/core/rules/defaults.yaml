@@ -528,6 +528,13 @@
 	# Render an indicator that actor is interfered.
 	WithDecoration@Interference:
 		RequiresCondition: VehicleInterfered && !airborne
+	# Aircraft units hover when they're airborne.
+	Hovers:
+		BobDistance: -10
+		MinHoveringAltitude: 0c256
+		Ticks: 3
+		FallTicks: 6
+		RiseTicks: 6
 
 # Base for all aircrafts husks
 ^CoreAircraftFallingHusk:
