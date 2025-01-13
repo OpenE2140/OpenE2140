@@ -33,6 +33,9 @@ ed_ships_shark:
 		Count: 1
 	SpawnActorOnDeath:
 		Actor: ed_ships_shark_husk
+	LeavesTrails:
+		MovingInterval: 4
+		StartDelay: 4
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 1

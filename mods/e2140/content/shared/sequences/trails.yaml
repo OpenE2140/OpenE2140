@@ -14,3 +14,9 @@ trail:
 	trail_plasma:
 		Filename: trail_plasma.vspr
 		Length: 3
+	trail_water:
+		Filename: content/core/assets/water-trail.png
+		BlendMode: Alpha
+		Length: 8
+		Tick: 40
+		ZOffset: -2048
