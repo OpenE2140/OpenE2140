@@ -96,9 +96,8 @@ icon:
 
 camera:
 	idle:
-		Filename: SPRI0.MIX
-		Start: 78
-		Length: 1
+		Filename: content/core/assets/camera.png
+		Offset: -2,0
 
 waypoint:
 	idle:
