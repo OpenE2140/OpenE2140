@@ -14,12 +14,12 @@ ucs_buildings_prod_center:
 	deploy:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png
 		Offset: -28, -4
-		Length: 30
+		Length: 39
 		ZOffset: 256
 	covered:
 		Filename: content/ucs/buildings/prod_center/mcu_deploy.png
 		Offset: -28, -4
-		Start: 29
+		Start: 39
 		ZOffset: 256
 	uncover:
 		Filename: content/ucs/buildings/prod_center/pyramid_uncover.png
