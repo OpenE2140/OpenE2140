@@ -102,6 +102,4 @@ camera:
 
 waypoint:
 	idle:
-		Filename: SPRI0.MIX
-		Start: 100
-		Length: 1
+		Filename: content/core/assets/waypoint.png
