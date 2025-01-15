@@ -41,7 +41,9 @@ shared_buildings_mine:
 	BuildingCrew:
 		MaxPopulation: 6
 	TransformSequence:
-		Offset: 380,460,0
+		Image: shared_buildings_mine
+		Offset: 450,0,-20
+		ConstructionTime: 118
 	HitShape:
 		TargetableOffsets: 448,-750,0,   648,-50,0,   848,550,0,   -212,-750,0,   0,-50,0,   212,550,0,   -812,-750,0,   -612,-50,0,   -412,550,0
 		Type: Rectangle
