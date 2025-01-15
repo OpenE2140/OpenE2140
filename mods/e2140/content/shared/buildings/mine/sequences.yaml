@@ -10,6 +10,18 @@ shared_buildings_mine:
 	damaged-idle-lights:
 		Start: 3
 		IgnoreWorldTint: true
+	deploy:
+		Filename: content/shared/buildings/mine/mcu_deploy.png
+		Length: 30
+		ZOffset: 256
+	covered:
+		Filename: content/shared/buildings/mine/mcu_deploy.png
+		Start: 29
+		ZOffset: 256
+	uncover:
+		Filename: content/shared/buildings/mine/pyramid_uncover.png
+		Length: 9
+		ZOffset: 256
 	rotor_up:
 		Filename: content/shared/buildings/mine/building_mine_rotor.png
 		#Start: 4
