@@ -635,7 +635,7 @@ Container@PLAYER_WIDGETS:
 		# Temporary panel, until the unit panel is implemented
 		Container@CUSTOM_COMMANDS:
 			Logic: CustomCommandsLogic
-			X: WINDOW_WIDTH - WIDTH - 450
+			X: 437
 			Y: WINDOW_HEIGHT - HEIGHT - 7
 			Width: 136
 			Height: 26
