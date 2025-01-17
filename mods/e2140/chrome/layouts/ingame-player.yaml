@@ -642,7 +642,7 @@ Container@PLAYER_WIDGETS:
 			Children:
 				Button@BUILD_WALL:
 					Logic: AddFactionSuffixLogic
-					X: 0
+					X: -577
 					Y: 0
 					Width: 34
 					Height: 26
