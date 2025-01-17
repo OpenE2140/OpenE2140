@@ -43,6 +43,8 @@ ucs_ships_russ3:
 	WithIdleOverlay@TeamColorPatch:
 		IsPlayerPalette: True
 		RequiresCondition: !cloaked
+	LeavesTrails:
+		RequiresCondition: !cloaked
 	Encyclopedia:
 		Category: UCS - Ships
 		Order: 2
