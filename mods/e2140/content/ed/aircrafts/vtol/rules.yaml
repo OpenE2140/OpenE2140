@@ -17,6 +17,8 @@ ed_aircrafts_vtol:
 		HP: 50
 	Aircraft:
 		Speed: 175
+		TakeoffSounds: jetstart.wav
+		LandingSounds: jetstop.wav
 	RevealsShroud:
 		Range: 6c896
 	Armament@PRIMARY:
