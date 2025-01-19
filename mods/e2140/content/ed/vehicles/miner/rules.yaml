@@ -26,8 +26,8 @@ ed_vehicles_miner:
 		Weapon: ed_vehicles_miner
 		Recoil: 60
 		RecoilRecovery: 38
-		MuzzlePalette:
 		MuzzleSequence: muzzle
+		MuzzlePalette:
 	WithMuzzleOverlay@muzzle:
 	Minelayer:
 		Mine: shared_misc_landmine
@@ -68,6 +68,7 @@ ed_vehicles_miner:
 		PreBuildDelay: 10
 		AmmoPoolName: Walls
 		Voice: Unload
+		WallConstructionCondition: WallConstruction
 	WithAmmoPipsDecoration@Walls:
 		AmmoPools: Walls
 		FullSequence: pip-red
@@ -85,12 +86,6 @@ ed_vehicles_miner:
 	WithCustomBodyAnimation@MinelayingWallBuilding:
 		RequiresCondition: Minelaying || WallBuilding
 		Sequence: flicker
-	WithAmmoPipsDecoration:
-		FullSequence: pip-grey
-		Palette:
-		PipStride: 6,0
-		Margin: 5,5
-		RequiresSelection: True
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_miner_husk
 	Encyclopedia:
