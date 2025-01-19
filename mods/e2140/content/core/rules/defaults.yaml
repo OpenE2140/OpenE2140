@@ -179,6 +179,7 @@
 	BuildingCrew:
 		RequiresCondition: !Transforming && !IsDead
 		ExitBuildingNotification: LeavingBuilding
+		CrewExitCursor: exit
 	BuildingCrewEntrance@1:
 		EntryCell: 0,2
 	BuildingCrewEntrance@2:
