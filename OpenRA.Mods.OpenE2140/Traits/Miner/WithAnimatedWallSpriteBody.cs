@@ -21,9 +21,6 @@ internal sealed class WithAnimatedWallSpriteBodyInfo : WithSpriteBodyInfo, IWall
 
 	public override IEnumerable<IActorPreview> RenderPreviewSprites(ActorPreviewInitializer init, string image, int facings, PaletteReference p)
 	{
-		if (!this.EnabledByDefault)
-			yield break;
-
 		var adjacent = 0;
 		var locationInit = init.GetOrDefault<LocationInit>();
 		var neighbourInit = init.GetOrDefault<RuntimeNeighbourInit>();
