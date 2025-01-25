@@ -70,6 +70,8 @@ internal sealed class WithAnimatedWallSpriteBodyInfo : WithSpriteBodyInfo, IWall
 internal sealed class WithAnimatedWallSpriteBody : WithSpriteBody, INotifyRemovedFromWorld, IWallConnector, ITick
 {
 	private readonly WithAnimatedWallSpriteBodyInfo wallInfo;
+	private readonly bool createdByMap;
+
 	private int adjacent = 0;
 	private bool dirty = true;
 	private Construction? construction;
@@ -86,6 +88,7 @@ internal sealed class WithAnimatedWallSpriteBody : WithSpriteBody, INotifyRemove
 		: base(init, info)
 	{
 		this.wallInfo = info;
+		this.createdByMap = init.Contains<SpawnedByMapInit>();
 	}
 
 	protected override void DamageStateChanged(Actor self)
@@ -135,9 +138,10 @@ internal sealed class WithAnimatedWallSpriteBody : WithSpriteBody, INotifyRemove
 	protected override void TraitEnabled(Actor self)
 	{
 		base.TraitEnabled(self);
+
 		this.dirty = true;
 
-		if (this.Info.StartSequence == null)
+		if (this.Info.StartSequence == null || this.createdByMap)
 		{
 			this.DefaultAnimation.PlayFetchIndex(this.NormalizeSequence(self, this.Info.Sequence), () => this.adjacent);
 		}
