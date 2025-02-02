@@ -21,6 +21,9 @@ ed_ships_wtrn:
 		Range: 2c896
 	SpawnActorOnDeath:
 		Actor: ed_ships_wtrn_husk
+	LeavesTrails:
+		MovingInterval: 4
+		StartDelay: 4
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 2
