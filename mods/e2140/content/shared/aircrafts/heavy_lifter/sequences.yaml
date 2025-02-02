@@ -1,4 +1,6 @@
 shared_aircrafts_heavy_lifter:
+	Defaults:
+		ZOffset: 512
 	idle:
 		Filename: aircraft_heavy_lifter.vspr
 		Facings: -16

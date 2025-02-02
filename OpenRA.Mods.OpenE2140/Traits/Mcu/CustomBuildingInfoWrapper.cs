@@ -42,6 +42,13 @@ public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 		return this.buildingInfo.Tiles(location);
 	}
 
+	public WPos GetCenterOfFootprint(CPos location)
+	{
+		var (topLeft, bottomRight) = this.Tiles(location).GetBounds();
+
+		return topLeft + (bottomRight - topLeft) / 2;
+	}
+
 	public static ICustomBuildingInfo? WrapIfNecessary(ActorInfo actorInfo)
 	{
 		if (actorInfo.TryGetTrait<CustomBuildingInfo>(out var customBuildingInfo))
