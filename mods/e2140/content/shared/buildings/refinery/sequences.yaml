@@ -42,11 +42,11 @@ shared_buildings_refinery_addon:
 	covered:
 		Filename: content/shared/buildings/refinery/mcu_deploy_addon.png
 		Start: 7
-		ZOffset: 256
+		ZOffset: 514
 	uncover:
 		Filename: content/shared/buildings/refinery/pyramid_uncover_addon.png
 		Length: 10
-		ZOffset: 256
+		ZOffset: 514
 
 shared_mcu_refinery:
 	Inherits: shared_mcu
