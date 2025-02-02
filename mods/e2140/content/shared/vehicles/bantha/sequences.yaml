@@ -1,4 +1,6 @@
 shared_vehicles_bantha:
+	Defaults:
+		ZOffset: 312
 	idle:
 		Filename: vehicle_bantha.vspr
 		Facings: -16
