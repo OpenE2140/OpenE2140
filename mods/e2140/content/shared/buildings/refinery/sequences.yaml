@@ -10,6 +10,18 @@ shared_buildings_refinery:
 	damaged-idle-lights:
 		Start: 3
 		IgnoreWorldTint: true
+	deploy:
+		Filename: content/shared/buildings/refinery/mcu_deploy.png
+		Length: 30
+		ZOffset: 256
+	covered:
+		Filename: content/shared/buildings/refinery/mcu_deploy.png
+		Start: 29
+		ZOffset: 256
+	uncover:
+		Filename: content/shared/buildings/refinery/pyramid_uncover.png
+		Length: 10
+		ZOffset: 256
 	belt:
 		Filename: belt.vspr
 	belt-lights:
@@ -21,6 +33,20 @@ shared_buildings_refinery:
 		Filename: belt.vspr
 		Start: 5
 		Length: 3
+
+shared_buildings_refinery_addon:
+	deploy:
+		Filename: content/shared/buildings/refinery/mcu_deploy_addon.png
+		Length: 8
+		ZOffset: 256
+	covered:
+		Filename: content/shared/buildings/refinery/mcu_deploy_addon.png
+		Start: 7
+		ZOffset: 256
+	uncover:
+		Filename: content/shared/buildings/refinery/pyramid_uncover_addon.png
+		Length: 10
+		ZOffset: 256
 
 shared_mcu_refinery:
 	Inherits: shared_mcu
