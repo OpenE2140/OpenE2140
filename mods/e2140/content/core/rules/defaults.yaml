@@ -827,15 +827,9 @@
 		MinHP: 0
 		MaxHP: 5
 	# Render an indicator that actor is disabled.
-	WithDecoration@Disabled:
-		Image: disabledActor-indicator
-		Sequence: idle
-		Palette:
-		Position: Top
-		ValidRelationships: Ally, Enemy, Neutral
-		Offsets:
-			VehicleInterfered: -15, 0
+	WithColoredOverlay@DisableVehicle:
 		RequiresCondition: VehicleDisabled
+		Color: 00000064
 	# Plays static sound when vehicle is disabled.
 	Voiced@Static:
 		VoiceSet: StaticVoice
