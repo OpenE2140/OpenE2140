@@ -622,6 +622,15 @@
 	SpeedMultiplier:
 		Modifier: 55
 		RequiresCondition: decreasedspeed
+	# Ships leave water trails.
+	LeavesTrails:
+		Image: trail
+		Sequences: trail_water
+		MovingInterval: 7
+		StartDelay: 7
+		Type: CenterPosition
+		TerrainTypes: Water
+		Palette:
 
 # Add locomotor to world...
 ^CoreWorld:

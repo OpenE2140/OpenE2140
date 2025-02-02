@@ -14,3 +14,16 @@ trail:
 	trail_plasma:
 		Filename: trail_plasma.vspr
 		Length: 3
+	trail_water:
+		TilesetFilenames:
+			WASTELAND: content/core/assets/water-trail-wasteland.png
+			DESERT: content/core/assets/water-trail-desert.png
+			SANDY: content/core/assets/water-trail-temperate.png
+			TEMPERATE: content/core/assets/water-trail-temperate.png
+			SNOW: content/core/assets/water-trail-temperate.png
+			URBAN: content/core/assets/water-trail-temperate.png
+			URBAN2: content/core/assets/water-trail-temperate.png
+		BlendMode: Alpha
+		Length: 15
+		Tick: 40
+		ZOffset: -2048
