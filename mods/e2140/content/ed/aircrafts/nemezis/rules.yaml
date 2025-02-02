@@ -17,6 +17,8 @@ ed_aircrafts_nemezis:
 		HP: 300
 	Aircraft:
 		Speed: 94
+		TakeoffSounds: jetstart.wav
+		LandingSounds: jetstop.wav
 	RevealsShroud:
 		Range: 3c896
 	Armament@PRIMARY:
