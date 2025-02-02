@@ -14,6 +14,7 @@
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
@@ -29,6 +30,9 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	[GrantedConditionReference]
 	[Desc("Grant this condition while the actor is playing the sequence.")]
 	public readonly string Condition = "Transforming";
+
+	[Desc("Delay before the the animation starts (in ticks).")]
+	public readonly int Delay = 0;
 
 	[Desc("Time it takes for the building to construct under the pyramid.")]
 	public readonly int ConstructionTime = 100;
@@ -47,6 +51,8 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 
 public class TransformSequence : ITick
 {
+	private enum State { Waiting, Covering, Transforming, Complete }
+
 	private readonly TransformSequenceInfo info;
 
 	private readonly RenderSprites renderSprites;
@@ -57,6 +63,8 @@ public class TransformSequence : ITick
 	private int token = Actor.InvalidConditionToken;
 
 	private int remainingTime;
+	private int delay;
+	private State state = State.Complete;
 
 	public TransformSequence(ActorInitializer init, TransformSequenceInfo info)
 	{
@@ -80,6 +88,20 @@ public class TransformSequence : ITick
 		this.token = self.GrantCondition(this.info.Condition);
 
 		Game.Sound.PlayToPlayer(SoundType.World, self.Owner, this.info.TransformSound, self.CenterPosition);
+
+		this.delay = this.info.Delay;
+		if (this.delay > 0)
+		{
+			this.state = State.Waiting;
+			return;
+		}
+
+		this.StartDeployAnimation(self);
+	}
+
+	private void StartDeployAnimation(Actor self)
+	{
+		this.state = State.Covering;
 
 		// Original construction animation has separate sprites for deploy and pyramid cover animations
 		// If building is using original construction animation, we need to play cover animation
@@ -117,24 +139,46 @@ public class TransformSequence : ITick
 
 	private void Covered()
 	{
+		this.state = State.Transforming;
 		this.animation.Animation.PlayRepeating("covered");
 		this.remainingTime = this.info.ConstructionTime;
 	}
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.remainingTime == 0)
-			return;
+		switch (this.state)
+		{
+			case State.Waiting:
+			{
+				if (this.delay-- > 0)
+					return;
 
-		this.remainingTime--;
+				this.StartDeployAnimation(self);
+				break;
+			}
+			case State.Covering:
+			{
+				break;
+			}
+			case State.Transforming:
+			{
+				if (this.remainingTime-- > 0)
+					return;
 
-		if (this.remainingTime > 0)
-			return;
+				self.TryRevokingCondition(ref this.token);
 
-		self.RevokeCondition(this.token);
-		this.token = Actor.InvalidConditionToken;
+				this.Uncover(self);
+				this.state = State.Complete;
 
-		this.Uncover(self);
+				break;
+			}
+			case State.Complete:
+			{
+				break;
+			}
+			default:
+				break;
+		}
 	}
 
 	private void Uncover(Actor self)
