@@ -1,12 +1,16 @@
 General:
 	Name: Urban 2 (MP2)
 	Id: URBAN2
-	EditorTemplateOrder: Terrain, Cliffs, Buildings, Road
+	EditorTemplateOrder: Terrain, Cliffs, Shore, Road, Buildings, Asphalt Road
 	Palette:
 
 Terrain:
-	TerrainType@Building:
-		Type: Building
+	TerrainType@Shore:
+		Type: Shore
+		TargetTypes: Ground
+		Color: B09C78
+	TerrainType@Creek:
+		Type: Creek
 		TargetTypes: Ground
 		Color: B09C78
 	TerrainType@Clear:
@@ -24,6 +28,15 @@ Terrain:
 		TargetTypes: Ground
 		Color: 403216
 		AcceptsSmudgeType: Clear
+	TerrainType@Sand:
+		Type: Sand
+		TargetTypes: Ground
+		Color: C6AE76
+		AcceptsSmudgeType: Sand
+	TerrainType@SandEdge:
+		Type: SandEdge
+		TargetTypes: Ground
+		Color: C6AE76
 	TerrainType@Rock:
 		Type: Rock
 		TargetTypes: Ground
@@ -32,6 +45,19 @@ Terrain:
 		Type: Road
 		TargetTypes: Ground
 		Color: 5E430D
+	TerrainType@Water:
+		Type: Water
+		TargetTypes: Water
+		Color: 5C74A4
+		RestrictPlayerColor: true
+	TerrainType@AsphaltRoad:
+		Type: AsphaltRoad
+		TargetTypes: Ground
+		Color: 0e0d00
+	TerrainType@Building:
+		Type: Building
+		TargetTypes: Ground
+		Color: B09C78
 
 Templates:
 	# Clear tiles
@@ -48,6 +74,18 @@ Templates:
 			2: Clear
 			3: Clear
 			4: Clear
+
+	# Extra clear tiles
+	Template@343:
+		Id: 343
+		Images: content/core/assets/tilesets/urban2_extra_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1
+		Tiles:
+			0: Clear
+			1: Clear
 
 	# Large, unpassable rocks
 	Template@1:
@@ -81,22 +119,6 @@ Templates:
 			4: Clear
 			5: Clear
 
-	# Small buildings
-	Template@4:
-		Id: 4
-		Images: SPRT6.MIX
-		Size: 1,1
-		PickAny: True
-		Categories: Buildings
-		Frames: 197, 198, 231, 232, 233, 234
-		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
-
 	# Large crater made by destruction of Power Plant
 	Template@30:
 		Id: 30
@@ -124,234 +146,538 @@ Templates:
 			3: Rock
 
 	# Sand tiles
-	# There are no standard sand tiles, just tiles with smudges (221-222) and craters (215-218) numbered like in other tilesets.
+	Template@60:
+		Id: 60
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1
+		Tiles:
+			0: Sand
+			1: Sand
+	Template@61:
+		Id: 61
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 3
+		Tiles:
+			0: SandEdge
+	Template@62:
+		Id: 62
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 4
+		Tiles:
+			0: SandEdge
+	Template@63:
+		Id: 63
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 5
+		Tiles:
+			0: SandEdge
+	Template@64:
+		Id: 64
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 6
+		Tiles:
+			0: SandEdge
+	Template@65:
+		Id: 65
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 7
+		Tiles:
+			0: SandEdge
+	Template@66:
+		Id: 66
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 8
+		Tiles:
+			0: SandEdge
+	Template@67:
+		Id: 67
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 9
+		Tiles:
+			0: SandEdge
+	Template@68:
+		Id: 68
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 10
+		Tiles:
+			0: SandEdge
+	Template@69:
+		Id: 69
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 11
+		Tiles:
+			0: SandEdge
+	Template@70:
+		Id: 70
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 12
+		Tiles:
+			0: SandEdge
+	Template@71:
+		Id: 71
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 13
+		Tiles:
+			0: SandEdge
+	Template@72:
+		Id: 72
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 14
+		Tiles:
+			0: SandEdge
+	Template@73:
+		Id: 73
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 15
+		Tiles:
+			0: SandEdge
+	Template@74:
+		Id: 74
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 16
+		Tiles:
+			0: SandEdge
+	Template@75:
+		Id: 75
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 17
+		Tiles:
+			0: SandEdge
+	Template@82:
+		Id: 82
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 18
+		Tiles:
+			0: SandEdge
+	Template@83:
+		Id: 83
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 19
+		Tiles:
+			0: SandEdge
+	Template@84:
+		Id: 84
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 21
+		Tiles:
+			0: SandEdge
+	Template@85:
+		Id: 85
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 20
+		Tiles:
+			0: SandEdge
+	Template@86:
+		Id: 86
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 22
+		Tiles:
+			0: SandEdge
+	Template@87:
+		Id: 87
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 23
+		Tiles:
+			0: SandEdge
+	Template@88:
+		Id: 88
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 24
+		Tiles:
+			0: SandEdge
+	Template@89:
+		Id: 89
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 25
+		Tiles:
+			0: SandEdge
+	Template@90:
+		Id: 90
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 26
+		Tiles:
+			0: SandEdge
+	Template@91:
+		Id: 91
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 27
+		Tiles:
+			0: SandEdge
+	Template@92:
+		Id: 92
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 28
+		Tiles:
+			0: SandEdge
+	Template@93:
+		Id: 93
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 29
+		Tiles:
+			0: SandEdge
+	Template@94:
+		Id: 94
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 30
+		Tiles:
+			0: SandEdge
+	Template@95:
+		Id: 95
+		Images: content/core/assets/tilesets/urban2_sand_tiles.png
+		Size: 1,1
+		Categories: Terrain
+		Frames: 31
+		Tiles:
+			0: SandEdge
 
-	# Building tiles
+	# Water tiles
 	Template@100:
 		Id: 100
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 101, 102, 103, 104
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 189, 190, 191, 192
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Water
+			1: Water
+			2: Water
+			3: Water
 	Template@101:
 		Id: 101
-		Images: SPRT6.MIX
+		Images: SPRT0.MIX
 		Size: 2,2
-		Categories: Buildings
-		Frames: 105, 106, 107, 108
+		PickAny: True
+		Categories: Terrain
+		Frames: 191, 190, 192, 189
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-	Template@102:
-		Id: 102
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 109, 110, 111, 112
-		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-	Template@103:
-		Id: 103
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 113, 114, 115, 116
-		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-	Template@104:
-		Id: 104
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 117, 118, 119, 120
-		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+
+	# Creek tiles
 	Template@105:
 		Id: 105
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 121, 122, 123, 124
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		Categories: Shore
+		Frames: 0
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Creek
 	Template@106:
 		Id: 106
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 125, 126, 127, 128
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		Categories: Shore
+		Frames: 1
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Creek
+
+	# Shore tiles
 	Template@107:
 		Id: 107
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 129, 130, 131, 132
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 2, 3, 4, 5
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
 	Template@108:
 		Id: 108
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 133, 134, 135, 136
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 6, 7, 8, 9
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
 	Template@109:
 		Id: 109
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 137, 138, 139, 140
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 42, 43, 49
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Shore
+			1: Shore
+			2: Shore
 	Template@110:
 		Id: 110
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 141, 142, 143, 144
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 44, 45, 48
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Shore
+			1: Shore
+			2: Shore
 	Template@111:
 		Id: 111
-		Images: SPRT6.MIX
-		Size: 2,2
-		Categories: Buildings
-		Frames: 145, 146, 147, 148
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 46, 53
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
+			0: Shore
+			1: Shore
 	Template@112:
 		Id: 112
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 149, 150, 151, 152, 153, 154
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 47, 52
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Shore
+			1: Shore
 	Template@113:
 		Id: 113
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 155, 156, 157, 158, 159, 160
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 51, 54
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Shore
+			1: Shore
 	Template@114:
 		Id: 114
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 161, 162, 163, 164, 165, 166
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 50, 55
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Shore
+			1: Shore
 	Template@115:
 		Id: 115
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 167, 168, 169, 170, 171, 172
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 10, 11
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Clear
+			1: Shore
 	Template@116:
 		Id: 116
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 173, 174, 175, 176, 177, 178
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 12, 13
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Clear
+			1: Shore
 	Template@117:
 		Id: 117
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 179, 180, 181, 182, 183, 184
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 14, 15
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Clear
+			1: Shore
 	Template@118:
 		Id: 118
-		Images: SPRT6.MIX
-		Size: 3,2
-		Categories: Buildings
-		Frames: 185, 186, 187, 188, 189, 190
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 16, 17
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Shore
+			1: Clear
+	Template@119:
+		Id: 119
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 18, 19
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@120:
+		Id: 120
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 20, 21
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@121:
+		Id: 121
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 22, 23
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@122:
+		Id: 122
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 24, 25
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@123:
+		Id: 123
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 26, 27
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@124:
+		Id: 124
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 28, 29
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@125:
+		Id: 125
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 30, 31
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@126:
+		Id: 126
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 32, 33
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@127:
+		Id: 127
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 34, 40
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@128:
+		Id: 128
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 35, 38
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@129:
+		Id: 129
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 36, 39
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@130:
+		Id: 130
+		Images: content/core/assets/tilesets/urban2_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 37, 41
+		Tiles:
+			0: Shore
+			1: Shore
 
 	# Road tiles
+	Template@200:
+		Id: 200
+		Images: content/core/assets/tilesets/urban2_extra_tiles.png
+		Size: 1,1
+		Categories: Road
+		Frames: 2
+		Tiles:
+			0: Road
 	Template@201:
 		Id: 201
 		Images: SPRT6.MIX
@@ -890,3 +1216,244 @@ Templates:
 		Frames: 74
 		Tiles:
 			0: Rock
+
+	# Building tiles
+	Template@600:
+		Id: 600
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 101, 102, 103, 104
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@601:
+		Id: 601
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 105, 106, 107, 108
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@602:
+		Id: 602
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 109, 110, 111, 112
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@603:
+		Id: 603
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 113, 114, 115, 116
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@604:
+		Id: 604
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 117, 118, 119, 120
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@605:
+		Id: 605
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 121, 122, 123, 124
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@606:
+		Id: 606
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 125, 126, 127, 128
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@607:
+		Id: 607
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 129, 130, 131, 132
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@608:
+		Id: 608
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 133, 134, 135, 136
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@609:
+		Id: 609
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 137, 138, 139, 140
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@610:
+		Id: 610
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 141, 142, 143, 144
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@611:
+		Id: 611
+		Images: SPRT6.MIX
+		Size: 2,2
+		Categories: Buildings
+		Frames: 145, 146, 147, 148
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+	Template@612:
+		Id: 612
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 149, 150, 151, 152, 153, 154
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@613:
+		Id: 613
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 155, 156, 157, 158, 159, 160
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@614:
+		Id: 614
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 161, 162, 163, 164, 165, 166
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@615:
+		Id: 615
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 167, 168, 169, 170, 171, 172
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@616:
+		Id: 616
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 173, 174, 175, 176, 177, 178
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@617:
+		Id: 617
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 179, 180, 181, 182, 183, 184
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+	Template@618:
+		Id: 618
+		Images: SPRT6.MIX
+		Size: 3,2
+		Categories: Buildings
+		Frames: 185, 186, 187, 188, 189, 190
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
+
+	# Small buildings
+	Template@620:
+		Id: 620
+		Images: SPRT6.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Buildings
+		Frames: 197, 198, 231, 232, 233, 234
+		Tiles:
+			0: Building
+			1: Building
+			2: Building
+			3: Building
+			4: Building
+			5: Building
