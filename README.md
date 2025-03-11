@@ -16,10 +16,23 @@ Links:
 
 # Screenshots
 
-### Screenshots (January 2024)
-<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c" height="200"></a>
-<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3563c453-02e1-43ec-bc89-8a25e966e57d" height="200"></a>
-<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3f46ef30-ed13-4e65-a3dc-e7b1a0af4340" height="200"></a>
+### Screenshots (March 2025)
+<a href="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f"><img src="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f" height="200"></a>
+<a href="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511"><img src="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511" height="200"></a>
+
+<a href="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a"><img src="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a" height="200"></a>
+
+
+### Screenshots (March 2024)
+<a href="https://github.com/user-attachments/assets/8f7f97c8-7da2-475e-a2fc-53394b241518"><img src="https://github.com/user-attachments/assets/8f7f97c8-7da2-475e-a2fc-53394b241518" height="200"></a>
+<a href="https://github.com/user-attachments/assets/6534ccf4-ccfe-4af0-949f-85e47bc3b0d1"><img src="https://github.com/user-attachments/assets/6534ccf4-ccfe-4af0-949f-85e47bc3b0d1" height="200"></a>
+
+<details>
+	<summary>Screenshots (March 2024)</summary>
+	<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c" height="200"></a>
+	<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3563c453-02e1-43ec-bc89-8a25e966e57d" height="200"></a>
+	<a href="https://github.com/OpenE2140/OpenE2140/assets/119738087/b00c6d0f-2086-4d07-b8c1-ce27427acb6c"><img src="https://github.com/OpenE2140/OpenE2140/assets/119738087/3f46ef30-ed13-4e65-a3dc-e7b1a0af4340" height="200"></a>
+</details>
 
 <details>
 	<summary>Screenshots (September 2023)</summary>
