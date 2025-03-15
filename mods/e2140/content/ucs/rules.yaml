@@ -53,6 +53,9 @@ World:
 	Voiced@UcsAircraft:
 		VoiceSet: UcsVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	Aircraft:
+		TakeoffSounds: jetstart.wav
+		LandingSounds: jetstop.wav
 
 ^UcsInfantry:
 	Inherits: ^CoreInfantry
