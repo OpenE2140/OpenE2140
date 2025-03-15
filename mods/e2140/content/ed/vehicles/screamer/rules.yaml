@@ -35,8 +35,6 @@ ed_vehicles_screamer:
 	-RejectsOrders:
 	-ExternalCondition@Interference:
 	-WithDecoration@Interference:
-	WithDecoration@Disabled:
-		-Offsets:
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 12
