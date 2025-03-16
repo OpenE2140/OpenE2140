@@ -12,6 +12,7 @@ crate:
 	Targetable:
 		TargetTypes: Ground
 	SubActor:
+		MaximumFacingsWhenDetached: 8
 		AttachedCondition: attached
 	WithFacingSpriteBody:
 	WithFacingSpriteBody@shadow:
