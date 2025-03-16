@@ -43,6 +43,18 @@ public static class ActorExtensions
 		return traitOrDefault;
 	}
 
+	public static void TryGrantingCondition(this Actor actor, ref int token, string condition)
+	{
+		if (token == Actor.InvalidConditionToken)
+			token = actor.GrantCondition(condition);
+	}
+
+	public static void TryRevokingCondition(this Actor actor, ref int token)
+	{
+		if (token != Actor.InvalidConditionToken)
+			token = actor.RevokeCondition(token);
+	}
+
 	public static void GrantOrRevokeCondition(this Actor actor, ref int token, bool isEnabled, string? condition)
 	{
 		if (isEnabled && token == Actor.InvalidConditionToken)

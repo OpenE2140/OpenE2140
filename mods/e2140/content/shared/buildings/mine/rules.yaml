@@ -6,17 +6,115 @@ shared_buildings_mine:
 		HP: 500
 	Power:
 		Amount: -200
+	ResourceMine:
+		Range: 2
+		InsideOffset: 512,-554,0
+		EntryOffset: 1260
+		OutsideOffset: 1404,-554,0
+		ZOffset: 620
+		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	ResourceMineOverlay:
+		MiningAreaBorderColor: 8F8F00FF
+		MiningAreaBorderShape: Square			# Square/Circle/None
+
+	AircraftConveyorBeltDock@HeavyLifter:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: AircraftLoad
+		IsDragRequired: false
+		DockWait: 1
+		DockOffset: 1404,-512,0
+
+		# Currently allow only north and south facing for (un)load, because crate instantly turning looks ugly
+		# TODO: make crate on the conveyor belt keep its facing
+		AllowedDockAngles: 0, 512
+		LandAltitude: 128
+	
+	ConveyorBeltDock@PortSouth:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: Load
+		IsDragRequired: true
+		DockWait: 1
+		
+		# South side
+		DockOffset: 1404,520,0
+		DockAngle: 512
+		DragOffset: 1404,113,0
+		DragLength: 20
+		
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 6, 3, 5, 2, 2
+			Offsets: 490, 250, 150, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 150, 250, 490
+
+	ConveyorBeltDock@PortNorth:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: Load
+		IsDragRequired: true
+		DockWait: 1
+		
+		# North side
+		DockOffset: 1024,-1024,0
+		DockAngle: 0
+		DragOffset: 1404,-1035,0
+		DragLength: 26
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 280, 190, 100, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 100, 190, 280
+		
+	ConveyorBeltDock@PortEast:
+		RequiresCondition: !Transforming
+
+		# DockHost
+		Type: Load
+		IsDragRequired: true
+		DockWait: 1
+		
+		# East side
+		DockOffset: 2418,-504,0
+		DockAngle: 768
+		DragOffset: 2218,-504,0
+		DragLength: 20
+
+		# Custom sequences for crate movement during (un)load animation
+		LoadSequence:
+			Delays: 0, 3, 5, 2, 2
+			Offsets: 500, 330, 200, 20, 0
+		UnloadSequence:
+			Delays: 0, 2, 2, 5, 3
+			Offsets: 0, 20, 200, 330, 500
+
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
-		RequiresCondition: Powered
-	WithIdleOverlay@Belt-light:
-		Sequence: belt-lights
-		Offset: 402,1624,0
 		RequiresCondition: Powered
 	WithIdleOverlay@Belt:
 		Sequence: belt
 		Offset: 402,1624,0
 		RequiresCondition: !Transforming
+		PauseOnCondition: !Powered
+	WithIdleOverlay@BeltEject:
+		Sequence: belt-eject
+		Offset: 624,1328,0
+		RequiresCondition: !Transforming && BeltActive
+		PauseOnCondition: !Powered
+	WithIdleOverlay@Belt-light:
+		Sequence: belt-lights
+		Offset: 402,1624,0
+		RequiresCondition: Powered
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
 		Offset: 1680,-280,0
@@ -38,6 +136,12 @@ shared_buildings_mine:
 		Dimensions: 3,3
 		Footprint: xxx xx= ===
 		LocalCenterOffset: -370,-520,0
+		TerrainTypes: Clear, Road, Resources
+	ResourceMineCustomBuilding:
+		# In E2140 at least one Resources tile is required for Mine.
+		# Make sure all terrain types used in the condition are also defined in Building.TerrainTypes
+		# TODO: remove this requirement
+		AllowedTerrainTypesCondition: Resources
 	BuildingCrew:
 		MaxPopulation: 6
 	TransformSequence:
@@ -45,12 +149,13 @@ shared_buildings_mine:
 		Offset: 450,0,-20
 		ConstructionTime: 118
 	HitShape:
-		TargetableOffsets: 448,-750,0,   648,-50,0,   848,550,0,   -212,-750,0,   0,-50,0,   212,550,0,   -812,-750,0,   -612,-50,0,   -412,550,0
+		TargetableOffsets: 448,-750,0, 648,-50,0, 848,550,0, -212,-750,0, 0,-50,0, 212,550,0, -812,-750,0, -612,-50,0, -412,550,0
 		Type: Rectangle
 			TopLeft: -1024, -824
 			BottomRight: 824, 824
 	Selectable:
-		Bounds: 3088, 1984, 340, 32
+		Polygon: 344,32, 3436,32, 3436,832, 2608,832, 2608,2016, 344,2016
+		DecorationBounds: 3088, 1984, 340, 32
 	GrantConditionOnDamageState:
 		Condition: damaged
 	Encyclopedia:
@@ -69,6 +174,10 @@ shared_mcu_mine:
 		Name: Mobile Mine
 	Transforms:
 		IntoActor: shared_buildings_mine
+	# Mine has custom MCU deploy overlay.
+	ResourceMineMcuDeployOverlay:
+		MinableCellsInMiningAreaBorderColor: 8F8F00FF
+		MinableAreaBorderShape: Square			# Square/Circle/None
 	Valued:
 		Cost: 800
 	Buildable:
