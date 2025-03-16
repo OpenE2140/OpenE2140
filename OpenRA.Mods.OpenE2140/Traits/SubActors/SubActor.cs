@@ -18,11 +18,17 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.SubActors;
 
-public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo
+public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo, IEditorActorOptions
 {
 	[GrantedConditionReference]
 	[Desc("The condition to grant to self when the subactor is attached.")]
 	public readonly string? AttachedCondition;
+
+	[Desc("Display order for the facing slider in the map editor.")]
+	public readonly int EditorFacingDisplayOrder = 3;
+
+	[Desc("Maximum number of facings that the subactor is allowed to have, when it is not attached to any actor.")]
+	public readonly int MaximumFacingsWhenDetached = 16;
 
 	public WAngle GetInitialFacing() => WAngle.Zero;
 
@@ -36,6 +42,17 @@ public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo
 	IReadOnlyDictionary<CPos, SubCell> IOccupySpaceInfo.OccupiedCells(ActorInfo info, CPos location, SubCell subCell)
 	{
 		return new Dictionary<CPos, SubCell> { { location, subCell } };
+	}
+
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	{
+		yield return new EditorActorSlider("Facing", 5, 0, 1023, 0,
+			actor =>
+			{
+				var init = actor.GetInitOrDefault<FacingInit>(this);
+				return (init?.Value ?? this.GetInitialFacing()).Angle;
+			},
+			(actor, value) => actor.ReplaceInit(new FacingInit(Util.QuantizeFacing(new WAngle((int)value), this.MaximumFacingsWhenDetached))));
 	}
 }
 
@@ -97,7 +114,11 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 			if (this.Actor.IsInWorld && parentActor?.IsInWorld == true)
 				this.ParentActor = parentActor;
 			else if (this.Actor.IsInWorld)
+			{
+				this.Facing = new WAngle(init.GetValue<FacingInit, WAngle>(info.GetInitialFacing()).Angle);
+
 				this.AddInfluence();
+			}
 		});
 
 		this.Facing = init.GetValue<FacingInit, WAngle>(WAngle.Zero);
@@ -149,7 +170,7 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 		{
 			if (this.parentActor == null || this.parentFacing == null)
 			{
-				this.orientation = this.orientation.WithYaw(value);
+				this.orientation = this.orientation.WithYaw(Util.QuantizeFacing(value, this.info.MaximumFacingsWhenDetached));
 			}
 			else
 			{

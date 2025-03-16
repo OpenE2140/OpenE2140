@@ -174,5 +174,3 @@ EditorWorld:
 	WaterBaseAnnotationLayer:
 	# Custom support for Water Base.
 	WaterBaseEditor:
-	# Custom support for resource crates
-	ResourceCrateEditorLayer:
