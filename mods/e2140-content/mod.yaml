@@ -16,10 +16,10 @@ Rules:
 	content|rules.yaml
 
 Cursors:
-	content|cursors.yaml
+	e2140content|cursors.yaml
 
 Chrome:
-	content|chrome.yaml
+	e2140content|chrome.yaml
 
 Assemblies: OpenRA.Mods.OpenE2140.dll, OpenRA.Mods.Common.dll
 

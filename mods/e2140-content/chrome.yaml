@@ -1,0 +1,145 @@
+^Chrome:
+	Image: chrome.png
+	Image2x: chrome-2x.png
+	Image3x: chrome-3x.png
+
+panel-header:
+	Inherits: ^Chrome
+	PanelRegion: 130, 512, 10, 10, 44, 44, 10, 10
+
+panel-bg:
+	Inherits: ^Chrome
+	Regions:
+		background: 514, 513, 480, 480
+		border-r: 1005, 513, 9, 190
+		border-l: 996, 513, 9, 190
+		border-b: 514, 1004, 189, 9
+		border-t: 514, 995, 189, 9
+		corner-tl: 705, 995, 9, 9
+		corner-tr: 714, 995, 9, 9
+		corner-bl: 705, 1004, 9, 9
+		corner-br: 714, 1004, 9, 9
+
+panel-thinborder:
+	Inherits: ^Chrome
+	PanelRegion: 130, 512, 10, 10, 44, 44, 10, 10
+
+panel-thinborder-light:
+	Inherits: ^Chrome
+	PanelRegion: 643, 513, 3, 3, 56, 56, 3, 3
+
+button:
+	Inherits: ^Chrome
+	PanelRegion: 65, 512, 10, 10, 44, 44, 10, 10
+
+button-hover:
+	Inherits: ^Chrome
+	PanelRegion: 130, 512, 10, 10, 44, 44, 10, 10
+
+button-disabled:
+	Inherits: ^Chrome
+	PanelRegion: 325, 512, 10, 10, 44, 44, 10, 10
+
+button-pressed:
+	Inherits: ^Chrome
+	PanelRegion: 260, 512, 10, 10, 44, 44, 10, 10
+
+button-highlighted:
+	Inherits: ^Chrome
+	PanelRegion: 130, 512, 10, 10, 44, 44, 10, 10
+
+button-highlighted-hover:
+	Inherits: ^Chrome
+	PanelRegion: 195, 512, 10, 10, 44, 44, 10, 10
+
+button-highlighted-pressed:
+	Inherits: button-pressed
+
+button-highlighted-disabled:
+	Inherits: button-disabled
+
+button-highlighted-thin:
+	Inherits: button-highlighted
+
+button-highlighted-thin-hover:
+	Inherits: button-highlighted
+
+button-highlighted-thin-pressed:
+	Inherits: button-pressed
+
+button-highlighted-thin-disabled:
+	Inherits: button-disabled
+
+progressbar-bg:
+	Inherits: ^Chrome
+	PanelRegion: 0, 512, 3, 3, 12, 12, 3, 3
+
+progressbar-thumb:
+	Inherits: ^Chrome
+	PanelRegion: 0, 532, 3, 3, 12, 12, 3, 3
+
+panel-rule:
+	Inherits: ^Chrome
+	Regions:
+		border-t: 3, 512, 12, 3
+
+background:
+	Inherits: ^Chrome
+	PanelRegion: 0, 0, 0, 0, 1024, 480, 0, 0
+	PanelSides: Center
+
+modcontent:
+	Inherits: ^Chrome
+	Regions:
+		logo: 0, 577, 280, 128
+		leftarrow: 390, 512, 20, 64
+		rightarrow: 411, 512, 20, 64
+		cdicon: 432, 512, 20, 20
+
+scrollpanel-bg:
+	Inherits: button
+
+scrollpanel-button:
+	Inherits: button
+
+scrollpanel-button-hover:
+	Inherits: button-highlighted
+
+scrollpanel-button-disabled:
+	Inherits: button-disabled
+
+scrollpanel-button-pressed:
+	Inherits: button-pressed
+
+scrollpanel-decorations:
+	Inherits: ^Chrome
+	Regions:
+		down: 453, 512, 16, 16
+		down-pressed: 453, 512, 16, 16
+		up: 470, 512, 16, 16
+		up-pressed: 470, 512, 16, 16
+
+
+# Checkbox-related definitions:
+
+checkbox:
+	Inherits: ^Chrome
+	PanelRegion: 0, 512, 3, 3, 12, 12, 3, 3
+
+checkbox-hover:
+	Inherits: ^Chrome
+	PanelRegion: 20, 512, 3, 3, 12, 12, 3, 3
+
+checkbox-pressed:
+	Inherits: checkbox
+
+checkbox-disabled:
+	Inherits: ^Chrome
+	PanelRegion: 48, 512, 3, 3, 12, 12, 3, 3
+
+checkmark-tick:
+	Inherits: ^Chrome
+	Regions:
+		checked: 455, 526, 16, 16
+		checked-disabled: 474, 526, 16, 16
+		unchecked: 0, 0, 0, 0 # Empty placeholder to appease the missing-sprite-exception gods.
