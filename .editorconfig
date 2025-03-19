@@ -4,9 +4,14 @@ charset=utf-8
 
 ; Unix-style newlines
 [*]
-end_of_line = LF
+end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+; 4-column tab indentation
+[*.yaml]
+indent_style = tab
+indent_size = 4
 
 ; 4-column tab indentation
 [*.lua]
@@ -195,11 +200,6 @@ dotnet_diagnostic.CA1847.severity = warning
 
 # Don't warn, when there are missing XML comments for publicly visible type or member
 dotnet_diagnostic.CS1591.severity = none
-
-; 4-column tab indentation
-[*.yaml]
-indent_style = tab
-indent_size = 4
 
 # Use 'Count' property instead of 'Any' method.
 dotnet_diagnostic.RCS1080.severity = warning
