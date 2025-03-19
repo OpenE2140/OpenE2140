@@ -12,7 +12,6 @@ public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 	[FieldLoader.Require]
 	public readonly string Wall = "";
 
-	[GrantedConditionReference]
 	[Desc("Condition to grant, when the wall's construction should begin.")]
 	public readonly string? WallConstructionCondition;
 
