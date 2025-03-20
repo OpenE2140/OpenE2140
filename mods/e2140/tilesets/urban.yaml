@@ -1,14 +1,18 @@
 General:
 	Name: Urban
 	Id: URBAN
-	EditorTemplateOrder: Terrain, Road, Asphalt Road, Buildings
+	EditorTemplateOrder: Terrain, Shore, Road, Buildings, Asphalt Road
 	Palette:
 
 Terrain:
-	TerrainType@Building:
-		Type: Building
+	TerrainType@Shore:
+		Type: Shore
 		TargetTypes: Ground
-		Color: 554d25
+		Color: B09C78
+	TerrainType@Creek:
+		Type: Creek
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Clear:
 		Type: Clear
 		TargetTypes: Ground
@@ -41,15 +45,24 @@ Terrain:
 		Type: Road
 		TargetTypes: Ground
 		Color: 5E430D
+	TerrainType@Water:
+		Type: Water
+		TargetTypes: Water
+		Color: 5C74A4
+		RestrictPlayerColor: true
 	TerrainType@AsphaltRoad:
 		Type: AsphaltRoad
 		TargetTypes: Ground
 		Color: 0e0d00
+	TerrainType@Building:
+		Type: Building
+		TargetTypes: Ground
+		Color: 554d25
 
 Templates:
 	# Clear tiles
-	Template@1:
-		Id: 1
+	Template@255:
+		Id: 255
 		Images: SPRT5.MIX
 		Size: 1,1
 		PickAny: True
@@ -62,21 +75,33 @@ Templates:
 			3: Clear
 			4: Clear
 
-	# Small buildings
-	Template@3:
-		Id: 3
+	# Extra clear tiles
+	Template@343:
+		Id: 343
+		Images: content/core/assets/tilesets/urban_extra_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 0, 1
+		Tiles:
+			0: Clear
+			1: Clear
+
+	# Large, unpassable debris
+	Template@1:
+		Id: 1
 		Images: SPRT5.MIX
 		Size: 1,1
 		PickAny: True
-		Categories: Buildings
+		Categories: Terrain
 		Frames: 199, 200, 201, 202, 203, 204
 		Tiles:
-			0: Building
-			1: Building
-			2: Building
-			3: Building
-			4: Building
-			5: Building
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+			4: Rock
+			5: Rock
 
 	# Small, passable debris
 	Template@10:
@@ -364,13 +389,293 @@ Templates:
 		Tiles:
 			0: SandEdge
 
+	# Water tiles
+	Template@100:
+		Id: 100
+		Images: SPRT0.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 189, 190, 191, 192
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+	Template@101:
+		Id: 101
+		Images: SPRT0.MIX
+		Size: 2,2
+		PickAny: True
+		Categories: Terrain
+		Frames: 191, 190, 192, 189
+		Tiles:
+			0: Water
+			1: Water
+			2: Water
+			3: Water
+
+	# Creek tiles
+	Template@105:
+		Id: 105
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		Categories: Shore
+		Frames: 0
+		Tiles:
+			0: Creek
+	Template@106:
+		Id: 106
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		Categories: Shore
+		Frames: 1
+		Tiles:
+			0: Creek
+
+	# Shore tiles
+	Template@107:
+		Id: 107
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 2, 3, 4, 5
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@108:
+		Id: 108
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 6, 7, 8, 9
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+			3: Shore
+	Template@109:
+		Id: 109
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 42, 43, 49
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@110:
+		Id: 110
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 44, 45, 48
+		Tiles:
+			0: Shore
+			1: Shore
+			2: Shore
+	Template@111:
+		Id: 111
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 46, 53
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@112:
+		Id: 112
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 47, 52
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@113:
+		Id: 113
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 51, 54
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@114:
+		Id: 114
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 50, 55
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@115:
+		Id: 115
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 10, 11
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@116:
+		Id: 116
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 12, 13
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@117:
+		Id: 117
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 14, 15
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@118:
+		Id: 118
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 16, 17
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@119:
+		Id: 119
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 18, 19
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@120:
+		Id: 120
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 20, 21
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@121:
+		Id: 121
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 22, 23
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@122:
+		Id: 122
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 24, 25
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@123:
+		Id: 123
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 26, 27
+		Tiles:
+			0: Shore
+			1: Clear
+	Template@124:
+		Id: 124
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 28, 29
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@125:
+		Id: 125
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 30, 31
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@126:
+		Id: 126
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,2
+		Categories: Shore
+		Frames: 32, 33
+		Tiles:
+			0: Clear
+			1: Shore
+	Template@127:
+		Id: 127
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 34, 40
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@128:
+		Id: 128
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 35, 38
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@129:
+		Id: 129
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: true
+		Categories: Shore
+		Frames: 36, 39
+		Tiles:
+			0: Shore
+			1: Shore
+	Template@130:
+		Id: 130
+		Images: content/core/assets/tilesets/urban_shore_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Shore
+		Frames: 37, 41
+		Tiles:
+			0: Shore
+			1: Shore
+
 	# Road tiles
 	Template@200:
 		Id: 200
-		Images: SPRT5.MIX
+		Images: content/core/assets/tilesets/urban_extra_tiles.png
 		Size: 1,1
 		Categories: Road
-		Frames: 234
+		Frames: 2
 		Tiles:
 			0: Road
 	Template@201:
@@ -510,200 +815,411 @@ Templates:
 		Tiles:
 			0: Road
 
-	# Asphalt roads
-	Template@250:
-		Id: 250
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 133, 134, 135, 136
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@251:
-		Id: 251
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 137, 138, 139, 140
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@252:
-		Id: 252
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 141, 142, 143, 144
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@253:
-		Id: 253
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 145, 146, 147, 148
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@254:
-		Id: 254
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 149, 150, 151, 152
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@255:
-		Id: 255
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 153, 154, 155, 156
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@256:
-		Id: 256
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 157, 158, 159, 160
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@257:
-		Id: 257
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 161, 162, 163, 164
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-	Template@258:
-		Id: 258
-		Images: SPRT5.MIX
-		Size: 1,2
-		Categories: Asphalt Road
-		Frames: 165, 166
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@259:
-		Id: 259
-		Images: SPRT5.MIX
-		Size: 1,2
-		Categories: Asphalt Road
-		Frames: 167, 168
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@260:
-		Id: 260
-		Images: SPRT5.MIX
-		Size: 2,1
-		Categories: Asphalt Road
-		Frames: 169, 170
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@261:
-		Id: 261
-		Images: SPRT5.MIX
-		Size: 2,1
-		Categories: Asphalt Road
-		Frames: 171, 172
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@262:
-		Id: 262
-		Images: SPRT5.MIX
-		Size: 2,1
-		Categories: Asphalt Road
-		Frames: 173, 174
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@263:
-		Id: 263
-		Images: SPRT5.MIX
-		Size: 2,1
-		Categories: Asphalt Road
-		Frames: 175, 176
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@264:
-		Id: 264
-		Images: SPRT5.MIX
-		Size: 1,2
-		Categories: Asphalt Road
-		Frames: 177, 178
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@265:
-		Id: 265
-		Images: SPRT5.MIX
-		Size: 1,2
-		Categories: Asphalt Road
-		Frames: 179, 180
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@266:
-		Id: 266
-		Images: SPRT5.MIX
-		Size: 2,1
-		Categories: Asphalt Road
-		Frames: 181, 182
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@267:
-		Id: 267
-		Images: SPRT5.MIX
-		Size: 1,2
-		Categories: Asphalt Road
-		Frames: 183, 184
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-	Template@268:
-		Id: 269
-		Images: SPRT5.MIX
-		Size: 2,2
-		Categories: Asphalt Road
-		Frames: 185, 186, 187, 188
-		Tiles:
-			0: AsphaltRoad
-			1: AsphaltRoad
-			2: AsphaltRoad
-			3: AsphaltRoad
-
-	# Building tiles
+# Cliff tiles
 	Template@300:
 		Id: 300
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 1, 2
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@301:
+		Id: 301
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 3, 4
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@302:
+		Id: 302
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 5, 6
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@303:
+		Id: 303
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,2
+		Categories: Cliffs
+		Frames: 7, 8
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@304:
+		Id: 304
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 10, 11, 9
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@305:
+		Id: 305
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 11, 14, 12, 13
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@306:
+		Id: 306
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 16, 17, 15
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+	Template@307:
+		Id: 307
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 0, 20, 18, 19
+		Tiles:
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@308:
+		Id: 308
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 23, 22, 0, 21
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@309:
+		Id: 309
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 26, 0, 25, 24
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@310:
+		Id: 310
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 29, 28, 0, 27
+		Tiles:
+			0: Rock
+			1: Rock
+			3: Rock
+	Template@311:
+		Id: 311
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 32, 0, 31, 30
+		Tiles:
+			0: Rock
+			2: Rock
+			3: Rock
+	Template@312:
+		Id: 312
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 33, 34
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@313:
+		Id: 313
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 35, 36
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@314:
+		Id: 314
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 38, 37
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@315:
+		Id: 315
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 40, 39
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@316:
+		Id: 316
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 41, 42
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@317:
+		Id: 317
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 43, 44
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@318:
+		Id: 318
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 45, 46
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@319:
+		Id: 319
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 47, 48
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@320:
+		Id: 320
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 49, 50
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@321:
+		Id: 321
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 51, 52
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@322:
+		Id: 322
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 54, 53
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@323:
+		Id: 323
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 56, 55
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@324:
+		Id: 324
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 58, 57
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@325:
+		Id: 325
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 60, 59
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@326:
+		Id: 326
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 62, 61
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@327:
+		Id: 327
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 64, 63
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@328:
+		Id: 328
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		PickAny: True
+		Categories: Cliffs
+		Frames: 65, 66, 67, 68
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@329:
+		Id: 329
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 71, 72
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@330:
+		Id: 330
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 74, 73
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@331:
+		Id: 331
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 76, 75
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@332:
+		Id: 332
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,1
+		Categories: Cliffs
+		Frames: 77, 78
+		Tiles:
+			0: Rock
+			1: Rock
+	Template@333:
+		Id: 333
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 80, 79, 82, 81
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@334:
+		Id: 334
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 83, 84, 85, 86
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@335:
+		Id: 335
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 87
+		Tiles:
+			0: Rock
+	Template@336:
+		Id: 336
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 88
+		Tiles:
+			0: Rock
+	Template@337:
+		Id: 337
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 90, 89, 92, 91
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@338:
+		Id: 338
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 2,2
+		Categories: Cliffs
+		Frames: 93, 94, 95, 96
+		Tiles:
+			0: Rock
+			1: Rock
+			2: Rock
+			3: Rock
+	Template@339:
+		Id: 339
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 97
+		Tiles:
+			0: Rock
+	Template@340:
+		Id: 340
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 98
+		Tiles:
+			0: Rock
+	Template@341:
+		Id: 341
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 69
+		Tiles:
+			0: Rock
+	Template@342:
+		Id: 342
+		Images: content/core/assets/tilesets/urban_cliff_tiles.png
+		Size: 1,1
+		Categories: Cliffs
+		Frames: 70
+		Tiles:
+			0: Rock
+
+	# Building tiles
+	Template@400:
+		Id: 400
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -713,8 +1229,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@301:
-		Id: 301
+	Template@401:
+		Id: 401
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -724,8 +1240,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@302:
-		Id: 302
+	Template@402:
+		Id: 402
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -735,8 +1251,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@303:
-		Id: 303
+	Template@403:
+		Id: 403
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -746,8 +1262,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@304:
-		Id: 304
+	Template@404:
+		Id: 404
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -757,8 +1273,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@305:
-		Id: 305
+	Template@405:
+		Id: 405
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -768,8 +1284,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@306:
-		Id: 306
+	Template@406:
+		Id: 406
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -779,8 +1295,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@307:
-		Id: 307
+	Template@407:
+		Id: 407
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -790,8 +1306,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@308:
-		Id: 308
+	Template@408:
+		Id: 408
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -801,8 +1317,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@309:
-		Id: 309
+	Template@409:
+		Id: 409
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -812,8 +1328,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@310:
-		Id: 310
+	Template@410:
+		Id: 410
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -823,8 +1339,8 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
-	Template@311:
-		Id: 311
+	Template@411:
+		Id: 411
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -836,8 +1352,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@312:
-		Id: 312
+	Template@412:
+		Id: 412
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -849,8 +1365,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@313:
-		Id: 313
+	Template@413:
+		Id: 413
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -862,8 +1378,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@314:
-		Id: 314
+	Template@414:
+		Id: 414
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -875,8 +1391,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@315:
-		Id: 315
+	Template@415:
+		Id: 415
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -888,8 +1404,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@316:
-		Id: 316
+	Template@416:
+		Id: 416
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -901,8 +1417,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@317:
-		Id: 317
+	Template@417:
+		Id: 417
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -914,8 +1430,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@318:
-		Id: 318
+	Template@418:
+		Id: 418
 		Images: SPRT5.MIX
 		Size: 3,2
 		Categories: Buildings
@@ -927,8 +1443,8 @@ Templates:
 			3: Building
 			4: Building
 			5: Building
-	Template@319:
-		Id: 319
+	Template@419:
+		Id: 419
 		Images: SPRT5.MIX
 		Size: 2,2
 		Categories: Buildings
@@ -938,3 +1454,194 @@ Templates:
 			1: Building
 			2: Building
 			3: Building
+
+		# Asphalt roads
+	Template@500:
+		Id: 500
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 133, 134, 135, 136
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@501:
+		Id: 501
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 137, 138, 139, 140
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@502:
+		Id: 502
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 141, 142, 143, 144
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@503:
+		Id: 503
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 145, 146, 147, 148
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@504:
+		Id: 504
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 149, 150, 151, 152
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@505:
+		Id: 505
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 153, 154, 155, 156
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@506:
+		Id: 506
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 157, 158, 159, 160
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@507:
+		Id: 507
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 161, 162, 163, 164
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
+	Template@508:
+		Id: 508
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 165, 166
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@509:
+		Id: 509
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 167, 168
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@510:
+		Id: 510
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 169, 170
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@511:
+		Id: 511
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 171, 172
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@512:
+		Id: 512
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 173, 174
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@513:
+		Id: 513
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 175, 176
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@514:
+		Id: 514
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 177, 178
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@515:
+		Id: 515
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 179, 180
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@516:
+		Id: 516
+		Images: SPRT5.MIX
+		Size: 2,1
+		Categories: Asphalt Road
+		Frames: 181, 182
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@517:
+		Id: 517
+		Images: SPRT5.MIX
+		Size: 1,2
+		Categories: Asphalt Road
+		Frames: 183, 184
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+	Template@518:
+		Id: 518
+		Images: SPRT5.MIX
+		Size: 2,2
+		Categories: Asphalt Road
+		Frames: 185, 186, 187, 188
+		Tiles:
+			0: AsphaltRoad
+			1: AsphaltRoad
+			2: AsphaltRoad
+			3: AsphaltRoad
