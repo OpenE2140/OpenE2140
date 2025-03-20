@@ -1455,7 +1455,7 @@ Templates:
 			2: Building
 			3: Building
 
-# Asphalt roads
+		# Asphalt roads
 	Template@500:
 		Id: 500
 		Images: SPRT5.MIX
