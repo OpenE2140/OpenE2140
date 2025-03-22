@@ -651,25 +651,25 @@ sidebar-bits:
 commandbar-ucs:
 	Inherits: ^SidebarUcs
 	Regions:
-		background: 0, 696, 434, 44
+		background: 0, 696, 476, 44
 
 command-button-ucs:
 	Inherits: ^SidebarUcs
-	PanelRegion: 0, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 0, 745, 3, 3, 29, 20, 3, 3
 command-button-ucs-hover:
 	Inherits: ^SidebarUcs
-	PanelRegion: 72, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 72, 745, 3, 3, 29, 20, 3, 3
 command-button-ucs-pressed:
 	Inherits: ^SidebarUcs
-	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 745, 3, 3, 29, 20, 3, 3
 command-button-ucs-highlighted:
 	Inherits: ^SidebarUcs
-	PanelRegion: 36, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 36, 745, 3, 3, 29, 20, 3, 3
 command-button-ucs-highlighted-hover:
 	Inherits: command-button-ucs-highlighted
 command-button-ucs-highlighted-pressed:
 	Inherits: ^SidebarUcs
-	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 745, 3, 3, 29, 20, 3, 3
 command-button-ucs-disabled:
 	Inherits: command-button-ucs
 command-button-ucs-highlighted-disabled:
@@ -848,25 +848,25 @@ research-icons-ucs:
 commandbar-ed:
 	Inherits: ^SidebarEd
 	Regions:
-		background: 0, 696, 434, 44
+		background: 0, 696, 476, 44
 
 command-button-ed:
 	Inherits: ^SidebarEd
-	PanelRegion: 0, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 0, 745, 3, 3, 29, 20, 3, 3
 command-button-ed-hover:
 	Inherits: ^SidebarEd
-	PanelRegion: 72, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 72, 745, 3, 3, 29, 20, 3, 3
 command-button-ed-pressed:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 745, 3, 3, 29, 20, 3, 3
 command-button-ed-highlighted:
 	Inherits: ^SidebarEd
-	PanelRegion: 36, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 36, 745, 3, 3, 29, 20, 3, 3
 command-button-ed-highlighted-hover:
 	Inherits: command-button-ed-highlighted
 command-button-ed-highlighted-pressed:
 	Inherits: ^SidebarEd
-	PanelRegion: 108, 746, 3, 3, 29, 20, 3, 3
+	PanelRegion: 108, 745, 3, 3, 29, 20, 3, 3
 command-button-ed-disabled:
 	Inherits: command-button-ed
 command-button-ed-highlighted-disabled:
