@@ -61,15 +61,12 @@ Actors:
 	Actor_bantha5: shared_vehicles_bantha
 		Owner: UCS_Player
 		Location: 31,32
-		Facing: 384
+		Resources: 500
+		Facing: 192
 	Actor_bantha6: shared_aircrafts_heavy_lifter
 		Owner: UCS_Player
 		Location: 31,33
 		Facing: 384
-	Actor_crate: crate
-		Owner: UCS_Player
-		Location: 35,34
-		Facing: 512
 	Actor_mine: shared_buildings_mine
 		Owner: UCS_Player
 		Location: 30,28
@@ -95,10 +92,6 @@ Actors:
 	Actor_assault2: ucs_vehicles_tiger_assault
 		Owner: UCS_Player
 		Location: 36,38
-		Facing: 512
-	Actor_refinery_mcu: shared_mcu_refinery
-		Owner: UCS_Player
-		Location: 38,35
 		Facing: 512
 	Actor_enemy_crate: crate
 		Owner: UCS_AI
@@ -157,6 +150,22 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 18,31
+	Actor29: shared_buildings_air_base
+		Owner: UCS_Player
+		Location: 44,37
+	Actor_refinery_mcu: shared_mcu_refinery
+		Owner: UCS_Player
+		Facing: 512
+		Location: 40,35
+	Actor_crate: crate
+		Owner: UCS_Player
+		Location: 33,34
+		Resources: 500
+		Facing: 306
+	Actor30: shared_mcu_water_base
+		Owner: UCS_Player
+		Facing: 384
+		Location: 35,54
 
 Rules:
 	Player:
