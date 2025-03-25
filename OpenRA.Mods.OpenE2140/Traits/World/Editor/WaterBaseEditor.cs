@@ -150,7 +150,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		yield return new EditorActorDropdown("Water Base", 11,
 			actor =>
 			{
-				// Allow linking only Water Bases, which is in acceptable range of the Dock.
+				// Allow linking only Water Bases, which are in acceptable range of the Dock.
 				var labels = this.GetFreeWaterBasesInRange(allActors, actor).ToDictionary(p => p.ID, p => p.ID);
 
 				// Include currently linked Water Base.
