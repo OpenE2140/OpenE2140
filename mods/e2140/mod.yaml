@@ -102,9 +102,10 @@ GameSpeeds:
 			Timestep: 20
 			OrderLatency: 6
 
-Translations:
+FluentMessages:
 	common|languages/en.ftl
 	common|languages/chrome/en.ftl
+	common|languages/hotkeys/en.ftl
 	common|languages/rules/en.ftl
 
 Include: chrome/mod.yaml

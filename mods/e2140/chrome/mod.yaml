@@ -114,5 +114,5 @@ Hotkeys:
 	e2140|chrome/hotkeys/production.yaml
 	e2140|chrome/hotkeys/misc.yaml
 
-Translations:
+FluentMessages:
 	common|languages/en.ftl

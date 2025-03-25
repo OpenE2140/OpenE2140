@@ -11,7 +11,7 @@ Rules:
 	e2140|content/core/rules/player.yaml
 	e2140|content/core/rules/world.yaml
 
-Translations:
+FluentMessages:
 	e2140|content/core/languages/chrome/en.ftl
 	e2140|content/core/languages/rules/en.ftl
 
