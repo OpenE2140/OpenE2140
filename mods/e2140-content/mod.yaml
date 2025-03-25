@@ -42,6 +42,7 @@ FluentMessages:
 	common|fluent/common.ftl
 	content|fluent/content.ftl
 	content|fluent/chrome.ftl
+	e2140content|fluent/chrome.ftl
 
 Fonts:
 	Tiny:
