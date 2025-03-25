@@ -37,16 +37,16 @@ public class IngamePowerLogic : ChromeLogic
 
 		var power = widget.Get<IngamePowerWidget>("POWER");
 		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
-		var unlimitedCapacity = FluentProvider.GetString(IngamePowerLogic.Infinite);
+		var unlimitedCapacity = FluentProvider.GetMessage(IngamePowerLogic.Infinite);
 
 		powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
 		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
 		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
 
 		var tooltipTextCached = new CachedTransform<(string, string), string>(
-			((string usage, string capacity) args) => FluentProvider.GetString(
+			((string usage, string capacity) args) => FluentProvider.GetMessage(
 				IngamePowerLogic.PowerUsage,
-				FluentProvider.GetString("usage", args.usage, "capacity", args.capacity)
+				FluentProvider.GetMessage("usage", args.usage, "capacity", args.capacity)
 			)
 		);
 
