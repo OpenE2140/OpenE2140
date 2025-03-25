@@ -12,8 +12,8 @@ Rules:
 	e2140|content/core/rules/world.yaml
 
 FluentMessages:
-	e2140|content/core/languages/chrome/en.ftl
-	e2140|content/core/languages/rules/en.ftl
+	e2140|content/core/fluent/chrome.ftl
+	e2140|content/core/fluent/rules.ftl
 
 Sequences:
 	e2140|content/core/sequences/beacon.yaml

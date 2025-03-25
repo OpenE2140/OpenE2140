@@ -113,6 +113,3 @@ Hotkeys:
 	common|hotkeys/control-groups.yaml
 	e2140|chrome/hotkeys/production.yaml
 	e2140|chrome/hotkeys/misc.yaml
-
-FluentMessages:
-	common|languages/en.ftl
