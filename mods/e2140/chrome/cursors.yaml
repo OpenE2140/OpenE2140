@@ -164,3 +164,8 @@ Cursors:
 			Length: 36
 		selfdestruct-blocked:
 			Start: 0
+            
+	content/core/assets/beacon.png:
+		beacon:
+			Start: 0
+			Length: 4
