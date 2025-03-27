@@ -8,7 +8,7 @@ Metadata:
 PackageFormats: Wd, VirtualAssets
 
 FileSystem: ContentInstallerFileSystem
-	Packages:
+	SystemPackages:
 		^EngineDir
 		$e2140: e2140
 		^EngineDir|mods/common: common

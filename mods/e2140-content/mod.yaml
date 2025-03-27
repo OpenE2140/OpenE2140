@@ -6,7 +6,7 @@ Metadata:
 PackageFormats: Wd, VirtualAssets
 
 FileSystem: DefaultFileSystem
-	Packages:
+	SystemPackages:
 		^EngineDir
 		^EngineDir|mods/common-content: content
 		^EngineDir|mods/common: common
