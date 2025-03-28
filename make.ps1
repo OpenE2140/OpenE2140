@@ -42,6 +42,8 @@ function Clean-Command
 		return
 	}
 
+	Write-Host "Cleaning $modID..." -ForegroundColor Cyan
+
 	dotnet clean /nologo
 	Remove-Item ./*/obj -Recurse -ErrorAction Ignore
 	Remove-Item env:ENGINE_DIRECTORY/bin -Recurse -ErrorAction Ignore
@@ -125,10 +127,10 @@ function Check-Command
 
 	if ((CheckForUtility) -eq 0)
 	{
-		Write-Host "Checking for explicit interface violations..." -ForegroundColor Cyan
+		Write-Host "Checking $modID for explicit interface violations..." -ForegroundColor Cyan
 		InvokeCommand "$utilityPath $modID --check-explicit-interfaces"
 
-		Write-Host "Checking for incorrect conditional trait interface overrides..." -ForegroundColor Cyan
+		Write-Host "Checking $modID for incorrect conditional trait interface overrides..." -ForegroundColor Cyan
 		InvokeCommand "$utilityPath $modID --check-conditional-trait-interface-overrides"
 	}
 }
@@ -290,8 +292,8 @@ if (Test-Path "user.config")
 
 $modID = $env:MOD_ID
 
-$env:MOD_SEARCH_PATHS = (Get-Item -Path ".\" -Verbose).FullName + "\mods,./mods"
-$env:ENGINE_DIR = ".."
+$env:MOD_SEARCH_PATHS = "./mods,$env:ENGINE_DIRECTORY/mods"
+$env:ENGINE_DIR = ".." # Set to potentially be used by the Utility and different than $env:ENGINE_DIRECTORY, which is for the script.
 
 # Fetch the engine if required
 if ($command -eq "all" -or $command -eq "clean" -or $command -eq "check")
