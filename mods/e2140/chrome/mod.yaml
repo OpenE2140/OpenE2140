@@ -48,11 +48,12 @@ ChromeLayout:
 	common|chrome/playerprofile.yaml
 	common|chrome/replaybrowser.yaml
 	common|chrome/settings.yaml
-	common|chrome/settings-advanced.yaml
-	common|chrome/settings-audio.yaml
 	common|chrome/settings-display.yaml
-	common|chrome/settings-hotkeys.yaml
+	common|chrome/settings-gameplay.yaml
+	common|chrome/settings-audio.yaml
 	common|chrome/settings-input.yaml
+	common|chrome/settings-hotkeys.yaml
+	common|chrome/settings-advanced.yaml
 	common|chrome/text-notifications.yaml
 	common|chrome/tooltips.yaml
 	e2140|chrome/layouts/tooltips.yaml
