@@ -11,15 +11,15 @@ permissions:
 jobs:
   linux:
     name: Linux AppImages
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install .NET 6.0
-        uses: actions/setup-dotnet@v3
+      - name: Install .NET 8.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> ${GITHUB_ENV}
@@ -28,6 +28,7 @@ jobs:
         run: |
           make engine
           mkdir -p build/linux
+          sudo apt-get install -y desktop-file-utils
           ./packaging/linux/buildpackage.sh "${GIT_TAG}" "${PWD}/build/linux"
 
       - name: Upload Packages
@@ -41,15 +42,15 @@ jobs:
 
   macos:
     name: macOS Disk Image
-    runs-on: macos-11
+    runs-on: macos-13
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Install .NET 6.0
-        uses: actions/setup-dotnet@v3
+      - name: Install .NET 8.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: echo "GIT_TAG=${GITHUB_REF#refs/tags/}" >> ${GITHUB_ENV}
@@ -77,15 +78,15 @@ jobs:
 
   windows:
     name: Windows Installers
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Clone Repository
         uses: actions/checkout@v3
 
-      - name: Install .NET 6.0
-        uses: actions/setup-dotnet@v3
+      - name: Install .NET 8.0
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Prepare Environment
         run: |
