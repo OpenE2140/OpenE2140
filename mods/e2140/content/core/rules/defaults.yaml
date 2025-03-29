@@ -851,6 +851,13 @@
 	Voiced@Static:
 		VoiceSet: StaticVoice
 		RequiresCondition: VehicleDisabled
+	# Disabled actor can be captured by HCU-M.
+	# This is a temporary solution until a proper one for HCU-M is developed.
+	# The reason is that with Capturable/Captures the owner change happens too soon.
+	CaptureManager:
+	Capturable:
+		Types: Vehicle
+		RequiresCondition: VehicleDisabled
 
 # Vehicles leave a husk when they're destroyed
 ^Husk:
