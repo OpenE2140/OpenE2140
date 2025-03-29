@@ -43,6 +43,14 @@ shared_vehicles_hcum:
 		InvalidTargets: Structure
 	SpawnActorOnDeath:
 		Actor: shared_vehicles_hcum_husk
+	# This is a temporary solution for capturing disabled vehicles until a proper one for HCU-M is developed.
+	# The reason is that with Capturable/Captures the owner change happens too soon.
+	CaptureManager:
+	Captures:
+		CaptureTypes: Vehicle
+		ConsumedByCapture: False
+		SabotageCursor: repair
+		EnterCursor: repair
 	Encyclopedia:
 		Category: Shared - Vehicles
 		Order: 3
