@@ -5,9 +5,7 @@
 #  Read the file to see which settings you can override
 
 set -e
-if ! command -v mono >/dev/null 2>&1; then
-	command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet or mono."; exit 1; }
-fi
+command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet."; exit 1; }
 
 if command -v python3 >/dev/null 2>&1; then
 	PYTHON="python3"
@@ -42,11 +40,7 @@ fi
 
 require_variables "MOD_ID" "ENGINE_VERSION" "ENGINE_DIRECTORY"
 
-if command -v mono >/dev/null 2>&1 && [ "$(grep -c .NETCoreApp,Version= ${ENGINE_DIRECTORY}/bin/OpenRA.Server.dll)" = "0" ]; then
-	RUNTIME_LAUNCHER="mono --debug"
-else
-	RUNTIME_LAUNCHER="dotnet"
-fi
+RUNTIME_LAUNCHER="dotnet"
 
 NAME="${Name:-"Dedicated Server"}"
 LAUNCH_MOD="${Mod:-"${MOD_ID}"}"

@@ -6,9 +6,7 @@
 set -e
 command -v make >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires make."; exit 1; }
 
-if ! command -v mono >/dev/null 2>&1; then
-	command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet or mono."; exit 1; }
-fi
+command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet."; exit 1; }
 
 if command -v python3 >/dev/null 2>&1; then
 	PYTHON="python3"
@@ -52,11 +50,7 @@ if [ ! -f "${ENGINE_DIRECTORY}/bin/OpenRA.Utility.dll" ] || [ "$(cat "${ENGINE_D
 	exit 1
 fi
 
-if command -v mono >/dev/null 2>&1 && [ "$(grep -c .NETCoreApp,Version= ${ENGINE_DIRECTORY}/bin/OpenRA.Utility.dll)" = "0" ]; then
-	RUNTIME_LAUNCHER="mono --debug"
-else
-	RUNTIME_LAUNCHER="dotnet"
-fi
+RUNTIME_LAUNCHER="dotnet"
 
 cd "${ENGINE_DIRECTORY}"
 MOD_SEARCH_PATHS="${MOD_SEARCH_PATHS}" ENGINE_DIR=".." ${RUNTIME_LAUNCHER} bin/OpenRA.Utility.dll "${LAUNCH_MOD}" "$@"
