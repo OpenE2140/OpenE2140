@@ -3,11 +3,8 @@
 # to compile, run:
 #   make
 #
-# to compile using Mono (version 6.4 or greater) instead of .NET 6, run:
-#   make RUNTIME=mono
-#
 # to compile using system libraries for native dependencies, run:
-#   make [RUNTIME=net6] TARGETPLATFORM=unix-generic
+#   make TARGETPLATFORM=unix-generic
 #
 # to remove the files created by compiling, run:
 #   make clean
@@ -19,10 +16,10 @@
 #   make check-scripts
 #
 # to check the engine and your mod dlls for StyleCop violations, run:
-#   make [RUNTIME=net6] check
+#   make check
 #
 # to check your mod yaml for errors, run:
-#   make [RUNTIME=net6] test
+#   make [TREAT_WARNINGS_AS_ERRORS=false] test
 #
 # the following are internal sdk helpers that are not intended to be run directly:
 #   make check-variables
@@ -50,18 +47,17 @@ HAS_LUAC = $(shell command -v luac 2> /dev/null)
 LUA_FILES = $(shell find mods/*/maps/* -iname '*.lua' 2> /dev/null)
 MOD_SOLUTION_FILES = $(shell find . -maxdepth 1 -iname '*.sln' 2> /dev/null)
 
-MSBUILD = msbuild -verbosity:m -nologo
 DOTNET = dotnet
 
-RUNTIME ?= net6
 CONFIGURATION ?= Release
 DOTNET_RID = $(shell ${DOTNET} --info | grep RID: | cut -w -f3)
+ARCH_X64 = $(shell echo ${DOTNET_RID} | grep x64)
 
 ifndef TARGETPLATFORM
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
 ifeq ($(UNAME_S),Darwin)
-ifeq ($(RUNTIME)-$(DOTNET_RID),net6-osx-arm64)
+ifeq ($(ARCH_X64),)
 TARGETPLATFORM = osx-arm64
 else
 TARGETPLATFORM = osx-x64
@@ -140,25 +136,15 @@ check-variables:
 
 engine: check-variables check-sdk-scripts
 	@./fetch-engine.sh || (printf "Unable to continue without engine files\n"; exit 1)
-	@cd $(ENGINE_DIRECTORY) && make RUNTIME=$(RUNTIME) TARGETPLATFORM=$(TARGETPLATFORM) all
+	@cd $(ENGINE_DIRECTORY) && make TARGETPLATFORM=$(TARGETPLATFORM) all
 
 all: engine
-ifeq ($(RUNTIME), mono)
-	@command -v $(MSBUILD) >/dev/null || (echo "OpenRA requires the '$(MSBUILD)' tool provided by Mono >= 6.4."; exit 1)
-ifneq ("$(MOD_SOLUTION_FILES)","")
-	@find . -maxdepth 1 -name '*.sln' -exec $(MSBUILD) -t:Build -restore -p:Configuration=${CONFIGURATION} -p:TargetPlatform=$(TARGETPLATFORM) -p:Mono=true \;
-endif
-else
-	@find . -maxdepth 1 -name '*.sln' -exec $(DOTNET) build -c ${CONFIGURATION} -p:TargetPlatform=$(TARGETPLATFORM) \;
-endif
+
+@find . -maxdepth 1 -name '*.sln' -exec $(DOTNET) build -c ${CONFIGURATION} -p:TargetPlatform=$(TARGETPLATFORM) \;
 
 clean: engine
 ifneq ("$(MOD_SOLUTION_FILES)","")
-ifeq ($(RUNTIME), mono)
-	@find . -maxdepth 1 -name '*.sln' -exec $(MSBUILD) -t:clean \;
-else
 	@find . -maxdepth 1 -name '*.sln' -exec $(DOTNET) clean \;
-endif
 endif
 	@cd $(ENGINE_DIRECTORY) && make clean
 
@@ -179,13 +165,9 @@ endif
 check: engine
 ifneq ("$(MOD_SOLUTION_FILES)","")
 	@echo "Compiling in Debug mode..."
-ifeq ($(RUNTIME), mono)
-# Enabling EnforceCodeStyleInBuild and GenerateDocumentationFile as a workaround for some code style rules (in particular IDE0005) being bugged and not reporting warnings/errors otherwise.
-	@$(MSBUILD) -t:build -restore -p:Configuration=Debug -p:TargetPlatform=$(TARGETPLATFORM) -p:Mono=true -p:EnforceCodeStyleInBuild=true -p:GenerateDocumentationFile=true
-else
+
 # Enabling EnforceCodeStyleInBuild and GenerateDocumentationFile as a workaround for some code style rules (in particular IDE0005) being bugged and not reporting warnings/errors otherwise.
 	@$(DOTNET) build -c Debug -nologo -p:TargetPlatform=$(TARGETPLATFORM) -p:EnforceCodeStyleInBuild=true -p:GenerateDocumentationFile=true
-endif
 endif
 	@echo "Checking for explicit interface violations..."
 	@./utility.sh --check-explicit-interfaces

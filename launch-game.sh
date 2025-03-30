@@ -1,9 +1,7 @@
 #!/bin/sh
 
 set -e
-if ! command -v mono >/dev/null 2>&1; then
-	command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet or mono."; exit 1; }
-fi
+command -v dotnet >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires dotnet."; exit 1; }
 
 if command -v python3 >/dev/null 2>&1; then
 	PYTHON="python3"
@@ -45,11 +43,7 @@ if [ ! -f "${ENGINE_DIRECTORY}/bin/OpenRA.dll" ] || [ "$(cat "${ENGINE_DIRECTORY
 	exit 1
 fi
 
-if command -v mono >/dev/null 2>&1 && [ "$(grep -c .NETCoreApp,Version= ${ENGINE_DIRECTORY}/bin/OpenRA.dll)" = "0" ]; then
-	RUNTIME_LAUNCHER="mono --debug"
-else
-	RUNTIME_LAUNCHER="dotnet"
-fi
+RUNTIME_LAUNCHER="dotnet"
 
 cd "${ENGINE_DIRECTORY}"
 ${RUNTIME_LAUNCHER} bin/OpenRA.dll Game.Mod="${MOD_ID}" Engine.EngineDir=".." Engine.LaunchPath="${TEMPLATE_LAUNCHER}" Engine.ModSearchPaths="${MOD_SEARCH_PATHS}" "$@"
