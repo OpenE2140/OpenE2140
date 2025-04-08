@@ -1,6 +1,7 @@
 shared_vehicles_hcum:
 	Inherits@1: ^CoreVehicle
 	Inherits@2: ^LeavesMediumTracks
+	Inherits@3: ^SelectableSupportUnit
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	Voiced:

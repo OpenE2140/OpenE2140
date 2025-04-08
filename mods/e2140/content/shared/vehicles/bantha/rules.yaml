@@ -1,5 +1,6 @@
 shared_vehicles_bantha:
-	Inherits: ^CoreVehicle
+	Inherits@1: ^CoreVehicle
+	Inherits@2: ^SelectableEconomicUnit
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	Voiced:

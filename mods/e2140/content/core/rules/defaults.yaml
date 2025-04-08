@@ -36,7 +36,8 @@
 
 # Base for all movable units.
 ^CoreUnit:
-	Inherits: ^CoreVisibleActor
+	Inherits@1: ^CoreVisibleActor
+	Inherits@2: ^SelectableCombatUnit
 	# Default set which fits for most units: Occupy exactly 1 cell / 32x32 pixel tile.
 	HitShape:
 		Type: Circle
@@ -44,8 +45,6 @@
 	# In general all units can be selected by using its full cell / tile.
 	Selectable:
 		Bounds: 1024, 1024
-		# Make the default priority higher, so units are prefered over constructions.
-		Priority: 20
 	# Units have a healthbar when selected or hovered.
 	SelectionDecorations:
 	# Draw target lines.
@@ -988,3 +987,19 @@
 	Inherits: ^LeavesTracks
 	LeavesTrackTrails:
 		Sequences: track_extra_large
+
+# Selectable priority for units.
+^SelectableCombatUnit:
+	Selectable:
+		Priority: 20
+		PriorityModifiers: Ctrl
+
+^SelectableEconomicUnit:
+	Selectable:
+		Priority: 16
+		PriorityModifiers: Ctrl, Alt
+
+^SelectableSupportUnit:
+	Selectable:
+		Priority: 18
+		PriorityModifiers: Ctrl, Alt
