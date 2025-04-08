@@ -34,9 +34,9 @@
 		Bounds: 1392, 1072, 0, 0
 	WithTextDecoration:
 		Text: MCU
-		RequiresSelection: True
 		Position: Top
 		Margin: 0,5
+		Color: 00EC00
 	# MCUs are not slower when they are damaged.
 	-GrantConditionOnDamageState@DecreasedSpeed:
 	-SpeedMultiplier:
