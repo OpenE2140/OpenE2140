@@ -30,7 +30,7 @@ public class ProductionTooltipLogic : ChromeLogic
 	public ProductionTooltipLogic(Widget widget, TooltipContainerWidget tooltipContainer, Player player, Func<ProductionIcon?> getTooltipIcon)
 	{
 		foreach (var id in new[] { "COST_ICON", "TIME_ICON", "POWER_ICON" })
-			new AddFactionSuffixLogic(widget.Get<Widget>(id), player.World);
+			new AddPlayerFactionSuffixLogic(widget.Get<Widget>(id), player);
 
 		var world = player.World;
 		var pm = player.PlayerActor.TraitOrDefault<PowerManagerBase>();

@@ -640,7 +640,14 @@ production-icons:
 sidebar-bits:
 	Inherits: ^Glyphs
 	Regions:
-		production-tooltip-time: 87, 171, 16, 16
+		# These reference UCS variants
+		# It is necessary because otherwise the production icons' tooltip in obserview view crashes otherwise.
+		# The reason is that the faction suffix is added to image collection too late (in ProductionTooltipLogic).
+		# The icons will be updated once ProductionTooltipLogic is initialized. And since that's within the same tick,
+		# the change should not be visible.
+		production-tooltip-time: 187, 51, 16, 16
+		production-tooltip-power: 153, 51, 16, 16
+		production-tooltip-cost: 137, 51, 16, 16
 
 ##########################
 # Faction-specific stuff
