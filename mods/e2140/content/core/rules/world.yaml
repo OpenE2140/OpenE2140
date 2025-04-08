@@ -63,7 +63,7 @@ World:
 	CreateMapPlayers:
 	# Required to spawn player units at spawnpoint.
 	SpawnStartingUnits:
-		StartingUnitsClass: default
+		StartingUnitsClass: light
 	# Cheat protection.
 	ValidateOrder:
 	# Requirement for shaking the screen if a building explodes.

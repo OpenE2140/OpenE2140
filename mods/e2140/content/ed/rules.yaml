@@ -5,11 +5,22 @@
 		Description: Eurasian Dynasty
 
 World:
-	StartingUnits@ed_default:
-		Class: default
-		ClassName: options-starting-units.default
+	StartingUnits@ed_mcuonly:
+		Class: none
+		ClassName: options-starting-units.mcu-only
 		BaseActor: ed_mcu_constr_center
-		SupportActors: ed_vehicles_st01b
+		Factions: ed
+	StartingUnits@ed_default:
+		Class: light
+		ClassName: options-starting-units.light-support
+		BaseActor: ed_mcu_constr_center
+		SupportActors: ed_vehicles_st01b, ed_vehicles_btti, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01
+		Factions: ed
+	StartingUnits@ed_heavy:
+		Class: heavy
+		ClassName: options-starting-units.heavy-support
+		BaseActor: ed_mcu_constr_center
+		SupportActors: ed_vehicles_ht30lr, ed_vehicles_st02, ed_vehicles_mt200, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02
 		Factions: ed
 
 ^EdVehicle:
