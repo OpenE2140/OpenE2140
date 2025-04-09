@@ -158,10 +158,12 @@ Templates:
 		Id: 61
 		Images: SPRT3.MIX
 		Size: 1,1
+		PickAny: True
 		Categories: Terrain
-		Frames: 104
+		Frames: 103, 104
 		Tiles:
 			0: SandEdge
+			1: SandEdge
 	Template@62:
 		Id: 62
 		Images: SPRT3.MIX
@@ -720,34 +722,22 @@ Templates:
 		Id: 206
 		Images: SPRT3.MIX
 		Size: 1,1
+		PickAny: True
 		Categories: Road
-		Frames: 240
+		Frames: 240, 241
 		Tiles:
 			0: Road
-	Template@207:
-		Id: 207
-		Images: SPRT3.MIX
-		Size: 1,1
-		Categories: Road
-		Frames: 241
-		Tiles:
-			0: Road
+			1: Road
 	Template@208:
 		Id: 208
 		Images: SPRT3.MIX
 		Size: 1,1
+		PickAny: True
 		Categories: Road
-		Frames: 242
+		Frames: 242, 243
 		Tiles:
 			0: Road
-	Template@209:
-		Id: 209
-		Images: SPRT3.MIX
-		Size: 1,1
-		Categories: Road
-		Frames: 243
-		Tiles:
-			0: Road
+			1: Road
 	Template@210:
 		Id: 210
 		Images: SPRT3.MIX
