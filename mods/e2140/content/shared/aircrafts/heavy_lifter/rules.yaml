@@ -1,8 +1,6 @@
 shared_aircrafts_heavy_lifter:
 	Inherits@1: ^CoreAircraft
 	Inherits@2: ^SelectableEconomicUnit
-	MustBeDestroyed:
-		RequiredForShortGame: true
 	Voiced:
 		VoiceSet: UcsVehicleVoice
 	Tooltip:

@@ -106,3 +106,6 @@ ed_mcu_constr_center:
 		Prerequisites: NuclearEngine
 	WithTextDecoration:
 		Text: Constr. Center
+	# Require destruction of Construction Center MCU even with short game enabled. If player has one, it means they can rebuild base (if it was destroyed).
+	MustBeDestroyed:
+		RequiredForShortGame: true

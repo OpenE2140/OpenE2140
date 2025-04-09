@@ -107,3 +107,6 @@ ucs_mcu_prod_center:
 		Prerequisites: NuclearEngine
 	WithTextDecoration:
 		Text: Prod. Center
+	# Require destruction of Production Center MCU even with short game enabled. If player has one, it means they can rebuild base (if it was destroyed).
+	MustBeDestroyed:
+		RequiredForShortGame: true
