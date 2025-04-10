@@ -117,6 +117,60 @@ Templates:
 			4: Clear
 			5: Clear
 
+	# Small craters
+	Template@700:
+		Id: 700
+		Images: SPRT1.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 209, 210, 211, 212, 213, 214
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+			4: Clear
+			5: Clear
+
+	# Small craters on sand tiles
+	Template@701:
+		Id: 701
+		Images: SPRT1.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 215, 216, 217, 218, 
+		Tiles:
+			0: Clear
+			1: Clear
+			2: Clear
+			3: Clear
+
+	# Burnt clear tiles
+	Template@702:
+		Id: 702
+		Images: SPRT1.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 219, 220
+		Tiles:
+			0: Clear
+			1: Clear
+
+	# Burnt sand tiles
+	Template@703:
+		Id: 703
+		Images: SPRT1.MIX
+		Size: 1,1
+		PickAny: True
+		Categories: Terrain
+		Frames: 221, 222
+		Tiles:
+			0: Clear
+			1: Clear
+
 	# Large crater made by destruction of Power Plant
 	Template@30:
 		Id: 30
