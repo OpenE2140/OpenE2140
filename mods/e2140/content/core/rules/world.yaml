@@ -144,6 +144,13 @@ World:
 				TerrainType: Resources
 				AllowedTerrainTypes: Clear
 				MaxDensity: 10000
+	# Add support for rush protection
+	RushProtection:
+		RushProtectionTimeDefault: 1
+		DamageToViolatingUnits: 20
+		TicksBetweenDamageToViolatingUnits: 10
+		RushProtectionRange: 10240
+		CountdownLabel: MISSION_TEXT
 
 # Map editor specific world setup.
 EditorWorld:

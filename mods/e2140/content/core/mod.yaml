@@ -12,6 +12,7 @@ Rules:
 	e2140|content/core/rules/world.yaml
 
 FluentMessages:
+	e2140|content/core/fluent/common.ftl
 	e2140|content/core/fluent/chrome.ftl
 	e2140|content/core/fluent/rules.ftl
 
