@@ -192,7 +192,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			Sounds = this.Info.TransformSounds,
 			Notification = this.Info.TransformNotification,
 			TextNotification = this.Info.TransformTextNotification,
-			Faction = faction
+			Faction = this.faction
 		};
 	}
 

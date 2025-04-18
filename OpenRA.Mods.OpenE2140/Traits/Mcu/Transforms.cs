@@ -121,7 +121,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			Sounds = this.Info.TransformSounds,
 			Notification = this.Info.TransformNotification,
 			TextNotification = this.Info.TransformTextNotification,
-			Faction = faction
+			Faction = this.faction
 		};
 	}
 
