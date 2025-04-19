@@ -151,6 +151,7 @@ World:
 		TicksBetweenDamageToViolatingUnits: 10
 		RushProtectionRange: 10240
 		CountdownLabel: MISSION_TEXT
+		EnemyAttackingNotification: EnemiesApproaching
 
 # Map editor specific world setup.
 EditorWorld:

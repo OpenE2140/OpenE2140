@@ -1,4 +1,5 @@
-﻿using OpenRA.Mods.Common.Widgets;
+﻿using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
@@ -64,6 +65,17 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 		[Desc("Will prevent showing/playing the built-in timer expired notification when set to true.")]
 		public readonly bool SkipTimerExpiredNotification;
 
+		[NotificationReference("Speech")]
+		[Desc("Speech notification to play when enemy enters protected area.")]
+		public readonly string? EnemyAttackingNotification;
+
+		[FluentReference(optional: true)]
+		[Desc("Text notification to display when enemy enters protected area.")]
+		public readonly string? EnemyAttackingTextNotification;
+
+		[Desc("Minimum duration (in milliseconds) between enemy attacking notification events.")]
+		public readonly int EnemyAttackingNotifyInterval = 10000;
+
 		void IRulesetLoaded<ActorInfo>.RulesetLoaded(Ruleset rules, ActorInfo info)
 		{
 			if (!this.RushProtectionTimeOptions.Contains(this.RushProtectionTimeDefault))
@@ -117,6 +129,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 		private LabelWidget? countdownLabel;
 		private CachedTransform<int, string>? countdown;
 		private int ticksRemaining;
+		private long lastNotifyTime;
 
 		public readonly RushProtectionInfo Info;
 
@@ -183,7 +196,22 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 					{
 						if (player.RelationshipWith(actor.Owner) == PlayerRelationship.Enemy)
 						{
-							this.actorDamageStates[actor] = new ActorDamageState();
+							this.actorDamageStates[actor] = new ActorDamageState
+							{
+								DefendingPlayer = player
+							};
+
+							// Notify local player about the attack only once. If the enemy actually attacks (e.g. any building),
+							// the defending player will be notified about it in separate notification.
+							if (actor.World.LocalPlayer == player
+								&& Game.RunTime > this.lastNotifyTime + this.info.EnemyAttackingNotifyInterval)
+							{
+								PlaySpeechFactionNotification(actor.World, this.info.EnemyAttackingNotification);
+								TextNotificationsManager.AddTransientLine(actor.World.LocalPlayer, this.info.EnemyAttackingTextNotification);
+
+								this.lastNotifyTime = Game.RunTime;
+							}
+
 						}
 					},
 					onExit: (Actor actor) => this.actorDamageStates.Remove(actor));
@@ -238,15 +266,22 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 				{
 					TextNotificationsManager.AddSystemLine(FluentProvider.GetMessage(ProtectionTimeWarningNotification, "minutes", time));
 
-					var faction = self.World.LocalPlayer?.Faction.InternalName;
-					Game.Sound.PlayNotification(self.World.Map.Rules, self.World.LocalPlayer, "Speech", notification, faction);
+					PlaySpeechFactionNotification(self.World, notification);
 				}
 			}
+		}
+
+		private static void PlaySpeechFactionNotification(OpenRA.World world, string? notification)
+		{
+			var faction = world.LocalPlayer?.Faction.InternalName;
+			Game.Sound.PlayNotification(world.Map.Rules, world.LocalPlayer, "Speech", notification, faction);
 		}
 
 		private class ActorDamageState
 		{
 			public int TicksToNextDamage;
+
+			public required Player DefendingPlayer { get; init; }
 		}
 	}
 
