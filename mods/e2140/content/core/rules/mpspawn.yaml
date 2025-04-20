@@ -6,3 +6,5 @@ mpspawn:
 	RenderSpritesEditorOnly:
 	WithSpriteBody:
 	AlwaysVisible:
+	# Render overlay for Rush Protection (if the feature is enabled)
+	RushProtectionOverlay:
