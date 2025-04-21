@@ -41,7 +41,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 
 		this.waterBaseDockActor = WaterBaseUtils.FindWaterBaseDockActor(self.World.Map.Rules);
 
-		var tileSize = self.World.Map.Grid.TileSize;
+		var tileSize = self.World.Map.Rules.TerrainInfo.TileSize;
 		this.mapRectangle = new CachedTransform<int2, Rectangle>(size => Rectangle.FromLTRB(0, 0, size.X * tileSize.Width, size.Y * tileSize.Height));
 
 		this.maximumDockDistance = self.World.Map.Rules.Actors.Values
@@ -118,7 +118,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 			.Where(a => a.Info.HasTraitInfo<WaterBaseBuildingInfo>())
 			.Except(allActors.Where(p => pairedWaterBases.Contains(p.ID)));
 
-		// Only try to link Water Base, which is in acceptable range of the Dock
+		// Only try linking Water Base, which is in acceptable range of the Dock
 		var freeWaterBaseInRange = freeWaterBases
 			.Select(a => new { FootprintCenter = a.Info.TraitInfo<WaterBaseBuildingInfo>().GetCenterOfFootprint(a.GetInitOrDefault<LocationInit>().Value), Actor = a })
 			.Where(x => (x.FootprintCenter - actor.CenterPosition).ToWDist() <= this.maximumDockDistance)

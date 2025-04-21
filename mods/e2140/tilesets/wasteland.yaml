@@ -1,6 +1,7 @@
 General:
 	Name: Wasteland
 	Id: WASTELAND
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 

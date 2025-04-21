@@ -1,6 +1,7 @@
 General:
 	Name: Urban
 	Id: URBAN
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Shore, Road, Buildings, Asphalt Road
 	Palette:
 

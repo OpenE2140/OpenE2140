@@ -65,7 +65,7 @@ public class EditorActorCustomRenderLayer : ITickRender, IRenderAnnotations, IWo
 
 	void ITickRender.TickRender(WorldRenderer wr, Actor self)
 	{
-		var ts = wr.World.Map.Grid.TileSize;
+		var ts = wr.World.Map.Rules.TerrainInfo.TileSize;
 
 		var entireMapBox = new Rectangle(0, 0, wr.World.Map.MapSize.X * ts.Width, wr.World.Map.MapSize.Y * ts.Height);
 		this.allMapActors = this.editorLayer.PreviewsInScreenBox(entireMapBox).ToImmutableDictionary(p => p.ID, StringComparer.InvariantCultureIgnoreCase);

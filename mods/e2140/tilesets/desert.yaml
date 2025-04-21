@@ -1,6 +1,7 @@
 General:
 	Name: Desert
 	Id: DESERT
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 

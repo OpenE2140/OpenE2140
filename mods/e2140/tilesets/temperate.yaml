@@ -1,6 +1,7 @@
 General:
 	Name: Temperate
 	Id: TEMPERATE
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 

@@ -1,6 +1,7 @@
 General:
 	Name: Sandy
 	Id: SANDY
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 

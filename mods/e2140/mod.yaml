@@ -69,7 +69,6 @@ ServerTraits:
 	SkirmishLogic
 
 MapGrid:
-	TileSize: 64, 64
 	Type: Rectangular
 	SubCellOffsets: 0,0,0,   -185,-361, 0,   185,-361,0,   -377,0,0,   377,0,0,   -185,361, 0,   185,361,0,   0,0,0
 	DefaultSubCell: 1

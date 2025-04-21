@@ -1,6 +1,7 @@
 General:
 	Name: Snow
 	Id: SNOW
+	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
 	Palette:
 
