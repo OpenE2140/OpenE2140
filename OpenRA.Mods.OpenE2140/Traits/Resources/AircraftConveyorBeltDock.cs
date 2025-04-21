@@ -47,7 +47,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 		{
 			moveCooldownHelper.NotifyMoveQueued();
 
-			moveToDockActivity.QueueChild(new AircraftMoveToConveyorBelt(clientActor, this, self.Info.HasTraitInfo<ResourceMineInfo>()));
+			moveToDockActivity.QueueChild(new AircraftMoveToConveyorBelt(clientActor, self, this, self.Info.HasTraitInfo<ResourceMineInfo>()));
 			return true;
 		}
 
@@ -104,6 +104,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 	private class AircraftMoveToConveyorBelt : Activity
 	{
 		private readonly Aircraft aircraft;
+		private readonly Actor dockHostActor;
 		private readonly AircraftConveyorBeltDock aircraftConveyorBeltDock;
 		private readonly bool isLoading;
 		private readonly AircraftCrateTransporter crateTransporter;
@@ -117,9 +118,10 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 		private readonly ISpriteSequence dockSequence;
 		private readonly ISpriteSequence idleSequence;
 
-		public AircraftMoveToConveyorBelt(Actor self, AircraftConveyorBeltDock aircraftConveyorBeltDock, bool isLoading)
+		public AircraftMoveToConveyorBelt(Actor self, Actor dockHostActor, AircraftConveyorBeltDock aircraftConveyorBeltDock, bool isLoading)
 		{
 			this.aircraft = self.Trait<Aircraft>();
+			this.dockHostActor = dockHostActor;
 			this.aircraftConveyorBeltDock = aircraftConveyorBeltDock;
 			this.isLoading = isLoading;
 
@@ -140,7 +142,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 			this.QueueChild(this.aircraft.MoveToTarget(self, Target.FromPos(this.DockPosition), null, null));
 
 			var landOnCrate = new AircraftCrateLoad.LandOnCrate(
-				this.aircraft, Target.FromActor(self), GetDockAngle,
+				this.aircraft, Target.FromActor(this.dockHostActor), GetDockAngle,
 				this.LandAltitude);
 
 			// Parent activity is the activity that represents the entire docking process (including any animation)
