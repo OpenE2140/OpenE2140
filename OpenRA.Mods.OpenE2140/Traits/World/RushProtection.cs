@@ -204,10 +204,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 							// Notify local player about the attack only once. If the enemy actually attacks (e.g. any building),
 							// the defending player will be notified about it in separate notification.
 							if (actor.World.LocalPlayer == player
-								&& Game.RunTime > this.lastNotifyTime + this.info.EnemyAttackingNotifyInterval)
+								&& Game.RunTime > this.lastNotifyTime + this.Info.EnemyAttackingNotifyInterval)
 							{
-								PlaySpeechFactionNotification(actor.World, this.info.EnemyAttackingNotification);
-								TextNotificationsManager.AddTransientLine(actor.World.LocalPlayer, this.info.EnemyAttackingTextNotification);
+								PlaySpeechFactionNotification(actor.World, this.Info.EnemyAttackingNotification);
+								TextNotificationsManager.AddTransientLine(actor.World.LocalPlayer, this.Info.EnemyAttackingTextNotification);
 
 								this.lastNotifyTime = Game.RunTime;
 							}
