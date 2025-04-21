@@ -168,6 +168,9 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 		if (!base.CanDockAt(hostActor, host, forceEnter, ignoreOccupancy))
 			return false;
 
+		if (this.actor.Owner != hostActor.Owner)
+			return false;
+
 		if (hostActor.Info.HasTraitInfo<ResourceMineInfo>())
 			return this.crate == null;
 		else if (hostActor.Info.HasTraitInfo<ResourceRefineryInfo>())
