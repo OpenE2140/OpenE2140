@@ -149,6 +149,7 @@ public class AircraftCrateLoad : CrateLoadBase
 			{
 				if (dat > this.aircraft.LandAltitude && dat < this.aircraft.Info.CruiseAltitude)
 				{
+					this.Cancel(self);
 					this.QueueChild(new TakeOff(self));
 					return false;
 				}

@@ -202,15 +202,17 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 
 		public override bool Tick(Actor self)
 		{
-			if (this.IsCanceling)
+			if (this.IsCanceling || this.ChildActivity?.IsCanceling == true)
 			{
-				this.wsb.CancelCustomAnimation(self);
+				if (this.wsb.DefaultAnimation.IsPlayingSequence(this.sequence))
+					this.wsb.CancelCustomAnimation(self);
 			}
 			else
 			{
 				if (--this.tickDelay <= 0 && this.shouldStartPlaying() && !this.wsb.DefaultAnimation.IsPlayingSequence(this.sequence))
 				{
-					this.wsb.DefaultAnimation.Play(this.sequence);
+					this.wsb.CancelCustomAnimation(self);
+					this.wsb.PlayCustomAnimationRepeating(self, this.sequence);
 				}
 			}
 
