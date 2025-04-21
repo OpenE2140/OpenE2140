@@ -29,7 +29,7 @@ public class VirtualAssetsPackage : IReadOnlyPackage
 	{
 		this.Name = name;
 
-		var yaml = MiniYaml.FromStream(stream, name);
+		var yaml = MiniYaml.FromStream(stream, name).ToList();
 
 		var sources = yaml.FirstOrDefault(e => e.Key == "Sources")?.Value.Nodes;
 		var palettes = yaml.FirstOrDefault(e => e.Key == "Palettes")?.Value;
