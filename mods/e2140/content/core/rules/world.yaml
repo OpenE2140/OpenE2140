@@ -152,6 +152,7 @@ World:
 		RushProtectionRange: 10240
 		CountdownLabel: MISSION_TEXT
 		EnemyAttackingNotification: EnemiesApproaching
+		EnemyAttackingTextNotification: notification-rush-protection-enemy-attacking
 
 # Map editor specific world setup.
 EditorWorld:
