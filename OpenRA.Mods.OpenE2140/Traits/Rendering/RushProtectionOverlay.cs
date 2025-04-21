@@ -29,11 +29,11 @@ public class RushProtectionOverlay : IRenderAnnotations
 		this.rushProtection = self.World.WorldActor.TraitOrDefault<RushProtection>();
 	}
 
-	bool IRenderAnnotations.SpatiallyPartitionable => true;
+	bool IRenderAnnotations.SpatiallyPartitionable => false;
 
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
-		if (this.rushProtection == null)
+		if (this.rushProtection?.IsEnabled != true)
 			yield break;
 
 		yield return new CircleAnnotationRenderable(

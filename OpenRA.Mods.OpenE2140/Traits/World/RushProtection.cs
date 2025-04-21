@@ -124,7 +124,6 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 		private readonly List<int> proximityTriggers = [];
 		private readonly Dictionary<Actor, ActorDamageState> actorDamageStates = [];
 		private readonly int protectionTime;
-		private bool isEnabled;
 
 		private LabelWidget? countdownLabel;
 		private CachedTransform<int, string>? countdown;
@@ -134,6 +133,8 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 		public readonly RushProtectionInfo Info;
 
 		public List<ProtectedPlayer> ProtectedPlayers { get; } = [];
+
+		public bool IsEnabled { get; private set; }
 
 		public RushProtection(Actor self, RushProtectionInfo rushProtectionInfo)
 		{
@@ -154,7 +155,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 			if (this.Info.RushProtectionRange <= WDist.Zero || this.Info.DamageToViolatingUnits <= 0
 				|| this.Info.TicksBetweenDamageToViolatingUnits <= 0 || this.protectionTime <= 0)
 			{
-				this.isEnabled = false;
+				this.IsEnabled = false;
 				return;
 			}
 
@@ -172,7 +173,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 			this.InitializeTriggers(world);
 
 			this.ticksRemaining = this.protectionTime;
-			this.isEnabled = true;
+			this.IsEnabled = true;
 		}
 
 		private void InitializeTriggers(OpenRA.World world)
@@ -227,7 +228,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 
 		void ITick.Tick(Actor self)
 		{
-			if (!this.isEnabled)
+			if (!this.IsEnabled)
 				return;
 
 			this.ticksRemaining = this.protectionTime - self.World.WorldTick;
@@ -238,7 +239,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 					self.World.ActorMap.RemoveProximityTrigger(trigger);
 
 				this.proximityTriggers.Clear();
-				this.isEnabled = false;
+				this.IsEnabled = false;
 
 				if (this.countdownLabel != null)
 					this.countdownLabel.GetText = () => null;
