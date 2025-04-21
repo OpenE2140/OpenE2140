@@ -194,6 +194,11 @@ namespace OpenRA.Mods.OpenE2140.Traits.World
 					world.Map.CenterOfCell(homeLocation), this.Info.RushProtectionRange, this.Info.RushProtectionRange,
 					onEntry: (Actor actor) =>
 					{
+						// Ignore husks, which are created by vehicles/mechs.
+						// Perhaps there's better way to specify the traits to check?
+						if (actor.Info.HasTraitInfo<HuskInfo>())
+							return;
+
 						if (player.RelationshipWith(actor.Owner) == PlayerRelationship.Enemy)
 						{
 							this.actorDamageStates[actor] = new ActorDamageState
