@@ -136,7 +136,7 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 
 	public WVec CrateOffset { get; set; }
 
-	public CrateTransporter(ActorInitializer init, CrateTransporterInfo info)
+	protected CrateTransporter(ActorInitializer init, CrateTransporterInfo info)
 		: base(init.Self, info)
 	{
 		this.actor = init.Self;
