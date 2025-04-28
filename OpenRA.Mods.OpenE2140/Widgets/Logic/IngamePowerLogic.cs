@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Globalization;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
@@ -43,15 +44,17 @@ public class IngamePowerLogic : ChromeLogic
 		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
 		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
 
-		var tooltipTextCached = new CachedTransform<(string, string), string>(
-			((string usage, string capacity) args) => FluentProvider.GetMessage(
-				IngamePowerLogic.PowerUsage,
-				FluentProvider.GetMessage("usage", args.usage, "capacity", args.capacity)
-			)
-		);
+		var tooltipTextCached = new CachedTransform<(float Current, float Capacity), string>(usage =>
+		{
+			var capacity = developerMode.UnlimitedPower ?
+				unlimitedCapacity :
+				usage.Capacity.ToString(NumberFormatInfo.CurrentInfo);
+
+			return FluentProvider.GetMessage(PowerUsage, "usage", usage.Current, "capacity", capacity);
+		});
 
 		power.GetTooltipText = () => tooltipTextCached.Update(
-			(powerManager.PowerConsumed.ToString(), developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.PowerGenerated.ToString())
+			(powerManager.PowerConsumed, powerManager.PowerGenerated)
 		);
 	}
 }
