@@ -24,6 +24,9 @@ ed_ships_wtrn:
 	LeavesTrails:
 		MovingInterval: 4
 		StartDelay: 4
+	# Don't count WTRN as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 2

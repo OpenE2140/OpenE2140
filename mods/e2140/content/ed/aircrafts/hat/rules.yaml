@@ -43,6 +43,9 @@ ed_aircrafts_hat:
 	SpawnActorOnDeath@Ground:
 		Actor: ed_aircrafts_hat_husk
 		RequiresCondition: !airborne
+	# Don't count HAT as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: ED - Aircrafts
 		Order: 3

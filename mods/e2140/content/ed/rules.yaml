@@ -28,12 +28,18 @@ World:
 	Voiced@EdVehicle:
 		VoiceSet: EdVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	# Count vehicle as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ^EdAircraft:
 	Inherits: ^CoreAircraft
 	Voiced@EdAircraft:
 		VoiceSet: EdVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	# Count aircraft as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ^EdInfantry:
 	Inherits@1: ^CoreInfantry
@@ -47,12 +53,18 @@ World:
 		DeathTypes:
 			Default: -default1, -default2, -default3, -default4
 			Explosion: -explode1, -explode2, -explode3, -explode4
+	# Count infantry as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ^EdShip:
 	Inherits: ^CoreShip
 	Voiced@EdShip:
 		VoiceSet: EdVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	# Count ship as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ed_colorpicker:
 	Inherits: ed_vehicles_st01b

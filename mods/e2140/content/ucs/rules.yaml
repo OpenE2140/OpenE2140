@@ -46,6 +46,9 @@ World:
 	Voiced@UcsVehicle:
 		VoiceSet: UcsVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	# Count vehicle as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 # Base for all UCS mechs.
 ^UcsMech:
@@ -67,6 +70,9 @@ World:
 	Aircraft:
 		TakeoffSounds: jetstart.wav
 		LandingSounds: jetstop.wav
+	# Count aircraft as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ^UcsInfantry:
 	Inherits: ^CoreInfantry
@@ -77,12 +83,18 @@ World:
 		EmptyWeapon: UcsInfantryExplosion
 	Targetable:
 		TargetTypes: Ground, InfantryUCS
+	# Count infantry as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 ^UcsShip:
 	Inherits: ^CoreShip
 	Voiced@UcsShip:
 		VoiceSet: UcsVehicleVoice
 		RequiresCondition: !VehicleDisabled
+	# Count ship as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
 
 # UCS Mech husk throws a turret.
 ^HuskThrowsTurretUCSMech:

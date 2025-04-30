@@ -31,6 +31,9 @@ ed_vehicles_screamer:
 		RequiresCondition: !VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_screamer_husk
+	# Don't count SCREAMER as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	# SCREAMERS are immune to each other.
 	-RejectsOrders:
 	-ExternalCondition@Interference:

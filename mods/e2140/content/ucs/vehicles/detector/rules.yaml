@@ -26,6 +26,9 @@ ucs_vehicles_detector:
 		Range: 4c896
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_detector_husk
+	# Don't count DETECTOR as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 15

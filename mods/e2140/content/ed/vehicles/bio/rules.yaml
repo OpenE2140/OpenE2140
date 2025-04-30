@@ -41,6 +41,9 @@ ed_vehicles_bio:
 		RequiresCondition: activatebio || infantryinside
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_bio_husk
+	# Don't count BIO as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 9

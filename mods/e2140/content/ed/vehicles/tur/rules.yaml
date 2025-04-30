@@ -30,6 +30,9 @@ ed_vehicles_tur:
 		RequiresSelection: True
 	SpawnActorOnDeath:
 		Actor: ed_vehicles_tur_husk
+	# Don't count TUR as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: ED - Vehicles
 		Order: 8

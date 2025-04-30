@@ -25,6 +25,9 @@ ucs_vehicles_wtp_100:
 	-WithMoveAnimation:
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_wtp_100_husk
+	# Don't count WTP 100 as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 12

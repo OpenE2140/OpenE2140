@@ -27,6 +27,9 @@ ucs_vehicles_shadow:
 		Range: 4c896
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_shadow_husk
+	# Don't count SHADOW as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 11
