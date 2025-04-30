@@ -146,7 +146,7 @@ World:
 				MaxDensity: 10000
 	# Add support for rush protection
 	RushProtection:
-		RushProtectionTimeDefault: 1
+		RushProtectionTimeDefault: 0
 		DamageToViolatingUnits: 20
 		TicksBetweenDamageToViolatingUnits: 10
 		RushProtectionRange: 10240
