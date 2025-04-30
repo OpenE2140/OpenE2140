@@ -6,6 +6,8 @@
 # Copy-paste the entire script into https://shellcheck.net to check.
 ####
 
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
 # Compile and publish any mod assemblies to the target directory
 # Arguments:
 #   SRC_PATH: Path to the root SDK directory

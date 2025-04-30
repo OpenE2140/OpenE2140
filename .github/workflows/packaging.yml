@@ -5,6 +5,9 @@ on:
     tags:
     - '*'
 
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
 permissions:
   contents: write  #  for release creation (svenstaro/upload-release-action)
 

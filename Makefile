@@ -37,6 +37,9 @@ ifeq ($(PYTHON),)
 $(error "The OpenRA mod SDK requires python.")
 endif
 
+# Global environment variables
+export DOTNET_CLI_TELEMETRY_OPTOUT := 1
+
 VERSION = $(shell git name-rev --name-only --tags --no-undefined HEAD 2>/dev/null || echo git-`git rev-parse --short HEAD`)
 MOD_ID = $(shell cat user.config mod.config 2> /dev/null | awk -F= '/MOD_ID/ { print $$2; exit }')
 ENGINE_DIRECTORY = $(shell cat user.config mod.config 2> /dev/null | awk -F= '/ENGINE_DIRECTORY/ { print $$2; exit }')
