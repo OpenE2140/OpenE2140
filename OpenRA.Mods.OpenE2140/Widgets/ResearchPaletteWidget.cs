@@ -57,42 +57,42 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 
 	public readonly string OverlayFont = "TinyBold";
 
-	public string Icons = "";
+	private readonly ModData modData;
+	private readonly WorldRenderer worldRenderer;
+
+	private readonly Lazy<TooltipContainerWidget> tooltipContainer;
+
+	private HotkeyReference[] hotkeys = [];
+	private bool CanScrollDown => this.IconRowOffset < (this.Researchables.Length + this.Columns - 1) / this.Columns - this.MaxIconRowOffset;
+	private bool CanScrollUp => this.IconRowOffset > 0;
+
+	private readonly Dictionary<Rectangle, ResearchIcon> icons = [];
 
 	public ResearchIcon? TooltipIcon { get; private set; }
 	public Func<ResearchIcon?> GetTooltipIcon;
 	public readonly World World;
-	private readonly ModData modData;
 
+	public string Icons = "";
 	public int IconRowOffset;
 	public int MaxIconRowOffset = int.MaxValue;
 
-	private readonly Lazy<TooltipContainerWidget> tooltipContainer;
-	private HotkeyReference[] hotkeys = Array.Empty<HotkeyReference>();
-
 	public override Rectangle EventBounds => this.eventBounds;
-	private readonly Dictionary<Rectangle, ResearchIcon> icons = new Dictionary<Rectangle, ResearchIcon>();
 	public Animation? NotResearchable;
 	public Animation? Clock;
 	private Rectangle eventBounds;
-
-	private readonly WorldRenderer worldRenderer;
 
 	private SpriteFont? overlayFont;
 	private float2 iconOffset;
 	private float2 timeOffset;
 
-	public Researchable[] Researchables = Array.Empty<Researchable>();
+	public Researchable[] Researchables = [];
 	private readonly Research research;
 	private readonly ResearchLimit researchLimit;
 	private readonly DeveloperMode developerMode;
 
-	private bool CanScrollDown => this.IconRowOffset < (this.Researchables.Length + this.Columns - 1) / this.Columns - this.MaxIconRowOffset;
-	private bool CanScrollUp => this.IconRowOffset > 0;
-
 	public readonly string Identifier = string.Empty;
 
-	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TextColor) };
+	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TextColor)];
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 

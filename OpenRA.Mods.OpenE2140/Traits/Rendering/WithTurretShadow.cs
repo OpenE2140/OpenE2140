@@ -34,7 +34,7 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 	public readonly int ZOffset = -5;
 
 	[Desc("Turret names.")]
-	public readonly string[] Turrets = { "primary" };
+	public readonly string[] Turrets = ["primary"];
 
 	public override object Create(ActorInitializer init) { return new WithTurretShadow(this); }
 

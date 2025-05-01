@@ -197,7 +197,7 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 
 	public (CPos, SubCell)[] OccupiedCells()
 	{
-		return this.parentActor?.OccupiesSpace?.OccupiedCells() ?? new[] { (this.location, SubCell.FullCell) };
+		return this.parentActor?.OccupiesSpace?.OccupiedCells() ?? [(this.location, SubCell.FullCell)];
 	}
 
 	void ISubActor.OnParentKilled(Actor self, Actor parentActor)

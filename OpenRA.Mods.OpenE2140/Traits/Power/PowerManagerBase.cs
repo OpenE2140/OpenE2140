@@ -23,7 +23,7 @@ public abstract class PowerManagerBase : ITick
 	private readonly PowerManagerBaseInfo info;
 	protected DeveloperMode DevMode { get; }
 
-	protected readonly Dictionary<Actor, Power> Powers = new Dictionary<Actor, Power>();
+	protected readonly Dictionary<Actor, Power> Powers = [];
 
 	public int Power { get; private set; }
 	public int PowerGenerated { get; private set; }
@@ -31,7 +31,7 @@ public abstract class PowerManagerBase : ITick
 
 	private long lastAdviceTime;
 
-	public PowerManagerBase(Actor self, PowerManagerBaseInfo info)
+	protected PowerManagerBase(Actor self, PowerManagerBaseInfo info)
 	{
 		this.info = info;
 

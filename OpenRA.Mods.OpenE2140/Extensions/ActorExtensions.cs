@@ -19,7 +19,7 @@ public static class ActorExtensions
 {
 	public static IEnumerable<T> TryGetTraitsImplementing<T>(this Actor actor)
 	{
-		return actor.IsInWorld ? actor.TraitsImplementing<T>() : Enumerable.Empty<T>();
+		return actor.IsInWorld ? actor.TraitsImplementing<T>() : [];
 	}
 
 	public static bool TryGetTrait<T>(this Actor actor, [MaybeNullWhen(false)] out T trait)

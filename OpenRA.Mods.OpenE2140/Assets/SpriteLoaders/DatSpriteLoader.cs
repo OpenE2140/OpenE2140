@@ -52,8 +52,8 @@ public class DatSpriteLoader : ISpriteLoader
 		var datImage = new DatImage(stream);
 		var palPalette = new PalPalette(((Wd.WdStream)stream).Wd.GetStream(filename[..^4].Split('|').Last() + ".PAL") ?? throw new FileNotFoundException());
 
-		frames = new ISpriteFrame[]
-		{
+		frames =
+		[
 			new DatSpriteFrame(
 				SpriteFrameType.Rgba32,
 				new Size(datImage.Width, datImage.Height),
@@ -67,7 +67,7 @@ public class DatSpriteLoader : ISpriteLoader
 					)
 					.ToArray()
 			)
-		};
+		];
 
 		return true;
 	}

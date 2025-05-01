@@ -37,10 +37,10 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 	public readonly WAngle Facing = new(384);
 
 	[Desc("Sounds to play when transforming.")]
-	public readonly string[] TransformSounds = Array.Empty<string>();
+	public readonly string[] TransformSounds = [];
 
 	[Desc("Sounds to play when the transformation is blocked.")]
-	public readonly string[] NoTransformSounds = Array.Empty<string>();
+	public readonly string[] NoTransformSounds = [];
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when transforming.")]
@@ -108,7 +108,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
 	{
 		return this.customBuildingInfo == null
-			? Enumerable.Empty<Order>()
+			? []
 			: AIUtils.ClearBlockersOrders(this.customBuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
 	}
 

@@ -32,7 +32,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 {
 	private record Entry(ISound Sound, List<Actor> Actors);
 
-	private readonly Dictionary<string, Entry> playing = new Dictionary<string, Entry>();
+	private readonly Dictionary<string, Entry> playing = [];
 	private WorldRenderer? worldRenderer;
 
 	void IWorldLoaded.WorldLoaded(OpenRA.World world, WorldRenderer worldRenderer)
@@ -49,7 +49,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 			if (sound == null)
 				return;
 
-			this.playing.Add(soundName, entry = new Entry(sound, new List<Actor> { actor }));
+			this.playing.Add(soundName, entry = new Entry(sound, [actor]));
 		}
 
 		if (!entry.Actors.Contains(actor))
@@ -65,7 +65,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 
 		entry.Actors.Remove(actor);
 
-		if (!entry.Actors.Any())
+		if (entry.Actors.Count == 0)
 			Game.Sound.SetLooped(entry.Sound, false);
 	}
 
@@ -75,7 +75,7 @@ public class WithWorldMoveSound : ITick, IWorldLoaded
 		{
 			var entry = this.playing[sound];
 
-			if (!entry.Actors.Any())
+			if (entry.Actors.Count == 0)
 			{
 				if (entry.Sound.Complete)
 					this.playing.Remove(sound);

@@ -26,13 +26,13 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 {
 	[FieldLoader.Require]
 	[Desc("Tiles to play animation on (Id field of terrain template).")]
-	public readonly ushort[] Tiles = Array.Empty<ushort>();
+	public readonly ushort[] Tiles = [];
 
 	[Desc("Average time (ticks) between animations.")]
-	public readonly int[] Interval = { 7 * 25, 13 * 25 };
+	public readonly int[] Interval = [7 * 25, 13 * 25];
 
 	[Desc($"Delays (in ticks) before each loop. Number of delays must be equal or less than {nameof(TerrainTileAnimationInfo.LoopCount)}.")]
-	public readonly int[] LoopDelays = { 0 };
+	public readonly int[] LoopDelays = [0];
 
 	[Desc("Number of loops.")]
 	public readonly int LoopCount = 1;
@@ -46,7 +46,7 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 
 	[Desc("List of sequences to render for each loop. Each sequence corresponds to loop.")]
 	[SequenceReference(nameof(TerrainTileAnimationInfo.Image))]
-	public readonly string[] Sequences = { "idle" };
+	public readonly string[] Sequences = ["idle"];
 
 	[FieldLoader.Require]
 	[Desc("Which palette to use.")]
@@ -57,7 +57,7 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 		"Change effect position each tick. List of triples (x,y,z) for each loop. ",
 		$"Number of items must be equal or less than {nameof(TerrainTileAnimationInfo.LoopCount)}. By default effect does not move."
 	)]
-	public readonly WVec[] EffectMovement = Array.Empty<WVec>();
+	public readonly WVec[] EffectMovement = [];
 
 	public override object Create(ActorInitializer init) { return new TerrainTileAnimation(init.Self, this); }
 
@@ -93,8 +93,8 @@ public class TerrainTileAnimation : ITick
 {
 	private readonly TerrainTileAnimationInfo info;
 	private readonly CPos[] cells;
-	private readonly Dictionary<CPos, TileAnimation> tileAnimations = new Dictionary<CPos, TileAnimation>();
-	private readonly List<CPos> tileAnimationsCleanup = new List<CPos>();
+	private readonly Dictionary<CPos, TileAnimation> tileAnimations = [];
+	private readonly List<CPos> tileAnimationsCleanup = [];
 
 	private int ticks;
 
@@ -109,7 +109,7 @@ public class TerrainTileAnimation : ITick
 
 	void ITick.Tick(Actor self)
 	{
-		if (!this.cells.Any())
+		if (this.cells.Length == 0)
 			return;
 
 		var world = self.World;

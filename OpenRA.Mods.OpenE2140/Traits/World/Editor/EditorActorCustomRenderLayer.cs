@@ -51,7 +51,7 @@ public class EditorActorCustomRenderLayer : ITickRender, IRenderAnnotations, IWo
 	private readonly EditorActorLayer editorLayer;
 
 	private ImmutableDictionary<string, EditorActorPreview> allMapActors = ImmutableDictionary<string, EditorActorPreview>.Empty;
-	private ICustomEditorRender[] customRenders = Array.Empty<ICustomEditorRender>();
+	private ICustomEditorRender[] customRenders = [];
 
 	public EditorActorCustomRenderLayer(Actor self)
 	{

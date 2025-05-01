@@ -35,7 +35,7 @@ public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 		$"Loop a sequence of {nameof(FreezingBulletInfo.FrozenImage)} from this list while this projectile is frozen. "
 		+ $"Sequence is picked based on the sequence chosen from {nameof(BulletInfo.Sequences)}"
 	)]
-	public readonly string[] FrozenSequences = { "idle" };
+	public readonly string[] FrozenSequences = ["idle"];
 
 	public override IProjectile Create(ProjectileArgs args)
 	{

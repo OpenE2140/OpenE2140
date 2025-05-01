@@ -54,7 +54,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	private readonly TechTree techTree;
 	private ResearchLimit? researchLimit;
 	private DeveloperMode? developerMode;
-	private readonly List<Researchable> researchables = new List<Researchable>();
+	private readonly List<Researchable> researchables = [];
 
 	public Researchable? Current { get; private set; }
 
@@ -178,7 +178,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 
 		// Check for faction restrictions.
 		if (this.developerMode is not { AllTech: true }
-			&& researchable.Info.Factions.Any()
+			&& researchable.Info.Factions.Length > 0
 			&& !researchable.Info.Factions.Contains(this.player.Faction.InternalName))
 			return;
 
@@ -243,7 +243,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 			if (other == researchable)
 				wasFound = true;
 
-			if (other.Info.Factions.Any() && !other.Info.Factions.Contains(this.self.Owner.Faction.InternalName))
+			if (other.Info.Factions.Length > 0 && !other.Info.Factions.Contains(this.self.Owner.Faction.InternalName))
 				continue;
 
 			if (other.RemainingDuration == 0)
@@ -279,13 +279,13 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 					.Select(p => this.researchables.FirstOrDefault(r => r.Info.Id == p))
 					.Where(r => r != null && r.Info.Level > this.researchLimit.Limit).ToArray();
 
-				if (researchTechs.Any())
+				if (researchTechs.Length > 0)
 				{
 					shouldUpdateTechTree = true;
 
 					// Hiding works by adding prerequisite that will cause actor being hidden in ProductionPaletteWidget.
 					// Enabling All Tech dev command will continue to work as expected, because if it's enabled, all prerequisites are ignored.
-					techTree.Add(actorInfo.Name, new[] { "~disabled" }, 0, queue);
+					techTree.Add(actorInfo.Name, ["~disabled"], 0, queue);
 				}
 			}
 		}

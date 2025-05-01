@@ -12,16 +12,16 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 {
 	[FieldLoader.Require]
 	[Desc("The time between individual particle creation. Two values mean actual lifetime will vary between them.")]
-	public readonly int[] Lifetime = Array.Empty<int>();
+	public readonly int[] Lifetime = [];
 
 	[Desc("Randomised offset for the particle emitter.")]
 	public readonly WVec Offset = WVec.Zero;
 
 	[Desc("Randomized particle forward movement.")]
-	public readonly WDist[] Speed = { WDist.Zero };
+	public readonly WDist[] Speed = [WDist.Zero];
 
 	[Desc("Randomized particle gravity.")]
-	public readonly WDist[] Gravity = { WDist.Zero };
+	public readonly WDist[] Gravity = [WDist.Zero];
 
 	[Desc("Randomize particle facing.")]
 	public readonly bool RandomFacing = true;
@@ -37,7 +37,7 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 
 	[Desc("Which sequence to use.")]
 	[SequenceReference(nameof(CreateSmokeEffectWarhead.Image))]
-	public readonly string[] Sequences = { "particles" };
+	public readonly string[] Sequences = ["particles"];
 
 	[Desc("Which palette to use.")]
 	[PaletteReference(nameof(CreateSmokeEffectWarhead.IsPlayerPalette))]

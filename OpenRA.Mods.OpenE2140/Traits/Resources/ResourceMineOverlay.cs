@@ -87,7 +87,7 @@ public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IR
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
 		if (!this.ShouldRender(self))
-			return Enumerable.Empty<IRenderable>();
+			return [];
 
 		return this.RenderOverlay(self);
 	}
@@ -107,13 +107,12 @@ public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IR
 			{
 				var tl = footprintCenter + new WVec(-borderRange, -borderRange, WDist.Zero);
 				yield return new PolygonAnnotationRenderable(
-					new[]
-					{
+					[
 						tl,
 						footprintCenter + new WVec(borderRange, -borderRange, WDist.Zero),
 						footprintCenter + new WVec(borderRange, borderRange, WDist.Zero),
 						footprintCenter + new WVec(-borderRange, borderRange, WDist.Zero),
-					}, tl, 1, color);
+					], tl, 1, color);
 				break;
 			}
 			case MiningAreaBorderShape.Circle:

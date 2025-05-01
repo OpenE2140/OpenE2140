@@ -26,7 +26,7 @@ public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 	public readonly Color TargetLineColor = Color.Crimson;
 
 	[Desc("Only allow building walls on listed terrain types. Leave empty to allow all terrain types.")]
-	public readonly HashSet<string> TerrainTypes = new();
+	public readonly HashSet<string> TerrainTypes = [];
 
 	[CursorReference]
 	[Desc("Cursor to display when able to build a wall.")]
@@ -156,11 +156,11 @@ public class WallBuilder : ConditionalTrait<WallBuilderInfo>, IResolveOrder, ITi
 					return;
 				}
 
-				this.newWallActor = w.CreateActor(this.Info.Wall, new TypeDictionary
-				{
+				this.newWallActor = w.CreateActor(this.Info.Wall,
+				[
 					new LocationInit(this.newWallLocation.Value),
 					new OwnerInit(self.Owner)
-				});
+				]);
 
 				foreach (var t in self.TraitsImplementing<INotifyWallBuilding>())
 					t.WallCreated(self, this.newWallActor);

@@ -35,10 +35,10 @@ public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
 		encyclopediaButton.GetText = () => encyclopediaButton.Text;
 
 		encyclopediaButton.OnClick = () =>
-			this.GetType().BaseType?.GetMethod("OpenEncyclopediaPanel", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(this, Array.Empty<object>());
+			this.GetType().BaseType?.GetMethod("OpenEncyclopediaPanel", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(this, []);
 
 		loadButton.Parent.AddChild(encyclopediaButton);
 
-		encyclopediaButton.Initialize(new WidgetArgs());
+		encyclopediaButton.Initialize([]);
 	}
 }

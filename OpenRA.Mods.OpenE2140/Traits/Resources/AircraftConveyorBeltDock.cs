@@ -15,7 +15,7 @@ public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 		"List of angles, which the aircraft crate transporter can dock into this dock host.",
 		$"All angles must be also present in {nameof(AircraftCrateTransporter)}.{nameof(AircraftCrateTransporterInfo.AllowedDockAngles)}.",
 		$"In other words, angles in {nameof(AircraftConveyorBeltDock)} are subset of angles in {nameof(AircraftCrateTransporter)}")]
-	public readonly WAngle[] AllowedDockAngles = { new(0) };
+	public readonly WAngle[] AllowedDockAngles = [new(0)];
 
 	[Desc($"Altitude at which the aircraft considers itself landed with on top of the {nameof(AircraftConveyorBeltDockInfo)}.")]
 	public readonly WDist LandAltitude = WDist.Zero;

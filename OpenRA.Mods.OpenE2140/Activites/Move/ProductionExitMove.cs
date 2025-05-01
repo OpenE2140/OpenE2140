@@ -109,7 +109,7 @@ public class ProductionExitMove : Activity
 
 				var blockingActors = self.World.ActorMap.GetActorsAt(this.targetCell, subCell).Where(a => a != self && a != this.producent).ToArray();
 
-				if (!blockingActors.Any())
+				if (blockingActors.Length == 0)
 				{
 					// Reserve the exit cell
 					this.mobile.SetPosition(self, this.targetCell, subCell);

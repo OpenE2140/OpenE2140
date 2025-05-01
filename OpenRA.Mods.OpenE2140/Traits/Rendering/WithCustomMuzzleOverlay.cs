@@ -35,8 +35,8 @@ public class WithCustomMuzzleOverlayInfo : ConditionalTraitInfo, Requires<Render
 
 public class WithCustomMuzzleOverlay : ConditionalTrait<WithCustomMuzzleOverlayInfo>, INotifyAttack, IRender, ITick
 {
-	private readonly Dictionary<Barrel, bool> visible = new Dictionary<Barrel, bool>();
-	private readonly Dictionary<Barrel, AnimationWithOffset> anims = new Dictionary<Barrel, AnimationWithOffset>();
+	private readonly Dictionary<Barrel, bool> visible = [];
+	private readonly Dictionary<Barrel, AnimationWithOffset> anims = [];
 	private readonly Armament[] armaments;
 
 	public WithCustomMuzzleOverlay(Actor self, WithCustomMuzzleOverlayInfo info)

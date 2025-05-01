@@ -62,7 +62,7 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 
 	public virtual IEnumerable<CPos> Tiles(CPos location)
 	{
-		return this.buildingInfo?.Tiles(location) ?? Enumerable.Empty<CPos>();
+		return this.buildingInfo?.Tiles(location) ?? [];
 	}
 
 	public WPos GetCenterOfFootprint(CPos location)

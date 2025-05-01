@@ -32,8 +32,8 @@ public class ConveyorBeltDockInfo : SharedDockHostInfo
 
 public class CrateMoveSequence
 {
-	public readonly int[] Delays = Array.Empty<int>();
-	public readonly int[] Offsets = Array.Empty<int>();
+	public readonly int[] Delays = [];
+	public readonly int[] Offsets = [];
 
 	public CrateMoveSequence()
 	{

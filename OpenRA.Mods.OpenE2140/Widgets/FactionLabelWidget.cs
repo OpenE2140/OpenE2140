@@ -19,7 +19,7 @@ namespace OpenRA.Mods.OpenE2140.Widgets;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 {
-	public readonly string[] FieldsToOverride = { "TextColor" };
+	public readonly string[] FieldsToOverride = ["TextColor"];
 
 	[FieldLoader.Require]
 	public readonly string Identifier = string.Empty;

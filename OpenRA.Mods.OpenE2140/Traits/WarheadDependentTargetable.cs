@@ -6,7 +6,7 @@ namespace OpenRA.Mods.OpenE2140.Traits;
 public class WarheadDependentTargetableInfo : TargetableInfo
 {
 	[Desc("List of viewer warheads that makes it not able to target this actor.")]
-	public readonly string[] InvalidViewerWarheads = Array.Empty<string>();
+	public readonly string[] InvalidViewerWarheads = [];
 
 	public override object Create(ActorInitializer init) { return new WarheadDependentTargetable(this); }
 }

@@ -27,7 +27,7 @@ public abstract class CrateUnloadBase : Activity
 	private DockingState state;
 	private bool dockInitiated;
 
-	public CrateUnloadBase(Actor self, CPos? targetLocation = null)
+	protected CrateUnloadBase(Actor self, CPos? targetLocation = null)
 	{
 		this.crateTransporter = self.Trait<CrateTransporter>();
 		this.targetLocation = targetLocation;

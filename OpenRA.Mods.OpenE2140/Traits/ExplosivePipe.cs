@@ -50,7 +50,7 @@ public class ExplosivePipeInfo : ConditionalTraitInfo
 	public readonly bool IsNode;
 
 	[Desc("Delay before explosion of nearest pipe, in ticks. Two values indicate a range.")]
-	public readonly int[] ExplosionDelay = { 10, 20 };
+	public readonly int[] ExplosionDelay = [10, 20];
 
 	public override object Create(ActorInitializer init)
 	{

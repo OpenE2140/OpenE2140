@@ -15,7 +15,6 @@ using System.Collections.Immutable;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
@@ -110,7 +109,7 @@ public class ResourceMine : ConveyorBelt
 		this.crateBeingMined ??= self.World.CreateActor(
 				false,
 				this.Info.CrateActor,
-				new TypeDictionary { new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner) }
+				[new ParentActorInit(self), new LocationInit(self.Location), new OwnerInit(self.Owner)]
 			)
 			.Trait<ResourceCrate>();
 

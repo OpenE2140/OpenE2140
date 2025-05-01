@@ -1,5 +1,4 @@
-﻿using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Traits;
+﻿using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Miner;
 

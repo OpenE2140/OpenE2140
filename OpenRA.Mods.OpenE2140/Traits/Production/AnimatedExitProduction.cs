@@ -53,7 +53,7 @@ public class AnimatedExitProductionInfo : ProductionInfo, IRenderActorPreviewSpr
 	public string SequenceOverlay = "overlay";
 
 	[Desc("The sound(s) to play at the start of the opening animation.")]
-	public string[] SoundsOpening = Array.Empty<string>();
+	public string[] SoundsOpening = [];
 
 	[Desc("Animated exit Position.")]
 	public readonly WVec Position;
@@ -121,7 +121,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	private readonly List<IProduceActorInitModifier> actorInitModifiers;
 
 	protected readonly RenderSprites RenderSprites;
-	private AnimatedExitProductionQueue[] productionQueues = Array.Empty<AnimatedExitProductionQueue>();
+	private AnimatedExitProductionQueue[] productionQueues = [];
 	private RallyPoint? rallyPoint;
 
 	private readonly AnimationWithOffset animation;
@@ -256,7 +256,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 		var blockingActors = self.World.ActorMap.GetActorsAt(targetCell).Except(exceptActors).ToArray();
 
-		if (!blockingActors.Any())
+		if (blockingActors.Length == 0)
 			return false;
 
 		this.lastNudge = self.World.WorldTick;
@@ -395,7 +395,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				var blockingActors = self.World.ActorMap.GetActorsAt(exitCell).Exclude(actor).ToArray();
 
-				if (!blockingActors.Any())
+				if (blockingActors.Length == 0)
 				{
 					// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
 					this.productionInfo = this.productionInfo with { ExitMoveActivity = actor.Trait<IMove>().MoveTo(exitCell) };

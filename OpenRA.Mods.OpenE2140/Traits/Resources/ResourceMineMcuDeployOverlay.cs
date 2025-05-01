@@ -103,13 +103,12 @@ public class ResourceMineMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 			{
 				var tl = footprintCenter + new WVec(-borderRange, -borderRange, WDist.Zero);
 				yield return new PolygonAnnotationRenderable(
-					new[]
-					{
+					[
 						tl,
 						footprintCenter + new WVec(borderRange, -borderRange, WDist.Zero),
 						footprintCenter + new WVec(borderRange, borderRange, WDist.Zero),
 						footprintCenter + new WVec(-borderRange, borderRange, WDist.Zero),
-					}, tl, 1, color);
+					], tl, 1, color);
 				break;
 			}
 			case MiningAreaBorderShape.Circle:

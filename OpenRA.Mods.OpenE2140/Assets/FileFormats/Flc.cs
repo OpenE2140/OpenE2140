@@ -24,7 +24,7 @@ public class Flc : IVideo
 	public byte[] CurrentFrameData { get; }
 	public int CurrentFrameIndex { get; private set; }
 	public bool HasAudio => false;
-	public byte[] AudioData => Array.Empty<byte>();
+	public byte[] AudioData => [];
 	public int AudioChannels => 0;
 	public int SampleBits => 0;
 	public int SampleRate => 0;

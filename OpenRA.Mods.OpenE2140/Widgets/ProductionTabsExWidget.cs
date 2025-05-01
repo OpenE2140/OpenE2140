@@ -52,7 +52,7 @@ public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidg
 		this.getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollRight);
 	}
 
-	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TabColor), nameof(this.TabColorDone) };
+	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TabColor), nameof(this.TabColorDone)];
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

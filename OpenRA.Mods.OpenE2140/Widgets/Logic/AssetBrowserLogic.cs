@@ -41,7 +41,7 @@ public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 
 		closeButton.Parent.AddChild(extractButton);
 
-		extractButton.Initialize(new WidgetArgs());
+		extractButton.Initialize([]);
 	}
 
 	private void Extract()

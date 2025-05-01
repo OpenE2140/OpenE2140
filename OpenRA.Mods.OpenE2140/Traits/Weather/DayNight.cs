@@ -116,7 +116,7 @@ public class DayNight : ITick, IWorldLoaded
 		this.globalTint?.SetValue(this.terrainLighting, new float3(light.R, light.G, light.B) / byte.MaxValue);
 
 		foreach (var cell in self.World.Map.AllCells)
-			this.updateTint?.Invoke(this.terrainSpriteLayer, new object[] { cell.ToMPos(self.World.Map) });
+			this.updateTint?.Invoke(this.terrainSpriteLayer, [cell.ToMPos(self.World.Map)]);
 	}
 
 	private Color GetLightColor(OpenRA.World world)

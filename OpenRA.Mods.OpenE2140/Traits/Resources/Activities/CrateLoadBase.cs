@@ -31,7 +31,7 @@ public abstract class CrateLoadBase : Activity
 	private LoadState state;
 	private bool dockInitiated;
 
-	public CrateLoadBase(Actor self, in Target crateActor)
+	protected CrateLoadBase(Actor self, in Target crateActor)
 	{
 		this.target = crateActor;
 

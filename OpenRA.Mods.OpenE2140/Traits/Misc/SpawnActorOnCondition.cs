@@ -13,7 +13,6 @@
 
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
 
@@ -33,7 +32,7 @@ public class SpawnActorOnConditionInfo : TraitInfo, IEditorActorOptions
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
 	[Desc("Actors to create, when specified condition is granted. Whichever condition is activated first, wins (i.e. only actor is ever spawned).",
 		"A dictionary of [actor name]: [condition].")]
-	public readonly Dictionary<string, BooleanExpression> ActorConditions = new();
+	public readonly Dictionary<string, BooleanExpression> ActorConditions = [];
 
 	[ConsumedConditionReference]
 	public IEnumerable<string> LinterSpawnConditions => this.ActorConditions.Values.SelectMany(e => e.Variables).Distinct();
@@ -93,13 +92,13 @@ public class SpawnActorOnCondition : IObservesVariables
 
 		self.World.AddFrameEndTask(w =>
 		{
-			w.CreateActor(actor, new TypeDictionary
-			{
+			w.CreateActor(actor,
+			[
 				new ParentActorInit(self),
 				new LocationInit(self.Location + this.info.SpawnOffset),
 				new OwnerInit(self.Owner),
 				new FacingInit(this.info.Facing),
-			});
+			]);
 		});
 	}
 }

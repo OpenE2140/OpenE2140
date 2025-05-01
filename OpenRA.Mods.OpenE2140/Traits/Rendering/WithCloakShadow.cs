@@ -27,19 +27,19 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	public readonly Color ShadowColor = Color.FromArgb(140, 0, 0, 0);
 
 	[Desc("Apply cloaked effect to render modifiers from specified traits. Key is trait name, value is alpha (which defaults to value from ShadowColor).")]
-	public readonly Dictionary<string, float?> ApplyToRenderModifierTraits = new Dictionary<string, float?>();
+	public readonly Dictionary<string, float?> ApplyToRenderModifierTraits = [];
 
 	[Desc("Render specified traits fully without applying shadow effect.")]
-	public readonly string[] TraitsToFullyRender = { "WithMuzzleOverlay" }; // TODO: PR for making it public
+	public readonly string[] TraitsToFullyRender = ["WithMuzzleOverlay"]; // TODO: PR for making it public
 
 	[Desc("Render specified traits even when the actor is completely invisible (i.e. owner is not render player).")]
-	public readonly string[] TraitsToRenderWhenInvisibile = { "WithMuzzleOverlay" }; // TODO: PR for making it public
+	public readonly string[] TraitsToRenderWhenInvisibile = ["WithMuzzleOverlay"]; // TODO: PR for making it public
 
 	[Desc("Render cloaked units with transparency effect instead of shadow effect.")]
 	public readonly bool TransparentAppearance = false;
 
 	[Desc("Render specified sequences RenderSprites using custom shadow alpha value. Key is sequence name, value is alpha. Default alpha is 1.0 (no cloak)")]
-	public readonly Dictionary<string, float?> OverrideShadowAlphaForSequences = new Dictionary<string, float?>();
+	public readonly Dictionary<string, float?> OverrideShadowAlphaForSequences = [];
 
 	public override object Create(ActorInitializer init)
 	{

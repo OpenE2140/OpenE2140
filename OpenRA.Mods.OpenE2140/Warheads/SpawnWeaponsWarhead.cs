@@ -27,19 +27,19 @@ namespace OpenRA.Mods.OpenE2140.Warheads;
 public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 {
 	[Desc("The weapons to spawn.")]
-	public readonly string[] Weapons = Array.Empty<string>();
+	public readonly string[] Weapons = [];
 
 	[Desc("Delay in ticks before applying the warhead effect.", "0 = instant.")]
-	public readonly int[] Delays = { 0 };
+	public readonly int[] Delays = [0];
 
 	[Desc("The amount of projectile pieces to produce.")]
-	public readonly int[] Pieces = { 1 };
+	public readonly int[] Pieces = [1];
 
 	[Desc("The minimum and maximum distances the projectile may travel.")]
-	public readonly WDist[] Range = { WDist.FromCells(2), WDist.FromCells(5) };
+	public readonly WDist[] Range = [WDist.FromCells(2), WDist.FromCells(5)];
 
 	[Desc("The maximum inaccuracy of the effect spawn position relative to actual impact position for each weapon.")]
-	public readonly WDist[] Inaccuracies = { WDist.Zero };
+	public readonly WDist[] Inaccuracies = [WDist.Zero];
 
 	[Desc(
 		"Whether to use Damage, Inaccuracy and Range modifiers from source actor. If the source actor does not exist in the world, "
@@ -47,7 +47,7 @@ public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 	)]
 	public readonly bool UseAttackerModifiers = true;
 
-	internal WeaponInfo[] WeaponInfos { get; private set; } = Array.Empty<WeaponInfo>();
+	internal WeaponInfo[] WeaponInfos { get; private set; } = [];
 
 	public void RulesetLoaded(Ruleset rules, WeaponInfo info)
 	{

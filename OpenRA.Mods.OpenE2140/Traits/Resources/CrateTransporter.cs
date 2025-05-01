@@ -150,13 +150,12 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 				var crateActor = w.CreateActor(
 					false,
 					this.info.CrateActor,
-					new TypeDictionary
-					{
+					[
 						new ParentActorInit(this.actor),
 						new LocationInit(this.actor.Location),
 						new OwnerInit(this.actor.Owner),
 						resourcesInit
-					});
+					]);
 				this.crate = crateActor.Trait<ResourceCrate>();
 				this.crate.SubActor.ParentActor = this.actor;
 			});

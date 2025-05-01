@@ -26,7 +26,7 @@ public class FactionRenderSpritesInfo : TraitInfo
 		"List of factions to generate faction images for. Faction image is not generated for faction, which name is prefix of actor's name"
 		+ "(e.g. 'ucs_vehicles_tiger_assault' is UCS unit by default, so it's considered as default.)"
 	)]
-	public readonly List<string> Factions = new List<string>();
+	public readonly List<string> Factions = [];
 
 	public override object Create(ActorInitializer init)
 	{

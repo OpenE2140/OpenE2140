@@ -39,10 +39,10 @@ public class WaterBaseTransformsInfo : PausableConditionalTraitInfo, ITransforms
 	public readonly WAngle Facing = new(384);
 
 	[Desc("Sounds to play when transforming.")]
-	public readonly string[] TransformSounds = Array.Empty<string>();
+	public readonly string[] TransformSounds = [];
 
 	[Desc("Sounds to play when the transformation is blocked.")]
-	public readonly string[] NoTransformSounds = Array.Empty<string>();
+	public readonly string[] NoTransformSounds = [];
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when transforming.")]
@@ -337,7 +337,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
 		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
-			return Enumerable.Empty<IRenderable>();
+			return [];
 
 		return this.mcuDeployOverlay.RenderAboveShroud(self, wr);
 	}
@@ -347,7 +347,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
 		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
-			return Enumerable.Empty<IRenderable>();
+			return [];
 
 		return this.mcuDeployOverlay.RenderAnnotations(self, wr);
 	}
@@ -411,7 +411,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 		{
 			var previewGeneratorInfos = this.transforms.DockActorInfo.TraitInfos<IPlaceBuildingPreviewGeneratorInfo>();
-			if (previewGeneratorInfos.Any())
+			if (previewGeneratorInfos.Count > 0)
 			{
 				var td = new TypeDictionary()
 				{

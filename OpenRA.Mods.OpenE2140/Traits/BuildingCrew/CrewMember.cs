@@ -31,7 +31,7 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
 	[Desc("Conditions to grant when this actor entered inside of a building.",
 		"A dictionary of [actor name]: [condition].")]
-	public readonly Dictionary<string, string> BuildingCrewConditions = new();
+	public readonly Dictionary<string, string> BuildingCrewConditions = [];
 
 	[GrantedConditionReference]
 	public IEnumerable<string> LinterBuildingCrewConditions => this.BuildingCrewConditions.Values;

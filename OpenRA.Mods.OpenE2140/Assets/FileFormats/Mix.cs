@@ -17,8 +17,8 @@ namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
 public class Mix
 {
-	public readonly MixFrame[] Frames;
-	public readonly Dictionary<uint, MixPalette> Palettes = new Dictionary<uint, MixPalette>();
+	public readonly MixFrame[] Frames = [];
+	public readonly Dictionary<uint, MixPalette> Palettes = [];
 
 	public Mix(Stream stream)
 	{

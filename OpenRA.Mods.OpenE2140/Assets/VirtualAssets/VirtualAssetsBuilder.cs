@@ -33,7 +33,7 @@ public static class VirtualAssetsBuilder
 			)
 			.ToArray();
 
-		var globalEffects = stream.Node.Value.Value == null ? Array.Empty<string>() : stream.Node.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+		var globalEffects = stream.Node.Value.Value == null ? [] : stream.Node.Value.Value.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 		var outputFrames = new List<(Rectangle Bounds, byte[] Pixels)>();
 
 		foreach (var animationNode in stream.Node.Value.Nodes)

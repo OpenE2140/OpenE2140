@@ -1,8 +1,5 @@
 ﻿using JetBrains.Annotations;
-using OpenRA.Graphics;
-using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Power;
@@ -32,9 +29,10 @@ public class Power : ConditionalTrait<PowerInfo>, INotifyAddedToWorld, INotifyRe
 
 	/// <summary>
 	/// Returns <c>true</c>, if the actor currently has power.
-	///
-	/// This depends on whether it was intentionally disabled or there's currently not enough generated power.
 	/// </summary>
+	/// <remarks>
+	/// This depends on whether it was intentionally disabled or there's currently not enough generated power.
+	/// </remarks>
 	public bool IsPowered => this.token != Actor.InvalidConditionToken;
 
 	public Power(Actor self, PowerInfo info)

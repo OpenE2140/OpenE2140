@@ -119,7 +119,7 @@ public class ProductionTooltipLogic : ChromeLogic
 			}
 
 			// Requires
-			requiresLabel.Visible = missingResearch.Any();
+			requiresLabel.Visible = missingResearch.Length > 0;
 
 			if (requiresLabel.Visible)
 			{

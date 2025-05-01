@@ -10,7 +10,7 @@ namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 public class CustomCommandsLogic : ChromeLogic
 {
 	private int? selectionHash;
-	private Actor[] selectedActors = Array.Empty<Actor>();
+	private Actor[] selectedActors = [];
 	private bool buildWallDisabled = true;
 
 	[ObjectCreator.UseCtor]

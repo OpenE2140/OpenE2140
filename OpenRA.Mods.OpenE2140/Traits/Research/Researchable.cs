@@ -40,7 +40,7 @@ public class ResearchableInfo : TraitInfo, ITechTreePrerequisiteInfo
 	public readonly int Cost;
 
 	[Desc("If set, only these factions can research this.")]
-	public readonly string[] Factions = Array.Empty<string>();
+	public readonly string[] Factions = [];
 
 	IEnumerable<string> ITechTreePrerequisiteInfo.Prerequisites(ActorInfo info)
 	{

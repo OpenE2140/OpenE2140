@@ -32,7 +32,7 @@ public class RectangleMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 {
 	IEnumerable<IRenderable> ICustomMcuDeployOverlay.Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
-		return Enumerable.Empty<IRenderable>();
+		return [];
 	}
 
 	IEnumerable<IRenderable> ICustomMcuDeployOverlay.RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)

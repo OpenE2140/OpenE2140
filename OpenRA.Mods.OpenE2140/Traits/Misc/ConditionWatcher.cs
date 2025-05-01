@@ -5,7 +5,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Misc;
 
 public class ConditionWatcher : IObservesVariables
 {
-	private readonly Dictionary<BooleanExpression, Handler> handlers = new Dictionary<BooleanExpression, Handler>();
+	private readonly Dictionary<BooleanExpression, Handler> handlers = [];
 
 	public ConditionWatcher Watch(BooleanExpression condition, Action<bool> onChange)
 	{

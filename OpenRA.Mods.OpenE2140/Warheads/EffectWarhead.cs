@@ -89,7 +89,7 @@ public abstract class EffectWarhead : Warhead
 			.Select(arg => arg.Actor)
 			.ToList();
 
-		var impactedActorsFound = victims.Any();
+		var impactedActorsFound = victims.Count > 0;
 		var validTargetsFound = victims.Any(victim => this.IsValidAgainst(victim, firedBy));
 
 		return impactedActorsFound ? validTargetsFound ? ImpactActorType.Valid : ImpactActorType.Invalid : ImpactActorType.None;

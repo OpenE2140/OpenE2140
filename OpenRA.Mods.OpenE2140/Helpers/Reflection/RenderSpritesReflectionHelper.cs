@@ -138,7 +138,7 @@ public class RenderSpritesReflectionHelper
 
 		public void CachePalette(object animWrapper, WorldRenderer worldRenderer, Player owner)
 		{
-			this.cachePalette.Invoke(animWrapper, new object[] { worldRenderer, owner });
+			this.cachePalette.Invoke(animWrapper, [worldRenderer, owner]);
 		}
 	}
 }

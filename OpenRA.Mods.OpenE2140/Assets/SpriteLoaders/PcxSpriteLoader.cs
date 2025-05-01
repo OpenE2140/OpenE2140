@@ -51,7 +51,7 @@ public class PcxSpriteLoader : ISpriteLoader
 		var pcx = new Pcx(stream);
 		var size = new Size(pcx.Width, pcx.Height);
 
-		frames = new ISpriteFrame[] { new PcxSpriteFrame(size, pcx.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray()) };
+		frames = [new PcxSpriteFrame(size, pcx.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray())];
 
 		return true;
 	}

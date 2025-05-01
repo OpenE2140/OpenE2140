@@ -9,7 +9,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 public class AircraftCrateTransporterInfo : CrateTransporterInfo
 {
 	[Desc("List of angles, at which the aircraft crate transporter can land/dock.")]
-	public readonly WAngle[] AllowedDockAngles = { new(0) };
+	public readonly WAngle[] AllowedDockAngles = [new(0)];
 
 	[Desc("Altitude at which the aircraft considers itself landed with a resource crate loaded.")]
 	public readonly WDist LandAltitude = WDist.Zero;

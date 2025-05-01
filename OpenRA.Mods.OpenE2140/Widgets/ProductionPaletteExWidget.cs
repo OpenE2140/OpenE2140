@@ -48,7 +48,7 @@ public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecif
 		base.Initialize(args);
 	}
 
-	string[] IFactionSpecificWidget.FieldsToOverride => new[] { nameof(this.TextColor), nameof(this.ReadyTextAltColor) };
+	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TextColor), nameof(this.ReadyTextAltColor)];
 
 	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

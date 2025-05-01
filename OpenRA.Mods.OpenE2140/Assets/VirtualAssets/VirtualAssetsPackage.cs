@@ -20,7 +20,7 @@ public class VirtualAssetsPackage : IReadOnlyPackage
 {
 	private const string Extension = ".vspr";
 
-	private readonly Dictionary<string, VirtualAssetsStream> contents = new Dictionary<string, VirtualAssetsStream>();
+	private readonly Dictionary<string, VirtualAssetsStream> contents = [];
 
 	public string Name { get; }
 	public IEnumerable<string> Contents => this.contents.Keys;
@@ -37,7 +37,7 @@ public class VirtualAssetsPackage : IReadOnlyPackage
 		if (sources == null)
 			return;
 
-		var paletteEffects = palettes == null ? new Dictionary<string, VirtualPalette>() : VirtualPalette.BuildPaletteEffects(palettes);
+		var paletteEffects = palettes == null ? [] : VirtualPalette.BuildPaletteEffects(palettes);
 
 		foreach (var sourceNode in sources)
 		{

@@ -35,6 +35,6 @@ public class TransportCrates : Activity
 
 	public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
 	{
-		return this.ChildActivity?.TargetLineNodes(self) ?? Enumerable.Empty<TargetLineNode>();
+		return this.ChildActivity?.TargetLineNodes(self) ?? [];
 	}
 }

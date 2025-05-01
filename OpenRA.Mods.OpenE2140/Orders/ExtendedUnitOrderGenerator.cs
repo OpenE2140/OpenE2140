@@ -22,17 +22,17 @@ public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 {
 	public override IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.Render(wr) ?? Enumerable.Empty<IRenderable>();
+		return GetOrderPreviewRender(wr)?.Render(wr) ?? [];
 	}
 
 	public override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? Enumerable.Empty<IRenderable>();
+		return GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? [];
 	}
 
 	public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? Enumerable.Empty<IRenderable>();
+		return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? [];
 	}
 
 	private static UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)

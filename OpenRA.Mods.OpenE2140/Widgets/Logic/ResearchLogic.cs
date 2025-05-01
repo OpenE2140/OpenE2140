@@ -29,7 +29,7 @@ public class ResearchLogic : ChromeLogic
 	private readonly ResearchPaletteWidget research;
 	private readonly WorldButtonWidget button;
 
-	private Researches[] researchers = Array.Empty<Researches>();
+	private Researches[] researchers = [];
 	private int icons;
 
 	[ObjectCreator.UseCtor]
@@ -43,7 +43,7 @@ public class ResearchLogic : ChromeLogic
 
 		this.button = Ui.Root.Get(this.tabs.TypesContainer).Get<WorldButtonWidget>("RESEARCH");
 
-		this.button.IsDisabled = () => !this.researchers.Any();
+		this.button.IsDisabled = () => this.researchers.Length == 0;
 		this.button.OnMouseUp = _ => this.SwitchToResearch();
 		this.button.OnKeyPress = _ => this.SwitchToResearch();
 		this.button.IsHighlighted = () => this.tabs.QueueGroup == null && this.research.Visible;

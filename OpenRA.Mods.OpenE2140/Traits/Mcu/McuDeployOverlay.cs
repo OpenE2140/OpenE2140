@@ -75,7 +75,7 @@ public class McuDeployOverlay : ITransformsPreview
 	private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
 		var previewGeneratorInfos = this.mcuActor.TraitInfos<IPlaceBuildingPreviewGeneratorInfo>();
-		if (previewGeneratorInfos.Any())
+		if (previewGeneratorInfos.Count > 0)
 		{
 			var td = new TypeDictionary()
 			{

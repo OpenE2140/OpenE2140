@@ -22,7 +22,7 @@ public class WaterBaseEditorInfo : TraitInfo, Requires<EditorActorLayerInfo>
 
 public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 {
-	private readonly List<EditorActorPreview> addedActors = new List<EditorActorPreview>();
+	private readonly List<EditorActorPreview> addedActors = [];
 
 	private readonly Lazy<EditorViewportControllerWidget> editor = Exts.Lazy(() => Ui.Root.Get<EditorViewportControllerWidget>("MAP_EDITOR"));
 

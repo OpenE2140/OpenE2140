@@ -19,7 +19,7 @@ public class SheetBaker
 {
 	public record Entry(Rectangle Rectangle, byte[] Pixels);
 
-	public readonly List<Entry> Frames = new List<Entry>();
+	public readonly List<Entry> Frames = [];
 	private readonly int channels;
 
 	public SheetBaker(int channels)
@@ -29,7 +29,7 @@ public class SheetBaker
 
 	public byte[] Bake(out int width, out int height, out int offsetX, out int offsetY, out Size frameSize)
 	{
-		if (!this.Frames.Any())
+		if (this.Frames.Count == 0)
 		{
 			width = 1;
 			height = 1;

@@ -55,7 +55,7 @@ public class VirtualPalette
 			var frameNodes = paletteNode.Value.Nodes.ToList();
 
 			if (frameNodes[0].Value.Nodes.Length == 0)
-				frameNodes = new List<MiniYamlNode> { paletteNode };
+				frameNodes = [paletteNode];
 
 			var colors = frameNodes.Select(
 					frameNode => frameNode.Value.Nodes.SelectMany(

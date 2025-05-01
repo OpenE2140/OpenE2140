@@ -24,8 +24,8 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 	private readonly CustomRallyPoint rp;
 	private readonly Animation? flag;
 	private readonly Animation? circles;
-	private readonly List<WPos> targetLineNodes = new List<WPos>();
-	private readonly List<CPos> cachedLocations = new List<CPos>();
+	private readonly List<WPos> targetLineNodes = [];
+	private readonly List<CPos> cachedLocations = [];
 
 	public CustomRallyPointIndicator(Actor building, CustomRallyPoint rp)
 	{
@@ -94,10 +94,10 @@ public class CustomRallyPointIndicator : IEffect, IEffectAboveShroud, IEffectAnn
 			var palette = wr.Palette(this.rp.PaletteName);
 
 			if (this.circles != null)
-				renderables = renderables.Concat(this.circles.Render(this.targetLineNodes.Last(), palette));
+				renderables = renderables.Concat(this.circles.Render(this.targetLineNodes[^1], palette));
 
 			if (this.flag != null)
-				renderables = renderables.Concat(this.flag.Render(this.targetLineNodes.Last(), palette));
+				renderables = renderables.Concat(this.flag.Render(this.targetLineNodes[^1], palette));
 		}
 
 		return renderables;

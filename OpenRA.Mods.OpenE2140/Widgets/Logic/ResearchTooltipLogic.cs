@@ -97,11 +97,11 @@ public class ResearchTooltipLogic : ChromeLogic
 			}
 
 			// Requires
-			requiresLabel.Visible = missingResearch.Any();
+			requiresLabel.Visible = missingResearch.Length > 0;
 
 			if (requiresLabel.Visible)
 			{
-				requiresLabel.Text = missingResearch.Last();
+				requiresLabel.Text = missingResearch[^1];
 				requiresLabel.TextColor = Color.Red;
 
 				var requiredSize = font.Measure(requiresLabel.Text);

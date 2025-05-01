@@ -16,7 +16,6 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
@@ -28,11 +27,11 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 	public readonly int MaxPopulation = 0;
 
 	[Desc("A list of actor types that are initially spawned into this actor.")]
-	public readonly string[] InitialUnits = Array.Empty<string>();
+	public readonly string[] InitialUnits = [];
 
 	[Desc("A list of 0 or more offsets for cells which serve as points of entry into the building (i.e. to one of the footprint cells)." +
 		"If none is defined, the future crew member can enter the building from any cell around the building.")]
-	public readonly CVec[] EntryCells = Array.Empty<CVec>();
+	public readonly CVec[] EntryCells = [];
 
 	[Desc("Are crew members allowed to exit the building?")]
 	public readonly bool AllowCrewMemberExit = true;
@@ -44,7 +43,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 	public readonly bool EjectOnDeath = false;
 
 	[Desc("Terrain types that this actor is allowed to eject actors onto. Leave empty for all terrain types.")]
-	public readonly HashSet<string> ExitTerrainTypes = new();
+	public readonly HashSet<string> ExitTerrainTypes = [];
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when a crew member exits the building.")]
@@ -79,7 +78,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
 	[Desc("Conditions to grant when specified actors have entered inside the building.",
 		"A dictionary of [actor name]: [condition].")]
-	public readonly Dictionary<string, string> CrewMemberConditions = new();
+	public readonly Dictionary<string, string> CrewMemberConditions = [];
 
 	[GrantedConditionReference]
 	public IEnumerable<string> LinterCrewMemberConditions => this.CrewMemberConditions.Values;
@@ -98,10 +97,10 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	private const string ExitBuildingOrderID = "ExitBuilding";
 
 	private readonly Actor self;
-	private readonly List<Actor> crewMembers = new();
-	private readonly HashSet<Actor> reservations = new();
-	private readonly HashSet<Actor> conquerReservations = new();
-	private readonly Dictionary<string, Stack<int>> crewMemberTokens = new();
+	private readonly List<Actor> crewMembers = [];
+	private readonly HashSet<Actor> reservations = [];
+	private readonly HashSet<Actor> conquerReservations = [];
+	private readonly Dictionary<string, Stack<int>> crewMemberTokens = [];
 	private readonly Lazy<IFacing> facing;
 	private readonly bool checkTerrainType;
 	private int enteringToken = Actor.InvalidConditionToken;
@@ -133,7 +132,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			foreach (var u in buildingCrewInit.Value)
 			{
 				var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
-					new TypeDictionary { new OwnerInit(this.self.Owner) });
+					[new OwnerInit(this.self.Owner)]);
 
 				this.crewMembers.Add(unit);
 			}
@@ -143,7 +142,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			foreach (var u in info.InitialUnits)
 			{
 				var unit = this.self.World.CreateActor(false, u.ToLowerInvariant(),
-					new TypeDictionary { new OwnerInit(this.self.Owner) });
+					[new OwnerInit(this.self.Owner)]);
 
 				this.crewMembers.Add(unit);
 			}
@@ -320,11 +319,11 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	public bool CanConquer() { return this.conquerReservations.Count + 1 <= this.Info.MaxPopulation; }
 	public bool IsEmpty() { return this.crewMembers.Count == 0; }
 
-	public Actor Peek() { return this.crewMembers.Last(); }
+	public Actor Peek() { return this.crewMembers[^1]; }
 
 	public Actor Exit(Actor self, Actor? crewMember = null)
 	{
-		crewMember ??= this.crewMembers.Last();
+		crewMember ??= this.crewMembers[^1];
 		if (!this.crewMembers.Remove(crewMember))
 			throw new ArgumentException("Attempted to make an actor exit that is not a crew member.");
 

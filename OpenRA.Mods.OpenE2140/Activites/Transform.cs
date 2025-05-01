@@ -28,7 +28,7 @@ public class Transform : Activity
 	public readonly string ToActor;
 	public CVec Offset = CVec.Zero;
 	public WAngle Facing = new(384);
-	public string[] Sounds = Array.Empty<string>();
+	public string[] Sounds = [];
 	public string? Notification;
 	public string? TextNotification;
 	public int ForceHealthPercentage = 0;

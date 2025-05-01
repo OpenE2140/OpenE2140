@@ -104,7 +104,7 @@ public class EncyclopediaLogic : ChromeLogic
 
 		foreach (var actor in this.modData.DefaultRules.Actors.Values)
 		{
-			if (!actor.TraitInfos<IRenderActorPreviewSpritesInfo>().Any())
+			if (actor.TraitInfos<IRenderActorPreviewSpritesInfo>().Count == 0)
 				continue;
 
 			var statistics = actor.TraitInfoOrDefault<UpdatesPlayerStatisticsInfo>();
@@ -227,7 +227,7 @@ public class EncyclopediaLogic : ChromeLogic
 				.Select(researchable => researchable.Name)
 				.ToArray();
 
-			if (research.Any())
+			if (research.Length > 0)
 				text += $"Research requirements: {string.Join(", ", research)}\n";
 		}
 
@@ -254,7 +254,7 @@ public class EncyclopediaLogic : ChromeLogic
 		var buildable = actor.TraitInfoOrDefault<BuildableInfo>();
 
 		if (buildable == null)
-			return Enumerable.Empty<string>();
+			return [];
 
 		return buildable.Queue.Select(x => this.allProductionQueues.GetValueOrDefault(x)).OfType<string>().Distinct();
 	}
