@@ -1,5 +1,5 @@
 General:
-	Name: Temperate
+	Name: tileset-temperate
 	Id: TEMPERATE
 	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road

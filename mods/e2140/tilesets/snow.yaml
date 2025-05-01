@@ -1,5 +1,5 @@
 General:
-	Name: Snow
+	Name: tileset-snow
 	Id: SNOW
 	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road

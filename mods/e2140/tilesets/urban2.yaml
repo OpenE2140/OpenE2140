@@ -1,5 +1,5 @@
 General:
-	Name: Urban 2 (MP2)
+	Name: tileset-urban2
 	Id: URBAN2
 	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road, Buildings, Asphalt Road

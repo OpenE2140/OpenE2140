@@ -1,5 +1,5 @@
 General:
-	Name: Desert
+	Name: tileset-desert
 	Id: DESERT
 	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road

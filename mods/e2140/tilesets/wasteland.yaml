@@ -1,5 +1,5 @@
 General:
-	Name: Wasteland
+	Name: tileset-wasteland
 	Id: WASTELAND
 	TileSize: 64, 64
 	EditorTemplateOrder: Terrain, Cliffs, Shore, Road
