@@ -30,7 +30,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 
 	private readonly EditorActorLayer editorActorLayer;
 	private readonly ActorInfo waterBaseDockActor;
-	private readonly CachedTransform<int2, Rectangle> mapRectangle;
+	private readonly CachedTransform<Size, Rectangle> mapRectangle;
 	private readonly WDist maximumDockDistance;
 
 	private bool worldLoaded;
@@ -42,7 +42,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		this.waterBaseDockActor = WaterBaseUtils.FindWaterBaseDockActor(self.World.Map.Rules);
 
 		var tileSize = self.World.Map.Rules.TerrainInfo.TileSize;
-		this.mapRectangle = new CachedTransform<int2, Rectangle>(size => Rectangle.FromLTRB(0, 0, size.X * tileSize.Width, size.Y * tileSize.Height));
+		this.mapRectangle = new CachedTransform<Size, Rectangle>(size => Rectangle.FromLTRB(0, 0, size.Width * tileSize.Width, size.Height * tileSize.Height));
 
 		this.maximumDockDistance = self.World.Map.Rules.Actors.Values
 			.Where(a => a.HasTraitInfo<Mcu.McuInfo>())
