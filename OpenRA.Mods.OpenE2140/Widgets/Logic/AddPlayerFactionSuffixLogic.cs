@@ -9,50 +9,48 @@
  */
 #endregion
 
-using System;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.Common.Widgets.Logic
+namespace OpenRA.Mods.Common.Widgets.Logic;
+
+public class AddPlayerFactionSuffixLogic : ChromeLogic
 {
-	public class AddPlayerFactionSuffixLogic : ChromeLogic
+	[ObjectCreator.UseCtor]
+	public AddPlayerFactionSuffixLogic(Widget widget, Player player)
 	{
-		[ObjectCreator.UseCtor]
-		public AddPlayerFactionSuffixLogic(Widget widget, Player player)
+		if (player == null || player.Spectating)
+			return;
+
+		if (!ChromeMetrics.TryGet("FactionSuffix-" + player.Faction.InternalName, out string faction))
+			faction = player.Faction.InternalName;
+		var suffix = "-" + faction;
+
+		if (widget is ButtonWidget bw)
+			bw.Background += suffix;
+		else if (widget is ImageWidget iw)
+			iw.ImageCollection += suffix;
+		else if (widget is BackgroundWidget bgw)
+			bgw.Background += suffix;
+		else if (widget is TextFieldWidget tfw)
+			tfw.Background += suffix;
+		else if (widget is ScrollPanelWidget spw)
 		{
-			if (player == null || player.Spectating)
-				return;
-
-			if (!ChromeMetrics.TryGet("FactionSuffix-" + player.Faction.InternalName, out string faction))
-				faction = player.Faction.InternalName;
-			var suffix = "-" + faction;
-
-			if (widget is ButtonWidget bw)
-				bw.Background += suffix;
-			else if (widget is ImageWidget iw)
-				iw.ImageCollection += suffix;
-			else if (widget is BackgroundWidget bgw)
-				bgw.Background += suffix;
-			else if (widget is TextFieldWidget tfw)
-				tfw.Background += suffix;
-			else if (widget is ScrollPanelWidget spw)
-			{
-				spw.Button += suffix;
-				spw.Background += suffix;
-				spw.ScrollBarBackground += suffix;
-				spw.Decorations += suffix;
-			}
-			else if (widget is ProductionTabsWidget ptw)
-			{
-				ptw.ArrowButton += suffix;
-				ptw.TabButton += suffix;
-
-				// TODO: This isn't functional, ProductionTabsWidget's caches aren't updated with the new values.
-				ptw.Decorations += suffix;
-				ptw.Background += suffix;
-			}
-			else
-				throw new InvalidOperationException(
-					"AddFactionSuffixLogic only supports ButtonWidget, ImageWidget, BackgroundWidget, TextFieldWidget, ScrollPanelWidget and ProductionTabsWidget");
+			spw.Button += suffix;
+			spw.Background += suffix;
+			spw.ScrollBarBackground += suffix;
+			spw.Decorations += suffix;
 		}
+		else if (widget is ProductionTabsWidget ptw)
+		{
+			ptw.ArrowButton += suffix;
+			ptw.TabButton += suffix;
+
+			// TODO: This isn't functional, ProductionTabsWidget's caches aren't updated with the new values.
+			ptw.Decorations += suffix;
+			ptw.Background += suffix;
+		}
+		else
+			throw new InvalidOperationException(
+				"AddFactionSuffixLogic only supports ButtonWidget, ImageWidget, BackgroundWidget, TextFieldWidget, ScrollPanelWidget and ProductionTabsWidget");
 	}
 }
