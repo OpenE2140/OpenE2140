@@ -1,3 +1,7 @@
+## Metadata
+mod-title = OpenE2140
+mod-windowtitle = OpenE2140
+
 ## Tilesets
 tileset-desert = Desert
 tileset-sandy = Sandy
