@@ -60,6 +60,68 @@ steam_de: Earth 2140 (Steam, German)
 					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: classic/music/8.ogg
 					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: classic/music/9.ogg
 
+steam_mac_en: Earth 2140 (Steam, Mac, English)
+	Type: Steam
+		AppId: 253860
+	IDFiles:
+		Earth 2140.app/Contents/Resources/en/FLC.WD: c81b89a8c20ed12a96872a96fcb0a5953b9ce4e2
+	Install:
+		ContentPackage@base:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: Earth 2140.app/Contents/Resources/en/FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: Earth 2140.app/Contents/Resources/en/GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: Earth 2140.app/Contents/Resources/en/MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: Earth 2140.app/Contents/Resources/en/MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: Earth 2140.app/Contents/Resources/en/PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: Earth 2140.app/Contents/Resources/en/SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: Earth 2140.app/Contents/Resources/en/SMP1.WD
+		ContentPackage@music:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: Earth 2140.app/Contents/Resources/common/music/1.ogg
+					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: Earth 2140.app/Contents/Resources/common/music/2.ogg
+					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: Earth 2140.app/Contents/Resources/common/music/3.ogg
+					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: Earth 2140.app/Contents/Resources/common/music/4.ogg
+					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: Earth 2140.app/Contents/Resources/common/music/5.ogg
+					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: Earth 2140.app/Contents/Resources/common/music/6.ogg
+					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: Earth 2140.app/Contents/Resources/common/music/7.ogg
+					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: Earth 2140.app/Contents/Resources/common/music/8.ogg
+					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: Earth 2140.app/Contents/Resources/common/music/9.ogg
+
+steam_mac_de: Earth 2140 (Steam, Mac, German)
+	Type: Steam
+		AppId: 253860
+	IDFiles:
+		Earth 2140.app/Contents/Resources/de/FLC.WD: 7691fb38730c284595eea93da6fe6b5f99bb480f
+	Install:
+		ContentPackage@base:
+			Name: base
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/FLC.WD: Earth 2140.app/Contents/Resources/de/FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: Earth 2140.app/Contents/Resources/de/GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: Earth 2140.app/Contents/Resources/de/MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: Earth 2140.app/Contents/Resources/de/MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: Earth 2140.app/Contents/Resources/de/PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: Earth 2140.app/Contents/Resources/de/SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: Earth 2140.app/Contents/Resources/de/SMP1.WD
+		ContentPackage@music:
+			Name: music
+			Actions:
+				Copy: .
+					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: Earth 2140.app/Contents/Resources/common/music/1.ogg
+					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: Earth 2140.app/Contents/Resources/common/music/2.ogg
+					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: Earth 2140.app/Contents/Resources/common/music/3.ogg
+					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: Earth 2140.app/Contents/Resources/common/music/4.ogg
+					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: Earth 2140.app/Contents/Resources/common/music/5.ogg
+					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: Earth 2140.app/Contents/Resources/common/music/6.ogg
+					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: Earth 2140.app/Contents/Resources/common/music/7.ogg
+					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: Earth 2140.app/Contents/Resources/common/music/8.ogg
+					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: Earth 2140.app/Contents/Resources/common/music/9.ogg
+
 steam_soundtrack_extra: Earth 2140 Extra Soundtrack (Steam)
 	Type: Steam
 		AppId: 253860

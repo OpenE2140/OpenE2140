@@ -79,13 +79,13 @@ ModContent:
 			Title: Game Files
 			Identifier: base
 			TestFiles: ^SupportDir|Content/e2140/MIX.WD
-			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
+			Sources: gog, steam_en, steam_de, steam_mac_en, steam_mac_de, topwareshop_en, topwareshop_de, zoom
 			Required: true
 		ContentPackage@music:
 			Title: Game Music
 			Identifier: music
 			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg
-			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
+			Sources: gog, steam_en, steam_de, steam_mac_en, steam_mac_de, topwareshop_en, topwareshop_de, zoom
 		ContentPackage@soundtrack_mp2:
 			Title: Mission Pack 2 Soundtrack Music
 			Identifier: soundtrack
