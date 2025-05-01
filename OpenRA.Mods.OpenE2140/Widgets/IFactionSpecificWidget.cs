@@ -15,7 +15,7 @@ namespace OpenRA.Mods.OpenE2140.Widgets;
 
 public interface IFactionSpecificWidget
 {
-	public string[] FieldsToOverride { get; }
+	string[] FieldsToOverride { get; }
 
-	public string Identifier { get; }
+	string Identifier { get; }
 }
