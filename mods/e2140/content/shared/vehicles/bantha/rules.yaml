@@ -21,10 +21,9 @@ shared_vehicles_bantha:
 	DockClientManager:
 		OccupancyCostModifier: 150
 		Voice: Unload
-		# TODO: add support for multiple enter cursors to DockClientManager
-		#EnterCursors:
-		#	Load: pickup
-		#	Unload: deliver
+		EnterCursorOverrides:
+			Load: pickup
+			Unload: deliver
 	MobileCrateTransporter:
 		Offset: 0,192,0
 		ZOffset: 820

@@ -23,10 +23,9 @@ shared_aircrafts_heavy_lifter:
 	DockClientManager:
 		OccupancyCostModifier: 150
 		Voice: Unload
-		# TODO: add support for multiple enter cursors to DockClientManager
-		#EnterCursors:
-		#	Load: pickup
-		#	Unload: deliver
+		EnterCursorOverrides:
+			AircraftLoad: pickup
+			AircraftUnload: deliver
 	AircraftCrateTransporter:
 		DockingType: AircraftUnload, AircraftLoad
 		DockSequence: lift
