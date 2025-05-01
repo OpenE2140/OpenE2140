@@ -19,15 +19,15 @@ steam_en: Earth 2140 (Steam, English)
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg: classic/music/1.ogg
-					^SupportDir|Content/e2140/music/Hope - Track 2.ogg: classic/music/2.ogg
-					^SupportDir|Content/e2140/music/Hurricane - Track 3.ogg: classic/music/3.ogg
-					^SupportDir|Content/e2140/music/Before the Battle - Track 4.ogg: classic/music/4.ogg
-					^SupportDir|Content/e2140/music/Everywhere - Track 5.ogg: classic/music/5.ogg
-					^SupportDir|Content/e2140/music/Birds - Track 6.ogg: classic/music/6.ogg
-					^SupportDir|Content/e2140/music/2140 - Track 7.ogg: classic/music/7.ogg
-					^SupportDir|Content/e2140/music/EARTH Theme - Track 8.ogg: classic/music/8.ogg
-					^SupportDir|Content/e2140/music/Total Control - Track 9.ogg: classic/music/9.ogg
+					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: classic/music/1.ogg
+					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: classic/music/2.ogg
+					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: classic/music/3.ogg
+					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: classic/music/4.ogg
+					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: classic/music/5.ogg
+					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: classic/music/6.ogg
+					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: classic/music/8.ogg
+					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: classic/music/9.ogg
 
 steam_de: Earth 2140 (Steam, German)
 	Type: Steam
@@ -50,15 +50,15 @@ steam_de: Earth 2140 (Steam, German)
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg: classic/music/1.ogg
-					^SupportDir|Content/e2140/music/Hope - Track 2.ogg: classic/music/2.ogg
-					^SupportDir|Content/e2140/music/Hurricane - Track 3.ogg: classic/music/3.ogg
-					^SupportDir|Content/e2140/music/Before the Battle - Track 4.ogg: classic/music/4.ogg
-					^SupportDir|Content/e2140/music/Everywhere - Track 5.ogg: classic/music/5.ogg
-					^SupportDir|Content/e2140/music/Birds - Track 6.ogg: classic/music/6.ogg
-					^SupportDir|Content/e2140/music/2140 - Track 7.ogg: classic/music/7.ogg
-					^SupportDir|Content/e2140/music/EARTH Theme - Track 8.ogg: classic/music/8.ogg
-					^SupportDir|Content/e2140/music/Total Control - Track 9.ogg: classic/music/9.ogg
+					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: classic/music/1.ogg
+					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: classic/music/2.ogg
+					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: classic/music/3.ogg
+					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: classic/music/4.ogg
+					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: classic/music/5.ogg
+					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: classic/music/6.ogg
+					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: classic/music/7.ogg
+					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: classic/music/8.ogg
+					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: classic/music/9.ogg
 
 steam_soundtrack_extra: Earth 2140 Extra Soundtrack (Steam)
 	Type: Steam
