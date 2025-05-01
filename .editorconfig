@@ -142,7 +142,7 @@ dotnet_style_qualification_for_event = true:warning
 ## Others:
 
 # IDE0040: Require specifying default access modifiers.
-dotnet_style_require_accessibility_modifiers = always:warning
+dotnet_style_require_accessibility_modifiers = for_non_interface_members:warning
 
 # Don't simplify Member Access
 dotnet_diagnostic.IDE0002.severity = none
