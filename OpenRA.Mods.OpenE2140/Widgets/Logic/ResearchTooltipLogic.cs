@@ -28,7 +28,7 @@ public class ResearchTooltipLogic : ChromeLogic
 	public ResearchTooltipLogic(Widget widget, TooltipContainerWidget tooltipContainer, Player player, Func<ResearchIcon?> getTooltipIcon)
 	{
 		foreach (var id in new[] { "COST_ICON", "TIME_ICON" })
-			new AddFactionSuffixLogic(widget.Get<Widget>(id), player.World);
+			_ = new AddFactionSuffixLogic(widget.Get<Widget>(id), player.World);
 
 		var world = player.World;
 		var pr = player.PlayerActor.Trait<PlayerResources>();
