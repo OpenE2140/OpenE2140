@@ -19,12 +19,14 @@ ed_infantry_a02:
 		Name: primary
 		Weapon: ed_infantry_a02
 		LocalOffset: 100,0,150
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: ed_infantry_a02_air
 		LocalOffset: 100,0,150
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AmmoPool:
@@ -34,6 +36,7 @@ ed_infantry_a02:
 		Delay: 62
 		ResetOnFire: True
 		Count: 1
+	WithMuzzleOverlay@muzzle:
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 2

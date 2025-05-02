@@ -18,6 +18,7 @@ ucs_infantry_silver_max:
 	Armament@PRIMARY:
 		Weapon: ucs_infantry_silver_max
 		LocalOffset: 400,0,50
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AmmoPool:
@@ -27,6 +28,8 @@ ucs_infantry_silver_max:
 		Delay: 50
 		ResetOnFire: True
 		Count: 5
+	WithMuzzleOverlay@muzzle:
+		IgnoreOffset: True
 	Encyclopedia:
 		Category: UCS - Infantry
 		Order: 3

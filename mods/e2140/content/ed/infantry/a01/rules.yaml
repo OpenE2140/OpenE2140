@@ -17,6 +17,7 @@ ed_infantry_a01:
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: ed_infantry_a01_machine_gun
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 	Armament@SECONDARY:
 		Name: secondary
@@ -36,6 +37,7 @@ ed_infantry_a01:
 		Armament: secondary
 	GrantConditionOnAttack:
 		ArmamentNames: primary, secondary
+	WithMuzzleOverlay@muzzle:
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 1
