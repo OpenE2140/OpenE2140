@@ -18,6 +18,11 @@ shared_infantry_civil2:
 		Start: 8
 		Facings: -8
 		Tick: 100
+	muzzle:
+		Filename: content/shared/infantry/civil2/infantry_civil2.png
+		Start: 16
+		Facings: -8
+		Tick: 100
 	aim:
 		Filename: content/shared/infantry/civil2/infantry_civil2.png
 		Facings: -8

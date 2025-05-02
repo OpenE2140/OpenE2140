@@ -16,7 +16,9 @@ ucs_infantry_silver_one:
 		Range: 2c896
 	Armament@PRIMARY:
 		Weapon: ucs_infantry_silver_one
+		MuzzleSequence: muzzle
 		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
 	Encyclopedia:
 		Category: UCS - Infantry
 		Order: 1
