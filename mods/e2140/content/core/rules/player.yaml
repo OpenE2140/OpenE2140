@@ -42,8 +42,10 @@ Player:
 		InsufficientFundsNotification: InsufficientCash
 		InsufficientFundsTextNotification: Insufficient cash.
 	# Notifications
-	BaseAttackNotifier:
+	DamageNotifier:
 		TextNotification: Base under attack.
+		ValidTargets: Structure, Defense
+		Notification: BaseAttack
 	# Tech
 	TechTree:
 	# Render terrain on Radar widget (minimap).
