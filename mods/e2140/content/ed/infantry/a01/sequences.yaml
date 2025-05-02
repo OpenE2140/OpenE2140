@@ -19,6 +19,11 @@ ed_infantry_a01:
 		Start: 56
 		Facings: -8
 		Tick: 100
+	muzzle:
+		Filename: infantry_android_a01.vspr
+		Start: 80
+		Facings: -8
+		Tick: 100
 	shoot2:
 		Filename: infantry_android_a01.vspr
 		Start: 72

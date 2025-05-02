@@ -15,7 +15,9 @@ shared_infantry_civil3:
 		VoiceSet: EdInfantryVoice
 	Armament:
 		Weapon: shared_infantry_civil3
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 	WithAimAttackAnimation:
 		SequenceFire: shoot
 		SequenceAim: aim
+	WithMuzzleOverlay@muzzle:

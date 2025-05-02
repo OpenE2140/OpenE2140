@@ -19,12 +19,14 @@ ucs_infantry_silver_r:
 		Name: primary
 		Weapon: ucs_infantry_silver_r
 		LocalOffset: 100,0,150
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: ucs_infantry_silver_r_air
 		LocalOffset: 100,0,150
+		MuzzleSequence: muzzle
 		MuzzlePalette:
 		PauseOnCondition: !ammo
 	AmmoPool:
@@ -34,6 +36,8 @@ ucs_infantry_silver_r:
 		Delay: 62
 		ResetOnFire: True
 		Count: 1
+	WithMuzzleOverlay@muzzle:
+		IgnoreOffset: True
 	Encyclopedia:
 		Category: UCS - Infantry
 		Order: 2

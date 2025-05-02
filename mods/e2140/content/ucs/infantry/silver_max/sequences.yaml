@@ -19,6 +19,11 @@ ucs_infantry_silver_max:
 		Start: 56
 		Facings: -8
 		Tick: 100
+	muzzle:
+		Filename: infantry_silver_max.vspr
+		Start: 64
+		Facings: -8
+		Tick: 100
 	aim:
 		Filename: infantry_silver_max.vspr
 		Start: 48
