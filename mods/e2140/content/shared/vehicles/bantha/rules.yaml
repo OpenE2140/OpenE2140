@@ -28,7 +28,7 @@ shared_vehicles_bantha:
 		Offset: 0,192,0
 		ZOffset: 820
 		UnloadVoice: Unload
-
+		
 		# Custom sequences for crate movement during (un)load animation
 		LoadSequence:
 			Delays: 0, 3, 5, 2, 2

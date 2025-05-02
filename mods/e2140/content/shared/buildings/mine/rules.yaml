@@ -16,17 +16,17 @@ shared_buildings_mine:
 		PauseOnCondition: !Powered
 	ResourceMineOverlay:
 		MiningAreaBorderColor: 8F8F00FF
-		MiningAreaBorderShape: Square			# Square/Circle/None
-
+		MiningAreaBorderShape: Square # Square/Circle/None
+	
 	AircraftConveyorBeltDock@HeavyLifter:
 		RequiresCondition: !Transforming
-
+		
 		# DockHost
 		Type: AircraftLoad
 		IsDragRequired: false
 		DockWait: 1
 		DockOffset: 1404,-512,0
-
+		
 		# Currently allow only north and south facing for (un)load, because crate instantly turning looks ugly
 		# TODO: make crate on the conveyor belt keep its facing
 		AllowedDockAngles: 0, 512
@@ -34,7 +34,7 @@ shared_buildings_mine:
 	
 	ConveyorBeltDock@PortSouth:
 		RequiresCondition: !Transforming
-
+		
 		# DockHost
 		Type: Load
 		IsDragRequired: true
@@ -53,10 +53,10 @@ shared_buildings_mine:
 		UnloadSequence:
 			Delays: 0, 2, 2, 5, 3
 			Offsets: 0, 20, 150, 250, 490
-
+	
 	ConveyorBeltDock@PortNorth:
 		RequiresCondition: !Transforming
-
+		
 		# DockHost
 		Type: Load
 		IsDragRequired: true
@@ -67,7 +67,7 @@ shared_buildings_mine:
 		DockAngle: 0
 		DragOffset: 1404,-1035,0
 		DragLength: 26
-
+		
 		# Custom sequences for crate movement during (un)load animation
 		LoadSequence:
 			Delays: 0, 3, 5, 2, 2
@@ -75,10 +75,10 @@ shared_buildings_mine:
 		UnloadSequence:
 			Delays: 0, 2, 2, 5, 3
 			Offsets: 0, 20, 100, 190, 280
-		
+	
 	ConveyorBeltDock@PortEast:
 		RequiresCondition: !Transforming
-
+		
 		# DockHost
 		Type: Load
 		IsDragRequired: true
@@ -89,7 +89,7 @@ shared_buildings_mine:
 		DockAngle: 768
 		DragOffset: 2218,-504,0
 		DragLength: 20
-
+		
 		# Custom sequences for crate movement during (un)load animation
 		LoadSequence:
 			Delays: 0, 3, 5, 2, 2
@@ -97,7 +97,7 @@ shared_buildings_mine:
 		UnloadSequence:
 			Delays: 0, 2, 2, 5, 3
 			Offsets: 0, 20, 200, 330, 500
-
+	
 	WithIdleOverlay@Powered:
 		Sequence: idle-lights
 		RequiresCondition: Powered
@@ -177,7 +177,7 @@ shared_mcu_mine:
 	# Mine has custom MCU deploy overlay.
 	ResourceMineMcuDeployOverlay:
 		MinableCellsInMiningAreaBorderColor: 8F8F00FF
-		MinableAreaBorderShape: Square			# Square/Circle/None
+		MinableAreaBorderShape: Square # Square/Circle/None
 	Valued:
 		Cost: 800
 	Buildable:
