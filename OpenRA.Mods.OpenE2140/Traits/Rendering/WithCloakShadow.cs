@@ -30,10 +30,10 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	public readonly Dictionary<string, float?> ApplyToRenderModifierTraits = [];
 
 	[Desc("Render specified traits fully without applying shadow effect.")]
-	public readonly string[] TraitsToFullyRender = ["WithMuzzleOverlay"]; // TODO: PR for making it public
+	public readonly string[] TraitsToFullyRender = [nameof(WithMuzzleOverlay)];
 
 	[Desc("Render specified traits even when the actor is completely invisible (i.e. owner is not render player).")]
-	public readonly string[] TraitsToRenderWhenInvisibile = ["WithMuzzleOverlay"]; // TODO: PR for making it public
+	public readonly string[] TraitsToRenderWhenInvisibile = [nameof(WithMuzzleOverlay)];
 
 	[Desc("Render cloaked units with transparency effect instead of shadow effect.")]
 	public readonly bool TransparentAppearance = false;
