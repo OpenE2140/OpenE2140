@@ -84,7 +84,7 @@ ModContent:
 		ContentPackage@music:
 			Title: Game Music
 			Identifier: music
-			TestFiles: ^SupportDir|Content/e2140/music/Child of 2140 - Track 1.ogg
+			TestFiles: ^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg
 			Sources: gog, steam_en, steam_de, topwareshop_en, topwareshop_de, zoom
 		ContentPackage@soundtrack_mp2:
 			Title: Mission Pack 2 Soundtrack Music
