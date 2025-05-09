@@ -30,9 +30,9 @@ Notifications:
 	content|notifications.yaml
 
 LoadScreen: ModContentLoadScreen
-	Image: ^EngineDir|mods/common-content/chrome.png
-	Image2x: ^EngineDir|mods/common-content/chrome-2x.png
-	Image3x: ^EngineDir|mods/common-content/chrome-3x.png
+	Image: e2140content|chrome.png
+	Image2x: e2140content|chrome-2x.png
+	Image3x: e2140content|chrome-3x.png
 
 ChromeMetrics:
 	common|metrics.yaml
