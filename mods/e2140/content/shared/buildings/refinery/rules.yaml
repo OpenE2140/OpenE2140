@@ -139,6 +139,8 @@ shared_buildings_refinery:
 		Offset: 1475,750,100
 		ConstructionTime: 111
 		Delay: 28
+		# Construction time used when the Instant Build developer cheat is active.
+		InstantBuildConstructionTime: 0
 		Condition:
 	HitShape@1:
 		TargetableOffsets: 848,-850,0,   848,-150,0,   848,550,0,   0,-850,0,   0,-150,0,   0,550,0

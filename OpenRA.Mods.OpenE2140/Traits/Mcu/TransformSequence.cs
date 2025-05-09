@@ -13,6 +13,7 @@
 
 using JetBrains.Annotations;
 using OpenRA.Graphics;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
@@ -32,10 +33,13 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	public readonly string Condition = "Transforming";
 
 	[Desc("Delay before the the animation starts (in ticks).")]
-	public readonly int Delay = 0;
+	public readonly int Delay;
 
 	[Desc("Time it takes for the building to construct under the pyramid.")]
 	public readonly int ConstructionTime = 100;
+
+	[Desc("Time it takes for the building to construct under the pyramid. Only used when instant build developer cheat is active.")]
+	public readonly int InstantBuildConstructionTime;
 
 	[Desc("Sound played when actor starts transforming.", "The filename of the audio is defined per faction in notifications.yaml.")]
 	public readonly string? TransformSound;
@@ -49,7 +53,7 @@ public class TransformSequenceInfo : TraitInfo, Requires<RenderSpritesInfo>
 	}
 }
 
-public class TransformSequence : ITick
+public class TransformSequence : ITick, INotifyCreated
 {
 	private enum State { Waiting, Covering, Transforming, Complete }
 
@@ -59,7 +63,9 @@ public class TransformSequence : ITick
 
 	private readonly AnimationWithOffset legacyAnimation;
 	private readonly AnimationWithOffset animation;
+	private readonly bool skipTransform;
 
+	private DeveloperMode? developerMode;
 	private int token = Actor.InvalidConditionToken;
 
 	private int remainingTime;
@@ -75,16 +81,16 @@ public class TransformSequence : ITick
 		this.legacyAnimation = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
 		this.animation = new AnimationWithOffset(new Animation(init.World, this.info.Image), () => info.Offset, () => false, _ => 0);
 
-		var mcu = init.GetOrDefault<Mcu.McuInit>();
-
-		if (mcu == null)
-			return;
-
-		this.StartDeploy(init.Self);
+		this.skipTransform = !init.Contains<Mcu.McuInit>();
 	}
 
-	private void StartDeploy(Actor self)
+	void INotifyCreated.Created(Actor self)
 	{
+		if (this.skipTransform)
+			return;
+
+		this.developerMode = self.Owner.PlayerActor.Trait<DeveloperMode>();
+
 		this.token = self.GrantCondition(this.info.Condition);
 
 		Game.Sound.PlayToPlayer(SoundType.World, self.Owner, this.info.TransformSound, self.CenterPosition);
@@ -141,7 +147,10 @@ public class TransformSequence : ITick
 	{
 		this.state = State.Transforming;
 		this.animation.Animation.PlayRepeating("covered");
-		this.remainingTime = this.info.ConstructionTime;
+
+		this.remainingTime = this.developerMode?.FastBuild == true
+			? this.info.InstantBuildConstructionTime
+			: this.info.ConstructionTime;
 	}
 
 	void ITick.Tick(Actor self)
@@ -149,33 +158,36 @@ public class TransformSequence : ITick
 		switch (this.state)
 		{
 			case State.Waiting:
-			{
-				if (this.delay-- > 0)
-					return;
+				{
+					if (this.delay-- > 0)
+						return;
 
-				this.StartDeployAnimation(self);
-				break;
-			}
+					this.StartDeployAnimation(self);
+					break;
+				}
 			case State.Covering:
-			{
-				break;
-			}
+				{
+					break;
+				}
 			case State.Transforming:
-			{
-				if (this.remainingTime-- > 0)
-					return;
+				{
+					if (this.developerMode?.FastBuild == true)
+						this.remainingTime = Math.Min(this.remainingTime, this.info.InstantBuildConstructionTime);
 
-				self.TryRevokingCondition(ref this.token);
+					if (this.remainingTime-- > 0)
+						return;
 
-				this.Uncover(self);
-				this.state = State.Complete;
+					self.TryRevokingCondition(ref this.token);
 
-				break;
-			}
+					this.Uncover(self);
+					this.state = State.Complete;
+
+					break;
+				}
 			case State.Complete:
-			{
-				break;
-			}
+				{
+					break;
+				}
 			default:
 				break;
 		}

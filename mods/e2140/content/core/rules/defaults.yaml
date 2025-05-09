@@ -162,6 +162,8 @@
 		Condition: Transforming
 		ConstructionTime: 135
 		TransformSound: 78.smp
+		# Construction time used when the Instant Build developer cheat is active.
+		InstantBuildConstructionTime: 7
 	# Render building sprite when transformation is done.
 	WithSpriteBody:
 		RequiresCondition: !Transforming
@@ -291,6 +293,8 @@
 		Condition: Transforming
 		ConstructionTime: 135
 		TransformSound: 78.smp
+		# Construction time used when the Instant Build developer cheat is active.
+		InstantBuildConstructionTime: 7
 	# The body is not rendered while transforming.
 	WithSpriteBody:
 		RequiresCondition: !Transforming
