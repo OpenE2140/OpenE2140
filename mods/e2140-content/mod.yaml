@@ -72,8 +72,6 @@ Fonts:
 
 ModContent:
 	Mod: e2140
-	InstallPromptMessage: OpenE2140 requires artwork and audio from the original game.\n\nAdvanced Install includes options for copying the music, videos, and\nother content from a digital installation.
-	HeaderMessage: Game content may be extracted from an\nexisting digital install.
 	Packages:
 		ContentPackage@base:
 			Title: Game Files
