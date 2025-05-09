@@ -20,10 +20,11 @@
 		FogPalette:
 	# Random faction setup.
 	Faction@Random:
-		Name: Any
+		Name: faction-random.name
 		InternalName: Random
 		Side: Random
 		RandomFactionMembers: ucs, ed
+		Description: faction-random.description
 	# Required for UI to load.
 	LoadWidgetAtGameStart:
 	# Required to show the map grid.

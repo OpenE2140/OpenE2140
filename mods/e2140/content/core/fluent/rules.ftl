@@ -4,6 +4,12 @@ options-starting-units =
     .light-support = Light Support
     .heavy-support = Heavy Support
 
+faction-random =
+    .name = Any
+    .description = Random Faction
+     A random faction is chosen at the start of the game
+
+
 ## RushProtection
 dropdown-rush-protection-time =
     .label = Rush Protection
