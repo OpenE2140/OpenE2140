@@ -157,7 +157,6 @@ shared_buildings_refinery:
 		RequiresCondition: !Transforming
 	GrantConditionOnDamageState:
 		Condition: damaged
-	# TODO Smoke should only come out from chimey when resources are delivered inside Refinery.
 	FloatingSpriteEmitter:
 		Duration: -1
 		Lifetime: 27
