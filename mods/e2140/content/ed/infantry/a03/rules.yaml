@@ -18,7 +18,10 @@ ed_infantry_a03:
 	Armament@PRIMARY:
 		Weapon: ed_infantry_a03
 		LocalOffset: 400,0,50
+		MuzzleSequence: muzzle
 		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+		IgnoreOffset: True
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 3
