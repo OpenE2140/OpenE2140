@@ -46,7 +46,7 @@ public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo, IEditorAct
 
 	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
 	{
-		yield return new EditorActorSlider("Facing", 5, 0, 1023, 0,
+		yield return new EditorActorSlider("Facing", this.EditorFacingDisplayOrder, 0, 1023, 0,
 			actor =>
 			{
 				var init = actor.GetInitOrDefault<FacingInit>(this);
