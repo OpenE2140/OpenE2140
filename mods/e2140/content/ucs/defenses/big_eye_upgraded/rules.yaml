@@ -38,6 +38,6 @@ ucs_mcu_big_eye_upgraded:
 		Queue: Defense.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 25
-		Prerequisites: LightPlasmaCannon, ucs_buildings_heavy_tech
+		Prerequisites: LightPlasmaCannon, ucs_buildings_heavy_tech, HeavyRockets
 	WithTextDecoration:
 		Text: Big Eye Upgr.
