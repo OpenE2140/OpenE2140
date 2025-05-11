@@ -23,7 +23,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 public class ResourceCrateInfo : TraitInfo, IEditorActorOptions, Requires<SubActorInfo>
 {
 	[Desc("Display order for the initial resources slider in the map editor")]
-	public readonly int EditorInitialResourcesDisplayOrder = 3;
+	public readonly int EditorInitialResourcesDisplayOrder = 4;
 
 	[Desc("Maximum amount of the initial resources slider in the map editor")]
 	public readonly int EditorMaximumInitialResources = 500;
