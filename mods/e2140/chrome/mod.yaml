@@ -66,6 +66,9 @@ ChromeMetrics:
 Cursors:
 	e2140|chrome/cursors.yaml
 
+FluentMessages:
+	e2140|chrome/fluent/chrome.ftl
+
 Fonts:
 	Tiny:
 		Font: e2140|chrome/fonts/Oxanium-Regular.ttf
