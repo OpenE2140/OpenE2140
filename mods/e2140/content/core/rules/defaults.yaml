@@ -139,8 +139,8 @@
 	RepairableBuilding:
 		RequiresCondition: Powered
 		RepairInterval: 1
-		RepairPercent: 40
-		RepairStep: 10
+		RepairPercent: 1
+		RepairStep: 1
 		RepairingNotification: Repairing
 		RepairingStoppedNotification: RepairsInterrupted
 
