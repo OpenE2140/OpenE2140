@@ -11,12 +11,24 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using OpenRA.Mods.Common.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
 public static class McuUtils
 {
+	public static bool TryGetTargetBuilding(OpenRA.World world, ActorInfo mcuActor, [NotNullWhen(true)] out ActorInfo? buildingActor)
+	{
+		buildingActor = null;
+		if (!mcuActor.HasTraitInfo<McuInfo>())
+			return false;
+
+		var targetActor = GetTargetBuilding(mcuActor);
+		buildingActor = targetActor != null ? world.Map.Rules.Actors[targetActor] : null;
+		return buildingActor != null;
+	}
+
 	public static ActorInfo? GetTargetBuilding(OpenRA.World world, ActorInfo mcuActor)
 	{
 		if (!mcuActor.HasTraitInfo<McuInfo>())

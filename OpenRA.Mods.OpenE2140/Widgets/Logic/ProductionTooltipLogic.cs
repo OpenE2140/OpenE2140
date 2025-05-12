@@ -15,8 +15,11 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.Common.Widgets.Logic;
+using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Mods.OpenE2140.Traits.Research;
+using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 using PowerInfo = OpenRA.Mods.OpenE2140.Traits.Power.PowerInfo;
@@ -65,7 +68,6 @@ public class ProductionTooltipLogic : ChromeLogic
 				return;
 
 			// Fetch data
-			var transforms = actor.TraitInfos<TransformsInfo>().FirstOrDefault();
 			var cost = 0;
 
 			if (tooltipIcon.ProductionQueue != null)
@@ -81,11 +83,14 @@ public class ProductionTooltipLogic : ChromeLogic
 			var hotkey = tooltipIcon.Hotkey?.GetValue() ?? Hotkey.Invalid;
 			var buildable = actor.TraitInfo<BuildableInfo>();
 
-			if (transforms != null)
-				actor = player.World.Map.Rules.Actors[transforms.IntoActor];
+			var power = 0;
+			if (McuUtils.TryGetTargetBuilding(player.World, actor, out var targetBuilding))
+			{
+				power = GetPowerRequirements(player.World, actor, targetBuilding);
+				actor = targetBuilding;
+			}
 
 			var tooltip = actor.TraitInfos<TooltipInfo>().FirstOrDefault();
-			var power = actor.TraitInfos<PowerInfo>().Sum(i => i.Amount);
 
 			var missingResearch = player.PlayerActor.TraitsImplementing<Researchable>()
 				.Where(researchable => researchable.RemainingDuration != 0 && buildable.Prerequisites.Contains(researchable.Info.Id))
@@ -197,7 +202,7 @@ public class ProductionTooltipLogic : ChromeLogic
 				powerLabel.Text = power.ToString();
 
 				powerLabel.GetColor = () => power > 0 ? Color.Green :
-					pm == null || power > pm.Power ? Color.Red : Color.White;
+					pm == null || -power > pm.Power ? Color.Red : Color.White;
 
 				powerIcon.Bounds.X = x;
 				powerIcon.Bounds.Y = y;
@@ -212,5 +217,14 @@ public class ProductionTooltipLogic : ChromeLogic
 			widget.Bounds.Width = x2 + padding.X;
 			widget.Bounds.Height = Math.Max(y2, y);
 		};
+	}
+
+	private static int GetPowerRequirements(World world, ActorInfo mcuActor, ActorInfo buildingActor)
+	{
+		// Special handling for Water Base: it's the dock that produces naval actors and requires power.
+		if (mcuActor.TryGetTrait<WaterBaseTransformsInfo>(out var waterBaseTransformsInfo))
+			buildingActor = world.Map.Rules.Actors[waterBaseTransformsInfo.DockActor];
+
+		return buildingActor.TraitInfos<PowerInfo>().Sum(i => i.Amount);
 	}
 }
