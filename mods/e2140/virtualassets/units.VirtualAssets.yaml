@@ -84,11 +84,41 @@ Palettes:
 			246: 198 109 24
 			247: 255 0 0
 
+	MuzzleInfantryUCS: Merge
+		0-232: 0 0 0 0
+		236-255: 0 0 0 0
+
+	MuzzleInfantryUCSSilverMax: Merge
+		0-229: 0 0 0 0
+		236-255: 0 0 0 0
+
+	MuzzleInfantryED: Merge
+		0-230: 0 0 0 0
+		235-255: 0 0 0 0
+
+	MuzzleInfantryEDA03: Merge
+		0-229: 0 0 0 0
+		231-239: 0 0 0 0
+		245-255: 0 0 0 0
+
 	NoMuzzle: Merge
 		244: 0 0 0 0
 		245: 0 0 0 0
 		246: 0 0 0 0
 		247: 0 0 0 0
+
+	NoMuzzleInfantryUCS: Merge
+		233-235: 0 0 0 0
+
+	NoMuzzleInfantryUCSSilverMax: Merge
+		230-235: 0 0 0 0
+
+	NoMuzzleInfantryED: Merge
+		231-234: 0 0 0 0
+
+	NoMuzzleInfantryEDA03: Merge
+		230: 0 0 0 0
+		240-244: 0 0 0 0
 
 	FlickerOn: Merge
 		0:
@@ -746,7 +776,9 @@ Generate:
 			Offsets: 698-700:0,-1 704,706:-1,-1
 		aim: 721-730[0_1_1] 8
 			Offsets: 721:8,-1 723:6,0 725:6,0 727:6,0 729:8,0
-		shoot: 721-730[1_1_0] 8
+		shoot: 721-730[1_1_0] 8 NoMuzzleInfantryUCS
+			Offsets: 722:8,-1 724:6,0 726:6,0 728:6,0 730:7,0
+		muzzle: 721-730[1_1_0] 8 MuzzleInfantryUCS
 			Offsets: 722:8,-1 724:6,0 726:6,0 728:6,0 730:7,0
 
 	infantry_silver_max: Player
@@ -757,7 +789,9 @@ Generate:
 			Offsets: 731,749,755:1,0 738-740,746:-1,0 744:-1,1 756,758:0,-1
 		aim: 761-770[0_1_1] 8
 			Offsets: 761:7,0 763:5,0 765:6,0 767:6,-1 769:8,0
-		shoot: 761-770[1_1_0] 8
+		shoot: 761-770[1_1_0] 8 NoMuzzleInfantryUCSSilverMax
+			Offsets: 762:6,0 764:5,0 766:6,0 768:6,-1 770:8,0
+		muzzle: 761-770[1_1_0] 8 MuzzleInfantryUCSSilverMax
 			Offsets: 762:6,0 764:5,0 766:6,0 768:6,-1 770:8,0
 
 	infantry_silver_r: Player
@@ -767,7 +801,9 @@ Generate:
 			Offsets: 771,773,774,779,783,791,795,797,798:1,0 778:-1,0
 		aim: 801-810[0_1_1] 8
 			Offsets: 801:7,0 803:5,0 805:6,0 807:5,0 809:6,0
-		shoot: 801-810[1_1_0] 8
+		shoot: 801-810[1_1_0] 8 NoMuzzleInfantryUCS
+			Offsets: 802:7,-2 804:5,0 806:6,0 808:5,0 810:6,0
+		muzzle: 801-810[1_1_0] 8 MuzzleInfantryUCS
 			Offsets: 802:7,-2 804:5,0 806:6,0 808:5,0 810:6,0
 
 	infantry_android_a04: Player
@@ -789,7 +825,9 @@ Generate:
 			Offsets: 851-880:1,0
 		aim: 881-890[0_1_1] 8
 			Offsets: 883,887:5,0 885:6,1 881,889:7,0
-		shoot: 881-890[1_1_0] 8
+		shoot: 881-890[1_1_0] 8 NoMuzzleInfantryEDA03
+			Offsets: 884,888:5,0 886:6,1 890:7,0 882:7,1
+		muzzle: 881-890[1_1_0] 8 MuzzleInfantryEDA03
 			Offsets: 884,888:5,0 886:6,1 890:7,0 882:7,1
 
 	infantry_android_a01: Player
@@ -798,12 +836,14 @@ Generate:
 		move: 891-920[0_4_2] 8
 		aim: 921-930[0_1_1] 8
 			Offsets: 921:8,0 923:6,0 925,927,929:5,0
-		shoot: 921-930[1_1_0] 8
+		shoot: 921-930[1_1_0] 8 NoMuzzleInfantryED
 			Offsets: 922:8,0 924:6,0 926,928,930:5,0
 		aim2: 931-940[0_1_1] 8
 			Offsets: 931:8,0 933:6,0 935,937,939:5,0
 		shoot2: 931-940[1_1_0] 8
 			Offsets: 932:8,0 934:6,0 936,938,940:5,0
+		muzzle: 921-930[1_1_0] 8 MuzzleInfantryED
+			Offsets: 922:8,0 924:6,0 926,928,930:5,0
 
 	infantry_android_a02: Player 
 		idle: 941-970[4_1_1] 8
@@ -811,7 +851,9 @@ Generate:
 		move: 941-970[0_4_2] 8
 		aim: 971-980[0_1_1] 8
 			Offsets: 971,973,975:5,0 977,979:2,0
-		shoot: 971-980[1_1_0] 8
+		shoot: 971-980[1_1_0] 8 NoMuzzleInfantryED
+			Offsets: 972,974,976:5,0 978,980:2,0
+		muzzle: 971-980[1_1_0] 8 MuzzleInfantryED
 			Offsets: 972,974,976:5,0 978,980:2,0
 
 	infantry_civil1: Player
