@@ -137,7 +137,8 @@ World:
 		Offset: 240,240,0
 		Palette:
 	# Add resources to the world.
-	ResourceLayer:
+	# TODO: Custom version is just workaround until the issue with removing resources underneath buildings is fixed in the engine.
+	CustomResourceLayer:
 		RecalculateResourceDensity: true
 		ResourceTypes:
 			Resources:
