@@ -13,6 +13,7 @@
 
 using OpenRA.Activities;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 using OpenRA.Primitives;
@@ -27,6 +28,7 @@ public class EnterCrewMember : Activity
 	private readonly CrewMember crewMember;
 	private readonly IMove move;
 	private readonly Color? targetLineColor;
+	private readonly MoveCooldownHelper moveCooldownHelper;
 	private Target target;
 	private readonly BuildingCrew buildingCrew;
 	private Target lastVisibleTarget;
@@ -43,6 +45,7 @@ public class EnterCrewMember : Activity
 		this.buildingCrew = target.Actor.Trait<BuildingCrew>();
 		this.targetLineColor = targetLineColor;
 		this.ChildHasPriority = false;
+		this.moveCooldownHelper = new MoveCooldownHelper(self.World, this.move as Mobile) { RetryIfDestinationBlocked = true };
 	}
 
 	public override bool Tick(Actor self)
@@ -81,6 +84,10 @@ public class EnterCrewMember : Activity
 		if (!this.TickChild(self))
 			return false;
 
+		var result = this.moveCooldownHelper.Tick(targetIsHiddenActor);
+		if (result != null)
+			return result.Value;
+
 		// Note that lastState refers to what we have just *finished* doing
 		switch (this.lastState)
 		{
@@ -100,6 +107,7 @@ public class EnterCrewMember : Activity
 				if (this.target.Type != TargetType.Invalid && !this.CanEnterTargetNow(self, this.target, out entrance))
 				{
 					// Target lines are managed by this trait, so we do not pass targetLineColor
+					this.moveCooldownHelper.NotifyMoveQueued();
 					var initialTargetPosition = (this.useLastVisibleTarget ? this.lastVisibleTarget : this.target).CenterPosition;
 					this.QueueChild(new MoveToBuildingEntrance(self, this.target, initialTargetPosition));
 					return false;
@@ -113,6 +121,7 @@ public class EnterCrewMember : Activity
 				// Are we ready to move into the target?
 				if (this.TryStartEnter(self, this.target.Actor))
 				{
+					this.moveCooldownHelper.NotifyMoveQueued();
 					this.lastState = EnterState.Entering;
 
 					this.targetEntrancePosition = entrance != null
@@ -150,6 +159,7 @@ public class EnterCrewMember : Activity
 					return true;
 				}
 
+				this.moveCooldownHelper.NotifyMoveQueued();
 				this.QueueChild(this.move.ReturnToCell(self));
 				this.lastState = EnterState.Finished;
 				return false;
