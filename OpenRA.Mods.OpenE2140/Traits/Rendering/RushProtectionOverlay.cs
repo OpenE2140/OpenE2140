@@ -27,29 +27,62 @@ public class RushProtectionOverlayInfo : TraitInfo
 
 	public override object Create(ActorInitializer init)
 	{
-		return new RushProtectionOverlay(init.Self, this);
+		return new RushProtectionOverlay(this);
 	}
 }
 
-public class RushProtectionOverlay : IRenderAnnotations
+public class RushProtectionOverlay : IRenderAnnotations, IRender, IWorldLoaded
 {
 	private readonly RushProtectionOverlayInfo info;
-	private readonly RushProtection? rushProtection;
+	private RushProtection? rushProtection;
 
-	public RushProtectionOverlay(Actor self, RushProtectionOverlayInfo rushProtectionOverlayInfo)
+	public RushProtectionOverlay(RushProtectionOverlayInfo rushProtectionOverlayInfo)
 	{
 		this.info = rushProtectionOverlayInfo;
-		this.rushProtection = self.World.WorldActor.TraitOrDefault<RushProtection>();
+	}
+
+	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
+	{
+		this.rushProtection = w.WorldActor.TraitOrDefault<RushProtection>();
 	}
 
 	bool IRenderAnnotations.SpatiallyPartitionable => false;
+
+	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
+	{
+		if (this.rushProtection?.IsEnabled != true)
+			yield break;
+
+		foreach (var protectedPlayer in this.rushProtection.ProtectedPlayers)
+		{
+			// For all players except the render player, we want to render circle below the fog/shroud, so the circle is only visible,
+			// when the area is revealed.
+			if (protectedPlayer.Player != self.World.RenderPlayer)
+			{
+				yield return new CircleRenderable(
+					self.World.Map.CenterOfCell(protectedPlayer.SpawnLocation), this.rushProtection.Info.RushProtectionRange, 1, this.info.ProtectedAreaCircleColor);
+			}
+		}
+	}
 
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
 		if (this.rushProtection?.IsEnabled != true)
 			yield break;
 
-		yield return new CircleAnnotationRenderable(
-			self.World.Map.CenterOfCell(self.Location), this.rushProtection.Info.RushProtectionRange, 1, this.info.ProtectedAreaCircleColor);
+		foreach (var protectedPlayer in this.rushProtection.ProtectedPlayers)
+		{
+			// We want to render the full circle only for the render player and since annotations are rendered above the shroud, we render the circle here.
+			if (protectedPlayer.Player == self.World.RenderPlayer)
+			{
+				yield return new CircleAnnotationRenderable(
+					self.World.Map.CenterOfCell(protectedPlayer.SpawnLocation), this.rushProtection.Info.RushProtectionRange, 1, this.info.ProtectedAreaCircleColor);
+			}
+		}
+	}
+
+	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer wr)
+	{
+		yield break;
 	}
 }

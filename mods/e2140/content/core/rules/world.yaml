@@ -159,6 +159,8 @@ World:
 		CountdownLabel: MISSION_TEXT
 		EnemyAttackingNotification: EnemiesApproaching
 		EnemyAttackingTextNotification: notification-rush-protection-enemy-attacking
+	# Render overlay for Rush Protection (if the feature is enabled)
+	RushProtectionOverlay:
 
 # Map editor specific world setup.
 EditorWorld:
