@@ -4,27 +4,27 @@ Speech:
 		ed: smp0_
 		ucs: smp1_
 	Notifications:
-		BuildingDestroyed: base|95.smp
-		BaseAttack: base|127.smp
-		BuildingLost: base|97.smp
 		InsufficientCash: base|109.smp
-		PowerOff: base|103.smp
-		PowerOn: base|104.smp
 		LowPower: base|110.smp
+		UnitLost: base|105.smp
+		BaseAttack: base|127.smp
+		BuildingDestroyed: base|95.smp
+		BuildingConquered: base|96.smp
+		LeavingBuilding: base|121.smp
+		BuildingLost: base|97.smp
 		Repairing: base|100.smp
+		RepairsInterrupted: base|120.smp
 		ProductionStarted: base|119.smp
 		ProductionComplete: base|99.smp
-		UnitLost: base|105.smp
-		RepairsInterrupted: base|120.smp
+		ProductionInterrupted: extra|interrupted.wav
+		ProductionCancelled: extra|cancelled.wav
+		PowerOff: base|103.smp
+		PowerOn: base|104.smp
 		GameSaved: base|113.smp
 		GameLoaded: base|114.smp
 		RestartGame: base|115.smp
-		ProductionInterrupted: extra|interrupted.wav
-		ProductionCancelled: extra|cancelled.wav
 		ResearchStarted: base|119.smp
 		ResearchComplete: base|122.smp
 		ResearchAborted: extra|cancelled.wav
 		ResearchAquired: base|122.smp
-		BuildingConquered: base|96.smp
-		LeavingBuilding: base|121.smp
 		EnemiesApproaching: base|126.smp
