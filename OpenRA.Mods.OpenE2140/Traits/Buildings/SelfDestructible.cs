@@ -49,6 +49,7 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 	public const string SelfDestructOrderID = "SelfDestruct";
 
 	private readonly IHealth health;
+	private List<INotifySelfDestruction> notifySelfDestruction = [];
 
 	private int condition = Actor.InvalidConditionToken;
 
@@ -58,6 +59,13 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 		: base(info)
 	{
 		this.health = self.Trait<IHealth>();
+	}
+
+	protected override void Created(Actor self)
+	{
+		base.Created(self);
+
+		this.notifySelfDestruction = self.TraitsImplementing<INotifySelfDestruction>().ToList();
 	}
 
 	private void UpdateCondition(Actor self)
@@ -112,6 +120,8 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 		TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingTextNotification);
 
 		this.UpdateCondition(self);
+
+		this.notifySelfDestruction.ForEach(n => n.SelfDestructionStarted(self));
 	}
 
 	private void StopSelfDestruct(Actor self)
@@ -121,6 +131,8 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 
 		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingStoppedNotification, self.Owner.Faction.InternalName);
 		TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingStoppedTextNotification);
+
+		this.notifySelfDestruction.ForEach(n => n.SelfDestructionAborted(self));
 	}
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)

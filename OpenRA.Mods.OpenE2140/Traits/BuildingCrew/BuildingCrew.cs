@@ -16,6 +16,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.Buildings;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
@@ -92,7 +93,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 
 public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IResolveOrder,
 	INotifyOwnerChanged, INotifySold, INotifyActorDisposing, IIssueDeployOrder,
-	INotifyCreated, INotifyKilled, INotifyDamage
+	INotifyCreated, INotifyKilled, INotifyDamage, INotifySelfDestruction
 {
 	private const string ExitBuildingOrderID = "ExitBuilding";
 
@@ -461,6 +462,20 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 			if (self.CurrentActivity is not CrewExit)
 				self.QueueActivity(true, new CrewExit(self, exitAll: false, playNotification: false));
 		}
+	}
+
+	void INotifySelfDestruction.SelfDestructionStarted(Actor self)
+	{
+		if (!this.CanExit())
+			return;
+
+		if (self.CurrentActivity is not CrewExit)
+			self.QueueActivity(true, new CrewExit(self, exitAll: true, playNotification: false));
+	}
+
+	void INotifySelfDestruction.SelfDestructionAborted(Actor self)
+	{
+		// currently noop
 	}
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
