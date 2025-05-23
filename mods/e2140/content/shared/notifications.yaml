@@ -18,6 +18,8 @@ Speech:
 		ProductionComplete: base|99.smp
 		ProductionInterrupted: extra|interrupted.wav
 		ProductionCancelled: extra|cancelled.wav
+		SelfDestructionActivated: base|94.smp
+		SelfDestructionStopped: base|118.smp
 		PowerOff: base|103.smp
 		PowerOn: base|104.smp
 		GameSaved: base|113.smp

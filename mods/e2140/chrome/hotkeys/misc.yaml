@@ -1,5 +1,13 @@
+# Selling buildings is currently not supported.
+-Sell:
+
 PowerDown: X
 	Description: Power-down mode
+	Types: OrderGenerator
+	Contexts: Player
+
+SelfDestruct: Z
+	Description: Self-destruct mode
 	Types: OrderGenerator
 	Contexts: Player
 

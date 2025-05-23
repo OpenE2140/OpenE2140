@@ -143,6 +143,11 @@
 		RepairStep: 10
 		RepairingNotification: Repairing
 		RepairingStoppedNotification: RepairsInterrupted
+	# Buildings can be self-destructed.
+	SelfDestructible:
+		DamageStep: 10
+		SelfDestructingNotification: SelfDestructionActivated
+		SelfDestructingStoppedNotification: SelfDestructionStopped
 
 # Base for all buildings.
 ^CoreBuilding:

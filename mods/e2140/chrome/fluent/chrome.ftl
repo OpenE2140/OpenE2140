@@ -155,7 +155,7 @@ button-stance-bar-holdfire =
 
 label-mute-indicator = Audio Muted
 button-top-buttons-repair-tooltip = Repair
-button-top-buttons-sell-tooltip = Sell
+button-top-buttons-selfdestruct-tooltip = Self Destruct
 button-top-buttons-beacon-tooltip = Place Beacon
 button-top-buttons-power-tooltip = Power Down
 button-top-buttons-options-tooltip = Options

@@ -334,14 +334,14 @@ Container@PLAYER_WIDGETS:
 									X: 0
 									Y: 0
 									ImageCollection: order-icons
-						WorldButton@SELL_BUTTON:
-							Logic: SellOrderButtonLogic, AddFactionSuffixLogic
+						WorldButton@SELFDESTRUCT_BUTTON:
+							Logic: SelfDestructOrderButtonLogic, AddFactionSuffixLogic
 							X: 28
 							Width: 26
 							Height: 26
 							Background: sidebar-order-button
-							Key: Sell
-							TooltipText: button-top-buttons-sell-tooltip
+							Key: SelfDestruct
+							TooltipText: button-top-buttons-selfdestruct-tooltip
 							TooltipContainer: TOOLTIP_CONTAINER
 							VisualHeight: 0
 							Children:
