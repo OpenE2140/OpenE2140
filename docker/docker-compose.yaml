@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  openra-server:
+    image: localhost/opene2140/server:latest
+    container_name: opene2140-server1
+    userns_mode: keep-id:uid=$UID
+    user: $UID
+    environment:
+      Name: "OpenE2140 - test server"
+      ENABLE_SINGLE_PLAYER: "True"
+      ENABLE_SYNC_REPORTS: "True"
+    ports:
+      - "2140:1234"
+    volumes:
+      - $PWD/.openra:/srv/opene2140/.openra
