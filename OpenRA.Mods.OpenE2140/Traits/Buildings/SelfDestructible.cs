@@ -1,4 +1,4 @@
-using OpenRA.Mods.Common.Traits;
+﻿using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -44,13 +44,13 @@ public class SelfDestructibleInfo : ConditionalTraitInfo, Requires<IHealthInfo>
 	public override object Create(ActorInitializer init) { return new SelfDestructible(init.Self, this); }
 }
 
-public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, IResolveOrder, INotifyKilled
+public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, IResolveOrder, INotifyKilled, INotifyBuildingRepair
 {
 	public const string SelfDestructOrderID = "SelfDestruct";
 
 	private readonly IHealth health;
 	private List<INotifySelfDestruction> notifySelfDestruction = [];
-
+	private RepairableBuilding? repairableBuilding;
 	private int condition = Actor.InvalidConditionToken;
 
 	public bool SelfDestructActive { get; private set; }
@@ -66,6 +66,7 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 		base.Created(self);
 
 		this.notifySelfDestruction = self.TraitsImplementing<INotifySelfDestruction>().ToList();
+		this.repairableBuilding = self.TraitOrDefault<RepairableBuilding>();
 	}
 
 	private void UpdateCondition(Actor self)
@@ -114,23 +115,38 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 			return;
 		}
 
+		var playNotification = true;
+		if (this.repairableBuilding?.RepairActive == true)
+		{
+			this.repairableBuilding.RepairBuilding(self, self.Owner);
+
+			// Don't play notification, if the building was previously being repaired.
+			playNotification = false;
+		}
+
 		this.SelfDestructActive = true;
 
-		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingNotification, self.Owner.Faction.InternalName);
-		TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingTextNotification);
+		if (playNotification)
+		{
+			Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingNotification, self.Owner.Faction.InternalName);
+			TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingTextNotification); 
+		}
 
 		this.UpdateCondition(self);
 
 		this.notifySelfDestruction.ForEach(n => n.SelfDestructionStarted(self));
 	}
 
-	private void StopSelfDestruct(Actor self)
+	private void StopSelfDestruct(Actor self, bool playNotification = true)
 	{
 		this.SelfDestructActive = false;
 		this.UpdateCondition(self);
 
-		Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingStoppedNotification, self.Owner.Faction.InternalName);
-		TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingStoppedTextNotification);
+		if (playNotification)
+		{
+			Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingStoppedNotification, self.Owner.Faction.InternalName);
+			TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingStoppedTextNotification);
+		}
 
 		this.notifySelfDestruction.ForEach(n => n.SelfDestructionAborted(self));
 	}
@@ -139,5 +155,16 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 	{
 		this.SelfDestructActive = false;
 		this.UpdateCondition(self);
+	}
+
+	void INotifyBuildingRepair.RepairStarted(Actor self)
+	{
+		if (this.SelfDestructActive)
+			this.StopSelfDestruct(self, playNotification: false);
+	}
+
+	void INotifyBuildingRepair.RepairInterrupted(Actor self)
+	{
+		// noop
 	}
 }

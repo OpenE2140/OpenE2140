@@ -135,6 +135,8 @@
 		Palette:
 		Position: Center
 		RequiresCondition: PoweredDown
+	# TODO: remove! Hack for RepairableBuilding not having proper INotify* callback
+	NotifyRepairCallback:
 	# Buildings can be repaired.
 	RepairableBuilding:
 		RequiresCondition: Powered
