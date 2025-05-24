@@ -3,12 +3,6 @@
 # This should not be called manually
 
 command -v curl >/dev/null 2>&1 || command -v wget > /dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires curl or wget."; exit 1; }
-if command -v python3 >/dev/null 2>&1; then
-	PYTHON="python3"
-else
-	command -v python >/dev/null 2>&1 || { echo >&2 "The OpenRA mod SDK requires python."; exit 1; }
-	PYTHON="python"
-fi
 
 require_variables() {
 	missing=""
@@ -22,7 +16,7 @@ require_variables() {
 	fi
 }
 
-TEMPLATE_LAUNCHER=$(${PYTHON} -c "import os; print(os.path.realpath('$0'))")
+TEMPLATE_LAUNCHER=$(readlink -f "$0")
 TEMPLATE_ROOT=$(dirname "${TEMPLATE_LAUNCHER}")
 
 # shellcheck source=mod.config
@@ -33,11 +27,15 @@ if [ -f "${TEMPLATE_ROOT}/user.config" ]; then
 	. "${TEMPLATE_ROOT}/user.config"
 fi
 
+cd "${TEMPLATE_ROOT}"
+
 require_variables "MOD_ID" "ENGINE_VERSION" "ENGINE_DIRECTORY"
 
+MANIFEST_PATH="mods/${MOD_ID}/mod.yaml"
 CURRENT_ENGINE_VERSION=$(cat "${ENGINE_DIRECTORY}/VERSION" 2> /dev/null)
 
 if [ -f "${ENGINE_DIRECTORY}/VERSION" ] && [ "${CURRENT_ENGINE_VERSION}" = "${ENGINE_VERSION}" ]; then
+	echo "Engine seems up-to-date."
 	exit 0
 fi
 
@@ -58,7 +56,7 @@ if [ "${AUTOMATIC_ENGINE_MANAGEMENT}" = "True" ]; then
 
 	echo "Downloading engine..."
 	if command -v curl > /dev/null 2>&1; then
-		curl -s -L -o "${AUTOMATIC_ENGINE_TEMP_ARCHIVE_NAME}" -O "${AUTOMATIC_ENGINE_SOURCE}" || exit 3
+		curl -sL -o "${AUTOMATIC_ENGINE_TEMP_ARCHIVE_NAME}" "${AUTOMATIC_ENGINE_SOURCE}" || exit 3
 	else
 		wget -cq "${AUTOMATIC_ENGINE_SOURCE}" -O "${AUTOMATIC_ENGINE_TEMP_ARCHIVE_NAME}" || exit 3
 	fi
@@ -74,9 +72,9 @@ if [ "${AUTOMATIC_ENGINE_MANAGEMENT}" = "True" ]; then
 	rmdir "${AUTOMATIC_ENGINE_EXTRACT_DIRECTORY}"
 	rm "${AUTOMATIC_ENGINE_TEMP_ARCHIVE_NAME}"
 
-	echo "Compiling engine..."
-	cd "${ENGINE_DIRECTORY}" || exit 1
-	make version VERSION="${ENGINE_VERSION}"
+	. ${ENGINE_DIRECTORY}/packaging/functions.sh
+	cd "${TEMPLATE_ROOT}"
+	set_engine_version ${ENGINE_VERSION} "${ENGINE_DIRECTORY}"
 	exit 0
 fi
 
