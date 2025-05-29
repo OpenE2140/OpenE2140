@@ -191,3 +191,10 @@ EditorWorld:
 	WaterBaseAnnotationLayer:
 	# Custom support for Water Base.
 	WaterBaseEditor:
+	# Path Tiler tool.
+	TilingPathTool:
+		DefaultStart: Shore
+		DefaultInner: Shore
+		DefaultEnd: Shore
+	# Random map generator.
+	Inherits@MapGenerators: ^MapGenerators

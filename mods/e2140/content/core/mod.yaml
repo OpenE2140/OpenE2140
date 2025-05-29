@@ -10,6 +10,7 @@ Rules:
 	e2140|content/core/rules/palettes.yaml
 	e2140|content/core/rules/player.yaml
 	e2140|content/core/rules/world.yaml
+	e2140|content/core/rules/map-generators.yaml
 
 FluentMessages:
 	e2140|content/core/fluent/common.ftl
