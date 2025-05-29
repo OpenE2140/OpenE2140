@@ -6,6 +6,8 @@
 	Shroud:
 	# Resources
 	PlayerResources:
+		ResourceValues:
+			Resources: 500
 
 # Ingame specific player setup.
 Player:
