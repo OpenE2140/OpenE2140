@@ -100,6 +100,7 @@ This project does not include any libre assets and original game files are requi
 - [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
 - [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
 - [Earth 2140 (Zoom Platform)](https://www.zoom-platform.com/product/earth-2140-trilogy)
+- [Earth 2140 (TopWare Interactive Shop](https://www.topwareshop.com/index.php?id_product=36&controller=product&id_lang=3)
 
 ## Special thanks!
 
@@ -114,7 +115,6 @@ Support the developer by buying the original game using links listed in the sect
 ## Contributing
 
 At the moment, we're looking for these people:
-- Video editor (for occasional preview videos like the ones above).
 - Artwork artist - if you are talented artist and you would like to provide extra assets such as building props, don't hesitate and join us!
 - Programmer/coder - if you are familiar with OpenRA codebase and know C# language in general, you can go ahead and help us by working on [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything.
 
