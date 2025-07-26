@@ -10,6 +10,11 @@
 	Interactable:
 	Targetable:
 		TargetTypes: Ground, Pipe
+	Building:
+		# Pipes can be placed on resources.
+		# This means that when placed on a cell with resources in the map editor, the resources are kept, after the game starts.
+		# (Maybe reconsider this in the future?)
+		TerrainTypes: Clear, Road, Resources
 	FireWarheadsOnDeath:
 		Weapon: PipeExplosion
 		EmptyWeapon: PipeExplosion

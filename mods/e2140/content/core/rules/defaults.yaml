@@ -26,7 +26,6 @@
 	Building:
 		Dimensions: 1,1
 		Footprint: x
-		AllowPlacementOnResources: true
 	# Put decorations in own catgegory in map editor.
 	MapEditorData:
 		Categories: Decorations
@@ -89,7 +88,6 @@
 	# Add building specific logic to Constructions.
 	Building:
 		TerrainTypes: Clear, Road
-		AllowPlacementOnResources: true
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground, Structure

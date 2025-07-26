@@ -12,6 +12,9 @@
 		TargetTypes: Ground, Tree
 	Building:
 		Footprint: _
+		# Trees can be placed on resources.
+		# This means that when placed on a cell with resources in the map editor, the resources are kept, after the game starts.
+		TerrainTypes: Clear, Road, Resources
 	CustomChangesTerrain:
 		TerrainType: ClearTree
 
