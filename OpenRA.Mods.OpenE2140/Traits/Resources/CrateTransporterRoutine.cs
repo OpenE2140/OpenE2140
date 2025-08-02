@@ -55,6 +55,13 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 	public Actor? CurrentMine { get; private set; }
 	public Actor? CurrentRefinery { get; private set; }
 
+	public void StartTransporterRoutine(Actor self)
+	{
+		self.CurrentActivity?.Cancel(self);
+
+		self.QueueActivity(new TransportCrates(self));
+	}
+
 	void INotifyCreated.Created(Actor self)
 	{
 		if (this.startRoutine && this.Info.FreeActorDelayRoutine >= 0)
