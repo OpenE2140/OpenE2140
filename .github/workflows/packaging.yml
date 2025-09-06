@@ -8,13 +8,14 @@ on:
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 
-permissions:
-  contents: write  # for release creation
-
 jobs:
   create-release:
     name: Prepare release
     runs-on: ubuntu-22.04
+
+    permissions:
+      contents: write
+
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
@@ -31,6 +32,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     permissions:
+      contents: read
       packages: write
 
     steps:
@@ -70,6 +72,9 @@ jobs:
     runs-on: ubuntu-22.04
     needs: create-release
 
+    permissions:
+      contents: write
+
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
@@ -100,6 +105,9 @@ jobs:
     name: macOS Disk Image
     runs-on: macos-13
     needs: create-release
+
+    permissions:
+      contents: write
 
     steps:
       - name: Clone Repository
@@ -136,6 +144,9 @@ jobs:
     name: Windows Installers
     runs-on: ubuntu-22.04
     needs: create-release
+
+    permissions:
+      contents: write
 
     steps:
       - name: Clone Repository
