@@ -64,11 +64,12 @@ jobs:
             TAG=${{ github.ref_name }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-  
+
   linux:
     name: Linux AppImages
     runs-on: ubuntu-22.04
     needs: create-release
+
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
@@ -87,7 +88,7 @@ jobs:
           mkdir -p build/linux
           sudo apt-get install -y desktop-file-utils
           ./packaging/linux/buildpackage.sh "${GIT_TAG}" "${PWD}/build/linux"
-      
+
       - name: Upload Packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -99,6 +100,7 @@ jobs:
     name: macOS Disk Image
     runs-on: macos-13
     needs: create-release
+
     steps:
       - name: Clone Repository
         uses: actions/checkout@v4
@@ -122,7 +124,7 @@ jobs:
           make engine
           mkdir -p build/macos
           ./packaging/macos/buildpackage.sh "${GIT_TAG}" "${PWD}/build/macos"
-      
+
       - name: Upload Package
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -134,6 +136,7 @@ jobs:
     name: Windows Installers
     runs-on: ubuntu-22.04
     needs: create-release
+
     steps:
       - name: Clone Repository
         uses: actions/checkout@v3
@@ -154,7 +157,7 @@ jobs:
           make engine
           mkdir -p build/windows
           ./packaging/windows/buildpackage.sh "${GIT_TAG}" "${PWD}/build/windows"
-      
+
       - name: Upload Packages
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
