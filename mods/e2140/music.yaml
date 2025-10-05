@@ -28,83 +28,80 @@ track09: Track 9 - Total Control
 	Filename: music/Track 9 - Total Control
 	Extension: ogg
 
+# Mission Pack 1 music
+
+track10: Track 10 - MP1 - Big Journey
+	Filename: music/Track 10 - MP1 - Big Journey
+	Extension: mp3
+track11: Track 11 - MP1 - The Hunt
+	Filename: music/Track 11 - MP1 - The Hunt
+	Extension: mp3
+track12: Track 12 - MP1 - Black Tech
+	Filename: music/Track 12 - MP1 - Black Tech
+	Extension: mp3
+track13: Track 13 - MP1 - Deep in the Bunker
+	Filename: music/Track 13 - MP1 - Deep in the Bunker
+	Extension: mp3
+track14: Track 14 - MP1 - Bubbles' Revenge
+	Filename: music/Track 14 - MP1 - Bubbles' Revenge
+	Extension: mp3
+track15: Track 15 - MP1 - Space
+	Filename: music/Track 15 - MP1 - Space
+	Extension: mp3
+
 # Mission Pack 2 music
 
-track10: Mission Pack 2 - Track 10
-	Filename: music/Mission Pack 2 - Track 10
+track16: Track 16 - MP2
+	Filename: music/Track 16 - MP2
 	Extension: mp3
-track11: Mission Pack 2 - Track 11
-	Filename: music/Mission Pack 2 - Track 11
+track17: Track 17 - MP2
+	Filename: music/Track 17 - MP2
 	Extension: mp3
-track12: Mission Pack 2 - Track 12
-	Filename: music/Mission Pack 2 - Track 12
+track18: Track 18 - MP2
+	Filename: music/Track 18 - MP2
 	Extension: mp3
-track13: Mission Pack 2 - Track 13
-	Filename: music/Mission Pack 2 - Track 13
+track19: Track 19 - MP2
+	Filename: music/Track 19 - MP2
 	Extension: mp3
-track14: Mission Pack 2 - Track 14
-	Filename: music/Mission Pack 2 - Track 14
+track20: Track 20 - MP2
+	Filename: music/Track 20 - MP2
 	Extension: mp3
-track15: Mission Pack 2 - Track 15
-	Filename: music/Mission Pack 2 - Track 15
+track21: Track 21 - MP2
+	Filename: music/Track 21 - MP2
 	Extension: mp3
-track16: Mission Pack 2 - Track 16
-	Filename: music/Mission Pack 2 - Track 16
-	Extension: mp3
-track17: Mission Pack 2 - Track 17
-	Filename: music/Mission Pack 2 - Track 17
-	Extension: mp3
-track18: Mission Pack 2 - Track 18
-	Filename: music/Mission Pack 2 - Track 18
+track22: Track 22 - MP2
+	Filename: music/Track 22 - MP2
 	Extension: mp3
 
 # Extra music
 
-track19: EARTH Theme
+track23: EARTH Theme
 	Filename: music/EARTH Theme
 	Extension: mp3
-track20: The Hunt
-	Filename: music/The Hunt
-	Extension: mp3
-track21: Deep in the Bunker
-	Filename: music/Deep in the Bunker
-	Extension: mp3
-track22: Before the Battle
+track24: Before the Battle
 	Filename: music/Before the Battle
 	Extension: mp3
-track23: Black Tech
-	Filename: music/Black Tech
-	Extension: mp3
-track24: Total Control
+track25: Total Control
 	Filename: music/Total Control
-	Extension: mp3
-track25: Bubbles' Revenge
-	Filename: music/Bubbles' Revenge
-	Extension: mp3
-track26: Big Journey
-	Filename: music/Big Journey
-	Extension: mp3
-track27: Space
-	Filename: music/Space
 	Extension: mp3
 
 # Vocal music
 
-track28: Child of 2140 - Vocals
+track26: Child of 2140 - Vocals
 	Filename: music/Child of 2140 - Vocals
 	Extension: mp3
-track29: Birds - Vocals
+track27: Birds - Vocals
 	Filename: music/Birds - Vocals
 	Extension: mp3
-track30: Hurricane - Vocals
+track28: Hurricane - Vocals
 	Filename: music/Hurricane - Vocals
 	Extension: mp3
-track31: Everywhere - Vocals
+track29: Everywhere - Vocals
 	Filename: music/Everywhere - Vocals
 	Extension: mp3
-track32: Hope - Vocals
+track30: Hope - Vocals
 	Filename: music/Hope - Vocals
 	Extension: mp3
-track33: 2140 - Vocals
+track31: 2140 - Vocals
 	Filename: music/2140 - Vocals
 	Extension: mp3
