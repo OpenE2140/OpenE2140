@@ -36,38 +36,42 @@ gog_soundtrack_mp2: Earth 2140 Mission Pack 2 Soundtrack (GoG)
 		!Downloads/earth_2140_soundtrack.zip: e113c53dfbc690a52c150497ff3efcf36d4ca3eb
 	Install:
 		ContentPackage:
-			Name: soundtrack
+			Name: soundtrack_mp2
 			Actions:
 				ExtractZip: !Downloads/earth_2140_soundtrack.zip
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 10.mp3: 10 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 11.mp3: 11 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 12.mp3: 12 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 13.mp3: 13 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 14.mp3: 14 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 15.mp3: 15 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 16.mp3: 16 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 17.mp3: 17 - track_mp.mp3
-					^SupportDir|Content/e2140/music/Mission Pack 2 - Track 18.mp3: 18 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 16 - MP2.mp3: 10 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 17 - MP2.mp3: 11 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 18 - MP2.mp3: 12 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 19 - MP2.mp3: 13 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 20 - MP2.mp3: 14 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 21 - MP2.mp3: 15 - track_mp.mp3
+					^SupportDir|Content/e2140/music/Track 22 - MP2.mp3: 16 - track_mp.mp3
+					#^SupportDir|Content/e2140/music/Track 10 - MP1 - Big Journey.mp3: 17 - track_mp.mp3 # This is MP1 soundtrack, already included in extra zip.
+					#^SupportDir|Content/e2140/music/Track 15 - MP1 - Space.mp3: 18 - track_mp.mp3 # This is MP1 soundtrack, already included in extra zip.
 
-gog_soundtrack_extra: Earth 2140 Extra Soundtrack (GoG)
+gog_soundtrack_extra: Earth 2140 Mission Pack 1 & Extra Soundtrack (GoG)
 	Type: Gog
 		AppId: 1207658738
 	IDFiles:
 		!Downloads/earth_2140_original_ost_mp3.zip: 80b55f2ac60feae835c5cf9a376af53a2237b126
 	Install:
+		ContentPackage@soundtrack_mp1:
+			Name: soundtrack_mp1
+			Actions:
+				ExtractZip: !Downloads/earth_2140_original_ost_mp3.zip
+					^SupportDir|Content/e2140/music/Track 10 - MP1 - Big Journey.mp3: earth_2140_original_ost_mp3/12 - Big Journey.mp3
+					^SupportDir|Content/e2140/music/Track 11 - MP1 - The Hunt.mp3: earth_2140_original_ost_mp3/03 - The Hunt.mp3
+					^SupportDir|Content/e2140/music/Track 12 - MP1 - Black Tech.mp3: earth_2140_original_ost_mp3/08 - Black Tech.mp3
+					^SupportDir|Content/e2140/music/Track 13 - MP1 - Deep in the Bunker.mp3: earth_2140_original_ost_mp3/05 - Deep in the Bunker.mp3
+					^SupportDir|Content/e2140/music/Track 14 - MP1 - Bubbles' Revenge.mp3: earth_2140_original_ost_mp3/11 - Bubbles' Revenge.mp3
+					^SupportDir|Content/e2140/music/Track 15 - MP1 - Space.mp3: earth_2140_original_ost_mp3/15 - Space.mp3
 		ContentPackage@soundtrack_extra:
 			Name: soundtrack_extra
 			Actions:
 				ExtractZip: !Downloads/earth_2140_original_ost_mp3.zip
 					^SupportDir|Content/e2140/music/EARTH Theme.mp3: earth_2140_original_ost_mp3/01 - EARTH Theme.mp3
-					^SupportDir|Content/e2140/music/The Hunt.mp3: earth_2140_original_ost_mp3/03 - The Hunt.mp3
-					^SupportDir|Content/e2140/music/Deep in the Bunker.mp3: earth_2140_original_ost_mp3/05 - Deep in the Bunker.mp3
 					^SupportDir|Content/e2140/music/Before the Battle.mp3: earth_2140_original_ost_mp3/07 - Before the Battle.mp3
-					^SupportDir|Content/e2140/music/Black Tech.mp3: earth_2140_original_ost_mp3/08 - Black Tech.mp3
 					^SupportDir|Content/e2140/music/Total Control.mp3: earth_2140_original_ost_mp3/09 - Total Control.mp3
-					^SupportDir|Content/e2140/music/Bubbles' Revenge.mp3: earth_2140_original_ost_mp3/11 - Bubbles' Revenge.mp3
-					^SupportDir|Content/e2140/music/Big Journey.mp3: earth_2140_original_ost_mp3/12 - Big Journey.mp3
-					^SupportDir|Content/e2140/music/Space.mp3: earth_2140_original_ost_mp3/15 - Space.mp3
 		ContentPackage@soundtrack_vocals:
 			Name: soundtrack_vocals
 			Actions:
