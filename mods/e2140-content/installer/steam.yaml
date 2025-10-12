@@ -144,7 +144,7 @@ steam_soundtrack_extra: Earth 2140 Mission Pack 1 & Extra Soundtrack (Steam)
 				Copy: .
 					^SupportDir|Content/e2140/music/EARTH Theme.mp3: Soundtrack/01 - EARTH Theme.mp3
 					^SupportDir|Content/e2140/music/Before the Battle.mp3: Soundtrack/07 - Before the Battle.mp3
-					^SupportDir|Content/e2140/music/Total Control.mp3: Soundtrack/09 - Total Control.mp3
+					^SupportDir|Content/e2140/music/Total Control (Extended).mp3: Soundtrack/09 - Total Control.mp3
 		ContentPackage@soundtrack_vocals:
 			Name: soundtrack_vocals
 			Actions:
