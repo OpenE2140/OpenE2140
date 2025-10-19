@@ -441,6 +441,10 @@
 	# Vehicles smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
+		StartSequence: start
+		EndSequence: end
+		LoopCount: 3, 7
+		InitialDelay: 0, 20
 	# Condition to be granted to damaged vehicles so their speed can be decreased.
 	GrantConditionOnDamageState@DecreasedSpeed:
 		Condition: decreasedspeed
@@ -558,6 +562,10 @@
 	# Aircraft smoke when they're heavily damaged.
 	WithDamageOverlay:
 		Image: smoking
+		StartSequence: start
+		EndSequence: end
+		LoopCount: 3, 7
+		InitialDelay: 0, 20
 	# Aircraft can be cloaked, but only if it is on the ground.
 	Cloak:
 		RequiresCondition: shadowcloak && !airborne

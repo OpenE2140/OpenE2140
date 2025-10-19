@@ -73,13 +73,12 @@ smoking:
 		Offset: 5, -20
 		Tick: 120
 		ZOffset: 512
-	idle:
+	start:
 		Filename: content/core/assets/smoking_start.png
 		Length: 5
 	loop:
 		Filename: content/core/assets/smoking.png
-		Frames: 0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3
-		Length: 20
+		Length: 4
 	end:
 		Filename: content/core/assets/smoking_end.png
 		Length: 5
