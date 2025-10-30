@@ -2,8 +2,6 @@
 ^CoreWorld:
 	# Make palettes usable in the world.
 	Inherits: ^Palettes
-	# Always render the world.
-	AlwaysVisible:
 	# Required for interaction between game window and input with the map.
 	ScreenMap:
 	# Required to cache and query actors on the map.

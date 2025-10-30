@@ -1,7 +1,5 @@
 # Shared player setup.
 ^CorePlayer:
-	# This actor is not affected by shroud or fog.
-	AlwaysVisible:
 	# Enable shroud and fog.
 	Shroud:
 		ExploredMapCheckboxEnabled: True

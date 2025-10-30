@@ -2,7 +2,6 @@ camera:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: camera
-	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
 	RevealsShroud:
@@ -20,7 +19,6 @@ waypoint:
 	Interactable:
 	EditorOnlyTooltip:
 		Name: Waypoint
-	AlwaysVisible:
 	Immobile:
 		OccupiesSpace: false
 	WithSpriteBody:
