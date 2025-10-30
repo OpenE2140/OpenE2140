@@ -13,7 +13,6 @@ FileSystem: DefaultFileSystem
 		$e2140-content: e2140content
 
 Rules:
-	content|rules.yaml
 
 Cursors:
 	e2140content|cursors.yaml
