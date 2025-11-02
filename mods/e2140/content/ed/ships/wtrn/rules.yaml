@@ -27,6 +27,16 @@ ed_ships_wtrn:
 	# Don't count WTRN as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
+	Cargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 6
+	WithCargoPipsDecoration:
+		Palette:
+		FullSequence: pip-blue
+		PipStride: 6,0
+		Margin: 5,10
+		Position: TopLeft
+		RequiresSelection: true
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 2

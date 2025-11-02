@@ -32,6 +32,11 @@ World:
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 
+^EdHeavyTank:
+	Inherits: ^EdVehicle
+	# Heavy tanks cannot be loaded onto vehicle transporters (WTRN and WTP 100)
+	-Passenger:
+
 ^EdAircraft:
 	Inherits: ^CoreAircraft
 	Voiced@EdAircraft:

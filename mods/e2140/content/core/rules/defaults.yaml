@@ -449,6 +449,10 @@
 	SpeedMultiplier:
 		Modifier: 55
 		RequiresCondition: decreasedspeed
+	# Vehicles can enter Cargo actors.
+	Passenger:
+		CargoType: Vehicle
+		Weight: 6
 
 # Add locomotor to world...
 ^CoreWorld:

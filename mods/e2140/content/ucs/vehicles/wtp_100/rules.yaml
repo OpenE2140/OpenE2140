@@ -28,6 +28,17 @@ ucs_vehicles_wtp_100:
 	# Don't count WTP 100 as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
+	Cargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 6
+	WithCargoPipsDecoration:
+		Palette:
+		FullSequence: pip-blue
+		PipStride: 6,0
+		Margin: 5,10
+		Position: TopLeft
+		RequiresSelection: true
+	-Passenger:
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 12

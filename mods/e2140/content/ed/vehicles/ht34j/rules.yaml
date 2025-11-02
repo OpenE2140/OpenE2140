@@ -1,5 +1,5 @@
 ed_vehicles_ht34j:
-	Inherits@1: ^EdVehicle
+	Inherits@1: ^EdHeavyTank
 	Inherits@2: ^CoreVehicleTurret
 	Inherits@3: ^LeavesLargeTracks
 	Tooltip:
