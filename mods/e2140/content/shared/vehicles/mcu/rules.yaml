@@ -39,6 +39,7 @@
 	# MCUs are not slower when they are damaged.
 	-GrantConditionOnDamageState@DecreasedSpeed:
 	-SpeedMultiplier:
+	-Passenger:
 	SpawnActorOnDeath:
 		Actor: shared_mcu_husk
 

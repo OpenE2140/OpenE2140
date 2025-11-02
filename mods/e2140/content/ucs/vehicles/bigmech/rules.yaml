@@ -42,6 +42,8 @@ ucs_vehicles_big_mech:
 		Image: smoking_mech
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_big_mech_husk
+	# Big Mech is too heavy and big to be transported by vehicle transporters (WTP 100 and WTRN)
+	-Passenger:
 	Encyclopedia:
 		Category: UCS - Vehicles
 		Order: 13
