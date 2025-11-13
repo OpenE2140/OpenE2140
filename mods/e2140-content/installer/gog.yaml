@@ -1,36 +1,36 @@
 gog: Earth 2140 (GoG, English)
-	Type: Gog
+	Type: WindowsGog
 		AppId: 1207658738
 	IDFiles:
-		E2140.exe: 41c607baa2bc718084c017772dee235943efa090
+		Earth2140.exe: cbac9c6ad7fe53a7ca00db41e59bd83145257888
 	Install:
 		ContentPackage@base:
 			Name: base
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/FLC.WD: FLC.WD
-					^SupportDir|Content/e2140/GRAPH.WD: GRAPH.WD
-					^SupportDir|Content/e2140/MENU.WD: MENU.WD
-					^SupportDir|Content/e2140/MIX.WD: MIX.WD
-					^SupportDir|Content/e2140/PIRO.WD: PIRO.WD
-					^SupportDir|Content/e2140/SMP0.WD: SMP0.WD
-					^SupportDir|Content/e2140/SMP1.WD: SMP1.WD
+					^SupportDir|Content/e2140/FLC.WD: GameData/en/FLC.WD
+					^SupportDir|Content/e2140/GRAPH.WD: GameData/en/GRAPH.WD
+					^SupportDir|Content/e2140/MENU.WD: GameData/en/MENU.WD
+					^SupportDir|Content/e2140/MIX.WD: GameData/en/MIX.WD
+					^SupportDir|Content/e2140/PIRO.WD: GameData/en/PIRO.WD
+					^SupportDir|Content/e2140/SMP0.WD: GameData/en/SMP0.WD
+					^SupportDir|Content/e2140/SMP1.WD: GameData/en/SMP1.WD
 		ContentPackage@music:
 			Name: music
 			Actions:
 				Copy: .
-					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: music/1.ogg
-					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: music/2.ogg
-					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: music/3.ogg
-					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: music/4.ogg
-					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: music/5.ogg
-					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: music/6.ogg
-					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: music/7.ogg
-					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: music/8.ogg
-					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: music/9.ogg
+					^SupportDir|Content/e2140/music/Track 1 - Child of 2140.ogg: GameData/common/music/1.ogg
+					^SupportDir|Content/e2140/music/Track 2 - Hope.ogg: GameData/common/music/2.ogg
+					^SupportDir|Content/e2140/music/Track 3 - Hurricane.ogg: GameData/common/music/3.ogg
+					^SupportDir|Content/e2140/music/Track 4 - Before the Battle.ogg: GameData/common/music/4.ogg
+					^SupportDir|Content/e2140/music/Track 5 - Everywhere.ogg: GameData/common/music/5.ogg
+					^SupportDir|Content/e2140/music/Track 6 - Birds.ogg: GameData/common/music/6.ogg
+					^SupportDir|Content/e2140/music/Track 7 - 2140.ogg: GameData/common/music/7.ogg
+					^SupportDir|Content/e2140/music/Track 8 - EARTH Theme.ogg: GameData/common/music/8.ogg
+					^SupportDir|Content/e2140/music/Track 9 - Total Control.ogg: GameData/common/music/9.ogg
 
 gog_soundtrack_mp2: Earth 2140 Mission Pack 2 Soundtrack (GoG)
-	Type: Gog
+	Type: WindowsGog
 		AppId: 1207658738
 	IDFiles:
 		!Downloads/earth_2140_soundtrack.zip: e113c53dfbc690a52c150497ff3efcf36d4ca3eb
@@ -50,7 +50,7 @@ gog_soundtrack_mp2: Earth 2140 Mission Pack 2 Soundtrack (GoG)
 					#^SupportDir|Content/e2140/music/Track 15 - MP1 - Space.mp3: 18 - track_mp.mp3 # This is MP1 soundtrack, already included in extra zip.
 
 gog_soundtrack_extra: Earth 2140 Mission Pack 1 & Extra Soundtrack (GoG)
-	Type: Gog
+	Type: WindowsGog
 		AppId: 1207658738
 	IDFiles:
 		!Downloads/earth_2140_original_ost_mp3.zip: 80b55f2ac60feae835c5cf9a376af53a2237b126
