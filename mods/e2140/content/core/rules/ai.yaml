@@ -1,4 +1,0 @@
-Player:
-	ModularBot@CampaignAI:
-		Name: Campaign Player AI
-		Type: campaign
