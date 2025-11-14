@@ -31,7 +31,6 @@ Players:
 		Enemies: UCS_AI
 	PlayerReference@UCS_AI:
 		Name: UCS_AI
-		Bot: campaign
 		Faction: ucs
 		LockColor: True
 		Color: F20F0F
