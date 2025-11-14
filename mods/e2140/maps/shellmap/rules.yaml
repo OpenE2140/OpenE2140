@@ -1,0 +1,12 @@
+Player:
+	-ConquestVictoryConditions:
+
+World:
+	LuaScript:
+		Scripts: script.lua
+	-SpawnStartingUnits:
+	-MapStartingLocations:
+
+shared_buildings_mine:
+	ResourceMine:
+		CrateSize: 0
