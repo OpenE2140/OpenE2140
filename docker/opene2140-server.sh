@@ -6,6 +6,7 @@ echo "Starting dedicated server"
 
 /srv/opene2140/OpenRA.Server \
 	Engine.EngineDir="." Game.Mod="e2140" \
+	Server.ListenPort="${LISTEN_PORT}" \
 	Server.Name="${NAME}" \
 	Server.Map="${MAP}" \
 	Server.AdvertiseOnline="${ADVERTISE_ONLINE}" \

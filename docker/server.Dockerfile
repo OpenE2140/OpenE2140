@@ -28,6 +28,7 @@ COPY ./docker/opene2140-server.sh /usr/local/bin/
 ENV MOD_SEARCH_PATHS=/srv/opene2140/mods/
 ENV NAME="Dedicated Server" \
     ADVERTISE_ONLINE="False" \
+    LISTEN_PORT="1234" \
     PASSWORD="" \
     RECORD_REPLAYS="False" \
     REQUIRE_AUTHENTICATION="False" \
@@ -40,7 +41,6 @@ ENV NAME="Dedicated Server" \
     SHARE_ANONYMISED_IPS="False" \
     FLOOD_LIMIT_JOIN_COOLDOWN="5000"
 
-EXPOSE 1234/tcp
 USER $APP_UID
 VOLUME ["/srv/opene2140/.openra"]
 
