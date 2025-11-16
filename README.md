@@ -1,14 +1,16 @@
-# Earth 2140 on OpenRA
+# OpenE2140 - remake of Earth 2140 on OpenRA engine
 
 Remake of Earth 2140 using [OpenRA](https://github.com/OpenRA/OpenRA). Based on [OpenRA Mod SDK](https://github.com/OpenRA/OpenRAModSDK). Work in progress.
 
 Links:
+* [Official website](https://opene2140.net/)
 * [Discord server](https://discord.gg/KNcX5BxA37)
 * [Mod DB page](https://www.moddb.com/mods/opene2140)
 * [OpenE2140 channel on Dalek.zone](https://dalek.zone/c/opene2140/videos) (PeerTube)
 
 # Videos
 
+- [OpenE2140: Multiplayer Alpha Trailer](https://dalek.zone/w/ejPG78GsWPgyRzWCE8if7S)
 - [OpenE2140: Multiplayer preview (May 2025)](https://dalek.zone/w/rL4636QCeN2ubT9VTa9rKo)
 - [OpenE2140: Preview 7 (March 2025)](https://dalek.zone/w/p6ZBrmKPjPa9L44U1ukLLp)
 - [OpenE2140: Preview 6 (February 2024)](https://dalek.zone/w/vXNL2vLURLmqEKCF3cDueP)
@@ -67,7 +69,24 @@ Links:
 	<a href="https://user-images.githubusercontent.com/119738087/231708287-1b0b52c8-d6c5-491b-9387-83357966a9ec.gif"><img src="https://user-images.githubusercontent.com/119738087/231708287-1b0b52c8-d6c5-491b-9387-83357966a9ec.gif" height="200"></a>
 </details>
 
-## Development team
+# Installation
+
+Download and install latest release from [the releases page](https://github.com/OpenE2140/OpenE2140/releases). Pick correct file/installer for your platform.
+
+This project does not include any libre assets and original game files are required to run this project. You can acquire required assets by buying Earth 2140 on any of the following websites:
+
+- [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
+- [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
+- [Earth 2140 (Zoom Platform)](https://www.zoom-platform.com/product/earth-2140-trilogy)
+- [Earth 2140 (TopWare Interactive Shop](https://www.topwareshop.com/index.php?id_product=36&controller=product&id_lang=3)
+
+If you have Earth 2140 installed from any of the above source, OpenE2140 will automatically install necessary files on first startup. Just follow the on-screen instructions. More details and step-by-step guide is [on our website](https://opene2140/how-to-install).
+
+# Roadmap
+
+High-level, non-technical roadmap can be found on [our website](https://opene2140.net/roadmap/). For more detailed list of milestones, head over to [Milestones page](https://github.com/OpenE2140/OpenE2140/milestones).
+
+# Development team
 
 - [michaeldgg2](https://github.com/michaeldgg2)
 	* project lead
@@ -77,7 +96,7 @@ Links:
 	* programming
 	* reverse engineering
 
-## Contributors
+# Contributors
 
 - [Dzierzan](https://github.com/Dzierzan)
 	* custom artwork for faction sidebars and command bars
@@ -93,15 +112,6 @@ Links:
 - [michal-mad](https://github.com/michal-mad)
 	* programming
 
-## Game assets
-
-This project does not include any libre assets and original game files are required to run this project. You can acquire required assets by buying Earth 2140 on any of the following websites:
-
-- [Earth 2140 Trilogy (GOG)](https://www.gog.com/game/earth_2140_trilogy)
-- [Earth 2140 (Steam)](https://store.steampowered.com/app/253860/Earth_2140/)
-- [Earth 2140 (Zoom Platform)](https://www.zoom-platform.com/product/earth-2140-trilogy)
-- [Earth 2140 (TopWare Interactive Shop](https://www.topwareshop.com/index.php?id_product=36&controller=product&id_lang=3)
-
 ## Special thanks!
 
 Huge thanks for OpenRA devs and contributors for all the great work done on OpenRA.
@@ -116,7 +126,7 @@ Support the developer by buying the original game using links listed in the sect
 
 At the moment, we're looking for these people:
 - Artwork artist - if you are talented artist and you would like to provide extra assets such as building props, don't hesitate and join us!
-- Programmer/coder - if you are familiar with OpenRA codebase and know C# language in general, you can go ahead and help us by working on [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything.
+- Programmer/coder - if you are familiar with OpenRA codebase and know C# language in general, you can go ahead and help us by looking at [issues](https://github.com/OpenE2140/OpenE2140/issues). However, make sure to check with us before you start working on anything. We recommend starting with the so-called "[good first issues](https://github.com/OpenE2140/OpenE2140/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22)".
 
 Contact us over at [our Discord server](https://discord.gg/KNcX5BxA37).
 
