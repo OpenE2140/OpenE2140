@@ -10,3 +10,6 @@ tileset-temperate = Temperate
 tileset-urban = Urban
 tileset-urban2 = Urban 2 (MP2)
 tileset-wasteland = Wasteland
+
+## SupportPowerTimerWidget
+support-power-timer = { $player }'s { $support-power }: { $time }
