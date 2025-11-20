@@ -13,39 +13,41 @@
 
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits;
-
-[Desc("Makes actor targetability dependent on viewer's warheads")]
-public class WarheadDependentTargetableInfo : TargetableInfo
+namespace OpenRA.Mods.OpenE2140.Traits
 {
-	[Desc("List of viewer warheads that makes it not able to target this actor.")]
-	public readonly string[] InvalidViewerWarheads = [];
-
-	public override object Create(ActorInitializer init) { return new WarheadDependentTargetable(this); }
-}
-
-public class WarheadDependentTargetable : Targetable
-{
-	private readonly WarheadDependentTargetableInfo info;
-
-	public WarheadDependentTargetable(WarheadDependentTargetableInfo info)
-		: base(info)
+	[Desc("Makes actor targetability dependent on viewer's warheads")]
+	public class WarheadDependentTargetableInfo : TargetableInfo
 	{
-		this.info = info;
+		[Desc("List of viewer warheads that makes it not able to target this actor.")]
+		public readonly string[] InvalidViewerWarheads = [];
+
+		public override object Create(ActorInitializer init) { return new WarheadDependentTargetable(this); }
 	}
 
-	public override bool TargetableBy(Actor self, Actor viewer)
+	public class WarheadDependentTargetable : Targetable
 	{
-		if (this.IsTraitDisabled)
-			return false;
+		private readonly WarheadDependentTargetableInfo info;
 
-		// Actor is targetable by the viewer only if any armament has weapon with invalid warhead
-		var invalidArmaments = viewer.Info.TraitInfos<ArmamentInfo>()
-			.Where(a => a.WeaponInfo.Warheads.Any(a => this.info.InvalidViewerWarheads.Any(w => a.GetType().Name.StartsWith(w))));
+		public WarheadDependentTargetable(WarheadDependentTargetableInfo info)
+			: base(info)
+		{
+			this.info = info;
+		}
 
-		if (invalidArmaments.Any())
-			return false;
+		public override bool TargetableBy(Actor self, Actor viewer)
+		{
+			if (this.IsTraitDisabled)
+				return false;
 
-		return base.TargetableBy(self, viewer);
+			// Actor is targetable by the viewer only if any armament has weapon with invalid warhead
+			var invalidArmaments = viewer.Info.TraitInfos<ArmamentInfo>()
+				.Where(a => a.WeaponInfo.Warheads.Any(a => this.info.InvalidViewerWarheads.Any(w => a.GetType().Name.StartsWith(w))));
+
+			if (invalidArmaments.Any())
+				return false;
+
+			return base.TargetableBy(self, viewer);
+		}
 	}
 }
+

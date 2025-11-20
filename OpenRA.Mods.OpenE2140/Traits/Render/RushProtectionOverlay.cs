@@ -13,11 +13,10 @@
 
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
-using OpenRA.Mods.OpenE2140.Traits.World;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Overlay for Rush Protection feature visualization. Attach this to the mpspawn actor.")]
 public class RushProtectionOverlayInfo : TraitInfo
@@ -41,7 +40,7 @@ public class RushProtectionOverlay : IRenderAnnotations, IRender, IWorldLoaded
 		this.info = rushProtectionOverlayInfo;
 	}
 
-	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
+	void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
 	{
 		this.rushProtection = w.WorldActor.TraitOrDefault<RushProtection>();
 	}

@@ -15,47 +15,49 @@ using OpenRA.FileFormats;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.Extractors;
-
-public static class SpriteExtractor
+namespace OpenRA.Mods.OpenE2140.Assets.Extractors
 {
-	public static void Extract(IEnumerable<Sprite> sprites, string name)
+	public static class SpriteExtractor
 	{
-		var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.png");
-
-		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
-
-		var sheetBaker = new SheetBaker(4);
-
-		foreach (var sprite in sprites)
+		public static void Extract(IEnumerable<Sprite> sprites, string name)
 		{
-			var sheetData = sprite.Sheet.GetData();
+			var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.png");
 
-			var frame = new byte[sprite.Bounds.Width * sprite.Bounds.Height * 4];
+			Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
 
-			for (var y = 0; y < sprite.Bounds.Height; y++)
+			var sheetBaker = new SheetBaker(4);
+
+			foreach (var sprite in sprites)
 			{
-				Array.Copy(
-					sheetData,
-					((sprite.Bounds.Y + y) * sprite.Sheet.Size.Width + sprite.Bounds.X) * 4,
-					frame,
-					y * sprite.Bounds.Width * 4,
-					sprite.Bounds.Width * 4
+				var sheetData = sprite.Sheet.GetData();
+
+				var frame = new byte[sprite.Bounds.Width * sprite.Bounds.Height * 4];
+
+				for (var y = 0; y < sprite.Bounds.Height; y++)
+				{
+					Array.Copy(
+						sheetData,
+						((sprite.Bounds.Y + y) * sprite.Sheet.Size.Width + sprite.Bounds.X) * 4,
+						frame,
+						y * sprite.Bounds.Width * 4,
+						sprite.Bounds.Width * 4
+					);
+				}
+
+				sheetBaker.Frames.Add(
+					new SheetBaker.Entry(new Rectangle((int)sprite.Offset.X, (int)sprite.Offset.Y, sprite.Bounds.Width, sprite.Bounds.Height), frame)
 				);
 			}
 
-			sheetBaker.Frames.Add(
-				new SheetBaker.Entry(new Rectangle((int)sprite.Offset.X, (int)sprite.Offset.Y, sprite.Bounds.Width, sprite.Bounds.Height), frame)
-			);
-		}
+			var data = sheetBaker.Bake(out var width, out var height, out var offsetX, out var offsetY, out var frameSize);
 
-		var data = sheetBaker.Bake(out var width, out var height, out var offsetX, out var offsetY, out var frameSize);
-
-		var embeddedData = new Dictionary<string, string> {
+			var embeddedData = new Dictionary<string, string> {
 			{ "Offset", $"{offsetX},{offsetY}" },
 			{ "FrameSize", $"{frameSize.Width},{frameSize.Height}" }
 		};
 
-		new Png(data, SpriteFrameType.Bgra32, width, height, null, embeddedData).Save(outputFile);
+			new Png(data, SpriteFrameType.Bgra32, width, height, null, embeddedData).Save(outputFile);
+		}
 	}
 }
+

@@ -16,7 +16,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Custom trait that generates FactionImages from actor name")]
@@ -43,7 +43,7 @@ public class FactionRenderSprites : IWorldLoaded
 		this.info = info;
 	}
 
-	void IWorldLoaded.WorldLoaded(OpenRA.World world, WorldRenderer worldRenderer)
+	void IWorldLoaded.WorldLoaded(World world, WorldRenderer worldRenderer)
 	{
 		foreach (var actorInfo in world.Map.Rules.Actors.Values)
 		{

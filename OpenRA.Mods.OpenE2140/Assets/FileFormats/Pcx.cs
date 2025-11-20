@@ -13,85 +13,88 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
-
-public class Pcx
+namespace OpenRA.Mods.OpenE2140.Assets.FileFormats
 {
-	public readonly ushort X;
-	public readonly ushort Y;
-	public readonly ushort Width;
-	public readonly ushort Height;
-	public readonly Color[] Pixels;
-
-	public Pcx(Stream stream)
+	public class Pcx
 	{
-		if (stream.ReadUInt8() != 0x0a)
-			throw new Exception("Broken pcx file!");
+		public readonly ushort X;
+		public readonly ushort Y;
+		public readonly ushort Width;
+		public readonly ushort Height;
+		public readonly Color[] Pixels;
 
-		var version = stream.ReadUInt8();
-		var encoding = stream.ReadUInt8();
-		var bpp = stream.ReadUInt8();
-
-		if (version != 5 || encoding != 1 || bpp != 8)
-			throw new Exception("Broken pcx file!");
-
-		this.X = stream.ReadUInt16();
-		this.Y = stream.ReadUInt16();
-		this.Width = stream.ReadUInt16();
-		this.Height = stream.ReadUInt16();
-		this.Pixels = new Color[this.Width * this.Height];
-
-		stream.Position += 52; // dpi, ega palette
-
-		var reserved1 = stream.ReadUInt8();
-		var channels = stream.ReadUInt8();
-		var lineWidth = stream.ReadUInt16();
-		var paletteType = stream.ReadUInt16();
-
-		if (reserved1 != 0 || channels != 1 || paletteType != 1)
-			throw new Exception("Broken pcx file!");
-
-		stream.Position += 4; // resolution
-
-		if (stream.ReadBytes(54).Any(b => b != 0x00))
-			throw new Exception("Broken pcx file!");
-
-		stream.Position = stream.Length - 768;
-		var palette = new Color[256];
-
-		for (var i = 0; i < palette.Length; i++)
-			palette[i] = Color.FromArgb(0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
-
-		stream.Position = 128;
-
-		try
+		public Pcx(Stream stream)
 		{
-			for (var y = 0; y < this.Height; y++)
+			if (stream.ReadUInt8() != 0x0a)
+				throw new Exception("Broken pcx file!");
+
+			var version = stream.ReadUInt8();
+			var encoding = stream.ReadUInt8();
+			var bpp = stream.ReadUInt8();
+
+			if (version != 5 || encoding != 1 || bpp != 8)
+				throw new Exception("Broken pcx file!");
+
+			this.X = stream.ReadUInt16();
+			this.Y = stream.ReadUInt16();
+			this.Width = stream.ReadUInt16();
+			this.Height = stream.ReadUInt16();
+			this.Pixels = new Color[this.Width * this.Height];
+
+			stream.Position += 52; // dpi, ega palette
+
+			var reserved1 = stream.ReadUInt8();
+			var channels = stream.ReadUInt8();
+			var lineWidth = stream.ReadUInt16();
+			var paletteType = stream.ReadUInt16();
+
+			if (reserved1 != 0 || channels != 1 || paletteType != 1)
+				throw new Exception("Broken pcx file!");
+
+			stream.Position += 4; // resolution
+
+			if (stream.ReadBytes(54).Any(b => b != 0x00))
+				throw new Exception("Broken pcx file!");
+
+			stream.Position = stream.Length - 768;
+			var palette = new Color[256];
+
+			for (var i = 0; i < palette.Length; i++)
+				palette[i] = Color.FromArgb(0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
+
+			stream.Position = 128;
+
+			try
 			{
-				for (var x = 0; x < lineWidth;)
+				for (var y = 0; y < this.Height; y++)
 				{
-					var count = 1;
-					var value = stream.ReadUInt8();
-
-					if (value >> 6 == 0x3)
+					for (var x = 0; x < lineWidth;)
 					{
-						count = value & 0x3f;
-						value = stream.ReadUInt8();
-					}
+						var count = 1;
+						var value = stream.ReadUInt8();
 
-					for (var i = 0; i < count; i++)
-					{
-						if (x < this.Width)
-							this.Pixels[y * this.Width + x] = palette[value];
+						if (value >> 6 == 0x3)
+						{
+							count = value & 0x3f;
+							value = stream.ReadUInt8();
+						}
 
-						x++;
+						for (var i = 0; i < count; i++)
+						{
+							if (x < this.Width)
+								this.Pixels[y * this.Width + x] = palette[value];
+
+							x++;
+						}
 					}
 				}
 			}
-		}
-		catch (Exception e)
-		{
-			Console.WriteLine(e);
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
 		}
 	}
 }
+
+

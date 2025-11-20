@@ -15,32 +15,34 @@ using OpenRA.Effects;
 using OpenRA.GameRules;
 using OpenRA.Graphics;
 
-namespace OpenRA.Mods.OpenE2140.Effects;
-
-public class DelayedProjectile : IEffect
+namespace OpenRA.Mods.OpenE2140.Effects
 {
-	private readonly IProjectile projectile;
-	private int delay;
 
-	public DelayedProjectile(IProjectile projectile, int delay)
+	public class DelayedProjectile : IEffect
 	{
-		this.projectile = projectile;
-		this.delay = delay;
-	}
+		private readonly IProjectile projectile;
+		private int delay;
 
-	public void Tick(World world)
-	{
-		if (--this.delay <= 0)
+		public DelayedProjectile(IProjectile projectile, int delay)
 		{
-			world.AddFrameEndTask(
-				w =>
-				{
-					w.Remove(this);
-					w.Add(this.projectile);
-				}
-			);
+			this.projectile = projectile;
+			this.delay = delay;
 		}
-	}
 
-	public IEnumerable<IRenderable> Render(WorldRenderer wr) { yield break; }
+		public void Tick(World world)
+		{
+			if (--this.delay <= 0)
+			{
+				world.AddFrameEndTask(
+					w =>
+					{
+						w.Remove(this);
+						w.Add(this.projectile);
+					}
+				);
+			}
+		}
+
+		public IEnumerable<IRenderable> Render(WorldRenderer wr) { yield break; }
+	}
 }

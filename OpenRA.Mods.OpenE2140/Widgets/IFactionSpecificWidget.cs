@@ -11,11 +11,12 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-public interface IFactionSpecificWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	string[] FieldsToOverride { get; }
+	public interface IFactionSpecificWidget
+	{
+		string[] FieldsToOverride { get; }
 
-	string Identifier { get; }
+		string Identifier { get; }
+	}
 }

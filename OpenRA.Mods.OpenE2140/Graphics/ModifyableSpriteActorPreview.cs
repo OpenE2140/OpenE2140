@@ -15,49 +15,51 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Graphics;
-
-public class ModifyableSpriteActorPreview : IActorPreview
+namespace OpenRA.Mods.OpenE2140.Graphics
 {
-	private readonly Animation animation;
-	private readonly Func<WVec> offset;
-	private readonly Func<int> zOffset;
-	private readonly Func<IRenderable, bool, IRenderable?> modify;
-
-	/// <summary>
-	/// Constructor.
-	/// </summary>
-	/// <param name="animation"><see cref="Animation"/> to create actor preview from.</param>
-	/// <param name="offset">Function for determining offset of the animation.</param>
-	/// <param name="zOffset">Function for determining Z-Offset of the animation.</param>
-	/// <param name="modify">Function for modifying <see cref="IRenderable"/> objects.
-	///		Arguments: (<see cref="IRenderable"/> renderable, <see cref="bool"/> renderUi).
-	///		When <c>null</c> is returned, <see cref="IRenderable"/> is not used at all.</param>
-	public ModifyableSpriteActorPreview(Animation animation, Func<WVec> offset, Func<int> zOffset, Func<IRenderable, bool, IRenderable?> modify)
+	public class ModifyableSpriteActorPreview : IActorPreview
 	{
-		this.animation = animation;
-		this.offset = offset;
-		this.zOffset = zOffset;
-		this.modify = modify;
-	}
+		private readonly Animation animation;
+		private readonly Func<WVec> offset;
+		private readonly Func<int> zOffset;
+		private readonly Func<IRenderable, bool, IRenderable?> modify;
 
-	void IActorPreview.Tick()
-	{
-		this.animation.Tick();
-	}
+		/// <summary>
+		/// Constructor.
+		/// </summary>
+		/// <param name="animation"><see cref="Animation"/> to create actor preview from.</param>
+		/// <param name="offset">Function for determining offset of the animation.</param>
+		/// <param name="zOffset">Function for determining Z-Offset of the animation.</param>
+		/// <param name="modify">Function for modifying <see cref="IRenderable"/> objects.
+		///		Arguments: (<see cref="IRenderable"/> renderable, <see cref="bool"/> renderUi).
+		///		When <c>null</c> is returned, <see cref="IRenderable"/> is not used at all.</param>
+		public ModifyableSpriteActorPreview(Animation animation, Func<WVec> offset, Func<int> zOffset, Func<IRenderable, bool, IRenderable?> modify)
+		{
+			this.animation = animation;
+			this.offset = offset;
+			this.zOffset = zOffset;
+			this.modify = modify;
+		}
 
-	IEnumerable<IRenderable> IActorPreview.RenderUI(WorldRenderer wr, int2 pos, float scale)
-	{
-		return this.animation.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale).Select(e => this.modify(e, true)).OfType<IRenderable>();
-	}
+		void IActorPreview.Tick()
+		{
+			this.animation.Tick();
+		}
 
-	IEnumerable<IRenderable> IActorPreview.Render(WorldRenderer wr, WPos pos)
-	{
-		return this.animation.Render(pos, this.offset(), this.zOffset(), null).Select(e => this.modify(e, false)).OfType<IRenderable>();
-	}
+		IEnumerable<IRenderable> IActorPreview.RenderUI(WorldRenderer wr, int2 pos, float scale)
+		{
+			return this.animation.RenderUI(wr, pos, this.offset(), this.zOffset(), null, scale).Select(e => this.modify(e, true)).OfType<IRenderable>();
+		}
 
-	IEnumerable<Rectangle> IActorPreview.ScreenBounds(WorldRenderer wr, WPos pos)
-	{
-		yield return this.animation.ScreenBounds(wr, pos, this.offset());
+		IEnumerable<IRenderable> IActorPreview.Render(WorldRenderer wr, WPos pos)
+		{
+			return this.animation.Render(pos, this.offset(), this.zOffset(), null).Select(e => this.modify(e, false)).OfType<IRenderable>();
+		}
+
+		IEnumerable<Rectangle> IActorPreview.ScreenBounds(WorldRenderer wr, WPos pos)
+		{
+			yield return this.animation.ScreenBounds(wr, pos, this.offset());
+		}
 	}
 }
+

@@ -16,12 +16,11 @@ using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World.Editor;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.EditorWorld)]
 [Desc("Required for Water Base annotations in the editor to work. Attach this to the world actor.")]
@@ -54,7 +53,7 @@ public class WaterBaseAnnotationLayer : ICustomEditorRender, IWorldLoaded
 		this.info = info;
 	}
 
-	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
+	void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
 	{
 		this.editorViewportControllerWidget = Ui.Root.Get<EditorViewportControllerWidget>("MAP_EDITOR");
 	}

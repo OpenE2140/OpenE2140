@@ -13,19 +13,20 @@
 
 using OpenRA.Activities;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class ActivityExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static Activity WithChild(this Activity parent, Activity child)
+	public static class ActivityExtensions
 	{
-		parent.QueueChild(child);
-		return parent;
-	}
+		public static Activity WithChild(this Activity parent, Activity child)
+		{
+			parent.QueueChild(child);
+			return parent;
+		}
 
-	public static Activity WithNext(this Activity current, Activity next)
-	{
-		current.Queue(next);
-		return current;
+		public static Activity WithNext(this Activity current, Activity next)
+		{
+			current.Queue(next);
+			return current;
+		}
 	}
 }

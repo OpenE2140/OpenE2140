@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("A version of dock that shares docking position with other SharedDockHosts.")]
 public class SharedDockHostInfo : DockHostInfo, IDockHostInfo, Requires<ISharedDockHostManagerInfo>

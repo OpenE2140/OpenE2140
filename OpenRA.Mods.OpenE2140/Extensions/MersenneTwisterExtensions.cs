@@ -13,15 +13,16 @@
 
 using OpenRA.Support;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-internal static class MersenneTwisterExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static int FromRange(this MersenneTwister mersenneTwister, int[] range)
+	internal static class MersenneTwisterExtensions
 	{
-		if (range.Length == 1)
-			return range[0];
+		public static int FromRange(this MersenneTwister mersenneTwister, int[] range)
+		{
+			if (range.Length == 1)
+				return range[0];
 
-		return mersenneTwister.Next(range[0], range[1]);
+			return mersenneTwister.Next(range[0], range[1]);
+		}
 	}
 }

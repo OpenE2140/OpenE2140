@@ -14,7 +14,7 @@
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Misc;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class ConditionWatcher : IObservesVariables
 {

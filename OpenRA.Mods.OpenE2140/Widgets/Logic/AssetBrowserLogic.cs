@@ -19,40 +19,42 @@ using OpenRA.Mods.OpenE2140.Assets.Extractors;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
-
-[UsedImplicitly]
-public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
+namespace OpenRA.Mods.OpenE2140.Widgets.Logic
 {
-	private const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
-
-	[ObjectCreator.UseCtor]
-	public AssetBrowserLogic(Widget widget, Action onExit, ModData modData, WorldRenderer worldRenderer)
-		: base(widget, onExit, modData, worldRenderer)
+	[UsedImplicitly]
+	public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 	{
-		var closeButton = widget.GetOrNull<ButtonWidget>("CLOSE_BUTTON");
+		private const BindingFlags Flags = BindingFlags.Instance | BindingFlags.NonPublic;
 
-		var extractButton = (ButtonWidget)closeButton.Clone();
-		extractButton.Id = "EXTRACT_BUTTON";
-		extractButton.X = extractButton.X.Concat($" - {closeButton.Width} - 20");
-		extractButton.Text = "Extract";
-		extractButton.GetText = () => extractButton.Text;
-		extractButton.OnClick = this.Extract;
+		[ObjectCreator.UseCtor]
+		public AssetBrowserLogic(Widget widget, Action onExit, ModData modData, WorldRenderer worldRenderer)
+			: base(widget, onExit, modData, worldRenderer)
+		{
+			var closeButton = widget.GetOrNull<ButtonWidget>("CLOSE_BUTTON");
 
-		closeButton.Parent.AddChild(extractButton);
+			var extractButton = (ButtonWidget)closeButton.Clone();
+			extractButton.Id = "EXTRACT_BUTTON";
+			extractButton.X = extractButton.X.Concat($" - {closeButton.Width} - 20");
+			extractButton.Text = "Extract";
+			extractButton.GetText = () => extractButton.Text;
+			extractButton.OnClick = this.Extract;
 
-		extractButton.Initialize([]);
-	}
+			closeButton.Parent.AddChild(extractButton);
 
-	private void Extract()
-	{
-		if (this.GetType().BaseType?.GetField("currentFilename", AssetBrowserLogic.Flags)?.GetValue(this) is not string currentFilename)
-			return;
+			extractButton.Initialize([]);
+		}
 
-		if (this.GetType().BaseType?.GetField("currentSprites", AssetBrowserLogic.Flags)?.GetValue(this) is Sprite[] sprites)
-			SpriteExtractor.Extract(sprites, currentFilename);
+		private void Extract()
+		{
+			if (this.GetType().BaseType?.GetField("currentFilename", AssetBrowserLogic.Flags)?.GetValue(this) is not string currentFilename)
+				return;
 
-		if (this.GetType().BaseType?.GetField("currentSoundFormat", AssetBrowserLogic.Flags)?.GetValue(this) is ISoundFormat audio)
-			AudioExtractor.Extract(audio, currentFilename);
+			if (this.GetType().BaseType?.GetField("currentSprites", AssetBrowserLogic.Flags)?.GetValue(this) is Sprite[] sprites)
+				SpriteExtractor.Extract(sprites, currentFilename);
+
+			if (this.GetType().BaseType?.GetField("currentSoundFormat", AssetBrowserLogic.Flags)?.GetValue(this) is ISoundFormat audio)
+				AudioExtractor.Extract(audio, currentFilename);
+		}
 	}
 }
+

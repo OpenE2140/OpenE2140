@@ -18,10 +18,9 @@ using OpenRA.Mods.OpenE2140.Activites.Move;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
-using OpenRA.Mods.OpenE2140.Traits.Production;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc($"Custom version of {nameof(RenderSprites)}, which cuts off all sprites of the actor when leaving production actor.",
 	$"Requires {nameof(ActorProducerInit)} present in {nameof(ActorInitializer)}'s {nameof(TypeDictionary)}. " +

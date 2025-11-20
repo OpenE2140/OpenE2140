@@ -15,24 +15,25 @@ using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using OpenRA.FileSystem;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
-
-[UsedImplicitly]
-public class VirtualAssetsLoader : IPackageLoader
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets
 {
-	private const string Extension = ".VirtualAssets.yaml";
-
-	public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
+	[UsedImplicitly]
+	public class VirtualAssetsLoader : IPackageLoader
 	{
-		if (!filename.EndsWith(VirtualAssetsLoader.Extension, StringComparison.OrdinalIgnoreCase))
+		private const string Extension = ".VirtualAssets.yaml";
+
+		public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
 		{
-			package = null;
+			if (!filename.EndsWith(VirtualAssetsLoader.Extension, StringComparison.OrdinalIgnoreCase))
+			{
+				package = null;
 
-			return false;
+				return false;
+			}
+
+			package = new VirtualAssetsPackage(stream, filename, context);
+
+			return true;
 		}
-
-		package = new VirtualAssetsPackage(stream, filename, context);
-
-		return true;
 	}
 }

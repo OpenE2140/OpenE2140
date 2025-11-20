@@ -16,7 +16,7 @@ using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Miner;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 {

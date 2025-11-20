@@ -11,12 +11,13 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class WPosExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static bool EqualsHorizontally(this WPos position1, WPos position2)
+	public static class WPosExtensions
 	{
-		return (position1.X, position1.Y) == (position2.X, position2.Y);
+		public static bool EqualsHorizontally(this WPos position1, WPos position2)
+		{
+			return (position1.X, position1.Y) == (position2.X, position2.Y);
+		}
 	}
 }

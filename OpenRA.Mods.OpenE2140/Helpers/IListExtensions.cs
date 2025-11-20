@@ -11,12 +11,15 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Helpers;
-
-public static class IListExtensions
+namespace OpenRA.Mods.OpenE2140.Helpers
 {
-	public static T? GetElementOrDefault<T>(this IList<T> values, int index, T? defaultValue = default)
+	public static class IListExtensions
 	{
-		return index < values.Count ? values[index] : defaultValue;
+		public static T? GetElementOrDefault<T>(this IList<T> values, int index, T? defaultValue = default)
+		{
+			return index < values.Count ? values[index] : defaultValue;
+		}
 	}
 }
+
+

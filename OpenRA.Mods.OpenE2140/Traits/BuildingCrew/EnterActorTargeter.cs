@@ -14,7 +14,7 @@
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class EnterActorTargeter<T> : UnitOrderTargeter where T : ITraitInfoInterface
 {

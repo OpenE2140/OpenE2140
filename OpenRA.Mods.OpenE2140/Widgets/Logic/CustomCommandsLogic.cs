@@ -12,60 +12,62 @@
 #endregion
 
 using OpenRA.Mods.Common.Widgets;
-using OpenRA.Mods.OpenE2140.Traits.Miner;
+using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
-
-/// <summary>
-/// Logic for custom commands used in OpenE2140.
-/// </summary>
-public class CustomCommandsLogic : ChromeLogic
+namespace OpenRA.Mods.OpenE2140.Widgets.Logic
 {
-	private int? selectionHash;
-	private Actor[] selectedActors = [];
-	private bool buildWallDisabled = true;
-
-	[ObjectCreator.UseCtor]
-	public CustomCommandsLogic(Widget widget, World world)
+	/// <summary>
+	/// Logic for custom commands used in OpenE2140.
+	/// </summary>
+	public class CustomCommandsLogic : ChromeLogic
 	{
-		var buildWallButton = widget.GetOrNull<ButtonWidget>("BUILD_WALL");
-		if (buildWallButton != null)
+		private int? selectionHash;
+		private Actor[] selectedActors = [];
+		private bool buildWallDisabled = true;
+
+		[ObjectCreator.UseCtor]
+		public CustomCommandsLogic(Widget widget, World world)
 		{
-			WidgetUtils.BindButtonIcon(buildWallButton);
-
-			buildWallButton.IsDisabled = () => { UpdateStateIfNecessary(); return this.buildWallDisabled; };
-			buildWallButton.IsHighlighted = () => world.OrderGenerator is BuildWallOrderGenerator;
-
-			void Toggle(bool allowCancel)
+			var buildWallButton = widget.GetOrNull<ButtonWidget>("BUILD_WALL");
+			if (buildWallButton != null)
 			{
-				if (buildWallButton.IsHighlighted())
+				WidgetUtils.BindButtonIcon(buildWallButton);
+
+				buildWallButton.IsDisabled = () => { UpdateStateIfNecessary(); return this.buildWallDisabled; };
+				buildWallButton.IsHighlighted = () => world.OrderGenerator is BuildWallOrderGenerator;
+
+				void Toggle(bool allowCancel)
 				{
-					if (allowCancel)
-						world.CancelInputMode();
+					if (buildWallButton.IsHighlighted())
+					{
+						if (allowCancel)
+							world.CancelInputMode();
+					}
+					else
+					{
+						world.OrderGenerator = new BuildWallOrderGenerator(this.selectedActors);
+					}
 				}
-				else
-				{
-					world.OrderGenerator = new BuildWallOrderGenerator(this.selectedActors);
-				}
+
+				buildWallButton.OnClick = () => Toggle(true);
+				buildWallButton.OnKeyPress = _ => Toggle(false);
 			}
 
-			buildWallButton.OnClick = () => Toggle(true);
-			buildWallButton.OnKeyPress = _ => Toggle(false);
-		}
+			void UpdateStateIfNecessary()
+			{
+				if (this.selectionHash == world.Selection.Hash)
+					return;
 
-		void UpdateStateIfNecessary()
-		{
-			if (this.selectionHash == world.Selection.Hash)
-				return;
+				this.selectedActors = world.Selection.Actors
+					.Where(a => a.Owner == world.LocalPlayer && a.IsInWorld && !a.IsDead)
+					.ToArray();
 
-			this.selectedActors = world.Selection.Actors
-				.Where(a => a.Owner == world.LocalPlayer && a.IsInWorld && !a.IsDead)
-				.ToArray();
+				this.buildWallDisabled = !this.selectedActors.Any(a => a.Info.HasTraitInfo<WallBuilderInfo>());
 
-			this.buildWallDisabled = !this.selectedActors.Any(a => a.Info.HasTraitInfo<WallBuilderInfo>() );
-
-			this.selectionHash = world.Selection.Hash;
+				this.selectionHash = world.Selection.Hash;
+			}
 		}
 	}
 }
+
