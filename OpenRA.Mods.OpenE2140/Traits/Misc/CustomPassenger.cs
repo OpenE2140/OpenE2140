@@ -13,7 +13,7 @@
 
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Misc;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc($"This actor can enter Cargo actors. Custom version of {nameof(Passenger)} trait, which can optionally preserve passenger's activities on unload.")]
 public class CustomPassengerInfo : PassengerInfo

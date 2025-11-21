@@ -16,7 +16,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Debug trait for rendering actor's occupied cells. Attach to world.")]
 [TraitLocation(SystemActors.World)]
@@ -30,10 +30,10 @@ public class ActorDebugInfo : TraitInfo
 
 public class ActorDebug : IRender
 {
-	private readonly OpenRA.World world;
+	private readonly World world;
 	private readonly Sprite sprite;
 
-	public ActorDebug(OpenRA.World world)
+	public ActorDebug(World world)
 	{
 		this.world = world;
 		this.sprite = this.world.Map.Sequences.GetSequence("overlay", "build-invalid").GetSprite(0);

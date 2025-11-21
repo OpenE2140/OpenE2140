@@ -16,68 +16,69 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Orders;
-
-public class ExtendedUnitOrderGenerator : UnitOrderGenerator
+namespace OpenRA.Mods.OpenE2140.Orders
 {
-	public override IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
+	public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 	{
-		return GetOrderPreviewRender(wr)?.Render(wr) ?? [];
-	}
-
-	public override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, World world)
-	{
-		return GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? [];
-	}
-
-	public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, World world)
-	{
-		return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? [];
-	}
-
-	private static UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)
-	{
-		var screenPos = Viewport.LastMousePos;
-		var cell = wr.Viewport.ViewToWorld(screenPos);
-		var worldPixel = wr.Viewport.ViewToWorldPx(screenPos);
-
-		var mi = new MouseInput
+		public override IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 		{
-			Location = screenPos,
-			Button = Game.Settings.Game.MouseButtonPreference.Action,
-			Modifiers = Game.GetModifierKeys()
-		};
-
-		var target = TargetForInput(wr.World, cell, worldPixel, mi);
-
-		var ordersWithPreview = wr.World.Selection.Actors
-			.Select(a => OrderForUnit(a, target, cell, mi))
-			.OfType<UnitOrderResult>()
-			.Select(r => new UnitOrderResultWrapper(r))
-			.Where(x => x.Order != null && x.OrderPreview != null);
-
-		return ordersWithPreview.MaxByOrDefault(x => x.Order!.OrderPriority);
-	}
-
-	private record UnitOrderResultWrapper(UnitOrderResult UnitOrderResult)
-	{
-		public IOrderTargeter? Order => this.UnitOrderResult.Order;
-
-		public IOrderPreviewRender? OrderPreview => this.UnitOrderResult.Trait as IOrderPreviewRender;
-
-		public IEnumerable<IRenderable>? Render(WorldRenderer wr)
-		{
-			return this.OrderPreview?.Render(this.UnitOrderResult.Actor, wr);
+			return GetOrderPreviewRender(wr)?.Render(wr) ?? [];
 		}
 
-		public IEnumerable<IRenderable>? RenderAboveShroud(WorldRenderer wr)
+		public override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, World world)
 		{
-			return this.OrderPreview?.RenderAboveShroud(this.UnitOrderResult.Actor, wr);
+			return GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? [];
 		}
 
-		public IEnumerable<IRenderable>? RenderAnnotations(WorldRenderer wr)
+		public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, World world)
 		{
-			return this.OrderPreview?.RenderAnnotations(this.UnitOrderResult.Actor, wr);
+			return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? [];
+		}
+
+		private static UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)
+		{
+			var screenPos = Viewport.LastMousePos;
+			var cell = wr.Viewport.ViewToWorld(screenPos);
+			var worldPixel = wr.Viewport.ViewToWorldPx(screenPos);
+
+			var mi = new MouseInput
+			{
+				Location = screenPos,
+				Button = Game.Settings.Game.MouseButtonPreference.Action,
+				Modifiers = Game.GetModifierKeys()
+			};
+
+			var target = TargetForInput(wr.World, cell, worldPixel, mi);
+
+			var ordersWithPreview = wr.World.Selection.Actors
+				.Select(a => OrderForUnit(a, target, cell, mi))
+				.OfType<UnitOrderResult>()
+				.Select(r => new UnitOrderResultWrapper(r))
+				.Where(x => x.Order != null && x.OrderPreview != null);
+
+			return ordersWithPreview.MaxByOrDefault(x => x.Order!.OrderPriority);
+		}
+
+		private record UnitOrderResultWrapper(UnitOrderResult UnitOrderResult)
+		{
+			public IOrderTargeter? Order => this.UnitOrderResult.Order;
+
+			public IOrderPreviewRender? OrderPreview => this.UnitOrderResult.Trait as IOrderPreviewRender;
+
+			public IEnumerable<IRenderable>? Render(WorldRenderer wr)
+			{
+				return this.OrderPreview?.Render(this.UnitOrderResult.Actor, wr);
+			}
+
+			public IEnumerable<IRenderable>? RenderAboveShroud(WorldRenderer wr)
+			{
+				return this.OrderPreview?.RenderAboveShroud(this.UnitOrderResult.Actor, wr);
+			}
+
+			public IEnumerable<IRenderable>? RenderAnnotations(WorldRenderer wr)
+			{
+				return this.OrderPreview?.RenderAnnotations(this.UnitOrderResult.Actor, wr);
+			}
 		}
 	}
 }

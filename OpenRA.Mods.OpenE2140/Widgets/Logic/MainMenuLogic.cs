@@ -17,28 +17,30 @@ using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
-
-[UsedImplicitly]
-public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
+namespace OpenRA.Mods.OpenE2140.Widgets.Logic
 {
-	[ObjectCreator.UseCtor]
-	public MainMenuLogic(Widget widget, World world, ModData modData)
-		: base(widget, world, modData)
+	[UsedImplicitly]
+	public class MainMenuLogic : Common.Widgets.Logic.MainMenuLogic
 	{
-		var loadButton = widget.GetOrNull<ButtonWidget>("LOAD_BUTTON");
+		[ObjectCreator.UseCtor]
+		public MainMenuLogic(Widget widget, World world, ModData modData)
+			: base(widget, world, modData)
+		{
+			var loadButton = widget.GetOrNull<ButtonWidget>("LOAD_BUTTON");
 
-		var encyclopediaButton = (ButtonWidget)loadButton.Clone();
-		encyclopediaButton.Id = "ENCYCLOPEDIA_BUTTON";
-		encyclopediaButton.Y = encyclopediaButton.Y.Concat($" + {loadButton.Height} + 10");
-		encyclopediaButton.Text = "Encyclopedia";
-		encyclopediaButton.GetText = () => encyclopediaButton.Text;
+			var encyclopediaButton = (ButtonWidget)loadButton.Clone();
+			encyclopediaButton.Id = "ENCYCLOPEDIA_BUTTON";
+			encyclopediaButton.Y = encyclopediaButton.Y.Concat($" + {loadButton.Height} + 10");
+			encyclopediaButton.Text = "Encyclopedia";
+			encyclopediaButton.GetText = () => encyclopediaButton.Text;
 
-		encyclopediaButton.OnClick = () =>
-			this.GetType().BaseType?.GetMethod("OpenEncyclopediaPanel", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(this, []);
+			encyclopediaButton.OnClick = () =>
+				this.GetType().BaseType?.GetMethod("OpenEncyclopediaPanel", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(this, []);
 
-		loadButton.Parent.AddChild(encyclopediaButton);
+			loadButton.Parent.AddChild(encyclopediaButton);
 
-		encyclopediaButton.Initialize([]);
+			encyclopediaButton.Initialize([]);
+		}
 	}
 }
+

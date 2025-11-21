@@ -14,15 +14,17 @@
 using System.Diagnostics.CodeAnalysis;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class ActorInfoExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static bool TryGetTrait<T>(this ActorInfo actorInfo, [MaybeNullWhen(false)] out T trait)
-		where T : ITraitInfoInterface
+	public static class ActorInfoExtensions
 	{
-		trait = actorInfo.TraitInfoOrDefault<T>();
+		public static bool TryGetTrait<T>(this ActorInfo actorInfo, [MaybeNullWhen(false)] out T trait)
+			where T : ITraitInfoInterface
+		{
+			trait = actorInfo.TraitInfoOrDefault<T>();
 
-		return trait != null;
+			return trait != null;
+		}
 	}
 }
+

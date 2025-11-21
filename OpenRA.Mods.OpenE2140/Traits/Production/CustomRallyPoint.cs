@@ -12,10 +12,10 @@
 #endregion
 
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Traits.Effects;
+using OpenRA.Mods.OpenE2140.Effects;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Production;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Used to waypoint units after production or repair is finished.")]
 public class CustomRallyPointInfo : RallyPointInfo

@@ -13,15 +13,16 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
-
-public class PalPalette
+namespace OpenRA.Mods.OpenE2140.Assets.FileFormats
 {
-	public readonly Color[] Colors = new Color[256];
-
-	public PalPalette(Stream stream)
+	public class PalPalette
 	{
-		for (var i = 0; i < this.Colors.Length; i++)
-			this.Colors[i] = Color.FromArgb(0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
+		public readonly Color[] Colors = new Color[256];
+
+		public PalPalette(Stream stream)
+		{
+			for (var i = 0; i < this.Colors.Length; i++)
+				this.Colors[i] = Color.FromArgb(0xff, stream.ReadUInt8(), stream.ReadUInt8(), stream.ReadUInt8());
+		}
 	}
 }

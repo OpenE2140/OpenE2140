@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Renders the MuzzleSequence from the Armament trait with zero offset.")]
 public class WithCustomMuzzleOverlayInfo : ConditionalTraitInfo, Requires<RenderSpritesInfo>, Requires<AttackBaseInfo>, Requires<ArmamentInfo>

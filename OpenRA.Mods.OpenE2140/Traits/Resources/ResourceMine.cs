@@ -16,7 +16,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor can extract resources and eject resource crates.")]

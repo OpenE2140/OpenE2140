@@ -13,15 +13,16 @@
 
 using OpenRA.Activities;
 
-namespace OpenRA.Mods.OpenE2140.Activites;
-
-public static class ActivityExtensions
+namespace OpenRA.Mods.OpenE2140.Activites
 {
-	public static void TryQueueChild(this Activity activity, Activity? childActivity)
+	public static class ActivityExtensions
 	{
-		if (childActivity == null)
-			return;
+		public static void TryQueueChild(this Activity activity, Activity? childActivity)
+		{
+			if (childActivity == null)
+				return;
 
-		activity.QueueChild(childActivity);
+			activity.QueueChild(childActivity);
+		}
 	}
 }

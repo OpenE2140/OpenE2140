@@ -15,7 +15,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class BuildingOverlayRectangleRenderable : IRenderable, IFinalizedRenderable
 {

@@ -20,7 +20,7 @@ using BaseAttackFrontalInfo = OpenRA.Mods.Common.Traits.AttackFrontalInfo;
 using BaseAttackFrontal = OpenRA.Mods.Common.Traits.AttackFrontal;
 using BaseAttack = OpenRA.Mods.Common.Activities.Attack;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Attack;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc(
 	"Unit got to face the target. ",

@@ -15,46 +15,47 @@ using System.Globalization;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
-using OpenRA.Mods.OpenE2140.Traits.Power;
+using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
-
-[UsedImplicitly]
-public class IngamePowerLogic : ChromeLogic
+namespace OpenRA.Mods.OpenE2140.Widgets.Logic
 {
-	[FluentReference("usage", "capacity")]
-	private const string PowerUsage = "label-power-usage";
-
-	[FluentReference]
-	private const string Infinite = "label-infinite-power";
-
-	[ObjectCreator.UseCtor]
-	public IngamePowerLogic(Widget widget, World world)
+	[UsedImplicitly]
+	public class IngamePowerLogic : ChromeLogic
 	{
-		var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
-		var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManagerBase>();
+		[FluentReference("usage", "capacity")]
+		private const string PowerUsage = "label-power-usage";
 
-		var power = widget.Get<IngamePowerWidget>("POWER");
-		var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
-		var unlimitedCapacity = FluentProvider.GetMessage(IngamePowerLogic.Infinite);
+		[FluentReference]
+		private const string Infinite = "label-infinite-power";
 
-		powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
-		power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
-		power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
-
-		var tooltipTextCached = new CachedTransform<(float Current, float Capacity), string>(usage =>
+		[ObjectCreator.UseCtor]
+		public IngamePowerLogic(Widget widget, World world)
 		{
-			var capacity = developerMode.UnlimitedPower ?
-				unlimitedCapacity :
-				usage.Capacity.ToString(NumberFormatInfo.CurrentInfo);
+			var developerMode = world.LocalPlayer.PlayerActor.Trait<DeveloperMode>();
+			var powerManager = world.LocalPlayer.PlayerActor.Trait<PowerManagerBase>();
 
-			return FluentProvider.GetMessage(PowerUsage, "usage", usage.Current, "capacity", capacity);
-		});
+			var power = widget.Get<IngamePowerWidget>("POWER");
+			var powerIcon = widget.Get<ImageWidget>("POWER_ICON");
+			var unlimitedCapacity = FluentProvider.GetMessage(IngamePowerLogic.Infinite);
 
-		power.GetTooltipText = () => tooltipTextCached.Update(
-			(powerManager.PowerConsumed, powerManager.PowerGenerated)
-		);
+			powerIcon.GetImageName = () => powerManager.Power < 0 ? "power-critical" : "power-normal";
+			power.GetColor = () => powerManager.Power < 0 ? power.CriticalPowerColor : power.NormalPowerColor;
+			power.GetText = () => developerMode.UnlimitedPower ? unlimitedCapacity : powerManager.Power.ToString();
+
+			var tooltipTextCached = new CachedTransform<(float Current, float Capacity), string>(usage =>
+			{
+				var capacity = developerMode.UnlimitedPower ?
+					unlimitedCapacity :
+					usage.Capacity.ToString(NumberFormatInfo.CurrentInfo);
+
+				return FluentProvider.GetMessage(PowerUsage, "usage", usage.Current, "capacity", capacity);
+			});
+
+			power.GetTooltipText = () => tooltipTextCached.Update(
+				(powerManager.PowerConsumed, powerManager.PowerGenerated)
+			);
+		}
 	}
 }

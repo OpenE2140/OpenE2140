@@ -13,24 +13,26 @@
 
 using OpenRA.Graphics;
 
-namespace OpenRA.Mods.OpenE2140.Graphics;
-
-public enum CutOffDirection
+namespace OpenRA.Mods.OpenE2140.Graphics
 {
-	Bottom,
-	Top
-}
-
-public class CutOffAnimationWithOffset : AnimationWithOffset
-{
-	public readonly CutOffDirection Direction;
-
-	public readonly Func<int> CutOff;
-
-	public CutOffAnimationWithOffset(Animation a, Func<WVec> offset, Func<bool> disable, Func<WPos, int> zOffset, Func<int> cutOff, CutOffDirection direction)
-		: base(a, offset, disable, zOffset)
+	public enum CutOffDirection
 	{
-		this.CutOff = cutOff;
-		this.Direction = direction;
+		Bottom,
+		Top
+	}
+
+	public class CutOffAnimationWithOffset : AnimationWithOffset
+	{
+		public readonly CutOffDirection Direction;
+
+		public readonly Func<int> CutOff;
+
+		public CutOffAnimationWithOffset(Animation a, Func<WVec> offset, Func<bool> disable, Func<WPos, int> zOffset, Func<int> cutOff, CutOffDirection direction)
+			: base(a, offset, disable, zOffset)
+		{
+			this.CutOff = cutOff;
+			this.Direction = direction;
+		}
 	}
 }
+

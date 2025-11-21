@@ -13,16 +13,17 @@
 
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class SelectionExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static bool TryAdd(this ISelection selection, Actor actor)
+	public static class SelectionExtensions
 	{
-		if (selection.Contains(actor))
-			return false;
+		public static bool TryAdd(this ISelection selection, Actor actor)
+		{
+			if (selection.Contains(actor))
+				return false;
 
-		selection.Add(actor);
-		return true;
+			selection.Add(actor);
+			return true;
+		}
 	}
 }

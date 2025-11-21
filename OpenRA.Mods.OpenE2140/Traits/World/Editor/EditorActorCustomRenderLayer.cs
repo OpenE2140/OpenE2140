@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World.Editor;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public interface ICustomActorEditorRender : ITraitInfoInterface
 {
@@ -58,7 +58,7 @@ public class EditorActorCustomRenderLayer : ITickRender, IRenderAnnotations, IWo
 		this.editorLayer = self.Trait<EditorActorLayer>();
 	}
 
-	void IWorldLoaded.WorldLoaded(OpenRA.World w, WorldRenderer wr)
+	void IWorldLoaded.WorldLoaded(World w, WorldRenderer wr)
 	{
 		this.customRenders = w.WorldActor.TraitsImplementing<ICustomEditorRender>().ToArray();
 	}

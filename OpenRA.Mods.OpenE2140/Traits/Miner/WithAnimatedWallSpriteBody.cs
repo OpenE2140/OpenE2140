@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Miner;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [RequireExplicitImplementation]
 internal interface IWallConnectorInfo : ITraitInfoInterface

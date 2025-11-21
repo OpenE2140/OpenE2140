@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class MoveToBuildingEntrance : MoveAdjacentTo
 {

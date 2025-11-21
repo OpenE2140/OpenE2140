@@ -19,7 +19,7 @@ using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc($"This actor can occupy other {nameof(BuildingCrew)} actors.")]
 public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo

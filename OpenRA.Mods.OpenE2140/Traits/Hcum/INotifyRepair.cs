@@ -13,7 +13,7 @@
 
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Hcum;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [RequireExplicitImplementation]
 public interface INotifyRepair

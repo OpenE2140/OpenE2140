@@ -14,18 +14,15 @@
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Mods.OpenE2140.Traits.Mcu;
-using OpenRA.Mods.OpenE2140.Traits.Misc;
-using OpenRA.Mods.OpenE2140.Traits.World.Editor;
 using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class WaterBaseBuildingInfo : CustomBuildingInfo, Requires<RepairableBuildingInfo>, INotifyEditorPlacementInfo
 {
-	public override Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
+	public override Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = base.GetBuildingPlacementFootprint(world, cell, toIgnore);
 
@@ -49,14 +46,14 @@ public class WaterBaseBuildingInfo : CustomBuildingInfo, Requires<RepairableBuil
 		return new WaterBaseBuilding(init.Self);
 	}
 
-	object? INotifyEditorPlacementInfo.AddedToEditor(EditorActorPreview preview, OpenRA.World editorWorld)
+	object? INotifyEditorPlacementInfo.AddedToEditor(EditorActorPreview preview, World editorWorld)
 	{
 		editorWorld.WorldActor.Trait<WaterBaseEditor>().OnActorAdded(preview);
 
 		return null;
 	}
 
-	void INotifyEditorPlacementInfo.RemovedFromEditor(EditorActorPreview preview, OpenRA.World editorWorld, object data) { }
+	void INotifyEditorPlacementInfo.RemovedFromEditor(EditorActorPreview preview, World editorWorld, object data) { }
 }
 
 public class WaterBaseBuilding : CustomBuilding, INotifyOwnerChanged, INotifySelected, INotifyDamage, INotifyBuildingRepair, IObservesVariables

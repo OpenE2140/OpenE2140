@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Research;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Add this to a player, to enable the research system.")]

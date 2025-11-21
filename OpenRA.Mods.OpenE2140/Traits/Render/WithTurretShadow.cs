@@ -19,7 +19,7 @@ using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Clones the actor's turret sprite with another palette below it.")]
 public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSpritesInfo>, IRenderActorPreviewSpritesInfo

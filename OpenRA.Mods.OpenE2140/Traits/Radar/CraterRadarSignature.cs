@@ -1,7 +1,7 @@
 ﻿using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Radar;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class CraterRadarSignatureInfo : ConditionalTraitInfo
 {

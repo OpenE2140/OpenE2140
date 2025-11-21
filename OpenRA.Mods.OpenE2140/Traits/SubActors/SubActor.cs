@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.SubActors;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo, IEditorActorOptions
 {
@@ -44,7 +44,7 @@ public class SubActorInfo : TraitInfo, IFacingInfo, IOccupySpaceInfo, IEditorAct
 		return new Dictionary<CPos, SubCell> { { location, subCell } };
 	}
 
-	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, World world)
 	{
 		yield return new EditorActorSlider("Facing", this.EditorFacingDisplayOrder, 0, 1023, 0,
 			actor =>

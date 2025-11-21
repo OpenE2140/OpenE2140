@@ -14,11 +14,11 @@
 using System.Diagnostics.CodeAnalysis;
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public static class McuUtils
 {
-	public static bool TryGetTargetBuilding(OpenRA.World world, ActorInfo mcuActor, [NotNullWhen(true)] out ActorInfo? buildingActor)
+	public static bool TryGetTargetBuilding(World world, ActorInfo mcuActor, [NotNullWhen(true)] out ActorInfo? buildingActor)
 	{
 		buildingActor = null;
 		if (!mcuActor.HasTraitInfo<McuInfo>())
@@ -29,7 +29,7 @@ public static class McuUtils
 		return buildingActor != null;
 	}
 
-	public static ActorInfo? GetTargetBuilding(OpenRA.World world, ActorInfo mcuActor)
+	public static ActorInfo? GetTargetBuilding(World world, ActorInfo mcuActor)
 	{
 		if (!mcuActor.HasTraitInfo<McuInfo>())
 			throw new ArgumentException($"Actor '{mcuActor.Name}' does not have Mcu trait (maybe it's not an MCU?)", nameof(mcuActor));
@@ -39,7 +39,7 @@ public static class McuUtils
 		return targetActor != null ? world.Map.Rules.Actors[targetActor] : null;
 	}
 
-	public static ActorInfo? GetMcuActor(OpenRA.World world, ActorInfo buildingActor)
+	public static ActorInfo? GetMcuActor(World world, ActorInfo buildingActor)
 	{
 		if (!buildingActor.HasTraitInfo<BuildingInfo>())
 			throw new ArgumentException($"Actor '{buildingActor.Name}' does not have Building trait (maybe it's not a building?)", nameof(buildingActor));

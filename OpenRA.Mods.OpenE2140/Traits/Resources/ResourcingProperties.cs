@@ -1,7 +1,7 @@
 ﻿using OpenRA.Scripting;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [ScriptPropertyGroup("Ability")]
 public class ResourcingProperties : ScriptActorProperties, Requires<CrateTransporterRoutineInfo>

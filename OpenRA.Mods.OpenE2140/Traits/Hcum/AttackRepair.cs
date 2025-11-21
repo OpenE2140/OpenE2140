@@ -17,10 +17,11 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Hcum;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Custom Attack trait for repair vehicle (HCU-M).")]
 public class AttackRepairInfo : AttackFrontalInfo, IRenderActorPreviewSpritesInfo, Requires<MobileInfo>

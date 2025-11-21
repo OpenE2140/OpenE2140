@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Radar;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Changes what color actor has on minimap. Applied to color as HSV.")]

@@ -19,7 +19,7 @@ using OpenRA.Activities;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Graphics;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Actor becomes a specified actor type when this trait is triggered.",
 	$"Special version of the default {nameof(Transforms)} trait, which provides additional features compared to the original trait.")]

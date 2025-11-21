@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Cutoff sprites before rendering, used for the elevator.")]

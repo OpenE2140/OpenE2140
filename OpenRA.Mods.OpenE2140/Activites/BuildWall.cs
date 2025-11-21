@@ -15,7 +15,6 @@ using OpenRA.Activities;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits;
-using OpenRA.Mods.OpenE2140.Traits.Miner;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Activites;

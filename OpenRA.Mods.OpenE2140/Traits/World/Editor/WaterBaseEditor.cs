@@ -16,12 +16,11 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World.Editor;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.EditorWorld)]
 [Desc("Required for custom support of Water Base in the editor to work. Attach this to the world actor.")]
@@ -58,7 +57,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		this.mapRectangle = new CachedTransform<Size, Rectangle>(size => Rectangle.FromLTRB(0, 0, size.Width * tileSize.Width, size.Height * tileSize.Height));
 
 		this.maximumDockDistance = self.World.Map.Rules.Actors.Values
-			.Where(a => a.HasTraitInfo<Mcu.McuInfo>())
+			.Where(a => a.HasTraitInfo<McuInfo>())
 			.Select(a => a.TraitInfoOrDefault<WaterBaseTransformsInfo>())
 			.OfType<WaterBaseTransformsInfo>()
 			.Max(i => i.MaximumDockDistance);
@@ -76,7 +75,7 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 		}
 	}
 
-	void IPostWorldLoaded.PostWorldLoaded(OpenRA.World w, WorldRenderer wr)
+	void IPostWorldLoaded.PostWorldLoaded(World w, WorldRenderer wr)
 	{
 		this.worldLoaded = true;
 	}
@@ -151,12 +150,12 @@ public class WaterBaseEditor : ITickRender, IPostWorldLoaded
 
 	public void OnActorRemoved(EditorActorPreview _) { }
 
-	private IEnumerable<EditorActorPreview> GetAllActors(OpenRA.World world)
+	private IEnumerable<EditorActorPreview> GetAllActors(World world)
 	{
 		return this.editorActorLayer.PreviewsInScreenBox(this.mapRectangle.Update(world.Map.MapSize));
 	}
 
-	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo _, OpenRA.World world, WaterBaseDockInfo info)
+	public IEnumerable<EditorActorOption> GetWaterDockActorOptions(ActorInfo _, World world, WaterBaseDockInfo info)
 	{
 		var allActors = this.GetAllActors(world);
 

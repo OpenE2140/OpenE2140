@@ -13,12 +13,14 @@
 
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class HealthExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static int GetHPPercentage(this IHealth health)
+	public static class HealthExtensions
 	{
-		return health.HP * 100 / health.MaxHP;
+		public static int GetHPPercentage(this IHealth health)
+		{
+			return health.HP * 100 / health.MaxHP;
+		}
 	}
 }
+

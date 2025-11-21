@@ -15,7 +15,7 @@ using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class ConveyorBeltDockInfo : SharedDockHostInfo
 {

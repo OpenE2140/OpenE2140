@@ -13,69 +13,71 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.Extractors;
-
-public class SheetBaker
+namespace OpenRA.Mods.OpenE2140.Assets.Extractors
 {
-	public record Entry(Rectangle Rectangle, byte[] Pixels);
-
-	public readonly List<Entry> Frames = [];
-	private readonly int channels;
-
-	public SheetBaker(int channels)
+	public class SheetBaker
 	{
-		this.channels = channels;
-	}
+		public record Entry(Rectangle Rectangle, byte[] Pixels);
 
-	public byte[] Bake(out int width, out int height, out int offsetX, out int offsetY, out Size frameSize)
-	{
-		if (this.Frames.Count == 0)
+		public readonly List<Entry> Frames = [];
+		private readonly int channels;
+
+		public SheetBaker(int channels)
 		{
-			width = 1;
-			height = 1;
-			offsetX = 0;
-			offsetY = 0;
-			frameSize = new Size();
-
-			return new byte[this.channels];
+			this.channels = channels;
 		}
 
-		var location = new int2(this.Frames.Min(f => f.Rectangle.Left), this.Frames.Min(f => f.Rectangle.Top));
-
-		var size = new Size(this.Frames.Max(f => f.Rectangle.Right - location.X), this.Frames.Max(f => f.Rectangle.Bottom - location.Y));
-
-		var frameRectangle = new Rectangle(location, size);
-		var framesX = (int)Math.Ceiling(Math.Sqrt(this.Frames.Count));
-		var framesY = (int)Math.Ceiling(this.Frames.Count / (float)framesX);
-
-		width = framesX * frameRectangle.Width;
-		height = framesY * frameRectangle.Height;
-		offsetX = frameRectangle.X;
-		offsetY = frameRectangle.Y;
-		frameSize = size;
-
-		var data = new byte[width * height * this.channels];
-
-		for (var i = 0; i < this.Frames.Count; i++)
+		public byte[] Bake(out int width, out int height, out int offsetX, out int offsetY, out Size frameSize)
 		{
-			var frame = this.Frames[i];
-
-			for (var y = 0; y < frame.Rectangle.Height; y++)
+			if (this.Frames.Count == 0)
 			{
-				Array.Copy(
-					frame.Pixels,
-					y * frame.Rectangle.Width * this.channels,
-					data,
-					((i / framesX * frameRectangle.Height + y - frameRectangle.Y + frame.Rectangle.Y) * width
-						+ i % framesX * frameRectangle.Width
-						- frameRectangle.X
-						+ frame.Rectangle.X)
-					* this.channels,
-					frame.Rectangle.Width * this.channels
-				);
-			}
-		}
+				width = 1;
+				height = 1;
+				offsetX = 0;
+				offsetY = 0;
+				frameSize = new Size();
 
-		return data;
+				return new byte[this.channels];
+			}
+
+			var location = new int2(this.Frames.Min(f => f.Rectangle.Left), this.Frames.Min(f => f.Rectangle.Top));
+
+			var size = new Size(this.Frames.Max(f => f.Rectangle.Right - location.X), this.Frames.Max(f => f.Rectangle.Bottom - location.Y));
+
+			var frameRectangle = new Rectangle(location, size);
+			var framesX = (int)Math.Ceiling(Math.Sqrt(this.Frames.Count));
+			var framesY = (int)Math.Ceiling(this.Frames.Count / (float)framesX);
+
+			width = framesX * frameRectangle.Width;
+			height = framesY * frameRectangle.Height;
+			offsetX = frameRectangle.X;
+			offsetY = frameRectangle.Y;
+			frameSize = size;
+
+			var data = new byte[width * height * this.channels];
+
+			for (var i = 0; i < this.Frames.Count; i++)
+			{
+				var frame = this.Frames[i];
+
+				for (var y = 0; y < frame.Rectangle.Height; y++)
+				{
+					Array.Copy(
+						frame.Pixels,
+						y * frame.Rectangle.Width * this.channels,
+						data,
+						((i / framesX * frameRectangle.Height + y - frameRectangle.Y + frame.Rectangle.Y) * width
+							+ i % framesX * frameRectangle.Width
+							- frameRectangle.X
+							+ frame.Rectangle.X)
+						* this.channels,
+						frame.Rectangle.Width * this.channels
+					);
+				}
+			}
+
+			return data;
+		}
 	}
 }
+

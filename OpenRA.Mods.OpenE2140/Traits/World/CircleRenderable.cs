@@ -1,7 +1,7 @@
 ﻿using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class CircleRenderable : IRenderable, IFinalizedRenderable
 {
