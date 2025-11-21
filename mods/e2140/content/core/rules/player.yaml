@@ -14,7 +14,7 @@ Player:
 	Inherits: ^CorePlayer
 	# Developer debug menu
 	DeveloperMode:
-		CheckboxEnabled: True
+		CheckboxEnabled: false
 	# Allow players to place building.
 	PlaceBuilding:
 	# Enable mission objectives, required to win or loose mission.
