@@ -596,6 +596,8 @@ Container@PLAYER_WIDGETS:
 							IconSize: 59, 41
 							IconMargin: 0, 0
 							MaxIconRowOffset: 7
+							HotkeyPrefix: Production
+							HotkeyCount: 15
 							ReadyText: productionpaletteex-production-and-research-palette.ready
 							HoldText: productionpaletteex-production-and-research-palette.hold
 							ClockPalette:
