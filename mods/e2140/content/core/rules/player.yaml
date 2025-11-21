@@ -4,6 +4,7 @@
 	AlwaysVisible:
 	# Enable shroud and fog.
 	Shroud:
+		ExploredMapCheckboxEnabled: True
 	# Resources
 	PlayerResources:
 		ResourceValues:
