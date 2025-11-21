@@ -80,7 +80,7 @@ This project does not include any libre assets and original game files are requi
 - [Earth 2140 (Zoom Platform)](https://www.zoom-platform.com/product/earth-2140-trilogy)
 - [Earth 2140 (TopWare Interactive Shop](https://www.topwareshop.com/index.php?id_product=36&controller=product&id_lang=3)
 
-If you have Earth 2140 installed from any of the above source, OpenE2140 will automatically install necessary files on first startup. Just follow the on-screen instructions. More details and step-by-step guide is [on our website](https://opene2140/how-to-install).
+If you have Earth 2140 installed from any of the above source, OpenE2140 will automatically install necessary files on first startup. Just follow the on-screen instructions. More details and step-by-step guide is [on our website](https://opene2140.net/how-to-install).
 
 # Roadmap
 
