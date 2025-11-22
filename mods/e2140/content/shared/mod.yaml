@@ -4,6 +4,7 @@ Notifications:
 Rules:
 	e2140|content/shared/research.yaml
 	e2140|content/shared/buildings/power_plant/rules.yaml
+	e2140|content/shared/buildings/power_plant_upgraded/rules.yaml
 	e2140|content/shared/buildings/research_center/rules.yaml
 	e2140|content/shared/buildings/water_base/rules.yaml
 	e2140|content/shared/buildings/water_base_dock/rules.yaml
@@ -31,6 +32,7 @@ Sequences:
 	e2140|content/shared/sequences/trails.yaml
 	e2140|content/shared/vehicles/mcu/sequences.yaml
 	e2140|content/shared/buildings/power_plant/sequences.yaml
+	e2140|content/shared/buildings/power_plant_upgraded/sequences.yaml
 	e2140|content/shared/buildings/research_center/sequences.yaml
 	e2140|content/shared/buildings/water_base/sequences.yaml
 	e2140|content/shared/buildings/water_base_dock/sequences.yaml

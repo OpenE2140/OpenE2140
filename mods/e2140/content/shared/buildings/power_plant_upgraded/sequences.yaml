@@ -1,4 +1,4 @@
-shared_buildings_power_plant:
+shared_buildings_power_plant_upgraded:
 	Defaults:
 		Filename: building_power_plant.vspr
 	idle:
@@ -27,17 +27,15 @@ shared_buildings_power_plant:
 		Length: 8
 		ZOffset: 256
 
-shared_mcu_power_plant:
+shared_mcu_power_plant_upgraded:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI0.MIX
-		Start: 183
+		Filename: content/shared/buildings/power_plant_upgraded/power_plant_upgraded_ed.png
 
-shared_mcu_power_plant.ucs:
+shared_mcu_power_plant_upgraded.ucs:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI1.MIX
-		Start: 183
+		Filename: content/shared/buildings/power_plant_upgraded/power_plant_upgraded_ucs.png
 
 power_plant_smoke:
 	chimney_smoke:
