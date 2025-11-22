@@ -1,0 +1,88 @@
+shared_buildings_power_plant_upgraded:
+	Inherits: ^CoreBuilding
+	Tooltip:
+		Name: Power Plant Upgraded
+	Health:
+		HP: 1000
+	Power:
+		Amount: 3000
+	WithIdleOverlay@Powered:
+		Sequence: idle-lights
+		RequiresCondition: Powered
+	WithNightLightSource:
+		RequiresCondition: !Transforming && Powered
+	Building:
+		Dimensions: 3,3
+		Footprint: xxx xxx ===
+		LocalCenterOffset: -470,-600,0
+	BuildingCrew:
+		MaxPopulation: 6
+	BuildingCrewEntrance@3:
+		EntryCell: -1,1
+	# Use custom MCU deploy and pyramid uncover animations
+	TransformSequence:
+		Image: shared_buildings_power_plant
+		Offset: -180,-240,0
+		ConstructionTime: 118
+	HitShape:
+		TargetableOffsets: -600,-412,0,   -600,50,0,   -600,512,0,   324,-690,0,   324,-200,0,   324,312,0,   -400,1550,0,   1000,1150,0
+		Type: Rectangle
+			TopLeft: -1024, -924
+			BottomRight: 1712, 812
+	Selectable:
+		Bounds: 2064, 1984, -50, 150
+	ProvidesPrerequisite:
+		RequiresCondition: !Transforming
+		Prerequisite: anypower
+	FireWarheadsOnDeath:
+		Weapon: PowerPlantExploding
+		EmptyWeapon: PowerPlantExploding
+	SpawnActorOnDeath:
+		Actor: power_plant_crater
+		# Neutral player owns all craters
+		OwnerType: InternalName
+	FloatingSpriteEmitter:
+		Duration: -1
+		Lifetime: 27
+		SpawnFrequency: 5
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 200,-1024,0
+		Image: power_plant_smoke
+		Sequences: chimney_smoke
+		RequiresCondition: !Transforming && Powered
+	WithIdleOverlay:
+		Palette:
+		Image: power_plant_smoke
+		Sequence: chimney_chamber
+		Offset: -512,155,0
+		RequiresCondition: !Transforming && Powered
+	WithIdleOverlay@AddonA:
+		Palette:
+		Sequence: addon
+		Offset: -550,1550,0
+		RequiresCondition: !Transforming && Powered
+	WithIdleOverlay@AddonB:	
+		Palette:
+		Sequence: addon
+		Offset: 800,1200,0
+		RequiresCondition: !Transforming && Powered
+
+shared_mcu_power_plant_upgraded:
+	Inherits@1: ^SharedVehicleMcu
+	Tooltip:
+		Name: Mobile Power Plant Upgr.
+	Transforms:
+		IntoActor: shared_buildings_power_plant_upgraded
+	Valued:
+		Cost: 2000
+	Buildable:
+		IconPalette:
+		Queue: Building.UCS, Building.ED
+		BuildDuration: 138
+		BuildPaletteOrder: 10
+		Prerequisites: NuclearReactor
+	WithTextDecoration:
+		Text: Power Plant Upgr.
