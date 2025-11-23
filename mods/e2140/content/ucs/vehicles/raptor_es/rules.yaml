@@ -17,6 +17,7 @@ ucs_vehicles_raptor_es:
 		HP: 200
 	Mobile:
 		Speed: 68
+		Locomotor: light_vehicleFastSand
 	RevealsShroud:
 		Range: 3c896
 	WithFacingSpriteBody@shadow:

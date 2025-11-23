@@ -16,6 +16,7 @@ ucs_vehicles_atm_500:
 		HP: 200
 	Mobile:
 		Speed: 90
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 2c896
 	Turreted:

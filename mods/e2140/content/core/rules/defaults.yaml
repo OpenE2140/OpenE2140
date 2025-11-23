@@ -468,9 +468,33 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+	Locomotor@light_vehicle:
+		Name: light_vehicle
+		Crushes: mine, husk
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Clear: 100
+			Creek: 50
+			Sand: 50
+			SandEdge: 50
+			Road: 100
+			AsphaltRoad: 100
+			Resources: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
 		Crushes: infantry, mine, husk
+		CrushDamageTypes: Crush
+		TerrainSpeeds:
+			Clear: 100
+			Creek: 100
+			Sand: 100
+			SandEdge: 100
+			Road: 100
+			AsphaltRoad: 100
+			Resources: 100
+	Locomotor@light_vehicleFastSand:
+		Name: light_vehicleFastSand
+		Crushes: mine, husk
 		CrushDamageTypes: Crush
 		TerrainSpeeds:
 			Clear: 100
