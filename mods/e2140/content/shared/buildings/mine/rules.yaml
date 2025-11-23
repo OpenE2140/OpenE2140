@@ -15,6 +15,7 @@ shared_buildings_mine:
 		CrateSize: 200
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+		Delay: 100
 	ResourceMineOverlay:
 		MiningAreaBorderColor: 8F8F00FF
 		MiningAreaBorderShape: Square # Square/Circle/None
