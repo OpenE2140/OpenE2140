@@ -531,6 +531,9 @@
 		Weapon: VehicleExploding
 		EmptyWeapon: VehicleExploding
 		RequiresCondition: !airborne
+	# Aircraft smoke when they're heavily damaged.
+	WithDamageOverlay:
+		Image: smoking
 	# Aircraft can be cloaked, but only if it is on the ground.
 	Cloak:
 		RequiresCondition: shadowcloak && !airborne
