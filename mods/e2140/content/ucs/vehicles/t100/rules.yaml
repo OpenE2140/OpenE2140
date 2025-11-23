@@ -17,6 +17,7 @@ ucs_vehicles_t100:
 		HP: 80
 	Mobile:
 		Speed: 50
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 2c896
 	Turreted:

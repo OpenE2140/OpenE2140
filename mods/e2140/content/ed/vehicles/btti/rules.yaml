@@ -16,6 +16,7 @@ ed_vehicles_btti:
 		HP: 150
 	Mobile:
 		Speed: 100
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 3c896
 	Armament@PRIMARY:

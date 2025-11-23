@@ -18,6 +18,7 @@ ed_vehicles_st02:
 		HP: 200
 	Mobile:
 		Speed: 90
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 4c896
 	Turreted:

@@ -20,6 +20,7 @@ shared_vehicles_hcum:
 		HP: 200
 	Mobile:
 		Speed: 90
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 2c896
 	AttackRepair:

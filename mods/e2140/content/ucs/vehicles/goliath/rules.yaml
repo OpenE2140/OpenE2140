@@ -17,6 +17,7 @@ ucs_vehicles_goliath:
 		HP: 150
 	Mobile:
 		Speed: 90
+		Locomotor: light_vehicle
 	RevealsShroud:
 		Range: 2c896
 	FireWarheadsOnDeath@Default:
