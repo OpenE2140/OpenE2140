@@ -17,9 +17,20 @@ shared_aircrafts_heavy_lifter:
 		Bounds: 992, 848, 0, 0
 	Health:
 		HP: 300
-	Aircraft:
+	-Aircraft:
+	CrateTransporterAircraft:
+		TurnSpeed: 50
 		Speed: 94
-		Repulsable: false
+		IdleBehavior: Land
+		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road, Resources
+		CruiseAltitude: 1c256
+		AltitudeVelocity: 0c60
+		IdealSeparation: 1c0
+		RepulsionSpeed: 50
+		AirborneCondition: airborne
+		VTOL: True
+		Crushes: infantry, mine
+		PauseOnCondition: !airborne && VehicleDisabled
 	DockClientManager:
 		OccupancyCostModifier: 150
 		Voice: Unload
