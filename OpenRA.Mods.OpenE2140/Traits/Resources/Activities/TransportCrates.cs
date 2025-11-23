@@ -23,27 +23,49 @@ public class TransportCrates : Activity
 	private readonly CrateTransporterRoutine routine;
 	private readonly DockClientManager dockClient;
 
+	private bool hasDocked;
+
 	public TransportCrates(Actor self)
 	{
 		this.crateTransporter = self.Trait<CrateTransporter>();
 		this.routine = self.Trait<CrateTransporterRoutine>();
 		this.dockClient = self.Trait<DockClientManager>();
+
+		this.ChildHasPriority = false;
 	}
 
 	protected override void OnFirstRun(Actor self)
 	{
-		Actor? dockHostActor;
-		if (this.crateTransporter.HasCrate)
-		{
-			dockHostActor = this.routine.CurrentRefinery;
-		}
-		else
-		{
-			dockHostActor = this.routine.CurrentMine;
-		}
+		if (this.routine.Info.AssignTargetsAutomatically || this.GetDockHostActor() != null)
+			this.QueueChild(new MoveToDock(self, dockHostActor: this.GetDockHostActor(), dockLineColor: this.dockClient.DockLineColor));
+	}
 
-		if (this.routine.Info.AssignTargetsAutomatically || dockHostActor != null)
-			this.QueueChild(new MoveToDock(self, dockHostActor: dockHostActor, dockLineColor: this.dockClient.DockLineColor));
+	private Actor? GetDockHostActor()
+	{
+		return this.crateTransporter.HasCrate ? this.routine.CurrentRefinery : this.routine.CurrentMine;
+	}
+
+	public override bool Tick(Actor self)
+	{
+		if (this.IsCanceling || !this.routine.Info.AssignTargetsAutomatically)
+			return true;
+
+		if (this.crateTransporter.DockingInProgress == true)
+			this.hasDocked = true;
+
+		if (!this.TickChild(self))
+			return false;
+
+		// If MoveToDock cancels itself, it means it could find any available dock and gave up.
+		// However we can't tell this just from looking at the activity: the activity state transitions to Done before TickChild() returns.
+		if (this.hasDocked)
+			return true;
+
+		// The transport routine continues after waiting a bit.
+		this.QueueChild(new Wait(this.dockClient.Info.SearchForDockDelay));
+		this.QueueChild(new MoveToDock(self, dockHostActor: this.GetDockHostActor(), dockLineColor: this.dockClient.DockLineColor));
+
+		return false;
 	}
 
 	public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)

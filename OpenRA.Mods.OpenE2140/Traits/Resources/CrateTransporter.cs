@@ -128,7 +128,8 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 	private readonly Actor actor;
 	private readonly CrateTransporterInfo info;
 	private ResourceCrate? crate;
-	private bool? dockingInProgress;
+
+	public bool? DockingInProgress { get; private set; }
 
 	public bool HasCrate => this.crate != null;
 
@@ -183,20 +184,20 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 		if (this.IsTraitDisabled)
 			return true;
 
-		if (this.dockingInProgress == null)
+		if (this.DockingInProgress == null)
 		{
 			var currentActivity = self.CurrentActivity.ActivitiesImplementing<Activity>().First();
 			currentActivity.QueueChild(new ConveyorBeltLoadUnloadCrate(self, (IConveyorBeltDockHost)host, hostActor));
 
-			this.dockingInProgress = true;
+			this.DockingInProgress = true;
 		}
 
-		return !this.dockingInProgress.Value;
+		return !this.DockingInProgress.Value;
 	}
 
 	public override void OnDockCompleted(Actor self, Actor hostActor, IDockHost host)
 	{
-		this.dockingInProgress = null;
+		this.DockingInProgress = null;
 	}
 
 	internal bool OnConveyorBeltDockTick(Actor self, ConveyorBelt conveyorBelt, Actor conveyorBeltActor)
@@ -222,7 +223,7 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 
 	internal void OnConveyorBeltUndock()
 	{
-		this.dockingInProgress = false;
+		this.DockingInProgress = false;
 	}
 
 	public bool CanUnload()
