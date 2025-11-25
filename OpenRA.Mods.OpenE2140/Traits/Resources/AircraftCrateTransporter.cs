@@ -78,36 +78,6 @@ public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositio
 		return new AircraftCrateLoad(self, order.Target, this.Info);
 	}
 
-	public override void OnDockCompleted(Actor self, Actor hostActor, IDockHost host)
-	{
-		base.OnDockCompleted(self, hostActor, host);
-
-		// Fix for bug #661.
-		// There's a small chance that the docking process is interrupted just before the MoveToDock activity transitions
-		// from the move activity to dock activity. In this moment, the aircraft still has influence on the ground.
-		// Unless something removes this influence, the next time the aircraft attempts to land, an exception is thrown in Aircraft.AddInfluence(),
-		// because the aircraft already has influence.
-		// Therefore we need to forcibly remove the influence (and possibly stop playing the dock sequence),
-		// when the docking process in GenericDockSequence completes.
-		// In happy path scenario, IConveyorBeltDockHost.GetInnerDockActivity() in AircraftConveyorBeltDock is the place,
-		// where the TakeOff activity is queued. And since the docking is skipped entirely, there's nothing else queuing the TakeOff activity.
-
-		// Unfortunately there's no other place to catch this precise case than here in the OnDockCompleted()
-		if (this.aircraft.HasInfluence())
-		{
-			if (this.wsb.DefaultAnimation.IsPlayingSequence(this.Info.DockSequence))
-				this.wsb.CancelCustomAnimation(self);
-
-			// While we could just remove the influence here, it's more correct to queue TakeOff,
-			// so that the aircraft (un)docking behavior is consistent (i.e. won't start slowly ascending while moving).
-
-			// Unfortunately, this code is outside of an activity, therefore we can't easily queue TakeOff as child of
-			// the current (GenericDockSequence) activity.
-			var activity = self.CurrentActivity?.ActivitiesImplementing<Activity>().FirstOrDefault();
-			activity?.QueueChild(new TakeOff(self));
-		}
-	}
-
 	public static WAngle GetDockAngle(WRot orientation, WAngle[] allowedDockAngles, int newSequenceFacings, int? originalSequenceFacings)
 	{
 		// TODO: this does not work properly, if sequence facings don't match allowed dock angles

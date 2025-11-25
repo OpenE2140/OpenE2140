@@ -79,7 +79,8 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 			this.Info.DragOffset,
 			this.Info.DragLength);
 
-		moveToDockActivity.QueueChild(new ReleaseDockHostLock(this, dockActivity));
+		moveToDockActivity.QueueChild(new ReleaseDockHostLock(this,
+			new AircraftDockWrapper(clientActor).WithChild(dockActivity)));
 	}
 
 	Activity IConveyorBeltDockHost.GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context)
