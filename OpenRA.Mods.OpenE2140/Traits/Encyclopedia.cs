@@ -13,20 +13,21 @@
 
 using JetBrains.Annotations;
 
-namespace OpenRA.Mods.OpenE2140.Traits;
-
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class EncyclopediaInfo : Common.Traits.EncyclopediaInfo
+namespace OpenRA.Mods.OpenE2140.Traits
 {
-	[Desc("The FLC Animation to play.")]
-	public readonly string? Animation;
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	public class EncyclopediaInfo : Common.Traits.EncyclopediaInfo
+	{
+		[Desc("The FLC Animation to play.")]
+		public readonly string? Animation;
 
-	[Desc("The Long title.")]
-	public readonly string? Title;
+		[Desc("The Long title.")]
+		public readonly string? Title;
 
-	[Desc("Just meta data which we display properly...")]
-	public readonly string? Armor;
+		[Desc("Just meta data which we display properly...")]
+		public readonly string? Armor;
 
-	public readonly string? Armament;
-	public readonly string? Resistance;
+		public readonly string? Armament;
+		public readonly string? Resistance;
+	}
 }

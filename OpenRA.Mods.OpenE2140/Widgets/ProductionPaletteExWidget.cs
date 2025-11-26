@@ -18,37 +18,38 @@ using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Network;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecificWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	private readonly World world;
-	private readonly ObjectFieldHelper<string> clockAnimationField;
-
-	public readonly string Identifier = string.Empty;
-
-	[ObjectCreator.UseCtor]
-	public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)
-		: base(modData, orderManager, world, worldRenderer)
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	public class ProductionPaletteExWidget : ProductionPaletteWidget, IFactionSpecificWidget
 	{
-		this.world = world;
-		this.clockAnimationField = ReflectionHelper.GetFieldHelper(this, this.clockAnimationField, nameof(ProductionPaletteWidget.ClockAnimation));
-	}
+		private readonly World world;
+		private readonly ObjectFieldHelper<string> clockAnimationField;
 
-	public override void Initialize(WidgetArgs args)
-	{
-		if (this.world.LocalPlayer?.Spectating == false)
+		public readonly string Identifier = string.Empty;
+
+		[ObjectCreator.UseCtor]
+		public ProductionPaletteExWidget(ModData modData, OrderManager orderManager, World world, WorldRenderer worldRenderer)
+			: base(modData, orderManager, world, worldRenderer)
 		{
-			var localPlayerFaction = this.world.LocalPlayer.Faction.InternalName;
-
-			this.clockAnimationField.Value = $"{this.ClockAnimation}-{localPlayerFaction}";
+			this.world = world;
+			this.clockAnimationField = ReflectionHelper.GetFieldHelper(this, this.clockAnimationField, nameof(ProductionPaletteWidget.ClockAnimation));
 		}
 
-		base.Initialize(args);
+		public override void Initialize(WidgetArgs args)
+		{
+			if (this.world.LocalPlayer?.Spectating == false)
+			{
+				var localPlayerFaction = this.world.LocalPlayer.Faction.InternalName;
+
+				this.clockAnimationField.Value = $"{this.ClockAnimation}-{localPlayerFaction}";
+			}
+
+			base.Initialize(args);
+		}
+
+		string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TextColor), nameof(this.ReadyTextAltColor)];
+
+		string IFactionSpecificWidget.Identifier => this.Identifier;
 	}
-
-	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TextColor), nameof(this.ReadyTextAltColor)];
-
-	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

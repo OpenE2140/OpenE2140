@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Effects;
 using OpenRA.Mods.OpenE2140.Helpers;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.World)]
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
@@ -161,7 +161,7 @@ public class TerrainTileAnimation : ITick
 			this.delayTicks = info.LoopDelays.GetElementOrDefault(0);
 		}
 
-		public void Update(OpenRA.World world)
+		public void Update(World world)
 		{
 			if (this.effect == null && this.delayTicks-- <= 0)
 			{

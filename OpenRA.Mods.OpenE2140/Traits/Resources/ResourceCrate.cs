@@ -13,10 +13,9 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Traits.SubActors;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly]
 [Desc("This actor is a resource crate.")]
@@ -33,7 +32,7 @@ public class ResourceCrateInfo : TraitInfo, IEditorActorOptions, Requires<SubAct
 		return new ResourceCrate(init);
 	}
 
-	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, World world)
 	{
 		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0, this.EditorMaximumInitialResources, 20,
 			actor =>

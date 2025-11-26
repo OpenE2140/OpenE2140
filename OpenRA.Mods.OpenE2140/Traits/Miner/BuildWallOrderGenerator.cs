@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Miner;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class BuildWallOrderGenerator : UnitOrderGenerator
 {
@@ -27,7 +27,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 		this.subjects = GetWallBuilders(subjects);
 	}
 
-	public override IEnumerable<Order> Order(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+	public override IEnumerable<Order> Order(World world, CPos cell, int2 worldPixel, MouseInput mi)
 	{
 		if (mi.Button == Game.Settings.Game.MouseButtonPreference.Cancel)
 		{
@@ -55,7 +55,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 		}
 	}
 
-	public override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
+	public override void SelectionChanged(World world, IEnumerable<Actor> selected)
 	{
 		this.subjects = GetWallBuilders(selected);
 
@@ -72,7 +72,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 			.ToArray();
 	}
 
-	public override string? GetCursor(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+	public override string? GetCursor(World world, CPos cell, int2 worldPixel, MouseInput mi)
 	{
 		var target = TargetForInput(world, cell, worldPixel, mi);
 
@@ -91,7 +91,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 		return isValid ? subject.Trait.Info.BuildCursor : subject.Trait.Info.BuildBlockedCursor;
 	}
 
-	public override bool InputOverridesSelection(OpenRA.World world, int2 xy, MouseInput mi)
+	public override bool InputOverridesSelection(World world, int2 xy, MouseInput mi)
 	{
 		return true;
 	}
@@ -155,7 +155,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 			}
 		}
 
-		public override IEnumerable<Order> Order(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+		public override IEnumerable<Order> Order(World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
 			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Cancel)
 			{
@@ -180,7 +180,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 			}
 		}
 
-		public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, OpenRA.World world)
+		public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, World world)
 		{
 			var lastMousePos = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
 
@@ -223,7 +223,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 			}
 		}
 
-		public override string? GetCursor(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+		public override string? GetCursor(World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
 			var target = TargetForInput(world, cell, worldPixel, mi);
 
@@ -242,7 +242,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 			return isValid ? subject.Trait.Info.BuildCursor : subject.Trait.Info.BuildBlockedCursor;
 		}
 
-		public override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
+		public override void SelectionChanged(World world, IEnumerable<Actor> selected)
 		{
 			world.CancelInputMode();
 		}

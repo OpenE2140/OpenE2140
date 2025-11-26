@@ -14,40 +14,42 @@
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
-
-public static class WaterBaseUtils
+namespace OpenRA.Mods.OpenE2140.Traits
 {
-	public static void TogglePoweredDownState(Actor self)
+	public static class WaterBaseUtils
 	{
-		var traits = self.TraitsImplementing<ToggleConditionOnOrder>()
-			.Where(o => o.Info.OrderName == "PowerDown")
-			.Cast<IResolveOrder>();
-
-		foreach (var trait in traits)
+		public static void TogglePoweredDownState(Actor self)
 		{
-			trait.ResolveOrder(self, new Order("PowerDown", self, false));
+			var traits = self.TraitsImplementing<ToggleConditionOnOrder>()
+				.Where(o => o.Info.OrderName == "PowerDown")
+				.Cast<IResolveOrder>();
+
+			foreach (var trait in traits)
+			{
+				trait.ResolveOrder(self, new Order("PowerDown", self, false));
+			}
+		}
+
+		public static ActorInfo FindWaterBaseMcuActor(Ruleset rules)
+		{
+			return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseTransformsInfo>());
+		}
+
+		public static ActorInfo FindWaterBaseBuildingActor(Ruleset rules)
+		{
+			return rules.Actors[FindWaterBaseMcuActor(rules).TraitInfo<WaterBaseTransformsInfo>().IntoActor];
+		}
+
+		public static WaterBaseTransformsInfo? FindWaterBaseMcuTransformsFromBuildingActor(Ruleset rules, ActorInfo buildingActor)
+		{
+			return rules.Actors.Values.FirstOrDefault(a => a.TraitInfoOrDefault<WaterBaseTransformsInfo>()?.IntoActor == buildingActor.Name)
+				?.TraitInfoOrDefault<WaterBaseTransformsInfo>();
+		}
+
+		public static ActorInfo FindWaterBaseDockActor(Ruleset rules)
+		{
+			return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseDockInfo>());
 		}
 	}
 
-	public static ActorInfo FindWaterBaseMcuActor(Ruleset rules)
-	{
-		return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseTransformsInfo>());
-	}
-
-	public static ActorInfo FindWaterBaseBuildingActor(Ruleset rules)
-	{
-		return rules.Actors[FindWaterBaseMcuActor(rules).TraitInfo<WaterBaseTransformsInfo>().IntoActor];
-	}
-
-	public static WaterBaseTransformsInfo? FindWaterBaseMcuTransformsFromBuildingActor(Ruleset rules, ActorInfo buildingActor)
-	{
-		return rules.Actors.Values.FirstOrDefault(a => a.TraitInfoOrDefault<WaterBaseTransformsInfo>()?.IntoActor == buildingActor.Name)
-			?.TraitInfoOrDefault<WaterBaseTransformsInfo>();
-	}
-
-	public static ActorInfo FindWaterBaseDockActor(Ruleset rules)
-	{
-		return rules.Actors.Values.First(a => a.HasTraitInfo<WaterBaseDockInfo>());
-	}
 }

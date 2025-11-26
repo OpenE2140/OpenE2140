@@ -1,4 +1,4 @@
-﻿namespace OpenRA.Mods.OpenE2140.Traits.Buildings;
+﻿namespace OpenRA.Mods.OpenE2140.Traits;
 
 public interface INotifySelfDestruction
 {

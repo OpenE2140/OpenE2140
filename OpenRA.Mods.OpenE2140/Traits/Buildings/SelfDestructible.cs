@@ -3,7 +3,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Buildings;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Building can be self-destructed.")]
 public class SelfDestructibleInfo : ConditionalTraitInfo, Requires<IHealthInfo>

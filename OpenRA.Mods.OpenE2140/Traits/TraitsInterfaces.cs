@@ -18,129 +18,130 @@ using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits;
-
-public interface ISafeDragNotify
+namespace OpenRA.Mods.OpenE2140.Traits
 {
-	void SafeDragFailed(Actor self, Actor movingActor);
+	public interface ISafeDragNotify
+	{
+		void SafeDragFailed(Actor self, Actor movingActor);
 
-	void SafeDragComplete(Actor self, Actor movingActor);
-}
+		void SafeDragComplete(Actor self, Actor movingActor);
+	}
 
-/// <summary>
-/// Hook for modifying actor init objects in <see cref="TypeDictionary"/> before the actor is created by <see cref="Production.AnimatedExitProduction"/>.
-/// </summary>
-public interface IProduceActorInitModifier
-{
 	/// <summary>
-	/// This hook is called just before the actor is created and makes it possible to modify actor init objects inside <see cref="TypeDictionary"/>.
+	/// Hook for modifying actor init objects in <see cref="TypeDictionary"/> before the actor is created by <see cref="AnimatedExitProduction"/>.
 	/// </summary>
-	/// <remarks>
-	/// The exact location, where the is hook called, is just before invoking
-	/// <see cref="Common.Traits.Production.DoProduction(Actor, ActorInfo, Common.Traits.ExitInfo, string, TypeDictionary)"/> method.
-	/// It means that this method can override any changes done by this hook.
-	/// </remarks>
-	void ModifyActorInit(Actor self, TypeDictionary init);
-}
+	public interface IProduceActorInitModifier
+	{
+		/// <summary>
+		/// This hook is called just before the actor is created and makes it possible to modify actor init objects inside <see cref="TypeDictionary"/>.
+		/// </summary>
+		/// <remarks>
+		/// The exact location, where the is hook called, is just before invoking
+		/// <see cref="Common.Traits.Production.DoProduction(Actor, ActorInfo, Common.Traits.ExitInfo, string, TypeDictionary)"/> method.
+		/// It means that this method can override any changes done by this hook.
+		/// </remarks>
+		void ModifyActorInit(Actor self, TypeDictionary init);
+	}
 
-public interface INotifyTransform
-{
-	void TransformCanceled(Actor self);
+	public interface INotifyTransform
+	{
+		void TransformCanceled(Actor self);
 
-	void BeforeTransform(Actor self);
+		void BeforeTransform(Actor self);
 
-	void OnTransform(Actor self);
+		void OnTransform(Actor self);
 
-	void AfterTransform(Actor toActor);
-}
+		void AfterTransform(Actor toActor);
+	}
 
-[RequireExplicitImplementation]
-public interface ITransformsInfo : ITraitInfoInterface
-{
-	string? IntoActor { get; }
+	[RequireExplicitImplementation]
+	public interface ITransformsInfo : ITraitInfoInterface
+	{
+		string? IntoActor { get; }
 
-	CVec Offset { get; }
-}
+		CVec Offset { get; }
+	}
 
-public interface ICustomMcuDeployOverlayGenerator
-{
-	ICustomMcuDeployOverlay CreateOverlay(Actor self, WorldRenderer wr, ActorInfo intoActor);
-}
+	public interface ICustomMcuDeployOverlayGenerator
+	{
+		ICustomMcuDeployOverlay CreateOverlay(Actor self, WorldRenderer wr, ActorInfo intoActor);
+	}
 
-public interface ICustomMcuDeployOverlay
-{
-	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
+	public interface ICustomMcuDeployOverlay
+	{
+		IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
 
-	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
-}
+		IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
+	}
 
-public interface ITransforms
-{
-	bool CanDeploy(Actor self);
-}
+	public interface ITransforms
+	{
+		bool CanDeploy(Actor self);
+	}
 
-public interface IOrderPreviewRender
-{
-	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr);
+	public interface IOrderPreviewRender
+	{
+		IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr);
 
-	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
+		IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
 
-	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
-}
+		IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
+	}
 
-public interface ITransformsPreview
-{
-	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr) { yield break; }
+	public interface ITransformsPreview
+	{
+		IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr) { yield break; }
 
-	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
+		IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
 
-	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
-}
+		IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
+	}
 
-public interface ICustomBuildingInfo : ITraitInfoInterface
-{
-	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore);
+	public interface ICustomBuildingInfo : ITraitInfoInterface
+	{
+		bool CanPlaceBuilding(World world, CPos cell, Actor toIgnore);
 
-	bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null);
+		bool IsCellBuildable(World world, CPos cell, Actor? toIgnore = null);
 
-	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
+		Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(World world, CPos cell, Actor toIgnore);
 
-	IEnumerable<CPos> Tiles(CPos location);
+		IEnumerable<CPos> Tiles(CPos location);
 
-	WPos GetCenterOfFootprint(CPos location);
-}
+		WPos GetCenterOfFootprint(CPos location);
+	}
 
-public interface INotifyBuildingRepair
-{
-	void RepairStarted(Actor self);
+	public interface INotifyBuildingRepair
+	{
+		void RepairStarted(Actor self);
 
-	void RepairInterrupted(Actor self);
-}
+		void RepairInterrupted(Actor self);
+	}
 
-public interface INotifyWallBuilding
-{
-	void WallBuilding(Actor self, CPos location);
+	public interface INotifyWallBuilding
+	{
+		void WallBuilding(Actor self, CPos location);
 
-	void WallBuildingCompleted(Actor self, CPos location);
+		void WallBuildingCompleted(Actor self, CPos location);
 
-	void WallCreated(Actor self, Actor wall);
+		void WallCreated(Actor self, Actor wall);
 
-	void WallBuildingCanceled(Actor self, CPos location);
-}
+		void WallBuildingCanceled(Actor self, CPos location);
+	}
 
-public interface ISubActor
-{
-	void OnParentKilled(Actor self, Actor parentActor);
-}
+	public interface ISubActor
+	{
+		void OnParentKilled(Actor self, Actor parentActor);
+	}
 
-public interface IConveyorBeltDockHost
-{
-	Activity GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context);
-}
+	public interface IConveyorBeltDockHost
+	{
+		Activity GetInnerDockActivity(Actor self, Actor clientActor, Action continuationCallback, ConveyorBeltInnerDockContext context);
+	}
 
-public record class ConveyorBeltInnerDockContext(bool IsLoading, DockAnimation Animation);
+	public record class ConveyorBeltInnerDockContext(bool IsLoading, DockAnimation Animation);
 
-public interface INotifyActorProduced
-{
-	void OnProduced(Actor self, Actor producent);
+	public interface INotifyActorProduced
+	{
+		void OnProduced(Actor self, Actor producent);
+	}
 }

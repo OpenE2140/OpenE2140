@@ -13,7 +13,7 @@
 
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [RequireExplicitImplementation]
 public interface INotifyCrewMemberEntered

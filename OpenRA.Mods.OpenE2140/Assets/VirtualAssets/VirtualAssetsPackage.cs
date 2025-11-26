@@ -14,81 +14,82 @@
 using OpenRA.FileSystem;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
-
-public class VirtualAssetsPackage : IReadOnlyPackage
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets
 {
-	private const string Extension = ".vspr";
-
-	private readonly Dictionary<string, VirtualAssetsStream> contents = [];
-
-	public string Name { get; }
-	public IEnumerable<string> Contents => this.contents.Keys;
-
-	public VirtualAssetsPackage(Stream stream, string name, IReadOnlyFileSystem context)
+	public class VirtualAssetsPackage : IReadOnlyPackage
 	{
-		this.Name = name;
+		private const string Extension = ".vspr";
 
-		var yaml = MiniYaml.FromStream(stream, name).ToList();
+		private readonly Dictionary<string, VirtualAssetsStream> contents = [];
 
-		var sources = yaml.FirstOrDefault(e => e.Key == "Sources")?.Value.Nodes;
-		var palettes = yaml.FirstOrDefault(e => e.Key == "Palettes")?.Value;
+		public string Name { get; }
+		public IEnumerable<string> Contents => this.contents.Keys;
 
-		if (sources == null)
-			return;
-
-		var paletteEffects = palettes == null ? [] : VirtualPalette.BuildPaletteEffects(palettes);
-
-		foreach (var sourceNode in sources)
+		public VirtualAssetsPackage(Stream stream, string name, IReadOnlyFileSystem context)
 		{
-			if (!context.TryOpen(sourceNode.Key, out var source))
-				continue;
+			this.Name = name;
 
-			var mix = new Mix(source);
+			var yaml = MiniYaml.FromStream(stream, name).ToList();
 
-			var suffix = sourceNode.Value.Value ?? string.Empty;
-			var generate = yaml.FirstOrDefault(e => e.Key == "Generate")?.Value;
+			var sources = yaml.FirstOrDefault(e => e.Key == "Sources")?.Value.Nodes;
+			var palettes = yaml.FirstOrDefault(e => e.Key == "Palettes")?.Value;
 
-			if (generate == null)
-				continue;
+			if (sources == null)
+				return;
 
-			foreach (var node in generate.Nodes)
-				this.contents.Add(node.Key + suffix + VirtualAssetsPackage.Extension, new VirtualAssetsStream(mix, paletteEffects, node));
+			var paletteEffects = palettes == null ? [] : VirtualPalette.BuildPaletteEffects(palettes);
+
+			foreach (var sourceNode in sources)
+			{
+				if (!context.TryOpen(sourceNode.Key, out var source))
+					continue;
+
+				var mix = new Mix(source);
+
+				var suffix = sourceNode.Value.Value ?? string.Empty;
+				var generate = yaml.FirstOrDefault(e => e.Key == "Generate")?.Value;
+
+				if (generate == null)
+					continue;
+
+				foreach (var node in generate.Nodes)
+					this.contents.Add(node.Key + suffix + VirtualAssetsPackage.Extension, new VirtualAssetsStream(mix, paletteEffects, node));
+			}
+
+			stream.Dispose();
 		}
 
-		stream.Dispose();
-	}
+		public Stream? GetStream(string filename)
+		{
+			return this.contents.TryGetValue(filename, out var stream) ? stream : null;
+		}
 
-	public Stream? GetStream(string filename)
-	{
-		return this.contents.TryGetValue(filename, out var stream) ? stream : null;
-	}
+		public bool Contains(string filename)
+		{
+			return this.contents.ContainsKey(filename);
+		}
 
-	public bool Contains(string filename)
-	{
-		return this.contents.ContainsKey(filename);
-	}
+		public IReadOnlyPackage? OpenPackage(string filename, OpenRA.FileSystem.FileSystem context)
+		{
+			var childStream = this.GetStream(filename);
 
-	public IReadOnlyPackage? OpenPackage(string filename, OpenRA.FileSystem.FileSystem context)
-	{
-		var childStream = this.GetStream(filename);
+			if (childStream == null)
+				return null;
 
-		if (childStream == null)
+			if (context.TryParsePackage(childStream, filename, out var package))
+				return package;
+
+			childStream.Dispose();
+
 			return null;
+		}
 
-		if (context.TryParsePackage(childStream, filename, out var package))
-			return package;
+		public void Dispose()
+		{
+			foreach (var stream in this.contents.Values)
+				stream.Dispose();
 
-		childStream.Dispose();
-
-		return null;
-	}
-
-	public void Dispose()
-	{
-		foreach (var stream in this.contents.Values)
-			stream.Dispose();
-
-		GC.SuppressFinalize(this);
+			GC.SuppressFinalize(this);
+		}
 	}
 }

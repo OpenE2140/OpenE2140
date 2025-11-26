@@ -18,7 +18,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Renders deploy overlay when cursor is hovered over MCU. Attach to MCU actor.")]
 public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>

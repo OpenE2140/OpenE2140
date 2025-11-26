@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Misc;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("Spawns an actor whenever one of the conditions is activated. Works similarly to FreeActor",
 	"Works similarly as FreeActor, but allows spawning different actor per each condition",
@@ -40,7 +40,7 @@ public class SpawnActorOnConditionInfo : TraitInfo, IEditorActorOptions
 	[Desc("Display order for the free actor checkbox in the map editor")]
 	public readonly int EditorFreeActorDisplayOrder = 4;
 
-	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
+	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, World world)
 	{
 		yield return new EditorActorCheckbox("Spawn Child Actor", this.EditorFreeActorDisplayOrder,
 			actor =>

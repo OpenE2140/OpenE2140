@@ -17,44 +17,44 @@ using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders;
-
-public class DatSpriteFrame : ISpriteFrame
+namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders
 {
-	public SpriteFrameType Type { get; }
-	public Size Size { get; }
-	public Size FrameSize { get; }
-	public float2 Offset { get; }
-	public byte[] Data { get; }
-	public bool DisableExportPadding => true;
-
-	public DatSpriteFrame(SpriteFrameType type, Size size, byte[] pixels)
+	public class DatSpriteFrame : ISpriteFrame
 	{
-		this.Type = type;
-		this.Size = size;
-		this.FrameSize = size;
-		this.Offset = new float2(0, 0);
-		this.Data = pixels;
+		public SpriteFrameType Type { get; }
+		public Size Size { get; }
+		public Size FrameSize { get; }
+		public float2 Offset { get; }
+		public byte[] Data { get; }
+		public bool DisableExportPadding => true;
+
+		public DatSpriteFrame(SpriteFrameType type, Size size, byte[] pixels)
+		{
+			this.Type = type;
+			this.Size = size;
+			this.FrameSize = size;
+			this.Offset = new float2(0, 0);
+			this.Data = pixels;
+		}
 	}
-}
 
-[UsedImplicitly]
-public class DatSpriteLoader : ISpriteLoader
-{
-	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+	[UsedImplicitly]
+	public class DatSpriteLoader : ISpriteLoader
 	{
-		frames = null;
-		metadata = null;
+		public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+		{
+			frames = null;
+			metadata = null;
 
-		if (!filename.EndsWith(".dat", StringComparison.OrdinalIgnoreCase))
-			return false;
+			if (!filename.EndsWith(".dat", StringComparison.OrdinalIgnoreCase))
+				return false;
 
-		var datImage = new DatImage(stream);
-		var palPalette = new PalPalette(((Wd.WdStream)stream).Wd.GetStream(filename[..^4].Split('|').Last() + ".PAL") ?? throw new FileNotFoundException());
+			var datImage = new DatImage(stream);
+			var palPalette = new PalPalette(((Wd.WdStream)stream).Wd.GetStream(filename[..^4].Split('|').Last() + ".PAL") ?? throw new FileNotFoundException());
 
-		frames =
-		[
-			new DatSpriteFrame(
+			frames =
+			[
+				new DatSpriteFrame(
 				SpriteFrameType.Rgba32,
 				new Size(datImage.Width, datImage.Height),
 				datImage.Pixels.SelectMany(
@@ -67,8 +67,9 @@ public class DatSpriteLoader : ISpriteLoader
 					)
 					.ToArray()
 			)
-		];
+			];
 
-		return true;
+			return true;
+		}
 	}
 }

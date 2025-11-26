@@ -20,7 +20,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class AircraftConveyorBeltDockInfo : SharedDockHostInfo
 {

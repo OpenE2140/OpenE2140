@@ -16,10 +16,9 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
-using OpenRA.Mods.OpenE2140.Traits.Buildings;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc("This actor has crew and can be conquered.")]
 public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Requires<BuildingCrewEntranceInfo>

@@ -13,53 +13,55 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class ActorExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static IEnumerable<T> TryGetTraitsImplementing<T>(this Actor actor)
+	public static class ActorExtensions
 	{
-		return actor.IsInWorld ? actor.TraitsImplementing<T>() : [];
-	}
-
-	public static bool TryGetTrait<T>(this Actor actor, [MaybeNullWhen(false)] out T trait)
-	{
-		if (actor.Disposed)
+		public static IEnumerable<T> TryGetTraitsImplementing<T>(this Actor actor)
 		{
-			trait = default;
-
-			return false;
+			return actor.IsInWorld ? actor.TraitsImplementing<T>() : [];
 		}
 
-		trait = actor.TraitOrDefault<T>();
+		public static bool TryGetTrait<T>(this Actor actor, [MaybeNullWhen(false)] out T trait)
+		{
+			if (actor.Disposed)
+			{
+				trait = default;
 
-		return trait != null;
-	}
+				return false;
+			}
 
-	public static T? GetTraitOrDefault<T>(this Actor? actor)
-	{
-		var traitOrDefault = actor is { IsInWorld: true } ? actor.TraitOrDefault<T>() : default;
+			trait = actor.TraitOrDefault<T>();
 
-		return traitOrDefault;
-	}
+			return trait != null;
+		}
 
-	public static void TryGrantingCondition(this Actor actor, ref int token, string condition)
-	{
-		if (token == Actor.InvalidConditionToken)
-			token = actor.GrantCondition(condition);
-	}
+		public static T? GetTraitOrDefault<T>(this Actor? actor)
+		{
+			var traitOrDefault = actor is { IsInWorld: true } ? actor.TraitOrDefault<T>() : default;
 
-	public static void TryRevokingCondition(this Actor actor, ref int token)
-	{
-		if (token != Actor.InvalidConditionToken)
-			token = actor.RevokeCondition(token);
-	}
+			return traitOrDefault;
+		}
 
-	public static void GrantOrRevokeCondition(this Actor actor, ref int token, bool isEnabled, string? condition)
-	{
-		if (isEnabled && token == Actor.InvalidConditionToken)
-			token = actor.GrantCondition(condition);
-		else if (!isEnabled && token != Actor.InvalidConditionToken)
-			token = actor.RevokeCondition(token);
+		public static void TryGrantingCondition(this Actor actor, ref int token, string condition)
+		{
+			if (token == Actor.InvalidConditionToken)
+				token = actor.GrantCondition(condition);
+		}
+
+		public static void TryRevokingCondition(this Actor actor, ref int token)
+		{
+			if (token != Actor.InvalidConditionToken)
+				token = actor.RevokeCondition(token);
+		}
+
+		public static void GrantOrRevokeCondition(this Actor actor, ref int token, bool isEnabled, string? condition)
+		{
+			if (isEnabled && token == Actor.InvalidConditionToken)
+				token = actor.GrantCondition(condition);
+			else if (!isEnabled && token != Actor.InvalidConditionToken)
+				token = actor.RevokeCondition(token);
+		}
 	}
 }
+

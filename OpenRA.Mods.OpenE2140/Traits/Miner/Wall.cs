@@ -13,7 +13,7 @@
 
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Miner;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class WallInfo : TraitInfo
 {

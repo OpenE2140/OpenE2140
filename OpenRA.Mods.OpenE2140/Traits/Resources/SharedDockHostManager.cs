@@ -14,7 +14,7 @@
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public interface ISharedDockHostManagerInfo : ITraitInfoInterface { }
 

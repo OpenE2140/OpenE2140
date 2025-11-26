@@ -17,90 +17,91 @@ using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders;
-
-public class MixSpriteFrame : ISpriteFrame
+namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders
 {
-	public SpriteFrameType Type { get; }
-	public Size Size { get; }
-	public Size FrameSize { get; }
-	public float2 Offset { get; }
-	public byte[] Data { get; }
-	public bool DisableExportPadding => true;
-
-	public MixSpriteFrame(SpriteFrameType type, Size size, byte[] pixels)
+	public class MixSpriteFrame : ISpriteFrame
 	{
-		this.Type = type;
-		this.Size = size;
-		this.FrameSize = size;
-		this.Offset = new float2(0, 0);
-		this.Data = pixels;
-	}
-}
+		public SpriteFrameType Type { get; }
+		public Size Size { get; }
+		public Size FrameSize { get; }
+		public float2 Offset { get; }
+		public byte[] Data { get; }
+		public bool DisableExportPadding => true;
 
-[UsedImplicitly]
-public class MixSpriteLoader : ISpriteLoader
-{
-	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
-	{
-		var start = stream.Position;
-		var identifier = stream.ReadASCII(10);
-		stream.Position = start;
-
-		frames = null;
-		metadata = null;
-
-		var framesList = new List<ISpriteFrame>();
-
-		if (identifier != "MIX FILE  ")
+		public MixSpriteFrame(SpriteFrameType type, Size size, byte[] pixels)
 		{
-			if (filename.Contains("MIXMAX", StringComparison.OrdinalIgnoreCase))
+			this.Type = type;
+			this.Size = size;
+			this.FrameSize = size;
+			this.Offset = new float2(0, 0);
+			this.Data = pixels;
+		}
+	}
+
+	[UsedImplicitly]
+	public class MixSpriteLoader : ISpriteLoader
+	{
+		public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+		{
+			var start = stream.Position;
+			var identifier = stream.ReadASCII(10);
+			stream.Position = start;
+
+			frames = null;
+			metadata = null;
+
+			var framesList = new List<ISpriteFrame>();
+
+			if (identifier != "MIX FILE  ")
 			{
-				var mixMax = new MixMax(stream);
-				framesList.AddRange(mixMax.Frames.Select(frame => new MixSpriteFrame(SpriteFrameType.Rgba32, frame.Size, frame.Pixels)));
+				if (filename.Contains("MIXMAX", StringComparison.OrdinalIgnoreCase))
+				{
+					var mixMax = new MixMax(stream);
+					framesList.AddRange(mixMax.Frames.Select(frame => new MixSpriteFrame(SpriteFrameType.Rgba32, frame.Size, frame.Pixels)));
+				}
+				else
+					return false;
 			}
 			else
-				return false;
-		}
-		else
-		{
-			var mix = new Mix(stream);
-
-			if (mix.Frames.Length == 0)
-				return false;
-
-			foreach (var frame in mix.Frames)
 			{
-				var size = new Size(frame.Width, frame.Height);
+				var mix = new Mix(stream);
 
-				if (frame.Is32Bpp)
-					framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, frame.Pixels));
-				else
+				if (mix.Frames.Length == 0)
+					return false;
+
+				foreach (var frame in mix.Frames)
 				{
-					var argbImage = new byte[frame.Pixels.Length * 4];
-					var indexedImage = new byte[frame.Pixels.Length];
-					var palette = mix.Palettes[frame.Palette].Colors;
+					var size = new Size(frame.Width, frame.Height);
 
-					for (var i = 0; i < frame.Pixels.Length; i++)
+					if (frame.Is32Bpp)
+						framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, frame.Pixels));
+					else
 					{
-						var index = frame.Pixels[i];
-						var color = palette[index];
+						var argbImage = new byte[frame.Pixels.Length * 4];
+						var indexedImage = new byte[frame.Pixels.Length];
+						var palette = mix.Palettes[frame.Palette].Colors;
 
-						indexedImage[i] = index;
+						for (var i = 0; i < frame.Pixels.Length; i++)
+						{
+							var index = frame.Pixels[i];
+							var color = palette[index];
 
-						argbImage[i * 4 + 0] = color.R;
-						argbImage[i * 4 + 1] = color.G;
-						argbImage[i * 4 + 2] = color.B;
-						argbImage[i * 4 + 3] = color.A;
+							indexedImage[i] = index;
+
+							argbImage[i * 4 + 0] = color.R;
+							argbImage[i * 4 + 1] = color.G;
+							argbImage[i * 4 + 2] = color.B;
+							argbImage[i * 4 + 3] = color.A;
+						}
+
+						framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
 					}
-
-					framesList.Add(new MixSpriteFrame(SpriteFrameType.Rgba32, size, argbImage));
 				}
 			}
+
+			frames = framesList.ToArray();
+
+			return true;
 		}
-
-		frames = framesList.ToArray();
-
-		return true;
 	}
 }

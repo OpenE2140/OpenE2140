@@ -15,7 +15,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 {
@@ -28,17 +28,17 @@ public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 		this.buildingInfo = actorInfo.TraitInfo<BuildingInfo>();
 	}
 
-	public bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore)
+	public bool CanPlaceBuilding(World world, CPos cell, Actor toIgnore)
 	{
 		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}
 
-	public bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore)
+	public bool IsCellBuildable(World world, CPos cell, Actor? toIgnore)
 	{
 		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}
 
-	public Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
+	public Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 

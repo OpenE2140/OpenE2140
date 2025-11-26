@@ -15,7 +15,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Plays custom animation while the trait is enabled/unpaused.")]
 public class WithCustomBodyAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>

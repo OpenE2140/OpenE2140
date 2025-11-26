@@ -15,7 +15,7 @@ using OpenRA.Mods.Common.Effects;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Terrain;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public enum TrailType { Cell, CenterPosition }
 

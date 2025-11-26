@@ -15,25 +15,28 @@ using JetBrains.Annotations;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Video;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VideoLoaders;
-
-[UsedImplicitly]
-public class FlcVideoLoader : IVideoLoader
+namespace OpenRA.Mods.OpenE2140.Assets.VideoLoaders
 {
-	public bool TryParseVideo(Stream stream, bool useFramePadding, out IVideo? video)
+	[UsedImplicitly]
+	public class FlcVideoLoader : IVideoLoader
 	{
-		var start = stream.Position;
-		stream.Position = 4;
-		var identifier = stream.ReadUInt16();
-		stream.Position = start;
+		public bool TryParseVideo(Stream stream, bool useFramePadding, out IVideo? video)
+		{
+			var start = stream.Position;
+			stream.Position = 4;
+			var identifier = stream.ReadUInt16();
+			stream.Position = start;
 
-		video = null;
+			video = null;
 
-		if (identifier != 0xaf12)
-			return false;
+			if (identifier != 0xaf12)
+				return false;
 
-		video = new Flc(stream);
+			video = new Flc(stream);
 
-		return true;
+			return true;
+		}
 	}
+
 }
+

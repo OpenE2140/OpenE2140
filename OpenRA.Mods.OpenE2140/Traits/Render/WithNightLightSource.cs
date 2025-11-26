@@ -13,11 +13,10 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Traits.Weather;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Adds a localized circular light centered on the actor.")]

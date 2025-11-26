@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
-using McuTransformsInfo = OpenRA.Mods.OpenE2140.Traits.Mcu.TransformsInfo;
+using McuTransformsInfo = OpenRA.Mods.OpenE2140.Traits.TransformsInfo;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 

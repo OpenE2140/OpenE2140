@@ -18,87 +18,90 @@ using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
-
-[UsedImplicitly]
-public class AddFactionSuffixExLogic : ChromeLogic
+namespace OpenRA.Mods.OpenE2140.Widgets.Logic
 {
-	[ObjectCreator.UseCtor]
-	public AddFactionSuffixExLogic(Widget widget, World world)
+	[UsedImplicitly]
+	public class AddFactionSuffixExLogic : ChromeLogic
 	{
-		if (world.LocalPlayer == null || world.LocalPlayer.Spectating)
-			return;
-
-		if (!ChromeMetrics.TryGet("FactionSuffix-" + world.LocalPlayer.Faction.InternalName, out string faction))
-			faction = world.LocalPlayer.Faction.InternalName;
-
-		var suffix = "-" + faction;
-
-		if (widget is IFactionSpecificWidget fsw)
+		[ObjectCreator.UseCtor]
+		public AddFactionSuffixExLogic(Widget widget, World world)
 		{
-			foreach (var fieldName in fsw.FieldsToOverride)
+			if (world.LocalPlayer == null || world.LocalPlayer.Spectating)
+				return;
+
+			if (!ChromeMetrics.TryGet("FactionSuffix-" + world.LocalPlayer.Faction.InternalName, out string faction))
+				faction = world.LocalPlayer.Faction.InternalName;
+
+			var suffix = "-" + faction;
+
+			if (widget is IFactionSpecificWidget fsw)
 			{
-				var fieldInfo = fsw.GetType().GetField(fieldName, BindingFlags.Default | BindingFlags.Public | BindingFlags.Instance);
+				foreach (var fieldName in fsw.FieldsToOverride)
+				{
+					var fieldInfo = fsw.GetType().GetField(fieldName, BindingFlags.Default | BindingFlags.Public | BindingFlags.Instance);
 
-				if (fieldInfo is null)
-					throw new InvalidOperationException($"Widget {fsw.GetType().Name} does not have field {fieldName}.");
+					if (fieldInfo is null)
+						throw new InvalidOperationException($"Widget {fsw.GetType().Name} does not have field {fieldName}.");
 
-				if (ChromeMetricsHelper.TryGet(fieldInfo.FieldType, $"{fsw.Identifier}{fieldName}{suffix}", out var result)
-					|| ChromeMetricsHelper.TryGet(fieldInfo.FieldType, $"{fsw.Identifier}{fieldName}", out result))
-					fieldInfo.SetValue(fsw, result);
+					if (ChromeMetricsHelper.TryGet(fieldInfo.FieldType, $"{fsw.Identifier}{fieldName}{suffix}", out var result)
+						|| ChromeMetricsHelper.TryGet(fieldInfo.FieldType, $"{fsw.Identifier}{fieldName}", out result))
+						fieldInfo.SetValue(fsw, result);
+				}
+			}
+
+			if (widget is ProductionPaletteWidget ppw)
+				ppw.Parent.Get<BackgroundWidget>("ICON_TEMPLATE").Background += suffix;
+
+			if (widget is ProductionTabsExWidget ptw)
+			{
+				if (ptw.ArrowButton != null)
+					ptw.ArrowButton += suffix;
+
+				if (ptw.TabButton != null)
+					ptw.TabButton += suffix;
+
+				ptw.Decorations += suffix;
+				ptw.RefreshCaches();
+			}
+
+			if (widget is ResearchPaletteWidget rpw)
+			{
+				rpw.Icons += suffix;
+				rpw.ClockAnimation += suffix;
+				rpw.Clock = new Animation(rpw.World, rpw.ClockAnimation);
 			}
 		}
 
-		if (widget is ProductionPaletteWidget ppw)
-			ppw.Parent.Get<BackgroundWidget>("ICON_TEMPLATE").Background += suffix;
-
-		if (widget is ProductionTabsExWidget ptw)
+		private static class ChromeMetricsHelper
 		{
-			if (ptw.ArrowButton != null)
-				ptw.ArrowButton += suffix;
+			private static readonly MethodInfo? TryGetMethod = typeof(ChromeMetrics).GetMethod(
+				nameof(ChromeMetrics.TryGet),
+				BindingFlags.Default | BindingFlags.Static | BindingFlags.Public
+			);
 
-			if (ptw.TabButton != null)
-				ptw.TabButton += suffix;
+			private static readonly Cache<Type, Func<string, (bool, object?)>> Cache =
+				new Cache<Type, Func<string, (bool, object?)>>(ChromeMetricsHelper.TryGetCore);
 
-			ptw.Decorations += suffix;
-			ptw.RefreshCaches();
-		}
-
-		if (widget is ResearchPaletteWidget rpw)
-		{
-			rpw.Icons += suffix;
-			rpw.ClockAnimation += suffix;
-			rpw.Clock = new Animation(rpw.World, rpw.ClockAnimation);
-		}
-	}
-
-	private static class ChromeMetricsHelper
-	{
-		private static readonly MethodInfo? TryGetMethod = typeof(ChromeMetrics).GetMethod(
-			nameof(ChromeMetrics.TryGet),
-			BindingFlags.Default | BindingFlags.Static | BindingFlags.Public
-		);
-
-		private static readonly Cache<Type, Func<string, (bool, object?)>> Cache =
-			new Cache<Type, Func<string, (bool, object?)>>(ChromeMetricsHelper.TryGetCore);
-
-		public static bool TryGet(Type type, string key, out object? result)
-		{
-			var getter = ChromeMetricsHelper.Cache[type];
-			(var success, result) = getter.Invoke(key);
-
-			return success;
-		}
-
-		private static Func<string, (bool, object?)> TryGetCore(Type type)
-		{
-			return key =>
+			public static bool TryGet(Type type, string key, out object? result)
 			{
-				var args = new object?[] { key, null };
-				var success = (bool)(ChromeMetricsHelper.TryGetMethod?.MakeGenericMethod(type).Invoke(null, args) ?? false);
+				var getter = ChromeMetricsHelper.Cache[type];
+				(var success, result) = getter.Invoke(key);
 
-				return (success, args[1]);
-			};
+				return success;
+			}
+
+			private static Func<string, (bool, object?)> TryGetCore(Type type)
+			{
+				return key =>
+				{
+					var args = new object?[] { key, null };
+					var success = (bool)(ChromeMetricsHelper.TryGetMethod?.MakeGenericMethod(type).Invoke(null, args) ?? false);
+
+					return (success, args[1]);
+				};
+			}
 		}
 	}
+
 }
+

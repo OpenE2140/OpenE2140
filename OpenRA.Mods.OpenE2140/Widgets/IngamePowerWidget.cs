@@ -15,23 +15,25 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class IngamePowerWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	public readonly Color NormalPowerColor = Color.White;
-	public readonly Color CriticalPowerColor = Color.Red;
-
-	public readonly string Identifier = string.Empty;
-
-	[ObjectCreator.UseCtor]
-	public IngamePowerWidget(ModData modData, World world)
-		: base(modData, world)
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	public class IngamePowerWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 	{
+		public readonly Color NormalPowerColor = Color.White;
+		public readonly Color CriticalPowerColor = Color.Red;
+
+		public readonly string Identifier = string.Empty;
+
+		[ObjectCreator.UseCtor]
+		public IngamePowerWidget(ModData modData, World world)
+			: base(modData, world)
+		{
+		}
+
+		string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.NormalPowerColor), nameof(this.CriticalPowerColor), nameof(LabelWidget.TextColor)];
+
+		string IFactionSpecificWidget.Identifier => this.Identifier;
 	}
 
-	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.NormalPowerColor), nameof(this.CriticalPowerColor), nameof(LabelWidget.TextColor)];
-
-	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

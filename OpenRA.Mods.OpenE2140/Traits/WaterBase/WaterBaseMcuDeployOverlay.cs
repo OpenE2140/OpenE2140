@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Orders;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class WaterBaseMcuDeployOverlayInfo : TraitInfo<WaterBaseMcuDeployOverlay>, Requires<WaterBaseTransformsInfo> { }
 

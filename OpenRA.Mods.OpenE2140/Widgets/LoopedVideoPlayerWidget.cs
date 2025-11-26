@@ -14,33 +14,34 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-[UsedImplicitly]
-public class LoopedVideoPlayerWidget : VideoPlayerWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	private string? video;
-
-	public override void Draw()
+	[UsedImplicitly]
+	public class LoopedVideoPlayerWidget : VideoPlayerWidget
 	{
-		if (this.video == null)
-			return;
+		private string? video;
 
-		base.Draw();
+		public override void Draw()
+		{
+			if (this.video == null)
+				return;
 
-		if (!this.Paused)
-			return;
+			base.Draw();
 
-		this.Play();
-		base.Draw();
-	}
+			if (!this.Paused)
+				return;
 
-	public void SetVideo(string? video)
-	{
-		this.video = video;
-		this.Stop();
+			this.Play();
+			base.Draw();
+		}
 
-		if (video != null)
-			this.LoadAndPlay(video);
+		public void SetVideo(string? video)
+		{
+			this.video = video;
+			this.Stop();
+
+			if (video != null)
+				this.LoadAndPlay(video);
+		}
 	}
 }

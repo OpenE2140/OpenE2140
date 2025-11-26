@@ -13,7 +13,7 @@
 
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc($"Defines entrance for a building. Requires {nameof(BuildingCrew)} defined on the actor to work.")]
 public class BuildingCrewEntranceInfo : ConditionalTraitInfo

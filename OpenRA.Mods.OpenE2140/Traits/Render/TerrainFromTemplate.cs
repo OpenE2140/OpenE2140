@@ -15,7 +15,7 @@ using OpenRA.Mods.Common.Terrain;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Replaces tiles from specified terrain template underneath the actor. Trait is conditional, so original tiles can be reverted if necessary.")]
 public class TerrainFromTemplateInfo : ConditionalTraitInfo, Requires<IOccupySpaceInfo>

@@ -16,22 +16,24 @@ using JetBrains.Annotations;
 using OpenRA.FileSystem;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
-namespace OpenRA.Mods.OpenE2140.Assets.FileSystem;
-
-[UsedImplicitly]
-public class WdLoader : IPackageLoader
+namespace OpenRA.Mods.OpenE2140.Assets.FileSystem
 {
-	public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
+	[UsedImplicitly]
+	public class WdLoader : IPackageLoader
 	{
-		if (!filename.EndsWith(".wd", StringComparison.OrdinalIgnoreCase))
+		public bool TryParsePackage(Stream stream, string filename, OpenRA.FileSystem.FileSystem context, [NotNullWhen(true)] out IReadOnlyPackage? package)
 		{
-			package = null;
+			if (!filename.EndsWith(".wd", StringComparison.OrdinalIgnoreCase))
+			{
+				package = null;
 
-			return false;
+				return false;
+			}
+
+			package = new Wd(stream, filename);
+
+			return true;
 		}
-
-		package = new Wd(stream, filename);
-
-		return true;
 	}
 }
+

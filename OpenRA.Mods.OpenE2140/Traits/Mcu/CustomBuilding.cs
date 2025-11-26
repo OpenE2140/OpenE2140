@@ -17,7 +17,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Requires<BuildingInfo>, ICustomBuildingInfo
 {
@@ -28,12 +28,12 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		$"Currently requires that all terrain types used in the condition are also defined in the {nameof(BuildingInfo)}.{nameof(BuildingInfo.TerrainTypes)} field.")]
 	public readonly BooleanExpression? AllowedTerrainTypesCondition = null;
 
-	public virtual bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null)
+	public virtual bool IsCellBuildable(World world, CPos cell, Actor? toIgnore = null)
 	{
 		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}
 
-	public virtual bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore)
+	public virtual bool CanPlaceBuilding(World world, CPos cell, Actor toIgnore)
 	{
 		if (this.buildingInfo == null)
 			return false;
@@ -58,7 +58,7 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}
 
-	public virtual Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
+	public virtual Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 

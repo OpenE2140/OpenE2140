@@ -18,7 +18,7 @@ using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Trait that makes cloaked units with cloak shadow effect.")]
 public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<RenderSpritesInfo>
