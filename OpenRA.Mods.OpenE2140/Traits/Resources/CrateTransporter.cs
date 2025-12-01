@@ -56,9 +56,6 @@ public abstract class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOpt
 	[Desc("Voice to be played when ordered to unload.")]
 	public readonly string UnloadVoice = "Action";
 
-	[Desc("Percentage modifier to apply to movement speed while docking to conveyor belt or (un)loading crate to/from ground.")]
-	public readonly int DockSpeedModifier = 70;
-
 	[CursorReference]
 	[Desc("Cursor to display when unloading crate.")]
 	public readonly string CrateUnloadCursor = "deliver";

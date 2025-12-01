@@ -20,6 +20,9 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 
 public class MobileCrateTransporterInfo : CrateTransporterInfo, Requires<MobileInfo>
 {
+	[Desc("Percentage modifier to apply to movement speed while docking to conveyor belt or (un)loading crate to/from ground.")]
+	public readonly int DockSpeedModifier = 70;
+
 	[Desc("Sequence for crate movement during load animation")]
 	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), Required = true)]
 	public readonly CrateMoveSequence LoadSequence = null!;

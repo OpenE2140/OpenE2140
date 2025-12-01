@@ -95,7 +95,7 @@ public class MobileCrateLoad : CrateLoadBase
 
 	private void DragToPosition(Actor self, WPos targetPosition, CPos cell)
 	{
-		this.TryQueueChild(CommonActivities.DragToPosition(self, this.mobile, targetPosition, cell, this.CrateTransporter.Info.DockSpeedModifier));
+		this.TryQueueChild(CommonActivities.DragToPosition(self, this.mobile, targetPosition, cell, this.mobileCrateTransporter.Info.DockSpeedModifier));
 	}
 
 	private class MoveToCrate : MoveAdjacentTo
