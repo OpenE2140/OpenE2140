@@ -17,6 +17,7 @@ shared_buildings_mine:
 		DelayWhenEmpty: 50
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
+		Delay: 100
 	ResourceMineOverlay:
 		MiningAreaBorderColor: 8F8F00FF
 		MiningAreaBorderShape: Square # Square/Circle/None
