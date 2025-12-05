@@ -15,7 +15,7 @@ using OpenRA.Mods.OpenE2140.Widgets.Logic;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Research;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.World)]
 [Desc($"Makes it possible to switch to research tab, when actor with {nameof(Researches)} trait is selected. Attach to world actor.")]
@@ -29,10 +29,10 @@ public class ResearchFromSelectionInfo : TraitInfo
 
 public class ResearchFromSelection : INotifySelection
 {
-	private readonly OpenRA.World world;
+	private readonly World world;
 	private readonly Lazy<Widget?> widget;
 
-	public ResearchFromSelection(OpenRA.World world, ResearchFromSelectionInfo info)
+	public ResearchFromSelection(World world, ResearchFromSelectionInfo info)
 	{
 		this.world = world;
 

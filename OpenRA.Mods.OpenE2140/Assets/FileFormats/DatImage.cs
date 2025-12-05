@@ -11,20 +11,22 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
-
-public class DatImage
+namespace OpenRA.Mods.OpenE2140.Assets.FileFormats
 {
-	public readonly int Width;
-	public readonly int Height;
-	public readonly byte[] Pixels;
-
-	public DatImage(Stream stream)
+	public class DatImage
 	{
-		this.Width = stream.ReadUInt16();
-		this.Height = stream.ReadUInt16();
-		stream.ReadUInt8(); // TODO always 1
-		stream.ReadUInt8(); // TODO id?
-		this.Pixels = stream.ReadBytes(this.Width * this.Height);
+		public readonly int Width;
+		public readonly int Height;
+		public readonly byte[] Pixels;
+
+		public DatImage(Stream stream)
+		{
+			this.Width = stream.ReadUInt16();
+			this.Height = stream.ReadUInt16();
+			stream.ReadUInt8(); // TODO always 1
+			stream.ReadUInt8(); // TODO id?
+			this.Pixels = stream.ReadBytes(this.Width * this.Height);
+		}
 	}
 }
+

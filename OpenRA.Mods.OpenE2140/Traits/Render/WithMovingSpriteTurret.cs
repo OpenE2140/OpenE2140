@@ -16,7 +16,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [Desc("Renders walking unit with a turret as its upper body move up and down imposed by legs motion.")]
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]

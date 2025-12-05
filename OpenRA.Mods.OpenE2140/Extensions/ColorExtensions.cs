@@ -13,12 +13,13 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class ColorExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static Color Lerp(this Color from, Color to, float progress)
+	public static class ColorExtensions
 	{
-		return Color.FromArgb((byte)float2.Lerp(from.R, to.R, progress), (byte)float2.Lerp(from.G, to.G, progress), (byte)float2.Lerp(from.B, to.B, progress));
+		public static Color Lerp(this Color from, Color to, float progress)
+		{
+			return Color.FromArgb((byte)float2.Lerp(from.R, to.R, progress), (byte)float2.Lerp(from.G, to.G, progress), (byte)float2.Lerp(from.B, to.B, progress));
+		}
 	}
 }

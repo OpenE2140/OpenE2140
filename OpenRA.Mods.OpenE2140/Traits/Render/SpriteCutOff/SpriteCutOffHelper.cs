@@ -16,7 +16,7 @@ using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 public static class SpriteCutOffHelper
 {

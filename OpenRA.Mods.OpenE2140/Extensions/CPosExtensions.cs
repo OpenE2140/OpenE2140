@@ -11,32 +11,34 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class CPosExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	/// <summary>
-	/// Calculates bounding box from list of cells.
-	/// </summary>
-	/// <returns>Tuple of top left and bottom right world positions.</returns>
-	public static (WPos TopLeft, WPos BottomRight) GetBounds(this IEnumerable<CPos> cells)
+	public static class CPosExtensions
 	{
-		var left = int.MaxValue;
-		var right = int.MinValue;
-		var top = int.MaxValue;
-		var bottom = int.MinValue;
-
-		foreach (var cell in cells)
+		/// <summary>
+		/// Calculates bounding box from list of cells.
+		/// </summary>
+		/// <returns>Tuple of top left and bottom right world positions.</returns>
+		public static (WPos TopLeft, WPos BottomRight) GetBounds(this IEnumerable<CPos> cells)
 		{
-			left = Math.Min(left, cell.X);
-			right = Math.Max(right, cell.X);
-			top = Math.Min(top, cell.Y);
-			bottom = Math.Max(bottom, cell.Y);
-		}
+			var left = int.MaxValue;
+			var right = int.MinValue;
+			var top = int.MaxValue;
+			var bottom = int.MinValue;
 
-		return (
-			TopLeft: new WPos(1024 * left, 1024 * top, 0),
-			BottomRight: new WPos(1024 * right + 1024, 1024 * bottom + 1024, 0)
-		);
+			foreach (var cell in cells)
+			{
+				left = Math.Min(left, cell.X);
+				right = Math.Max(right, cell.X);
+				top = Math.Min(top, cell.Y);
+				bottom = Math.Max(bottom, cell.Y);
+			}
+
+			return (
+				TopLeft: new WPos(1024 * left, 1024 * top, 0),
+				BottomRight: new WPos(1024 * right + 1024, 1024 * bottom + 1024, 0)
+			);
+		}
 	}
 }
+

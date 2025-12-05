@@ -14,7 +14,7 @@
 using JetBrains.Annotations;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Power;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.Player)]
 [Desc("Earth specific variant of the PowerManager trait. This is the classic version, with the same logic as in E2140.")]

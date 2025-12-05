@@ -12,13 +12,12 @@
 #endregion
 
 using OpenRA.Mods.Common.Orders;
-using OpenRA.Mods.OpenE2140.Traits.Mcu;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class ResourceMineCustomBuildingInfo : CustomBuildingInfo
 {
-	public override Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
+	public override Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = base.GetBuildingPlacementFootprint(world, cell, toIgnore);
 

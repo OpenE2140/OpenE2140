@@ -18,7 +18,7 @@ using OpenRA.Mods.OpenE2140.Activites.Move;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Resources;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Handles CrateTransporter's routine for transporting resource crates.")]

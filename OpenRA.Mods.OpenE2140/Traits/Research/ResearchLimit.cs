@@ -15,7 +15,7 @@ using System.Collections.ObjectModel;
 using JetBrains.Annotations;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Research;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Add this to the world, to limit the research level.")]

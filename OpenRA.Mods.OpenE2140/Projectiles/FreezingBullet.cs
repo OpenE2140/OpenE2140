@@ -18,111 +18,112 @@ using OpenRA.Mods.Common.Projectiles;
 using OpenRA.Traits;
 using Util = OpenRA.Mods.Common.Util;
 
-namespace OpenRA.Mods.OpenE2140.Projectiles;
-
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-[Desc($"Specialized type of {nameof(Bullet)} that can freeze when hitting target for a period of time.")]
-public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
+namespace OpenRA.Mods.OpenE2140.Projectiles
 {
-	[Desc("Freezes on impact for specified amount of ticks.")]
-	public readonly int FreezeForTicks;
-
-	[Desc("When frozen, use this image instead of the default one.")]
-	public readonly string? FrozenImage = null;
-
-	[SequenceReference(nameof(FreezingBulletInfo.FrozenImage), allowNullImage: true)]
-	[Desc(
-		$"Loop a sequence of {nameof(FreezingBulletInfo.FrozenImage)} from this list while this projectile is frozen. "
-		+ $"Sequence is picked based on the sequence chosen from {nameof(BulletInfo.Sequences)}"
-	)]
-	public readonly string[] FrozenSequences = ["idle"];
-
-	public override IProjectile Create(ProjectileArgs args)
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	[Desc($"Specialized type of {nameof(Bullet)} that can freeze when hitting target for a period of time.")]
+	public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 	{
-		return new FreezingBullet(this, args);
-	}
+		[Desc("Freezes on impact for specified amount of ticks.")]
+		public readonly int FreezeForTicks;
 
-	public void RulesetLoaded(Ruleset rules, ActorInfo info)
-	{
-		if (string.IsNullOrEmpty(this.FrozenImage))
-			return;
+		[Desc("When frozen, use this image instead of the default one.")]
+		public readonly string? FrozenImage = null;
 
-		if (string.IsNullOrEmpty(this.Image))
-			throw new YamlException($"When {nameof(this.FrozenImage)} is specified, {nameof(this.Image)} has to be specified too.");
+		[SequenceReference(nameof(FreezingBulletInfo.FrozenImage), allowNullImage: true)]
+		[Desc(
+			$"Loop a sequence of {nameof(FreezingBulletInfo.FrozenImage)} from this list while this projectile is frozen. "
+			+ $"Sequence is picked based on the sequence chosen from {nameof(BulletInfo.Sequences)}"
+		)]
+		public readonly string[] FrozenSequences = ["idle"];
 
-		if (this.FrozenSequences.Length != this.Sequences.Length)
+		public override IProjectile Create(ProjectileArgs args)
 		{
-			throw new YamlException(
-				$"When {nameof(this.FrozenImage)} is specified, number of sequences in {nameof(this.Sequences)} must match"
-				+ $"number of sequences in {nameof(this.FrozenSequences)}"
-			);
-		}
-	}
-}
-
-public class FreezingBullet : Bullet
-{
-	private enum State { Moving, Frozen }
-
-	private readonly FreezingBulletInfo info;
-	private State state = State.Moving;
-	private int frozenTicks;
-
-	public FreezingBullet(FreezingBulletInfo info, ProjectileArgs args)
-		: base(info, args)
-	{
-		this.info = info;
-		this.frozenTicks = info.FreezeForTicks;
-	}
-
-	public override void Tick(World world)
-	{
-		if (this.state == State.Moving)
-		{
-			base.Tick(world);
-
-			return;
+			return new FreezingBullet(this, args);
 		}
 
-		this.Animation?.Tick();
+		public void RulesetLoaded(Ruleset rules, ActorInfo info)
+		{
+			if (string.IsNullOrEmpty(this.FrozenImage))
+				return;
 
-		if (--this.frozenTicks <= 0)
-			world.AddFrameEndTask(w => w.Remove(this));
+			if (string.IsNullOrEmpty(this.Image))
+				throw new YamlException($"When {nameof(this.FrozenImage)} is specified, {nameof(this.Image)} has to be specified too.");
+
+			if (this.FrozenSequences.Length != this.Sequences.Length)
+			{
+				throw new YamlException(
+					$"When {nameof(this.FrozenImage)} is specified, number of sequences in {nameof(this.Sequences)} must match"
+					+ $"number of sequences in {nameof(this.FrozenSequences)}"
+				);
+			}
+		}
 	}
 
-	protected override void Explode(World world)
+	public class FreezingBullet : Bullet
 	{
-		if (this.frozenTicks == 0)
-		{
-			world.AddFrameEndTask(w => w.Remove(this));
+		private enum State { Moving, Frozen }
 
-			return;
+		private readonly FreezingBulletInfo info;
+		private State state = State.Moving;
+		private int frozenTicks;
+
+		public FreezingBullet(FreezingBulletInfo info, ProjectileArgs args)
+			: base(info, args)
+		{
+			this.info = info;
+			this.frozenTicks = info.FreezeForTicks;
 		}
 
-		var warheadArgs = new WarheadArgs(this.Args)
+		public override void Tick(World world)
 		{
-			ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing),
-			ImpactPosition = this.pos
-		};
+			if (this.state == State.Moving)
+			{
+				base.Tick(world);
 
-		this.Args.Weapon.Impact(Target.FromPos(this.pos), warheadArgs);
+				return;
+			}
 
-		this.state = State.Frozen;
+			this.Animation?.Tick();
 
-		// Change bullet's sprite sequence to a appropriate one from FrozenSequences
-		var currentSequenceIndex = Array.IndexOf(this.info.Sequences, this.Animation.CurrentSequence.Name);
+			if (--this.frozenTicks <= 0)
+				world.AddFrameEndTask(w => w.Remove(this));
+		}
 
-		if (!string.IsNullOrEmpty(this.info.FrozenImage))
-			this.Animation.ChangeImage(this.info.FrozenImage, "");
+		protected override void Explode(World world)
+		{
+			if (this.frozenTicks == 0)
+			{
+				world.AddFrameEndTask(w => w.Remove(this));
 
-		this.Animation.PlayRepeating(this.info.FrozenSequences[currentSequenceIndex]);
-	}
+				return;
+			}
 
-	public override IEnumerable<IRenderable> Render(WorldRenderer wr)
-	{
-		if (!this.FlightLengthReached && this.state == State.Moving)
-			return base.Render(wr);
+			var warheadArgs = new WarheadArgs(this.Args)
+			{
+				ImpactOrientation = new WRot(WAngle.Zero, Util.GetVerticalAngle(this.lastPos, this.pos), this.Args.Facing),
+				ImpactPosition = this.pos
+			};
 
-		return this.RenderAnimation(wr);
+			this.Args.Weapon.Impact(Target.FromPos(this.pos), warheadArgs);
+
+			this.state = State.Frozen;
+
+			// Change bullet's sprite sequence to a appropriate one from FrozenSequences
+			var currentSequenceIndex = Array.IndexOf(this.info.Sequences, this.Animation.CurrentSequence.Name);
+
+			if (!string.IsNullOrEmpty(this.info.FrozenImage))
+				this.Animation.ChangeImage(this.info.FrozenImage, "");
+
+			this.Animation.PlayRepeating(this.info.FrozenSequences[currentSequenceIndex]);
+		}
+
+		public override IEnumerable<IRenderable> Render(WorldRenderer wr)
+		{
+			if (!this.FlightLengthReached && this.state == State.Moving)
+				return base.Render(wr);
+
+			return this.RenderAnimation(wr);
+		}
 	}
 }

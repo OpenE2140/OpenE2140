@@ -13,47 +13,50 @@
 
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
-
-public class VirtualAssetsStream : Stream
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets
 {
-	// TODO If we manage to unhardcode Mix here, VirtualAssets could apply to any source!
-	public readonly Mix Source;
-	public readonly Dictionary<string, VirtualPalette> PaletteEffects;
-	public readonly MiniYamlNode Node;
-
-	public override bool CanRead => true;
-	public override bool CanSeek => true;
-	public override bool CanWrite => true;
-	public override long Length => 0;
-	public override long Position { get => 0; set { } }
-
-	public VirtualAssetsStream(Mix source, Dictionary<string, VirtualPalette> paletteEffects, MiniYamlNode node)
+	public class VirtualAssetsStream : Stream
 	{
-		this.Source = source;
-		this.PaletteEffects = paletteEffects;
-		this.Node = node;
-	}
+		// TODO If we manage to unhardcode Mix here, VirtualAssets could apply to any source!
+		public readonly Mix Source;
+		public readonly Dictionary<string, VirtualPalette> PaletteEffects;
+		public readonly MiniYamlNode Node;
 
-	public override void Flush()
-	{
-	}
+		public override bool CanRead => true;
+		public override bool CanSeek => true;
+		public override bool CanWrite => true;
+		public override long Length => 0;
+		public override long Position { get => 0; set { } }
 
-	public override int Read(byte[] buffer, int offset, int count)
-	{
-		return count;
-	}
+		public VirtualAssetsStream(Mix source, Dictionary<string, VirtualPalette> paletteEffects, MiniYamlNode node)
+		{
+			this.Source = source;
+			this.PaletteEffects = paletteEffects;
+			this.Node = node;
+		}
 
-	public override long Seek(long offset, SeekOrigin origin)
-	{
-		return 0;
-	}
+		public override void Flush()
+		{
+		}
 
-	public override void SetLength(long value)
-	{
-	}
+		public override int Read(byte[] buffer, int offset, int count)
+		{
+			return count;
+		}
 
-	public override void Write(byte[] buffer, int offset, int count)
-	{
+		public override long Seek(long offset, SeekOrigin origin)
+		{
+			return 0;
+		}
+
+		public override void SetLength(long value)
+		{
+		}
+
+		public override void Write(byte[] buffer, int offset, int count)
+		{
+		}
 	}
 }
+
+

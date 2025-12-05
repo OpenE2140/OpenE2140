@@ -11,12 +11,13 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class WVecExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static WDist ToWDist(this WVec vec)
+	public static class WVecExtensions
 	{
-		return new WDist(vec.Length);
+		public static WDist ToWDist(this WVec vec)
+		{
+			return new WDist(vec.Length);
+		}
 	}
 }

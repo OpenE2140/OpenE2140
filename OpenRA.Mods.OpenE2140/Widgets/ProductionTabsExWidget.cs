@@ -18,41 +18,42 @@ using OpenRA.Mods.OpenE2140.Helpers.Reflection;
 using OpenRA.Primitives;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-// TODO Temporary solution until PR #20635 is merged in OpenRA.
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
-	private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
-
-	public readonly string Identifier = string.Empty;
-
-	[ObjectCreator.UseCtor]
-	public ProductionTabsExWidget(World world)
-		: base(world)
+	// TODO Temporary solution until PR #20635 is merged in OpenRA.
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	public class ProductionTabsExWidget : ProductionTabsWidget, IFactionSpecificWidget
 	{
-		var reflectionHelper = new ReflectionHelper<ProductionTabsWidget>(this);
+		private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getLeftArrowImage;
+		private readonly ObjectFieldHelper<CachedTransform<(bool Disabled, bool Pressed, bool Hover, bool Focused, bool Highlighted), Sprite>> getRightArrowImage;
 
-		this.getLeftArrowImage = reflectionHelper.GetField(this.getLeftArrowImage, "getLeftArrowImage");
-		this.getRightArrowImage = reflectionHelper.GetField(this.getRightArrowImage, "getRightArrowImage");
+		public readonly string Identifier = string.Empty;
+
+		[ObjectCreator.UseCtor]
+		public ProductionTabsExWidget(World world)
+			: base(world)
+		{
+			var reflectionHelper = new ReflectionHelper<ProductionTabsWidget>(this);
+
+			this.getLeftArrowImage = reflectionHelper.GetField(this.getLeftArrowImage, "getLeftArrowImage");
+			this.getRightArrowImage = reflectionHelper.GetField(this.getRightArrowImage, "getRightArrowImage");
+		}
+
+		public override void Initialize(WidgetArgs args)
+		{
+			base.Initialize(args);
+
+			this.RefreshCaches();
+		}
+
+		public void RefreshCaches()
+		{
+			this.getLeftArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollLeft);
+			this.getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollRight);
+		}
+
+		string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TabColor), nameof(this.TabColorDone)];
+
+		string IFactionSpecificWidget.Identifier => this.Identifier;
 	}
-
-	public override void Initialize(WidgetArgs args)
-	{
-		base.Initialize(args);
-
-		this.RefreshCaches();
-	}
-
-	public void RefreshCaches()
-	{
-		this.getLeftArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollLeft);
-		this.getRightArrowImage.Value = WidgetUtils.GetCachedStatefulImage(this.Decorations, this.DecorationScrollRight);
-	}
-
-	string[] IFactionSpecificWidget.FieldsToOverride => [nameof(this.TabColor), nameof(this.TabColorDone)];
-
-	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

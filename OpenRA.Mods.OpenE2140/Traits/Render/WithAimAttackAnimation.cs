@@ -16,9 +16,9 @@ using OpenRA.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Traits;
-using CustomAttackActivity = OpenRA.Mods.OpenE2140.Traits.Attack.AttackFrontal.Attack;
+using CustomAttackActivity = OpenRA.Mods.OpenE2140.Traits.AttackFrontal.Attack;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
+namespace OpenRA.Mods.OpenE2140.Traits.Render;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class WithAimAttackAnimationInfo : ConditionalTraitInfo, Requires<WithSpriteBodyInfo>, Requires<ArmamentInfo>

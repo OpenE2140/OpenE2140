@@ -15,7 +15,7 @@ using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.World)]
 [Desc("Automatically selects the first available production tab. Makes the production sidebar always show a queue if any valid one exists. Attach to World actor.")]

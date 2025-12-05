@@ -13,59 +13,61 @@
 
 using System.Text;
 
-namespace OpenRA.Mods.OpenE2140.Assets.Extractors;
-
-public static class AudioExtractor
+namespace OpenRA.Mods.OpenE2140.Assets.Extractors
 {
-	public static void Extract(ISoundFormat sound, string name)
+	public static class AudioExtractor
 	{
-		var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.wav");
-
-		Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
-
-		var stream = sound.GetPCMInputStream();
-
-		var data = stream.ReadAllBytes();
-		var dataSize = data.Length;
-
-		var channels = (ushort)sound.Channels;
-		var sampleBits = (ushort)sound.SampleBits;
-		var sampleRate = (uint)sound.SampleRate;
-
-		var format = (ushort)1;
-		var fmtSize = 16;
-
-		var blockAlign = (ushort)(channels * ((sampleBits + 7) / 8));
-		var bytesPerSecond = sound.SampleRate * blockAlign;
-
-		using var output = new MemoryStream();
-		var writer = new BinaryWriter(output);
-
-		writer.Write(Encoding.ASCII.GetBytes("RIFF"));
-		writer.Write(4 + 8 + fmtSize + 8 + dataSize);
-
+		public static void Extract(ISoundFormat sound, string name)
 		{
-			writer.Write(Encoding.ASCII.GetBytes("WAVE"));
-			writer.Write(Encoding.ASCII.GetBytes("fmt "));
-			writer.Write(fmtSize);
+			var outputFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OpenE2140Extracted", $"{name}.wav");
+
+			Directory.CreateDirectory(Path.GetDirectoryName(outputFile) ?? string.Empty);
+
+			var stream = sound.GetPCMInputStream();
+
+			var data = stream.ReadAllBytes();
+			var dataSize = data.Length;
+
+			var channels = (ushort)sound.Channels;
+			var sampleBits = (ushort)sound.SampleBits;
+			var sampleRate = (uint)sound.SampleRate;
+
+			var format = (ushort)1;
+			var fmtSize = 16;
+
+			var blockAlign = (ushort)(channels * ((sampleBits + 7) / 8));
+			var bytesPerSecond = sound.SampleRate * blockAlign;
+
+			using var output = new MemoryStream();
+			var writer = new BinaryWriter(output);
+
+			writer.Write(Encoding.ASCII.GetBytes("RIFF"));
+			writer.Write(4 + 8 + fmtSize + 8 + dataSize);
 
 			{
-				writer.Write(format);
-				writer.Write(channels);
-				writer.Write(sampleRate);
-				writer.Write(bytesPerSecond);
-				writer.Write(blockAlign);
-				writer.Write(sampleBits);
+				writer.Write(Encoding.ASCII.GetBytes("WAVE"));
+				writer.Write(Encoding.ASCII.GetBytes("fmt "));
+				writer.Write(fmtSize);
+
+				{
+					writer.Write(format);
+					writer.Write(channels);
+					writer.Write(sampleRate);
+					writer.Write(bytesPerSecond);
+					writer.Write(blockAlign);
+					writer.Write(sampleBits);
+				}
+
+				writer.Write(Encoding.ASCII.GetBytes("data"));
+				writer.Write(dataSize);
+
+				{
+					writer.Write(data);
+				}
 			}
 
-			writer.Write(Encoding.ASCII.GetBytes("data"));
-			writer.Write(dataSize);
-
-			{
-				writer.Write(data);
-			}
+			File.WriteAllBytes(outputFile, output.ToArray());
 		}
-
-		File.WriteAllBytes(outputFile, output.ToArray());
 	}
 }
+

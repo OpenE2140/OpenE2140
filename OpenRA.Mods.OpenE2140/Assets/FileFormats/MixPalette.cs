@@ -13,25 +13,27 @@
 
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.FileFormats;
-
-public class MixPalette
+namespace OpenRA.Mods.OpenE2140.Assets.FileFormats
 {
-	public readonly Color[] Colors = new Color[256];
-
-	public MixPalette(Stream stream)
+	public class MixPalette
 	{
-		for (var i = 0; i < this.Colors.Length; i++)
+		public readonly Color[] Colors = new Color[256];
+
+		public MixPalette(Stream stream)
 		{
-			var r = stream.ReadUInt8();
-			var g = stream.ReadUInt8();
-			var b = stream.ReadUInt8();
+			for (var i = 0; i < this.Colors.Length; i++)
+			{
+				var r = stream.ReadUInt8();
+				var g = stream.ReadUInt8();
+				var b = stream.ReadUInt8();
 
-			// Pixels in the color range of the color remapping.
-			if (r == b && r != 0)
-				r--;
+				// Pixels in the color range of the color remapping.
+				if (r == b && r != 0)
+					r--;
 
-			this.Colors[i] = Color.FromArgb(i == 0 ? 0x00 : 0xff, r, g, b);
+				this.Colors[i] = Color.FromArgb(i == 0 ? 0x00 : 0xff, r, g, b);
+			}
 		}
 	}
 }
+

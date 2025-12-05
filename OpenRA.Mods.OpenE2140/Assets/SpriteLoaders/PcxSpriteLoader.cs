@@ -17,42 +17,43 @@ using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders;
-
-public class PcxSpriteFrame : ISpriteFrame
+namespace OpenRA.Mods.OpenE2140.Assets.SpriteLoaders
 {
-	public SpriteFrameType Type => SpriteFrameType.Rgba32;
-	public Size Size { get; }
-	public Size FrameSize { get; }
-	public float2 Offset { get; }
-	public byte[] Data { get; }
-	public bool DisableExportPadding => true;
-
-	public PcxSpriteFrame(Size size, byte[] pixels)
+	public class PcxSpriteFrame : ISpriteFrame
 	{
-		this.Size = size;
-		this.FrameSize = size;
-		this.Offset = new float2(0, 0);
-		this.Data = pixels;
+		public SpriteFrameType Type => SpriteFrameType.Rgba32;
+		public Size Size { get; }
+		public Size FrameSize { get; }
+		public float2 Offset { get; }
+		public byte[] Data { get; }
+		public bool DisableExportPadding => true;
+
+		public PcxSpriteFrame(Size size, byte[] pixels)
+		{
+			this.Size = size;
+			this.FrameSize = size;
+			this.Offset = new float2(0, 0);
+			this.Data = pixels;
+		}
 	}
-}
 
-[UsedImplicitly]
-public class PcxSpriteLoader : ISpriteLoader
-{
-	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+	[UsedImplicitly]
+	public class PcxSpriteLoader : ISpriteLoader
 	{
-		frames = null;
-		metadata = null;
+		public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
+		{
+			frames = null;
+			metadata = null;
 
-		if (!filename.EndsWith(".pcx", StringComparison.OrdinalIgnoreCase))
-			return false;
+			if (!filename.EndsWith(".pcx", StringComparison.OrdinalIgnoreCase))
+				return false;
 
-		var pcx = new Pcx(stream);
-		var size = new Size(pcx.Width, pcx.Height);
+			var pcx = new Pcx(stream);
+			var size = new Size(pcx.Width, pcx.Height);
 
-		frames = [new PcxSpriteFrame(size, pcx.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray())];
+			frames = [new PcxSpriteFrame(size, pcx.Pixels.SelectMany(color => new[] { color.R, color.G, color.B, color.A }).ToArray())];
 
-		return true;
+			return true;
+		}
 	}
 }

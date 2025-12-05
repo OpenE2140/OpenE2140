@@ -11,12 +11,13 @@
 
 #endregion
 
-namespace OpenRA.Mods.OpenE2140.Extensions;
-
-public static class CVecExtensions
+namespace OpenRA.Mods.OpenE2140.Extensions
 {
-	public static WVec ToWVec(this CVec vec)
+	public static class CVecExtensions
 	{
-		return new WVec(vec.X, vec.Y, 0);
+		public static WVec ToWVec(this CVec vec)
+		{
+			return new WVec(vec.X, vec.Y, 0);
+		}
 	}
 }

@@ -13,40 +13,42 @@
 
 using JetBrains.Annotations;
 
-namespace OpenRA.Mods.OpenE2140.Assets.AudioLoaders;
-
-[UsedImplicitly]
-public class SmpLoader : ISoundLoader
+namespace OpenRA.Mods.OpenE2140.Assets.AudioLoaders
 {
-	private class SmpSoundFormat : ISoundFormat
+	[UsedImplicitly]
+	public class SmpLoader : ISoundLoader
 	{
-		public int Channels => 1;
-		public int SampleBits => 8;
-		public int SampleRate => 16000;
-		public float LengthInSeconds => (float)this.data.Length / this.SampleRate;
-
-		private readonly byte[] data;
-
-		public SmpSoundFormat(byte[] data)
+		private class SmpSoundFormat : ISoundFormat
 		{
-			this.data = data;
+			public int Channels => 1;
+			public int SampleBits => 8;
+			public int SampleRate => 16000;
+			public float LengthInSeconds => (float)this.data.Length / this.SampleRate;
+
+			private readonly byte[] data;
+
+			public SmpSoundFormat(byte[] data)
+			{
+				this.data = data;
+			}
+
+			public Stream GetPCMInputStream()
+			{
+				return new MemoryStream(this.data);
+			}
+
+			public void Dispose()
+			{
+				GC.SuppressFinalize(this);
+			}
 		}
 
-		public Stream GetPCMInputStream()
+		public bool TryParseSound(Stream stream, out ISoundFormat sound)
 		{
-			return new MemoryStream(this.data);
+			sound = new SmpSoundFormat(stream.ReadAllBytes());
+
+			return true;
 		}
-
-		public void Dispose()
-		{
-			GC.SuppressFinalize(this);
-		}
-	}
-
-	public bool TryParseSound(Stream stream, out ISoundFormat sound)
-	{
-		sound = new SmpSoundFormat(stream.ReadAllBytes());
-
-		return true;
 	}
 }
+

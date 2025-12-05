@@ -17,7 +17,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites.Move;
 using OpenRA.Mods.OpenE2140.Extensions;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Production;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Special Production trait that forces produced actors to move to specified waypoint before moving onto exit cell.")]

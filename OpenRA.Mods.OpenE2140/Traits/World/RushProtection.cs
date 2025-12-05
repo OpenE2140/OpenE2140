@@ -17,7 +17,7 @@ using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Traits.World;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [TraitLocation(SystemActors.World)]
 [Desc("Provides protection to players for a certain time since game start.")]
@@ -163,7 +163,7 @@ public class RushProtection : ITick, IWorldLoaded
 		this.protectionTime *= 60 * this.ticksPerSecond;
 	}
 
-	void IWorldLoaded.WorldLoaded(OpenRA.World world, OpenRA.Graphics.WorldRenderer wr)
+	void IWorldLoaded.WorldLoaded(World world, OpenRA.Graphics.WorldRenderer wr)
 	{
 		if (this.Info.RushProtectionRange <= WDist.Zero || this.Info.DamageToViolatingUnits <= 0
 			|| this.Info.TicksBetweenDamageToViolatingUnits <= 0 || this.protectionTime <= 0)
@@ -189,7 +189,7 @@ public class RushProtection : ITick, IWorldLoaded
 		this.IsEnabled = true;
 	}
 
-	private void InitializeTriggers(OpenRA.World world)
+	private void InitializeTriggers(World world)
 	{
 		this.ProtectedPlayers.Clear();
 
@@ -290,7 +290,7 @@ public class RushProtection : ITick, IWorldLoaded
 		}
 	}
 
-	private static void PlaySpeechFactionNotification(OpenRA.World world, string? notification)
+	private static void PlaySpeechFactionNotification(World world, string? notification)
 	{
 		var faction = world.LocalPlayer?.Faction.InternalName;
 		Game.Sound.PlayNotification(world.Map.Rules, world.LocalPlayer, "Speech", notification, faction);

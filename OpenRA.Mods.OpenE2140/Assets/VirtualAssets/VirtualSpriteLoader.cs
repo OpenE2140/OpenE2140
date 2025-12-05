@@ -16,54 +16,55 @@ using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
 
-namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets;
-
-[UsedImplicitly]
-public class VirtualSpriteLoader : ISpriteLoader
+namespace OpenRA.Mods.OpenE2140.Assets.VirtualAssets
 {
-	private class SpriteFrame : ISpriteFrame
+	[UsedImplicitly]
+	public class VirtualSpriteLoader : ISpriteLoader
 	{
-		public SpriteFrameType Type { get; }
-		public Size Size { get; }
-		public Size FrameSize { get; }
-		public float2 Offset { get; }
-		public byte[] Data { get; }
-		public bool DisableExportPadding => true;
-
-		public SpriteFrame(SpriteFrameType type, Size size, float2 offset, byte[] pixels)
+		private class SpriteFrame : ISpriteFrame
 		{
-			this.Type = type;
-			this.Size = size;
-			this.FrameSize = size;
-			this.Offset = offset;
-			this.Data = pixels;
+			public SpriteFrameType Type { get; }
+			public Size Size { get; }
+			public Size FrameSize { get; }
+			public float2 Offset { get; }
+			public byte[] Data { get; }
+			public bool DisableExportPadding => true;
+
+			public SpriteFrame(SpriteFrameType type, Size size, float2 offset, byte[] pixels)
+			{
+				this.Type = type;
+				this.Size = size;
+				this.FrameSize = size;
+				this.Offset = offset;
+				this.Data = pixels;
+			}
 		}
-	}
 
-	public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
-	{
-		if (stream is not VirtualAssetsStream virtualAssetsStream)
+		public bool TryParseSprite(Stream stream, string filename, [NotNullWhen(true)] out ISpriteFrame[]? frames, out TypeDictionary? metadata)
 		{
-			frames = null;
+			if (stream is not VirtualAssetsStream virtualAssetsStream)
+			{
+				frames = null;
+				metadata = null;
+
+				return false;
+			}
+
+			frames = VirtualAssetsBuilder.BuildSpriteSheet(virtualAssetsStream)
+				.Select(
+					frame => new SpriteFrame(
+						SpriteFrameType.Rgba32,
+						frame.Bounds.Size,
+						new float2(frame.Bounds.X + frame.Bounds.Width / 2f, frame.Bounds.Y + frame.Bounds.Height / 2f),
+						frame.Pixels
+					)
+				)
+				.Cast<ISpriteFrame>()
+				.ToArray();
+
 			metadata = null;
 
-			return false;
+			return true;
 		}
-
-		frames = VirtualAssetsBuilder.BuildSpriteSheet(virtualAssetsStream)
-			.Select(
-				frame => new SpriteFrame(
-					SpriteFrameType.Rgba32,
-					frame.Bounds.Size,
-					new float2(frame.Bounds.X + frame.Bounds.Width / 2f, frame.Bounds.Y + frame.Bounds.Height / 2f),
-					frame.Pixels
-				)
-			)
-			.Cast<ISpriteFrame>()
-			.ToArray();
-
-		metadata = null;
-
-		return true;
 	}
 }

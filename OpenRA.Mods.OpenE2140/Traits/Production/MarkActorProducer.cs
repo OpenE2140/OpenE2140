@@ -15,7 +15,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Production;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [Desc($"Marks all produced actors with the actor that produced them by adding {nameof(ActorProducerInit)} to {nameof(TypeDictionary)} the actor is created with.")]
 public class MarkActorProducerInfo : TraitInfo<MarkActorProducer>

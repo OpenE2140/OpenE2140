@@ -14,23 +14,24 @@
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Widgets;
 
-namespace OpenRA.Mods.OpenE2140.Widgets;
-
-[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
-public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
+namespace OpenRA.Mods.OpenE2140.Widgets
 {
-	public readonly string[] FieldsToOverride = ["TextColor"];
-
-	[FieldLoader.Require]
-	public readonly string Identifier = string.Empty;
-
-	[ObjectCreator.UseCtor]
-	public FactionLabelWidget(ModData modData, World world)
-		: base(modData, world)
+	[UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
+	public class FactionLabelWidget : WorldLabelWithTooltipWidget, IFactionSpecificWidget
 	{
+		public readonly string[] FieldsToOverride = ["TextColor"];
+
+		[FieldLoader.Require]
+		public readonly string Identifier = string.Empty;
+
+		[ObjectCreator.UseCtor]
+		public FactionLabelWidget(ModData modData, World world)
+			: base(modData, world)
+		{
+		}
+
+		string[] IFactionSpecificWidget.FieldsToOverride => this.FieldsToOverride;
+
+		string IFactionSpecificWidget.Identifier => this.Identifier;
 	}
-
-	string[] IFactionSpecificWidget.FieldsToOverride => this.FieldsToOverride;
-
-	string IFactionSpecificWidget.Identifier => this.Identifier;
 }

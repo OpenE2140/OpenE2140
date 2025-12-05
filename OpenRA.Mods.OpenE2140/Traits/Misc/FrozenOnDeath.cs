@@ -15,7 +15,7 @@ using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Misc;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor will be visible for a particular time when being killed.")]

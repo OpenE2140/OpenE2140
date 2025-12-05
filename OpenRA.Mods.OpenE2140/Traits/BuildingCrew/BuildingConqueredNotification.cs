@@ -13,7 +13,7 @@
 
 using OpenRA.Mods.Common.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 public class BuildingConqueredNotificationInfo : ConditionalTraitInfo
 {

@@ -17,11 +17,11 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Graphics;
-using OpenRA.Mods.OpenE2140.Traits.Rendering.SpriteCutOff;
+using OpenRA.Mods.OpenE2140.Traits.Render;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.Production;
+namespace OpenRA.Mods.OpenE2140.Traits;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("This actor has an elevator used for production.")]
