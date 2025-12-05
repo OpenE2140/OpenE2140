@@ -41,7 +41,6 @@ public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositio
 	private readonly Actor self;
 	private readonly Aircraft aircraft;
 	private readonly BodyOrientation body;
-	private readonly WithSpriteBody wsb;
 
 	public new AircraftCrateTransporterInfo Info;
 
@@ -53,7 +52,6 @@ public class AircraftCrateTransporter : CrateTransporter, IAircraftCenterPositio
 		this.self = init.Self;
 		this.aircraft = init.Self.Trait<Aircraft>();
 		this.body = init.Self.Trait<BodyOrientation>();
-		this.wsb = init.Self.Trait<WithSpriteBody>();
 	}
 
 	WVec IAircraftCenterPositionOffset.PositionOffset
