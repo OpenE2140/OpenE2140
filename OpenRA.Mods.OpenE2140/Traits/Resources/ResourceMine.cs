@@ -25,17 +25,14 @@ public class ResourceMineInfo : ConveyorBeltInfo
 	[Desc("The maximum range this actor can dig for resources.")]
 	public readonly int Range = 5;
 
-	[Desc("The amount of resources which can be mined per tick.")]
-	public readonly int Force = 5;
-
-	[Desc("The amount of resources which can be mined per tick when empty.")]
-	public readonly int EmptyForce = 1;
-
-	[Desc("If true, cells being mined are shuffled before each mining tick.")]
-	public readonly bool ShuffleMinableCells = false;
+	[Desc("If true, picking cells to mine resources from are shuffled before each mining tick.")]
+	public readonly bool ShuffleMinableCells;
 
 	[Desc("The amount of ticks between mining.")]
 	public readonly int Delay = 1;
+
+	[Desc("The amount of ticks between mining when the mine is empty.")]
+	public readonly int DelayWhenEmpty = 1;
 
 	[Desc("The amount of resources that will be put into a single crate.")]
 	public readonly int CrateSize = 500;
@@ -71,7 +68,7 @@ public class ResourceMine : ConveyorBelt
 
 	private readonly IResourceLayer? resourceLayer;
 
-	private int delay;
+	private int mineTick;
 	private ResourceCrate? crateBeingMined;
 	private ResourceCrate? availableCrate;
 
@@ -101,9 +98,13 @@ public class ResourceMine : ConveyorBelt
 		if (this.IsTraitDisabled || this.IsTraitPaused || this.resourceLayer == null)
 			return;
 
-		this.delay = (this.delay + 1) % (this.Info.Delay + 1);
+		if (this.crateBeingMined?.Resources >= this.Info.CrateSize && this.availableCrate != null)
+			return;
 
-		if (this.delay != 0)
+		var delay = this.IsDepleted ? this.Info.DelayWhenEmpty : this.Info.Delay;
+		this.mineTick = (this.mineTick + 1) % (delay + 1);
+
+		if (this.mineTick != 0)
 			return;
 
 		this.crateBeingMined ??= self.World.CreateActor(
@@ -113,9 +114,7 @@ public class ResourceMine : ConveyorBelt
 			)
 			.Trait<ResourceCrate>();
 
-		var minable = Math.Min(this.Info.Force, this.Info.CrateSize - this.crateBeingMined.Resources);
-
-		if (minable > 0)
+		if (this.crateBeingMined.Resources < this.Info.CrateSize)
 		{
 			var mined = 0;
 
@@ -125,8 +124,8 @@ public class ResourceMine : ConveyorBelt
 
 			foreach (var targetCell in minableCells)
 			{
-				mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, minable - mined);
-				if (mined >= minable)
+				mined += this.resourceLayer.RemoveResource(this.resourceLayer.GetResource(targetCell).Type, targetCell, 1);
+				if (mined >= 1)
 					break;
 			}
 
@@ -134,7 +133,7 @@ public class ResourceMine : ConveyorBelt
 			{
 				this.IsDepleted = true;
 
-				mined = this.Info.EmptyForce;
+				mined = 1;
 			}
 
 			this.crateBeingMined.Resources += mined;
@@ -174,4 +173,11 @@ public class ResourceMine : ConveyorBelt
 
 		return crate;
 	}
+
+	internal DebugInfo GetDebugInfo()
+	{
+		return new DebugInfo(this.mineTick, this.crateBeingMined, this.availableCrate);
+	}
+
+	internal record class DebugInfo(int MineTick, ResourceCrate? CrateBeingMined, ResourceCrate? AvailableCrate);
 }

@@ -148,7 +148,7 @@ World:
 				ResourceIndex: 1
 				TerrainType: Resources
 				AllowedTerrainTypes: Clear
-				MaxDensity: 10000
+				MaxDensity: 255
 	# Add support for rush protection
 	RushProtection:
 		RushProtectionTimeDefault: 0
@@ -183,7 +183,7 @@ EditorWorld:
 				ResourceIndex: 1
 				TerrainType: Resources
 				AllowedTerrainTypes: Clear
-				MaxDensity: 10000
+				MaxDensity: 255
 	# Custom rendering.
 	EditorActorCustomRenderLayer:
 	# Annotations for Water Base and Dock in the editor.
