@@ -19,7 +19,8 @@ using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Rendering;
 
-[Desc("Overlay for Rush Protection feature visualization. Attach this to the mpspawn actor.")]
+[TraitLocation(SystemActors.World)]
+[Desc("Overlay for Rush Protection feature visualization. Attach this to the world actor.")]
 public class RushProtectionOverlayInfo : TraitInfo
 {
 	[Desc("Color of the circle around the protected area")]
