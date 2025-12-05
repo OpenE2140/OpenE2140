@@ -20,6 +20,7 @@ shared_buildings_mine:
 	ResourceMineOverlay:
 		MiningAreaBorderColor: 8F8F00FF
 		MiningAreaBorderShape: Square # Square/Circle/None
+	# ResourceMineDebugVisualization:
 	
 	AircraftConveyorBeltDock@HeavyLifter:
 		RequiresCondition: !Transforming
