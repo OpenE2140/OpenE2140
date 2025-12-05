@@ -173,6 +173,3 @@ Rules:
 	World:
 		-SpawnStartingUnits:
 		-MapStartingLocations:
-	shared_buildings_mine:
-		ResourceMine:
-			Force: 500
