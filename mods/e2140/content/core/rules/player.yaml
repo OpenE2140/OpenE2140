@@ -8,7 +8,7 @@
 	# Resources
 	PlayerResources:
 		ResourceValues:
-			Resources: 500
+			Resources: 40
 
 # Ingame specific player setup.
 Player:

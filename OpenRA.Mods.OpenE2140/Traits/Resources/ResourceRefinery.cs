@@ -109,7 +109,11 @@ public class ResourceRefinery : ConveyorBelt, INotifyAddedToWorld, INotifyOwnerC
 
 		protected override void OnFirstRun(Actor self)
 		{
-			this.resourceRefinery.playerResources?.GiveCash(this.resourceCrate.Resources);
+			var resourceValue = this.resourceRefinery.playerResources?.Info.ResourceValues.FirstOrDefault().Value ?? 1;
+
+			var cash = this.resourceCrate.Resources * resourceValue;
+
+			this.resourceRefinery.playerResources?.GiveCash(cash);
 
 			self.TryGrantingCondition(ref this.resourceRefinery.crateProcessingToken, this.resourceRefinery.info.ProcessCrateCondition);
 		}

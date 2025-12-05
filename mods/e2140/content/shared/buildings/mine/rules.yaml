@@ -12,7 +12,9 @@ shared_buildings_mine:
 		EntryOffset: 1260
 		OutsideOffset: 1404,-554,0
 		ZOffset: 620
-		CrateSize: 200
+		CrateSize: 5
+		Delay: 20
+		DelayWhenEmpty: 50
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
 	ResourceMineOverlay:
