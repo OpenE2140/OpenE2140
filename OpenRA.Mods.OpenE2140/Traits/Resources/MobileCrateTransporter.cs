@@ -24,11 +24,11 @@ public class MobileCrateTransporterInfo : CrateTransporterInfo, Requires<MobileI
 	public readonly int DockSpeedModifier = 70;
 
 	[Desc("Sequence for crate movement during load animation")]
-	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), Required = true)]
+	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), true)]
 	public readonly CrateMoveSequence LoadSequence = null!;
 
 	[Desc("Sequence for crate movement during unload animation")]
-	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), Required = true)]
+	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), required: true)]
 	public readonly CrateMoveSequence UnloadSequence = null!;
 
 	private static object LoadLoadCrateMoveSequence(MiniYaml parentNode)

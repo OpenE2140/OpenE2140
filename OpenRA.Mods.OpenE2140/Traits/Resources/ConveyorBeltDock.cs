@@ -20,11 +20,11 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources;
 public class ConveyorBeltDockInfo : SharedDockHostInfo
 {
 	[Desc("Sequence for crate movement during load animation")]
-	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), Required = true)]
+	[FieldLoader.LoadUsing(nameof(LoadLoadCrateMoveSequence), required: true)]
 	public readonly CrateMoveSequence LoadSequence = null!;
 
 	[Desc("Sequence for crate movement during unload animation")]
-	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), Required = true)]
+	[FieldLoader.LoadUsing(nameof(LoadUnloadCrateMoveSequence), required: true)]
 	public readonly CrateMoveSequence UnloadSequence = null!;
 
 	private static object LoadLoadCrateMoveSequence(MiniYaml parentNode)
