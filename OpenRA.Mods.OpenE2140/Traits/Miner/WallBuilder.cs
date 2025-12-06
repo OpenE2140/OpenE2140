@@ -33,7 +33,7 @@ public class WallBuilderInfo : ConditionalTraitInfo, Requires<MobileInfo>
 	public readonly string Voice = "Action";
 
 	[Desc("Number of ticks it takes to build a wall.")]
-	public readonly int PreBuildDelay = 0;
+	public readonly int PreBuildDelay;
 
 	[Desc("Color to use for the target line when building walls.")]
 	public readonly Color TargetLineColor = Color.Crimson;

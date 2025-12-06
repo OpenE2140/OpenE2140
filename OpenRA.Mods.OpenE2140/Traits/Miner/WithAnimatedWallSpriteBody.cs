@@ -85,7 +85,7 @@ internal sealed class WithAnimatedWallSpriteBody : WithSpriteBody, INotifyRemove
 	private readonly WithAnimatedWallSpriteBodyInfo wallInfo;
 	private readonly bool createdByMap;
 
-	private int adjacent = 0;
+	private int adjacent;
 	private bool dirty = true;
 	private Construction? construction;
 

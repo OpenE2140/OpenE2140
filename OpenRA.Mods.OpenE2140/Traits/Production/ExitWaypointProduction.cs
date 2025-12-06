@@ -24,10 +24,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.Production;
 public class ExitWaypointProductionInfo : AnimatedExitProductionInfo
 {
 	[Desc($"Position along which produced actor needs to pass before it can move to exit cell. When specified, overrides value specified in {nameof(ExitWaypoint)}")]
-	public readonly WVec? ExitWaypointOffset = null;
+	public readonly WVec? ExitWaypointOffset;
 
 	[Desc("Cell along which produced actor needs to pass before it can move to exit cell. Cell is relative to cell, on which the produced actor is spawned.")]
-	public readonly CVec? ExitWaypoint = null;
+	public readonly CVec? ExitWaypoint;
 
 	public override object Create(ActorInitializer init)
 	{

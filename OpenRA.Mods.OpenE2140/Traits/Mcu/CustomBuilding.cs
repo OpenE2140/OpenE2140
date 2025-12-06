@@ -26,7 +26,7 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 
 	[Desc("Boolean expression defining condition of terrain types, where the the Building can be built.",
 		$"Currently requires that all terrain types used in the condition are also defined in the {nameof(BuildingInfo)}.{nameof(BuildingInfo.TerrainTypes)} field.")]
-	public readonly BooleanExpression? AllowedTerrainTypesCondition = null;
+	public readonly BooleanExpression? AllowedTerrainTypesCondition;
 
 	public virtual bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null)
 	{

@@ -31,7 +31,7 @@ public class CrateTransporterRoutineInfo : TraitInfo, Requires<CrateTransporterI
 	public readonly bool AssignTargetsAutomatically = true;
 
 	[Desc($"Delay start of the routine when created using {nameof(FreeActor)} trait. -1 means don't start routine at all.")]
-	public readonly int FreeActorDelayRoutine = 0;
+	public readonly int FreeActorDelayRoutine;
 
 	public override object Create(ActorInitializer init)
 	{

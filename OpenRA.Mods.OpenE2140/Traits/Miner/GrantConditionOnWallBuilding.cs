@@ -22,7 +22,7 @@ public class GrantConditionOnWallBuildingInfo : ConditionalTraitInfo, Requires<W
 	[FieldLoader.Require]
 	[GrantedConditionReference]
 	[Desc("Condition to grant.")]
-	public readonly string? Condition = null;
+	public readonly string? Condition;
 
 	public override object Create(ActorInitializer init)
 	{

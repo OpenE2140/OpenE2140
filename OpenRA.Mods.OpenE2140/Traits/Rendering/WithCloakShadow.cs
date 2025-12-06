@@ -36,7 +36,7 @@ public class WithCloakShadowInfo : TraitInfo, Requires<CloakInfo>, Requires<Rend
 	public readonly string[] TraitsToRenderWhenInvisibile = [nameof(WithMuzzleOverlay)];
 
 	[Desc("Render cloaked units with transparency effect instead of shadow effect.")]
-	public readonly bool TransparentAppearance = false;
+	public readonly bool TransparentAppearance;
 
 	[Desc("Render specified sequences RenderSprites using custom shadow alpha value. Key is sequence name, value is alpha. Default alpha is 1.0 (no cloak)")]
 	public readonly Dictionary<string, float?> OverrideShadowAlphaForSequences = [];

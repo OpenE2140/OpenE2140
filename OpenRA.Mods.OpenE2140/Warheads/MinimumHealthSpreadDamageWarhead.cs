@@ -23,7 +23,7 @@ namespace OpenRA.Mods.OpenE2140.Warheads;
 public class MinimumHealthSpreadDamageWarhead : SpreadDamageWarhead
 {
 	[Desc("Minimum health of victim below which this warhead won't do any damage to its victims.")]
-	public readonly int MinimumHealth = 0;
+	public readonly int MinimumHealth;
 
 	protected override void InflictDamage(Actor victim, Actor firedBy, HitShape shape, WarheadArgs args)
 	{

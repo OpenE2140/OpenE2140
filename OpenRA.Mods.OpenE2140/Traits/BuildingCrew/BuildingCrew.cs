@@ -25,7 +25,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.BuildingCrew;
 public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Requires<BuildingCrewEntranceInfo>
 {
 	[Desc("The maximum number of crew members this actor can have.")]
-	public readonly int MaxPopulation = 0;
+	public readonly int MaxPopulation;
 
 	[Desc("A list of actor types that are initially spawned into this actor.")]
 	public readonly string[] InitialUnits = [];
@@ -41,7 +41,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 	public readonly bool EjectOnSell = true;
 
 	[Desc("When this actor dies, should all of its crew members exit the building?")]
-	public readonly bool EjectOnDeath = false;
+	public readonly bool EjectOnDeath;
 
 	[Desc("Terrain types that this actor is allowed to eject actors onto. Leave empty for all terrain types.")]
 	public readonly HashSet<string> ExitTerrainTypes = [];
@@ -54,7 +54,7 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 	public readonly WAngle CrewMemberFacing = new(512);
 
 	[Desc("Delay (in ticks) before the first crew member exits.")]
-	public readonly int BeforeExitDelay = 0;
+	public readonly int BeforeExitDelay;
 
 	[Desc("Delay (in ticks) before continuing after a crew member exits.")]
 	public readonly int AfterExitDelay = 25;
@@ -69,12 +69,12 @@ public class BuildingCrewInfo : ConditionalTraitInfo, Requires<BuildingInfo>, Re
 
 	[GrantedConditionReference]
 	[Desc("The condition to grant to self while waiting for crew member to enter.")]
-	public readonly string? EnteringCondition = null;
+	public readonly string? EnteringCondition;
 
 	[GrantedConditionReference]
 	[Desc("The condition to grant to self while crew members are entering.",
 		"Condition can stack with multiple crew members.")]
-	public readonly string? EnteredCondition = null;
+	public readonly string? EnteredCondition;
 
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
 	[Desc("Conditions to grant when specified actors have entered inside the building.",

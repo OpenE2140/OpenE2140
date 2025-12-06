@@ -24,7 +24,7 @@ public class CustomRallyPointInfo : RallyPointInfo
 		"Override offset at which the first point of rally point path is drawn relative relative to the center of the producing actor.",
 		$"If not specified, {nameof(ExitInfo.SpawnOffset)} from {nameof(Exit)} trait with nearest {nameof(ExitInfo.ExitCell)} is used."
 	)]
-	public readonly WVec? LineInitialOffset = null;
+	public readonly WVec? LineInitialOffset;
 
 	public override object Create(ActorInitializer init)
 	{

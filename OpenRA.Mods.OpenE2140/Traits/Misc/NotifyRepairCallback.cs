@@ -28,7 +28,7 @@ public class NotifyRepairCallback : ITick, INotifyCreated
 {
 	private readonly RepairableBuilding repairBuilding;
 	private List<INotifyBuildingRepair>? notifiers;
-	private bool wasRepairing = false;
+	private bool wasRepairing;
 
 	public NotifyRepairCallback(Actor self)
 	{

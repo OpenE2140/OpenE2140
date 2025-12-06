@@ -39,26 +39,26 @@ public class LeavesTrackTrailsInfo : ConditionalTraitInfo, Requires<BodyOrientat
 	public readonly TrailType Type = TrailType.Cell;
 
 	[Desc("Should the trail be visible through fog.")]
-	public readonly bool VisibleThroughFog = false;
+	public readonly bool VisibleThroughFog;
 
 	[Desc("Display a trail while stationary.")]
-	public readonly bool TrailWhileStationary = false;
+	public readonly bool TrailWhileStationary;
 
 	[Desc("Delay between trail updates when stationary.")]
-	public readonly int StationaryInterval = 0;
+	public readonly int StationaryInterval;
 
 	[Desc("Display a trail while moving.")]
 	public readonly bool TrailWhileMoving = true;
 
 	[Desc("Instantly change facing.")]
-	public readonly bool ChangeFacingInstantly = false;
+	public readonly bool ChangeFacingInstantly;
 
 	[Desc("Delay between trail updates when moving.")]
-	public readonly int MovingInterval = 0;
+	public readonly int MovingInterval;
 
 	[Desc("Delay before first trail.",
 		"Use negative values for falling back to the *Interval values.")]
-	public readonly int StartDelay = 0;
+	public readonly int StartDelay;
 
 	[Desc("Trail spawn positions relative to actor position. (forward, right, up) triples")]
 	public readonly WVec[] Offsets = [WVec.Zero];

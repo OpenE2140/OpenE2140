@@ -28,7 +28,7 @@ public class FreezingBulletInfo : BulletInfo, IRulesetLoaded
 	public readonly int FreezeForTicks;
 
 	[Desc("When frozen, use this image instead of the default one.")]
-	public readonly string? FrozenImage = null;
+	public readonly string? FrozenImage;
 
 	[SequenceReference(nameof(FreezingBulletInfo.FrozenImage), allowNullImage: true)]
 	[Desc(

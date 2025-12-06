@@ -31,8 +31,8 @@ public class Transform : Activity
 	public string[] Sounds = [];
 	public string? Notification;
 	public string? TextNotification;
-	public int ForceHealthPercentage = 0;
-	public bool SkipMakeAnims = false;
+	public int ForceHealthPercentage;
+	public bool SkipMakeAnims;
 	public string? Faction;
 
 	public Transform(string toActor)

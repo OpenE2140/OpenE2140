@@ -37,7 +37,7 @@ public class BuildingConqueredNotificationInfo : ConditionalTraitInfo
 	public readonly string? LoseTextNotification;
 
 	[Desc("Specifies if LoseNotification is played with the voice of the new owners faction.")]
-	public readonly bool LoseNewOwnerVoice = false;
+	public readonly bool LoseNewOwnerVoice;
 
 	public override object Create(ActorInitializer init) { return new BuildingConqueredNotification(this); }
 }

@@ -28,7 +28,7 @@ public class WithCustomMuzzleOverlayInfo : ConditionalTraitInfo, Requires<Render
 		+ "Useful when muzzle sprites in assets are properly aligned with sprites having the actor's weapon. "
 		+ "When set to false, original behavior of WithMuzzleOverlay trait is used"
 	)]
-	public readonly bool ZeroOffset = false;
+	public readonly bool ZeroOffset;
 
 	public override object Create(ActorInitializer init) { return new WithCustomMuzzleOverlay(init.Self, this); }
 }

@@ -46,19 +46,19 @@ public class WaterBaseTransformsInfo : PausableConditionalTraitInfo, ITransforms
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when transforming.")]
-	public readonly string? TransformNotification = null;
+	public readonly string? TransformNotification;
 
 	[FluentReference(optional: true)]
 	[Desc("Text notification to display when transforming.")]
-	public readonly string? TransformTextNotification = null;
+	public readonly string? TransformTextNotification;
 
 	[NotificationReference("Speech")]
 	[Desc("Speech notification to play when the transformation is blocked.")]
-	public readonly string? NoTransformNotification = null;
+	public readonly string? NoTransformNotification;
 
 	[FluentReference(optional: true)]
 	[Desc("Text notification to display when the transformation is blocked.")]
-	public readonly string? NoTransformTextNotification = null;
+	public readonly string? NoTransformTextNotification;
 
 	[CursorReference]
 	[Desc("Cursor to display when able to (un)deploy the actor.")]

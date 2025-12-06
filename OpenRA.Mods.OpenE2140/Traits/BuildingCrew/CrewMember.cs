@@ -26,7 +26,7 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 {
 	[GrantedConditionReference]
 	[Desc("The condition to grant to when this actor entered a building.")]
-	public readonly string? BuildingCrewCondition = null;
+	public readonly string? BuildingCrewCondition;
 
 	[ActorReference(dictionaryReference: LintDictionaryReference.Keys)]
 	[Desc("Conditions to grant when this actor entered inside of a building.",
@@ -44,7 +44,7 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 
 	[ConsumedConditionReference]
 	[Desc("Boolean expression defining the condition under which the regular (non-force) enter cursor is disabled.")]
-	public readonly BooleanExpression? RequireForceMoveCondition = null;
+	public readonly BooleanExpression? RequireForceMoveCondition;
 
 	[CursorReference]
 	[Desc("Cursor to display when able to enter target actor.")]
@@ -55,7 +55,7 @@ public class CrewMemberInfo : TraitInfo, IObservesVariablesInfo
 	public readonly string EnterBlockedCursor = "enter-blocked";
 
 	[Desc("When exiting building, cancel all other activies.")]
-	public readonly bool CancelActivitiesOnExit = false;
+	public readonly bool CancelActivitiesOnExit;
 
 	public override object Create(ActorInitializer init) { return new CrewMember(init.Self, this); }
 }
