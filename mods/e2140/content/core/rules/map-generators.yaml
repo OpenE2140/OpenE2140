@@ -40,7 +40,7 @@
 						SpawnResourceSpawns: 0
 						SpawnReservation: 16
 						SpawnResourceBias: 1150
-						ResourcesPerPlayer: 100000000
+						ResourcesPerPlayer: 50000
 						OreUniformity: 250
 						OreClumpiness: 2
 						MaximumExpansionResourceSpawns: 0
@@ -329,19 +329,19 @@
 				Choice@Low:
 					Label: label-opene2140-map-generator-choice-resources-low
 					Settings:
-						ResourcesPerPlayer: 187500000
+						ResourcesPerPlayer: 187500
 				Choice@Medium:
 					Label: label-opene2140-map-generator-choice-resources-medium
 					Settings:
-						ResourcesPerPlayer: 375000000
+						ResourcesPerPlayer: 575000
 				Choice@High:
 					Label: label-opene2140-map-generator-choice-resources-high
 					Settings:
-						ResourcesPerPlayer: 562500000
+						ResourcesPerPlayer: 1062500
 				Choice@VeryHigh:
 					Label: label-opene2140-map-generator-choice-resources-very-high
 					Settings:
-						ResourcesPerPlayer: 750000000
+						ResourcesPerPlayer: 2150000
 				Choice@Full:
 					Label: label-opene2140-map-generator-choice-resources-full
 					Settings:
