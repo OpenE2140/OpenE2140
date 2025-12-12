@@ -19,6 +19,7 @@ using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -41,8 +42,9 @@ public abstract class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOpt
 	[Desc("Display order for the initial resources slider in the map editor.")]
 	public readonly int EditorInitialResourcesDisplayOrder = 3;
 
-	[Desc("Maximum amount of the initial resources slider in the map editor.")]
-	public readonly int EditorMaximumInitialResourcesDisplayOrder = 500;
+	[Desc("Maximum amount of the initial resources slider in the map editor. ",
+		"If not specified the value is taken from ResourceCrate trait of the actor specified in CrateActor")]
+	public readonly int? EditorMaximumInitialResources;
 
 	[SequenceReference]
 	[Desc("Displayed when docking to refinery.")]
@@ -98,7 +100,28 @@ public abstract class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOpt
 
 	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
 	{
-		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0, this.EditorMaximumInitialResourcesDisplayOrder, 20,
+		int maxInitialResources;
+		if (this.EditorMaximumInitialResources != null)
+		{
+			maxInitialResources = this.EditorMaximumInitialResources.Value;
+		}
+		else
+		{
+			if (world.Map.Rules.Actors.TryGetValue(this.CrateActor, out var crateActorInfo)
+				&& crateActorInfo.TryGetTrait<ResourceCrateInfo>(out var resourceCrateInfo))
+			{
+				maxInitialResources = resourceCrateInfo.EditorMaximumInitialResources;
+			}
+			else
+			{
+				// fallback
+				maxInitialResources = 5;
+			}
+		}
+
+		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0,
+			maxValue: maxInitialResources,
+			ticks: Math.Min(20, maxInitialResources),
 			actor =>
 			{
 				var init = actor.GetInitOrDefault<ResourcesInit>(this);

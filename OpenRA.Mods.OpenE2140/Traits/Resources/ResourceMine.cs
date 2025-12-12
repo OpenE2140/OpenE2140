@@ -29,13 +29,13 @@ public class ResourceMineInfo : ConveyorBeltInfo
 	public readonly bool ShuffleMinableCells;
 
 	[Desc("The amount of ticks between mining.")]
-	public readonly int Delay = 1;
+	public readonly int Delay = 20;
 
 	[Desc("The amount of ticks between mining when the mine is empty.")]
-	public readonly int DelayWhenEmpty = 1;
+	public readonly int DelayWhenEmpty = 50;
 
 	[Desc("The amount of resources that will be put into a single crate.")]
-	public readonly int CrateSize = 500;
+	public readonly int CrateSize = 5;
 
 	[Desc("The resource crate actor.")]
 	public readonly string CrateActor = "crate";

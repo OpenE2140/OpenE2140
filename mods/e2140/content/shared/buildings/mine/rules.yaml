@@ -14,7 +14,7 @@ shared_buildings_mine:
 		ZOffset: 620
 		CrateSize: 5
 		Delay: 20
-		DelayWhenEmpty: 50
+		DelayWhenEmpty: 300
 		RequiresCondition: !Transforming
 		PauseOnCondition: !Powered
 	ResourceMineOverlay:

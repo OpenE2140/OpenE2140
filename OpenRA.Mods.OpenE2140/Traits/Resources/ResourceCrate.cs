@@ -26,7 +26,7 @@ public class ResourceCrateInfo : TraitInfo, IEditorActorOptions, Requires<SubAct
 	public readonly int EditorInitialResourcesDisplayOrder = 4;
 
 	[Desc("Maximum amount of the initial resources slider in the map editor")]
-	public readonly int EditorMaximumInitialResources = 500;
+	public readonly int EditorMaximumInitialResources = 5;
 
 	public override object Create(ActorInitializer init)
 	{
@@ -35,7 +35,9 @@ public class ResourceCrateInfo : TraitInfo, IEditorActorOptions, Requires<SubAct
 
 	IEnumerable<EditorActorOption> IEditorActorOptions.ActorOptions(ActorInfo ai, OpenRA.World world)
 	{
-		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0, this.EditorMaximumInitialResources, 20,
+		yield return new EditorActorSlider("Resources", this.EditorInitialResourcesDisplayOrder, 0,
+			maxValue: this.EditorMaximumInitialResources,
+			ticks: Math.Min(20, this.EditorMaximumInitialResources),
 			actor =>
 			{
 				var init = actor.GetInitOrDefault<ResourcesInit>(this);

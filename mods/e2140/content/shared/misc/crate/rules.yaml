@@ -8,7 +8,7 @@ crate:
 	Health:
 		HP: 150
 	ResourceCrate:
-		EditorMaximumInitialResources: 200
+		EditorMaximumInitialResources: 5
 	Interactable:
 	Targetable:
 		TargetTypes: Ground
