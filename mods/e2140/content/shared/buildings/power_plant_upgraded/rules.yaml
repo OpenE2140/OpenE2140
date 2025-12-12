@@ -64,7 +64,7 @@ shared_buildings_power_plant_upgraded:
 		Sequence: addon
 		Offset: -550,1550,0
 		RequiresCondition: !Transforming && Powered
-	WithIdleOverlay@AddonB:	
+	WithIdleOverlay@AddonB:
 		Palette:
 		Sequence: addon
 		Offset: 800,1200,0

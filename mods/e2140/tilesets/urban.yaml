@@ -148,7 +148,7 @@ Templates:
 		Size: 1,1
 		PickAny: True
 		Categories: Terrain
-		Frames: 215, 216, 217, 218, 
+		Frames: 215, 216, 217, 218
 		Tiles:
 			0: Sand
 			1: Sand
@@ -1609,8 +1609,8 @@ Templates:
 # Multi Brush Definitions
 MultiBrushCollections:
 	Segmented:
-
-	# Sand tiles
+		
+		# Sand tiles
 		MultiBrush@61:
 			Template: 61
 			Segment:
@@ -1695,8 +1695,8 @@ MultiBrushCollections:
 				Inner: SandEdge
 				End: SandEdge.L
 				Points: 1,0, 1,1, 0,1
-
-# Shore tiles
+		
+		# Shore tiles
 		MultiBrush@107:
 			Template: 107
 			Segment:
@@ -1865,8 +1865,8 @@ MultiBrushCollections:
 				Inner: Shore
 				End: Shore.R
 				Points: 1,0
-
-# Road tiles
+		
+		# Road tiles
 		MultiBrush@206:
 			Template: 206
 			Segment:
@@ -2007,8 +2007,8 @@ MultiBrushCollections:
 				Inner: Road
 				End: Road.L
 				Points: 1,0, 0,0
-
-# Cliffs
+		
+		# Cliffs
 		MultiBrush@300:
 			Template: 300
 			Segment:
@@ -2179,7 +2179,7 @@ MultiBrushCollections:
 				Start: Rock.U
 				Inner: Rock
 				End: Rock.RU
-				Points: 1,2, 1,1, 1,0, 2,0 
+				Points: 1,2, 1,1, 1,0, 2,0
 		#MultiBrush@322partial:
 		#	Tile@3: 322,3
 		#		Offset: 0,0
@@ -2266,7 +2266,7 @@ MultiBrushCollections:
 				Start: Rock.L
 				Inner: Rock
 				End: Rock.U
-				Points: 2,1, 1,1, 1,0 
+				Points: 2,1, 1,1, 1,0
 		MultiBrush@334:
 			Template: 334
 			Segment:
@@ -2372,8 +2372,8 @@ MultiBrushCollections:
 				Inner: Rock
 				End: Rock.RU
 				Points: 0,0, 1,0
-
-	# Asphalt
+		
+		# Asphalt
 		MultiBrush@500:
 			Template: 500
 			Segment:
@@ -2426,7 +2426,7 @@ MultiBrushCollections:
 		MultiBrush@508reverse:
 			Template: 508
 			Segment:
-				Start: Clear.R 
+				Start: Clear.R
 				Inner: AsphaltRoad
 				End: AsphaltRoad.R
 				Points: 0,1, 1,1
@@ -2570,8 +2570,8 @@ MultiBrushCollections:
 				Inner: AsphaltRoad
 				End: AsphaltRoad.U
 				Points: 0,1, 1,1, 1,0
-
-# Extras
+	
+	# Extras
 	Trees:
 		MultiBrush@tree01:
 			Actor: neutral_tree01
