@@ -114,7 +114,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 
 	public IEnumerable<CPos> BuildingOccupiedFootprintCells { get; }
 
-	public IReadOnlyList<BuildingCrewEntrance> Entrances { get; private set; } = Array.Empty<BuildingCrewEntrance>();
+	public IReadOnlyList<BuildingCrewEntrance> Entrances { get; } = [];
 
 	public IReadOnlyCollection<Actor> CrewMembers => this.crewMembers;
 	public int MemberCount => this.crewMembers.Count;

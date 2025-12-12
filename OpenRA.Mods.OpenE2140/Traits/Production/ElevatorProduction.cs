@@ -145,15 +145,15 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer worldRenderer)
 	{
 		if (this.customState != CustomAnimationState.ElevatorUp)
-			return Array.Empty<IRenderable>();
+			return [];
 
 		if (this.productionInfo == null)
-			return Array.Empty<IRenderable>();
+			return [];
 
 		var renderActorPreview = this.productionInfo.Producee.TraitInfos<IRenderActorPreviewInfo>().FirstOrDefault();
 
 		if (renderActorPreview == null)
-			return Array.Empty<IRenderable>();
+			return [];
 
 		var previewInit = new TypeDictionary { new FacingInit(this.productionInfo.ExitInfo.Facing ?? new WAngle()) };
 
@@ -179,6 +179,6 @@ public class ElevatorProduction : AnimatedExitProduction, IRender
 
 	IEnumerable<Rectangle> IRender.ScreenBounds(Actor self, WorldRenderer worldRenderer)
 	{
-		return this.RenderSprites.ScreenBounds(self, worldRenderer) ?? Array.Empty<Rectangle>();
+		return this.RenderSprites.ScreenBounds(self, worldRenderer) ?? [];
 	}
 }
