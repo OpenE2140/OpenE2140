@@ -73,7 +73,7 @@
 	# Play sound notification on destruction
 	ActorLostNotification:
 		TextNotification: Unit lost.
-	# Unit is added to the observer stats.
+	# Units are added to the observer stats.
 	UpdatesPlayerStatistics:
 
 # Base for all buildings and towers.
@@ -204,6 +204,8 @@
 		TextNotification: Building captured.
 		LoseNotification: BuildingLost
 		LoseTextNotification: Building lost to enemy.
+	# Buildings are added to the observer stats.
+	UpdatesPlayerStatistics:
 
 # Base for all factories.
 ^CoreFactory:
@@ -314,6 +316,8 @@
 	DetectCloaked:
 		Range: 4c896
 		DetectionTypes: Cloak, UnderwaterCloak
+	# Towers are added to the observer stats.
+	UpdatesPlayerStatistics:
 
 # Base for all infantry.
 ^CoreInfantry:
