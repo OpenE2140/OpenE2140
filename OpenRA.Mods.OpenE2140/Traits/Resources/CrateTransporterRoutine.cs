@@ -39,7 +39,7 @@ public class CrateTransporterRoutineInfo : TraitInfo, Requires<CrateTransporterI
 	}
 }
 
-public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotifyActorProduced, INotifyCreated
+public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotifyActorProduced, INotifyCreated, ITick
 {
 	public readonly CrateTransporterRoutineInfo Info;
 
@@ -88,6 +88,15 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 		var currentActivity = self.CurrentActivity;
 		if (currentActivity == null || (currentActivity is MoveToDock or TransportCrates && currentActivity.NextActivity == null))
 			self.QueueActivity(new TransportCrates(self));
+	}
+
+	void ITick.Tick(Actor self)
+	{
+		if (this.CurrentMine?.Owner != self.Owner)
+			this.CurrentMine = null;
+
+		if (this.CurrentRefinery?.Owner != self.Owner)
+			this.CurrentRefinery = null;
 	}
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
