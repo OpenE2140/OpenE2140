@@ -45,7 +45,7 @@ Actors:
 		Owner: UCS_Player
 		Location: 38,31
 		Facing: 384
-		Resources: 500
+		Resources: 5
 	Actor_bantha2: shared_aircrafts_heavy_lifter
 		Owner: UCS_Player
 		Location: 30,26
@@ -61,7 +61,7 @@ Actors:
 	Actor_bantha5: shared_vehicles_bantha
 		Owner: UCS_Player
 		Location: 31,32
-		Resources: 500
+		Resources: 5
 		Facing: 192
 	Actor_bantha6: shared_aircrafts_heavy_lifter
 		Owner: UCS_Player
@@ -160,16 +160,11 @@ Actors:
 	Actor_crate: crate
 		Owner: UCS_Player
 		Location: 33,34
-		Resources: 500
+		Resources: 5
 		Facing: 306
 	Actor30: shared_mcu_water_base
 		Owner: UCS_Player
 		Facing: 384
 		Location: 35,54
 
-Rules:
-	Player:
-		-ConquestVictoryConditions:
-	World:
-		-SpawnStartingUnits:
-		-MapStartingLocations:
+Rules: rules.yaml
