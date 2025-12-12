@@ -92,10 +92,10 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 
 	void ITick.Tick(Actor self)
 	{
-		if (this.CurrentMine?.Owner != self.Owner)
+		if (this.CurrentMine != null && this.CurrentMine.Owner != self.Owner)
 			this.CurrentMine = null;
 
-		if (this.CurrentRefinery?.Owner != self.Owner)
+		if (this.CurrentRefinery != null && this.CurrentRefinery.Owner != self.Owner)
 			this.CurrentRefinery = null;
 	}
 
