@@ -1,5 +1,6 @@
 ucs_vehicles_tiger_assault:
-	Inherits: ^UcsTurretedMech
+	Inherits@1: ^UcsTurretedMech
+	Inherits@2: ^LeavesMechTracks
 	Tooltip:
 		Name: TIGER Assault
 	Valued:

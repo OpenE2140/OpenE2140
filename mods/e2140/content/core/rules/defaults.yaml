@@ -1047,6 +1047,23 @@
 	LeavesTrackTrails:
 		Sequences: track_extra_large
 
+^LeavesRaptorTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_raptor
+		SpawnAtLastPosition: false
+
+^LeavesMechTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_mech
+
+^LeavesBigMechTracks:
+	Inherits: ^LeavesTracks
+	LeavesTrackTrails:
+		Sequences: track_bigmech
+		SpawnAtLastPosition: false
+
 # Selectable priority for units.
 ^SelectableCombatUnit:
 	Selectable:

@@ -1,5 +1,6 @@
 ucs_vehicles_tiger_hellmaker:
-	Inherits: ^UcsTurretedMech
+	Inherits@1: ^UcsTurretedMech
+	Inherits@2: ^LeavesMechTracks
 	Tooltip:
 		Name: TIGER HellMaker
 	Valued:

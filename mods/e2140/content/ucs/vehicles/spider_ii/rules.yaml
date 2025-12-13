@@ -1,5 +1,6 @@
 ucs_vehicles_spider_ii:
-	Inherits: ^UcsTurretedMech
+	Inherits@1: ^UcsTurretedMech
+	Inherits@2: ^LeavesMechTracks
 	Tooltip:
 		Name: SPIDER II
 	Valued:

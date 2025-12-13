@@ -433,3 +433,18 @@ tracks:
 				Frames: 11
 				Offset: 0,10
 				FlipY: True
+	track_raptor:
+		Filename: content/core/assets/tracks_raptor.png
+		Facings: 1
+		InterpolatedFacings: 16
+		Offset: 0,6
+	track_mech:
+		Filename: content/core/assets/tracks_mech.png
+		Facings: 1
+		InterpolatedFacings: 16
+		Offset: 0,6
+	track_bigmech:
+		Filename: content/core/assets/tracks_bigmech.png
+		Facings: 1
+		InterpolatedFacings: 16
+		Offset: 0,6
