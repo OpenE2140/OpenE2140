@@ -1,6 +1,7 @@
 ucs_vehicles_big_mech:
 	Inherits@1: ^UcsMech
 	Inherits@2: ^CoreArmedSelf
+	Inherits@3: ^LeavesBigMechTracks
 	Tooltip:
 		Name: BIG MECH
 	Valued:
