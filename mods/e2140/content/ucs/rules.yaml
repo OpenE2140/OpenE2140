@@ -10,17 +10,23 @@ World:
 		ClassName: options-starting-units.mcu-only
 		BaseActor: ucs_mcu_prod_center
 		Factions: ucs
-	StartingUnits@ucs_default:
+	StartingUnits@ucs_economy:
+		Class: economy
+		ClassName: options-starting-units.economy
+		BaseActor: ucs_mcu_prod_center
+		SupportActors: shared_vehicles_bantha, shared_vehicles_bantha, shared_vehicles_bantha
+		Factions: ucs
+	StartingUnits@ucs_light:
 		Class: light
 		ClassName: options-starting-units.light-support
 		BaseActor: ucs_mcu_prod_center
-		SupportActors: ucs_vehicles_tiger_hellmaker, ucs_vehicles_atm_500, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one
+		SupportActors: ucs_vehicles_t100, ucs_vehicles_t100, ucs_vehicles_raptor_ad, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one, ucs_infantry_silver_one
 		Factions: ucs
 	StartingUnits@ucs_heavy:
 		Class: heavy
 		ClassName: options-starting-units.heavy-support
 		BaseActor: ucs_mcu_prod_center
-		SupportActors: ucs_vehicles_spider, ucs_vehicles_tiger_assault, ucs_vehicles_tiger_assault, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_one, ucs_infantry_silver_one
+		SupportActors: ucs_vehicles_tiger_assault, ucs_vehicles_spider, ucs_vehicles_spider_ii, ucs_vehicles_raptor_ad, ucs_vehicles_raptor_ad, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_r, ucs_infantry_silver_r
 		Factions: ucs
 
 # Base for all UCS mechs with turrets.

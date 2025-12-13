@@ -1,6 +1,7 @@
 ## World
 options-starting-units =
     .mcu-only = MCU only
+    .economy = Economy Support
     .light-support = Light Support
     .heavy-support = Heavy Support
 
