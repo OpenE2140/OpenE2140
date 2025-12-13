@@ -10,17 +10,23 @@ World:
 		ClassName: options-starting-units.mcu-only
 		BaseActor: ed_mcu_constr_center
 		Factions: ed
-	StartingUnits@ed_default:
+	StartingUnits@ed_economy:
+		Class: economy
+		ClassName: options-starting-units.economy
+		BaseActor: ed_mcu_constr_center
+		SupportActors: shared_vehicles_bantha, shared_vehicles_bantha, shared_vehicles_bantha
+		Factions: ed
+	StartingUnits@ed_light:
 		Class: light
 		ClassName: options-starting-units.light-support
 		BaseActor: ed_mcu_constr_center
-		SupportActors: ed_vehicles_st01b, ed_vehicles_btti, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01
+		SupportActors: ed_vehicles_btti, ed_vehicles_btti, ed_vehicles_st01b, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01, ed_infantry_a01
 		Factions: ed
 	StartingUnits@ed_heavy:
 		Class: heavy
 		ClassName: options-starting-units.heavy-support
 		BaseActor: ed_mcu_constr_center
-		SupportActors: ed_vehicles_ht30lr, ed_vehicles_st02, ed_vehicles_mt200, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02
+		SupportActors: ed_vehicles_ht30lr, ed_vehicles_ht33r, ed_vehicles_ht34j, ed_vehicles_mt200, ed_vehicles_mt200, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02, ed_infantry_a02
 		Factions: ed
 
 ^EdVehicle:
