@@ -98,10 +98,7 @@ public class AircraftCrateUnload : CrateUnloadBase
 
 	protected override void StartUndragging(Actor self)
 	{
-		if (this.IsCanceling)
-			this.QueueChild(new TakeOff(self));
-		else
-			this.QueueChild(new TimedAnimation(this.wsb, this.info.DockSequence, 10).WithChild(new TakeOff(self)));
+		this.QueueChild(new TimedAnimation(this.wsb, this.info.DockSequence, 10).WithChild(new TakeOff(self)));
 	}
 
 	public class LandOnGround : Activity

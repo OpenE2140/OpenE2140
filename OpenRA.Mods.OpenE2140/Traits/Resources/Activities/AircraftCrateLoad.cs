@@ -112,6 +112,9 @@ public class AircraftCrateLoad : CrateLoadBase
 
 	protected override void StartUndragging(Actor self)
 	{
+		if (this.IsCanceling)
+			this.wsb.CancelCustomAnimation(self);
+
 		if (this.NextActivity != null)
 			this.QueueChild(new TakeOff(self));
 	}

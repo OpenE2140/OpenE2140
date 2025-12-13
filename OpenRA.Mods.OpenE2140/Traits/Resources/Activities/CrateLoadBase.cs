@@ -133,15 +133,12 @@ public abstract class CrateLoadBase : Activity
 				{
 					this.dockInitiated = true;
 					this.StartDocking(self, () => this.state = this.state = LoadState.Loop);
-				}
-				else
-				{
-					this.ResourceCrate.UnreserveTransporter();
-					this.StartUndragging(self);
-					this.state = LoadState.Complete;
+
+					return false;
 				}
 
-				return false;
+				this.state = LoadState.Undrag;
+				goto case LoadState.Undrag;
 			}
 			case LoadState.Loop:
 			{
@@ -160,7 +157,7 @@ public abstract class CrateLoadBase : Activity
 				}
 				else
 				{
-					this.state = LoadState.Complete;
+					this.state = LoadState.Undrag;
 				}
 
 				return false;

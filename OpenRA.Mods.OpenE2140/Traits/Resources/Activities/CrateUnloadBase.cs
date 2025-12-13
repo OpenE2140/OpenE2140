@@ -88,15 +88,13 @@ public abstract class CrateUnloadBase : Activity
 				{
 					this.dockInitiated = true;
 					this.StartDocking(self, () => this.state = DockingState.Loop);
-				}
-				else
-				{
-					this.crateTransporter.UnloadComplete();
-					this.StartUndragging(self);
-					this.state = DockingState.Complete;
+					return false;
 				}
 
-				return false;
+				this.crateTransporter.UnloadComplete();
+
+				this.state = DockingState.Undrag;
+				goto case DockingState.Undrag;
 			}
 			case DockingState.Loop:
 			{
@@ -111,13 +109,12 @@ public abstract class CrateUnloadBase : Activity
 				if (this.dockInitiated)
 				{
 					this.StartUndocking(self, () => this.state = DockingState.Undrag);
-				}
-				else
-				{
-					this.state = DockingState.Complete;
+
+					return false;
 				}
 
-				return false;
+				this.state = DockingState.Undrag;
+				goto case DockingState.Undrag;
 			}
 			case DockingState.Undrag:
 			{

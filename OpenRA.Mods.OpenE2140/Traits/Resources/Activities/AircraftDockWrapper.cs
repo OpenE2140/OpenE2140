@@ -1,16 +1,22 @@
 ﻿using OpenRA.Activities;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Extensions;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public class AircraftDockWrapper : Activity
 {
 	private readonly Aircraft aircraft;
+	private readonly AircraftCrateTransporter aircraftCrateTransporter;
+	private readonly WithSpriteBody wsb;
 
 	public AircraftDockWrapper(Actor self)
 	{
 		this.aircraft = self.Trait<Aircraft>();
+		this.aircraftCrateTransporter = self.Trait<AircraftCrateTransporter>();
+		this.wsb = self.Trait<WithSpriteBody>();
 	}
 
 	public override bool Tick(Actor self)
@@ -28,6 +34,9 @@ public class AircraftDockWrapper : Activity
 
 		if (this.IsCanceling && this.aircraft.HasInfluence())
 		{
+			if (this.wsb.DefaultAnimation.IsPlayingSequence(this.aircraftCrateTransporter.Info.DockSequence))
+				this.wsb.CancelCustomAnimation(self);
+
 			if (dat > this.aircraft.LandAltitude && dat < this.aircraft.Info.CruiseAltitude)
 			{
 				this.QueueChild(new TakeOff(self));
