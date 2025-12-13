@@ -1,6 +1,7 @@
 ucs_vehicles_raptor_es:
 	Inherits@1: ^UcsMech
 	Inherits@2: ^CoreArmedSelf
+	Inherits@3: ^LeavesRaptorTracks
 	Tooltip:
 		Name: RAPTOR ES
 	Valued:
