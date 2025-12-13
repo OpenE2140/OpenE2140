@@ -27,6 +27,7 @@ shared_vehicles_hcum:
 		Armaments: arm
 		ArmOffset: 0,0,164
 		FacingTolerance: 0
+		Voice: Repair
 		PauseOnCondition: VehicleDisabled
 	Armament@REPAIR:
 		Name: arm
