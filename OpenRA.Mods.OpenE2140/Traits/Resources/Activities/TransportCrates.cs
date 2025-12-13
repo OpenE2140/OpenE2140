@@ -48,7 +48,7 @@ public class TransportCrates : Activity
 	public override bool Tick(Actor self)
 	{
 		if (this.IsCanceling || !this.routine.Info.AssignTargetsAutomatically)
-			return true;
+			return this.TickChild(self);
 
 		if (this.crateTransporter.DockingInProgress == true)
 			this.hasDocked = true;
