@@ -448,3 +448,7 @@ tracks:
 		Facings: 1
 		InterpolatedFacings: 16
 		Offset: 0,6
+	track_t100:
+		Filename: content/core/assets/tracks_t100.png
+		Facings: 1
+		InterpolatedFacings: 16
