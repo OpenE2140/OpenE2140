@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
@@ -32,7 +33,7 @@ public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 	{
 		var closeButton = widget.GetOrNull<ButtonWidget>("CLOSE_BUTTON");
 
-		var extractButton = (ButtonWidget)closeButton.Clone();
+		var extractButton = closeButton.Clone();
 		extractButton.Id = "EXTRACT_BUTTON";
 		extractButton.X = extractButton.X.Concat($" - {closeButton.Width} - 20");
 		extractButton.Text = "Extract";
@@ -46,13 +47,35 @@ public class AssetBrowserLogic : Common.Widgets.Logic.AssetBrowserLogic
 
 	private void Extract()
 	{
-		if (this.GetType().BaseType?.GetField("currentFilename", AssetBrowserLogic.Flags)?.GetValue(this) is not string currentFilename)
+		if (!this.TryGetFieldValue<string>("currentFilename", out var currentFilename))
 			return;
 
-		if (this.GetType().BaseType?.GetField("currentSprites", AssetBrowserLogic.Flags)?.GetValue(this) is Sprite[] sprites)
+		if (this.TryGetFieldValue<Sprite[]>("currentSprites", out var sprites))
 			SpriteExtractor.Extract(sprites, currentFilename);
 
-		if (this.GetType().BaseType?.GetField("currentSoundFormat", AssetBrowserLogic.Flags)?.GetValue(this) is ISoundFormat audio)
+		if (this.TryGetFieldValue<ISoundFormat>("currentSoundFormat", out var audio))
 			AudioExtractor.Extract(audio, currentFilename);
+
+		if (this.TryGetFieldValue<bool?>("isVideoLoaded", out var isVideoLoaded) && isVideoLoaded == true
+			&& this.TryGetFieldValue<VideoPlayerWidget>("player", out var videoPlayerWidget)
+			&& videoPlayerWidget.Video != null)
+			VideoExtractor.ExtractVideo(videoPlayerWidget.Video, currentFilename);
+	}
+
+	private bool TryGetFieldValue<T>(string fieldName, [NotNullWhen(true)] out T? value)
+	{
+		value = default;
+
+		var baseType = this.GetType().BaseType;
+		if (baseType == null)
+			return false;
+
+		if (baseType.GetField(fieldName, AssetBrowserLogic.Flags)?.GetValue(this) is T fieldValue)
+		{
+			value = fieldValue;
+			return true;
+		}
+
+		return false;
 	}
 }
