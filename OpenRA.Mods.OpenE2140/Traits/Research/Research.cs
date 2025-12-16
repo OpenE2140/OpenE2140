@@ -11,8 +11,11 @@
 
 #endregion
 
+using System.Diagnostics;
 using JetBrains.Annotations;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Research;
@@ -56,10 +59,15 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	private DeveloperMode? developerMode;
 	private readonly List<Researchable> researchables = [];
 
+	public IEnumerable<Technology> Technologies { get; private set; } = [];
+
 	public Researchable? Current { get; private set; }
 
 	public IEnumerable<string> ProvidesPrerequisites =>
 		this.researchables.Where(researchable => researchable.RemainingDuration == 0).Select(researchable => researchable.Info.Id);
+
+	public bool CanResearch => this.player.World.ActorsWithTrait<Researches>()
+		.Any(a => a.Actor.Owner == this.player && a.Trait.IsTraitEnabled());
 
 	public Research(ResearchInfo info, Actor self)
 	{
@@ -75,6 +83,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 		this.researchLimit = self.World.WorldActor.TraitOrDefault<ResearchLimit>();
 		this.developerMode = self.TraitOrDefault<DeveloperMode>();
 		this.researchables.AddRange(self.TraitsImplementing<Researchable>());
+		this.Technologies = this.researchables.Select(r => new Technology(self.Owner, r)).ToList();
 	}
 
 	public void ConquerResearch(Player oldOwner)
@@ -301,5 +310,51 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 					x.HasTraitInfo<BuildableInfo>() &&
 					x.TraitInfo<BuildableInfo>().Queue.Contains(category));
 		}
+	}
+}
+
+[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
+public class Technology
+{
+	private readonly Player player;
+	private readonly DeveloperMode? developerMode;
+	private readonly ResearchLimit? researchLimit;
+	private readonly Researchable researchable;
+
+	public bool IsResearched => this.researchable.RemainingDuration == 0;
+
+	public bool IsResearchable
+	{
+		get
+		{
+			if (this.researchable.RemainingDuration == 0)
+				return true;
+
+			if (this.developerMode?.AllTech == true)
+				return true;
+
+			if (this.researchLimit?.Limit < this.ResearchableInfo.Level)
+				return false;
+
+			if (this.ResearchableInfo.Factions.Length == 0 || this.ResearchableInfo.Factions.Contains(this.player.Faction.InternalName))
+				return true;
+
+			return false;
+		}
+	}
+
+	public ResearchableInfo ResearchableInfo => this.researchable.Info;
+
+	public Technology(Player player, Researchable researchable)
+	{
+		this.player = player;
+		this.developerMode = player.PlayerActor.TraitOrDefault<DeveloperMode>();
+		this.researchLimit = player.World.WorldActor.TraitOrDefault<ResearchLimit>();
+		this.researchable = researchable;
+	}
+
+	private string GetDebuggerDisplay()
+	{
+		return $"{this.researchable.Info.Id} (L{this.researchable.Info.Level}), Researchable: {this.IsResearchable}, Researched: {this.IsResearched}";
 	}
 }
