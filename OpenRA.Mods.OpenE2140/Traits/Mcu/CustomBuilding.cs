@@ -33,7 +33,7 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}
 
-	public virtual bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore)
+	public virtual bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore = null)
 	{
 		if (this.buildingInfo == null)
 			return false;
@@ -51,7 +51,7 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 			}
 
 			// Next check, if cells of the footprint contain valid terrain types
-			if (this.AllowedTerrainTypesCondition.Evaluate(footprintCellTypes) == false)
+			if (!this.AllowedTerrainTypesCondition.Evaluate(footprintCellTypes))
 				return false;
 		}
 

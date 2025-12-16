@@ -28,7 +28,7 @@ public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 		this.buildingInfo = actorInfo.TraitInfo<BuildingInfo>();
 	}
 
-	public bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore)
+	public bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore)
 	{
 		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, toIgnore);
 	}

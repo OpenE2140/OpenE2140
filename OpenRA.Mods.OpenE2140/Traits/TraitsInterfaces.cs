@@ -99,7 +99,7 @@ public interface ITransformsPreview
 
 public interface ICustomBuildingInfo : ITraitInfoInterface
 {
-	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor toIgnore);
+	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore = null);
 
 	bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null);
 
