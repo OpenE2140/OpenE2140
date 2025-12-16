@@ -124,6 +124,9 @@ csharp_space_after_keywords_in_control_flow_statements = true
 # Leave code block on single line.
 csharp_preserve_single_line_blocks = true
 
+# Don't indent case contents when block is used.
+csharp_indent_case_contents_when_block = false
+
 # Leave statements and member declarations on the same line.
 csharp_preserve_single_line_statements = true
 
