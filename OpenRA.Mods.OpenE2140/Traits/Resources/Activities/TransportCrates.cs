@@ -42,6 +42,7 @@ public class TransportCrates : Activity
 
 	private Actor? GetDockHostActor()
 	{
+		this.routine.UpdateTargets();
 		return this.crateTransporter.HasCrate ? this.routine.CurrentRefinery : this.routine.CurrentMine;
 	}
 

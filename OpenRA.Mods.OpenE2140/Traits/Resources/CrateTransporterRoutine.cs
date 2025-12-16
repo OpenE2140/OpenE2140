@@ -132,4 +132,13 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 		if (currentActivity == null || (currentActivity is ProductionExitMove or Fly && currentActivity.NextActivity == null))
 			self.QueueActivity(new TransportCrates(self));
 	}
+
+	internal void UpdateTargets()
+	{
+		if (this.CurrentMine?.IsInWorld == false || this.CurrentMine?.IsDead == true)
+			this.CurrentMine = null;
+
+		if (this.CurrentRefinery?.IsInWorld == false || this.CurrentRefinery?.IsDead == true)
+			this.CurrentRefinery = null;
+	}
 }
