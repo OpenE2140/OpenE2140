@@ -29,8 +29,11 @@ public static class McuUtils
 		return buildingActor != null;
 	}
 
-	public static ActorInfo? GetTargetBuilding(OpenRA.World world, ActorInfo mcuActor)
+	public static ActorInfo? GetTargetBuilding(OpenRA.World world, ActorInfo? mcuActor)
 	{
+		if (mcuActor == null)
+			return null;
+
 		if (!mcuActor.HasTraitInfo<McuInfo>())
 			throw new ArgumentException($"Actor '{mcuActor.Name}' does not have Mcu trait (maybe it's not an MCU?)", nameof(mcuActor));
 
