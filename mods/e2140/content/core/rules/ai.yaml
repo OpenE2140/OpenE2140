@@ -1,0 +1,64 @@
+Player:
+	ModularBot@TestAI:
+		Name: Test AI
+		Type: test
+	GrantConditionOnBotOwner@TestAI:
+		Condition: enable-test
+		Bots: test
+	BaseMcuBuilderBotModule@TestAI:
+		RequiresCondition: enable-test
+		MinimumExcessPower: 0
+		MaximumExcessPower: 500
+		ExcessPowerIncrement: 200
+		ExcessPowerIncreaseThreshold: 4
+		MaximumUndeployedMcu: 1
+		PowerTypes: shared_mcu_power_plant
+		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base
+		BuildingQueues: Building.ED, Building.UCS
+		DefenseQueues: Defense.ED, Defense.UCS
+
+		McuFractions:
+			ucs_mcu_prod_center: 1
+			ucs_mcu_pb_control: 1
+			ucs_mcu_robot_factory: 1
+			ucs_mcu_heavy_tech: 1
+			ed_mcu_bcc: 1
+			ed_mcu_bio_center: 1
+			ed_mcu_constr_center: 1
+			ed_mcu_tech_house: 1
+			shared_mcu_air_base: 1
+			shared_mcu_research_center: 1
+			ucs_mcu_pb_cannon: 1
+			ed_mcu_silo: 1
+
+			ed_mcu_an_center: 1
+			ed_mcu_defense_tower: 2
+			ed_mcu_defense_tower_upgraded: 2
+			ed_mcu_heavy_defense_tower: 6
+			ed_mcu_heavy_defense_tower_upgraded: 1
+			ed_mcu_pillbox: 1
+			ucs_mcu_little_eye: 2
+			ucs_mcu_little_eye_upgraded: 2
+			ucs_mcu_big_eye: 6
+			ucs_mcu_big_eye_upgraded: 1
+
+		McuLimits:
+			ucs_mcu_pb_cannon: 1
+			ed_mcu_silo: 1
+			ucs_mcu_sdi_defense: 1
+			ucs_mcu_robot_factory: 2
+			ed_mcu_bio_center: 2
+			ed_mcu_tech_house: 2
+			ucs_mcu_heavy_tech: 2
+			shared_mcu_air_base: 2
+			ed_mcu_constr_center: 2
+			ucs_mcu_prod_center: 2
+			shared_mcu_research_center: 1
+		McuDelays:
+			ucs_mcu_pb_control: 500
+			ed_mcu_bcc: 500
+
+	McuDeployManagerBotModule@TestAI:
+		RequiresCondition: enable-test
+		McuTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_refinery, shared_mcu_research_center, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
+		DefenseMcuTypes: ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
