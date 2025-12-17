@@ -42,6 +42,14 @@ public static class McuUtils
 		return targetActor != null ? world.Map.Rules.Actors[targetActor] : null;
 	}
 
+	public static ActorInfo? GetMcuActor(OpenRA.World world, string actorName)
+	{
+		if (!world.Map.Rules.Actors.TryGetValue(actorName, out var buildingActor))
+			throw new ArgumentException($"Actor '{actorName}' not found", nameof(actorName));
+
+		return GetMcuActor(world, buildingActor);
+	}
+
 	public static ActorInfo? GetMcuActor(OpenRA.World world, ActorInfo buildingActor)
 	{
 		if (!buildingActor.HasTraitInfo<BuildingInfo>())
