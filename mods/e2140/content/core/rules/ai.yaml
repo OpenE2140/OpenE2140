@@ -67,3 +67,66 @@ Player:
 	ResearchBotModule@TestAI:
 		RequiresCondition: enable-test
 
+	SquadManagerBotModule@test:
+		RequiresCondition: enable-test
+		SquadSize: 8
+		SquadSizeRandomBonus: 40
+		MinimumAttackForceDelay: 40
+		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter
+		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
+		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
+		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
+
+	UnitBuilderBotModule@TestAI:
+		RequiresCondition: enable-test
+		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
+		UnitsToBuild:
+			ed_infantry_a01: 1
+			ed_infantry_a02: 5
+			ed_infantry_a03: 5
+
+			ed_vehicles_btti: 1
+			ed_vehicles_st01b: 1
+			ed_vehicles_st02: 1
+			ed_vehicles_mt200: 5
+			ed_vehicles_mt201l: 5
+			ed_vehicles_ht30lr: 40
+			ed_vehicles_ht33r: 55
+			ed_vehicles_ht34j: 45
+			ed_vehicles_warhammer: 30
+
+			ed_aircrafts_storm: 1
+			ed_aircrafts_thunder: 1
+			ed_aircrafts_vtol: 1
+			ed_aircrafts_nemezis: 1
+
+			ucs_infantry_silver_one: 1
+			ucs_infantry_silver_r: 5
+			ucs_infantry_silver_max: 5
+
+			ucs_vehicles_t100: 1
+			ucs_vehicles_hellbike: 1
+			ucs_vehicles_tiger_hellmaker: 1
+			ucs_vehicles_raptor_es: 1
+			ucs_vehicles_raptor_ad: 2
+			ucs_vehicles_tiger_assault: 30
+			ucs_vehicles_spider: 40
+			ucs_vehicles_spider_ii: 50
+			ucs_vehicles_big_mech: 30
+
+			ucs_aircrafts_gargoil: 1
+			ucs_aircrafts_gargoil_ii: 1
+			ucs_aircrafts_hellwind: 1
+
+		UnitLimits:
+			ucs_aircrafts_gargoil: 3
+			ucs_aircrafts_gargoil_ii: 3
+			ucs_aircrafts_hellwind: 2
+
+			ed_aircrafts_storm: 3
+			ed_aircrafts_thunder: 3
+			ed_aircrafts_vtol: 3
+			ed_aircrafts_nemezis: 2
+
+	BuildingRepairBotModule:
+		RequiresCondition: enable-test
