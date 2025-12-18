@@ -126,6 +126,21 @@ public sealed class McuBuilderQueueManager : IDisposable
 			return PickMcuToBuild(powerMcu, powerBuilding);
 		}
 
+		// Bootstrap technology research by building Research Center
+		var researchCenterMcu = this.GetProducibleMcu(this.baseBuilder.Info.ResearchCenterTypes, buildableThings, 1);
+		var researchCenter = McuUtils.GetTargetBuilding(this.world, researchCenterMcu);
+		if (researchCenter != null && this.HasSufficientPowerForBuilding(researchCenter))
+		{
+			AIUtils.BotDebug("{0} decided to build {1}: Priority override (research center)", queue.Actor.Owner, researchCenterMcu?.Name);
+			return researchCenterMcu;
+		}
+
+		if (powerMcu != null && researchCenter != null && !this.HasSufficientPowerForBuilding(researchCenter))
+		{
+			AIUtils.BotDebug("{0} decided to build {1}: Priority override (would be low power)", queue.Actor.Owner, powerMcu.Name);
+			return powerMcu;
+		}
+
 		// Make sure that we can spend as fast as we are earning
 		if (this.baseBuilder.Info.NewProductionCashThreshold > 0 && this.playerResources.Cash > this.baseBuilder.Info.NewProductionCashThreshold
 			&& this.world.LocalRandom.Next(100) < this.baseBuilder.Info.NewProductionChance)

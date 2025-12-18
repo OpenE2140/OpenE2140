@@ -13,6 +13,7 @@ Player:
 		ExcessPowerIncreaseThreshold: 4
 		MaximumUndeployedMcu: 1
 		PowerTypes: shared_mcu_power_plant
+		ResearchCenterTypes: shared_mcu_research_center
 		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base
 		BuildingQueues: Building.ED, Building.UCS
 		DefenseQueues: Defense.ED, Defense.UCS

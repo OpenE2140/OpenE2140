@@ -29,6 +29,10 @@ public class BaseMcuBuilderBotModuleInfo : ConditionalTraitInfo
 	public readonly HashSet<string> PowerTypes = [];
 
 	[ActorReference]
+	[Desc("Tells the AI what building types are considered research centers.")]
+	public readonly HashSet<string> ResearchCenterTypes = [];
+
+	[ActorReference]
 	[Desc("Tells the AI what building types are considered production facilities.")]
 	public readonly HashSet<string> ProductionTypes = [];
 
