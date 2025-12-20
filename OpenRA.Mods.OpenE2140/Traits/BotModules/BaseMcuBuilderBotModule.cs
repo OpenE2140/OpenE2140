@@ -15,6 +15,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
+using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Traits;
 
@@ -96,10 +97,12 @@ public class BaseMcuBuilderBotModuleInfo : ConditionalTraitInfo
 	public override object Create(ActorInitializer init) { return new BaseMcuBuilderBotModule(init.Self, this); }
 }
 
-public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleInfo>, IBotTick, IBotRequestPauseUnitProduction, INotifyActorDisposing
+public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleInfo>, IBotTick, IBotRequestPauseUnitProduction, IBotMcuBaseBuilder, INotifyActorDisposing
 {
-	private readonly List<McuBuilderQueueManager> builders;
+	private readonly OpenRA.World world;
 	private readonly Player player;
+	private readonly List<McuBuilderQueueManager> builders;
+	private readonly List<string> queuedBuildRequests = [];
 
 	private PowerManagerBase? playerPower;
 	private PlayerResources? playerResources;
@@ -111,6 +114,7 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 	public BaseMcuBuilderBotModule(Actor self, BaseMcuBuilderBotModuleInfo info)
 		: base(info)
 	{
+		this.world = self.World;
 		this.player = self.Owner;
 		this.builders = new List<McuBuilderQueueManager>(info.BuildingQueues.Count + info.DefenseQueues.Count);
 	}
@@ -141,9 +145,10 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 			if (++builderIndex >= this.builders.Count)
 				builderIndex = 0;
 
-			--this.builders[builderIndex].WaitTicks;
+			var builder = this.builders[builderIndex];
+			--builder.WaitTicks;
 
-			var queues = AIUtils.FindQueuesByCategory(this.player)[this.builders[builderIndex].Category]
+			var queues = AIUtils.FindQueuesByCategory(this.player)[builder.Category]
 				.Where(q => q.AnyItemsToBuild())
 				.ToArray();
 			if (queues.Length != 0)
@@ -165,10 +170,81 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 					else
 						this.McusBeingProduced.Add(producing.Item, 1);
 				}
+
+				this.AddQueuedBuildings(builder, queues);
 			}
 		}
 
 		this.builders[this.currentBuilderIndex].Tick(bot);
+	}
+
+	private void AddQueuedBuildings(McuBuilderQueueManager builder, ProductionQueue[] queues)
+	{
+		var queue = queues.FirstOrDefault(q => q.Info.Type == builder.Category);
+
+		// Check, if it's even possible to queue specified actor in current builder
+		if (queue == null)
+			return;
+
+		for (var i = this.queuedBuildRequests.Count - 1; i >= 0; i--)
+		{
+			var actorName = this.queuedBuildRequests[i];
+			if (builder.Category != queue.Info.Type)
+				continue;
+
+			var mcuActor = this.GetMcuFromActor(actorName);
+			if (mcuActor == null)
+				continue;
+
+			var buildableInfo = mcuActor.TraitInfoOrDefault<BuildableInfo>();
+			if (buildableInfo == null)
+				continue;
+
+			if (!buildableInfo.Queue.Contains(builder.Category))
+				continue;
+
+			this.queuedBuildRequests.RemoveAt(i);
+
+			builder.RequestBuildingProduction(mcuActor.Name);
+		}
+	}
+
+	void IBotMcuBaseBuilder.RequestBuildingProduction(IBot bot, string actorName)
+	{
+		this.queuedBuildRequests.Add(actorName);
+	}
+
+	int IBotMcuBaseBuilder.RequestedProductionCount(IBot bot, string actorName)
+	{
+		var mcuActor = this.GetMcuFromActor(actorName);
+		if (mcuActor == null)
+			return 0;
+
+		var buildableInfo = mcuActor.TraitInfoOrDefault<BuildableInfo>();
+		if (buildableInfo == null)
+			return 0;
+
+		var queuedActorsInBuilders = buildableInfo
+			.Queue
+			.Sum(category => this.builders.FirstOrDefault(m => m.Category == category)?.RequestedProductionCount(actorName) ?? 0);
+
+		var queuedActorsInModule = this.queuedBuildRequests.Count(a => a == actorName);
+
+		return queuedActorsInBuilders + queuedActorsInModule;
+	}
+
+	int IBotMcuBaseBuilder.InProductionCount(IBot bot, string actor)
+	{
+		return this.McusBeingProduced.Where(p => p.Key == actor).Sum(p => p.Value);
+	}
+
+	private ActorInfo? GetMcuFromActor(string actorName)
+	{
+		var actorInfo = this.world.Map.Rules.Actors[actorName];
+		if (actorInfo.HasTraitInfo<McuInfo>())
+			return actorInfo;
+
+		return McuUtils.GetMcuActor(this.world, actorInfo);
 	}
 
 	void INotifyActorDisposing.Disposing(Actor self)

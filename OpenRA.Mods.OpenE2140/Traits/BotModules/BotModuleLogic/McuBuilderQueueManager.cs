@@ -38,6 +38,8 @@ public sealed class McuBuilderQueueManager : IDisposable
 	private readonly PowerManagerBase playerPower;
 	private readonly PlayerResources playerResources;
 
+	private readonly List<string> queuedBuildRequests = [];
+
 	private readonly OwnerAndTraitIndex<BuildingInfo> playerBuildings;
 	private readonly OwnerAndTraitIndex<McuInfo> playerMcus;
 
@@ -60,6 +62,19 @@ public sealed class McuBuilderQueueManager : IDisposable
 		this.minimumExcessPower = baseBuilder.Info.MinimumExcessPower;
 		this.playerBuildings = new OwnerAndTraitIndex<BuildingInfo>(this.world, [], this.player);
 		this.playerMcus = new OwnerAndTraitIndex<McuInfo>(this.world, [], this.player);
+	}
+
+	internal void RequestBuildingProduction(string actorName)
+	{
+		this.queuedBuildRequests.Add(actorName);
+	}
+
+	internal int RequestedProductionCount(string actorName)
+	{
+		var requestedCount = this.queuedBuildRequests.Count(t => t == actorName);
+		var beingProducedCount = this.baseBuilder.McusBeingProduced.TryGetValue(actorName, out var num) ? num : 0;
+
+		return requestedCount + beingProducedCount;
 	}
 
 	public void Tick(IBot bot)
@@ -124,6 +139,31 @@ public sealed class McuBuilderQueueManager : IDisposable
 		if (this.playerPower != null && this.playerPower.Power <= this.minimumExcessPower)
 		{
 			return PickMcuToBuild(powerMcu, powerBuilding);
+		}
+
+		// Try fulfilling any build requests
+		// TODO: should there be a way to override/skip requests? UnitBuilderBotModule fulfills all requests to build a unit.
+		var requestedActor = this.queuedBuildRequests.FirstOrDefault();
+		if (requestedActor != null)
+		{
+			// TODO: should consumers be notified, if the request has been denied/aborted?
+			// (or should they just try queuing desired building for N-times and then just give up?)
+
+			this.queuedBuildRequests.Remove(requestedActor);
+
+			// Check, if it's even possible to build requested building MCU.
+			var requestedMcu = this.GetProducibleMcu([requestedActor], buildableThings);
+			if (requestedMcu != null)
+			{
+				var requestedBuilding = McuUtils.GetTargetBuilding(this.world, requestedMcu);
+				if (requestedBuilding != null && this.HasSufficientPowerForBuilding(requestedBuilding))
+				{
+					AIUtils.BotDebug("{0} decided to build {1}: External request", queue.Actor.Owner, requestedBuilding.Name);
+					return requestedMcu;
+				}
+
+				return PickMcuToBuild(powerMcu, powerBuilding, "External request / Priority override (would be low power)");
+			}
 		}
 
 		// Bootstrap technology research by building Research Center
