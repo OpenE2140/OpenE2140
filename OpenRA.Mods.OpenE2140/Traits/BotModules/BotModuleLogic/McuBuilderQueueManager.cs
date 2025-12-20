@@ -18,7 +18,6 @@ using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Power;
 using OpenRA.Mods.OpenE2140.Utils;
 using OpenRA.Traits;
-using Transforms = OpenRA.Mods.OpenE2140.Traits.Mcu.Transforms;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 
@@ -33,6 +32,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 	public int WaitTicks = 2;
 
 	private readonly BaseMcuBuilderBotModule baseBuilder;
+	private readonly IBotEconomyManager economyManager;
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly PowerManagerBase playerPower;
@@ -48,12 +48,14 @@ public sealed class McuBuilderQueueManager : IDisposable
 
 	public McuBuilderQueueManager(
 		BaseMcuBuilderBotModule baseBuilder,
+		IBotEconomyManager economyManager,
 		string category,
 		Player player,
 		PowerManagerBase powerManager,
 		PlayerResources playerResources)
 	{
 		this.baseBuilder = baseBuilder;
+		this.economyManager = economyManager;
 		this.Category = category;
 		this.world = player.World;
 		this.player = player;
@@ -166,6 +168,12 @@ public sealed class McuBuilderQueueManager : IDisposable
 			}
 		}
 
+		// Next is to build up a strong economy: ask economy manager, if we can continue
+		if (!this.economyManager.HasSufficientEconomy())
+		{
+			return null;
+		}
+
 		// Bootstrap technology research by building Research Center
 		var researchCenterMcu = this.GetProducibleMcu(this.baseBuilder.Info.ResearchCenterTypes, buildableThings, 1);
 		var researchCenter = McuUtils.GetTargetBuilding(this.world, researchCenterMcu);
@@ -261,6 +269,15 @@ public sealed class McuBuilderQueueManager : IDisposable
 			// Waiting for the MCU to deploy
 			return null;
 		}
+	}
+
+	private ActorInfo? GetMcuFromActor(string actorName)
+	{
+		var actorInfo = this.world.Map.Rules.Actors[actorName];
+		if (actorInfo.HasTraitInfo<McuInfo>())
+			return actorInfo;
+
+		return McuUtils.GetMcuActor(this.world, actorInfo);
 	}
 
 	private ActorInfo? GetProducibleMcu(HashSet<string> actors, IEnumerable<ActorInfo> buildables, int buildAtLeast = 0)

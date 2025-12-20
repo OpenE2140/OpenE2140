@@ -106,6 +106,7 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 
 	private PowerManagerBase? playerPower;
 	private PlayerResources? playerResources;
+	private IBotEconomyManager? economyManager;
 	private int currentBuilderIndex;
 
 	// Actor type => ActorCount.
@@ -123,11 +124,12 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 	{
 		this.playerPower = self.Owner.PlayerActor.TraitOrDefault<PowerManagerBase>();
 		this.playerResources = self.Owner.PlayerActor.Trait<PlayerResources>();
+		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<IBotEconomyManager>();
 
 		var queues = this.Info.BuildingQueues
 			.Concat(this.Info.DefenseQueues);
 		foreach (var queue in queues)
-			this.builders.Add(new McuBuilderQueueManager(this, queue, this.player, this.playerPower, this.playerResources));
+			this.builders.Add(new McuBuilderQueueManager(this, this.economyManager, queue, this.player, this.playerPower, this.playerResources));
 	}
 
 	bool IBotRequestPauseUnitProduction.PauseUnitProduction => this.IsTraitDisabled;
