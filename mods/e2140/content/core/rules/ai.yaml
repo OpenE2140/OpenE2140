@@ -5,6 +5,13 @@ Player:
 	GrantConditionOnBotOwner@TestAI:
 		Condition: enable-test
 		Bots: test
+	
+	EconomyManagerBotModule@TestAI:
+		RequiresCondition: enable-test
+		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
+		RefineryTypes: shared_buildings_refinery
+		MineTypes: shared_buildings_mine
+	
 	BaseMcuBuilderBotModule@TestAI:
 		RequiresCondition: enable-test
 		MinimumExcessPower: 0

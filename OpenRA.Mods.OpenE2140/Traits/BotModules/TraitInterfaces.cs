@@ -2,6 +2,11 @@
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 {
+	public interface IBotEconomyManager
+	{
+		bool HasSufficientEconomy();
+	}
+
 	public interface IBotMcuBaseBuilder
 	{
 		void RequestBuildingProduction(IBot bot, string actor);
