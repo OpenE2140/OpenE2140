@@ -700,6 +700,7 @@
 
 # Grouped traits for standard turret behavior.
 ^CoreTurret:
+	Inherits: ^AutoTargetAll
 	# General turret behavior.
 	Turreted:
 		TurnSpeed: 30
@@ -708,11 +709,6 @@
 	# If it has a turret, it should attack with its turret only, meaning it can aim and fire with it while moving.
 	AttackTurreted:
 		Voice: Attack
-	# Auto target enemies nearby.
-	AutoTarget:
-	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship, Defense
-		InvalidTargets: Structure
 
 # Grouped traits for standard vehicle turret behavior.
 ^CoreVehicleTurret:
@@ -723,28 +719,20 @@
 
 # Grouped traits for standard non-turreted behavior.
 ^CoreArmedSelf:
+	Inherits: ^AutoTargetAllAssaultMove
 	# Units without a turret have to stop and aim at a target to shoot.
 	AttackFrontal:
 		FacingTolerance: 0
 		Voice: Attack
 		PauseOnCondition: VehicleDisabled
-	# Auto target enemies nearby.
-	AutoTarget:
-	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship, Defense
-		InvalidTargets: Structure
 
 # Grouped traits for standard infantry attack behavior.
 ^CoreArmedSelfInfantry:
+	Inherits: ^AutoTargetAllAssaultMove
 	# Units without a turret have to stop and aim at a target to shoot.
 	AttackFrontal:
 		FacingTolerance: 15
 		Voice: Attack
-	# Auto target enemies nearby.
-	AutoTarget:
-	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship, Defense
-		InvalidTargets: Structure
 	# Grants condition when shooting.
 	GrantConditionOnAttack:
 		Condition: shooting
@@ -762,17 +750,13 @@
 
 # Grouped traits for standard non-turreted behavior.
 ^CoreAttackAircraft:
+	Inherits: ^AutoTargetAllAssaultMove
 	# Allows aircrafts attacking strafe run way.
 	AttackAircraft:
 		FacingTolerance: 80
 		Voice: Attack
 		PersistentTargeting: false
 		OpportunityFire: false
-	# Auto target enemies nearby.
-	AutoTarget:
-	AutoTargetPriority:
-		ValidTargets: Ground, Water, Air, Ship, Defense
-		InvalidTargets: Structure
 
 # Units can be cloaked by SHADOW unit.
 ^Cloakable:
@@ -1084,3 +1068,35 @@
 	Selectable:
 		Priority: 18
 		PriorityModifiers: Ctrl, Alt
+
+# Auto target enemies nearby.
+^AutoTargetAll:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+		MinimumScanTimeInterval: 5
+		MaximumScanTimeInterval: 15
+	AutoTargetPriority@Default:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: Infantry, Vehicle, Air, Ship, Defense
+		InvalidTargets: NoAutoAttack
+	AutoTargetPriority@AttackAnythingHigherPriority:
+		RequiresCondition: stance-attackanything
+		ValidTargets: Ground, Infantry, Vehicle, Air, Ship, Defense, Structure
+		InvalidTargets:
+		Priority: 2
+	AutoTargetPriority@AttackAnythingLowerPriority:
+		RequiresCondition: stance-attackanything
+		ValidTargets: NoAutoAttack
+		InvalidTargets:
+		Priority: 1
+
+^AutoTargetAllAssaultMove:
+	Inherits: ^AutoTargetAll
+	AutoTargetPriority@Default:
+		RequiresCondition: !stance-attackanything && !assault-move
+	AutoTargetPriority@AttackAnythingHigherPriority:
+		RequiresCondition: stance-attackanything || assault-move
+	AutoTargetPriority@AttackAnythingLowerPriority:
+		RequiresCondition: stance-attackanything || assault-move
+	AttackMove:
+		AssaultMoveCondition: assault-move
