@@ -137,3 +137,28 @@ Player:
 
 	BuildingRepairBotModule:
 		RequiresCondition: enable-test
+
+	SupportPowerBotModule:
+		RequiresCondition: enable-test
+		Decisions:
+			nukepower:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 40
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 15
+					TargetMetric: Health
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Air, Ground, Water
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@3:
+					Against: Ally
+					Types: Air, Ground
+					Attractiveness: -100
+					TargetMetric: Health
+					CheckRadius: 7c0
