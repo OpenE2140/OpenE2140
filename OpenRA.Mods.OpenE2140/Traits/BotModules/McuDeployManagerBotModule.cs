@@ -13,11 +13,14 @@
 
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Traits;
 using TransformsInfo = OpenRA.Mods.OpenE2140.Traits.Mcu.TransformsInfo;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules;
+
+public enum BuildingType { Building, Defense, Mine, Refinery }
 
 [TraitLocation(SystemActors.Player)]
 [Desc("Manages AI MCUs.")]
@@ -26,8 +29,29 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 	[Desc("Actor types that are considered MCUs, which deploy into normal buildings.")]
 	public readonly HashSet<string> McuTypes = [];
 
+	[Desc("Actor types that are considered construction buildings (base builders).")]
+	public readonly HashSet<string> ConstructionBuildingTypes = [];
+
 	[Desc("Actor types that are considered MCUs, which deploy into defense buildings.")]
 	public readonly HashSet<string> DefenseMcuTypes = [];
+
+	[Desc("Minimum distance in cells from center of the base when checking for building placement.")]
+	public readonly int MinBaseRadius = 2;
+
+	[Desc("Radius in cells around the center of the base to expand.")]
+	public readonly int MaxBaseRadius = 20;
+
+	[Desc("Range at which to build defensive structures inside the inner defense circle (from center of the base).")]
+	public readonly int InnerDefenseRadius = 5;
+
+	[Desc("Range at which to build defensive structures inside the outer defense circle (from center of the base).")]
+	public readonly int OuterDefenseRadius = 15;
+
+	[Desc("Maximum range at which to build defensive structures (from center of the base).")]
+	public readonly int MaximumDefenseRadius = 20;
+
+	[Desc("Chance that the AI will place the defenses in the direction of the closest enemy building.")]
+	public readonly int PlaceDefenseTowardsEnemyChance = 100;
 
 	[Desc("Delay (in ticks) between looking for and giving out orders to new MCUs.")]
 	public readonly int ScanForNewMcuInterval = 30;
@@ -40,9 +64,18 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 
 	[Desc("Maximum distance in cells from center of the base when checking for MCU deployment location.",
 		"When successful find a location, move radius will become MinMoveRadius.")]
-	public readonly int MaxMoveRadius = 20;
+	public readonly int MaxMoveRadius = 15;
 
 	public override object Create(ActorInitializer init) { return new McuDeployManagerBotModule(init.Self, this); }
+
+	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
+	{
+		var nonExistingActors = this.ConstructionBuildingTypes.Where(a => !rules.Actors.ContainsKey(a)).ToList();
+		if (nonExistingActors.Count > 0)
+			throw new YamlException($"Unknown actors: {string.Join(", ", nonExistingActors)}");
+
+		base.RulesetLoaded(rules, ai);
+	}
 }
 
 public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick, IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack
@@ -50,10 +83,12 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<McuInfo> playerMcus;
+	private readonly ActorIndex.OwnerAndNamesAndTrait<BuildingInfo> constructionBuildings;
 
 	private IBotPositionsUpdated[] notifyPositionsUpdated = [];
-	private CPos initialBaseCenter;
-	private CPos defenseCenter;
+
+	private CPos? initialBaseCenter;
+	private CPos? defenseCenter;
 
 	private int scanInterval;
 	private int moveRadius;
@@ -67,6 +102,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		this.moveRadius = info.MinMoveRadius;
 
 		this.playerMcus = new ActorIndex.OwnerAndNamesAndTrait<McuInfo>(this.world, this.Info.McuTypes, this.player);
+		this.constructionBuildings = new ActorIndex.OwnerAndNamesAndTrait<BuildingInfo>(this.world, this.Info.ConstructionBuildingTypes, this.player);
 	}
 
 	protected override void Created(Actor self)
@@ -99,6 +135,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	{
 		if (this.firstTick)
 		{
+			this.initialBaseCenter = this.constructionBuildings.Alive().FirstOrDefault()?.Location;
+
 			this.DeployMcus(bot, false);
 			this.firstTick = false;
 		}
@@ -126,7 +164,12 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		{
 			var transformsInfo = mcu.Info.TraitInfo<TransformsInfo>();
 			var buildingInfo = McuUtils.GetTargetBuilding(this.world, mcu.Info)!;
-			var desiredLocation = this.ChooseMcuDeployLocation(buildingInfo, transformsInfo.Offset, mcu.Location);
+
+			var type = BuildingType.Building;
+			if (this.Info.DefenseMcuTypes.Contains(mcu.Info.Name))
+				type = BuildingType.Defense;
+
+			var desiredLocation = this.ChooseMcuDeployLocation(buildingInfo, type, transformsInfo.Offset, mcu.Location);
 			if (desiredLocation == null)
 			{
 				this.moveRadius = Math.Min(this.moveRadius + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
@@ -151,20 +194,29 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		bot.QueueOrder(new Order("DeployTransform", mcu, true));
 	}
 
-	private CPos? ChooseMcuDeployLocation(ActorInfo actorInfo, CVec offset, CPos location)
+	private CPos? ChooseMcuDeployLocation(ActorInfo actorInfo, BuildingType type, CVec offset, CPos mcuLocation)
 	{
 		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(actorInfo);
 		if (buildingInfo == null)
 			return null;
 
 		// Find the buildable cell that is closest to pos and centered around center
-		CPos? FindPos(CPos center, CPos target, int minRange, int maxRange)
+		CPos? FindPos(CPos center, CPos? target, int minRange, int maxRange)
 		{
 			var cells = this.world.Map.FindTilesInAnnulus(center, minRange, maxRange);
 
 			// Sort by distance to target if we have one
-			if (center != target)
-				cells = cells.OrderBy(c => (c - target).LengthSquared);
+			if (target != null)
+			{
+				var candidateCells = cells
+					.OrderBy(c => (c - target.Value).LengthSquared)
+					.ToList();
+
+				// Use half of cells in the annulus, which are closest to target, as the candidate cells for the placement check.
+				cells = candidateCells
+					.Take(candidateCells.Count / 2)
+					.Shuffle(this.world.LocalRandom);
+			}
 			else
 				cells = cells.Shuffle(this.world.LocalRandom);
 
@@ -174,8 +226,57 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				.Cast<CPos?>().FirstOrDefault();
 		}
 
-		var loc = this.Info.DefenseMcuTypes.Contains(actorInfo.Name) && this.defenseCenter != CPos.Zero ? location : this.defenseCenter;
-		return FindPos(loc, loc, 0, this.moveRadius);
+		var baseCenter = this.GetClosestBaseCenter(mcuLocation);
+
+		switch (type)
+		{
+			case BuildingType.Defense:
+			{
+				CPos targetCell;
+				int minRadius, maxRadius;
+
+				if (this.world.LocalRandom.Next(100) < this.Info.PlaceDefenseTowardsEnemyChance)
+				{
+					AIUtils.BotDebug("Defense building deployment: pick at the defense perimeter");
+
+					// Build near the closest enemy structure
+					var closestEnemy = this.world.ActorsHavingTrait<Building>()
+						.Where(a => !a.Disposed && this.player.RelationshipWith(a.Owner) == PlayerRelationship.Enemy)
+						.ClosestToIgnoringPath(this.world.Map.CenterOfCell(this.defenseCenter ?? baseCenter));
+
+					targetCell = closestEnemy != null ? closestEnemy.Location : baseCenter;
+					minRadius = this.Info.OuterDefenseRadius;
+					maxRadius = this.Info.MaximumDefenseRadius;
+				}
+				else
+				{
+					AIUtils.BotDebug("Defense building deployment: pick within base");
+
+					minRadius = this.Info.InnerDefenseRadius;
+					maxRadius = this.Info.OuterDefenseRadius;
+					targetCell = this.defenseCenter ?? baseCenter;
+				}
+
+				return FindPos(baseCenter, targetCell, minRadius, maxRadius);
+			}
+			case BuildingType.Building:
+			{
+				return FindPos(baseCenter, null, this.Info.MinBaseRadius, this.moveRadius);
+			}
+		}
+
+		return FindPos(mcuLocation, mcuLocation, 0, this.moveRadius);
+	}
+
+	private CPos GetClosestBaseCenter(CPos mcuLocation)
+	{
+		var closestConstructionYard = this.constructionBuildings.Alive()
+			.OrderBy(a => (mcuLocation - a.Location).LengthSquared)
+			.FirstOrDefault();
+
+		return closestConstructionYard?.Location ?? this.initialBaseCenter
+			?? this.world.Actors.Where(a => a.Owner == this.player)
+			.RandomOrDefault(this.world.LocalRandom).Location;
 	}
 
 	void IBotRespondToAttack.RespondToAttack(IBot bot, Actor self, AttackInfo e)
