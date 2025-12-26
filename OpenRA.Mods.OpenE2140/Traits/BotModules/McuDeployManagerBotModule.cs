@@ -32,6 +32,12 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 	[Desc("Actor types that are considered construction buildings (base builders).")]
 	public readonly HashSet<string> ConstructionBuildingTypes = [];
 
+	[Desc("Actor types that are considered MCUs, which deploy into refinery buildings.")]
+	public readonly HashSet<string> RefineryTypes = [];
+
+	[Desc("Actor types that are considered MCUs, which deploy into mine buildings.")]
+	public readonly HashSet<string> MineTypes = [];
+
 	[Desc("Actor types that are considered MCUs, which deploy into defense buildings.")]
 	public readonly HashSet<string> DefenseMcuTypes = [];
 
@@ -87,6 +93,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 	private IBotPositionsUpdated[] notifyPositionsUpdated = [];
 
+	private IBotEconomyManager? economyManager;
 	private CPos? initialBaseCenter;
 	private CPos? defenseCenter;
 
@@ -108,6 +115,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	protected override void Created(Actor self)
 	{
 		this.notifyPositionsUpdated = self.Owner.PlayerActor.TraitsImplementing<IBotPositionsUpdated>().ToArray();
+		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<IBotEconomyManager>();
 	}
 
 	protected override void TraitEnabled(Actor self)
@@ -162,14 +170,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	{
 		if (move)
 		{
-			var transformsInfo = mcu.Info.TraitInfo<TransformsInfo>();
-			var buildingInfo = McuUtils.GetTargetBuilding(this.world, mcu.Info)!;
-
-			var type = BuildingType.Building;
-			if (this.Info.DefenseMcuTypes.Contains(mcu.Info.Name))
-				type = BuildingType.Defense;
-
-			var desiredLocation = this.ChooseMcuDeployLocation(buildingInfo, type, transformsInfo.Offset, mcu.Location);
+			var desiredLocation = this.ChooseMcuDeployLocation(mcu);
 			if (desiredLocation == null)
 			{
 				this.moveRadius = Math.Min(this.moveRadius + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
@@ -194,9 +195,10 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		bot.QueueOrder(new Order("DeployTransform", mcu, true));
 	}
 
-	private CPos? ChooseMcuDeployLocation(ActorInfo actorInfo, BuildingType type, CVec offset, CPos mcuLocation)
+	private CPos? ChooseMcuDeployLocation(Actor mcu)
 	{
-		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(actorInfo);
+		var offset = mcu.Info.TraitInfo<TransformsInfo>().Offset;
+		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(McuUtils.GetTargetBuilding(this.world, mcu.Info)!);
 		if (buildingInfo == null)
 			return null;
 
@@ -226,7 +228,16 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				.Cast<CPos?>().FirstOrDefault();
 		}
 
-		var baseCenter = this.GetClosestBaseCenter(mcuLocation);
+		var baseCenter = this.GetClosestBaseCenter(mcu.Location);
+
+		var type = BuildingType.Building;
+		var mcuTypeName = mcu.Info.Name;
+		if (this.Info.DefenseMcuTypes.Contains(mcuTypeName))
+			type = BuildingType.Defense;
+		else if (this.Info.MineTypes.Contains(mcuTypeName))
+			type = BuildingType.Mine;
+		else if (this.Info.RefineryTypes.Contains(mcuTypeName))
+			type = BuildingType.Refinery;
 
 		switch (type)
 		{
@@ -259,13 +270,41 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 				return FindPos(baseCenter, targetCell, minRadius, maxRadius);
 			}
+			case BuildingType.Refinery:
+			case BuildingType.Mine:
+			{
+				// If there's no economy manager, use generic algorithm for finding deploy location.
+				if (this.economyManager == null)
+					return FindPos(baseCenter, null, this.Info.MinBaseRadius, this.moveRadius);
+
+				var candidateCells = this.economyManager.GetDeployCellsCandidates(mcu, baseCenter);
+				if (type == BuildingType.Mine)
+				{
+					var bestCells = candidateCells
+						.Where(c => buildingInfo.CanPlaceBuilding(this.world, c + offset, null))
+						.Select(c => new { Cell = c, Dist = (c - baseCenter).LengthSquared })
+						.Take(10)
+						.Select(c => c.Cell)
+						.Shuffle(this.world.LocalRandom)
+						.ToList();
+
+					return bestCells.Cast<CPos?>().FirstOrDefault();
+				}
+				else
+				{
+					return candidateCells
+						.Where(c => buildingInfo.CanPlaceBuilding(this.world, c + offset, null))
+						.Shuffle(this.world.LocalRandom)
+						.Cast<CPos?>().FirstOrDefault();
+				}
+			}
 			case BuildingType.Building:
 			{
 				return FindPos(baseCenter, null, this.Info.MinBaseRadius, this.moveRadius);
 			}
 		}
 
-		return FindPos(mcuLocation, mcuLocation, 0, this.moveRadius);
+		return FindPos(mcu.Location, mcu.Location, 0, this.moveRadius);
 	}
 
 	private CPos GetClosestBaseCenter(CPos mcuLocation)

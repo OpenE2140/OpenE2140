@@ -11,6 +11,7 @@ Player:
 		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		RefineryTypes: shared_buildings_refinery
 		MineTypes: shared_buildings_mine
+		MinimumResourceCellsToDeploy: 4
 	
 	BaseMcuBuilderBotModule@TestAI:
 		RequiresCondition: enable-test
@@ -21,6 +22,8 @@ Player:
 		MaximumUndeployedMcu: 1
 		PowerTypes: shared_mcu_power_plant
 		ResearchCenterTypes: shared_mcu_research_center
+		RefineryTypes: shared_mcu_refinery
+		MineTypes: shared_mcu_mine
 		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base
 		BuildingQueues: Building.ED, Building.UCS
 		DefenseQueues: Defense.ED, Defense.UCS
@@ -69,6 +72,8 @@ Player:
 	McuDeployManagerBotModule@TestAI:
 		RequiresCondition: enable-test
 		ConstructionBuildingTypes: ucs_buildings_prod_center, ed_buildings_constr_center
+		RefineryTypes: shared_mcu_refinery
+		MineTypes: shared_mcu_mine
 		McuTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_refinery, shared_mcu_research_center, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
 		DefenseMcuTypes: ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
 		InnerDefenseRadius: 4

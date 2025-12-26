@@ -5,6 +5,8 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 	public interface IBotEconomyManager
 	{
 		bool HasSufficientEconomy();
+
+		List<CPos> GetDeployCellsCandidates(Actor mcu, CPos? target);
 	}
 
 	public interface IBotMcuBaseBuilder
