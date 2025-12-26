@@ -39,6 +39,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 	private readonly PlayerResources playerResources;
 
 	private readonly List<string> queuedBuildRequests = [];
+	private readonly Dictionary<string, int> actorsOrderedForProduction = [];
 
 	private readonly OwnerAndTraitIndex<BuildingInfo> playerBuildings;
 	private readonly OwnerAndTraitIndex<McuInfo> playerMcus;
@@ -74,9 +75,9 @@ public sealed class McuBuilderQueueManager : IDisposable
 	internal int RequestedProductionCount(string actorName)
 	{
 		var requestedCount = this.queuedBuildRequests.Count(t => t == actorName);
-		var beingProducedCount = this.baseBuilder.McusBeingProduced.TryGetValue(actorName, out var num) ? num : 0;
+		var orderedCount = this.actorsOrderedForProduction.Keys.Count(t => t == actorName);
 
-		return requestedCount + beingProducedCount;
+		return requestedCount + orderedCount;
 	}
 
 	public void Tick(IBot bot)
@@ -84,6 +85,14 @@ public sealed class McuBuilderQueueManager : IDisposable
 		// Only update once per second or so
 		if (this.WaitTicks > 0)
 			return;
+
+		var oldEntries = new List<string>();
+		foreach (var (requestedActor, tickOrdered) in this.actorsOrderedForProduction)
+		{
+			if (this.player.World.WorldTick - tickOrdered >= 5)
+				oldEntries.Add(requestedActor);
+		}
+		oldEntries.ForEach(a => this.actorsOrderedForProduction.Remove(a));
 
 		var excessPowerBonus = this.baseBuilder.Info.ExcessPowerIncrement *
 			(this.playerBuildings.Alive().Count() / this.baseBuilder.Info.ExcessPowerIncreaseThreshold.Clamp(1, int.MaxValue));
@@ -113,19 +122,23 @@ public sealed class McuBuilderQueueManager : IDisposable
 	private bool TickQueue(IBot bot, ProductionQueue queue)
 	{
 		// Waiting to build something
-		if (queue.AllQueued().FirstOrDefault() == null)
-		{
-			// PERF: We shouldn't be queueing new units when we're low on cash
-			if (this.playerResources.Cash < this.baseBuilder.Info.ProductionMinCashRequirement || this.itemQueuedThisTick)
-				return false;
+		if (queue.AllQueued().Any())
+			return true;
 
-			var item = this.ChooseMcuToBuild(queue);
-			if (item == null)
-				return false;
+		// PERF: We shouldn't be queueing new units when we're low on cash
+		if (this.playerResources.Cash < this.baseBuilder.Info.ProductionMinCashRequirement || this.itemQueuedThisTick)
+			return false;
 
-			bot.QueueOrder(Order.StartProduction(queue.Actor, item.Name, 1));
-			this.itemQueuedThisTick = true;
-		}
+		var item = this.ChooseMcuToBuild(queue);
+		if (item == null)
+			return false;
+
+		// TODO: how to handle this for save/load? Should this dictionary be serialized? Or should it be considered as temporary
+		// and consider any actor as requested for production until the next update?
+		this.actorsOrderedForProduction[item.Name] = this.world.WorldTick;
+
+		bot.QueueOrder(Order.StartProduction(queue.Actor, item.Name, 1));
+		this.itemQueuedThisTick = true;
 		return true;
 	}
 
