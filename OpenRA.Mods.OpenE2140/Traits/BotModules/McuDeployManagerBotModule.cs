@@ -72,6 +72,9 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 		"When successful find a location, move radius will become MinMoveRadius.")]
 	public readonly int MaxMoveRadius = 15;
 
+	[Desc("Maximum number of retries before trying to find new deploy location for an MCU.")]
+	public readonly int MaxRetryCount = 3;
+
 	public override object Create(ActorInitializer init) { return new McuDeployManagerBotModule(init.Self, this); }
 
 	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
@@ -90,6 +93,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private readonly Player player;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<McuInfo> playerMcus;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<BuildingInfo> constructionBuildings;
+	private readonly Dictionary<uint, McuDeployContext> mcuDeployContext = [];
 
 	private IBotPositionsUpdated[] notifyPositionsUpdated = [];
 
@@ -98,7 +102,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private CPos? defenseCenter;
 
 	private int scanInterval;
-	private int moveRadius;
 	private bool firstTick = true;
 
 	public McuDeployManagerBotModule(Actor self, McuDeployManagerBotModuleInfo info)
@@ -106,7 +109,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	{
 		this.world = self.World;
 		this.player = self.Owner;
-		this.moveRadius = info.MinMoveRadius;
 
 		this.playerMcus = new ActorIndex.OwnerAndNamesAndTrait<McuInfo>(this.world, this.Info.McuTypes, this.player);
 		this.constructionBuildings = new ActorIndex.OwnerAndNamesAndTrait<BuildingInfo>(this.world, this.Info.ConstructionBuildingTypes, this.player);
@@ -163,21 +165,22 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 		foreach (var mcu in newMcus)
 			this.DeployMcu(bot, mcu, chooseLocation);
+
+		var oldEntries = this.mcuDeployContext.Keys.Where(id => this.world.GetActorById(id) == null);
+		foreach (var key in oldEntries)
+			this.mcuDeployContext.Remove(key);
 	}
 
 	// Find any MCU and deploy them at a sensible location.
 	private void DeployMcu(IBot bot, Actor mcu, bool move)
 	{
+		var context = this.mcuDeployContext.GetOrAdd(mcu.ActorID, id => new McuDeployContext { ActorID = id, MaxMoveRadius = this.Info.MinMoveRadius });
+
 		if (move)
 		{
 			var desiredLocation = this.ChooseMcuDeployLocation(mcu);
 			if (desiredLocation == null)
-			{
-				this.moveRadius = Math.Min(this.moveRadius + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
 				return;
-			}
-			else
-				this.moveRadius = this.Info.MinMoveRadius;
 
 			bot.QueueOrder(new Order("Move", mcu, Target.FromCell(this.world, desiredLocation.Value), true));
 		}
@@ -192,6 +195,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			}
 		}
 
+		context.DeployAttempt++;
 		bot.QueueOrder(new Order("DeployTransform", mcu, true));
 	}
 
@@ -228,6 +232,13 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				.Cast<CPos?>().FirstOrDefault();
 		}
 
+		var maxDeployRetryCount = this.Info.MaxRetryCount;
+		var deployContext = this.mcuDeployContext.GetOrAdd(mcu.ActorID, id => new McuDeployContext { ActorID = id, MaxMoveRadius = this.Info.MinMoveRadius });
+		if (deployContext.DeployAttempt.IsBetween(1, maxDeployRetryCount))
+		{
+			return mcu.Location;
+		}
+
 		var baseCenter = this.GetClosestBaseCenter(mcu.Location);
 
 		var type = BuildingType.Building;
@@ -239,6 +250,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		else if (this.Info.RefineryTypes.Contains(mcuTypeName))
 			type = BuildingType.Refinery;
 
+		CPos? targetLocation = null;
 		switch (type)
 		{
 			case BuildingType.Defense:
@@ -268,14 +280,16 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 					targetCell = this.defenseCenter ?? baseCenter;
 				}
 
-				return FindPos(baseCenter, targetCell, minRadius, maxRadius);
+				targetLocation = FindPos(baseCenter, targetCell, minRadius, maxRadius);
+
+				break;
 			}
 			case BuildingType.Refinery:
 			case BuildingType.Mine:
 			{
 				// If there's no economy manager, use generic algorithm for finding deploy location.
 				if (this.economyManager == null)
-					return FindPos(baseCenter, null, this.Info.MinBaseRadius, this.moveRadius);
+					return FindPos(baseCenter, null, this.Info.MinBaseRadius, deployContext.MaxMoveRadius);
 
 				var candidateCells = this.economyManager.GetDeployCellsCandidates(mcu, baseCenter);
 				if (type == BuildingType.Mine)
@@ -288,23 +302,47 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 						.Shuffle(this.world.LocalRandom)
 						.ToList();
 
-					return bestCells.Cast<CPos?>().FirstOrDefault();
+					targetLocation = bestCells.Cast<CPos?>().FirstOrDefault();
 				}
 				else
 				{
-					return candidateCells
+					targetLocation = candidateCells
 						.Where(c => buildingInfo.CanPlaceBuilding(this.world, c + offset, null))
 						.Shuffle(this.world.LocalRandom)
 						.Cast<CPos?>().FirstOrDefault();
 				}
+
+				break;
 			}
 			case BuildingType.Building:
 			{
-				return FindPos(baseCenter, null, this.Info.MinBaseRadius, this.moveRadius);
+				var searchCenter = baseCenter;
+				CPos? target = null;
+				var maxRadius = deployContext.MaxMoveRadius;
+				if (deployContext.DeployAttempt.IsBetween(maxDeployRetryCount, maxDeployRetryCount + 2))
+				{
+					searchCenter = mcu.Location;
+					target = baseCenter;
+
+					deployContext.DeployAttempt = 0;
+				}
+
+				targetLocation = FindPos(searchCenter, target, this.Info.MinBaseRadius, maxRadius);
+				break;
+			}
+			default:
+			{
+				targetLocation = FindPos(mcu.Location, mcu.Location, 0, deployContext.MaxMoveRadius);
+				break;
 			}
 		}
 
-		return FindPos(mcu.Location, mcu.Location, 0, this.moveRadius);
+		if (targetLocation == null)
+			deployContext.MaxMoveRadius = Math.Min(deployContext.MaxMoveRadius + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
+		else
+			deployContext.MaxMoveRadius = this.Info.MinMoveRadius;
+
+		return targetLocation;
 	}
 
 	private CPos GetClosestBaseCenter(CPos mcuLocation)
@@ -363,5 +401,14 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		var defenseCenterNode = data.NodeWithKeyOrDefault("DefenseCenter");
 		if (defenseCenterNode != null)
 			this.defenseCenter = FieldLoader.GetValue<CPos>("DefenseCenter", defenseCenterNode.Value.Value);
+	}
+
+	private class McuDeployContext
+	{
+		public required uint ActorID { get; init; }
+
+		public int DeployAttempt { get; set; }
+
+		public int MaxMoveRadius { get; set; }
 	}
 }
