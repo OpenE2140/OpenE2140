@@ -111,7 +111,33 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		this.logicTicks = this.Info.LogicInterval;
 
+		this.OrderCrateTransporterToWork(bot);
+
 		this.hasSufficientEconomy = this.Tick(bot);
+	}
+
+	private void OrderCrateTransporterToWork(IBot bot)
+	{
+		foreach (var actor in this.crateTransporters.Alive())
+		{
+			if (!actor.IsIdle)
+				continue;
+
+			if (!actor.TryGetTrait<CrateTransporter>(out var crateTransporter))
+				continue;
+
+			if (!actor.TryGetTrait<CrateTransporterRoutine>(out var routine))
+				continue;
+
+			Actor? target;
+			if (!crateTransporter.HasCrate)
+				target = routine.CurrentMine ?? this.mines.Alive().RandomOrDefault(this.world.LocalRandom);
+			else
+				target = routine.CurrentRefinery ?? this.refineries.Alive().RandomOrDefault(this.world.LocalRandom);
+
+			if (target != null)
+				bot.QueueOrder(new Order("Dock", actor, Target.FromActor(target), true));
+		}
 	}
 
 	private bool Tick(IBot bot)
