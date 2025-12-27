@@ -13,6 +13,7 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Activities;
+using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Activites.Move;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
@@ -39,8 +40,10 @@ public class CrateTransporterRoutineInfo : TraitInfo, Requires<CrateTransporterI
 	}
 }
 
-public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotifyActorProduced, INotifyCreated, ITick
+public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, IIssueOrder, INotifyActorProduced, INotifyCreated, ITick
 {
+	public const string TransportCratesOrderID = "TransportCrates";
+
 	public readonly CrateTransporterRoutineInfo Info;
 
 	private bool startRoutine;
@@ -100,10 +103,27 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 		if (this.CurrentRefinery != null && this.CurrentRefinery.Owner != self.Owner)
 			this.CurrentRefinery = null;
 	}
+	IEnumerable<IOrderTargeter> IIssueOrder.Orders
+	{
+		get
+		{
+			// TODO: proper
+			yield return new EnterAlliedActorTargeter<CrateTransporterRoutineInfo>(TransportCratesOrderID, 5, null, null, (_, __) => true, _ => true);
+		}
+	}
+
+	Order? IIssueOrder.IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+	{
+		if (order.OrderID == TransportCratesOrderID)
+			return new Order(order.OrderID, self, target, queued);
+
+		return null;
+	}
+
 
 	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
-		if (order.OrderString == "Dock" || order.OrderString == "ForceDock")
+		if (order.OrderString == TransportCratesOrderID)
 		{
 			if (order.Target.Type != TargetType.Actor)
 				return;
@@ -114,6 +134,18 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 				this.CurrentMine = actor;
 			else if (actor.Info.HasTraitInfo<ResourceRefineryInfo>())
 				this.CurrentRefinery = actor;
+
+			var otherActor = order.ExtraActors?.FirstOrDefault();
+			if (otherActor != null)
+			{
+				if (otherActor.Info.HasTraitInfo<ResourceMineInfo>())
+					this.CurrentMine = otherActor;
+				else if (otherActor.Info.HasTraitInfo<ResourceRefineryInfo>())
+					this.CurrentRefinery = otherActor;
+			}
+
+			if (self.CurrentActivity == null)
+				self.QueueActivity(new TransportCrates(self));
 		}
 		else
 		{
