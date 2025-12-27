@@ -12,6 +12,8 @@ Player:
 		RefineryTypes: shared_buildings_refinery
 		MineTypes: shared_buildings_mine
 		MinimumResourceCellsToDeploy: 4
+		CrateTransporterPerRefineryMinePair: 2
+		EconomyExpansionDelays: 10000, 20000, 30000
 	
 	BaseMcuBuilderBotModule@TestAI:
 		RequiresCondition: enable-test

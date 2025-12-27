@@ -47,6 +47,11 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	[Desc("Maximum distance from Mine, where Refinery can be placed.")]
 	public readonly int MaxRefineryDistance = 12;
 
+	[Desc("Number of crate transporters assigned to single Mine/Refinery pair.",
+		"Be aware of the fact, that over the course of the game, AI can have more crate transporters: " +
+		"for example Refinery gets destroyed, then rebuilt -> AI gets one free crate transporter from the Refinery.")]
+	public readonly int CrateTransporterPerRefineryMinePair = 2;
+
 	public override object Create(ActorInitializer init) { return new EconomyManagerBotModule(init.Self, this); }
 
 	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
@@ -71,6 +76,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private readonly ActorIndex.OwnerAndNamesAndTrait<CrateTransporterInfo> crateTransporters;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<ResourceMineInfo> mines;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<ResourceRefineryInfo> refineries;
+	private readonly List<MineRefineryAssignment> mineRefineryAssignments = [];
+	private readonly (List<Actor> Mines, List<Actor> Refineries) assignmentActorsDirtyCheck = ([], []);
 
 	private IBotRequestUnitProduction[] requestUnitProduction = [];
 	private IBotMcuBaseBuilder[] mcuBaseBuilder = [];
@@ -111,32 +118,131 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		this.logicTicks = this.Info.LogicInterval;
 
+		this.UpdateMineRefineryAssignments();
+
 		this.OrderCrateTransporterToWork(bot);
 
+		var hadSufficientEconomy = this.hasSufficientEconomy;
 		this.hasSufficientEconomy = this.Tick(bot);
+
+		if (!hadSufficientEconomy && this.hasSufficientEconomy)
+		{
+			AIUtils.BotDebug("{0} has sufficient economy", bot.Player);
+
+			// Force reassigning mines/refineries, in case crate transporters got out of sync.
+			this.assignmentActorsDirtyCheck.Mines.Clear();
+			this.assignmentActorsDirtyCheck.Refineries.Clear();
+		}
+		else if (hadSufficientEconomy && !this.hasSufficientEconomy)
+			AIUtils.BotDebug("{0} does NOT have sufficient economy and is expanding it", bot.Player);
+	}
+
+	private void UpdateMineRefineryAssignments()
+	{
+		var unassignedMines = this.mines.Alive().ToHashSet();
+		var unassignedRefineries = this.refineries.Alive().ToHashSet();
+
+		var hasChanged = false;
+		if (!unassignedMines.SetEquals(this.assignmentActorsDirtyCheck.Mines))
+			hasChanged = true;
+
+		if (!hasChanged && !unassignedRefineries.SetEquals(this.assignmentActorsDirtyCheck.Refineries))
+			hasChanged = true;
+
+		if (!hasChanged)
+			return;
+
+		this.assignmentActorsDirtyCheck.Mines.Clear();
+		this.assignmentActorsDirtyCheck.Mines.AddRange(unassignedMines);
+		this.assignmentActorsDirtyCheck.Refineries.Clear();
+		this.assignmentActorsDirtyCheck.Refineries.AddRange(unassignedRefineries);
+
+		if (unassignedMines.Count == 0 || unassignedRefineries.Count == 0)
+		{
+			this.mineRefineryAssignments.Clear();
+			return;
+		}
+
+		// Create lookup of existing, valid assignment pairs to preserve existing connections
+		var validAssignmentPairs = this.mineRefineryAssignments
+			.Where(a => a.Mine?.IsDead == false && a.Refinery?.IsDead == false)
+			.ToDictionary(a => (a.Mine, a.Refinery));
+		this.mineRefineryAssignments.Clear();
+		this.mineRefineryAssignments.EnsureCapacity(Math.Max(unassignedMines.Count, unassignedRefineries.Count));
+
+		foreach (var mine in unassignedMines)
+		{
+			Actor? nearestRefinery = null;
+			var maxSearchRadius = this.Info.MaxRefineryDistance;
+			for (var i = 0; i <= 3; i++)
+			{
+				var searchResult = FindNearestActor(unassignedRefineries, mine.Location, (maxSearchRadius * i).PowerOf2());
+				if (searchResult?.actor == null)
+				{
+					++maxSearchRadius;
+					continue;
+				}
+
+				nearestRefinery = searchResult.Value.actor;
+				break;
+			}
+
+			if (nearestRefinery != null)
+			{
+				if (validAssignmentPairs.TryGetValue((mine, nearestRefinery), out var assignment))
+				{
+					assignment.RemoveInvalidCrateTransporters();
+				}
+				else
+				{
+					assignment = new MineRefineryAssignment
+					{
+						Mine = mine,
+						Refinery = nearestRefinery,
+						ExpectedCrateTransporterCount = this.Info.CrateTransporterPerRefineryMinePair
+					};
+				}
+
+				this.mineRefineryAssignments.Add(assignment);
+
+				unassignedRefineries.Remove(nearestRefinery);
+			}
+
+			static (Actor actor, int distance)? FindNearestActor(IEnumerable<Actor> actors, CPos searchStart, int maxRadius)
+			{
+				return actors
+					.Select(a => (actor: a, distance: (a.Location - searchStart).LengthSquared))
+					.OrderBy(t => t.distance)
+					.FirstOrDefault(a => a.distance <= maxRadius.PowerOf2());
+			}
+		}
 	}
 
 	private void OrderCrateTransporterToWork(IBot bot)
 	{
-		foreach (var actor in this.crateTransporters.Alive())
+		var availableCrateTransporters = this.crateTransporters.Alive().ToHashSet();
+		if (availableCrateTransporters.Count == 0)
+			return;
+
+		// First pass: skip those crate transporters, which are already assigned
+		foreach (var assignment in this.mineRefineryAssignments)
 		{
-			if (!actor.IsIdle)
-				continue;
+			for (var i = assignment.CrateTransporters.Count - 1; i >= 0; i--)
+			{
+				var crateTransporter = assignment.CrateTransporters[i];
 
-			if (!actor.TryGetTrait<CrateTransporter>(out var crateTransporter))
-				continue;
+				availableCrateTransporters.Remove(crateTransporter);
 
-			if (!actor.TryGetTrait<CrateTransporterRoutine>(out var routine))
-				continue;
+				// Clean up any dead crate transporters
+				if (crateTransporter.IsDead)
+					assignment.CrateTransporters.RemoveAt(i);
+			}
+		}
 
-			Actor? target;
-			if (!crateTransporter.HasCrate)
-				target = routine.CurrentMine ?? this.mines.Alive().RandomOrDefault(this.world.LocalRandom);
-			else
-				target = routine.CurrentRefinery ?? this.refineries.Alive().RandomOrDefault(this.world.LocalRandom);
-
-			if (target != null)
-				bot.QueueOrder(new Order("Dock", actor, Target.FromActor(target), true));
+		// Second pass: queue orders for crate transporters and assign those, which are free (i.e. currently unassigned)
+		foreach (var assignment in this.mineRefineryAssignments)
+		{
+			assignment.OrderCrateTransportersToWork(bot, availableCrateTransporters);
 		}
 	}
 
@@ -180,8 +286,13 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		var unitBuilder = this.requestUnitProduction.FirstEnabledTraitOrDefault();
 		if (unitBuilder != null && sufficientMineCount && sufficientRefineryCount)
 		{
-			var crateTransporterCount = this.crateTransporters.Alive().Count();
-			var expectedCount = 2;
+			// Take into account Refineries currently built or their deployment is in progress
+			// (because Refinery provides one free crate transporter)
+			var refineriesCurrentlyBuilt = mcuBaseBuilder != null ?
+				GetProductionInProgressCount(bot, mcuBaseBuilder, this.Info.RefineryTypes.Select(this.world.GetMcuFromActor)) : 0;
+
+			var crateTransporterCount = this.crateTransporters.Alive().Count() + refineriesCurrentlyBuilt;
+			var expectedCount = targetEconomyLevel * this.Info.CrateTransporterPerRefineryMinePair;
 			var enoughTransporters = crateTransporterCount >= expectedCount;
 
 			var shouldBuild = !enoughTransporters
@@ -210,16 +321,20 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		bool TryRequestProduction(IBot bot, IBotMcuBaseBuilder mcuBaseBuilder, ActorInfo? mcu)
 		{
-			if (mcu != null
-				&& mcuBaseBuilder.RequestedProductionCount(bot, mcu.Name) == 0
-				&& mcuBaseBuilder.InProductionCount(bot, mcu.Name) == 0
-				&& (this.mcuDeployManager == null || this.mcuDeployManager.UndeployedMcuCount(bot, mcu.Name) == 0))
-			{
-				mcuBaseBuilder.RequestBuildingProduction(bot, mcu.Name);
-				return true;
-			}
+			if (mcu == null || GetProductionInProgressCount(bot, mcuBaseBuilder, [mcu]) > 0)
+				return false;
 
-			return false;
+			mcuBaseBuilder.RequestBuildingProduction(bot, mcu.Name);
+			return true;
+		}
+
+		int GetProductionInProgressCount(IBot bot, IBotMcuBaseBuilder mcuBaseBuilder, IEnumerable<ActorInfo?> mcuActors)
+		{
+			return mcuActors
+				.OfType<ActorInfo>()
+				.Sum(mcu => mcuBaseBuilder.RequestedProductionCount(bot, mcu.Name) +
+					mcuBaseBuilder.InProductionCount(bot, mcu.Name) +
+					(this.mcuDeployManager?.UndeployedMcuCount(bot, mcu.Name) ?? 0));
 		}
 	}
 
@@ -257,16 +372,22 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// Origin = where the building's top-left would be if MCU stayed at its current location.
 		var origin = mcu.Location + transformsInfo.Offset;
 
-		// Find nearby mines (only those alive and within a reasonable search radius)
+		// Find nearby Mines, which are:
+		// - alive
+		// - within a reasonable search radius
+		// - and have currently unassigned Mine
 		var maxSearchRadiusSq = this.Info.MaxRefineryDistance.PowerOf2();
 		var mineActors = this.mines.Alive()
-			.Where(a =>
+			.Where(mine =>
 			{
-				var mineBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(a.Info);
+				if (this.mineRefineryAssignments.Any(a => a.Mine == mine && a.Refinery != null))
+					return false;
+
+				var mineBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(mine.Info);
 				if (mineBuildingInfo == null)
 					return false;
 
-				var mineCenterLocation = this.world.Map.CellContaining(mineBuildingInfo.GetCenterOfFootprint(a.Location));
+				var mineCenterLocation = this.world.Map.CellContaining(mineBuildingInfo.GetCenterOfFootprint(mine.Location));
 
 				return (mineCenterLocation - origin).LengthSquared <= maxSearchRadiusSq;
 			})
@@ -477,5 +598,91 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		this.crateTransporters.Dispose();
 		this.refineries.Dispose();
 		this.mines.Dispose();
+	}
+
+	private class MineRefineryAssignment
+	{
+		public Actor? Mine { get; set; }
+
+		public Actor? Refinery { get; set; }
+
+		public List<Actor> CrateTransporters { get; set; } = [];
+
+		public int ExpectedCrateTransporterCount { get; init; }
+
+		public void AssignCrateTransporters(List<Actor> freeCrateTransporters)
+		{
+			if (this.CrateTransporters.Count >= this.ExpectedCrateTransporterCount || freeCrateTransporters.Count == 0)
+				return;
+
+			for (var i = this.CrateTransporters.Count; i <= this.ExpectedCrateTransporterCount; i++)
+			{
+				if (freeCrateTransporters.Count == 0)
+					break;
+
+				var transporter = freeCrateTransporters[^1];
+				freeCrateTransporters.RemoveAt(freeCrateTransporters.Count - 1);
+
+				this.CrateTransporters.Add(transporter);
+			}
+		}
+
+		public void OrderCrateTransportersToWork(IBot bot, HashSet<Actor> availableCrateTransporters)
+		{
+			if (this.Mine == null || this.Refinery == null)
+				return;
+
+			// Process already assigned crate transporters
+			foreach (var actor in this.CrateTransporters)
+				ProcessCrateTransporter(actor);
+
+			// Try assigning new crate transporter, if there's currently not enough of them
+			for (var i = this.CrateTransporters.Count; i < this.ExpectedCrateTransporterCount; i++)
+			{
+				var crateTransporter = availableCrateTransporters.FirstOrDefault();
+				if (crateTransporter == null)
+					break; // no additional transporters available
+
+				availableCrateTransporters.Remove(crateTransporter);
+				this.CrateTransporters.Add(crateTransporter);
+
+				ProcessCrateTransporter(crateTransporter);
+			}
+
+			void ProcessCrateTransporter(Actor actor)
+			{
+				if (!actor.TryGetTrait<CrateTransporter>(out var crateTransporter))
+					return;
+
+				if (!actor.TryGetTrait<CrateTransporterRoutine>(out var routine))
+					return;
+
+				// TODO: handle Mine depletion
+				if (crateTransporter.HasCrate && routine.CurrentRefinery != this.Refinery || actor.IsIdle)
+					QueueDockOrder(actor, this.Refinery, false, [this.Mine]);
+				else if (!crateTransporter.HasCrate && routine.CurrentMine != this.Mine || actor.IsIdle)
+					QueueDockOrder(actor, this.Mine, false, [this.Refinery]);
+			}
+
+			void QueueDockOrder(Actor actor, Actor? target, bool isQueued, Actor[]? extraActors = null)
+			{
+				var order = new Order(CrateTransporterRoutine.TransportCratesOrderID, actor, Target.FromActor(target), isQueued)
+				{
+					ExtraActors = extraActors ?? []
+				};
+
+				bot.QueueOrder(order);
+			}
+		}
+
+		internal void RemoveInvalidCrateTransporters()
+		{
+			for (var i = this.CrateTransporters.Count - 1; i >= 0; i--)
+			{
+				var crateTransporter = this.CrateTransporters[i];
+				if (crateTransporter.IsDead)
+					this.CrateTransporters.RemoveAt(i);
+			}
+		}
 	}
 }
