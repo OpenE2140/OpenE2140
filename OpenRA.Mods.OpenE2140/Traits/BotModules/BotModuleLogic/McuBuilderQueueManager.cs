@@ -147,7 +147,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 		var buildableThings = queue.BuildableItems().ToList();
 
 		// This gets used quite a bit, so let's cache it here
-		var powerMcu = this.GetProducibleMcu(this.baseBuilder.Info.PowerTypes, buildableThings);
+		var powerMcu = PickBestPowerPlant(this.baseBuilder.Info.PowerTypes, buildableThings);
 		var powerBuilding = McuUtils.GetTargetBuilding(this.world, powerMcu);
 
 		// First priority is to get out of a low power situation
@@ -281,6 +281,13 @@ public sealed class McuBuilderQueueManager : IDisposable
 
 			// Waiting for the MCU to deploy
 			return null;
+		}
+
+		ActorInfo? PickBestPowerPlant(HashSet<string> powerTypes, List<ActorInfo> buildableThings)
+		{
+			return powerTypes
+				.Select(actorName => buildableThings.FirstOrDefault(ai => ai.Name == actorName))
+				.LastOrDefault(a => a != null);
 		}
 	}
 
