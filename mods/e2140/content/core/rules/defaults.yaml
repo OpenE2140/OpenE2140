@@ -536,7 +536,7 @@
 		Crushes: infantry, mine
 		PauseOnCondition: !airborne && VehicleDisabled
 	# Actor can be targeted by anything which attacks ground.
-	Targetable@Ground:
+	Targetable@Default:
 		TargetTypes: Ground, Vehicle
 		RequiresCondition: !airborne && !VehicleDisabled
 	# Actor can be targeted by anything which attacks air.
@@ -881,6 +881,10 @@
 	Capturable:
 		Types: Vehicle
 		RequiresCondition: VehicleDisabled
+  # Disabled actors should not be targeted.
+	Targetable@Disabled:
+		TargetTypes: Disabled
+		RequiresCondition: VehicleDisabled
 
 # Vehicles leave a husk when they're destroyed
 ^Husk:
@@ -1082,12 +1086,12 @@
 	AutoTargetPriority@AttackAnythingHigherPriority:
 		RequiresCondition: stance-attackanything
 		ValidTargets: Ground, Infantry, Vehicle, Air, Ship, Defense, Structure
-		InvalidTargets:
+		InvalidTargets: Disabled
 		Priority: 2
 	AutoTargetPriority@AttackAnythingLowerPriority:
 		RequiresCondition: stance-attackanything
 		ValidTargets: NoAutoAttack
-		InvalidTargets:
+		InvalidTargets: Disabled
 		Priority: 1
 
 ^AutoTargetAllAssaultMove:
