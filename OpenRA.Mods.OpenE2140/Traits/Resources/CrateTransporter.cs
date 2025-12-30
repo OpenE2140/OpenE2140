@@ -263,7 +263,8 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
-		this.crate?.Actor.Trait<ISubActor>()?.OnParentKilled(this.crate.Actor, self);
+		if (this.crate?.Actor.TryGetTrait<ISubActor>(out var subActor) == true)
+			subActor.OnParentKilled(this.crate.Actor, self);
 	}
 
 	IEnumerable<IRenderable> IRender.Render(Actor self, WorldRenderer wr)
