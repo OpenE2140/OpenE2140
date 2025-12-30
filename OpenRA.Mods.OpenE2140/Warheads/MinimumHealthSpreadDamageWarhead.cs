@@ -27,6 +27,9 @@ public class MinimumHealthSpreadDamageWarhead : SpreadDamageWarhead
 
 	protected override void InflictDamage(Actor victim, Actor firedBy, HitShape shape, WarheadArgs args)
 	{
+		if (victim.IsDead)
+			return;
+
 		var damage = Util.ApplyPercentageModifiers(this.Damage, args.DamageModifiers.Append(this.DamageVersus(victim, shape, args)));
 
 		damage = Math.Min(damage, victim.Trait<Health>().HP - this.MinimumHealth);

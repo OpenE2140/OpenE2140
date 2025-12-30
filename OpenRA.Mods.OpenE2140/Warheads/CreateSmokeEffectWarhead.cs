@@ -67,9 +67,12 @@ public class CreateSmokeEffectWarhead : EffectWarhead
 		if (!this.IsValidAgainst(target, firedBy))
 			return;
 
-		var facing = firedBy.GetTraitOrDefault<IFacing>();
 		var offset = this.Offset;
-		var spawnFacing = !this.RandomFacing && facing != null ? facing.Facing : WAngle.FromFacing(world.LocalRandom.Next(256));
+		WAngle spawnFacing;
+		if (!this.RandomFacing && firedBy.TryGetTrait<IFacing>(out var facing))
+			spawnFacing = facing.Facing;
+		else
+			spawnFacing = WAngle.FromFacing(world.LocalRandom.Next(256));
 
 		world.AddFrameEndTask(
 			w => w.Add(

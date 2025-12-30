@@ -267,7 +267,7 @@ public class RepairAttack : Activity, IActivityNotifyStanceChanged
 				}
 
 				// Check if the repair is complete, if so, undock from target
-				if (this.target.Actor.Trait<Health>().DamageState == DamageState.Undamaged)
+				if (this.target.Actor.GetDamageState() == DamageState.Undamaged)
 				{
 					this.UndockFromTarget(self);
 

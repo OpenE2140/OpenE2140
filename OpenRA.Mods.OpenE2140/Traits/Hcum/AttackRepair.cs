@@ -17,6 +17,7 @@ using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 
@@ -132,20 +133,16 @@ public class AttackRepair : AttackFrontal, INotifyRepair
 
 	protected override bool CanAttack(Actor self, in Target target)
 	{
-		if (target.Type != TargetType.Actor)
+		if (target.Type != TargetType.Actor || target.Actor.IsDead)
 			return false;
 
 		if (this.State != RepairState.Repairing)
 			return false;
 
-		var mobile = target.Actor.TraitOrDefault<Mobile>();
-
-		if (mobile != null && mobile.CurrentMovementTypes != MovementType.None)
+		if (target.Actor.TryGetTrait<Mobile>(out var mobile) && mobile.CurrentMovementTypes != MovementType.None)
 			return false;
 
-		var aircraft = target.Actor.TraitOrDefault<Aircraft>();
-
-		if (aircraft != null && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
+		if (target.Actor.Info.HasTraitInfo<AircraftInfo>() && self.World.Map.DistanceAboveTerrain(target.CenterPosition).Length > 0)
 			return false;
 
 		return base.CanAttack(self, target);

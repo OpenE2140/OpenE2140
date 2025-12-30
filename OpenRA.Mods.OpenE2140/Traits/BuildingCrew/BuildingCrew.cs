@@ -336,8 +336,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		foreach (var nec in crewMember.TraitsImplementing<INotifyExitedBuildingCrew>())
 			nec.OnExitedBuildingCrew(crewMember, self);
 
-		var c = crewMember.Trait<CrewMember>();
-		c.BuildingCrew = null;
+		if (crewMember.TryGetTrait<CrewMember>(out var c))
+			c.BuildingCrew = null;
 
 		if (this.crewMemberTokens.TryGetValue(crewMember.Info.Name, out var crewMemberToken) && crewMemberToken.Count > 0)
 			self.RevokeCondition(crewMemberToken.Pop());
@@ -380,7 +380,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				if (this.enteredTokens.Count > 0)
 					self.RevokeCondition(this.enteredTokens.Pop());
 
-				crewMember.Trait<CrewMember>().BuildingCrew = self;
+				if (crewMember.TryGetTrait<CrewMember>(out var c))
+					c.BuildingCrew = self;
 
 				// Fake the attacker being actually in the building, by notifying other traits (mainly CrewMember, which grants its conditions).
 				// TODO: should the conditions be also granted?
@@ -430,7 +431,8 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 		// Don't initialise (effectively twice) if this runs before the FrameEndTask from Created
 		if (this.initialised)
 		{
-			crewMember.Trait<CrewMember>().BuildingCrew = self;
+			if (crewMember.TryGetTrait<CrewMember>(out var c))
+				c.BuildingCrew = self;
 
 			foreach (var nebc in crewMember.TraitsImplementing<INotifyEnteredBuildingCrew>())
 				nebc.OnEnteredBuildingCrew(crewMember, self);
@@ -481,9 +483,13 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
 	{
 		if (this.Info.EjectOnDeath)
+		{
 			while (!this.IsEmpty() && this.CanExit(BlockedByActor.All))
 			{
 				var crewMember = this.Exit(self);
+				if (crewMember.IsDead)
+					continue;
+
 				var cp = self.CenterPosition;
 				var inAir = self.World.Map.DistanceAboveTerrain(cp).Length != 0;
 				var positionable = crewMember.Trait<IPositionable>();
@@ -499,6 +505,7 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 				else
 					crewMember.Kill(e.Attacker);
 			}
+		}
 
 		foreach (var c in this.crewMembers)
 			c.Kill(e.Attacker);
@@ -528,6 +535,9 @@ public class BuildingCrew : ConditionalTrait<BuildingCrewInfo>, IIssueOrder, IRe
 	{
 		this.self.World.AddFrameEndTask(w =>
 		{
+			if (crewMember.IsDead)
+				return;
+
 			w.Add(crewMember);
 			crewMember.Trait<IPositionable>().SetPosition(crewMember, this.self.Location);
 
