@@ -96,7 +96,8 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 	}
 }
 
-public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick, IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack
+public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick,
+	IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
@@ -162,7 +163,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		this.lastDefenseCenterUpdate = this.Info.DefenseCenterResetInterval;
 	}
 
-	public int UndeployedMcuCount(IBot bot, string mcuType)
+	int IBotMcuDeployManager.UndeployedMcuCount(IBot bot, string mcuType)
 	{
 		return this.playerMcus.Actors.Count(a => !a.IsDead && a.Info.Name == mcuType);
 	}
@@ -205,6 +206,11 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 			if (this.GetBuildingType(actor) == BuildingType.Defense)
 				this.defenseCenter = null;
+
+			if (actor.ReplacedByActor != null)
+			{
+
+			}
 		}
 	}
 

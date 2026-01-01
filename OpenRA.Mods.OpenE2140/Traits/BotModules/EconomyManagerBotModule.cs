@@ -81,8 +81,9 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 	private IBotRequestUnitProduction[] requestUnitProduction = [];
 	private IBotMcuBaseBuilder[] mcuBaseBuilder = [];
-	private McuDeployManagerBotModule? mcuDeployManager;
+	private IBotMcuDeployManager[] mcuDeployManager = [];
 	private IResourceLayer? resourceLayer;
+	private IBotMcuDeployManager? McuDeployManager => this.mcuDeployManager.FirstEnabledTraitOrDefault();
 
 	private int logicTicks;
 	private bool hasSufficientEconomy;
@@ -102,7 +103,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	{
 		this.requestUnitProduction = this.player.PlayerActor.TraitsImplementing<IBotRequestUnitProduction>().ToArray();
 		this.mcuBaseBuilder = this.player.PlayerActor.TraitsImplementing<IBotMcuBaseBuilder>().ToArray();
-		this.mcuDeployManager = this.player.PlayerActor.TraitOrDefault<McuDeployManagerBotModule>();
+		this.mcuDeployManager = this.player.PlayerActor.TraitsImplementing<IBotMcuDeployManager>().ToArray();
 		this.resourceLayer = self.World.WorldActor.TraitOrDefault<IResourceLayer>();
 	}
 
@@ -342,7 +343,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				.OfType<ActorInfo>()
 				.Sum(mcu => mcuBaseBuilder.RequestedProductionCount(bot, mcu.Name) +
 					mcuBaseBuilder.InProductionCount(bot, mcu.Name) +
-					(this.mcuDeployManager?.UndeployedMcuCount(bot, mcu.Name) ?? 0));
+					(this.McuDeployManager?.UndeployedMcuCount(bot, mcu.Name) ?? 0));
 		}
 	}
 

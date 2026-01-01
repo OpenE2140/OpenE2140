@@ -17,4 +17,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 
 		int InProductionCount(IBot bot, string actor);
 	}
+
+	public interface IBotMcuDeployManager
+	{
+		int UndeployedMcuCount(IBot bot, string mcuType);
+	}
+	}
 }
