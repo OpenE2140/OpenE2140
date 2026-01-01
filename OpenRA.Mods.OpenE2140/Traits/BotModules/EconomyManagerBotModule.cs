@@ -69,7 +69,7 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	}
 }
 
-public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing, IBotEconomyManager
+public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing, IBotEconomyManager, IBotRequestPauseUnitProduction
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
@@ -86,6 +86,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 	private int logicTicks;
 	private bool hasSufficientEconomy;
+	private int? expandingEconomySince;
 
 	public EconomyManagerBotModule(Actor self, EconomyManagerBotModuleInfo info)
 		: base(info)
@@ -124,6 +125,11 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		var hadSufficientEconomy = this.hasSufficientEconomy;
 		this.hasSufficientEconomy = this.Tick(bot);
+
+		if (this.hasSufficientEconomy)
+			this.expandingEconomySince = null;
+		else
+			this.expandingEconomySince ??= this.world.WorldTick;
 
 		if (!hadSufficientEconomy && this.hasSufficientEconomy)
 		{
@@ -245,6 +251,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			assignment.OrderCrateTransportersToWork(bot, availableCrateTransporters);
 		}
 	}
+
+	bool IBotRequestPauseUnitProduction.PauseUnitProduction => this.expandingEconomySince != null && (this.world.WorldTick - this.expandingEconomySince) > 100;
 
 	private bool Tick(IBot bot)
 	{
