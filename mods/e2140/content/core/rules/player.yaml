@@ -61,6 +61,9 @@ Player:
 	GrantConditionOnPrerequisiteManager:
 	# Renders custom UI for debugging AI. Requires Developer Mode enabled.
 	AIDebugRender:
+	# Notify player about Bantha or Heavy Lifter being under attack.
+	ResourceCollectorAttackNotifier:
+		TextNotification: Resource collector under attack.
 
 # Map editor specific player setup.
 EditorPlayer:
