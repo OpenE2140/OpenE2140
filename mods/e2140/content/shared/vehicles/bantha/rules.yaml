@@ -42,6 +42,10 @@ shared_vehicles_bantha:
 		FreeActorDelayRoutine: 10
 	RevealsShroud:
 		Range: 2c896
+	ActorAttackedNotification:
+		NotificationType: ResourceCollectorUnderAttack
+		TextNotification: Bantha under attack.
+		Notification: ResourceCollectorUnderAttack
 	SpawnActorOnDeath:
 		Actor: shared_vehicles_bantha_husk
 	Encyclopedia:
