@@ -59,6 +59,9 @@ Player:
 	Research:
 	# Allows using GrantConditionOnPrerequisite on actors.
 	GrantConditionOnPrerequisiteManager:
+	# Notify player about Bantha or Heavy Lifter being under attack.
+	ResourceCollectorAttackNotifier:
+		TextNotification: Resource collector under attack.
 
 # Map editor specific player setup.
 EditorPlayer:
