@@ -63,6 +63,8 @@ Player:
 	GrantConditionOnPrerequisiteManager:
 	# Renders custom UI for debugging AI. Requires Developer Mode enabled.
 	AIDebugRender:
+	# Notify player about attacks on various actors.
+	ActorAttackedNotificationManager:
 
 # Map editor specific player setup.
 EditorPlayer:

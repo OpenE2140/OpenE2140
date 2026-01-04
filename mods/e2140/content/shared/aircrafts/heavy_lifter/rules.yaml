@@ -60,6 +60,10 @@ shared_aircrafts_heavy_lifter:
 		Range: 2c896
 	WithMoveSound:
 		Sound: 31.smp
+	ActorAttackedNotification:
+		NotificationType: ResourceCollectorUnderAttack
+		TextNotification: Heavy Lifter under attack.
+		Notification: ResourceCollectorUnderAttack
 	SpawnActorOnDeath:
 		Actor: shared_aircrafts_heavy_lifter_falling_husk
 		RequiresCondition: airborne
