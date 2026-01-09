@@ -1,6 +1,7 @@
 ﻿using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 using OpenRA.Mods.OpenE2140.Traits.BotModules.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Resources;
@@ -83,6 +84,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private IBotMcuBaseBuilder[] mcuBaseBuilder = [];
 	private IBotMcuDeployManager[] mcuDeployManager = [];
 	private IResourceLayer? resourceLayer;
+	private PlayerIncomeTracker? incomeTracker;
+
 	private IBotMcuDeployManager? McuDeployManager => this.mcuDeployManager.FirstEnabledTraitOrDefault();
 
 	private int logicTicks;
@@ -105,6 +108,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		this.mcuBaseBuilder = this.player.PlayerActor.TraitsImplementing<IBotMcuBaseBuilder>().ToArray();
 		this.mcuDeployManager = this.player.PlayerActor.TraitsImplementing<IBotMcuDeployManager>().ToArray();
 		this.resourceLayer = self.World.WorldActor.TraitOrDefault<IResourceLayer>();
+
+		var playerResources = this.player.PlayerActor.TraitOrDefault<PlayerResources>();
+		if (playerResources != null)
+			this.incomeTracker = new PlayerIncomeTracker(self.World, playerResources);
 	}
 
 	protected override void TraitEnabled(Actor self)
@@ -115,6 +122,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 	void IBotTick.BotTick(IBot bot)
 	{
+		this.incomeTracker?.Tick();
+
 		if (--this.logicTicks > 0)
 			return;
 
