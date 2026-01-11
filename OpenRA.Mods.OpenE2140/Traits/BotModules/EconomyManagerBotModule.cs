@@ -72,6 +72,8 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 
 public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing, IBotEconomyManager, IBotRequestPauseUnitProduction
 {
+	private static readonly int SufficientIncome = 2000;
+
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<CrateTransporterInfo> crateTransporters;
@@ -90,6 +92,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 	private int logicTicks;
 	private bool hasSufficientEconomy;
+	private int reachedEconomyLevel;
+	private int? nextExpansionTick = 0;
+	private int? lastEconomyExpansion;
+	private int? economyExpansionTargetLevel;
 	private int? expandingEconomySince;
 
 	public EconomyManagerBotModule(Actor self, EconomyManagerBotModuleInfo info)
@@ -134,23 +140,16 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		this.OrderCrateTransporterToWork(bot);
 
 		var hadSufficientEconomy = this.hasSufficientEconomy;
-		this.hasSufficientEconomy = this.Tick(bot);
-
-		if (this.hasSufficientEconomy)
-			this.expandingEconomySince = null;
-		else
-			this.expandingEconomySince ??= this.world.WorldTick;
+		this.Tick(bot);
 
 		if (!hadSufficientEconomy && this.hasSufficientEconomy)
 		{
-			AIUtils.BotDebug("{0} has sufficient economy", bot.Player);
+			//AIUtils.BotDebug("{0} has sufficient economy", bot.Player);
 
 			// Force reassigning mines/refineries, in case crate transporters got out of sync.
 			this.assignmentActorsDirtyCheck.Mines.Clear();
 			this.assignmentActorsDirtyCheck.Refineries.Clear();
 		}
-		else if (hadSufficientEconomy && !this.hasSufficientEconomy)
-			AIUtils.BotDebug("{0} does NOT have sufficient economy and is expanding it", bot.Player);
 	}
 
 	private void UpdateMineRefineryAssignments()
@@ -262,85 +261,217 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		}
 	}
 
-	bool IBotRequestPauseUnitProduction.PauseUnitProduction => this.expandingEconomySince != null && (this.world.WorldTick - this.expandingEconomySince) > 100;
-
-	private bool Tick(IBot bot)
+	bool IBotRequestPauseUnitProduction.PauseUnitProduction
 	{
+		get
+		{
+			// No crate transporters -> never pause production
+			if (this.crateTransporters.Actors.Count == 0)
+				return false;
+
+			// Not expanding economy -> can produce units
+			if (this.expandingEconomySince == null)
+				return false;
+
+			// Expanding economy for short period of time -> can produce units
+			var expansionTime = this.world.WorldTick - this.expandingEconomySince;
+			if (expansionTime <= 100)
+				return false;
+
+			// Expanding stalled for some time -> alternate between paused and resumed production
+			if (expansionTime / 100 % 2 == 1)
+				return true;
+
+			// Sufficient income -> can produce units
+			if (this.incomeTracker?.Income > SufficientIncome * 2)
+				return false;
+
+			// Insufficient income -> don't produce new units
+			return true;
+		}
+	}
+
+	private void Tick(IBot bot)
+	{
+		// 1) Retrieve necessary hard data about the current state of the economy.
 		var mcuBaseBuilder = this.mcuBaseBuilder.FirstEnabledTraitOrDefault();
+		var currentIncome = this.incomeTracker?.Income ?? 0;
 
 		var mineCount = this.mines.Alive().Count();
 		var refineryCount = this.refineries.Alive().Count();
+		var crateTransporterCount = this.crateTransporters.Alive().Count();
 
+		// Take into account Refineries currently built or their deployment is in progress
+		// (because Refinery provides one free crate transporter)
+		// TODO: unhardcode, look at the Refinery actor currently being built and check if it will create free transporter
+		var refineriesCurrentlyBuilt = mcuBaseBuilder != null ?
+			GetProductionInProgressCount(bot, mcuBaseBuilder, this.Info.RefineryTypes.Select(this.world.GetMcuFromActor)) : 0;
+
+		// ??? Maybe add count of transporters in production?
+		var predictedTransporterCount = crateTransporterCount + refineriesCurrentlyBuilt;
+
+		// 2) Determine current economy level, previous expansion state and whether the economy is sufficient.
 		var currentEconomyLevel = Math.Min(mineCount, refineryCount);
-		var targetEconomyLevel = this.Info.EconomyExpansionDelays.Count(t => t < this.world.WorldTick) + 1;
+		var targetEconomyLevel = Math.Max(mineCount, refineryCount);
+		var isExpanding = this.expandingEconomySince != null;
 
-		var isEconomySufficient = currentEconomyLevel >= targetEconomyLevel;
-
-		// Not enough mines -> build more
-		var sufficientMineCount = mineCount >= targetEconomyLevel;
-		if (!sufficientMineCount)
+		var isEconomySufficient = false;
+		if (this.economyExpansionTargetLevel != null)
 		{
-			if (mcuBaseBuilder != null)
+			if (this.economyExpansionTargetLevel <= currentEconomyLevel)
 			{
-				var mineMcu = this.world.GetMcuFromActor(this.Info.MineTypes.Random(this.world.LocalRandom));
-				if (TryRequestProduction(bot, mcuBaseBuilder, mineMcu))
-					return isEconomySufficient;
+				// Expansion finished
+				this.reachedEconomyLevel = Math.Max(this.economyExpansionTargetLevel.Value, this.reachedEconomyLevel);
+				if (this.reachedEconomyLevel < this.Info.EconomyExpansionDelays.Count)
+					AIUtils.BotDebug($"{bot.Player} has expanded economy to level {targetEconomyLevel} (highest: {this.reachedEconomyLevel})");
+				else
+					AIUtils.BotDebug("{0} has completed all economy expansion milestones and is now in maintenance mode.", bot.Player);
+
+				this.lastEconomyExpansion = this.world.WorldTick;
+
+				isEconomySufficient = true;
+				this.economyExpansionTargetLevel = null;
+				this.expandingEconomySince = null;
+			}
+			else if (this.economyExpansionTargetLevel == currentEconomyLevel + 1)
+			{
+				targetEconomyLevel = this.economyExpansionTargetLevel.Value;
+			}
+			else
+			{
+				// Economy expansion target level does not match current level +1.
+				// This likely means that economy has degraded, so abort the expansion and let economy recover.
+				this.economyExpansionTargetLevel = null;
+				this.expandingEconomySince = null;
+			}
+		}
+		else if (this.nextExpansionTick != null && this.nextExpansionTick < this.world.WorldTick)
+		{
+			if (currentEconomyLevel != targetEconomyLevel)
+			{
+				// Economy degraded just before the expansion should have started.
+				// Delay new expansion to let economy recover.
+				this.nextExpansionTick += 100;
+			}
+			else
+			{
+				// Reached tick for next expansion: remember when it started.
+				AIUtils.BotDebug("{0} started expanding its economy", bot.Player);
+				this.expandingEconomySince = this.world.WorldTick;
+				targetEconomyLevel = currentEconomyLevel + 1;
+				this.economyExpansionTargetLevel = targetEconomyLevel;
+				this.nextExpansionTick = null;
+				isExpanding = true;
+			}
+		}
+		else
+		{
+			// Maintenance mode (i.e. not expanding economy)
+			isEconomySufficient = currentEconomyLevel == targetEconomyLevel;
+		}
+
+		var expectedCurrentTransporterCount = currentEconomyLevel * this.Info.CrateTransporterPerRefineryMinePair;
+		var shouldBuildCrateTransporter = predictedTransporterCount < expectedCurrentTransporterCount
+			&& mineCount > 0
+			&& refineryCount > 0;
+		if (shouldBuildCrateTransporter)
+		{
+			isEconomySufficient = false;
+		}
+
+		// 3. Perform economy maintenance or expansion actions
+
+		// Expand or rebuild Mine/Refinery only when there's enough crate transporters on current enconomy level.
+		// Rationale: if there's not enough crate transporters for current number of Mines/Refineries,
+		// it does not make sense to build more Mines/Refineries.
+		if (predictedTransporterCount >= expectedCurrentTransporterCount)
+		{
+			// Not enough mines -> build more
+			if (mineCount < targetEconomyLevel)
+			{
+				if (mcuBaseBuilder != null)
+				{
+					var mineMcus = this.Info.MineTypes.Select(this.world.GetMcuFromActor);
+					if (TryRequestProduction(bot, mcuBaseBuilder, mineMcus))
+						return;
+				}
+			}
+
+			// Not enough refineries -> build more
+			if (refineryCount < targetEconomyLevel)
+			{
+				if (mcuBaseBuilder != null)
+				{
+					var refineryMcus = this.Info.RefineryTypes.Select(this.world.GetMcuFromActor);
+					if (TryRequestProduction(bot, mcuBaseBuilder, refineryMcus))
+						return;
+				}
 			}
 		}
 
-		// Not enough refineries -> build more
-		var sufficientRefineryCount = refineryCount >= targetEconomyLevel;
-		if (!sufficientRefineryCount)
-		{
-			if (mcuBaseBuilder != null)
-			{
-				var refinery = this.world.GetMcuFromActor(this.Info.RefineryTypes.Random(this.world.LocalRandom));
-				if (TryRequestProduction(bot, mcuBaseBuilder, refinery))
-					return isEconomySufficient;
-			}
-		}
+		//var isEconomySufficient = currentEconomyLevel >= targetEconomyLevel;
 
 		// Not enough crate transporters -> build more
 		var unitBuilder = this.requestUnitProduction.FirstEnabledTraitOrDefault();
-		if (unitBuilder != null && sufficientMineCount && sufficientRefineryCount)
+		if (unitBuilder != null && shouldBuildCrateTransporter)
 		{
-			// Take into account Refineries currently built or their deployment is in progress
-			// (because Refinery provides one free crate transporter)
-			var refineriesCurrentlyBuilt = mcuBaseBuilder != null ?
-				GetProductionInProgressCount(bot, mcuBaseBuilder, this.Info.RefineryTypes.Select(this.world.GetMcuFromActor)) : 0;
+			// Build the best crate transporter that's possible to build currently.
+			var crateTransporterType = this.Info.CrateTransporterTypes
+				.LastOrDefault(t => unitBuilder.CanBuildUnit(this.player, t));
 
-			var crateTransporterCount = this.crateTransporters.Alive().Count() + refineriesCurrentlyBuilt;
-			var expectedCount = targetEconomyLevel * this.Info.CrateTransporterPerRefineryMinePair;
-			var enoughTransporters = crateTransporterCount >= expectedCount;
+			if (crateTransporterType != null
+				&& unitBuilder.RequestedProductionCount(bot, crateTransporterType) == 0
+				&& unitBuilder.InProductionCount(this.player, crateTransporterType) == 0)
+				unitBuilder.RequestUnitProduction(bot, crateTransporterType);
 
-			var shouldBuild = !enoughTransporters
-				&& this.mines.Alive().Any()
-				&& this.refineries.Alive().Any();
-			if (shouldBuild)
-			{
-				// Build the best crate transporter that's possible to build currently.
-				var crateTransporterType = this.Info.CrateTransporterTypes
-					.LastOrDefault(t => unitBuilder.CanBuildUnit(this.player, t));
-
-				if (crateTransporterType != null
-					&& unitBuilder.RequestedProductionCount(bot, crateTransporterType) == 0
-					&& unitBuilder.InProductionCount(this.player, crateTransporterType) == 0)
-					unitBuilder.RequestUnitProduction(bot, crateTransporterType);
-
-				isEconomySufficient = true;
-			}
-			else if (!enoughTransporters)
-				isEconomySufficient = false;
+			//// Expansion is complete only if there's at least 1 crate transporter
+			//isEconomySufficient = predictedTransporterCount > 0;
 		}
+
+		// 4. Plan next expansion (if possible).
+
+		// Maybe add check for sufficient income here to unblock McuBuilderQueueManager?
+		if (isEconomySufficient && this.economyExpansionTargetLevel == null && this.nextExpansionTick == null)
+		{
+			//this.lastEconomyExpansion = this.world.WorldTick;
+
+			if (targetEconomyLevel == 0)
+			{
+				// Economy level is down to zero; start expansion immediately.
+				this.nextExpansionTick = this.world.WorldTick;
+			}
+			else if (targetEconomyLevel < this.reachedEconomyLevel)
+			{
+				var minDelayBetweenExpansions = 300;
+
+				// Economy has degraded, expand again
+				this.nextExpansionTick = this.world.WorldTick + minDelayBetweenExpansions;
+			}
+			else if (targetEconomyLevel < this.Info.EconomyExpansionDelays.Count + 1)
+			{
+				var nextExpansionDelay = this.Info.EconomyExpansionDelays[targetEconomyLevel - 1];
+
+				this.nextExpansionTick = this.world.WorldTick + Math.Min(minDelayBetweenExpansions, nextExpansionDelay);
+			}
+			//else if (this.nextExpansionTick == null && targetEconomyLevel < this.reachedEconomyLevel)
+			//{
+			//	// Economy has degraded, try expanding in a short while again to recover.
+			//	this.nextExpansionTick = this.world.WorldTick + 100;
+			//}
+
+			//this.expandingEconomySince = null;
+		}
+
+		this.hasSufficientEconomy = isEconomySufficient;
 
 		// TODO: other checks
 
-		return isEconomySufficient;
-
-		bool TryRequestProduction(IBot bot, IBotMcuBaseBuilder mcuBaseBuilder, ActorInfo? mcu)
+		bool TryRequestProduction(IBot bot, IBotMcuBaseBuilder mcuBaseBuilder, IEnumerable<ActorInfo?> mcuActors)
 		{
-			if (mcu == null || GetProductionInProgressCount(bot, mcuBaseBuilder, [mcu]) > 0)
+			if (mcuActors == null || GetProductionInProgressCount(bot, mcuBaseBuilder, mcuActors) > 0)
 				return false;
+
+			var mcu = mcuActors.Random(this.world.LocalRandom);
 
 			mcuBaseBuilder.RequestBuildingProduction(bot, mcu.Name);
 			return true;
@@ -676,9 +807,9 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 					return;
 
 				// TODO: handle Mine depletion
-				if (crateTransporter.HasCrate && routine.CurrentRefinery != this.Refinery || actor.IsIdle)
+				if ((crateTransporter.HasCrate && routine.CurrentRefinery != this.Refinery) || actor.IsIdle)
 					QueueDockOrder(actor, this.Refinery, false, [this.Mine]);
-				else if (!crateTransporter.HasCrate && routine.CurrentMine != this.Mine || actor.IsIdle)
+				else if ((!crateTransporter.HasCrate && routine.CurrentMine != this.Mine) || actor.IsIdle)
 					QueueDockOrder(actor, this.Mine, false, [this.Refinery]);
 			}
 

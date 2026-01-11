@@ -52,10 +52,15 @@ public static class McuUtils
 
 	public static ActorInfo? GetMcuActor(OpenRA.World world, ActorInfo buildingActor)
 	{
+		return GetMcuActor(world.Map.Rules, buildingActor);
+	}
+
+	public static ActorInfo? GetMcuActor(Ruleset rules, ActorInfo buildingActor)
+	{
 		if (!buildingActor.HasTraitInfo<BuildingInfo>())
 			throw new ArgumentException($"Actor '{buildingActor.Name}' does not have Building trait (maybe it's not a building?)", nameof(buildingActor));
 
-		return world.Map.Rules.Actors.Values
+		return rules.Actors.Values
 			.Where(a => a.HasTraitInfo<McuInfo>())
 			.FirstOrDefault(a => GetTargetBuilding(a) == buildingActor.Name);
 	}
