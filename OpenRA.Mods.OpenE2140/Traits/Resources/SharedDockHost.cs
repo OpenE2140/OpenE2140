@@ -43,7 +43,7 @@ public class SharedDockHost : DockHost
 
 	public override void QueueDockActivity(Activity moveToDockActivity, Actor self, Actor clientActor, DockClientManager client)
 	{
-		moveToDockActivity.QueueChild(new DockHostLock(this,
+		moveToDockActivity.QueueChild(new DockHostLock(self, this,
 			new GenericDockSequence(
 				clientActor,
 				client,

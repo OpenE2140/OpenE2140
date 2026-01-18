@@ -18,6 +18,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 
 public class DockHostLock : Activity
 {
+	private readonly Actor dockActor;
 	private readonly SharedDockHost sharedDockHost;
 	private readonly Activity dockActivity;
 	private readonly bool releaseOnFinish;
@@ -25,8 +26,9 @@ public class DockHostLock : Activity
 	private bool hasDockStarted;
 	private bool wasCanceled;
 
-	public DockHostLock(SharedDockHost sharedDockHost, Activity dockActivity, bool releaseOnFinish = true)
+	public DockHostLock(Actor dockActor, SharedDockHost sharedDockHost, Activity dockActivity, bool releaseOnFinish = true)
 	{
+		this.dockActor = dockActor;
 		this.sharedDockHost = sharedDockHost;
 		this.dockActivity = dockActivity;
 		this.releaseOnFinish = releaseOnFinish;
@@ -51,6 +53,12 @@ public class DockHostLock : Activity
 
 		if (!this.hasDockStarted)
 		{
+			if (this.dockActor.IsDead)
+			{
+				this.Cancel(self, true);
+				return true;
+			}
+
 			if (!this.sharedDockHost.TryAcquireLock(self))
 			{
 				this.QueueChild(new Wait(5));

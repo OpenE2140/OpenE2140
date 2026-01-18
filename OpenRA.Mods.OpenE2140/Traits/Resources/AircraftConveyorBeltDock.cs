@@ -179,7 +179,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 			}
 
 			// Acquire lock now (i.e. before the landing starts) and keep it until the docking is complete
-			this.QueueChild(new DockHostLock(this.aircraftConveyorBeltDock, parentActivity, releaseOnFinish: false));
+			this.QueueChild(new DockHostLock(this.dockHostActor, this.aircraftConveyorBeltDock, parentActivity, releaseOnFinish: false));
 
 			// Dock angle is calculated lazily (at the very last moment, just before the landing starts).
 			// The calculation needs some work (see GetDockAngle() method in AircraftCrateTransporter
