@@ -10,6 +10,7 @@ ed_vehicles_bio:
 		BuildDuration: 75
 		BuildPaletteOrder: 90
 		Prerequisites: HighMedicine
+		Description: Infantry transporter.\nHeals infantry units.\nUnarmed.
 	Selectable:
 		Bounds: 896, 640, 0, 0
 	Health:

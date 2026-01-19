@@ -190,5 +190,6 @@ shared_mcu_mine:
 		BuildDuration: 100
 		BuildPaletteOrder: 60
 		Prerequisites: anypower
+		Description: Place it on resources ground to extract ore crates.\nUse Banthas or Heavy Lifters to collect crates.
 	WithTextDecoration:
 		Text: Mine

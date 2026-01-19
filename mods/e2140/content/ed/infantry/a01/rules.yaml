@@ -10,6 +10,7 @@ ed_infantry_a01:
 		Queue: Infantry.ED
 		BuildDuration: 50
 		BuildPaletteOrder: 10
+		Description: Armed with machine gun.\nThrows grenades at vehicles and buildings.\nCan capture enemy buildings.\nCan reinforce ally buildings.
 	Health:
 		HP: 28
 	RevealsShroud:

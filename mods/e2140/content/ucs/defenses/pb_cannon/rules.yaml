@@ -82,5 +82,6 @@ ucs_mcu_pb_cannon:
 		BuildDuration: 113
 		BuildPaletteOrder: 35
 		Prerequisites: PlasmaWeapons, ucs_buildings_pb_control
+		Description: Superweapon.\nFires plasma laser beam.
 	WithTextDecoration:
 		Text: PB Cannon
