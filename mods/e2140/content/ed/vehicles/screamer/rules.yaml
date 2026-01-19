@@ -11,6 +11,7 @@ ed_vehicles_screamer:
 		BuildDuration: 75
 		BuildPaletteOrder: 120
 		Prerequisites: IonCannon
+		Description: Detects cloaked enemy units.\nCauses enemy units to ignore new orders.
 	Selectable:
 		Bounds: 1024, 928, 0, 0
 	Health:

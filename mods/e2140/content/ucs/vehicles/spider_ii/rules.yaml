@@ -11,6 +11,7 @@ ucs_vehicles_spider_ii:
 		BuildDuration: 113
 		BuildPaletteOrder: 70
 		Prerequisites: HeavyRockets
+		Description: Heavy mech armed with heavy rocket launcher.\nCan target air units.
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

@@ -12,6 +12,7 @@ ed_vehicles_mt200:
 		BuildDuration: 75
 		BuildPaletteOrder: 30
 		Prerequisites: NuclearEngine
+		Description: Medium unit armed with cannon.
 	Selectable:
 		Bounds: 896, 640, 0, 0
 	Health:

@@ -49,5 +49,6 @@ ucs_mcu_little_eye:
 		BuildDuration: 75
 		BuildPaletteOrder: 10
 		Prerequisites: PlasmaFusion, ucs_buildings_robot_factory
+		Description: Basic defense.\nArmed with machine gun.
 	WithTextDecoration:
 		Text: Little Eye

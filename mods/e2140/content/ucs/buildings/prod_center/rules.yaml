@@ -106,6 +106,7 @@ ucs_mcu_prod_center:
 		BuildDuration: 163
 		BuildPaletteOrder: 40
 		Prerequisites: NuclearEngine
+		Description: The main headquarters.\nAllows production of MCUs and utility units.
 	BaseBuilding:
 	WithTextDecoration:
 		Text: Prod. Center

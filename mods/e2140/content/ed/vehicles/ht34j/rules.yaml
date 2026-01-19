@@ -12,6 +12,7 @@ ed_vehicles_ht34j:
 		BuildDuration: 113
 		BuildPaletteOrder: 70
 		Prerequisites: IonCannon
+		Description: Heavy unit armed with heavy ion-cannon.\nCan disable enemy vehicles.
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:
