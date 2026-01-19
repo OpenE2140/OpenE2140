@@ -63,5 +63,6 @@ ed_mcu_an_center:
 		BuildDuration: 100
 		BuildPaletteOrder: 50
 		Prerequisites: anypower, IonCannon
+		Description: Long reveal range.\nDetects cloaked enemy units.
 	WithTextDecoration:
 		Text: Watch Tower

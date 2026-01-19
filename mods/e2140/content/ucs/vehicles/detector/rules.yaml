@@ -14,6 +14,7 @@ ucs_vehicles_detector:
 		BuildDuration: 75
 		BuildPaletteOrder: 200
 		Prerequisites: Teleportation
+		Description: Detects enemy cloaked units.\nArmed with two dual machine guns.
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:

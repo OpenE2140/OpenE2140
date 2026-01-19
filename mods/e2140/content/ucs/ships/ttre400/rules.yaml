@@ -10,6 +10,7 @@ ucs_ships_ttre400:
 		BuildDuration: 125
 		BuildPaletteOrder: 20
 		Prerequisites: AiMine
+		Description: Lays water mines.\nDisarms enemy water mines.\nUnarmed.
 	Selectable:
 		Bounds: 1104, 944, 0, 0
 	Health:

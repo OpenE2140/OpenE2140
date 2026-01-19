@@ -53,5 +53,6 @@ shared_mcu_shelter:
 		BuildDuration: 100
 		BuildPaletteOrder: 35
 		Prerequisites: NuclearReactor
+		Description: Shelters units.
 	WithTextDecoration:
 		Text: Shelter

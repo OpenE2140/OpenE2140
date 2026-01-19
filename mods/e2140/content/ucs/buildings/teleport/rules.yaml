@@ -96,5 +96,6 @@ ucs_mcu_teleport:
 		BuildDuration: 138
 		BuildPaletteOrder: 95
 		Prerequisites: Teleportation, shared_buildings_research_center
+		Description: Allows production of vehicles and mechs.\nUnits produced using Teleport cost 50% more.\nInstant production time.
 	WithTextDecoration:
 		Text: Teleport

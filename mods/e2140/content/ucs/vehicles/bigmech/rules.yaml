@@ -12,6 +12,7 @@ ucs_vehicles_big_mech:
 		BuildDuration: 113
 		BuildPaletteOrder: 130
 		Prerequisites: Teleportation
+		Description: Heavy mech armed with fast-firing light rocket launchers.\nCan target air units.
 	Selectable:
 		Bounds: 1360, 1360, 0, 0
 	Health:

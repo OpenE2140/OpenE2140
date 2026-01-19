@@ -11,6 +11,7 @@ ed_ships_shark:
 		BuildDuration: 113
 		BuildPaletteOrder: 10
 		Prerequisites: Engine
+		Description: A small ship armed with torpdeo launcher.\nCan only target naval units.
 	Selectable:
 		Bounds: 704, 624, 0, 0
 	Health:

@@ -52,5 +52,6 @@ ucs_mcu_big_eye:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: HeavyRockets, ucs_buildings_heavy_tech
+		Description: Advanced defense.\nArmed with heavy rocket launcher.\nCan target air units.
 	WithTextDecoration:
 		Text: Big Eye

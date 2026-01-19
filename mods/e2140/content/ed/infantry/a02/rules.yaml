@@ -11,6 +11,7 @@ ed_infantry_a02:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: RocketEngine
+		Description: Armed with rocket launcher.\nCan target air units.\nCan capture enemy buildings.\nCan reinforce ally buildings.
 	Health:
 		HP: 28
 	RevealsShroud:

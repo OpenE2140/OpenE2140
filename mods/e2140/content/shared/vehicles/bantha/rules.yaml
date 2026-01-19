@@ -12,6 +12,7 @@ shared_vehicles_bantha:
 		Queue: Building.UCS, Building.ED, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 110
+		Description: Resources collector.
 	Selectable:
 		Bounds: 1040, 1056, 0, 0
 	Health:

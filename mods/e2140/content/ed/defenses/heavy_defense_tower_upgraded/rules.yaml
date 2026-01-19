@@ -39,5 +39,6 @@ ed_mcu_heavy_defense_tower_upgraded:
 		BuildDuration: 75
 		BuildPaletteOrder: 25
 		Prerequisites: IonCannon, ed_buildings_tech_house
+		Description: Advanced defense.\nArmed with heavy ion-cannon.\nCan disable enemy vehicles.
 	WithTextDecoration:
 		Text: Heavy Def. Tower Upgr.

@@ -10,6 +10,7 @@ ucs_vehicles_hellbike:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 100
+		Description: Armed with napalm grenade launcher.
 	Selectable:
 		Bounds: 656, 608, 0, 0
 	Health:

@@ -150,5 +150,6 @@ shared_mcu_air_base:
 		BuildDuration: 113
 		BuildPaletteOrder: 90
 		Prerequisites: anypower, Flying
+		Description: Allows production of aircraft units.
 	WithTextDecoration:
 		Text: Air Base

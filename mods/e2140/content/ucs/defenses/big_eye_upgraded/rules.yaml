@@ -39,5 +39,6 @@ ucs_mcu_big_eye_upgraded:
 		BuildDuration: 75
 		BuildPaletteOrder: 25
 		Prerequisites: LightPlasmaCannon, ucs_buildings_heavy_tech, HeavyRockets
+		Description: Advanced defense.\nArmed with heavy plasma cannon.
 	WithTextDecoration:
 		Text: Big Eye Upgr.
