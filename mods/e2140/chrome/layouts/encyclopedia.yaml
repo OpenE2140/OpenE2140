@@ -57,11 +57,21 @@ Background@ENCYCLOPEDIA_PANEL:
 							Height: 225
 							Background: dialog3
 							Children:
-								LoopedVideoPlayer@ANIMATION:
-									X: 5
-									Y: 5
-									Width: PARENT_WIDTH - 10
-									Height: PARENT_HEIGHT - 10
+								ColorBlock@HEADER_COLOR:
+									X: 3
+									Y: 3
+									Width: PARENT_WIDTH - 6
+									Height: PARENT_HEIGHT - 6
+									Color: 000000FF
+								LoopedVideoPlayer@ANIMATION_VIDEO:
+									X: 3
+									Y: 4
+									Width: PARENT_WIDTH - 6
+									Height: PARENT_HEIGHT - 8
+									DrawOverlay: False
+								SpriteAnimation@ANIMATION_SPRITE:
+									Width: PARENT_WIDTH
+									Height: PARENT_HEIGHT
 						Background@ACTOR_BG:
 							X: PARENT_WIDTH - 325
 							Width: 325

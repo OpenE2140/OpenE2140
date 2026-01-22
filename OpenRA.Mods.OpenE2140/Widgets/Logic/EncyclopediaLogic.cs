@@ -20,6 +20,7 @@ using OpenRA.Mods.Common.Widgets;
 using OpenRA.Mods.OpenE2140.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Research;
+using OpenRA.Mods.OpenE2140.Widgets.Util;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
@@ -31,6 +32,8 @@ namespace OpenRA.Mods.OpenE2140.Widgets.Logic;
 [UsedImplicitly]
 public class EncyclopediaLogic : ChromeLogic
 {
+	private enum AnimationType { Video, Sprite }
+
 	private readonly World world;
 	private readonly ModData modData;
 
@@ -42,9 +45,15 @@ public class EncyclopediaLogic : ChromeLogic
 	private readonly ScrollItemWidget headerTemplate;
 	private readonly ScrollItemWidget template;
 	private readonly ActorPreviewWidget previewWidget;
-	private readonly LoopedVideoPlayerWidget animationWidget;
+	private readonly LoopedVideoPlayerWidget videoAnimationWidget;
+	private readonly SpriteAnimationWidget spriteAnimationWidget;
+	private readonly string[] spriteExtensions;
+	private readonly string[] videoExtensions;
+	private readonly SpriteSheetProvider spriteSheetProvider;
 	private readonly Dictionary<string, string> allProductionQueues;
+
 	private ActorInfo? selectedActor;
+	private AnimationType? animationType;
 	private ScrollItemWidget? firstItem;
 
 	[ObjectCreator.UseCtor]
@@ -63,8 +72,11 @@ public class EncyclopediaLogic : ChromeLogic
 		this.previewWidget = widget.Get<ActorPreviewWidget>("ACTOR_PREVIEW");
 		this.previewWidget.IsVisible = () => this.selectedActor != null;
 
-		this.animationWidget = widget.Get<LoopedVideoPlayerWidget>("ANIMATION");
-		this.animationWidget.IsVisible = () => this.selectedActor != null;
+		this.videoAnimationWidget = widget.Get<LoopedVideoPlayerWidget>("ANIMATION_VIDEO");
+		this.videoAnimationWidget.IsVisible = () => this.selectedActor != null && this.animationType == AnimationType.Video;
+
+		this.spriteAnimationWidget = widget.Get<SpriteAnimationWidget>("ANIMATION_SPRITE");
+		this.spriteAnimationWidget.IsVisible = () => this.selectedActor != null && this.animationType == AnimationType.Sprite;
 
 		this.descriptionPanel = widget.Get<ScrollPanelWidget>("ACTOR_DESCRIPTION_PANEL");
 
@@ -73,7 +85,13 @@ public class EncyclopediaLogic : ChromeLogic
 
 		this.actorList.RemoveChildren();
 
-		var actorEncyclopediaPair = this.GetFilteredActorEncyclopediaPairs().ToArray();
+		var assetBrowserModData = modData.Manifest.Get<AssetBrowser>();
+		this.spriteExtensions = assetBrowserModData.SpriteExtensions.Select(x => x.ToLowerInvariant()).ToArray();
+		this.videoExtensions = assetBrowserModData.VideoExtensions.Select(x => x.ToLowerInvariant()).ToArray();
+
+		this.spriteSheetProvider = new SpriteSheetProvider(modData.DefaultFileSystem, modData.SpriteLoaders);
+
+		var actorEncyclopediaPair = this.GetFilteredActorEncyclopediaPairs();
 		var categories = actorEncyclopediaPair.Select(a => a.Value.Category).Distinct().OrderBy(string.IsNullOrWhiteSpace).ThenBy(s => s);
 
 		// preload faction and production queue data: necessary for determining actor's "default" faction
@@ -98,7 +116,7 @@ public class EncyclopediaLogic : ChromeLogic
 		};
 	}
 
-	private IEnumerable<KeyValuePair<ActorInfo, EncyclopediaInfo>> GetFilteredActorEncyclopediaPairs()
+	private List<KeyValuePair<ActorInfo, EncyclopediaInfo>> GetFilteredActorEncyclopediaPairs()
 	{
 		var actors = new List<KeyValuePair<ActorInfo, EncyclopediaInfo>>();
 
@@ -158,8 +176,31 @@ public class EncyclopediaLogic : ChromeLogic
 		this.selectedActor = actor;
 
 		var info = actor.TraitInfoOrDefault<EncyclopediaInfo>();
+		var animationFile = info?.Animation;
+		if (!string.IsNullOrEmpty(animationFile))
+		{
+			var fileExtension = Path.GetExtension(animationFile.ToLowerInvariant());
+			if (this.spriteExtensions.Contains(fileExtension))
+			{
+				this.animationType = AnimationType.Sprite;
 
-		this.animationWidget.SetVideo(info?.Animation);
+				var sprites = this.spriteSheetProvider.GetSprites(animationFile);
+				this.spriteAnimationWidget.SetSpriteSheet(sprites);
+			}
+			else if (this.videoExtensions.Contains(fileExtension))
+			{
+				this.animationType = AnimationType.Video;
+				this.videoAnimationWidget.SetVideo(animationFile);
+			}
+			else
+			{
+				this.animationType = null;
+			}
+		}
+		else
+		{
+			this.animationType = null;
+		}
 
 		// Check if there's MCU for this actor as for some information we don't really want to use the building actor.
 		var mcu = this.modData.DefaultRules.Actors.Values.Where(actor => actor.HasTraitInfo<McuInfo>())
@@ -176,8 +217,8 @@ public class EncyclopediaLogic : ChromeLogic
 		var typeDictionary = new TypeDictionary { new OwnerInit(player), new FactionInit(player.Faction.InternalName) };
 
 		foreach (var actorPreviewInit in actor.TraitInfos<IActorPreviewInitInfo>())
-		foreach (var inits in actorPreviewInit.ActorPreviewInits(actor, ActorPreviewType.ColorPicker))
-			typeDictionary.Add(inits);
+			foreach (var inits in actorPreviewInit.ActorPreviewInits(actor, ActorPreviewType.ColorPicker))
+				typeDictionary.Add(inits);
 
 		this.previewWidget.SetPreview(actor, typeDictionary);
 
