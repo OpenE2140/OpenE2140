@@ -17,7 +17,7 @@ Terrain:
 	TerrainType@Clear:
 		Type: Clear
 		TargetTypes: Ground
-		Color: 293808
+		Color: 433521
 		AcceptsSmudgeType: Clear
 	TerrainType@Resources:
 		Type: Resources
@@ -27,22 +27,22 @@ Terrain:
 	TerrainType@ClearTree:
 		Type: ClearTree
 		TargetTypes: Ground
-		Color: 293808
+		Color: 433521
 		AcceptsSmudgeType: Clear
 	TerrainType@ClearPipe:
 		Type: ClearPipe
 		TargetTypes: Ground
-		Color: 403216
+		Color: 433521
 		AcceptsSmudgeType: Clear
 	TerrainType@Sand:
 		Type: Sand
 		TargetTypes: Ground
-		Color: C6AE76
+		Color: 554431
 		AcceptsSmudgeType: Sand
 	TerrainType@SandEdge:
 		Type: SandEdge
 		TargetTypes: Ground
-		Color: C6AE76
+		Color: 554431
 	TerrainType@Rock:
 		Type: Rock
 		TargetTypes: Ground
