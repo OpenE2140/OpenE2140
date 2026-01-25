@@ -70,7 +70,8 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	}
 }
 
-public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing, IBotEconomyManager, IBotRequestPauseUnitProduction
+public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing,
+	IBotEconomyManager, IBotRequestPauseUnitProduction, IBotMcuDeployment
 {
 	private static readonly int SufficientIncome = 2000;
 
@@ -81,6 +82,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private readonly ActorIndex.OwnerAndNamesAndTrait<ResourceRefineryInfo> refineries;
 	private readonly List<MineRefineryAssignment> mineRefineryAssignments = [];
 	private readonly (List<Actor> Mines, List<Actor> Refineries) assignmentActorsDirtyCheck = ([], []);
+	private readonly List<(Actor mcuActor, CPos deployLocation)> mineMcusMovingToDeploy = [];
 
 	private IBotRequestUnitProduction[] requestUnitProduction = [];
 	private IBotMcuBaseBuilder[] mcuBaseBuilder = [];
@@ -135,8 +137,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		this.logicTicks = this.Info.LogicInterval;
 
+		this.CleanTrackedMcuDeployments();
 		this.UpdateMineRefineryAssignments();
-
 		this.OrderCrateTransporterToWork(bot);
 
 		var hadSufficientEconomy = this.hasSufficientEconomy;
@@ -150,6 +152,11 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			this.assignmentActorsDirtyCheck.Mines.Clear();
 			this.assignmentActorsDirtyCheck.Refineries.Clear();
 		}
+	}
+
+	private void CleanTrackedMcuDeployments()
+	{
+		this.mineMcusMovingToDeploy.RemoveAll(t => t.mcuActor.IsDead);
 	}
 
 	private void UpdateMineRefineryAssignments()
@@ -289,6 +296,20 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			// Insufficient income -> don't produce new units
 			return true;
 		}
+	}
+
+	void IBotMcuDeployment.OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation)
+	{
+		if (!McuUtils.TryGetTargetBuilding(this.world, mcuActor.Info, out var buildingActor))
+			return;
+
+		if (this.Info.MineTypes.Contains(buildingActor.Name))
+			this.mineMcusMovingToDeploy.Add((mcuActor, deployLocation));
+	}
+
+	void IBotMcuDeployment.McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor)
+	{
+		this.mineMcusMovingToDeploy.RemoveAll(t => mcuActor == t.mcuActor);
 	}
 
 	private void Tick(IBot bot)
@@ -526,36 +547,45 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// - within a reasonable search radius
 		// - and have currently unassigned Mine
 		var maxSearchRadiusSq = this.Info.MaxRefineryDistance.PowerOf2();
-		var mineActors = this.mines.Alive()
-			.Where(mine =>
-			{
-				if (this.mineRefineryAssignments.Any(a => a.Mine == mine && a.Refinery != null))
-					return false;
+		var possibleMineLocations = new List<CPos>();
 
-				var mineBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(mine.Info);
-				if (mineBuildingInfo == null)
-					return false;
+		foreach (var mine in this.mines.Alive())
+		{
+			if (this.mineRefineryAssignments.Any(a => a.Mine == mine && a.Refinery != null))
+				continue;
 
-				var mineCenterLocation = this.world.Map.CellContaining(mineBuildingInfo.GetCenterOfFootprint(mine.Location));
+			var mineBuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(mine.Info);
+			if (mineBuildingInfo == null)
+				continue;
 
-				return (mineCenterLocation - origin).LengthSquared <= maxSearchRadiusSq;
-			})
-			.ToArray();
+			var mineCenterLocation = this.world.Map.CellContaining(mineBuildingInfo.GetCenterOfFootprint(mine.Location));
+
+			if ((mineCenterLocation - origin).LengthSquared > maxSearchRadiusSq)
+				continue;
+
+			var mineMcuInfo = McuUtils.GetMcuActor(this.world, mine.Info);
+			if (mineMcuInfo == null || !mineMcuInfo.TryGetTrait<TransformsInfo>(out var mineTransformsInfo))
+				continue;
+
+			possibleMineLocations.Add(mine.Location - mineTransformsInfo.Offset);
+		}
+
+		// If there's a mine MCU currently moving to deploy, consider the deploy cell a possible Mine location.
+		// TODO: add more logic for various situations: multiple Refinery MCUs, enemy attacking (should avoid sending Refinery MCU), etc.
+		foreach (var (mcuActor, deployLocation) in this.mineMcusMovingToDeploy)
+		{
+			if (!mcuActor.IsDead)
+				possibleMineLocations.Add(deployLocation);
+		}
 
 		var checkedLocations = new HashSet<CPos>();
 		var result = new List<CPos>();
 		var candidatesByDistance = new SortedDictionary<int, List<CPos>>();
 
 		// Evaluate each mine for suitable location, where new Refinery can be placed
-		foreach (var mine in mineActors)
+		foreach (var location in possibleMineLocations)
 		{
-			var mineMcuInfo = McuUtils.GetMcuActor(this.world, mine.Info);
-			if (mineMcuInfo == null || !mineMcuInfo.TryGetTrait<TransformsInfo>(out var mineTransformsInfo))
-				continue;
-
-			var mineMcuDeployLocation = mine.Location - mineTransformsInfo.Offset;
-
-			foreach (var cell in this.world.Map.FindTilesInAnnulus(mineMcuDeployLocation, this.Info.MinRefineryDistance, this.Info.MaxRefineryDistance))
+			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, this.Info.MinRefineryDistance, this.Info.MaxRefineryDistance))
 			{
 				if (checkedLocations.Contains(cell))
 					continue;
@@ -565,7 +595,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				if (target != null && (cell - target.Value).LengthSquared <= 3 * 3)
 					continue;
 
-				var distToMine = (cell - mineMcuDeployLocation).LengthSquared;
+				var distToMine = (cell - location).LengthSquared;
 
 				if (!candidatesByDistance.TryGetValue(distToMine, out var cells))
 					candidatesByDistance[distToMine] = cells = [];
