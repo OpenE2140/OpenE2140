@@ -2574,88 +2574,43 @@ MultiBrushCollections:
 	
 	# Extras
 	Trees:
-		MultiBrush@tree01:
-			Actor: neutral_tree01
-		MultiBrush@tree02:
-			Actor: neutral_tree02
-		MultiBrush@tree03:
-			Actor: neutral_tree03
-		MultiBrush@tree04:
-			Actor: neutral_tree04
-		MultiBrush@tree05:
-			Actor: neutral_tree05
-		MultiBrush@tree06:
-			Actor: neutral_tree06
+		FromActors@1: neutral_tree01,neutral_tree02,neutral_tree03,neutral_tree04,neutral_tree05,neutral_tree06
 	Obstructions:
-		MultiBrush@1:
-			Template: 1
-			Weight: 10000
+		MultiBrush@1_0:
+			Tile: 1,0
+			Weight: 200
+		MultiBrush@1_1:
+			Tile: 1,1
+			Weight: 200
+		MultiBrush@1_2:
+			Tile: 1,2
+			Weight: 200
+		MultiBrush@1_3:
+			Tile: 1,3
+			Weight: 200
+		MultiBrush@1_4:
+			Tile: 1,4
+			Weight: 200
 		MultiBrush@30:
 			Template: 30
-			Weight: 100
+			Weight: 200
 		MultiBrush@31:
 			Template: 31
-			Weight: 50
+			Weight: 100
+		FromActors@1: neutral_tree01,neutral_tree02,neutral_tree03,neutral_tree04,neutral_tree05,neutral_tree06
+			Weight: 100
 	ClearDecorations:
 		MultiBrush@Nothing:
-			Weight: 10000
-		MultiBrush@10:
-			Template: 10
-			Weight: 500
+			Template: 255
 		MultiBrush@343:
 			Template: 343
+		MultiBrush@10:
+			Template: 10
 			Weight: 100
 	CivilianBuildings:
-		MultiBrush@urban2_building_big1:
-			Actor: urban2_building_big1
-		MultiBrush@urban2_building_big2:
-			Actor: urban2_building_big2
-		MultiBrush@urban2_building_big3:
-			Actor: urban2_building_big3
-		MultiBrush@urban2_building_big4:
-			Actor: urban2_building_big4
-		MultiBrush@urban2_building_big5:
-			Actor: urban2_building_big5
-		MultiBrush@urban2_building_big6:
-			Actor: urban2_building_big6
-		MultiBrush@urban2_building_big7:
-			Actor: urban2_building_big7
-		MultiBrush@urban2_building_big8:
-			Actor: urban2_building_big8
-		MultiBrush@urban2_building_big9:
-			Actor: urban2_building_big9
-		MultiBrush@urban2_building_big10:
-			Actor: urban2_building_big10
-		MultiBrush@urban2_building_big11:
-			Actor: urban2_building_big11
-		MultiBrush@urban2_building_big12:
-			Actor: urban2_building_big12
-		MultiBrush@urban2_building_big13:
-			Actor: urban2_building_big13
-		MultiBrush@urban2_building_big14:
-			Actor: urban2_building_big14
-		MultiBrush@urban2_building_big15:
-			Actor: urban2_building_big15
-		MultiBrush@urban2_building_big16:
-			Actor: urban2_building_big16
-		MultiBrush@urban2_building_big17:
-			Actor: urban2_building_big17
-		MultiBrush@urban2_building_big18:
-			Actor: urban2_building_big18
-		MultiBrush@urban2_building_big19:
-			Actor: urban2_building_big19
-		MultiBrush@urban2_building_small1:
-			Actor: urban2_building_small1
+		FromActors@1: urban_building_big1,urban_building_big2,urban_building_big3,urban_building_big4,urban_building_big5,urban_building_big6,urban_building_big7,urban_building_big8,urban_building_big9,urban_building_big10,urban_building_big11,urban_building_big12,urban_building_big13,urban_building_big14,urban_building_big15,urban_building_big16,urban_building_big17,urban_building_big18,urban_building_big19,urban_building_big20
+		FromActors@2: urban_building_small1,urban_building_small2,urban_building_small3,urban_building_small4,urban_building_small5,urban_building_small5
 			Weight: 500
-		MultiBrush@urban2_building_small2:
-			Actor: urban2_building_small2
-			Weight: 500
-		MultiBrush@urban2_building_small3:
-			Actor: urban2_building_small3
-			Weight: 500
-		MultiBrush@urban2_building_small4:
-			Actor: urban2_building_small4
-			Weight: 500
-		MultiBrush@urban2_building_small5:
-			Actor: urban2_building_small5
+		FromActors@3: urban2_building_big1,urban2_building_big2,urban2_building_big3,urban2_building_big4,urban2_building_big5,urban2_building_big6,urban2_building_big7,urban2_building_big8,urban2_building_big9,urban2_building_big10,urban2_building_big11,urban2_building_big12,urban2_building_big13,urban2_building_big14,urban2_building_big15,urban2_building_big16,urban2_building_big17,urban2_building_big18,urban2_building_big19
+		FromActors@4: urban2_building_small1,urban2_building_small2,urban2_building_small3,urban2_building_small4,urban2_building_small5
 			Weight: 500
