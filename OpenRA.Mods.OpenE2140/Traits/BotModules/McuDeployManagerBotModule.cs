@@ -107,7 +107,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private readonly Dictionary<Actor, McuDeployContext> mcuDeployContext = [];
 
 	private IBotPositionsUpdated[] notifyPositionsUpdated = [];
-
+	private List<IBotMcuDeployment> notifyMcuDeployment = [];
 	private IBotEconomyManager? economyManager;
 	private CPos? initialBaseCenter;
 	private CPos? defenseCenter;
@@ -139,6 +139,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	protected override void Created(Actor self)
 	{
 		this.notifyPositionsUpdated = self.Owner.PlayerActor.TraitsImplementing<IBotPositionsUpdated>().ToArray();
+		this.notifyMcuDeployment = self.Owner.PlayerActor.TraitsImplementing<IBotMcuDeployment>().ToList();
 		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<IBotEconomyManager>();
 	}
 
@@ -200,16 +201,16 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			this.DeployMcu(bot, mcu, chooseLocation);
 
 		var oldEntries = this.mcuDeployContext.Keys.Where(actor => actor.IsDead);
-		foreach (var actor in oldEntries)
+		foreach (var mcuActor in oldEntries)
 		{
-			this.mcuDeployContext.Remove(actor);
+			this.mcuDeployContext.Remove(mcuActor);
 
-			if (this.GetBuildingType(actor) == BuildingType.Defense)
+			if (this.GetBuildingType(mcuActor) == BuildingType.Defense)
 				this.defenseCenter = null;
 
-			if (actor.ReplacedByActor != null)
+			if (mcuActor.ReplacedByActor != null)
 			{
-
+				this.notifyMcuDeployment.ForEach(m => m.McuDeployed(bot, mcuActor, mcuActor.ReplacedByActor));
 			}
 		}
 	}
@@ -217,6 +218,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	// Find any MCU and deploy them at a sensible location.
 	private void DeployMcu(IBot bot, Actor mcu, bool move)
 	{
+		var deployLocation = mcu.Location;
 		if (move)
 		{
 			var desiredLocation = this.ChooseMcuDeployLocation(mcu);
@@ -224,6 +226,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				return;
 
 			bot.QueueOrder(new Order("Move", mcu, Target.FromCell(this.world, desiredLocation.Value), true));
+			deployLocation = desiredLocation.Value;
 		}
 		else
 		{
@@ -239,6 +242,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { ActorID = actor.ActorID });
 		context.DeployAttempt++;
 		bot.QueueOrder(new Order("DeployTransform", mcu, true));
+
+		this.notifyMcuDeployment.ForEach(m => m.OrderedMcuToDeploy(bot, mcu, deployLocation));
 	}
 
 	private CPos? ChooseMcuDeployLocation(Actor mcu)
