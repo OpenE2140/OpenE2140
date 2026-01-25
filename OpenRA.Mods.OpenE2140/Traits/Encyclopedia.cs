@@ -18,7 +18,8 @@ namespace OpenRA.Mods.OpenE2140.Traits;
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class EncyclopediaInfo : Common.Traits.EncyclopediaInfo
 {
-	[Desc("The FLC Animation to play.")]
+	[Desc("The file with animation to play.",
+		"Currently supported are all video formats that the OpenRA engine supports plus sprite sheets (in any supported format).")]
 	public readonly string? Animation;
 
 	[Desc("The Long title.")]
