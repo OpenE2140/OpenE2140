@@ -39,5 +39,6 @@ ed_mcu_defense_tower_upgraded:
 		BuildDuration: 75
 		BuildPaletteOrder: 15
 		Prerequisites: LaserCannon, ed_buildings_bio_center
+		Description: Basic defense.\nArmed with laser cannon.
 	WithTextDecoration:
 		Text: Defense Tower Upgr.

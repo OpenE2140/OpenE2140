@@ -12,6 +12,7 @@ ed_vehicles_ht30lr:
 		BuildDuration: 113
 		BuildPaletteOrder: 50
 		Prerequisites: LightLaser
+		Description: Heavy unit armed with powerful laser beams and rockets.\nCan target air units.
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:

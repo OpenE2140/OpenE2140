@@ -105,6 +105,7 @@ ucs_mcu_prod_center:
 		BuildDuration: 163
 		BuildPaletteOrder: 40
 		Prerequisites: NuclearEngine
+		Description: The main headquarters.\nAllows production of MCUs and utility units.
 	WithTextDecoration:
 		Text: Prod. Center
 	# Require destruction of Production Center MCU even with short game enabled. If player has one, it means they can rebuild base (if it was destroyed).
