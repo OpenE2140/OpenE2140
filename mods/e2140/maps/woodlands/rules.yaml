@@ -1,0 +1,7 @@
+shared_mcu_water_base:
+	Buildable:
+		Prerequisites: ~disabled
+
+^CoreCivilianBuilding:
+	BuildingCrew:
+		MaxPopulation: 0
