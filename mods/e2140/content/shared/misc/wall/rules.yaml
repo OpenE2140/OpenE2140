@@ -41,6 +41,7 @@ shared_buildings_wall:
 	Encyclopedia:
 		Category: Shared - Buildings
 		Order: 25
+		Animation: content/shared/misc/wall/wall_wireframe.png
 		Title: Wall
 		Armor: Terrible
 		Armament: None
