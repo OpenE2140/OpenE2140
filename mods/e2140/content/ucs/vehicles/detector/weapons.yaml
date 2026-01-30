@@ -7,7 +7,7 @@ ucs_vehicles_detector:
 	ValidTargets: Ground, Water, Ship
 	Projectile: InstantHit
 		Inaccuracy: 0c128
-	Warhead@Damage: SpreadDamage
+	Warhead@1Dam: SpreadDamage
 		Spread: 24
 		Damage: 14
 		Versus:

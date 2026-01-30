@@ -16,7 +16,7 @@ ucs_vehicles_detector_old:
 		Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ucs.png
 	# TODO: Enable after PR #20705 is merged in OpenRA
 	#icon-ucs:
-	#	Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ed.png
+	#	Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ucs.png
 
 ucs_vehicles_detector_old_husk:
 	idle:

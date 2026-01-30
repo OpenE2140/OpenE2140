@@ -1,5 +1,5 @@
 ucs_vehicles_detector:
-	Inherits@1: ^CoreVehicle
+	Inherits@1: ^UcsVehicle
 	Inherits@2: ^CoreVehicleTurret
 	Inherits@3: ^LeavesMedium2Tracks
 	Voiced:
@@ -13,7 +13,7 @@ ucs_vehicles_detector:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 200
-		Prerequisite: Teleportation
+		Prerequisites: Teleportation
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:
@@ -29,10 +29,10 @@ ucs_vehicles_detector:
 		Offset: 0, 0, 64
 	Turreted@OVERLAY:
 		Turret: overlay
-		Offset: 0, 0, 80   
+		Offset: 0, 0, 80
 	WithSpriteTurret@OVERLAY:
 		Sequence: overlay
-		Turret: overlay 
+		Turret: overlay
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_detector
 		Recoil: 60
