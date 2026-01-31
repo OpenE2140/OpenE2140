@@ -4,6 +4,7 @@ ed_defenses_heavy_defense_tower_upgraded:
 	MinRange: 0c512
 	Report: 7.smp
 	ValidTargets: Ground, Water, Ship
+	InvalidTargets: Disabled
 	Projectile: Bullet
 		Speed: 650
 		Blockable: false
