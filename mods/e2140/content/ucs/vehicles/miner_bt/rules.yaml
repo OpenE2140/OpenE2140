@@ -12,6 +12,7 @@ ucs_vehicles_miner_bt:
 		BuildDuration: 75
 		BuildPaletteOrder: 110
 		Prerequisites: AiMine
+		Description: Armed with machine gun.\nLays mines.\nDisarms enemy mines.\nPlaces walls.
 	Selectable:
 		Bounds: 1088, 784, 0, 0
 	Health:
