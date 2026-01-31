@@ -2188,3 +2188,9 @@ Actors:
 		Owner: Neutral
 		Location: 53,51
 		Facing: 259
+	Actor710: urban_building_big6
+		Owner: Neutral
+		Location: 71,59
+	Actor711: urban_building_big3
+		Owner: Neutral
+		Location: 79,68
