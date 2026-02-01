@@ -85,11 +85,12 @@ public class EncyclopediaLogic : ChromeLogic
 
 		this.actorList.RemoveChildren();
 
-		var assetBrowserModData = modData.Manifest.Get<AssetBrowser>();
+		var assetBrowserModData = modData.GetOrCreate<AssetBrowser>();
 		this.spriteExtensions = assetBrowserModData.SpriteExtensions.Select(x => x.ToLowerInvariant()).ToArray();
 		this.videoExtensions = assetBrowserModData.VideoExtensions.Select(x => x.ToLowerInvariant()).ToArray();
 
-		this.spriteSheetProvider = new SpriteSheetProvider(modData.DefaultFileSystem, modData.SpriteLoaders);
+		this.spriteSheetProvider = new SpriteSheetProvider(
+			modData.Manifest.RendererConstants.SequenceBgraSheetSize, modData.DefaultFileSystem, modData.SpriteLoaders);
 
 		var actorEncyclopediaPair = this.GetFilteredActorEncyclopediaPairs();
 		var categories = actorEncyclopediaPair.Select(a => a.Value.Category).Distinct().OrderBy(string.IsNullOrWhiteSpace).ThenBy(s => s);

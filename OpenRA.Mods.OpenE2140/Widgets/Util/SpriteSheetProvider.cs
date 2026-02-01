@@ -11,9 +11,9 @@ public class SpriteSheetProvider : IDisposable
 
 	private bool disposed;
 
-	public SpriteSheetProvider(IReadOnlyFileSystem fileSystem, ISpriteLoader[] spriteLoaders)
+	public SpriteSheetProvider(int sheetSize, IReadOnlyFileSystem fileSystem, ISpriteLoader[] spriteLoaders)
 	{
-		this.sheetBuilders = new Cache<SheetType, SheetBuilder>(t => new SheetBuilder(t));
+		this.sheetBuilders = new Cache<SheetType, SheetBuilder>(t => new SheetBuilder(t, sheetSize));
 		this.spriteCache = new Cache<string, Sprite[]>(
 			filename => FrameLoader.GetFrames(fileSystem, filename, spriteLoaders, out _)
 				.Select(f => this.sheetBuilders[SheetBuilder.FrameTypeToSheetType(f.Type)].Add(f))
