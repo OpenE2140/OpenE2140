@@ -21,7 +21,7 @@ notification-rush-protection-enemy-attacking = Enemies are attacking!
 
 ## map-generators.yaml
 
-map-generator-experimental = Experimental RMG
+map-generator-classic = Map Generator
 map-generator-clear = Clear Terrain
 
 label-random-map = Random Map
