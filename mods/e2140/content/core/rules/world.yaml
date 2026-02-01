@@ -145,7 +145,7 @@ World:
 			Resources:
 				ResourceIndex: 1
 				TerrainType: Resources
-				AllowedTerrainTypes: Clear
+				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 255
 	# Add support for rush protection
 	RushProtection:
@@ -180,7 +180,7 @@ EditorWorld:
 			Resources:
 				ResourceIndex: 1
 				TerrainType: Resources
-				AllowedTerrainTypes: Clear
+				AllowedTerrainTypes: Clear, Road
 				MaxDensity: 255
 	# Custom rendering.
 	EditorActorCustomRenderLayer:
