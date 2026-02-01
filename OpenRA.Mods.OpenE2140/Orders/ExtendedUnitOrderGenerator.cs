@@ -20,22 +20,27 @@ namespace OpenRA.Mods.OpenE2140.Orders;
 
 public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 {
+	public ExtendedUnitOrderGenerator(World world)
+		: base(world)
+	{
+	}
+
 	public override IEnumerable<IRenderable> Render(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.Render(wr) ?? [];
+		return this.GetOrderPreviewRender(wr)?.Render(wr) ?? [];
 	}
 
 	public override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? [];
+		return this.GetOrderPreviewRender(wr)?.RenderAnnotations(wr) ?? [];
 	}
 
 	public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, World world)
 	{
-		return GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? [];
+		return this.GetOrderPreviewRender(wr)?.RenderAboveShroud(wr) ?? [];
 	}
 
-	private static UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)
+	private UnitOrderResultWrapper? GetOrderPreviewRender(WorldRenderer wr)
 	{
 		var screenPos = Viewport.LastMousePos;
 		var cell = wr.Viewport.ViewToWorld(screenPos);
@@ -44,14 +49,14 @@ public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 		var mi = new MouseInput
 		{
 			Location = screenPos,
-			Button = Game.Settings.Game.MouseButtonPreference.Action,
+			Button = this.ActionButton,
 			Modifiers = Game.GetModifierKeys()
 		};
 
 		var target = TargetForInput(wr.World, cell, worldPixel, mi);
 
 		var ordersWithPreview = wr.World.Selection.Actors
-			.Select(a => OrderForUnit(a, target, cell, mi))
+			.Select(a => this.OrderForUnit(a, target, cell, mi))
 			.OfType<UnitOrderResult>()
 			.Select(r => new UnitOrderResultWrapper(r))
 			.Where(x => x.Order != null && x.OrderPreview != null);

@@ -22,37 +22,35 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 {
 	private TraitPair<WallBuilder>[] subjects;
 
-	public BuildWallOrderGenerator(IEnumerable<Actor> subjects)
+	public BuildWallOrderGenerator(OpenRA.World world, IEnumerable<Actor> subjects)
+		: base(world)
 	{
 		this.subjects = GetWallBuilders(subjects);
 	}
 
 	public override IEnumerable<Order> Order(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 	{
-		if (mi.Button == Game.Settings.Game.MouseButtonPreference.Cancel)
+		if (mi.Button != this.ActionButton)
 		{
 			world.CancelInputMode();
 			yield break;
 		}
 
-		if (mi.Button == Game.Settings.Game.MouseButtonPreference.Action)
+		var queued = mi.Modifiers.HasModifier(Modifiers.Shift);
+		if (!queued)
 		{
-			var queued = mi.Modifiers.HasModifier(Modifiers.Shift);
-			if (!queued)
-			{
-				world.CancelInputMode();
-			}
-
-			if (mi.Modifiers.HasModifier(Modifiers.Ctrl))
-				world.OrderGenerator = new LineBuildOrderGenerator(cell, this.subjects, queued);
-			else
-				yield return new Order(
-					WallBuilder.BuildWallOrderID,
-					null,
-					Target.FromCell(world, cell),
-					queued,
-					groupedActors: this.subjects.Select(p => p.Actor).ToArray());
+			world.CancelInputMode();
 		}
+
+		if (mi.Modifiers.HasModifier(Modifiers.Ctrl))
+			world.OrderGenerator = new LineBuildOrderGenerator(world, cell, this.subjects, queued);
+		else
+			yield return new Order(
+				WallBuilder.BuildWallOrderID,
+				null,
+				Target.FromCell(world, cell),
+				queued,
+				groupedActors: this.subjects.Select(p => p.Actor).ToArray());
 	}
 
 	public override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
@@ -104,7 +102,10 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 		private readonly float validAlpha, unknownAlpha, blockedAlpha;
 		private readonly bool queued;
 
-		public LineBuildOrderGenerator(CPos startPosition, TraitPair<WallBuilder>[] wallBuilders, bool queued)
+		protected override MouseActionType ActionType => MouseActionType.ConfirmOrder;
+
+		public LineBuildOrderGenerator(OpenRA.World world, CPos startPosition, TraitPair<WallBuilder>[] wallBuilders, bool queued)
+			: base(world)
 		{
 			this.startPosition = startPosition;
 			this.wallBuilders = wallBuilders;
@@ -157,28 +158,26 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 
 		public override IEnumerable<Order> Order(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
-			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Cancel)
+			if (mi.Button != this.ActionButton)
 			{
 				world.CancelInputMode();
 				yield break;
 			}
 
-			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Action)
-			{
-				var queued = mi.Modifiers.HasModifier(Modifiers.Shift) || this.queued;
-				world.CancelInputMode();
+			var queued = mi.Modifiers.HasModifier(Modifiers.Shift) || this.queued;
+			world.CancelInputMode();
 
-				yield return new Order(
-					WallBuilder.BuildWallLineOrderID,
-					null,
-					Target.FromCell(world, cell),
-					queued,
-					groupedActors: this.wallBuilders.Select(p => p.Actor).ToArray())
-				{
-					ExtraLocation = this.startPosition
-				};
-			}
+			yield return new Order(
+				WallBuilder.BuildWallLineOrderID,
+				null,
+				Target.FromCell(world, cell),
+				queued,
+				groupedActors: this.wallBuilders.Select(p => p.Actor).ToArray())
+			{
+				ExtraLocation = this.startPosition
+			};
 		}
+
 
 		public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, OpenRA.World world)
 		{

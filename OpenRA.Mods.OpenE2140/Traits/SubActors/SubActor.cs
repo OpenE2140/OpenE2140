@@ -162,7 +162,7 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 		this.location = this.parentActor.Location;
 	}
 
-	[Sync]
+	[VerifySync]
 	public WAngle Facing
 	{
 		get => this.parentActor?.Orientation.Yaw ?? this.orientation.Yaw;
@@ -184,7 +184,7 @@ public class SubActor : ISubActor, IFacing, IOccupySpace, ITick, INotifyAddedToW
 
 	public WAngle TurnSpeed => WAngle.Zero;
 
-	[Sync]
+	[VerifySync]
 	public WPos CenterPosition
 	{
 		get

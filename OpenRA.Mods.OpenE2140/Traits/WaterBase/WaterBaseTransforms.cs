@@ -365,7 +365,10 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		private readonly bool queued;
 		private readonly WaterBaseTransforms transforms;
 
+		protected override MouseActionType ActionType => MouseActionType.PlaceBuilding;
+
 		public PlaceDockOrderGenerator(Actor self, bool queued)
+			: base(self.World)
 		{
 			this.Self = self;
 			this.queued = queued;
@@ -374,13 +377,13 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 		protected override IEnumerable<Order> OrderInner(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
-			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Cancel)
+			if (mi.Button != this.ActionButton)
 			{
 				world.CancelInputMode();
 				yield break;
 			}
 
-			if (mi.Button == Game.Settings.Game.MouseButtonPreference.Action && this.transforms.CanPlaceDock(cell))
+			if (this.transforms.CanPlaceDock(cell))
 			{
 				yield return new Order(BuildWaterBaseOrderID, this.Self, Target.FromCell(world, cell), this.queued);
 			}

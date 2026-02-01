@@ -65,7 +65,6 @@ ServerTraits:
 	LobbyCommands
 	PlayerPinger
 	MasterServerPinger
-	LobbySettingsNotification
 	SkirmishLogic
 
 MapGrid:

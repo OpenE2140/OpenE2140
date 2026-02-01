@@ -46,7 +46,7 @@ public class CustomCommandsLogic : ChromeLogic
 				}
 				else
 				{
-					world.OrderGenerator = new BuildWallOrderGenerator(this.selectedActors);
+					world.OrderGenerator = new BuildWallOrderGenerator(world, this.selectedActors);
 				}
 			}
 
