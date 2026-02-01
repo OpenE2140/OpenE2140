@@ -56,7 +56,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 		// Make sure the actor is at the dock and at correct facing.
 		if (!clientActor.CenterPosition.EqualsHorizontally(this.DockPosition)
 			|| this.Info.AllowedDockAngles.IndexOf(aircraft.Facing) == -1
-			|| aircraft.GetPosition().Z != this.Info.LandAltitude.Length)
+			|| aircraft.CenterPosition.Z != this.Info.LandAltitude.Length)
 		{
 			moveCooldownHelper.NotifyMoveQueued();
 
