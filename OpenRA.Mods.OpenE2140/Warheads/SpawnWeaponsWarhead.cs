@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Collections.Immutable;
 using JetBrains.Annotations;
 using OpenRA.Effects;
 using OpenRA.GameRules;
@@ -33,7 +34,7 @@ public class SpawnWeaponsWarhead : EffectWarhead, IRulesetLoaded<WeaponInfo>
 	public readonly int[] Delays = [0];
 
 	[Desc("The amount of projectile pieces to produce.")]
-	public readonly int[] Pieces = [1];
+	public readonly ImmutableArray<int> Pieces = [1];
 
 	[Desc("The minimum and maximum distances the projectile may travel.")]
 	public readonly WDist[] Range = [WDist.FromCells(2), WDist.FromCells(5)];

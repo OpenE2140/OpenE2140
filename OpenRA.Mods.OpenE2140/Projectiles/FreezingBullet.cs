@@ -110,7 +110,7 @@ public class FreezingBullet : Bullet
 		this.state = State.Frozen;
 
 		// Change bullet's sprite sequence to a appropriate one from FrozenSequences
-		var currentSequenceIndex = Array.IndexOf(this.info.Sequences, this.Animation.CurrentSequence.Name);
+		var currentSequenceIndex = this.info.Sequences.IndexOf(this.Animation.CurrentSequence.Name);
 
 		if (!string.IsNullOrEmpty(this.info.FrozenImage))
 			this.Animation.ChangeImage(this.info.FrozenImage, "");

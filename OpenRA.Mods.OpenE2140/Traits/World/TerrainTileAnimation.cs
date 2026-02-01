@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Collections.Immutable;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Effects;
@@ -29,7 +30,7 @@ public class TerrainTileAnimationInfo : TraitInfo, IRulesetLoaded, ILobbyCustomR
 	public readonly ushort[] Tiles = [];
 
 	[Desc("Average time (ticks) between animations.")]
-	public readonly int[] Interval = [7 * 25, 13 * 25];
+	public readonly ImmutableArray<int> Interval = [7 * 25, 13 * 25];
 
 	[Desc($"Delays (in ticks) before each loop. Number of delays must be equal or less than {nameof(TerrainTileAnimationInfo.LoopCount)}.")]
 	public readonly int[] LoopDelays = [0];
