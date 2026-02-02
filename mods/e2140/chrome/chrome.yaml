@@ -631,6 +631,10 @@ editor:
 		tools: 69, 171, 16, 16
 		history: 86, 171, 16, 16
 		erase: 137, 171, 16, 16
+		copy: 179, 171, 16, 16
+		paste: 195, 171, 16, 16
+		undo: 211, 171, 16, 16
+		redo: 227, 171, 16, 16
 
 production-icons:
 	Inherits: ^Glyphs
