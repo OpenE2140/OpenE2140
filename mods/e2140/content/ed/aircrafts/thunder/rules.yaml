@@ -23,6 +23,10 @@ ed_aircrafts_thunder:
 		Weapon: ed_aircrafts_thunder
 		LocalOffset: 0,100,-50, 0,-100,-50
 		MuzzlePalette:
+	Armament@SECONDARY:
+		Weapon: ed_aircrafts_thunder_air
+		LocalOffset: 0,100,-50, 0,-100,-50
+		MuzzlePalette:
 	WithIdleOverlay@rotorfast:
 		Offset: 0,16,48
 		Sequence: rotorfast
