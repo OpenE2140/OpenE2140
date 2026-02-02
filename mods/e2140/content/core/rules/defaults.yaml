@@ -881,7 +881,7 @@
 	Capturable:
 		Types: Vehicle
 		RequiresCondition: VehicleDisabled
-  # Disabled actors should not be targeted.
+	# Disabled actors should not be targeted.
 	Targetable@Disabled:
 		TargetTypes: Disabled
 		RequiresCondition: VehicleDisabled
