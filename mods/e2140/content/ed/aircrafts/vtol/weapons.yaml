@@ -63,3 +63,10 @@ ed_aircrafts_vtol:
 		Sequences: dark_smoke
 		ValidTargets: Ground, Ship, Air
 		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water
+
+ed_aircrafts_vtol_air:
+	Inherits: ed_aircrafts_vtol
+	ValidTargets: Air
+	Range: 6c896
+	Projectile: Missile
+		Inaccuracy: 2c0
