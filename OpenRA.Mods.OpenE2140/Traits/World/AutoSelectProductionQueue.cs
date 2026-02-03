@@ -73,7 +73,7 @@ public class AutoSelectProductionQueue : INotifyAddedToWorld, INotifyRemovedFrom
 			return;
 
 		// Don't touch currently selected queue
-		if (this.tabsWidget.Value.CurrentQueue != null || this.paletteWidget.Value!.CurrentQueue != null)
+		if (this.tabsWidget.Value.CurrentQueue != null || this.paletteWidget.Value.CurrentQueue != null)
 			return;
 
 		// Queue-per-player not supported
