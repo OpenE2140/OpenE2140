@@ -1,0 +1,36 @@
+ucs_vehicles_detector_old:
+	idle:
+		Filename: content/ucs/vehicles/detector_old/vehicle_detector.png
+		Facings: -16
+	move:
+		Filename: content/ucs/vehicles/detector_old/vehicle_detector.png
+		Start: 16
+		Length: 4
+		Facings: -16
+	idle-overlay:
+		Filename: content/ucs/vehicles/detector_old/turret_detector.png
+		Length: 16
+		Tick: 50
+		Offset: 1, -5
+	icon:
+		Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ucs.png
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ucs.png
+
+ucs_vehicles_detector_old_husk:
+	idle:
+		Filename: content/ucs/vehicles/detector_old/vehicle_detector.png
+		Start: 80
+		Facings: -16
+		ZOffset: -512
+	turret:
+		Filename: content/ucs/vehicles/detector_old/turret_detector_husk.png
+		Offset: 1, -5
+		ZOffset: -256
+
+# TODO: remove after PR #20705
+ucs_vehicles_detector_old.ed:
+	Inherits: ucs_vehicles_detector_old
+	icon:
+		Filename: content/ucs/vehicles/detector_old/vehicle_detector_icon_ed.png

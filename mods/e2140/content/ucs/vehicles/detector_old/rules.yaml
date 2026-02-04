@@ -1,0 +1,38 @@
+ucs_vehicles_detector_old:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^LeavesMedium2Tracks
+	Tooltip:
+		Name: DETECTOR
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS, Teleport.UCS
+		BuildDuration: 75
+		BuildPaletteOrder: 200
+		Prerequisites: ~disabled
+	Selectable:
+		Bounds: 960, 864, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 4c896
+	WithIdleOverlay:
+		Palette:
+		PauseOnCondition: VehicleDisabled
+	DetectCloaked:
+		Range: 4c896
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_detector_old_husk
+	# Don't count DETECTOR as army in the player statistics.
+	UpdatesPlayerStatistics:
+		AddToArmyValue: false
+
+ucs_vehicles_detector_old_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (DETECTOR)
