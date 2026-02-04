@@ -1,32 +1,47 @@
 ucs_vehicles_detector:
 	idle:
-		Filename: content/ucs/vehicles/detector/vehicle_detector.png
+		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector.png
 		Facings: -16
 	move:
-		Filename: content/ucs/vehicles/detector/vehicle_detector.png
-		Start: 16
-		Length: 4
+		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector.png
 		Facings: -16
-	idle-overlay:
-		Filename: content/ucs/vehicles/detector/turret_detector.png
+	turret:
+		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector_turret.png
+		Facings: -16
+		Offset: 0, -4
+	overlay:
+		Filename: content/ucs/vehicles/detector/detector_radar.png
 		Length: 16
 		Tick: 50
-		Offset: 1, -5
+		Offset: 0, -5
+		Loop: true
+	muzzle:
+		Filename: content/ucs/vehicles/detector/muzzle.png
+		Length: 3
+		Facings: -16
+		Offset: 0, -5
+		Tick: 50
 	icon:
 		Filename: content/ucs/vehicles/detector/vehicle_detector_icon_ucs.png
 	# TODO: Enable after PR #20705 is merged in OpenRA
 	#icon-ucs:
-	#	Filename: content/ucs/vehicles/detector/vehicle_detector_icon_ed.png
+	# Filename: SPRI1.MIX
+	# Start: 148
 
 ucs_vehicles_detector_husk:
 	idle:
-		Filename: content/ucs/vehicles/detector/vehicle_detector.png
-		Start: 80
+		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector_husk.png
 		Facings: -16
 		ZOffset: -512
 	turret:
-		Filename: content/ucs/vehicles/detector/turret_detector_husk.png
-		Offset: 1, -5
+		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector_turret_husk.png
+		Facings: -16
+		Offset: -1, 6
+		ZOffset: -256
+	radar:
+		Filename: content/ucs/vehicles/detector/detector_radar_husk.png
+		Facings: -16
+		Offset: -1, 6
 		ZOffset: -256
 
 # TODO: remove after PR #20705
