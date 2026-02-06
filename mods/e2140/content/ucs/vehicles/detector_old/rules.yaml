@@ -1,4 +1,4 @@
-ucs_vehicles_detector:
+ucs_vehicles_detector_old:
 	Inherits@1: ^UcsVehicle
 	Inherits@2: ^LeavesMedium2Tracks
 	Tooltip:
@@ -25,7 +25,7 @@ ucs_vehicles_detector:
 	DetectCloaked:
 		Range: 4c896
 	SpawnActorOnDeath:
-		Actor: ucs_vehicles_detector_husk
+		Actor: ucs_vehicles_detector_old_husk
 	# Don't count DETECTOR as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
@@ -37,7 +37,7 @@ ucs_vehicles_detector:
 		Armament: None
 		Description: The DETECTOR can disable the camouflage device used by the rouge UCS' SHADOW units. It works at longer ranges than the SHADOW.
 
-ucs_vehicles_detector_husk:
+ucs_vehicles_detector_old_husk:
 	Inherits@1: ^Husk
 	Inherits@2: ^HuskThrowsTurret
 	Inherits@3: ^HuskBurnsSmallFire
