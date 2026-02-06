@@ -1,0 +1,61 @@
+ucs_vehicles_detector:
+	Inherits@1: ^UcsVehicle
+	Inherits@2: ^CoreVehicleTurret
+	Inherits@3: ^LeavesMedium2Tracks
+	Voiced:
+		VoiceSet: UcsVehicleVoice
+	Tooltip:
+		Name: DETECTOR
+	Valued:
+		Cost: 500
+	Buildable:
+		IconPalette:
+		Queue: Vehicle.UCS, Teleport.UCS
+		BuildDuration: 75
+		BuildPaletteOrder: 200
+		Prerequisites: Teleportation
+	Selectable:
+		Bounds: 960, 864, 0, 0
+	Health:
+		HP: 300
+	Mobile:
+		Speed: 90
+	RevealsShroud:
+		Range: 4c896
+	DetectCloaked:
+		Range: 4c896
+	Turreted:
+		Turret: primary
+		Offset: 0, 0, 32
+	Turreted@OVERLAY:
+		Turret: overlay
+	WithSpriteTurret@OVERLAY:
+		Sequence: overlay
+		Turret: overlay
+	Armament@PRIMARY:
+		Weapon: ucs_vehicles_detector
+		Recoil: 60
+		RecoilRecovery: 38
+		MuzzleSequence: muzzle
+		MuzzlePalette:
+	WithMuzzleOverlay@muzzle:
+	SpawnActorOnDeath:
+		Actor: ucs_vehicles_detector_husk
+	Encyclopedia:
+		Category: UCS - Vehicles
+		Order: 2
+		Animation: content/ucs/vehicles/detector/detector_wireframe.png
+		Title: DETECTOR
+		Armor: Medium
+		Armament: Two dual machine guns
+		Description: The DETECTOR, with its advanced sensors and trackers, is capable of removing the camouflage cover of rogue SHADOW units at a safe distance. It's also equipped with two dual machine guns to defend itself against light targets.\nBuilt as an enhanced version of the T-100 —the T-1000— the DETECTOR's purpose was solely to seek enemy underground positions and relay these to breaching units. But with the increasing cyberattacks and communications disruption done by the Eurasian Dynasty, it was a matter of time before the UCS would have to face renegade AIs with their own cloaking technology. The T-1000 was branded DETECTOR and repurposed to fight against that eventuality.
+
+ucs_vehicles_detector_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskThrowsTurret
+	Inherits@3: ^HuskBurnsBigFire
+	Tooltip:
+		Name: Husk (DETECTOR)
+	ThrowsParticle@Radar:
+		Anim: overlay_husk
+		MaxThrowRange: 0c256
