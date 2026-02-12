@@ -2,6 +2,7 @@ General:
 	Name: tileset-urban
 	Id: URBAN
 	TileSize: 64, 64
+	SheetSize: 1024
 	EditorTemplateOrder: Terrain, Shore, Road, Buildings, Asphalt Road
 	Palette:
 
