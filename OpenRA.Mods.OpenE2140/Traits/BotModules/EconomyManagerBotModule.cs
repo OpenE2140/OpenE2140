@@ -100,6 +100,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private int? economyExpansionTargetLevel;
 	private int? expandingEconomySince;
 
+	internal IReadOnlyList<MineRefineryAssignment> MineRefineryAssignments => this.mineRefineryAssignments;
+
 	public EconomyManagerBotModule(Actor self, EconomyManagerBotModuleInfo info)
 		: base(info)
 	{
@@ -779,7 +781,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		this.mines.Dispose();
 	}
 
-	private class MineRefineryAssignment
+	internal class MineRefineryAssignment
 	{
 		public Actor? Mine { get; set; }
 
