@@ -347,8 +347,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				this.reachedEconomyLevel = Math.Max(this.economyExpansionTargetLevel.Value, this.reachedEconomyLevel);
 				if (this.reachedEconomyLevel < this.Info.EconomyExpansionDelays.Count)
 					AIUtils.BotDebug($"{bot.Player} has expanded economy to level {targetEconomyLevel} (highest: {this.reachedEconomyLevel})");
+				else if (currentEconomyLevel < this.reachedEconomyLevel)
+					AIUtils.BotDebug($"{bot.Player} is rebuilding economy (current: {currentEconomyLevel}, highest: {this.reachedEconomyLevel}).");
 				else
-					AIUtils.BotDebug("{0} has completed all economy expansion milestones and is now in maintenance mode.", bot.Player);
+					AIUtils.BotDebug($"{bot.Player} has completed all economy expansion milestones and is now in maintenance mode.");
 
 				this.lastEconomyExpansion = this.world.WorldTick;
 
@@ -515,7 +517,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		return this.hasSufficientEconomy;
 	}
 
-	public List<CPos> GetDeployCellsCandidates(Actor mcu, CPos? target)
+	public List<DeployZone> GetDeployCellsCandidates(Actor mcu, int maxSearchRadius)
 	{
 		if (!McuUtils.TryGetTargetBuilding(this.world, mcu.Info, out var building))
 			return [];
@@ -523,19 +525,20 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// Both Mine and Refinery have different placement requirements
 		if (this.Info.MineTypes.Contains(building.Name))
 		{
-			return this.FindResourceClusters(mcu, building, target);
+			return this.FindResourceDeployZones(mcu, building, maxSearchRadius);
 		}
 		else if (this.Info.RefineryTypes.Contains(building.Name))
 		{
-			return this.FindRefineryCandidateCells(mcu, building, target);
+			return this.FindRefineryDeployZones(mcu, building, maxSearchRadius);
 		}
 
 		return [];
 	}
 
-	private List<CPos> FindRefineryCandidateCells(Actor mcu, ActorInfo building, CPos? target)
+	private List<DeployZone> FindRefineryDeployZones(Actor mcu, ActorInfo building, int maxSearchRadius)
 	{
-		if (!building.TryGetTrait<BuildingInfo>(out var buildingInfo))
+		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(building);
+		if (buildingInfo == null)
 			return [];
 
 		if (!mcu.Info.TryGetTrait<TransformsInfo>(out var transformsInfo))
@@ -546,9 +549,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		// Find nearby Mines, which are:
 		// - alive
-		// - within a reasonable search radius
 		// - and have currently unassigned Mine
-		var maxSearchRadiusSq = this.Info.MaxRefineryDistance.PowerOf2();
+
 		var possibleMineLocations = new List<CPos>();
 
 		foreach (var mine in this.mines.Alive())
@@ -561,9 +563,6 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				continue;
 
 			var mineCenterLocation = this.world.Map.CellContaining(mineBuildingInfo.GetCenterOfFootprint(mine.Location));
-
-			if ((mineCenterLocation - origin).LengthSquared > maxSearchRadiusSq)
-				continue;
 
 			var mineMcuInfo = McuUtils.GetMcuActor(this.world, mine.Info);
 			if (mineMcuInfo == null || !mineMcuInfo.TryGetTrait<TransformsInfo>(out var mineTransformsInfo))
@@ -581,54 +580,37 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		}
 
 		var checkedLocations = new HashSet<CPos>();
-		var result = new List<CPos>();
-		var candidatesByDistance = new SortedDictionary<int, List<CPos>>();
+		var candidateZones = new List<DeployZone>();
 
 		// Evaluate each mine for suitable location, where new Refinery can be placed
 		foreach (var location in possibleMineLocations)
 		{
-			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, this.Info.MinRefineryDistance, this.Info.MaxRefineryDistance))
+			var deployZoneCells = new List<CPos>();
+
+			var minRange = this.Info.MinRefineryDistance;
+			var maxRange = Math.Min(this.Info.MaxRefineryDistance, maxSearchRadius);
+
+			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, minRange, maxRange))
 			{
-				if (checkedLocations.Contains(cell))
-					continue;
-
-				checkedLocations.Add(cell);
-
-				if (target != null && (cell - target.Value).LengthSquared <= 3 * 3)
-					continue;
-
-				var distToMine = (cell - location).LengthSquared;
-
-				if (!candidatesByDistance.TryGetValue(distToMine, out var cells))
-					candidatesByDistance[distToMine] = cells = [];
-
-				cells.Add(cell);
+				if (checkedLocations.Add(cell) && this.world.Map.Contains(cell) && buildingInfo.IsCellBuildable(this.world, cell))
+					deployZoneCells.Add(cell);
 			}
 
-			// Pick at least N candidates, which are closest to currently evaluated Mine
-			var added = 0;
-			foreach (var (dist, cells) in candidatesByDistance)
+			var zone = new DeployZone
 			{
-				if (added > 30)
-					break;
-
-				result.AddRange(cells);
-				added += cells.Count;
-			}
-
-			candidatesByDistance.Clear();
+				PreferredLocation = location,
+				CandidateCells = deployZoneCells
+			};
+			candidateZones.Add(zone);
 		}
 
-		return result;
+		return candidateZones;
 	}
 
-	private List<CPos> FindResourceClusters(Actor mcu, ActorInfo building, CPos? target)
+	private List<DeployZone> FindResourceDeployZones(Actor mcu, ActorInfo building, int maxSearchRadius)
 	{
 		if (this.resourceLayer == null)
 			return [];
-
-		var clusterMin = this.Info.ResourceCellClusterMinimumCount;                // cluster must have at least this many resource cells
-		var minFootprintResourceCells = this.Info.MinimumResourceCellsToDeploy; // building footprint must cover at least this many resource cells
 
 		var map = this.world.Map;
 		var origin = mcu.Location;
@@ -641,10 +623,9 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		// Phase 1: discover connected resource clusters (8-neighbour BFS) within search radius
 		var processed = new HashSet<CPos>();
-		var goodClusterCells = new HashSet<CPos>(); // resource cells that belong to clusters >= clusterMin
-		var directions = CVec.Directions;
+		var clusters = new List<List<CPos>>(); // clusters of resources, which contain at minimum clusterMin resource cells
 
-		foreach (var cell in map.FindTilesInAnnulus(origin, 0, this.Info.MaxResourceCellsToCheck))
+		foreach (var cell in map.FindTilesInAnnulus(origin, 0, maxSearchRadius))
 		{
 			if (processed.Contains(cell))
 				continue;
@@ -673,7 +654,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				var cur = q.Dequeue();
 				cluster.Add(cur);
 
-				foreach (var d in directions)
+				foreach (var d in CVec.Directions)
 				{
 					var n = cur + d;
 					if (processed.Contains(n))
@@ -696,82 +677,81 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				}
 			}
 
-			// If cluster large enough, include its cells for later anchor generation
-			if (cluster.Count >= clusterMin)
-				foreach (var rc in cluster)
-					goodClusterCells.Add(rc);
+			// If cluster large enough, include it for later anchor generation
+			if (cluster.Count >= this.Info.ResourceCellClusterMinimumCount)
+				clusters.Add(cluster);
 		}
 
-		if (goodClusterCells.Count == 0)
+		if (clusters.Count == 0)
 			return [];
 
-		// Phase 2: for each good cluster cell, consider anchors (top-left) that would place that cell inside the footprint.
+		// Phase 2: for each cell in each cluster, consider anchors (top-left) that would place that cell inside the footprint.
 		var footprintOffsets = buildingInfo.Footprint.Keys.Select(v => v + transformsInfo.Offset).ToArray();
 		var seenAnchors = new HashSet<CPos>();
-		var candidatesByDistance = new SortedDictionary<int, List<CPos>>();
+		var candidateZones = new List<DeployZone>();
 
-		foreach (var cell in goodClusterCells)
+		foreach (var cluster in clusters)
 		{
-			foreach (var offset in footprintOffsets)
+			var deployZoneCells = new List<CPos>();
+
+			// Each cluster has at least one cell
+			var preferredClusterCenter = cluster[0];
+			var maxResourceCellCount = int.MinValue;
+			foreach (var cell in cluster)
 			{
-				var anchor = cell - offset; // candidate top-left for the building
-				if (seenAnchors.Contains(anchor))
-					continue;
-
-				seenAnchors.Add(anchor);
-
-				if (target != null && (anchor - target.Value).LengthSquared <= 3 * 3)
-					continue;
-
-				// Validate footprint is fully on-map
-				var ok = true;
-				foreach (var off2 in footprintOffsets)
+				foreach (var offset in footprintOffsets)
 				{
-					if (!map.Contains(anchor + off2))
+					// Candidate top-left cell for the Refinery building
+					var anchor = cell - offset;
+					if (seenAnchors.Contains(anchor))
+						continue;
+
+					seenAnchors.Add(anchor);
+
+					// Validate footprint is fully on-map
+					var ok = true;
+					foreach (var off2 in footprintOffsets)
 					{
-						ok = false;
-						break;
+						if (!map.Contains(anchor + off2))
+						{
+							ok = false;
+							break;
+						}
 					}
-				}
-				if (!ok)
-					continue;
+					if (!ok)
+						continue;
 
-				// Count resource cells under the footprint...
-				var resourceCount = 0;
-				foreach (var off2 in footprintOffsets)
-				{
-					if (this.resourceLayer.GetResource(anchor + off2).Type != null)
-						resourceCount++;
-				}
-
-				// ... and pick only those anchors, which have enough resource cells around them
-				if (resourceCount >= minFootprintResourceCells)
-				{
-					var distToTarget = 0;
-					if (target != null)
+					// Count resource cells under the footprint...
+					var resourceCount = 0;
+					foreach (var off2 in footprintOffsets)
 					{
-						distToTarget = (anchor - target.Value).LengthSquared;
+						if (this.resourceLayer.GetResource(anchor + off2).Type != null)
+							resourceCount++;
 					}
 
-					if (!candidatesByDistance.TryGetValue(distToTarget, out var cells))
-						candidatesByDistance[distToTarget] = cells = [];
+					// ... and pick only those anchors, which have enough resource cells around them
+					if (resourceCount >= this.Info.MinimumResourceCellsToDeploy)
+						deployZoneCells.Add(anchor);
 
-					cells.Add(anchor);
+					// Find preferred location within cluster
+					if (resourceCount > maxResourceCellCount)
+					{
+						maxResourceCellCount = resourceCount;
+						preferredClusterCenter = cell;
+					}
 				}
 			}
+
+			var deployZone = new DeployZone
+			{
+				CandidateCells = deployZoneCells,
+				PreferredLocation = preferredClusterCenter
+			};
+
+			candidateZones.Add(deployZone);
 		}
 
-		var result = new List<CPos>();
-
-		foreach (var (dist, cells) in candidatesByDistance)
-		{
-			if (result.Count > 50)
-				break;
-
-			result.AddRange(cells);
-		}
-
-		return result;
+		return candidateZones;
 	}
 
 	void INotifyActorDisposing.Disposing(Actor self)

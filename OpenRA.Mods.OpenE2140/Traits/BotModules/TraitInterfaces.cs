@@ -6,7 +6,14 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 	{
 		bool HasSufficientEconomy();
 
-		List<CPos> GetDeployCellsCandidates(Actor mcu, CPos? target);
+		List<DeployZone> GetDeployCellsCandidates(Actor mcu, int maxSearchRadius);
+	}
+
+	public class DeployZone
+	{
+		public List<CPos> CandidateCells { get; init; } = [];
+
+		public CPos PreferredLocation { get; init; }
 	}
 
 	public interface IBotMcuBaseBuilder

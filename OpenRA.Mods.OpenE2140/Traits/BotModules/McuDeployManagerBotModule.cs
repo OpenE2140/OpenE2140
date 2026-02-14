@@ -361,25 +361,39 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 					return FindPos(baseCenter, null, this.Info.MinBaseRadius, deployContext.MaxMoveRadius.Value);
 				}
 
-				var candidateCells = this.economyManager.GetDeployCellsCandidates(mcu, baseCenter);
-				if (type == BuildingType.Mine)
-				{
-					var bestCells = candidateCells
-						.Where(c => buildingInfo.CanPlaceBuilding(this.world, c + offset, null))
-						.Select(c => new { Cell = c, Dist = (c - baseCenter).LengthSquared })
-						.Take(10)
-						.Select(c => c.Cell)
-						.Shuffle(this.world.LocalRandom)
-						.ToList();
+				deployContext.MaxMoveRadius ??= this.Info.MinMoveRadius;
 
-					targetLocation = bestCells.Cast<CPos?>().FirstOrDefault();
+				var deployZones = this.economyManager.GetDeployCellsCandidates(mcu, deployContext.MaxMoveRadius.Value);
+				CPos? bestCell = null;
+				var bestScore = int.MaxValue;
+				foreach (var zone in deployZones)
+				{
+					foreach (var cell in zone.CandidateCells)
+					{
+						if (!buildingInfo.CanPlaceBuilding(this.world, cell + offset, null))
+							continue;
+
+						var distanceToBaseCenter = (cell - baseCenter).LengthSquared;
+						if (distanceToBaseCenter < this.Info.MinMoveRadius.PowerOf2())
+							continue;
+
+						var distanceToPreferredLocation = (cell - zone.PreferredLocation).LengthSquared;
+
+						var score = distanceToBaseCenter + distanceToPreferredLocation * 10;
+						if (score < bestScore)
+						{
+							bestScore = score;
+							bestCell = cell;
+						}
+					}
 				}
+
+				if (bestCell == null)
+					deployContext.MaxMoveRadius = Math.Min(deployContext.MaxMoveRadius.Value + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
 				else
 				{
-					targetLocation = candidateCells
-						.Where(c => buildingInfo.CanPlaceBuilding(this.world, c + offset, null))
-						.Shuffle(this.world.LocalRandom)
-						.Cast<CPos?>().FirstOrDefault();
+					deployContext.MaxMoveRadius = this.Info.MinMoveRadius;
+					targetLocation = bestCell;
 				}
 
 				break;
