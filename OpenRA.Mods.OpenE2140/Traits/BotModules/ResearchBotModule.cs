@@ -63,7 +63,7 @@ public class ResearchBotModule : ConditionalTrait<ResearchBotModuleInfo>, IBotTi
 			return;
 		}
 
-		AIUtils.BotDebug("{0} decided to research {1}", this.player, nextTechnologyId);
+		//AIUtils.BotDebug("{0} decided to research {1}", this.player, nextTechnologyId);
 
 		this.player.World.IssueOrder(new Order(Research.Research.StartResearchOrder, this.player.PlayerActor, false) { TargetString = nextTechnologyId });
 
