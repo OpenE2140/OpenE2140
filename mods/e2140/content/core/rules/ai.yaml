@@ -1,13 +1,13 @@
 Player:
-	ModularBot@TestAI:
-		Name: Test AI
-		Type: test
-	GrantConditionOnBotOwner@TestAI:
-		Condition: enable-test
-		Bots: test
+	ModularBot@HardAI:
+		Name: bot-hard.name
+		Type: hard
+	GrantConditionOnBotOwner@HardAI:
+		Condition: enable-hard-ai
+		Bots: hard
 	
-	EconomyManagerBotModule@TestAI:
-		RequiresCondition: enable-test
+	EconomyManagerBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		RefineryTypes: shared_buildings_refinery
 		MineTypes: shared_buildings_mine
@@ -16,8 +16,8 @@ Player:
 		CrateTransporterPerRefineryMinePair: 2
 		EconomyExpansionDelays: 1500, 1500, 1500, 1500, 2000, 2000, 2000
 
-	BaseMcuBuilderBotModule@TestAI:
-		RequiresCondition: enable-test
+	BaseMcuBuilderBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 		MinimumExcessPower: 0
 		MaximumExcessPower: 500
 		ExcessPowerIncrement: 200
@@ -72,8 +72,8 @@ Player:
 			ucs_mcu_pb_control: 500
 			ed_mcu_bcc: 500
 
-	McuDeployManagerBotModule@TestAI:
-		RequiresCondition: enable-test
+	McuDeployManagerBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 		ConstructionBuildingTypes: ucs_buildings_prod_center, ed_buildings_constr_center
 		RefineryTypes: shared_mcu_refinery
 		MineTypes: shared_mcu_mine
@@ -87,11 +87,11 @@ Player:
 		MinMoveRadius: 5
 		PlaceDefenseTowardsEnemyChance: 80
 
-	ResearchBotModule@TestAI:
-		RequiresCondition: enable-test
+	ResearchBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 
-	SquadManagerBotModule@test:
-		RequiresCondition: enable-test
+	SquadManagerBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 		SquadSize: 8
 		SquadSizeRandomBonus: 40
 		MinimumAttackForceDelay: 40
@@ -100,8 +100,8 @@ Player:
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
 		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
 
-	UnitBuilderBotModule@TestAI:
-		RequiresCondition: enable-test
+	UnitBuilderBotModule@HardAI:
+		RequiresCondition: enable-hard-ai
 		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
 		UnitsToBuild:
 			ed_infantry_a01: 1
@@ -152,10 +152,10 @@ Player:
 			ed_aircrafts_nemezis: 2
 
 	BuildingRepairBotModule:
-		RequiresCondition: enable-test
+		RequiresCondition: enable-hard-ai
 
 	SupportPowerBotModule:
-		RequiresCondition: enable-test
+		RequiresCondition: enable-hard-ai
 		Decisions:
 			nukepower:
 				OrderName: NukePowerInfoOrder

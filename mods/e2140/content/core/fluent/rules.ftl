@@ -22,6 +22,10 @@ dropdown-rush-protection-time =
 
 notification-rush-protection-enemy-attacking = Enemies are attacking!
 
+## ai.yaml
+bot-hard =
+    .name = Hard AI
+
 ## map-generators.yaml
 
 map-generator-opene2140 = Map Generator
