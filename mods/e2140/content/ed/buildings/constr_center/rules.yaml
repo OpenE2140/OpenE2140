@@ -91,6 +91,9 @@ ed_buildings_constr_center:
 		Resistance: High
 		Description: The Construction Center is the headquarters. The MCU construction vehicles are built there to be used later in constructing all kinds of structures. The Construction Center is also used to build the BANTHA heavy transporter, the mobile repair unit HCU-M and the HEAVY LIFTER.\n\nThe Construction Center can also be used to build an MCU construction vehicle to build another Construction Center.
 
+	# Enable cash cheat for cheating AI bot.
+	Inherits@AI: ^AICashCheat
+
 ed_mcu_constr_center:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:

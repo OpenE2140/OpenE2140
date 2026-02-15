@@ -2,12 +2,18 @@ Player:
 	ModularBot@HardAI:
 		Name: bot-hard.name
 		Type: hard
+	ModularBot@CheatingAI:
+		Name: bot-cheating.name
+		Type: cheating
 	GrantConditionOnBotOwner@HardAI:
 		Condition: enable-hard-ai
 		Bots: hard
+	GrantConditionOnBotOwner@CheatingAI:
+		Condition: enable-cheating-ai
+		Bots: cheating
 	
 	EconomyManagerBotModule@HardAI:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		RefineryTypes: shared_buildings_refinery
 		MineTypes: shared_buildings_mine
@@ -17,7 +23,7 @@ Player:
 		EconomyExpansionDelays: 1500, 1500, 1500, 1500, 2000, 2000, 2000
 
 	BaseMcuBuilderBotModule@HardAI:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		MinimumExcessPower: 0
 		MaximumExcessPower: 500
 		ExcessPowerIncrement: 200
@@ -73,7 +79,7 @@ Player:
 			ed_mcu_bcc: 500
 
 	McuDeployManagerBotModule@HardAI:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		ConstructionBuildingTypes: ucs_buildings_prod_center, ed_buildings_constr_center
 		RefineryTypes: shared_mcu_refinery
 		MineTypes: shared_mcu_mine
@@ -89,9 +95,14 @@ Player:
 
 	ResearchBotModule@HardAI:
 		RequiresCondition: enable-hard-ai
+		ResearchDelay: 20
+
+	ResearchBotModule@CheatingAI:
+		RequiresCondition: enable-cheating-ai
+		ResearchDelay: 0
 
 	SquadManagerBotModule@HardAI:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		SquadSize: 8
 		SquadSizeRandomBonus: 40
 		MinimumAttackForceDelay: 40
@@ -101,7 +112,7 @@ Player:
 		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
 
 	UnitBuilderBotModule@HardAI:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
 		UnitsToBuild:
 			ed_infantry_a01: 1
@@ -152,10 +163,10 @@ Player:
 			ed_aircrafts_nemezis: 2
 
 	BuildingRepairBotModule:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 
 	SupportPowerBotModule:
-		RequiresCondition: enable-hard-ai
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		Decisions:
 			nukepower:
 				OrderName: NukePowerInfoOrder
@@ -178,3 +189,13 @@ Player:
 					Attractiveness: -100
 					TargetMetric: Health
 					CheckRadius: 7c0
+
+^AICashCheat:
+	GrantConditionOnBotOwner:
+		Condition: enable-cash-cheat
+		Bots: cheating
+
+	CashTrickler:
+		RequiresCondition: enable-cash-cheat
+		ShowTicks: false
+		Amount: 100

@@ -92,6 +92,9 @@ ucs_buildings_prod_center:
 		Resistance: High
 		Description: The Production Center is the main building of a UCS base. This is where MCU construction vehicles are built. They are used to build all other structures. BANTHA heavy goods transporters are built here too.\n\nWhen you reach the required technology level, you can start building the anti-gravity transporter HEAVY LIFTER here. You can then use it to transport resource containers faster and more efficiently.
 
+	# Enable cash cheat for cheating AI bot.
+	Inherits@AI: ^AICashCheat
+
 ucs_mcu_prod_center:
 	Inherits@1: ^SharedVehicleMcu
 	Tooltip:

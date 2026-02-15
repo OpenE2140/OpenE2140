@@ -25,6 +25,8 @@ notification-rush-protection-enemy-attacking = Enemies are attacking!
 ## ai.yaml
 bot-hard =
     .name = Hard AI
+bot-cheating =
+    .name = Cheating AI
 
 ## map-generators.yaml
 
