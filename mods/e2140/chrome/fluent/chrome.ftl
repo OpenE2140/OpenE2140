@@ -3,7 +3,7 @@ label-encyclopedia-content-title = Encyclopedia
 button-encyclopedia-panel-back = Back
 
 ## ingame-observer.yaml
-button-observer-widgets-options = Options (Esc)
+button-observer-widgets-options = Options
 
 label-economy-stats-harvesters-header = Harvesters
 
