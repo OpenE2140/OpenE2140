@@ -10,6 +10,7 @@ ucs_vehicles_atm_500:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 80
+		Description: Armed with machine gun.\nTransports infantry.
 	Selectable:
 		Bounds: 896, 688, 0, 0
 	Health:

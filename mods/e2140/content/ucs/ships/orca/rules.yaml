@@ -12,6 +12,7 @@ ucs_ships_orca:
 		BuildDuration: 175
 		BuildPaletteOrder: 30
 		Prerequisites: HeavyRockets
+		Description: Submarine armed with heavy rocket launchers.\nCan target air units.
 	Selectable:
 		Bounds: 1344, 976, 0, 0
 	Health:

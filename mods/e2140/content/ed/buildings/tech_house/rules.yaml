@@ -90,5 +90,6 @@ ed_mcu_tech_house:
 		BuildDuration: 125
 		BuildPaletteOrder: 30
 		Prerequisites: anypower
+		Description: Allows production of vehicles.
 	WithTextDecoration:
 		Text: Tech House

@@ -12,6 +12,7 @@ ed_vehicles_ht33r:
 		BuildDuration: 113
 		BuildPaletteOrder: 60
 		Prerequisites: HeavyRockets
+		Description: Heavy unit armed long range heavy rocket launcher.\nCan target air units.
 	Selectable:
 		Bounds: 944, 784, 0, 0
 	Health:

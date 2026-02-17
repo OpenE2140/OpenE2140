@@ -12,6 +12,7 @@ ucs_vehicles_raptor_es:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: Engine
+		Description: Armed with machine gun.
 	Selectable:
 		Bounds: 832, 928, 0, 0
 	Health:

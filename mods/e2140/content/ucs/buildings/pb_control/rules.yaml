@@ -53,5 +53,6 @@ ucs_mcu_pb_control:
 		BuildDuration: 138
 		BuildPaletteOrder: 100
 		Prerequisites: PlasmaWeapons, shared_buildings_research_center
+		Description: This control center is responsible for the entire Plasma Blast.\nAllows production of PB Cannon.
 	WithTextDecoration:
 		Text: PB Control
