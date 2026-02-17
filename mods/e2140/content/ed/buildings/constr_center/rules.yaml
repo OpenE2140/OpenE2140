@@ -105,6 +105,7 @@ ed_mcu_constr_center:
 		BuildDuration: 163
 		BuildPaletteOrder: 40
 		Prerequisites: NuclearEngine
+		Description: The main headquarters.\nAllows production of MCUs and utility units.
 	BaseBuilding:
 	WithTextDecoration:
 		Text: Constr. Center

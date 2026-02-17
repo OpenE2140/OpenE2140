@@ -11,6 +11,7 @@ ucs_vehicles_shadow:
 		BuildDuration: 150
 		BuildPaletteOrder: 120
 		Prerequisites: Teleportation
+		Description: Camouflages ally units.
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:
