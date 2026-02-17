@@ -49,5 +49,6 @@ ed_mcu_pillbox:
 		BuildDuration: 100
 		BuildPaletteOrder: 30
 		Prerequisites: NuclearReactor
+		Description: Basic defense.\nArmed with heavy machine gun.
 	WithTextDecoration:
 		Text: Pillbox
