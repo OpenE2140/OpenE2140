@@ -207,5 +207,6 @@ shared_mcu_refinery:
 		BuildDuration: 100
 		BuildPaletteOrder: 50
 		Prerequisites: anypower
+		Description: Processes the raw materials excavated from the mines.\nUse Banthas or Heavy Lifters to deliver crates.
 	WithTextDecoration:
 		Text: Refinery

@@ -12,6 +12,7 @@ ucs_ships_russ3:
 		BuildDuration: 125
 		BuildPaletteOrder: 10
 		Prerequisites: Engine
+		Description: Submarine armed with torpedo launcher.\nCan only target naval units.
 	Selectable:
 		Bounds: 1344, 976, 0, 0
 	Health:

@@ -11,6 +11,7 @@ ucs_infantry_silver_r:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: RocketEngine
+		Description: Infantry armed with rocket launcher.\nCan target air units.\nCan capture enemy buildings.\nCan reinforce own buildings.
 	Health:
 		HP: 28
 	RevealsShroud:

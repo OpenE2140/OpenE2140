@@ -11,6 +11,7 @@ ucs_infantry_silver_max:
 		BuildDuration: 100
 		BuildPaletteOrder: 30
 		Prerequisites: LightPlasmaCannon
+		Description: Infantry armed with plasma cannon.\nCan capture enemy buildings.\nCan reinforce own buildings.
 	Health:
 		HP: 28
 	RevealsShroud:

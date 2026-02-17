@@ -9,6 +9,7 @@ ed_vehicles_tur:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 80
+		Description: Infantry transporter.\nUnarmed.
 	Selectable:
 		Bounds: 848, 784, 0, 0
 	Health:
