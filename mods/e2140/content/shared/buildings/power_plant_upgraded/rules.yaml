@@ -84,5 +84,6 @@ shared_mcu_power_plant_upgraded:
 		BuildDuration: 138
 		BuildPaletteOrder: 10
 		Prerequisites: NuclearReactor
+		Description: Provides more power.
 	WithTextDecoration:
 		Text: Power Plant Upgr.

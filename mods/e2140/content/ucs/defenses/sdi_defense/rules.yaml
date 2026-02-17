@@ -53,5 +53,6 @@ ucs_mcu_sdi_defense:
 		BuildDuration: 138
 		BuildPaletteOrder: 40
 		Prerequisites: PlasmaWeapons, ucs_buildings_pb_control
+		Description: Shoots down incoming nukes.
 	WithTextDecoration:
 		Text: SDI Defence

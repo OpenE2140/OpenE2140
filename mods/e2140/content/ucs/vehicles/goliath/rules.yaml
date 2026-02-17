@@ -11,6 +11,7 @@ ucs_vehicles_goliath:
 		BuildDuration: 75
 		BuildPaletteOrder: 140
 		Prerequisites: AiMine
+		Description: Rams into enemy units and explodes.
 	Selectable:
 		Bounds: 896, 864, 0, 0
 	Health:
