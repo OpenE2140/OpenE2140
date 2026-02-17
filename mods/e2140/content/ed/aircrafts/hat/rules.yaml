@@ -10,6 +10,7 @@ ed_aircrafts_hat:
 		BuildDuration: 100
 		BuildPaletteOrder: 20
 		Prerequisites: Flying
+		Description: Air infantry transport.\nUnarmed.
 	Selectable:
 		Bounds: 1184, 1072, 0, 0
 	Health:

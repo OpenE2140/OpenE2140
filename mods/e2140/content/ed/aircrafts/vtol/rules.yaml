@@ -11,6 +11,7 @@ ed_aircrafts_vtol:
 		BuildDuration: 75
 		BuildPaletteOrder: 40
 		Prerequisites: Flying
+		Description: Vertical takeoff flier armed with heavy rocket launcher.
 	Selectable:
 		Bounds: 992, 848, 0, 0
 	Health:

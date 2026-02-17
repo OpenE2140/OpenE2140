@@ -11,6 +11,7 @@ ed_aircrafts_storm:
 		BuildDuration: 75
 		BuildPaletteOrder: 30
 		Prerequisites: Flying
+		Description: Small helicopter armed with machine gun.
 	Selectable:
 		Bounds: 1312, 928, 0, 0
 	Health:

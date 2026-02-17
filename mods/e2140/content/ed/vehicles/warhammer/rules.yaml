@@ -12,6 +12,7 @@ ed_vehicles_warhammer:
 		BuildDuration: 113
 		BuildPaletteOrder: 130
 		Prerequisites: AiMine
+		Description: Super heavy unit armed with triple cannon.
 	Selectable:
 		Bounds: 1280, 1248, 0, 0
 	Health:
