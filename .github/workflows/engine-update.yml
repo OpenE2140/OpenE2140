@@ -1,0 +1,56 @@
+name: Engine update
+
+on:
+  schedule:
+    - cron: '0 0 */2 * *'
+  workflow_dispatch: {}
+
+jobs:
+  update-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install PyJWT requests cryptography
+
+      - name: Create access token
+        run: |
+          token="$(.github/scripts/get-gh-access-token.py)"
+          if [ -z "$token" ]; then
+            echo "Failed to obtain access token" >&2
+            exit 1
+          fi
+          echo "::add-mask::$token"
+          echo "GITHUB_TOKEN=$token" >> $GITHUB_ENV
+        env:
+          REPO: ${{ github.repository }}
+          APP_ID: ${{ secrets.OE2140_BOT_APP_ID }}
+          APP_INSTALL_ID: ${{ secrets.OE2140_BOT_INSTALL_ID }}
+          APP_PRIVATE_KEY: ${{ secrets.OE2140_BOT_PRIVATE_KEY }}
+
+      - name: Setup git
+        run: |
+          set -eu
+          git config user.name "oe2140-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git
+        env:
+          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+      - name: Run engine-update script
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        run: |
+          tools/engine-update.py
