@@ -11,6 +11,7 @@ ucs_vehicles_tiger_hellmaker:
 		BuildDuration: 88
 		BuildPaletteOrder: 50
 		Prerequisites: Engine
+		Description: Heavy mech armed with napalm grenade launchers.
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

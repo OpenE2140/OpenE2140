@@ -11,6 +11,7 @@ ucs_vehicles_detector:
 		BuildDuration: 75
 		BuildPaletteOrder: 200
 		Prerequisites: Teleportation
+		Description: Detects enemy cloaked units.\nUnarmed.
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:
