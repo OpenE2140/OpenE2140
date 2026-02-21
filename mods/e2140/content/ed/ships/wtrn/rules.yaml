@@ -57,7 +57,7 @@ ed_ships_wtrn:
 			Shore: 100
 
 ed_ships_wtrn_husk:
-	Inherits@1: ^Husk
+	Inherits@1: ^ShipHusk
 	Inherits@2: ^HuskBurnsBigFire
 	Tooltip:
 		Name: Husk (WTRN)

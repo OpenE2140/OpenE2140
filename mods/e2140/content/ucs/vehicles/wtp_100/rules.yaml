@@ -19,6 +19,8 @@ ucs_vehicles_wtp_100:
 		Speed: 90
 	RevealsShroud:
 		Range: 2c896
+	# Block projectiles (ships/WTP 100 should block only torpedoes, but that's not possible now).
+	BlocksProjectiles:
 	WithMoveSound:
 		Sound: 31.smp
 	# WTP 100 doesn't have move animation.
@@ -67,7 +69,7 @@ ucs_vehicles_wtp_100:
 			Resources: 100
 
 ucs_vehicles_wtp_100_husk:
-	Inherits@1: ^Husk
+	Inherits@1: ^ShipHusk
 	Inherits@2: ^HuskBurnsBigFire
 	Tooltip:
 		Name: Husk (WTP 100)
