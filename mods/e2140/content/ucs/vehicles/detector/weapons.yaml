@@ -1,0 +1,43 @@
+ucs_vehicles_detector:
+	ReloadDelay: 50
+	Burst: 6
+	Range: 4c896
+	MinRange: 0c256
+	Report: 2.smp
+	ValidTargets: Ground, Water, Ship
+	Projectile: InstantHit
+		Inaccuracy: 0c128
+	Warhead@Damage: SpreadDamage
+		Spread: 24
+		Damage: 20
+		Versus:
+			infantry: 100
+			vehicle: 20
+			aircraft: 20
+			building: 20
+		DamageTypes: Default
+		ValidTargets: Ground, Ship
+		InvalidTargets: Tree, Pipe
+	Warhead@Effect: CreateEffect
+		Image: rubble_firearm
+		Explosions: rubble_firearm1, rubble_firearm2, rubble_firearm3
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash_firearm
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: small_water_splash_1.wav, small_water_splash_2.wav, small_water_splash_3.wav
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Defense, Structure, Infantry, InfantryUCS, Ship
+	Warhead@EffectSmoke: CreateEffect
+		Image: smoke_firearm
+		Explosions: smoke_firearm1, smoke_firearm2, smoke_firearm3
+		ExplosionPalette:
+		ValidTargets: Vehicle, Defense, Structure, InfantryUCS, Ship, Air
+	Warhead@EffectBlood: SpawnWeapons
+		Weapons: weapon_blood
+		Range: 0c256, 0c312
+		Pieces: 3,4
+		ValidTargets: Infantry
