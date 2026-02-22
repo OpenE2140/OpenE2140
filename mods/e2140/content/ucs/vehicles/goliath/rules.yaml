@@ -2,7 +2,7 @@ ucs_vehicles_goliath:
 	Inherits@1: ^UcsVehicle
 	Inherits@2: ^CoreArmedSelf
 	Tooltip:
-		Name: Goliath
+		Name: GOLIATH
 	Valued:
 		Cost: 600
 	Buildable:
@@ -41,13 +41,13 @@ ucs_vehicles_goliath:
 		Category: UCS - Vehicles
 		Order: 14
 		Animation: DATABASE/MP2_GOL.FLC
-		Title: Goliath
+		Title: GOLIATH
 		Armor: Medium
 		Armament: Heavy explosives
-		Description: This newly developed kamikaze-unit is a very effective weapon in the arsenal. The Goliath approaches its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even the most heavily armed units and structures.
+		Description: This newly developed kamikaze-unit is a very effective weapon in the arsenal. The GOLIATH approaches its target and crashes right into it. Its comparatively heavy load of explosives causes noticeable damage in even the most heavily armed units and structures.
 
 ucs_vehicles_goliath_husk:
 	Inherits@1: ^Husk
 	Inherits@2: ^HuskBurnsSmallFire
 	Tooltip:
-		Name: Husk (Goliath)
+		Name: Husk (GOLIATH)
