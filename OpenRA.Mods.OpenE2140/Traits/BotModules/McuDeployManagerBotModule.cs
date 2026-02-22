@@ -225,7 +225,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			if (desiredLocation == null)
 				return;
 
-			bot.QueueOrder(new Order("Move", mcu, Target.FromCell(this.world, desiredLocation.Value), true));
 			deployLocation = desiredLocation.Value;
 		}
 		else
@@ -241,7 +240,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { ActorID = actor.ActorID });
 		context.DeployAttempt++;
-		bot.QueueOrder(new Order("DeployTransform", mcu, true));
+		bot.QueueOrder(new Order(OrderConstants.MoveAndDeployTransformOrderID, mcu, Target.FromCell(this.world, deployLocation), true));
 
 		this.notifyMcuDeployment.ForEach(m => m.OrderedMcuToDeploy(bot, mcu, deployLocation));
 	}
