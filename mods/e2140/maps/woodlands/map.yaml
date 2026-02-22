@@ -2214,9 +2214,6 @@ Actors:
 	Actor727: neutral_tree06
 		Owner: Neutral
 		Location: 34,19
-	Actor728: neutral_tree05
-		Owner: Neutral
-		Location: 27,20
 	Actor729: neutral_tree06
 		Owner: Neutral
 		Location: 71,46
@@ -2259,9 +2256,6 @@ Actors:
 	Actor742: neutral_tree02
 		Owner: Neutral
 		Location: 69,44
-	Actor743: neutral_tree03
-		Owner: Neutral
-		Location: 74,45
 	Actor744: neutral_tree05
 		Owner: Neutral
 		Location: 75,46
@@ -2286,9 +2280,6 @@ Actors:
 	Actor751: neutral_tree02
 		Owner: Neutral
 		Location: 72,27
-	Actor752: neutral_tree02
-		Owner: Neutral
-		Location: 74,20
 	Actor753: neutral_tree03
 		Owner: Neutral
 		Location: 71,19
@@ -3667,5 +3658,125 @@ Actors:
 		Location: 1,1
 		Resources: 5
 		Facing: 640
+	Actor1207: neutral_tree02
+		Owner: Neutral
+		Location: 73,18
+	Actor1209: neutral_tree02
+		Owner: Neutral
+		Location: 33,48
+	Actor1208: neutral_tree03
+		Owner: Neutral
+		Location: 73,47
+	Actor1210: neutral_tree06
+		Owner: Neutral
+		Location: 68,48
+	Actor1211: neutral_tree05
+		Owner: Neutral
+		Location: 37,47
+	Actor1212: neutral_tree02
+		Owner: Neutral
+		Location: 77,17
+	Actor1213: neutral_tree05
+		Owner: Neutral
+		Location: 73,16
+	Actor1214: neutral_tree05
+		Owner: Neutral
+		Location: 39,16
+	Actor1215: neutral_tree04
+		Owner: Neutral
+		Location: 28,16
+	Actor1216: neutral_tree01
+		Owner: Neutral
+		Location: 24,17
+	Actor1217: neutral_tree02
+		Owner: Neutral
+		Location: 28,47
+	Actor1218: neutral_tree03
+		Owner: Neutral
+		Location: 77,48
+	Actor1219: neutral_tree04
+		Owner: Neutral
+		Location: 73,49
+	Actor1220: neutral_tree05
+		Owner: Neutral
+		Location: 64,47
+	Actor1221: neutral_tree04
+		Owner: Neutral
+		Location: 62,49
+	Actor1222: neutral_tree02
+		Owner: Neutral
+		Location: 28,49
+	Actor1224: neutral_tree06
+		Owner: Neutral
+		Location: 24,48
+	Actor1225: neutral_tree06
+		Owner: Neutral
+		Location: 37,18
+	Actor1226: neutral_tree06
+		Owner: Neutral
+		Location: 68,17
+	Actor1227: neutral_tree05
+		Owner: Neutral
+		Location: 64,18
+	Actor1228: neutral_tree03
+		Owner: Neutral
+		Location: 62,16
+	Actor1229: neutral_tree04
+		Owner: Neutral
+		Location: 33,17
+	Actor1230: neutral_tree02
+		Owner: Neutral
+		Location: 28,18
+	Actor1231: neutral_tree05
+		Owner: Neutral
+		Location: 39,49
+	Actor728: neutral_tree01
+		Owner: Neutral
+		Location: 6,59
+	Actor743: neutral_tree03
+		Owner: Neutral
+		Location: 4,57
+	Actor752: neutral_tree05
+		Owner: Neutral
+		Location: 97,57
+	Actor1223: neutral_tree04
+		Owner: Neutral
+		Location: 95,59
+	Actor1232: neutral_tree06
+		Owner: Neutral
+		Location: 97,8
+	Actor1233: neutral_tree04
+		Owner: Neutral
+		Location: 95,6
+	Actor1234: neutral_tree02
+		Owner: Neutral
+		Location: 6,6
+	Actor1235: neutral_tree05
+		Owner: Neutral
+		Location: 4,8
+	Actor1236: neutral_tree02
+		Owner: Neutral
+		Location: 37,61
+	Actor1237: neutral_tree05
+		Owner: Neutral
+		Location: 64,61
+	Actor1238: neutral_tree06
+		Owner: Neutral
+		Location: 37,4
+	Actor1239: neutral_tree03
+		Owner: Neutral
+		Location: 64,4
+	Actor1240: neutral_tree02
+		Owner: Neutral
+		Location: 8,64
+	Actor1241: neutral_tree03
+		Owner: Neutral
+		Location: 93,64
+	Actor1242: neutral_tree05
+		Owner: Neutral
+		Location: 93,1
+	Actor1243: neutral_tree06
+		Owner: Neutral
+		Location: 8,1
 
 Rules: rules.yaml
