@@ -102,7 +102,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
-		return this.customBuildingInfo == null || this.customBuildingInfo.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self);
+		return this.customBuildingInfo?.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self) != false;
 	}
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
