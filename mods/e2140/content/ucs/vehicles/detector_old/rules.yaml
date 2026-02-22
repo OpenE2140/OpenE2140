@@ -10,7 +10,7 @@ ucs_vehicles_detector_old:
 		Queue: Vehicle.UCS, Teleport.UCS
 		BuildDuration: 75
 		BuildPaletteOrder: 200
-		Prerequisites: Teleportation
+		Prerequisites: ~disabled, Teleportation
 	Selectable:
 		Bounds: 960, 864, 0, 0
 	Health:
@@ -29,13 +29,6 @@ ucs_vehicles_detector_old:
 	# Don't count DETECTOR as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
-	Encyclopedia:
-		Category: UCS - Vehicles
-		Order: 15
-		Title: DETECTOR
-		Armor: Medium
-		Armament: None
-		Description: The DETECTOR can disable the camouflage device used by the rouge UCS' SHADOW units. It works at longer ranges than the SHADOW.
 
 ucs_vehicles_detector_old_husk:
 	Inherits@1: ^Husk
