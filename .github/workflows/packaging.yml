@@ -111,7 +111,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install .NET 8.0
         uses: actions/setup-dotnet@v5
@@ -150,7 +150,7 @@ jobs:
 
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install .NET 8.0
         uses: actions/setup-dotnet@v5
