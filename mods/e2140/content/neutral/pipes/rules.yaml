@@ -27,6 +27,7 @@
 		Footprint: _
 	CustomChangesTerrain:
 		TerrainType: ClearPipe
+		TerrainTypes: Clear, Road, Resources
 	ExplosivePipe:
 		IsNode: False
 

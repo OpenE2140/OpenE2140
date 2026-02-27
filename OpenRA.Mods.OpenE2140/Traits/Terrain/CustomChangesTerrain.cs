@@ -11,16 +11,21 @@
 
 #endregion
 
+using System.Collections.Frozen;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Terrain;
 
-[Desc("Modifies the terrain type underneath the actor's location.", "Make sure that the actor doesn't move, as the terrain is changed only on actor creation.")]
+[Desc("Modifies the terrain type underneath the actor's location.",
+	"Make sure that the actor doesn't move, as the terrain is changed only on actor creation.")]
 public class CustomChangesTerrainInfo : TraitInfo
 {
 	[FieldLoader.Require]
 	[Desc("Type of terrain to change the cell under which the actor is created.")]
 	public readonly string TerrainType = string.Empty;
+
+	[Desc("Only change terrain, if the cell's original terrain type is in this list.")]
+	public readonly FrozenSet<string> TerrainTypes = FrozenSet<string>.Empty;
 
 	public override object Create(ActorInitializer init) { return new CustomChangesTerrain(this); }
 }
@@ -39,7 +44,12 @@ public class CustomChangesTerrain : INotifyAddedToWorld, INotifyRemovedFromWorld
 	{
 		var cell = self.Location;
 		var map = self.World.Map;
+
+		if (!this.info.TerrainTypes.Contains(map.GetTerrainInfo(cell).Type))
+			return;
+
 		var terrain = map.Rules.TerrainInfo.GetTerrainIndex(this.info.TerrainType);
+
 		this.previousTerrain = map.CustomTerrain[cell];
 		map.CustomTerrain[cell] = terrain;
 	}

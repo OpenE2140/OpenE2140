@@ -17,6 +17,7 @@
 		TerrainTypes: Clear, Road, Resources
 	CustomChangesTerrain:
 		TerrainType: ClearTree
+		TerrainTypes: Clear, Road, Resources
 
 neutral_tree01:
 	Inherits: ^Tree
