@@ -49,5 +49,6 @@ ed_mcu_defense_tower:
 		BuildDuration: 75
 		BuildPaletteOrder: 10
 		Prerequisites: ed_buildings_bio_center
+		Description: Basic defense.\nArmed with machine gun.
 	WithTextDecoration:
 		Text: Defense Tower

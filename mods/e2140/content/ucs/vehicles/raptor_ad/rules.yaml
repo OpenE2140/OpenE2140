@@ -12,6 +12,7 @@ ucs_vehicles_raptor_ad:
 		BuildDuration: 75
 		BuildPaletteOrder: 30
 		Prerequisites: RocketEngine
+		Description: Armed with rocket launcher.\nCan target air units.
 	Selectable:
 		Bounds: 832, 928, 0, 0
 	Health:

@@ -96,5 +96,6 @@ ucs_mcu_heavy_tech:
 		BuildDuration: 125
 		BuildPaletteOrder: 30
 		Prerequisites: anypower
+		Description: Allows production of vehicles and mechs.
 	WithTextDecoration:
 		Text: Heavy Tech

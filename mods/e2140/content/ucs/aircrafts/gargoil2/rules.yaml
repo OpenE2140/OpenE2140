@@ -11,6 +11,7 @@ ucs_aircrafts_gargoil_ii:
 		BuildDuration: 100
 		BuildPaletteOrder: 30
 		Prerequisites: Flying
+		Description: Heavy air unit armed with heavy rocket launcher.
 	Selectable:
 		Bounds: 960, 688, 0, 0
 	Health:

@@ -11,6 +11,7 @@ ucs_vehicles_tiger_assault:
 		BuildDuration: 88
 		BuildPaletteOrder: 40
 		Prerequisites: RocketEngine
+		Description: Heavy mech armed with rocket launchers.\nCan target air units.
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

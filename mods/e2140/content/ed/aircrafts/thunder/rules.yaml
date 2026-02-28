@@ -11,6 +11,7 @@ ed_aircrafts_thunder:
 		BuildDuration: 75
 		BuildPaletteOrder: 10
 		Prerequisites: Flying
+		Description: Small helicopter armed with rocket launcher.
 	Selectable:
 		Bounds: 1312, 928, 0, 0
 	Health:

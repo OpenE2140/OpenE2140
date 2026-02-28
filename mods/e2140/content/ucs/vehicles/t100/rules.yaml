@@ -11,6 +11,7 @@ ucs_vehicles_t100:
 		Queue: Vehicle.UCS
 		BuildDuration: 63
 		BuildPaletteOrder: 10
+		Description: Light vehicle armed with light machine gun.
 	Selectable:
 		Bounds: 480, 384, 0, 0
 	Health:

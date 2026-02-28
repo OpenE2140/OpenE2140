@@ -11,6 +11,7 @@ ed_ships_kt30:
 		BuildDuration: 175
 		BuildPaletteOrder: 30
 		Prerequisites: HeavyRockets
+		Description: Battleship armed with heavy rocket launchers.\nCan target air units.
 	Selectable:
 		Bounds: 1984, 1792, 0, 0
 	Health:

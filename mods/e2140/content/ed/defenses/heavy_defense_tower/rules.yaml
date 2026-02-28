@@ -52,5 +52,6 @@ ed_mcu_heavy_defense_tower:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: HeavyRockets, ed_buildings_tech_house
+		Description: Advanced defense.\nArmed with heavy rocket launcher.\nCan target air units.
 	WithTextDecoration:
 		Text: Heavy Def. Tower

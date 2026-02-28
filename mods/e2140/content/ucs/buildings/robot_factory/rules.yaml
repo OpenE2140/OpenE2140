@@ -76,5 +76,6 @@ ucs_mcu_robot_factory:
 		BuildDuration: 100
 		BuildPaletteOrder: 20
 		Prerequisites: anypower
+		Description: Allows production of infantry.
 	WithTextDecoration:
 		Text: Robot Factory

@@ -12,6 +12,7 @@ ed_vehicles_mt201l:
 		BuildDuration: 75
 		BuildPaletteOrder: 40
 		Prerequisites: LightLaser
+		Description: Medium unit armed with laser cannon.
 	Selectable:
 		Bounds: 896, 640, 0, 0
 	Health:
