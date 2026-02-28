@@ -1,0 +1,38 @@
+ucs_ships_orca:
+	idle:
+		Filename: content/ucs/ships/orca/ship_orca.png
+		Facings: -16
+	move:
+		Filename: content/ucs/ships/orca/ship_orca.png
+		Facings: -16
+	smoke_primary:
+		Filename: content/ucs/ships/orca/sub_smoke.png
+		Length: 10
+		Offset: 0,-18
+		ZOffset: 256
+		BlendMode: Additive
+	smoke_secondary:
+		Filename: content/ucs/ships/orca/sub_smoke.png
+		Length: 10
+		Offset: 0,-18
+		ZOffset: 256
+		BlendMode: Additive
+		Scale: 0.75
+	icon:
+		Filename: content/ucs/ships/orca/ship_orca_icon_ucs.png
+	# TODO: Enable after PR #20705 is merged in OpenRA
+	#icon-ucs:
+	#	Filename: SPRI0.MIX
+	#	Start: 157
+
+ucs_ships_orca_husk:
+	idle:
+		Filename: content/ucs/ships/orca/ship_orca_husk.png
+		Facings: -16
+		ZOffset: -512
+
+# TODO: remove after PR #20705
+ucs_ships_orca.ed:
+	Inherits: ucs_ships_orca
+	icon:
+		Filename: content/ucs/ships/orca/ship_orca_icon_ed.png
