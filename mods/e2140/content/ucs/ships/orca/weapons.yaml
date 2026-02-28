@@ -1,0 +1,142 @@
+ucs_ships_orca:
+	Inherits: Smudges
+	ReloadDelay: 62
+	Range: 6c896
+	MinRange: 2c512
+	Report: 4.smp
+	ValidTargets: Ground, Water, Ship
+	Burst: 2
+	BurstDelays: 24
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 128
+		Image: projectile
+		Sequences: heavy_rocket
+		Palette:
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		MinimumLaunchAngle: 290
+		MaximumLaunchAngle: 290
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@Effect: CreateEffect
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
+		ExplosionPalette:
+		ImpactSounds: 15.smp, 16.smp
+		ValidTargets: Ground, Air, Ship
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_slow
+		Range: 0c256, 0c756
+		Pieces: 4,5
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectRubble: CreateEffect
+		Image: rubble_big
+		Explosions: idle
+		ExplosionPalette:
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water
+
+ucs_ships_orca_air:
+	ReloadDelay: 48
+	Range: 6c896
+	Report: 5.smp
+	ValidTargets: Air
+	Burst: 6
+	BurstDelays: 4
+	Projectile: Missile
+		Speed: 260
+		Arm: 2
+		Blockable: false
+		Inaccuracy: 1c0
+		Image: projectile
+		Sequences: rocket
+		Palette:
+		TrailImage: trail
+		TrailSequences: trail_rocket_small
+		TrailInterval: 0
+		TrailPalette:
+		Shadow: True
+		ShadowColor: 00000046
+		MinimumLaunchAngle: 290
+		MaximumLaunchAngle: 290
+	Warhead@DamageGround: SpreadDamage
+		Spread: 128
+		Damage: 15
+		DamageTypes: Explosion
+		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 15
+		DamageTypes: Explosion
+		ValidTargets: Air
+	Warhead@EffectGround: CreateEffect
+		Image: explosion
+		Explosions: projectile_explosion_3
+		ExplosionPalette:
+		ImpactSounds: 14.smp
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectShrapnels: SpawnWeapons
+		Weapons: weapon_debris_smoke
+		Range: 1c0, 1c512
+		Pieces: 3, 4
+		ValidTargets: Ground
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectActor: CreateEffect
+		Image: explosion
+		Explosions: projectile_explosion_1, projectile_explosion_2
+		ExplosionPalette:
+		ImpactSounds: 15.smp
+		ValidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectWater: CreateEffect
+		Image: water_splash
+		Explosions: idle
+		ExplosionPalette:
+		ImpactSounds: 20.smp, 21.smp
+		ValidTargets: Water
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe
+	Warhead@EffectSmoke: CreateSmokeEffect
+		Lifetime: 27
+		Speed: 5
+		Gravity: 42
+		RandomRate: 0
+		Palette:
+		Offset: 0,0,0
+		Image: smoke
+		Sequences: dark_smoke
+		ValidTargets: Ground, Ship, Air
+		InvalidTargets: Vehicle, Defense, Structure, Air, Ship, Pipe, Water

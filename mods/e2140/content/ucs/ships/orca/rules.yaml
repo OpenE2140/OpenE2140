@@ -1,0 +1,59 @@
+ucs_ships_orca:
+	Inherits@1: ^UcsShip
+	Inherits@2: ^CoreArmedSelf
+	Inherits@3: ^SilhouetteShadowCloak
+	Tooltip:
+		Name: ORCA
+	Valued:
+		Cost: 2000
+	Buildable:
+		IconPalette:
+		Queue: Ship.UCS
+		BuildDuration: 175
+		BuildPaletteOrder: 30
+		Prerequisites: HeavyRockets
+	Selectable:
+		Bounds: 1344, 976, 0, 0
+	Health:
+		HP: 800
+	Mobile:
+		Speed: 50
+	RevealsShroud:
+		Range: 6c896
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: ucs_ships_orca
+		LocalOffset: 250,-75,150,   250,75,150
+		MuzzleSequence: smoke_primary
+		MuzzlePalette:
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ucs_ships_orca_air
+		LocalOffset: 100,-75,150,   100,75,150
+		MuzzleSequence: smoke_secondary
+		MuzzlePalette:
+	WithMuzzleOverlay:
+	-Cloak:
+	-ExternalCondition:
+	Cloak@Underwater:
+		CloakType: UnderwaterCloak
+		EffectPalette:
+		CloakedCondition: cloaked
+	SpawnActorOnDeath:
+		Actor: ucs_ships_orca_husk
+	LeavesTrails:
+		RequiresCondition: !cloaked
+	Encyclopedia:
+		Category: UCS - Ships
+		Order: 3
+		Animation: content/ucs/ships/orca/orca_wireframe.png
+		Title: ORCA - Submarine
+		Armor: WIP
+		Armament: WIP
+		Description: WIP
+
+ucs_ships_orca_husk:
+	Inherits@1: ^Husk
+	Inherits@2: ^HuskBurnsSmallFire
+	Tooltip:
+		Name: Husk (ORCA)
