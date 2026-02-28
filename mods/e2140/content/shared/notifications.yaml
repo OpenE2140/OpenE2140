@@ -30,3 +30,4 @@ Speech:
 		ResearchAborted: extra|cancelled.wav
 		ResearchAquired: base|122.smp
 		EnemiesApproaching: base|126.smp
+		ResourceCollectorUnderAttack: extra|resource_collector_alarm.wav
