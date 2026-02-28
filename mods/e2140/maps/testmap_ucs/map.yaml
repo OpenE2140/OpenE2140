@@ -371,5 +371,9 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 27,8
+	Actor0: ucs_ships_orca
+		Owner: UCS_Player
+		Facing: 384
+		Location: 24,30
 
 Rules: rules.yaml
