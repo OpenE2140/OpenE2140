@@ -23,9 +23,6 @@ Cursors:
 		attack:
 			Start: 0
 			Length: 4
-		attackoutsiderange:
-			Start: 0
-			Length: 4
 
 		enter:
 			Start: 8
@@ -167,5 +164,10 @@ Cursors:
 
 	content/core/assets/beacon.png:
 		ability:
+			Start: 0
+			Length: 4
+
+	content/core/assets/attack_outofrange.png:
+		attackoutsiderange:
 			Start: 0
 			Length: 4
