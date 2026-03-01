@@ -64,6 +64,14 @@ Cursors:
 			Start: 46
 		scroll-b:
 			Start: 47
+		scroll-t-blocked:
+			Start: 46
+		scroll-r-blocked:
+			Start: 44
+		scroll-b-blocked:
+			Start: 47
+		scroll-l-blocked:
+			Start: 45
 
 		nuke:
 			Start: 92
@@ -169,3 +177,21 @@ Cursors:
 		ability:
 			Start: 0
 			Length: 4
+
+	content/core/assets/scroll_diagonal.png:
+		scroll-tr:
+			Start: 1
+		scroll-br:
+			Start: 2
+		scroll-bl:
+			Start: 3
+		scroll-tl:
+			Start: 0
+		scroll-tr-blocked:
+			Start: 1
+		scroll-br-blocked:
+			Start: 2
+		scroll-bl-blocked:
+			Start: 3
+		scroll-tl-blocked:
+			Start: 0
