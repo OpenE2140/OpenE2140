@@ -205,7 +205,7 @@ def format_pr_body(current_sha: str, latest_sha: str, commits: List[CommitInfo],
 	if prs:
 		lines.append("Related pull requests:")
 		for p in prs:
-			lines.append(f"- [#{p.number}: {p.title}]({p.html_url}) ({p.author})")
+			lines.append(f"- [{p.number}: {p.title}]({p.html_url}) ({p.author})")
 	else:
 		lines.append("No related pull requests found.")
 	
