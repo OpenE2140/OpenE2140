@@ -1,4 +1,7 @@
 ## World
+notification-game-saved = Game saved.
+notification-game-loaded = Game loaded.
+
 options-starting-units =
     .mcu-only = MCU only
     .economy = Economy Support

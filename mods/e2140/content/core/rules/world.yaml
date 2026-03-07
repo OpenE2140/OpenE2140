@@ -109,10 +109,12 @@ World:
 	# Implementation for faction specific sprites.
 	FactionRenderSprites:
 		Factions: ucs, ed
-	# Play notification for game load/save
+	# Show text notifications for game save/load.
 	StartGameNotification:
-		# Disable notification for game start (don't have any notification sound for that)
+		# Disable notification for game start (don't have any notification sound for that).
 		Notification:
+		SavedTextNotification: notification-game-saved
+		LoadedTextNotification: notification-game-loaded
 	# Allows spawning craters on the battlefield.
 	SmudgeLayer@Clear:
 		Type: Clear
