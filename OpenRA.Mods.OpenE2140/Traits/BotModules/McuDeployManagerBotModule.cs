@@ -97,7 +97,7 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 }
 
 public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick,
-	IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager
+	IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager, INotifyTransformSequence
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
@@ -192,6 +192,18 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		}
 	}
 
+	void INotifyTransformSequence.AfterTransform(Actor buildingActor)
+	{
+		var (mcuActor, context) = this.mcuDeployContext.FirstOrDefault(p => p.Value.BuildingActor == buildingActor);
+		if (mcuActor != null)
+		{
+			if (buildingActor.IsDead)
+				this.mcuDeployContext.Remove(mcuActor);
+			else
+				context.IsTransformed = true;
+		}
+	}
+
 	private void DeployMcus(IBot bot, bool chooseLocation)
 	{
 		var newMcus = this.playerMcus.Actors
@@ -200,17 +212,31 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		foreach (var mcu in newMcus)
 			this.DeployMcu(bot, mcu, chooseLocation);
 
-		var oldEntries = this.mcuDeployContext.Keys.Where(actor => actor.IsDead);
-		foreach (var mcuActor in oldEntries)
+		var deadMcuContexts = this.mcuDeployContext.Where(p => p.Key.IsDead).ToList();
+		foreach (var (mcuActor, context) in deadMcuContexts)
 		{
-			this.mcuDeployContext.Remove(mcuActor);
-
-			if (this.GetBuildingType(mcuActor) == BuildingType.Defense)
-				this.defenseCenter = null;
-
-			if (mcuActor.ReplacedByActor != null)
+			if (context.IsTransformed)
 			{
-				this.notifyMcuDeployment.ForEach(m => m.McuDeployed(bot, mcuActor, mcuActor.ReplacedByActor));
+				if (context.BuildingActor != null)
+					this.notifyMcuDeployment.ForEach(m => m.McuTransformed(bot, context.BuildingActor));
+
+				this.mcuDeployContext.Remove(mcuActor);
+			}
+			else if (context.BuildingActor == null)
+			{
+				if (this.GetBuildingType(mcuActor) == BuildingType.Defense)
+					this.defenseCenter = null;
+
+				var newBuildingActor = mcuActor.ReplacedByActor;
+				if (newBuildingActor != null)
+				{
+					context.BuildingActor = newBuildingActor;
+					this.notifyMcuDeployment.ForEach(m => m.McuDeployed(bot, mcuActor, newBuildingActor));
+				}
+				else
+				{
+					this.mcuDeployContext.Remove(mcuActor);
+				}
 			}
 		}
 	}
@@ -238,7 +264,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			}
 		}
 
-		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { ActorID = actor.ActorID });
+		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
 		context.DeployAttempt++;
 		bot.QueueOrder(new Order(OrderConstants.MoveAndDeployTransformOrderID, mcu, Target.FromCell(this.world, deployLocation), true));
 
@@ -279,7 +305,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		}
 
 		var maxDeployRetryCount = this.Info.MaxRetryCount;
-		var deployContext = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { ActorID = actor.ActorID });
+		var deployContext = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
 		if (deployContext.DeployAttempt.IsBetween(1, maxDeployRetryCount))
 		{
 			return mcu.Location;
@@ -513,10 +539,14 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 	private class McuDeployContext
 	{
-		public required uint ActorID { get; init; }
+		public required Actor McuActor { get; init; }
+
+		public Actor? BuildingActor { get; set; }
 
 		public int DeployAttempt { get; set; }
 
 		public int? MaxMoveRadius { get; set; }
+
+		public bool IsTransformed { get; set; }
 	}
 }

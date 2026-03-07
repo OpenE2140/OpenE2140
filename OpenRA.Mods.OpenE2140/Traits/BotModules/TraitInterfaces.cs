@@ -32,8 +32,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 
 	public interface IBotMcuDeployment
 	{
-		void OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation);
+		void OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation) { }
 
-		void McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor);
+		void McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor) { }
+
+		void McuTransformed(IBot bot, Actor buildingActor) { }
 	}
 }
