@@ -158,36 +158,36 @@ public class TransformSequence : ITick, INotifyCreated
 		switch (this.state)
 		{
 			case State.Waiting:
-				{
-					if (this.delay-- > 0)
-						return;
+			{
+				if (this.delay-- > 0)
+					return;
 
-					this.StartDeployAnimation(self);
-					break;
-				}
+				this.StartDeployAnimation(self);
+				break;
+			}
 			case State.Covering:
-				{
-					break;
-				}
+			{
+				break;
+			}
 			case State.Transforming:
-				{
-					if (this.developerMode?.FastBuild == true)
-						this.remainingTime = Math.Min(this.remainingTime, this.info.InstantBuildConstructionTime);
+			{
+				if (this.developerMode?.FastBuild == true)
+					this.remainingTime = Math.Min(this.remainingTime, this.info.InstantBuildConstructionTime);
 
-					if (this.remainingTime-- > 0)
-						return;
+				if (this.remainingTime-- > 0)
+					return;
 
-					self.TryRevokingCondition(ref this.token);
+				self.TryRevokingCondition(ref this.token);
 
-					this.Uncover(self);
-					this.state = State.Complete;
+				this.Uncover(self);
+				this.state = State.Complete;
 
-					break;
-				}
+				break;
+			}
 			case State.Complete:
-				{
-					break;
-				}
+			{
+				break;
+			}
 			default:
 				break;
 		}
