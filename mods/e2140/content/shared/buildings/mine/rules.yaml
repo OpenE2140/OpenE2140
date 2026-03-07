@@ -122,8 +122,8 @@ shared_buildings_mine:
 	WithIdleOverlay@RotorUp:
 		Sequence: rotor_up
 		Offset: 1680,-280,0
-		RequiresCondition: !Transforming && !damaged
-		PauseOnCondition: !Powered || IsDead
+		RequiresCondition: !Transforming && !damaged && !IsDead
+		PauseOnCondition: !Powered
 	WithIdleOverlay@RotorDown:
 		Sequence: rotor_down
 		Offset: -340,-640,0

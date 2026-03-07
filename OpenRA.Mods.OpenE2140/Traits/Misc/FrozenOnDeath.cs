@@ -13,6 +13,7 @@
 
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Misc;
@@ -34,7 +35,7 @@ public class FrozenOnDeathInfo : TraitInfo, Requires<HealthInfo>
 	}
 }
 
-public class FrozenOnDeath : ITick
+public class FrozenOnDeath : ITick, INotifyKilled
 {
 	private readonly FrozenOnDeathInfo info;
 	private int despawn;
@@ -47,18 +48,19 @@ public class FrozenOnDeath : ITick
 		self.Trait<Health>().RemoveOnDeath = false;
 	}
 
+	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		self.TryGrantingCondition(ref this.diedToken, this.info.Condition);
+	}
+
 	void ITick.Tick(Actor self)
 	{
 		if (!self.IsDead)
 			return;
 
-		if (this.diedToken == Actor.InvalidConditionToken)
-			this.diedToken = self.GrantCondition(this.info.Condition);
-
 		if (--this.despawn <= 0)
 		{
-			if (this.diedToken != Actor.InvalidConditionToken)
-				this.diedToken = self.RevokeCondition(this.diedToken);
+			self.TryRevokingCondition(ref this.diedToken);
 
 			self.Dispose();
 		}

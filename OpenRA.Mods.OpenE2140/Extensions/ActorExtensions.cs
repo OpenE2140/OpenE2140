@@ -43,7 +43,7 @@ public static class ActorExtensions
 		return traitOrDefault;
 	}
 
-	public static void TryGrantingCondition(this Actor actor, ref int token, string condition)
+	public static void TryGrantingCondition(this Actor actor, ref int token, string? condition)
 	{
 		if (token == Actor.InvalidConditionToken)
 			token = actor.GrantCondition(condition);
