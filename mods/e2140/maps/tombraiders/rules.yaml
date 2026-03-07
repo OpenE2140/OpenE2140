@@ -1,0 +1,17 @@
+pyramid_small:
+	Inherits: ^CoreDecoration
+	Tooltip:
+		Name: Small Pyramid
+	Interactable:
+	Building:
+		Dimensions: 2,2
+		Footprint: xx xx
+
+pyramid_big:
+	Inherits: ^CoreDecoration
+	Tooltip:
+		Name: Large Pyramid
+	Interactable:
+	Building:
+		Dimensions: 4,4
+		Footprint: ==== xxxx xxxx =x==
