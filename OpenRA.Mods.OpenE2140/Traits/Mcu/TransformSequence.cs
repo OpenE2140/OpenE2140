@@ -67,6 +67,7 @@ public class TransformSequence : ITick, INotifyCreated
 
 	private DeveloperMode? developerMode;
 	private int token = Actor.InvalidConditionToken;
+	private INotifyTransformSequence[] notifyTransform = [];
 
 	private int remainingTime;
 	private int delay;
@@ -90,6 +91,7 @@ public class TransformSequence : ITick, INotifyCreated
 			return;
 
 		this.developerMode = self.Owner.PlayerActor.Trait<DeveloperMode>();
+		this.notifyTransform = self.GetSelfAndOwnerTraitsImplementing<INotifyTransformSequence>().ToArray();
 
 		this.token = self.GrantCondition(this.info.Condition);
 
@@ -181,6 +183,9 @@ public class TransformSequence : ITick, INotifyCreated
 
 				this.Uncover(self);
 				this.state = State.Complete;
+
+				foreach (var nt in this.notifyTransform)
+					nt.AfterTransform(self);
 
 				break;
 			}

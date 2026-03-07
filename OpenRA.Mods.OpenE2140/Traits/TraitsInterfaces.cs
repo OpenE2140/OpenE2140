@@ -62,6 +62,16 @@ public interface ITransformsInfo : ITraitInfoInterface
 	CVec Offset { get; }
 }
 
+public interface ITransforms
+{
+	bool CanDeploy(Actor self);
+}
+
+public interface INotifyTransformSequence
+{
+	void AfterTransform(Actor self) { }
+}
+
 public interface ICustomMcuDeployOverlayGenerator
 {
 	ICustomMcuDeployOverlay CreateOverlay(Actor self, WorldRenderer wr, ActorInfo intoActor);
@@ -72,11 +82,6 @@ public interface ICustomMcuDeployOverlay
 	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
 
 	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint);
-}
-
-public interface ITransforms
-{
-	bool CanDeploy(Actor self);
 }
 
 public interface IOrderPreviewRender
