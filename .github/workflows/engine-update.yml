@@ -53,4 +53,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
         run: |
-          tools/engine-update.py
+          .github/scripts/engine-update.py
