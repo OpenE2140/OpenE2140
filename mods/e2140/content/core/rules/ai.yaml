@@ -165,6 +165,9 @@ Player:
 	BuildingRepairBotModule:
 		RequiresCondition: enable-hard-ai || enable-cheating-ai
 
+	DeployedMcuBuildingRepairBotModule:
+		RequiresCondition: enable-hard-ai || enable-cheating-ai
+
 	SupportPowerBotModule:
 		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		Decisions:
