@@ -49,7 +49,7 @@ jobs:
           REPO: ${{ github.repository }}
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
-      - name: Run engine-update script
+      - name: Update Engine
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
         run: |
