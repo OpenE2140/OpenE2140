@@ -15,6 +15,7 @@ ucs_buildings_prod_center:
 	BuildingCrew:
 		MaxPopulation: 6
 		InitialUnits: ucs_infantry_silver_one, ucs_infantry_silver_one
+	BaseBuilding:
 	# Use custom MCU deploy and pyramid uncover animations
 	TransformSequence:
 		Image: ucs_buildings_prod_center
@@ -105,6 +106,7 @@ ucs_mcu_prod_center:
 		BuildDuration: 163
 		BuildPaletteOrder: 40
 		Prerequisites: NuclearEngine
+	BaseBuilding:
 	WithTextDecoration:
 		Text: Prod. Center
 	# Require destruction of Production Center MCU even with short game enabled. If player has one, it means they can rebuild base (if it was destroyed).
