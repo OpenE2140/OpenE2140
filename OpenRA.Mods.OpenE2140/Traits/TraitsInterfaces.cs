@@ -149,3 +149,10 @@ public interface INotifyActorProduced
 {
 	void OnProduced(Actor self, Actor producent);
 }
+
+public interface INotifyRushProtection
+{
+	void OnRushProtectionEnabled();
+
+	void OnRushProtectionDisabled();
+}

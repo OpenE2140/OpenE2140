@@ -17,6 +17,22 @@ namespace OpenRA.Mods.OpenE2140.Extensions;
 
 public static class ActorExtensions
 {
+	public static IEnumerable<T> GetWorldAndPlayersTraitsImplementing<T>(this World world)
+	{
+		if (world.Disposing)
+			return [];
+
+		return Iterate(world);
+
+		static IEnumerable<T> Iterate(World world)
+		{
+			foreach (var trait in world.WorldActor.TraitsImplementing<T>())
+				yield return trait;
+			foreach (var trait in world.Players.SelectMany(p => p.PlayerActor.TraitsImplementing<T>()))
+				yield return trait;
+		}
+	}
+
 	public static IEnumerable<T> GetSelfAndOwnerTraitsImplementing<T>(this Actor actor)
 	{
 		if (actor.Disposed)

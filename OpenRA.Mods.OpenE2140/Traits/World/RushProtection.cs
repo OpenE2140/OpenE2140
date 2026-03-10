@@ -13,6 +13,7 @@
 
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Widgets;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
@@ -134,17 +135,17 @@ public class RushProtection : ITick, IWorldLoaded
 	[FluentReference]
 	private const string ProtectionTimeWarningNotification = "notification-rush-protection-time-warning";
 
+	public readonly RushProtectionInfo Info;
 	private readonly int ticksPerSecond;
 	private readonly List<int> proximityTriggers = [];
 	private readonly Dictionary<Actor, ActorDamageState> actorDamageStates = [];
 	private readonly int protectionTime;
 
+	private List<INotifyRushProtection> notifyRushProtection = [];
 	private LabelWidget? countdownLabel;
 	private CachedTransform<int, string>? countdown;
 	private int ticksRemaining;
 	private long lastNotifyTime;
-
-	public readonly RushProtectionInfo Info;
 
 	public List<ProtectedPlayer> ProtectedPlayers { get; } = [];
 
@@ -166,6 +167,7 @@ public class RushProtection : ITick, IWorldLoaded
 
 	void IWorldLoaded.WorldLoaded(OpenRA.World world, OpenRA.Graphics.WorldRenderer wr)
 	{
+		this.notifyRushProtection = world.GetWorldAndPlayersTraitsImplementing<INotifyRushProtection>().ToList();
 		if (this.Info.RushProtectionRange <= WDist.Zero || this.Info.DamageToViolatingUnits <= 0
 			|| this.Info.TicksBetweenDamageToViolatingUnits <= 0 || this.protectionTime <= 0)
 		{
@@ -188,6 +190,9 @@ public class RushProtection : ITick, IWorldLoaded
 
 		this.ticksRemaining = this.protectionTime;
 		this.IsEnabled = true;
+
+		foreach (var notify in this.notifyRushProtection)
+			notify.OnRushProtectionEnabled();
 	}
 
 	private void InitializeTriggers(OpenRA.World world)
@@ -257,6 +262,9 @@ public class RushProtection : ITick, IWorldLoaded
 			if (this.countdownLabel != null)
 				this.countdownLabel.GetText = () => null;
 			this.countdown = null;
+
+			foreach (var notify in this.notifyRushProtection)
+				notify.OnRushProtectionDisabled();
 
 			if (!this.Info.SkipTimerExpiredNotification)
 				TextNotificationsManager.AddSystemLine(FluentProvider.GetMessage(RushProtectionDisabled));
