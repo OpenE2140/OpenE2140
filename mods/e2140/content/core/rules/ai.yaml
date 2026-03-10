@@ -11,7 +11,10 @@ Player:
 	GrantConditionOnBotOwner@CheatingAI:
 		Condition: enable-cheating-ai
 		Bots: cheating
-	
+
+	GrantConditionOnRushProtection:
+		Condition: rush-protection-active
+
 	EconomyManagerBotModule@HardAI:
 		RequiresCondition: enable-hard-ai || enable-cheating-ai
 		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
@@ -102,7 +105,7 @@ Player:
 		ResearchDelay: 0
 
 	SquadManagerBotModule@HardAI:
-		RequiresCondition: enable-hard-ai || enable-cheating-ai
+		RequiresCondition: (enable-hard-ai || enable-cheating-ai) && !rush-protection-active
 		SquadSize: 8
 		SquadSizeRandomBonus: 40
 		MinimumAttackForceDelay: 40
