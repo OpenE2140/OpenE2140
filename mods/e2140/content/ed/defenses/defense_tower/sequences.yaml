@@ -13,6 +13,9 @@ ed_defenses_defense_tower:
 		Length: 3
 		Facings: -16
 		Tick: 50
+	turret-overlay:
+		Filename: content/ed/defenses/defense_tower/turret_defense_tower_teamcolor.png
+		Facings: -16
 
 ed_mcu_defense_tower:
 	Inherits: shared_mcu

@@ -13,6 +13,9 @@ ucs_defenses_little_eye:
 		Length: 3
 		Facings: -16
 		Tick: 50
+	turret-overlay:
+		Filename: content/ucs/defenses/little_eye/turret_little_eye_teamcolor.png
+		Facings: -16
 
 ucs_mcu_little_eye:
 	Inherits: shared_mcu

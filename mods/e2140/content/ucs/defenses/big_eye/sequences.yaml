@@ -7,6 +7,9 @@ ucs_defenses_big_eye:
 	turret:
 		Filename: turret_big_eye.vspr
 		Facings: -16
+	turret-overlay:
+		Filename: content/ucs/defenses/big_eye/turret_big_eye_teamcolor.png
+		Facings: -16
 
 ucs_mcu_big_eye:
 	Inherits: shared_mcu
