@@ -1,0 +1,10 @@
+pyramid_small:
+	idle:
+		Filename: content/core/assets/construction_pyramid_small.png
+		Start: 5
+		Offset: 0,-20
+
+pyramid_big:
+	idle:
+		Filename: content/core/assets/construction_pyramid.png
+		Start: 6
