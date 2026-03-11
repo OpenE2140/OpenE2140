@@ -19,6 +19,11 @@ ed_defenses_heavy_defense_tower_upgraded:
 		Amount: -100
 	Turreted:
 		Offset: 210,0,400
+	Turreted@Overlay:
+		Offset: 210,0,400
+	WithSpriteTurret@Overlay:
+		Sequence: turret-overlay
+		RequiresCondition: !Transforming
 	Armament:
 		Weapon: ed_defenses_heavy_defense_tower_upgraded
 		LocalOffset: 450,0,75
