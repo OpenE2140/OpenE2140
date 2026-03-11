@@ -23,9 +23,6 @@ Cursors:
 		attack:
 			Start: 0
 			Length: 4
-		attackoutsiderange:
-			Start: 0
-			Length: 4
 
 		enter:
 			Start: 8
@@ -195,3 +192,8 @@ Cursors:
 			Start: 3
 		scroll-tl-blocked:
 			Start: 0
+
+	content/core/assets/attack_outofrange.png:
+		attackoutsiderange:
+			Start: 0
+			Length: 4
