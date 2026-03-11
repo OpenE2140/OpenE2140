@@ -7,6 +7,9 @@ ed_defenses_heavy_defense_tower_upgraded:
 	turret:
 		Filename: turret_heavy_defense_tower_secondary.vspr
 		Facings: -16
+	turret-overlay:
+		Filename: content/ed/defenses/heavy_defense_tower_upgraded/turret_heavy_defense_tower_upgraded_teamcolor.png
+		Facings: -16
 
 ed_mcu_heavy_defense_tower_upgraded:
 	Inherits: shared_mcu

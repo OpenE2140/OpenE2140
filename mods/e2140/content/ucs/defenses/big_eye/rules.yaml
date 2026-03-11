@@ -19,6 +19,11 @@ ucs_defenses_big_eye:
 		Amount: -100
 	Turreted:
 		Offset: 325,0,400
+	Turreted@Overlay:
+		Offset: 325,0,400
+	WithSpriteTurret@Overlay:
+		Sequence: turret-overlay
+		RequiresCondition: !Transforming
 	Armament@PRIMARY:
 		Weapon: ed_defenses_heavy_defense_tower
 		LocalOffset: 200,100,100,200,-100,100,200,0,100
