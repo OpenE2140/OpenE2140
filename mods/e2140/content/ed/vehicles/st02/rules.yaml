@@ -12,6 +12,7 @@ ed_vehicles_st02:
 		BuildDuration: 75
 		BuildPaletteOrder: 20
 		Prerequisites: RocketEngine
+		Description: Light unit armed with rocket launcher.\nCan target air units.
 	Selectable:
 		Bounds: 768, 544, 0, 0
 	Health:

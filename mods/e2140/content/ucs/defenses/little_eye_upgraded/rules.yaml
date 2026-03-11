@@ -43,5 +43,6 @@ ucs_mcu_little_eye_upgraded:
 		BuildDuration: 75
 		BuildPaletteOrder: 15
 		Prerequisites: RocketEngine, ucs_buildings_robot_factory
+		Description: Basic defense.\nArmed with rocket launcher.\nCan target air units.
 	WithTextDecoration:
 		Text: Little Eye Upgr.

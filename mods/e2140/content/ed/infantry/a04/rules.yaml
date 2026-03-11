@@ -10,6 +10,7 @@ ed_infantry_a04:
 		BuildDuration: 100
 		BuildPaletteOrder: 40
 		Prerequisites: AiMine
+		Description: Lays mines.\nCan disarm enemy mines.\nCan capture enemy buildings.\nCan reinforce ally buildings.
 	Health:
 		HP: 20
 	RevealsShroud:

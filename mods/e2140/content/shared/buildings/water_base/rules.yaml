@@ -118,5 +118,6 @@ shared_mcu_water_base:
 		BuildDuration: 113
 		BuildPaletteOrder: 80
 		Prerequisites: Engine
+		Description: Allows production of naval units.
 	WithTextDecoration:
 		Text: Water Base

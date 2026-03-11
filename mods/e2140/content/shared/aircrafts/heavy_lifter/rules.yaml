@@ -13,6 +13,7 @@ shared_aircrafts_heavy_lifter:
 		BuildDuration: 75
 		BuildPaletteOrder: 130
 		Prerequisites: Flying, shared_buildings_air_base
+		Description: Resources collector.\nFlies.
 	Selectable:
 		Bounds: 992, 848, 0, 0
 	Health:

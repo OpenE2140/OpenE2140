@@ -10,6 +10,7 @@ ucs_infantry_silver_t:
 		BuildDuration: 75
 		BuildPaletteOrder: 40
 		Prerequisites: Engine
+		Description: Armed with a self-destruction detonator.\nCan capture enemy buildings.\nCan reinforce ally buildings.
 	Health:
 		HP: 40
 	RevealsShroud:
