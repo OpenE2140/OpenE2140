@@ -38,6 +38,7 @@ ucs_ships_russ3:
 		CloakType: UnderwaterCloak
 		EffectPalette:
 		CloakedCondition: cloaked
+		CloakDelay: 105
 	SpawnActorOnDeath:
 		Actor: ucs_ships_russ3_husk
 	WithIdleOverlay@TeamColorPatch:
