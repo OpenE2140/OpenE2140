@@ -7,6 +7,9 @@ ucs_defenses_little_eye_upgraded:
 	turret:
 		Filename: content/ucs/defenses/little_eye_upgraded/turret_little_eye_secondary.png
 		Facings: -16
+	turret-overlay:
+		Filename: content/ucs/defenses/little_eye_upgraded/turret_little_eye_secondary_teamcolor.png
+		Facings: -16
 
 ucs_mcu_little_eye_upgraded:
 	Inherits: shared_mcu
