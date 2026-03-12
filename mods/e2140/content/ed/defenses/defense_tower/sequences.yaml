@@ -5,7 +5,7 @@ ed_defenses_defense_tower:
 	damaged-idle:
 		Start: 1
 	turret:
-		Filename: turret_defense_tower.vspr
+		Filename: content/ed/defenses/defense_tower/turret_defense_tower.png
 		Facings: -16
 	muzzle:
 		Filename: turret_defense_tower.vspr
@@ -20,11 +20,9 @@ ed_defenses_defense_tower:
 ed_mcu_defense_tower:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI0.MIX
-		Start: 178
+		Filename: content/ed/defenses/defense_tower/turret_defense_tower_icon_ed.png
 
 ed_mcu_defense_tower.ucs:
 	Inherits: shared_mcu
 	icon:
-		Filename: SPRI1.MIX
-		Start: 178
+		Filename: content/ed/defenses/defense_tower/turret_defense_tower_icon_ucs.png
