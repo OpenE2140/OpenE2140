@@ -20,7 +20,7 @@ ed_defenses_defense_tower_upgraded:
 	Turreted:
 		Offset: 480,-16,0
 	Turreted@Overlay:
-		Offset: 480,-16,0
+		Turret: overlay
 	WithSpriteTurret@Overlay:
 		Sequence: turret-overlay
 		RequiresCondition: !Transforming

@@ -20,7 +20,7 @@ ucs_defenses_little_eye_upgraded:
 	Turreted:
 		Offset: 170,0,400
 	Turreted@Overlay:
-		Offset: 170,0,400
+		Turret: overlay
 	WithSpriteTurret@Overlay:
 		Sequence: turret-overlay
 		RequiresCondition: !Transforming
