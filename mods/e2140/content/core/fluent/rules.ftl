@@ -23,6 +23,10 @@ dropdown-rush-protection-time =
 notification-rush-protection-enemy-attacking = Enemies are attacking!
 
 ## ai.yaml
+bot-easy =
+    .name = Easy AI
+bot-medium =
+    .name = Medium AI
 bot-hard =
     .name = Hard AI
 bot-cheating =
