@@ -53,5 +53,6 @@ ed_mcu_bcc:
 		BuildDuration: 138
 		BuildPaletteOrder: 100
 		Prerequisites: anypower, NuclearWeapons, shared_buildings_research_center
+		Description: All nuclear weapons are controlled in the ballistic control center.\nAllows production of nuke silos.
 	WithTextDecoration:
 		Text: BCC
