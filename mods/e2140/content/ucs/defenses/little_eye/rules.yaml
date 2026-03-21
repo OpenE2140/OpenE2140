@@ -19,6 +19,11 @@ ucs_defenses_little_eye:
 		Amount: -50
 	Turreted:
 		Offset: 550,-16,170
+	Turreted@Overlay:
+		Offset: 550,-16,170
+	WithSpriteTurret@Overlay:
+		Sequence: turret-overlay
+		RequiresCondition: !Transforming
 	Armament:
 		Weapon: ucs_defenses_little_eye
 		MuzzlePalette:
