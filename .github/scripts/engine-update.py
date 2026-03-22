@@ -293,7 +293,7 @@ def main() -> None:
 	engine_commit_date = None
 	try:
 		engine_commit_hash = commit_data["sha"]
-		engine_commit_date = commit_data["commit"]["author"]["date"][:10]  # YYYY-MM-DD
+		engine_commit_date = commit_data["commit"]["committer"]["date"][:10]  # YYYY-MM-DD
 	except (KeyError, TypeError):
 		pass
 
