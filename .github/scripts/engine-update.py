@@ -337,12 +337,12 @@ def main() -> None:
 	# Check if there's an existing remote engine-update branch and check ENGINE_VERSION in its mod.config.
 	downloaded = download_file_from_github(remote_owner, remote_repo, branch, "mod.config", gh_token)
 	if downloaded is not None:
-		current_engine_version = get_var_from_str(downloaded, "ENGINE_VERSION")
-		print(f"Engine version in remote branch: {current_engine_version}")
+		pending_update_engine_version = get_var_from_str(downloaded, "ENGINE_VERSION")
+		print(f"Engine version in remote branch (pending): {pending_update_engine_version}")
 
 		# If the downloaded branch already points to latest engine commit, nothing to do.
-		if current_engine_version and current_engine_version == engine_commit_hash:
-			print("Remote 'engine-update' mod.config already points to latest engine commit. No changes needed.")
+		if pending_update_engine_version and pending_update_engine_version == engine_commit_hash:
+			print("Pending engine update in 'engine-update' branch already points to latest engine commit. No changes needed.")
 			return
 
 	# Update mod.config by replacing ENGINE_VERSION line
