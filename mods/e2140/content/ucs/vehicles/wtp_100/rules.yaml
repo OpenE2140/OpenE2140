@@ -10,6 +10,7 @@ ucs_vehicles_wtp_100:
 		BuildDuration: 100
 		BuildPaletteOrder: 90
 		Prerequisites: NuclearEngine
+		Description: Transports land units.\nUnarmed.\nCan travel on water.\nCannot transport super heavy units.
 	Selectable:
 		Bounds: 1664, 1472, 0, 0
 	Health:
