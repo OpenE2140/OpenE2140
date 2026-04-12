@@ -19,6 +19,11 @@ ed_defenses_defense_tower:
 		Amount: -50
 	Turreted:
 		Offset: 550,-16,0
+	Turreted@Overlay:
+		Offset: 550,-16,0
+	WithSpriteTurret@Overlay:
+		Sequence: turret-overlay
+		RequiresCondition: !Transforming
 	Armament:
 		Weapon: ed_defenses_defense_tower
 		MuzzlePalette:

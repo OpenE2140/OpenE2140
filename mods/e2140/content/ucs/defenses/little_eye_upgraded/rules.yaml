@@ -19,6 +19,11 @@ ucs_defenses_little_eye_upgraded:
 		Amount: -50
 	Turreted:
 		Offset: 170,0,400
+	Turreted@Overlay:
+		Turret: overlay
+	WithSpriteTurret@Overlay:
+		Sequence: turret-overlay
+		RequiresCondition: !Transforming
 	Armament@PRIMARY:
 		Weapon: ucs_defenses_little_eye_upgraded
 		LocalOffset: 100,-100,0, 100,100,0
