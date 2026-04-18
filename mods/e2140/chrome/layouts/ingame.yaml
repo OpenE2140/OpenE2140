@@ -57,6 +57,7 @@ Container@INGAME_ROOT:
 					BookmarkSaveKeyPrefix: MapBookmarkSave
 					BookmarkRestoreKeyPrefix: MapBookmarkRestore
 					BookmarkKeyCount: 4
+					FocusActorKey: FocusActor
 				StrategicProgress@STRATEGIC_PROGRESS:
 					X: WINDOW_WIDTH / 2
 					Y: 40
