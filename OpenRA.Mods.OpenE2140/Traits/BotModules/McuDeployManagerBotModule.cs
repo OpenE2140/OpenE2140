@@ -265,6 +265,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		}
 
 		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
+		context.TargetLocation = deployLocation;
 		context.DeployAttempt++;
 		bot.QueueOrder(new Order(OrderConstants.MoveAndDeployTransformOrderID, mcu, Target.FromCell(this.world, deployLocation), true));
 
@@ -306,9 +307,9 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 		var maxDeployRetryCount = this.Info.MaxRetryCount;
 		var deployContext = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
-		if (deployContext.DeployAttempt.IsBetween(1, maxDeployRetryCount))
+		if (deployContext.DeployAttempt.IsBetween(1, maxDeployRetryCount) && deployContext.TargetLocation != null)
 		{
-			return mcu.Location;
+			return deployContext.TargetLocation;
 		}
 
 		var baseCenter = this.GetClosestBaseCenter(mcu.Location);
@@ -540,6 +541,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private class McuDeployContext
 	{
 		public required Actor McuActor { get; init; }
+
+		public CPos? TargetLocation { get; set; }
 
 		public Actor? BuildingActor { get; set; }
 
