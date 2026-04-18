@@ -56,7 +56,8 @@ Player:
 		MaxRefineryDistance: 25
 		CrateTransporterPerRefineryMinePair: 2
 		EconomyExpansionDelays: 1500, 1500, 1500, 1500, 2000, 2000, 2000
-		ExtraExpansionDelay: 3000
+		ExtraExpansionDelay: 5000
+		ExtraExpansionMaxIncome: 50000
 
 	EconomyManagerBotModule@CheatingAI:
 		RequiresCondition: enable-cheating-ai

@@ -27,8 +27,19 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	[Desc("Tells the AI what building types are considered mines.")]
 	public readonly HashSet<string> MineTypes = [];
 
-	[Desc("Delays in ticks between each time the AI should expand their economy.")]
+	[Desc("List of delays in ticks between each time the AI should expand their economy.",
+		"List count determines maximum economy level. Bot stops expansions," +
+		$"when total number of Mines/Refineries reaches Count({nameof(EconomyExpansionDelays)}) + 1.",
+		"(the first expansion starts when the game starts (i.e. without delay).")]
 	public readonly List<int> EconomyExpansionDelays = [];
+
+	[Desc("After bot reaches maximum economy level, this controls delay between additional economy expansions (if > 0).",
+		"In this case, the bot will keep expanding economy until there are no more places to deploy Mine.",
+		"If null or <= 0, additional extra expansions are disabled.")]
+	public readonly int? ExtraExpansionDelay;
+
+	[Desc("Bot will perform additional economy expansions only if its income (per 1 minute) is less than this value.")]
+	public readonly int ExtraExpansionMaxIncome = 10000;
 
 	[Desc("Interval (in ticks) between performing the module logic.")]
 	public readonly int LogicInterval = 50;
@@ -349,6 +360,8 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 					AIUtils.BotDebug($"{bot.Player} has expanded economy to level {targetEconomyLevel} (highest: {this.reachedEconomyLevel})");
 				else if (currentEconomyLevel < this.reachedEconomyLevel)
 					AIUtils.BotDebug($"{bot.Player} is rebuilding economy (current: {currentEconomyLevel}, highest: {this.reachedEconomyLevel}).");
+				else if (this.Info.ExtraExpansionDelay > 0)
+					AIUtils.BotDebug($"{bot.Player} has completed all economy expansion milestones, but might do some extra expansions later.");
 				else
 					AIUtils.BotDebug($"{bot.Player} has completed all economy expansion milestones and is now in maintenance mode.");
 
@@ -458,7 +471,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// Maybe add check for sufficient income here to unblock McuBuilderQueueManager?
 		if (isEconomySufficient && this.economyExpansionTargetLevel == null && this.nextExpansionTick == null)
 		{
-			//this.lastEconomyExpansion = this.world.WorldTick;
+			var minDelayBetweenExpansions = 300;
 
 			if (targetEconomyLevel == 0)
 			{
@@ -467,8 +480,6 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			}
 			else if (targetEconomyLevel < this.reachedEconomyLevel)
 			{
-				var minDelayBetweenExpansions = 300;
-
 				// Economy has degraded, expand again
 				this.nextExpansionTick = this.world.WorldTick + minDelayBetweenExpansions;
 			}
@@ -477,6 +488,12 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				var nextExpansionDelay = this.Info.EconomyExpansionDelays[targetEconomyLevel - 1];
 
 				this.nextExpansionTick = this.world.WorldTick + Math.Min(minDelayBetweenExpansions, nextExpansionDelay);
+			}
+			else if (this.Info.ExtraExpansionDelay > 0 && this.incomeTracker?.Income < this.Info.ExtraExpansionMaxIncome)
+			{
+				var min = Math.Max(minDelayBetweenExpansions, this.Info.ExtraExpansionDelay.Value - 100);
+				var max = Math.Max(min, this.Info.ExtraExpansionDelay.Value) + 100;
+				this.nextExpansionTick = this.world.LocalRandom.Next(min, max);
 			}
 			//else if (this.nextExpansionTick == null && targetEconomyLevel < this.reachedEconomyLevel)
 			//{
@@ -493,10 +510,11 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		bool TryRequestProduction(IBot bot, IBotMcuBaseBuilder mcuBaseBuilder, IEnumerable<ActorInfo?> mcuActors)
 		{
-			if (mcuActors == null || GetProductionInProgressCount(bot, mcuBaseBuilder, mcuActors) > 0)
+			var validMcuActors = mcuActors.OfType<ActorInfo>();
+			if (GetProductionInProgressCount(bot, mcuBaseBuilder, validMcuActors) > 0)
 				return false;
 
-			var mcu = mcuActors.Random(this.world.LocalRandom);
+			var mcu = validMcuActors.Random(this.world.LocalRandom);
 
 			mcuBaseBuilder.RequestBuildingProduction(bot, mcu.Name);
 			return true;
@@ -624,6 +642,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// Phase 1: discover connected resource clusters (8-neighbour BFS) within search radius
 		var processed = new HashSet<CPos>();
 		var clusters = new List<List<CPos>>(); // clusters of resources, which contain at minimum clusterMin resource cells
+
+		// After all economic milestones have been reached, expand search radius to build Mines outside of the base
+		if (this.reachedEconomyLevel >= this.Info.EconomyExpansionDelays.Count + 1)
+			maxSearchRadius *= 5;
 
 		foreach (var cell in map.FindTilesInAnnulus(origin, 0, maxSearchRadius))
 		{
