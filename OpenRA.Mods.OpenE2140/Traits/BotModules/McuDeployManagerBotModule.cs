@@ -140,7 +140,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	{
 		this.notifyPositionsUpdated = self.Owner.PlayerActor.TraitsImplementing<IBotPositionsUpdated>().ToArray();
 		this.notifyMcuDeployment = self.Owner.PlayerActor.TraitsImplementing<IBotMcuDeployment>().ToList();
-		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<IBotEconomyManager>();
 	}
 
 	protected override void TraitEnabled(Actor self)
@@ -171,6 +170,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 	void IBotTick.BotTick(IBot bot)
 	{
+		this.economyManager ??= this.player.PlayerActor.TraitsImplementing<IBotEconomyManager>().FirstEnabledTraitOrDefault();
+
 		if (this.firstTick)
 		{
 			this.initialBaseCenter = this.constructionBuildings.Alive().FirstOrDefault()?.Location;

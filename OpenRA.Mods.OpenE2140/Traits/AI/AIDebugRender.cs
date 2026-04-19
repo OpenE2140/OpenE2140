@@ -16,7 +16,7 @@ public class AIDebugRenderInfo : TraitInfo
 	}
 }
 
-public class AIDebugRender : IRenderAnnotations, INotifyCreated
+public class AIDebugRender : IRenderAnnotations
 {
 	private readonly AIDebugMode aiDebugMode;
 	private readonly SpriteFont font;
@@ -29,17 +29,14 @@ public class AIDebugRender : IRenderAnnotations, INotifyCreated
 		this.font = Game.Renderer.Fonts["Tiny"];
 	}
 
-	void INotifyCreated.Created(Actor self)
-	{
-		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<EconomyManagerBotModule>();
-	}
-
 	bool IRenderAnnotations.SpatiallyPartitionable => false;
 
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
 		if (this.aiDebugMode == null || !this.aiDebugMode.Enable || !self.Owner.IsBot)
 			return [];
+
+		this.economyManager ??= self.Owner.PlayerActor.TraitsImplementing<EconomyManagerBotModule>().FirstEnabledTraitOrDefault();
 
 		if (this.economyManager != null)
 			return this.RenderEconomyAnnotations(this.economyManager);

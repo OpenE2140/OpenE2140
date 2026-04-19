@@ -97,16 +97,13 @@ public class BaseMcuBuilderBotModuleInfo : ConditionalTraitInfo
 	public override object Create(ActorInitializer init) { return new BaseMcuBuilderBotModule(init.Self, this); }
 }
 
-public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleInfo>, IBotTick, IBotRequestPauseUnitProduction, IBotMcuBaseBuilder, INotifyActorDisposing
+public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleInfo>, IBotTick, IBotMcuBaseBuilder, INotifyActorDisposing
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly List<McuBuilderQueueManager> builders;
 	private readonly List<string> queuedBuildRequests = [];
 
-	private PowerManagerBase? playerPower;
-	private PlayerResources? playerResources;
-	private IBotEconomyManager? economyManager;
 	private int currentBuilderIndex;
 
 	// Actor type => ActorCount.
@@ -120,22 +117,10 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 		this.builders = new List<McuBuilderQueueManager>(info.BuildingQueues.Count + info.DefenseQueues.Count);
 	}
 
-	protected override void Created(Actor self)
-	{
-		this.playerPower = self.Owner.PlayerActor.TraitOrDefault<PowerManagerBase>();
-		this.playerResources = self.Owner.PlayerActor.Trait<PlayerResources>();
-		this.economyManager = self.Owner.PlayerActor.TraitOrDefault<IBotEconomyManager>();
-
-		var queues = this.Info.BuildingQueues
-			.Concat(this.Info.DefenseQueues);
-		foreach (var queue in queues)
-			this.builders.Add(new McuBuilderQueueManager(this, this.economyManager, queue, this.player, this.playerPower, this.playerResources));
-	}
-
-	bool IBotRequestPauseUnitProduction.PauseUnitProduction => this.IsTraitDisabled;
-
 	void IBotTick.BotTick(IBot bot)
 	{
+		this.InitializeQueueManagers();
+
 		this.McusBeingProduced.Clear();
 
 		// PERF: We tick only one type of valid queue at a time
@@ -178,6 +163,21 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 		}
 
 		this.builders[this.currentBuilderIndex].Tick(bot);
+	}
+
+	private void InitializeQueueManagers()
+	{
+		var queues = this.Info.BuildingQueues
+			.Concat(this.Info.DefenseQueues);
+		if (!queues.Any() || this.builders.Count > 0)
+			return;
+
+		var economyManager = this.player.PlayerActor.TraitsImplementing<IBotEconomyManager>().FirstEnabledTraitOrDefault();
+		var playerPower = this.player.PlayerActor.TraitOrDefault<PowerManagerBase>();
+		var playerResources = this.player.PlayerActor.Trait<PlayerResources>();
+
+		foreach (var queue in queues)
+			this.builders.Add(new McuBuilderQueueManager(this, economyManager, queue, this.player, playerPower, playerResources));
 	}
 
 	private void AddQueuedBuildings(McuBuilderQueueManager builder, ProductionQueue[] queues)
