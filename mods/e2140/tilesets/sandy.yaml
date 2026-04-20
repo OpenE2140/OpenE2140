@@ -10,6 +10,10 @@ Terrain:
 		Type: Shore
 		TargetTypes: Ground
 		Color: B09C78
+	TerrainType@ClearShore:
+		Type: ClearShore
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Creek:
 		Type: Creek
 		TargetTypes: Ground
@@ -487,7 +491,7 @@ Templates:
 		Categories: Shore
 		Frames: 143, 144
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@116:
 		Id: 116
@@ -496,7 +500,7 @@ Templates:
 		Categories: Shore
 		Frames: 145, 146
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@117:
 		Id: 117
@@ -505,7 +509,7 @@ Templates:
 		Categories: Shore
 		Frames: 147, 148
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@118:
 		Id: 118
@@ -515,7 +519,7 @@ Templates:
 		Frames: 149, 150
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@119:
 		Id: 119
 		Images: SPRT2.MIX
@@ -524,7 +528,7 @@ Templates:
 		Frames: 151, 152
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@120:
 		Id: 120
 		Images: SPRT2.MIX
@@ -533,7 +537,7 @@ Templates:
 		Frames: 153, 154
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@121:
 		Id: 121
 		Images: SPRT2.MIX
@@ -542,7 +546,7 @@ Templates:
 		Frames: 155, 156
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@122:
 		Id: 122
 		Images: SPRT2.MIX
@@ -551,7 +555,7 @@ Templates:
 		Frames: 157, 158
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@123:
 		Id: 123
 		Images: SPRT2.MIX
@@ -560,7 +564,7 @@ Templates:
 		Frames: 159, 160
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@124:
 		Id: 124
 		Images: SPRT2.MIX
@@ -568,7 +572,7 @@ Templates:
 		Categories: Shore
 		Frames: 161, 162
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@125:
 		Id: 125
@@ -577,7 +581,7 @@ Templates:
 		Categories: Shore
 		Frames: 163, 164
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@126:
 		Id: 126

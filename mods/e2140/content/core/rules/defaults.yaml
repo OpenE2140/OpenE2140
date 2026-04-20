@@ -87,7 +87,7 @@
 		Type: building
 	# Add building specific logic to Constructions.
 	Building:
-		TerrainTypes: Clear, Road
+		TerrainTypes: Clear, Road, ClearShore
 	# Constructions can be targeted by anything which attacks ground.
 	Targetable:
 		TargetTypes: Ground, Structure
@@ -410,6 +410,7 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+			ClearShore: 100
 
 # Base for all vehicles
 ^CoreVehicle:
@@ -476,6 +477,7 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+			ClearShore: 100
 	Locomotor@light_vehicle:
 		Name: light_vehicle
 		Crushes: mine, husk
@@ -488,6 +490,7 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+			ClearShore: 100
 	Locomotor@vehicleFastSand:
 		Name: vehicleFastSand
 		Crushes: infantry, mine, husk
@@ -500,6 +503,7 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+			ClearShore: 100
 	Locomotor@light_vehicleFastSand:
 		Name: light_vehicleFastSand
 		Crushes: mine, husk
@@ -512,6 +516,7 @@
 			Road: 100
 			AsphaltRoad: 100
 			Resources: 100
+			ClearShore: 100
 
 # Base for all aircrafts
 ^CoreAircraft:
@@ -526,7 +531,7 @@
 	Aircraft:
 		TurnSpeed: 50
 		IdleBehavior: Land
-		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road, Resources
+		LandableTerrainTypes: Clear, Creek, Shore, Sand, Road, Resources, ClearShore
 		CruiseAltitude: 1c256
 		AltitudeVelocity: 0c60
 		IdealSeparation: 1c0
@@ -909,7 +914,7 @@
 			Radius: 256
 	# Husk trait which allows keeping actor's facing when it's dead.
 	Husk:
-		AllowedTerrain: Clear, ClearTree, ClearPipe, Creek, Shore, Sand, SandEdge, Road, Resources
+		AllowedTerrain: Clear, ClearTree, ClearPipe, Creek, Shore, Sand, SandEdge, Road, Resources, ClearShore
 	# Decrease husk's HP over time.
 	ChangesHealth:
 		Step: -25
