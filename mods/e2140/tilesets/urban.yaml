@@ -11,6 +11,10 @@ Terrain:
 		Type: Shore
 		TargetTypes: Ground
 		Color: B09C78
+	TerrainType@ClearShore:
+		Type: ClearShore
+		TargetTypes: Ground
+		Color: B09C78
 	TerrainType@Creek:
 		Type: Creek
 		TargetTypes: Ground
@@ -496,7 +500,7 @@ Templates:
 		Categories: Shore
 		Frames: 10, 11
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@116:
 		Id: 116
@@ -505,7 +509,7 @@ Templates:
 		Categories: Shore
 		Frames: 12, 13
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@117:
 		Id: 117
@@ -514,7 +518,7 @@ Templates:
 		Categories: Shore
 		Frames: 14, 15
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@118:
 		Id: 118
@@ -524,7 +528,7 @@ Templates:
 		Frames: 16, 17
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@119:
 		Id: 119
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -533,7 +537,7 @@ Templates:
 		Frames: 18, 19
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@120:
 		Id: 120
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -542,7 +546,7 @@ Templates:
 		Frames: 20, 21
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@121:
 		Id: 121
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -551,7 +555,7 @@ Templates:
 		Frames: 22, 23
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@122:
 		Id: 122
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -560,7 +564,7 @@ Templates:
 		Frames: 24, 25
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@123:
 		Id: 123
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -569,7 +573,7 @@ Templates:
 		Frames: 26, 27
 		Tiles:
 			0: Shore
-			1: Clear
+			1: ClearShore
 	Template@124:
 		Id: 124
 		Images: content/core/assets/tilesets/urban_shore_tiles.png
@@ -577,7 +581,7 @@ Templates:
 		Categories: Shore
 		Frames: 28, 29
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@125:
 		Id: 125
@@ -586,7 +590,7 @@ Templates:
 		Categories: Shore
 		Frames: 30, 31
 		Tiles:
-			0: Clear
+			0: ClearShore
 			1: Shore
 	Template@126:
 		Id: 126
