@@ -370,6 +370,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			if (expansionTime <= 100)
 				return false;
 
+			// Enough cash -> no need to pause unit production
+			if (this.incomeTracker?.CurrentCash > 5000)
+				return false;
+
 			// Expanding stalled for some time -> alternate between paused and resumed production
 			if (expansionTime / 100 % 2 == 1)
 				return true;
