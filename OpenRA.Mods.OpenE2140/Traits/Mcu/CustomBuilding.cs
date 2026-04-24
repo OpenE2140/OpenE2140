@@ -78,6 +78,11 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		return this.buildingInfo?.Tiles(location) ?? [];
 	}
 
+	public IReadOnlyDictionary<CVec, FootprintCellType> Footprint()
+	{
+		return this.buildingInfo?.Footprint != null ? this.buildingInfo.Footprint : new Dictionary<CVec, FootprintCellType>();
+	}
+
 	public WPos GetCenterOfFootprint(CPos location)
 	{
 		var (topLeft, bottomRight) = this.Tiles(location).GetBounds();

@@ -50,6 +50,11 @@ public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 		return footprint;
 	}
 
+	public IReadOnlyDictionary<CVec, FootprintCellType> Footprint()
+	{
+		return this.buildingInfo.Footprint;
+	}
+
 	public IEnumerable<CPos> Tiles(CPos location)
 	{
 		return this.buildingInfo.Tiles(location);

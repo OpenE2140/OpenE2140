@@ -14,6 +14,7 @@
 using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
+using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Resources.Activities;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -111,6 +112,8 @@ public interface ICustomBuildingInfo : ITraitInfoInterface
 	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
 
 	IEnumerable<CPos> Tiles(CPos location);
+
+	IReadOnlyDictionary<CVec, FootprintCellType> Footprint();
 
 	WPos GetCenterOfFootprint(CPos location);
 }
