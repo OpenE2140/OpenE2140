@@ -65,10 +65,12 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	public readonly int CrateTransporterPerRefineryMinePair = 2;
 
 	[FieldLoader.Ignore]
-	public McuBuildingMap MineMcuBuildingMap = new();
+	private Lazy<McuBuildingMap>? mineMcuBuildingMap;
+	public McuBuildingMap MineMcuBuildingMap => this.mineMcuBuildingMap?.Value ?? new McuBuildingMap();
 
 	[FieldLoader.Ignore]
-	public McuBuildingMap RefineryMcuBuildingMap = new();
+	private Lazy<McuBuildingMap>? refineryMcuBuildingMap;
+	public McuBuildingMap RefineryMcuBuildingMap => this.refineryMcuBuildingMap?.Value ?? new McuBuildingMap();
 
 	public override object Create(ActorInitializer init) { return new EconomyManagerBotModule(init.Self, this); }
 
@@ -85,8 +87,8 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 		if (this.CrateTransporterTypes.Count == 0)
 			throw new YamlException($"At least one actor type has to be defined in {nameof(this.CrateTransporterTypes)}");
 
-		this.MineMcuBuildingMap = McuBuildingMap.Create(rules, this.MineTypes);
-		this.RefineryMcuBuildingMap = McuBuildingMap.Create(rules, this.RefineryTypes);
+		this.mineMcuBuildingMap = Exts.Lazy(() => McuBuildingMap.Create(rules, this.MineTypes));
+		this.refineryMcuBuildingMap = Exts.Lazy(() => McuBuildingMap.Create(rules, this.RefineryTypes));
 	}
 
 	public class McuBuildingMap
@@ -139,7 +141,7 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 				if (mcuActor == null)
 					continue;
 
-				list.Add(new McuBuildingMapping { BuildingActor = buildingActor, McuActor = mcuActor });
+				list.Add(new McuBuildingMapping(mcuActor, buildingActor));
 			}
 
 			return new McuBuildingMap { Mappings = list };
@@ -148,8 +150,24 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 
 	public class McuBuildingMapping
 	{
-		public required ActorInfo McuActor { get; init; }
-		public required ActorInfo BuildingActor { get; init; }
+		public ActorInfo McuActor { get; }
+		public ActorInfo BuildingActor { get; }
+		public ICustomBuildingInfo? BuildingInfo { get; }
+
+		public CVec[] FootprintOffsets { get; } = [];
+
+		public CVec TransformOffset { get; }
+
+		public McuBuildingMapping(ActorInfo mcuActor, ActorInfo buildingActor)
+		{
+			this.McuActor = mcuActor;
+			this.BuildingActor = buildingActor;
+			this.TransformOffset = mcuActor.TraitInfo<TransformsInfo>().Offset;
+			this.BuildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(this.BuildingActor);
+
+			if (this.BuildingInfo != null)
+				this.FootprintOffsets = this.BuildingInfo.Footprint().Keys.Select(v => v + this.TransformOffset).ToArray();
+		}
 	}
 }
 
