@@ -64,6 +64,12 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 		"for example Refinery gets destroyed, then rebuilt -> AI gets one free crate transporter from the Refinery.")]
 	public readonly int CrateTransporterPerRefineryMinePair = 2;
 
+	[FieldLoader.Ignore]
+	public McuBuildingMap MineMcuBuildingMap = new();
+
+	[FieldLoader.Ignore]
+	public McuBuildingMap RefineryMcuBuildingMap = new();
+
 	public override object Create(ActorInitializer init) { return new EconomyManagerBotModule(init.Self, this); }
 
 	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
@@ -78,6 +84,72 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 
 		if (this.CrateTransporterTypes.Count == 0)
 			throw new YamlException($"At least one actor type has to be defined in {nameof(this.CrateTransporterTypes)}");
+
+		this.MineMcuBuildingMap = McuBuildingMap.Create(rules, this.MineTypes);
+		this.RefineryMcuBuildingMap = McuBuildingMap.Create(rules, this.RefineryTypes);
+	}
+
+	public class McuBuildingMap
+	{
+		public List<McuBuildingMapping> Mappings { get; init; } = [];
+
+		public IEnumerable<ActorInfo> McuActors => this.Mappings.Select(m => m.McuActor);
+		public IEnumerable<ActorInfo> BuildingActors => this.Mappings.Select(m => m.BuildingActor);
+
+		public bool HasMcuMapping(ActorInfo mcuActor)
+		{
+			return this.Mappings.Any(m => m.McuActor == mcuActor);
+		}
+
+		public bool HasBuildingMapping(ActorInfo buildingActor)
+		{
+			return this.Mappings.Any(m => m.BuildingActor == buildingActor);
+		}
+
+		public McuBuildingMapping? GetByMcu(ActorInfo mcuActor)
+		{
+			return this.Mappings.FirstOrDefault(m => m.McuActor == mcuActor);
+		}
+
+		public McuBuildingMapping? GetByBuilding(ActorInfo buildingActor)
+		{
+			return this.Mappings.FirstOrDefault(m => m.BuildingActor == buildingActor);
+		}
+
+		public ActorInfo? GetBuildingByMcu(ActorInfo mcuActor)
+		{
+			return this.GetByMcu(mcuActor)?.BuildingActor;
+		}
+
+		public ActorInfo? GetMcuByBuilding(ActorInfo buildingActor)
+		{
+			return this.GetByBuilding(buildingActor)?.McuActor;
+		}
+
+		public static McuBuildingMap Create(Ruleset rules, IReadOnlyCollection<string> buildingActorNames)
+		{
+			var list = new List<McuBuildingMapping>(buildingActorNames.Count);
+
+			foreach (var buildingActorName in buildingActorNames)
+			{
+				if (!rules.Actors.TryGetValue(buildingActorName, out var buildingActor))
+					continue;
+
+				var mcuActor = McuUtils.GetMcuActor(rules, buildingActor);
+				if (mcuActor == null)
+					continue;
+
+				list.Add(new McuBuildingMapping { BuildingActor = buildingActor, McuActor = mcuActor });
+			}
+
+			return new McuBuildingMap { Mappings = list };
+		}
+	}
+
+	public class McuBuildingMapping
+	{
+		public required ActorInfo McuActor { get; init; }
+		public required ActorInfo BuildingActor { get; init; }
 	}
 }
 
@@ -313,10 +385,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 	void IBotMcuDeployment.OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation)
 	{
-		if (!McuUtils.TryGetTargetBuilding(this.world, mcuActor.Info, out var buildingActor))
-			return;
-
-		if (this.Info.MineTypes.Contains(buildingActor.Name))
+		if (this.Info.MineMcuBuildingMap.HasMcuMapping(mcuActor.Info))
 			this.mineMcusMovingToDeploy.Add((mcuActor, deployLocation));
 	}
 
@@ -339,7 +408,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// (because Refinery provides one free crate transporter)
 		// TODO: unhardcode, look at the Refinery actor currently being built and check if it will create free transporter
 		var refineriesCurrentlyBuilt = mcuBaseBuilder != null ?
-			GetProductionInProgressCount(bot, mcuBaseBuilder, this.Info.RefineryTypes.Select(this.world.GetMcuFromActor)) : 0;
+			GetProductionInProgressCount(bot, mcuBaseBuilder, this.Info.RefineryMcuBuildingMap.McuActors) : 0;
 
 		// ??? Maybe add count of transporters in production?
 		var predictedTransporterCount = crateTransporterCount + refineriesCurrentlyBuilt;
@@ -427,23 +496,15 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			// Not enough mines -> build more
 			if (mineCount < targetEconomyLevel)
 			{
-				if (mcuBaseBuilder != null)
-				{
-					var mineMcus = this.Info.MineTypes.Select(this.world.GetMcuFromActor);
-					if (TryRequestProduction(bot, mcuBaseBuilder, mineMcus))
-						return;
-				}
+				if (mcuBaseBuilder != null && TryRequestProduction(bot, mcuBaseBuilder, this.Info.MineMcuBuildingMap.McuActors))
+					return;
 			}
 
 			// Not enough refineries -> build more
 			if (refineryCount < targetEconomyLevel)
 			{
-				if (mcuBaseBuilder != null)
-				{
-					var refineryMcus = this.Info.RefineryTypes.Select(this.world.GetMcuFromActor);
-					if (TryRequestProduction(bot, mcuBaseBuilder, refineryMcus))
-						return;
-				}
+				if (mcuBaseBuilder != null && TryRequestProduction(bot, mcuBaseBuilder, this.Info.RefineryMcuBuildingMap.McuActors))
+					return;
 			}
 		}
 
