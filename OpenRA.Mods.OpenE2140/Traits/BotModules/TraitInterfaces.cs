@@ -6,7 +6,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 	{
 		bool HasSufficientEconomy();
 
-		List<DeployZone> GetDeployCellsCandidates(Actor mcu, int maxSearchRadius);
+		List<DeployZone> GetDeployCellsCandidates(Actor mcu);
 	}
 
 	public class DeployZone

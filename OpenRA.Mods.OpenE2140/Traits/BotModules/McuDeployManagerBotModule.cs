@@ -388,9 +388,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 					return FindPos(baseCenter, null, this.Info.MinBaseRadius, deployContext.MaxMoveRadius.Value);
 				}
 
-				deployContext.MaxMoveRadius ??= this.Info.MinMoveRadius;
-
-				var deployZones = this.economyManager.GetDeployCellsCandidates(mcu, deployContext.MaxMoveRadius.Value);
+				var deployZones = this.economyManager.GetDeployCellsCandidates(mcu);
 				CPos? bestCell = null;
 				var bestScore = int.MaxValue;
 				foreach (var zone in deployZones)
@@ -415,13 +413,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 					}
 				}
 
-				if (bestCell == null)
-					deployContext.MaxMoveRadius = Math.Min(deployContext.MaxMoveRadius.Value + this.Info.MoveRadiusIncreaseOnFailed, this.Info.MaxMoveRadius);
-				else
-				{
-					deployContext.MaxMoveRadius = this.Info.MinMoveRadius;
-					targetLocation = bestCell;
-				}
+				targetLocation = bestCell;
 
 				break;
 			}

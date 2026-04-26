@@ -51,7 +51,7 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	public readonly int ResourceCellClusterMinimumCount = 3;
 
 	[Desc("Radius around Mine MCU location, where possible locations for Mine are checked, when deciding Mine location deployment.")]
-	public readonly int MaxResourceCellsToCheck = 10;
+	public readonly int MaxResourceCellSearchRadius = 15;
 
 	[Desc("Minimum distance from Mine, where Refinery can be placed.")]
 	public readonly int MinRefineryDistance = 5;
@@ -622,7 +622,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		return this.hasSufficientEconomy;
 	}
 
-	public List<DeployZone> GetDeployCellsCandidates(Actor mcu, int maxSearchRadius)
+	public List<DeployZone> GetDeployCellsCandidates(Actor mcu)
 	{
 		if (!McuUtils.TryGetTargetBuilding(this.world, mcu.Info, out var building))
 			return [];
@@ -630,17 +630,17 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		// Both Mine and Refinery have different placement requirements
 		if (this.Info.MineTypes.Contains(building.Name))
 		{
-			return this.FindResourceDeployZones(mcu, maxSearchRadius);
+			return this.FindResourceDeployZones(mcu);
 		}
 		else if (this.Info.RefineryTypes.Contains(building.Name))
 		{
-			return this.FindRefineryDeployZones(mcu, building, maxSearchRadius);
+			return this.FindRefineryDeployZones(mcu, building);
 		}
 
 		return [];
 	}
 
-	private List<DeployZone> FindRefineryDeployZones(Actor mcu, ActorInfo building, int maxSearchRadius)
+	private List<DeployZone> FindRefineryDeployZones(Actor mcu, ActorInfo building)
 	{
 		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(building);
 		if (buildingInfo == null)
@@ -692,10 +692,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		{
 			var deployZoneCells = new List<CPos>();
 
-			var minRange = this.Info.MinRefineryDistance;
-			var maxRange = Math.Min(this.Info.MaxRefineryDistance, maxSearchRadius);
-
-			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, minRange, maxRange))
+			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, this.Info.MinRefineryDistance, this.Info.MaxRefineryDistance))
 			{
 				if (checkedLocations.Add(cell) && this.world.Map.Contains(cell) && buildingInfo.IsCellBuildable(this.world, cell))
 					deployZoneCells.Add(cell);
@@ -712,14 +709,15 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		return candidateZones;
 	}
 
-	private List<DeployZone> FindResourceDeployZones(Actor mcu, int maxSearchRadius)
+	private List<DeployZone> FindResourceDeployZones(Actor mcu)
 	{
 		if (this.resourceMineDeployZoneSearch == null)
 			return [];
 
-		// After all economic milestones have been reached, expand search radius to build Mines outside of the base
+		// After all economic milestones have been reached, expand search radius further away from outside of the base
+		var maxSearchRadius = this.Info.MaxResourceCellSearchRadius;
 		if (this.reachedEconomyLevel >= this.Info.EconomyExpansionDelays.Count + 1)
-			maxSearchRadius *= 5;
+			maxSearchRadius *= 2;
 
 		var mineMcuMapping = this.Info.MineMcuBuildingMap.GetByMcu(mcu.Info);
 		if (mineMcuMapping == null)
