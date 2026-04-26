@@ -1,10 +1,9 @@
 pyramid_small:
 	idle:
-		Filename: content/core/assets/construction_pyramid_small.png
-		Start: 5
+		Filename: maps/tombraiders/pyramid.png
 		Offset: 0,-20
+		Scale: 0.6
 
 pyramid_big:
 	idle:
-		Filename: content/core/assets/construction_pyramid.png
-		Start: 6
+		Filename: maps/tombraiders/pyramid.png
