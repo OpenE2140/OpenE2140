@@ -522,7 +522,7 @@
 ^CoreAircraft:
 	Inherits@1: ^CoreUnit
 	Inherits@2: ^Cloakable
-	Inherits@3: ^DisabledActor
+	Inherits@3: ^DisabledAircraftActor
 	Inherits@4: ^InterferedActor
 	# Applying "armor"-damage to all actors based on this.
 	Armor:
@@ -890,6 +890,19 @@
 	Targetable@Disabled:
 		TargetTypes: Disabled
 		RequiresCondition: VehicleDisabled
+
+# Aircraft actors can be disabled by ion weapons and repaired by HCU-M.
+^DisabledAircraftActor:
+	Inherits: ^DisabledActor
+	# Disabled actor cannot be targeted by actor with MinimumHealthSpreadDamage warhead (i.e. ion cannon).
+	WarheadDependentTargetable@Disabled:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
+		TargetTypes: Air, Vehicle
+		RequiresCondition: VehicleDisabled && airborne
+	WarheadDependentTargetable@DisabledOnGround:
+		InvalidViewerWarheads: MinimumHealthSpreadDamage
+		TargetTypes: Ground, Vehicle
+		RequiresCondition: VehicleDisabled && !airborne
 
 # Vehicles leave a husk when they're destroyed
 ^Husk:
