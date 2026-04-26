@@ -305,7 +305,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			var maxSearchRadius = this.Info.MaxRefineryDistance;
 			for (var i = 0; i <= 3; i++)
 			{
-				var searchResult = FindNearestActor(unassignedRefineries, mine.Location, (maxSearchRadius * i).PowerOf2());
+				var searchResult = FindNearestActor(unassignedRefineries, mine.Location, maxSearchRadius * i);
 				if (searchResult?.actor == null)
 				{
 					++maxSearchRadius;
