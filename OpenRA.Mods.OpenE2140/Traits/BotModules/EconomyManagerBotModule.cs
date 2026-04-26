@@ -172,7 +172,7 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 }
 
 public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing,
-	IBotEconomyManager, IBotRequestPauseUnitProduction, IBotMcuDeployment
+	IBotEconomyManager, IBotRequestPauseUnitProduction, IBotMcuDeployment, IBotPositionsUpdated
 {
 	private static readonly int SufficientIncome = 2000;
 
@@ -201,6 +201,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private int? lastEconomyExpansion;
 	private int? economyExpansionTargetLevel;
 	private int? expandingEconomySince;
+	private CPos? baseCenter;
 
 	internal IReadOnlyList<MineRefineryAssignment> MineRefineryAssignments => this.mineRefineryAssignments;
 
@@ -233,6 +234,15 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	{
 		// Avoid all AIs running their logic the same tick, randomize their initial scan delay.
 		this.logicTicks = this.world.LocalRandom.Next(this.Info.LogicInterval);
+	}
+
+	void IBotPositionsUpdated.UpdatedBaseCenter(CPos newLocation)
+	{
+		this.baseCenter = newLocation;
+	}
+
+	void IBotPositionsUpdated.UpdatedDefenseCenter(CPos newLocation)
+	{
 	}
 
 	void IBotTick.BotTick(IBot bot)
@@ -486,7 +496,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				// Delay new expansion to let economy recover.
 				this.nextExpansionTick += 100;
 			}
-			else
+			else if (this.AnyResourceDeployZonesAvailable())
 			{
 				// Reached tick for next expansion: remember when it started.
 				AIUtils.BotDebug("{0} started expanding its economy", bot.Player);
@@ -495,6 +505,12 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 				this.economyExpansionTargetLevel = targetEconomyLevel;
 				this.nextExpansionTick = null;
 				isExpanding = true;
+			}
+			else
+			{
+				// The expansion should start now, but there's no available deploy zone. Try again later.
+				AIUtils.BotDebug("{0} didn't find place to deploy Mine. Rescheduling economy expansion to later.", bot.Player);
+				this.nextExpansionTick += 500;
 			}
 		}
 		else
@@ -724,6 +740,39 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			return [];
 
 		return this.resourceMineDeployZoneSearch.FindResourceMineDeployZones(mcu.Location, maxSearchRadius, mineMcuMapping.FootprintOffsets);
+	}
+
+	private bool AnyResourceDeployZonesAvailable()
+	{
+		if (this.resourceMineDeployZoneSearch == null)
+			return false;
+
+		var mineMcuMapping = this.Info.MineMcuBuildingMap.Mappings.FirstOrDefault();
+		if (mineMcuMapping == null)
+			return false;
+
+		// Fallback for base center (probably should be moved elsewhere)
+		this.baseCenter ??= this.world.ActorsHavingTrait<Building>().FirstOrDefault(a => a.Owner == this.player)?.Location;
+		if (this.baseCenter == null)
+			return false;
+
+		var maxSearchRadius = this.Info.MaxResourceCellSearchRadius;
+		var deployZones = this.resourceMineDeployZoneSearch.FindResourceMineDeployZones(this.baseCenter.Value, maxSearchRadius, mineMcuMapping.FootprintOffsets);
+
+		if (mineMcuMapping.BuildingInfo == null)
+			return deployZones.Count > 0;
+
+		// For this check (any deploy zone available), it's enough to find first location, where the Mine can be deployed.
+		foreach (var deployZone in deployZones)
+		{
+			foreach (var cell in deployZone.CandidateCells)
+			{
+				if (mineMcuMapping.BuildingInfo.CanPlaceBuilding(this.world, cell + mineMcuMapping.TransformOffset))
+					return true;
+			}
+		}
+
+		return false;
 	}
 
 	void INotifyActorDisposing.Disposing(Actor self)
