@@ -139,6 +139,10 @@ public class AircraftCrateLoad : CrateLoadBase
 			var dat = self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition);
 			if (dat > this.altitude)
 			{
+				// This is a workaround. Actual cause needs to be found and fixed.
+				if (this.aircraft.HasInfluence())
+					this.aircraft.RemoveInfluence();
+
 				this.aircraft.AddInfluence(self.Location);
 				this.aircraft.EnteringCell(self);
 			}
