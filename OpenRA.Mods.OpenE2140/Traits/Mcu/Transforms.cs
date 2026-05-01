@@ -11,13 +11,14 @@
 
 #endregion
 
+using OpenRA.Activities;
+using OpenRA.Graphics;
+using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.Common;
 using OpenRA.Traits;
-using OpenRA.Activities;
-using OpenRA.Mods.OpenE2140.Activites;
-using OpenRA.Graphics;
+using Transform = OpenRA.Mods.OpenE2140.Activites.Transform;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;
 
@@ -78,6 +79,8 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 
 public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, ITransforms, IOrderPreviewRender
 {
+	private const string DeployTransformOrderID = "DeployTransform";
+
 	private readonly Actor self;
 	private readonly ActorInfo actorInfo;
 	private readonly ICustomBuildingInfo? customBuildingInfo;
@@ -94,7 +97,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 
 	public string? VoicePhraseForOrder(Actor self, Order order)
 	{
-		return order.OrderString == "DeployTransform" ? this.Info.Voice : null;
+		return order.OrderString is DeployTransformOrderID or OrderConstants.MoveAndDeployTransformOrderID ? this.Info.Voice : null;
 	}
 
 	public bool CanDeploy(Actor self)
@@ -130,14 +133,16 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		get
 		{
 			if (!this.IsTraitDisabled)
-				yield return new DeployOrderTargeter("DeployTransform", 5,
+			{
+				yield return new DeployOrderTargeter(DeployTransformOrderID, 5,
 					() => this.CanDeploy(this.self) ? this.Info.DeployCursor : this.Info.DeployBlockedCursor);
+			}
 		}
 	}
 
 	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
-		if (order.OrderID == "DeployTransform")
+		if (order.OrderID is DeployTransformOrderID or OrderConstants.MoveAndDeployTransformOrderID)
 			return new Order(order.OrderID, self, queued);
 
 		return null;
@@ -145,7 +150,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 
 	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
 	{
-		return new Order("DeployTransform", self, queued);
+		return new Order(DeployTransformOrderID, self, queued);
 	}
 
 	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitPaused && !this.IsTraitDisabled; }
@@ -171,10 +176,33 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		this.self.QueueActivity(queued, this.GetTransformActivity());
 	}
 
-	public void ResolveOrder(Actor self, Order order)
+	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
-		if (order.OrderString == "DeployTransform" && !this.IsTraitPaused && !this.IsTraitDisabled)
+		if (this.IsTraitPaused || this.IsTraitDisabled)
+			return;
+
+		if (order.OrderString == DeployTransformOrderID)
 			this.DeployTransform(order.Queued);
+		else if (order.OrderString == OrderConstants.MoveAndDeployTransformOrderID)
+		{
+			// Only terrain target is supported.
+			if (order.Target.Type != TargetType.Terrain)
+			{
+				this.DeployTransform(order.Queued);
+				return;
+			}
+
+			// If at target location already, just queue Transform activity directly.
+			var targetLocation = self.World.Map.CellContaining(order.Target.CenterPosition);
+			if (targetLocation == self.Location)
+			{
+				this.DeployTransform(order.Queued);
+				return;
+			}
+
+			self.QueueActivity(order.Queued, new MoveToTransform(self, targetLocation, this));
+			self.ShowTargetLines();
+		}
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr)
@@ -199,5 +227,66 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		foreach (var item in previewTraits)
 			foreach (var r in item.RenderAnnotations(self, wr))
 				yield return r;
+	}
+
+	private class MoveToTransform : Activity
+	{
+		private readonly CPos targetLocation;
+		private readonly Transforms transforms;
+		private readonly IMove? move;
+		private readonly IMoveInfo? moveInfo;
+
+		private int attempt;
+
+		public MoveToTransform(Actor self, CPos targetLocation, Transforms transforms)
+		{
+			this.targetLocation = targetLocation;
+			this.transforms = transforms;
+			this.move = self.TraitOrDefault<IMove>();
+			this.moveInfo = self.Info.TraitInfo<IMoveInfo>();
+		}
+
+		protected override void OnFirstRun(Actor self)
+		{
+			if (self.Location != this.targetLocation && this.move == null)
+				this.Cancel(self);
+		}
+
+		public override bool Tick(Actor self)
+		{
+			if (this.move == null || this.IsCanceling)
+				return true;
+
+			if (self.Location != this.targetLocation)
+			{
+				// Limit number of move attempts
+				if (++this.attempt > 3)
+				{
+					return true;
+				}
+
+				if (this.attempt > 1)
+					this.QueueChild(new Wait(30));
+
+				var moveActivity = this.move.MoveTo(this.targetLocation, targetLineColor: this.moveInfo?.GetTargetLineColor());
+				this.QueueChild(moveActivity);
+				return false;
+			}
+
+			this.transforms.DeployTransform(false);
+
+			return true;
+		}
+
+		public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
+		{
+			if (this.ChildActivity != null)
+				return this.ChildActivity.TargetLineNodes(self);
+
+			if (this.moveInfo != null)
+				return [new TargetLineNode(Target.FromCell(self.World, this.targetLocation), this.moveInfo.GetTargetLineColor())];
+
+			return [];
+		}
 	}
 }
