@@ -48,9 +48,9 @@ public class McuDeployOverlay : ITransformsPreview
 		this.transformsInfo = self.Info.TraitInfo<ITransformsInfo>();
 	}
 
-	public IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr)
+	public IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr, Target target)
 	{
-		var topLeft = self.Location + this.transformsInfo.Offset;
+		var topLeft = this.GetTopLeft(self, target);
 		var footprint = this.customBuildingInfo.GetBuildingPlacementFootprint(self.World, topLeft, self);
 
 		foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
@@ -60,9 +60,10 @@ public class McuDeployOverlay : ITransformsPreview
 			yield return r;
 	}
 
-	public IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr)
+	public IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, Target target)
 	{
-		var topLeft = self.Location + this.transformsInfo.Offset;
+		var topLeft = this.GetTopLeft(self, target);
+
 		var footprint = this.customBuildingInfo.GetBuildingPlacementFootprint(self.World, topLeft, self);
 
 		//foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
@@ -70,6 +71,12 @@ public class McuDeployOverlay : ITransformsPreview
 
 		foreach (var r in this.RenderTransformsPreviews(self, wr, o => o.RenderAnnotations(self, wr, topLeft, footprint)))
 			yield return r;
+	}
+
+	private CPos GetTopLeft(Actor self, Target target)
+	{
+		var location = target.Type != TargetType.Invalid ? self.World.Map.CellContaining(target.CenterPosition) : self.Location;
+		return location + this.transformsInfo.Offset;
 	}
 
 	private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)

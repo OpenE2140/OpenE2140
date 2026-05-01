@@ -64,7 +64,7 @@ public interface ITransformsInfo : ITraitInfoInterface
 
 public interface ITransforms
 {
-	bool CanDeploy(Actor self);
+	bool CanDeploy(Actor self, CPos? targetLocation = null);
 }
 
 public interface INotifyTransformSequence
@@ -86,20 +86,20 @@ public interface ICustomMcuDeployOverlay
 
 public interface IOrderPreviewRender
 {
-	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr);
+	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, Target target);
 
-	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr);
+	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr, Target target);
 
-	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr);
+	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, Target target);
 }
 
 public interface ITransformsPreview
 {
-	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr) { yield break; }
+	IEnumerable<IRenderable> Render(Actor self, WorldRenderer wr, Target target) { yield break; }
 
-	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr) { yield break; }
+	IEnumerable<IRenderable> RenderAboveShroud(Actor self, WorldRenderer wr, Target target) { yield break; }
 
-	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr) { yield break; }
+	IEnumerable<IRenderable> RenderAnnotations(Actor self, WorldRenderer wr, Target target) { yield break; }
 }
 
 public interface ICustomBuildingInfo : ITraitInfoInterface

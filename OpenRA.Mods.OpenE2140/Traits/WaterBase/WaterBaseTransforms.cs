@@ -129,13 +129,13 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		return order.OrderString == BuildWaterBaseOrderID ? this.Info.Voice : null;
 	}
 
-	public bool CanDeploy(Actor self)
+	public bool CanDeploy(Actor self, CPos? targetLocation = null)
 	{
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
-		// First check, if the main building can be deployed at current location.
-		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self))
+		// First check, if the main building can be deployed at specified/current location.
+		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, (targetLocation ?? self.Location) + this.Info.Offset, self))
 			return false;
 
 		// Now check, if there are any cells in buildable radius, where the dock can be placed.
@@ -267,27 +267,27 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		this.self.QueueActivity(queued, this.GetTransformActivity());
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.Render(self, wr))
+			foreach (var r in item.Render(self, wr, target))
 				yield return r;
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAboveShroud(self, wr))
+			foreach (var r in item.RenderAboveShroud(self, wr, target))
 				yield return r;
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAnnotations(self, wr))
+			foreach (var r in item.RenderAnnotations(self, wr, target))
 				yield return r;
 	}
 
@@ -339,7 +339,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
 			return [];
 
-		return this.mcuDeployOverlay.RenderAboveShroud(self, wr);
+		return this.mcuDeployOverlay.RenderAboveShroud(self, wr, Target.FromActor(self));
 	}
 
 	bool IRenderAboveShroud.SpatiallyPartitionable => false;
@@ -349,7 +349,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
 			return [];
 
-		return this.mcuDeployOverlay.RenderAnnotations(self, wr);
+		return this.mcuDeployOverlay.RenderAnnotations(self, wr, Target.FromActor(self));
 	}
 
 	bool IRenderAnnotations.SpatiallyPartitionable => false;

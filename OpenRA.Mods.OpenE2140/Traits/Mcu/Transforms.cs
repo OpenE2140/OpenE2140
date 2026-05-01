@@ -100,12 +100,12 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		return order.OrderString is DeployTransformOrderID or OrderConstants.MoveAndDeployTransformOrderID ? this.Info.Voice : null;
 	}
 
-	public bool CanDeploy(Actor self)
+	public bool CanDeploy(Actor self, CPos? targetLocation = null)
 	{
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
-		return this.customBuildingInfo?.CanPlaceBuilding(self.World, self.Location + this.Info.Offset, self) != false;
+		return this.customBuildingInfo?.CanPlaceBuilding(self.World, (targetLocation ?? self.Location) + this.Info.Offset, self) != false;
 	}
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
@@ -205,27 +205,27 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		}
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.Render(self, wr))
+			foreach (var r in item.Render(self, wr, target))
 				yield return r;
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAboveShroud(self, wr))
+			foreach (var r in item.RenderAboveShroud(self, wr, target))
 				yield return r;
 	}
 
-	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr)
+	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr, Target target)
 	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAnnotations(self, wr))
+			foreach (var r in item.RenderAnnotations(self, wr, target))
 				yield return r;
 	}
 

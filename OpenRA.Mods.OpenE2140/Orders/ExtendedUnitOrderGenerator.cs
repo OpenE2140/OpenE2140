@@ -72,17 +72,17 @@ public class ExtendedUnitOrderGenerator : UnitOrderGenerator
 
 		public IEnumerable<IRenderable>? Render(WorldRenderer wr)
 		{
-			return this.OrderPreview?.Render(this.UnitOrderResult.Actor, wr);
+			return this.OrderPreview?.Render(this.UnitOrderResult.Actor, wr, this.UnitOrderResult.Target);
 		}
 
 		public IEnumerable<IRenderable>? RenderAboveShroud(WorldRenderer wr)
 		{
-			return this.OrderPreview?.RenderAboveShroud(this.UnitOrderResult.Actor, wr);
+			return this.OrderPreview?.RenderAboveShroud(this.UnitOrderResult.Actor, wr, this.UnitOrderResult.Target);
 		}
 
 		public IEnumerable<IRenderable>? RenderAnnotations(WorldRenderer wr)
 		{
-			return this.OrderPreview?.RenderAnnotations(this.UnitOrderResult.Actor, wr);
+			return this.OrderPreview?.RenderAnnotations(this.UnitOrderResult.Actor, wr, this.UnitOrderResult.Target);
 		}
 	}
 }
