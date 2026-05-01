@@ -10,6 +10,7 @@ ChromeLayout:
 	common|chrome/dropdowns.yaml
 	common|chrome/editor.yaml
 	common|chrome/gamesave-browser.yaml
+	common|chrome/load-game-browser.yaml
 	common|chrome/gamesave-loading.yaml
 	e2140|chrome/layouts/ingame.yaml
 	common|chrome/ingame-chat.yaml
