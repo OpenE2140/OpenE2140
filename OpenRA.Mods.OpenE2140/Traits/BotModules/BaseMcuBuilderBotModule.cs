@@ -102,7 +102,7 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly List<McuBuilderQueueManager> builders;
-	private readonly List<string> queuedBuildRequests = [];
+	private readonly LinkedList<string> queuedBuildRequests = [];
 
 	private int currentBuilderIndex;
 
@@ -185,35 +185,31 @@ public class BaseMcuBuilderBotModule : ConditionalTrait<BaseMcuBuilderBotModuleI
 		var queue = queues.FirstOrDefault(q => q.Info.Type == builder.Category);
 
 		// Check, if it's even possible to queue specified actor in current builder
-		if (queue == null)
+		if (queue == null || builder.Category != queue.Info.Type)
 			return;
 
-		for (var i = this.queuedBuildRequests.Count - 1; i >= 0; i--)
+		var current = this.queuedBuildRequests.First;
+		while (current != null)
 		{
-			var actorName = this.queuedBuildRequests[i];
-			if (builder.Category != queue.Info.Type)
-				continue;
+			var next = current.Next;
 
-			var mcuActor = this.GetMcuFromActor(actorName);
-			if (mcuActor == null)
-				continue;
+			var mcuActor = this.GetMcuFromActor(current.Value);
+			if (mcuActor != null
+				&& mcuActor.TryGetTrait<BuildableInfo>(out var buildableInfo)
+				&& buildableInfo.Queue.Contains(builder.Category))
+			{
+				builder.RequestBuildingProduction(mcuActor.Name);
 
-			var buildableInfo = mcuActor.TraitInfoOrDefault<BuildableInfo>();
-			if (buildableInfo == null)
-				continue;
+				this.queuedBuildRequests.Remove(current);
+			}
 
-			if (!buildableInfo.Queue.Contains(builder.Category))
-				continue;
-
-			this.queuedBuildRequests.RemoveAt(i);
-
-			builder.RequestBuildingProduction(mcuActor.Name);
+			current = next;
 		}
 	}
 
 	void IBotMcuBaseBuilder.RequestBuildingProduction(IBot bot, string actorName)
 	{
-		this.queuedBuildRequests.Add(actorName);
+		this.queuedBuildRequests.AddLast(actorName);
 	}
 
 	int IBotMcuBaseBuilder.RequestedProductionCount(IBot bot, string actorName)

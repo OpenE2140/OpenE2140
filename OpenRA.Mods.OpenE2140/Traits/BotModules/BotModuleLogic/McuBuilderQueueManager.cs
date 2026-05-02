@@ -38,7 +38,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 	private readonly PowerManagerBase playerPower;
 	private readonly PlayerResources playerResources;
 
-	private readonly List<string> queuedBuildRequests = [];
+	private readonly Queue<string> queuedBuildRequests = [];
 	private readonly Dictionary<string, int> actorsOrderedForProduction = [];
 
 	private readonly OwnerAndTraitIndex<BuildingInfo> playerBuildings;
@@ -69,7 +69,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 
 	internal void RequestBuildingProduction(string actorName)
 	{
-		this.queuedBuildRequests.Add(actorName);
+		this.queuedBuildRequests.Enqueue(actorName);
 	}
 
 	internal int RequestedProductionCount(string actorName)
@@ -158,13 +158,10 @@ public sealed class McuBuilderQueueManager : IDisposable
 
 		// Try fulfilling any build requests
 		// TODO: should there be a way to override/skip requests? UnitBuilderBotModule fulfills all requests to build a unit.
-		var requestedActor = this.queuedBuildRequests.FirstOrDefault();
-		if (requestedActor != null)
+		if (this.queuedBuildRequests.TryDequeue(out var requestedActor))
 		{
 			// TODO: should consumers be notified, if the request has been denied/aborted?
 			// (or should they just try queuing desired building for N-times and then just give up?)
-
-			this.queuedBuildRequests.Remove(requestedActor);
 
 			// Check, if it's even possible to build requested building MCU.
 			var requestedMcu = this.GetProducibleMcu([requestedActor], buildableThings);
