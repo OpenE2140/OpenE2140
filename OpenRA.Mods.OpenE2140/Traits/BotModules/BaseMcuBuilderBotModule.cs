@@ -57,7 +57,7 @@ public class BaseMcuBuilderBotModuleInfo : ConditionalTraitInfo
 
 	[Desc("Maximum number of undeployed MCUs of one type. If greater than zero, there won't be more than N undeployed MCUs, " +
 		"including MCUs currently being produced.")]
-	public readonly int MaximumUndeployedMcu = 2;
+	public readonly int MaximumUndeployedMcu = 4;
 
 	[Desc("Additional delay (in ticks) between structure production checks when there is no active production.",
 		"StructureProductionRandomBonusDelay is added to this.")]

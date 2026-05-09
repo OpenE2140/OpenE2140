@@ -94,6 +94,12 @@ public sealed class McuBuilderQueueManager : IDisposable
 		}
 		oldEntries.ForEach(a => this.actorsOrderedForProduction.Remove(a));
 
+		// Keep total count of in progress buildings to a reasonable number (if enabled).
+		var existingAndInProgressMcuCount = this.playerMcus.Alive().Count()
+			+ this.baseBuilder.McusBeingProduced.Count + this.actorsOrderedForProduction.Count;
+		if (this.baseBuilder.Info.MaximumUndeployedMcu > 0 && existingAndInProgressMcuCount > this.baseBuilder.Info.MaximumUndeployedMcu)
+			return;
+
 		var excessPowerBonus = this.baseBuilder.Info.ExcessPowerIncrement *
 			(this.playerBuildings.Alive().Count() / this.baseBuilder.Info.ExcessPowerIncreaseThreshold.Clamp(1, int.MaxValue));
 		this.minimumExcessPower = (this.baseBuilder.Info.MinimumExcessPower + excessPowerBonus)
@@ -236,11 +242,10 @@ public sealed class McuBuilderQueueManager : IDisposable
 			var mcuActorInfo = this.world.Map.Rules.Actors[mcuName];
 			var buildingInfo = McuUtils.GetTargetBuilding(this.world, mcuActorInfo)!;
 
-			// Keep total count of in progress buildings to a reasonable number (if enabled).
 			var existingMcuCount = this.playerMcus.Alive().Count(a => a.Info.Name == mcuName)
-				+ this.baseBuilder.McusBeingProduced.GetValueOrDefault(mcuName);
-			if (this.baseBuilder.Info.MaximumUndeployedMcu > 0 && existingMcuCount > this.baseBuilder.Info.MaximumUndeployedMcu)
-				continue;
+				+ this.baseBuilder.McusBeingProduced.GetValueOrDefault(mcuName)
+				+ (this.actorsOrderedForProduction.ContainsKey(mcuName) ? 1 : 0)
+				+ this.RequestedProductionCount(mcuName);
 
 			var count = this.playerBuildings.Alive().Count(a => a.Info.Name == buildingInfo.Name) + existingMcuCount;
 
