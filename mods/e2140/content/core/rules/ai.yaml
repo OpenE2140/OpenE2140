@@ -123,8 +123,8 @@ Player:
 			shared_mcu_air_base: 1
 			shared_mcu_research_center: 1
 		McuDelays:
-			ucs_mcu_pb_control: 1000
-			ed_mcu_bcc: 1000
+			ucs_mcu_pb_control: 20000
+			ed_mcu_bcc: 20000
 
 	BaseMcuBuilderBotModule@MediumAI:
 		RequiresCondition: enable-medium-ai
@@ -177,8 +177,8 @@ Player:
 			shared_mcu_air_base: 2
 			shared_mcu_research_center: 1
 		McuDelays:
-			ucs_mcu_pb_control: 800
-			ed_mcu_bcc: 800
+			ucs_mcu_pb_control: 16000
+			ed_mcu_bcc: 16000
 
 	BaseMcuBuilderBotModule@HardAI:
 		RequiresCondition: enable-hard-ai || enable-cheating-ai
@@ -231,8 +231,8 @@ Player:
 			shared_mcu_air_base: 2
 			shared_mcu_research_center: 1
 		McuDelays:
-			ucs_mcu_pb_control: 500
-			ed_mcu_bcc: 500
+			ucs_mcu_pb_control: 12000
+			ed_mcu_bcc: 12000
 
 	McuDeployManagerBotModule@AllAI:
 		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
