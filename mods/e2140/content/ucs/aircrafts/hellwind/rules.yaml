@@ -11,6 +11,7 @@ ucs_aircrafts_hellwind:
 		BuildDuration: 100
 		BuildPaletteOrder: 20
 		Prerequisites: PlasmaBomb
+		Description: Heavy bomber armed with plasma bombs.
 	Selectable:
 		Bounds: 1280, 1056, 0, 0
 	Health:
