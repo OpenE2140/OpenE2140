@@ -274,7 +274,9 @@ Player:
 		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
+		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
 		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
+		NavalProductionTypes: shared_buildings_water_base_dock
 
 	SquadManagerBotModule@MediumAI:
 		RequiresCondition: (enable-medium-ai) && !rush-protection-active
@@ -284,7 +286,9 @@ Player:
 		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
+		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
 		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
+		NavalProductionTypes: shared_buildings_water_base_dock
 
 	SquadManagerBotModule@HardAI:
 		RequiresCondition: (enable-hard-ai || enable-cheating-ai) && !rush-protection-active
@@ -293,12 +297,14 @@ Player:
 		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
+		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
 		ProtectionTypes: shared_buildings_power_plant, shared_buildings_research_center, shared_buildings_air_base, shared_buildings_mine, shared_buildings_refinery, shared_buildings_water_base, ed_buildings_constr_center, ed_buildings_tech_house, ed_buildings_bio_center, ed_buildings_bcc, ucs_buildings_prod_center, ucs_buildings_heavy_tech, ucs_buildings_robot_factory, ucs_buildings_teleport, ucs_buildings_pb_control
+		NavalProductionTypes: shared_buildings_water_base_dock
 
 
 	UnitBuilderBotModule@EasyAI:
 		RequiresCondition: enable-easy-ai
-		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
+		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Ship.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED, Ship.ED
 		IdleBaseUnitsMaximum: 20
 		UnitsToBuild:
 			ed_infantry_a01: 5
@@ -318,6 +324,9 @@ Player:
 			ed_aircrafts_storm: 1
 			ed_aircrafts_thunder: 1
 			ed_aircrafts_vtol: 1
+
+			ed_ships_shark: 10
+			ed_ships_kt30: 5
 
 			# Easy bot doesn't use the deadly Nemezis
 			ed_aircrafts_nemezis: 0
@@ -340,6 +349,9 @@ Player:
 			ucs_aircrafts_gargoil_ii: 1
 			ucs_aircrafts_hellwind: 1
 
+			ucs_ships_russ3: 10
+			ucs_ships_orca: 5
+
 		UnitLimits:
 			ed_vehicles_ht30lr: 4
 			ed_vehicles_ht33r: 5
@@ -360,9 +372,16 @@ Player:
 			# Easy bot doesn't use the deadly Nemezis
 			ed_aircrafts_nemezis: 0
 
+			ed_ships_shark: 4
+			ed_ships_kt30: 2
+
+			ucs_ships_russ3: 4
+			ucs_ships_orca: 2
+
+
 	UnitBuilderBotModule@MediumAI:
 		RequiresCondition: enable-medium-ai
-		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
+		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Ship.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED, Ship.ED
 		UnitsToBuild:
 			ed_infantry_a01: 1
 			ed_infantry_a02: 3
@@ -383,6 +402,9 @@ Player:
 			ed_aircrafts_vtol: 1
 			ed_aircrafts_nemezis: 1
 
+			ed_ships_shark: 1
+			ed_ships_kt30: 10
+
 			ucs_infantry_silver_one: 1
 			ucs_infantry_silver_r: 3
 			ucs_infantry_silver_max: 2
@@ -401,6 +423,9 @@ Player:
 			ucs_aircrafts_gargoil_ii: 1
 			ucs_aircrafts_hellwind: 1
 
+			ucs_ships_russ3: 1
+			ucs_ships_orca: 10
+
 		UnitLimits:
 			ucs_aircrafts_gargoil: 2
 			ucs_aircrafts_gargoil_ii: 2
@@ -411,9 +436,15 @@ Player:
 			ed_aircrafts_vtol: 2
 			ed_aircrafts_nemezis: 1
 
+			ed_ships_shark: 5
+			ed_ships_kt30: 5
+
+			ucs_ships_russ3: 5
+			ucs_ships_orca: 5
+
 	UnitBuilderBotModule@HardAI:
 		RequiresCondition: enable-hard-ai || enable-cheating-ai
-		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED
+		UnitQueues: Vehicle.UCS, Infantry.UCS, Aircraft.UCS, Ship.UCS, Vehicle.ED, Infantry.ED, Aircraft.ED, Ship.ED
 		UnitsToBuild:
 			ed_infantry_a01: 1
 			ed_infantry_a02: 5
@@ -434,6 +465,9 @@ Player:
 			ed_aircrafts_vtol: 1
 			ed_aircrafts_nemezis: 1
 
+			ed_ships_shark: 1
+			ed_ships_kt30: 10
+
 			ucs_infantry_silver_one: 1
 			ucs_infantry_silver_r: 5
 			ucs_infantry_silver_max: 5
@@ -452,6 +486,9 @@ Player:
 			ucs_aircrafts_gargoil_ii: 1
 			ucs_aircrafts_hellwind: 1
 
+			ucs_ships_russ3: 1
+			ucs_ships_orca: 10
+
 		UnitLimits:
 			ucs_aircrafts_gargoil: 3
 			ucs_aircrafts_gargoil_ii: 3
@@ -461,6 +498,12 @@ Player:
 			ed_aircrafts_thunder: 3
 			ed_aircrafts_vtol: 3
 			ed_aircrafts_nemezis: 2
+
+			ed_ships_shark: 10
+			ed_ships_kt30: 20
+
+			ucs_ships_russ3: 10
+			ucs_ships_orca: 20
 
 	BuildingRepairBotModule:
 		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
