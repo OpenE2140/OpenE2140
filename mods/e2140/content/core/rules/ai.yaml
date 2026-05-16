@@ -271,7 +271,7 @@ Player:
 		SquadSizeRandomBonus: 10
 		MinimumAttackForceDelay: 1200
 		RushInterval: 800
-		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner
+		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner, ucs_vehicles_goliath, ucs_infantry_silver_t
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
 		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
@@ -283,7 +283,7 @@ Player:
 		SquadSize: 6
 		SquadSizeRandomBonus: 20
 		MinimumAttackForceDelay: 100
-		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner
+		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner, ucs_vehicles_goliath, ucs_infantry_silver_t
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
 		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
@@ -294,7 +294,7 @@ Player:
 		RequiresCondition: (enable-hard-ai || enable-cheating-ai) && !rush-protection-active
 		SquadSize: 8
 		SquadSizeRandomBonus: 40
-		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner
+		ExcludeFromSquadsTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, shared_mcu_water_base, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded, shared_vehicles_bantha, shared_aircrafts_heavy_lifter, ucs_vehicles_miner_bt, ed_vehicles_miner, ucs_vehicles_goliath, ucs_infantry_silver_t
 		ConstructionYardTypes: shared_buildings_power_plant, ed_buildings_constr_center, ucs_buildings_prod_center
 		AirUnitsTypes: ed_aircrafts_thunder, ed_aircrafts_storm, ed_aircrafts_vtol, ed_aircrafts_nemezis, ucs_aircrafts_gargoil, ucs_aircrafts_gargoil_ii, ucs_aircrafts_hellwind
 		NavalUnitsTypes: ed_ships_shark, ed_ships_kt30, ucs_ships_russ3, ucs_ships_orca
@@ -310,7 +310,7 @@ Player:
 			ed_infantry_a01: 5
 			ed_infantry_a02: 2
 			ed_infantry_a03: 1
-			# Easy bot doesn't use Miners (nor minelaying infantry)
+			# Easy bot doesn't use Miners (nor minelaying infantry), Goliaths
 
 			ed_vehicles_btti: 1
 			ed_vehicles_st01b: 10
@@ -410,6 +410,7 @@ Player:
 			ucs_infantry_silver_one: 1
 			ucs_infantry_silver_r: 3
 			ucs_infantry_silver_max: 2
+			ucs_infantry_silver_t: 2
 
 			ucs_vehicles_t100: 1
 			ucs_vehicles_hellbike: 1
@@ -421,6 +422,7 @@ Player:
 			ucs_vehicles_spider_ii: 25
 			ucs_vehicles_big_mech: 5
 			ucs_vehicles_miner_bt: 5
+			ucs_vehicles_goliath: 2
 
 			ucs_aircrafts_gargoil: 1
 			ucs_aircrafts_gargoil_ii: 1
@@ -431,7 +433,11 @@ Player:
 
 		UnitLimits:
 			ed_infantry_a04: 4
+
+			ucs_infantry_silver_t: 6
+
 			ucs_vehicles_miner_bt: 2
+			ucs_vehicles_goliath: 4
 
 			ucs_aircrafts_gargoil: 2
 			ucs_aircrafts_gargoil_ii: 2
@@ -481,6 +487,7 @@ Player:
 			ucs_infantry_silver_one: 1
 			ucs_infantry_silver_r: 5
 			ucs_infantry_silver_max: 5
+			ucs_infantry_silver_t: 2
 
 			ucs_vehicles_t100: 1
 			ucs_vehicles_hellbike: 1
@@ -492,6 +499,7 @@ Player:
 			ucs_vehicles_spider_ii: 50
 			ucs_vehicles_big_mech: 30
 			ucs_vehicles_miner_bt: 7
+			ucs_vehicles_goliath: 10
 
 			ucs_aircrafts_gargoil: 1
 			ucs_aircrafts_gargoil_ii: 1
@@ -502,7 +510,11 @@ Player:
 
 		UnitLimits:
 			ed_infantry_a04: 6
+
+			ucs_infantry_silver_t: 10
+
 			ucs_vehicles_miner_bt: 4
+			ucs_vehicles_goliath: 8
 
 			ucs_aircrafts_gargoil: 3
 			ucs_aircrafts_gargoil_ii: 3
@@ -520,6 +532,14 @@ Player:
 
 			ucs_ships_russ3: 10
 			ucs_ships_orca: 20
+
+	SendUnitToAttackBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+		ActorTypesAndAttackDesire:
+			ucs_vehicles_goliath: 30
+			ucs_infantry_silver_t: 30
+		ValidTargets: Structure
+		InvalidTargets: Air, Ship
 
 	MinelayerBotModule:
 		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
