@@ -13,15 +13,14 @@
 
 using System.Diagnostics;
 using JetBrains.Annotations;
-using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Traits;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Research;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Add this to a player, to enable the research system.")]
+[TraitLocation(SystemActors.Player)]
 public class ResearchInfo : TraitInfo, Requires<PlayerResourcesInfo>, Requires<TechTreeInfo>
 {
 	[Desc("Percentage of research lost when aborting a research.")]
@@ -41,7 +40,7 @@ public class ResearchInfo : TraitInfo, Requires<PlayerResourcesInfo>, Requires<T
 
 	public override object Create(ActorInitializer init)
 	{
-		return new Research(this, init.Self);
+		return new Research(this, init);
 	}
 }
 
@@ -54,6 +53,7 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	private readonly Actor self;
 	private readonly Player player;
 	private readonly PlayerResources playerResources;
+	private readonly int? researchStartLevel;
 	private readonly TechTree techTree;
 	private ResearchLimit? researchLimit;
 	private DeveloperMode? developerMode;
@@ -69,13 +69,19 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 	public bool CanResearch => this.player.World.ActorsWithTrait<Researches>()
 		.Any(a => a.Actor.Owner == this.player && a.Trait.IsTraitEnabled());
 
-	public Research(ResearchInfo info, Actor self)
+	public Research(ResearchInfo info, ActorInitializer init)
 	{
 		this.info = info;
-		this.self = self;
-		this.player = self.Owner;
-		this.playerResources = self.Trait<PlayerResources>();
-		this.techTree = self.Trait<TechTree>();
+		this.self = init.Self;
+		this.player = this.self.Owner;
+		this.playerResources = this.self.Trait<PlayerResources>();
+		this.techTree = this.self.Trait<TechTree>();
+
+		var researchStartLevel = init.GetOrDefault<ResearchStartLevelInit>();
+		if (researchStartLevel?.Value > 0)
+		{
+			this.researchStartLevel = researchStartLevel.Value;
+		}
 	}
 
 	void INotifyAddedToWorld.AddedToWorld(Actor self)
@@ -84,6 +90,15 @@ public class Research : INotifyAddedToWorld, IResolveOrder, ITechTreePrerequisit
 		this.developerMode = self.TraitOrDefault<DeveloperMode>();
 		this.researchables.AddRange(self.TraitsImplementing<Researchable>());
 		this.Technologies = this.researchables.Select(r => new Technology(self.Owner, r)).ToList();
+
+		if (this.researchStartLevel > 0)
+		{
+			foreach (var research in this.researchables.Where(r => r.Info.Level <= this.researchStartLevel))
+			{
+				research.RemainingCost = 0;
+				research.RemainingDuration = 0;
+			}
+		}
 	}
 
 	public void ConquerResearch(Player oldOwner)
@@ -356,5 +371,13 @@ public class Technology
 	private string GetDebuggerDisplay()
 	{
 		return $"{this.researchable.Info.Id} (L{this.researchable.Info.Level}), Researchable: {this.IsResearchable}, Researched: {this.IsResearched}";
+	}
+}
+
+public class ResearchStartLevelInit : ValueActorInit<int>, ISingleInstanceInit
+{
+	public ResearchStartLevelInit(int value)
+		: base(value)
+	{
 	}
 }
