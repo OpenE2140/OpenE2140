@@ -1086,11 +1086,11 @@
 		MaximumScanTimeInterval: 15
 	AutoTargetPriority@Default:
 		RequiresCondition: !stance-attackanything
-		ValidTargets: Infantry, Vehicle, Air, Ship, Defense
+		ValidTargets: Infantry, InfantryUCS, Vehicle, Air, Ship, Defense
 		InvalidTargets: NoAutoAttack
 	AutoTargetPriority@AttackAnythingHigherPriority:
 		RequiresCondition: stance-attackanything
-		ValidTargets: Ground, Infantry, Vehicle, Air, Ship, Defense, Structure
+		ValidTargets: Ground, Infantry, InfantryUCS, Vehicle, Air, Ship, Defense, Structure
 		InvalidTargets: Disabled
 		Priority: 2
 	AutoTargetPriority@AttackAnythingLowerPriority:
