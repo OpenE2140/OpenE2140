@@ -819,7 +819,7 @@
 		Step: 500
 		Delay: 5
 		StartIfBelow: 100
-		RequiresCondition: insidebio
+		RequiresCondition: InsideBio
 	# External condition granted by BIO vehicle.
 	ExternalCondition@Healing:
 		Condition: healing
@@ -843,7 +843,7 @@
 	# Give a condition to infantry units which are inside BIO.
 	CustomPassenger:
 		CargoConditions:
-			ed_vehicles_bio: insidebio
+			ed_vehicles_bio: InsideBio
 
 ^VulnerableToRadiation:
 	Targetable@Radiation:
