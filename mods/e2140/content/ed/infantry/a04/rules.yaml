@@ -30,7 +30,7 @@ ed_infantry_a04:
 		AmmoPool: Mines
 		Delay: 10
 		Count: 5
-		RequiresCondition: insidebio
+		RequiresCondition: InsideVehicle || InsideBuilding || InsideBio
 	Rearmable:
 		RearmActors:
 		AmmoPools: Mines
@@ -48,6 +48,14 @@ ed_infantry_a04:
 		PipStride: 6,0
 		Margin: 5,5
 		RequiresSelection: True
+	CustomPassenger:
+		CargoConditions:
+			ed_vehicles_bio: InsideBio
+			ed_vehicles_tur: InsideVehicle
+			ed_aircrafts_hat: InsideVehicle
+			ed_ships_wtrn: InsideVehicle
+			ucs_vehicles_atm_500: InsideVehicle
+			ucs_vehicles_wtp_100: InsideVehicle
 	Encyclopedia:
 		Category: ED - Infantry
 		Order: 4
