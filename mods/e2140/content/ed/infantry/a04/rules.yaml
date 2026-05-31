@@ -22,6 +22,7 @@ ed_infantry_a04:
 		AbilityCursor: minePlace
 		PreLayDelay: 10
 		AfterLayingDelay: 0
+	MineImmune:
 	AmmoPool:
 		Name: Mines
 		Armaments:
@@ -35,7 +36,7 @@ ed_infantry_a04:
 		RearmActors:
 		AmmoPools: Mines
 	DetectCloaked:
-		Range: 2c896
+		Range: 4c896
 		DetectionTypes: LandMine
 	GrantConditionOnMinelaying:
 		Condition: Minelaying
