@@ -37,6 +37,7 @@ ed_vehicles_miner:
 		AbilityCursor: minePlace
 		PreLayDelay: 10
 		AfterLayingDelay: 0
+	MineImmune:
 	AmmoPool@Mines:
 		Name: Mines
 		Armaments:
@@ -77,7 +78,7 @@ ed_vehicles_miner:
 		Margin: 5,10
 		RequiresSelection: True
 	DetectCloaked:
-		Range: 2c896
+		Range: 4c896
 		DetectionTypes: LandMine
 	GrantConditionOnMinelaying:
 		Condition: Minelaying

@@ -24,6 +24,7 @@ ucs_ships_ttre400:
 		Voice: Unload
 		DeployCursor: waterMinePlace
 		AbilityCursor: waterMinePlace
+	MineImmune:
 	AmmoPool:
 		Name: Mines
 		Armaments: WeaponMines
@@ -36,7 +37,7 @@ ucs_ships_ttre400:
 		RearmActors:
 		AmmoPools: Mines
 	DetectCloaked:
-		Range: 2c896
+		Range: 4c896
 		DetectionTypes: WaterMine
 	WithAmmoPipsDecoration:
 		FullSequence: pip-grey
