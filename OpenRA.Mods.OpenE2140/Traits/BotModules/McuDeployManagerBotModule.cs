@@ -97,7 +97,7 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 }
 
 public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick,
-	IBotPositionsUpdated, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager, INotifyTransformSequence
+	IBotPositionsUpdated, IBotMcuDeployment, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager, INotifyTransformSequence
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
@@ -163,6 +163,15 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		this.lastDefenseCenterUpdate = this.Info.DefenseCenterResetInterval;
 	}
 
+	void IBotMcuDeployment.McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor)
+	{
+		if (this.constructionBuildingInfos.ContainsKey(buildingActor.Info.Name))
+		{
+			var location = buildingActor.GetCenterCellOfFootprint();
+			Array.ForEach(this.notifyPositionsUpdated, n => n.UpdatedBaseCenter(location));
+		}
+	}
+
 	int IBotMcuDeployManager.UndeployedMcuCount(IBot bot, string mcuType)
 	{
 		return this.playerMcus.Actors.Count(a => !a.IsDead && a.Info.Name == mcuType);
@@ -178,6 +187,17 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 			this.DeployMcus(bot, false);
 			this.firstTick = false;
+
+			var buildingActor = this.constructionBuildings.Alive().FirstOrDefault();
+			if (buildingActor != null)
+			{
+				var location = buildingActor.GetCenterCellOfFootprint();
+				foreach (var n in this.notifyPositionsUpdated)
+				{
+					n.UpdatedBaseCenter(location);
+					n.UpdatedDefenseCenter(location);
+				}
+			}
 		}
 
 		if (--this.scanInterval <= 0)
@@ -253,16 +273,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				return;
 
 			deployLocation = desiredLocation.Value;
-		}
-		else
-		{
-			// If the MCU has to move first, we can't be sure it reaches the destination alive, so we only
-			// update base and defense center if the MCU is deployed immediately (i.e. at game start).
-			foreach (var n in this.notifyPositionsUpdated)
-			{
-				n.UpdatedBaseCenter(mcu.Location);
-				n.UpdatedDefenseCenter(mcu.Location);
-			}
 		}
 
 		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
