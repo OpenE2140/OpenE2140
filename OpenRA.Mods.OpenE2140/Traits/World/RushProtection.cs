@@ -21,6 +21,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.World;
 
 [TraitLocation(SystemActors.World)]
 [Desc("Provides protection to players for a certain time since game start.")]
+[IncludeStaticFluentReferences(typeof(RushProtection))]
 public class RushProtectionInfo : TraitInfo, ILobbyOptions, IRulesetLoaded
 {
 	[FluentReference]
@@ -230,7 +231,6 @@ public class RushProtection : ITick, IWorldLoaded
 
 							this.lastNotifyTime = Game.RunTime;
 						}
-
 					}
 				},
 				onExit: (Actor actor) => this.actorDamageStates.Remove(actor));
