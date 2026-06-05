@@ -174,6 +174,7 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleInfo>, IBotTick, INotifyActorDisposing,
 	IBotEconomyManager, IBotRequestPauseUnitProduction, IBotMcuDeployment, IBotPositionsUpdated
 {
+	// TODO: make configurable
 	private static readonly int SufficientIncome = 2000;
 
 	private readonly OpenRA.World world;
@@ -646,6 +647,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			return false;
 
 		var maxSearchRadius = this.Info.MaxResourceCellSearchRadius;
+		this.resourceMineDeployZoneSearch.UpdateAvailableResourceClusters(this.baseCenter.Value, maxSearchRadius);
 		var deployZones = this.resourceMineDeployZoneSearch.FindResourceMineDeployZones(this.baseCenter.Value, maxSearchRadius, mineMcuMapping.FootprintOffsets);
 
 		if (mineMcuMapping.BuildingInfo == null)

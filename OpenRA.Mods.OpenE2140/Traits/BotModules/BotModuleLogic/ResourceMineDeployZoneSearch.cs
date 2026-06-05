@@ -1,4 +1,5 @@
 ﻿using OpenRA.Mods.Common.Traits;
+using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 
@@ -8,6 +9,8 @@ public class ResourceMineDeployZoneSearch
 	private readonly IResourceLayer resourceLayer;
 	private readonly int resourceCellClusterMinimumCount;
 	private readonly int minimumResourceCellsToDeploy;
+
+	private readonly List<ResourceCluster> clusters = [];
 
 	public ResourceMineDeployZoneSearch(
 		Map map,
@@ -20,35 +23,40 @@ public class ResourceMineDeployZoneSearch
 		this.minimumResourceCellsToDeploy = economyManagerBotModuleInfo.MinimumResourceCellsToDeploy;
 	}
 
+	public void UpdateAvailableResourceClusters(CPos origin, int maxSearchRadius)
+	{
+		this.clusters.Clear();
+		this.clusters.AddRange(this.FindResourceClusters(origin, maxSearchRadius, this.resourceCellClusterMinimumCount));
+	}
+
 	public List<DeployZone> FindResourceMineDeployZones(
 		CPos origin,
 		int maxSearchRadius,
 		CVec[] footprintOffsets)
 	{
-		// Phase 1: discover connected resource clusters (8-neighbour BFS) within search radius
+		// If there are no resource clusters cached, update cache first.
+		if (this.clusters.Count == 0)
+			this.clusters.AddRange(this.FindResourceClusters(origin, maxSearchRadius, this.resourceCellClusterMinimumCount));
 
-		// Find clusters of resources, which contain at minimum clusterMin resource cells
-		var clusters = this.FindResourceClusters(origin, maxSearchRadius, this.resourceCellClusterMinimumCount);
-
-		if (clusters.Count == 0)
+		if (this.clusters.Count == 0)
 			return [];
 
-		// Phase 2: for each cell in each cluster, consider anchors (top-left) that would place that cell inside the footprint.
+		// For each cell in each cluster, consider anchors (top-left) that would place that cell inside the footprint.
 		var seenAnchors = new HashSet<CPos>();
 		var candidateZones = new List<DeployZone>();
 
-		foreach (var cluster in clusters)
+		foreach (var cluster in this.clusters)
 		{
 			var deployZoneCells = new List<CPos>();
 
 			// Each cluster has at least one cell
-			var preferredClusterCenter = cluster[0];
+			var preferredClusterCenter = cluster.Cells[0];
 			var maxResourceCellCount = int.MinValue;
-			foreach (var cell in cluster)
+			foreach (var cell in cluster.Cells)
 			{
 				foreach (var offset in footprintOffsets)
 				{
-					// Candidate top-left cell for the Refinery building
+					// Candidate top-left cell for the Mine building
 					var anchor = cell - offset;
 					if (seenAnchors.Contains(anchor))
 						continue;
@@ -101,14 +109,15 @@ public class ResourceMineDeployZoneSearch
 		return candidateZones;
 	}
 
-	private List<List<CPos>> FindResourceClusters(
+	// Discovers connected resource clusters (8-neighbour BFS) within search radius
+	private List<ResourceCluster> FindResourceClusters(
 		CPos origin,
 		int maxSearchRadius,
 		int minClusterSize,
 		Func<CPos, bool>? shouldIgnoreCell = null)
 	{
 		var processed = new HashSet<CPos>();
-		var clusters = new List<List<CPos>>();
+		var clusters = new List<ResourceCluster>();
 
 		var maximumTileSearchRange = this.map.Grid.MaximumTileSearchRange;
 		IEnumerable<CPos> searchTiles;
@@ -171,8 +180,12 @@ public class ResourceMineDeployZoneSearch
 
 			// If cluster large enough, include it for later anchor generation
 			if (cluster.Count >= minClusterSize)
-				clusters.Add(cluster);
+				clusters.Add(new ResourceCluster(cluster));
 		}
+
+		var min = searchTiles.OrderBy(c => (c.Y, c.X))
+			.Take(10)
+			.ToList();
 
 		return clusters;
 
@@ -207,4 +220,6 @@ public class ResourceMineDeployZoneSearch
 			return results;
 		}
 	}
+
+	private record class ResourceCluster(List<CPos> Cells);
 }
