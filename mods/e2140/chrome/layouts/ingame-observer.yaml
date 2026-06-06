@@ -72,7 +72,7 @@ Container@OBSERVER_WIDGETS:
 							Width: 23
 							Height: 23
 							X: 4
-							Y: 2
+							Y: 5
 						LabelWithTooltip@LABEL:
 							X: 34
 							Width: PARENT_WIDTH
@@ -631,7 +631,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 								Image@FLAG:
 									X: 2
-									Y: 2
+									Y: 5
 									ImageName: random
 									ImageCollection: flags
 								LabelWithTooltip@PLAYER:
@@ -719,7 +719,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 								Image@FLAG:
 									X: 2
-									Y: 2
+									Y: 5
 									ImageName: random
 									ImageCollection: flags
 								LabelWithTooltip@PLAYER:
@@ -793,7 +793,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 								Image@FLAG:
 									X: 2
-									Y: 2
+									Y: 5
 									ImageName: random
 									ImageCollection: flags
 								LabelWithTooltip@PLAYER:
@@ -831,7 +831,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 								Image@FLAG:
 									X: 2
-									Y: 2
+									Y: 5
 									ImageName: random
 									ImageCollection: flags
 								LabelWithTooltip@PLAYER:
@@ -868,8 +868,8 @@ Container@OBSERVER_WIDGETS:
 									Width: 200
 									Height: PARENT_HEIGHT
 								Image@FLAG:
-									X: 5
-									Y: 4
+									X: 2
+									Y: 5
 									Width: 35
 									Height: PARENT_HEIGHT - 4
 									ImageName: random
@@ -909,7 +909,7 @@ Container@OBSERVER_WIDGETS:
 									Height: PARENT_HEIGHT
 								Image@FLAG:
 									X: 2
-									Y: 2
+									Y: 5
 									ImageName: random
 									ImageCollection: flags
 								LabelWithTooltip@PLAYER:
