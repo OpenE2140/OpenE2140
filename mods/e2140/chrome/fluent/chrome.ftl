@@ -61,3 +61,6 @@ button-custom-commands-build-wall =
     .tooltipdesc = Selected units will build a wall.
     
     Left-click icon then right-click on empty terrain.
+
+# main-menu.yaml
+label-main-menu-title = OpenE2140
