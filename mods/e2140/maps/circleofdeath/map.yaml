@@ -26,24 +26,9 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: Multi5, Multi4, Multi3, Multi2, Multi1, Multi0
-	PlayerReference@Multi5:
-		Name: Multi5
-		Playable: True
-		Faction: Random
-		Enemies: Creeps
-	PlayerReference@Multi4:
-		Name: Multi4
-		Playable: True
-		Faction: Random
-		Enemies: Creeps
-	PlayerReference@Multi3:
-		Name: Multi3
-		Playable: True
-		Faction: Random
-		Enemies: Creeps
-	PlayerReference@Multi2:
-		Name: Multi2
+		Enemies: Multi0, Multi1, Multi2, Multi3, Multi4, Multi5
+	PlayerReference@Multi0:
+		Name: Multi0
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
@@ -52,8 +37,23 @@ Players:
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
-	PlayerReference@Multi0:
-		Name: Multi0
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi4:
+		Name: Multi4
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi5:
+		Name: Multi5
 		Playable: True
 		Faction: Random
 		Enemies: Creeps

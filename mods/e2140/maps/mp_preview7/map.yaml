@@ -32,8 +32,8 @@ Players:
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
-	PlayerReference@Multi3:
-		Name: Multi3
+	PlayerReference@Multi1:
+		Name: Multi1
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
@@ -42,8 +42,8 @@ Players:
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
-	PlayerReference@Multi1:
-		Name: Multi1
+	PlayerReference@Multi3:
+		Name: Multi3
 		Playable: True
 		Faction: Random
 		Enemies: Creeps

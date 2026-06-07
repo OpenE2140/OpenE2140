@@ -26,14 +26,14 @@ Players:
 		Name: Creeps
 		NonCombatant: True
 		Faction: Random
-		Enemies: Multi1, Multi0
-	PlayerReference@Multi1:
-		Name: Multi1
+		Enemies: Multi0, Multi1
+	PlayerReference@Multi0:
+		Name: Multi0
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
-	PlayerReference@Multi0:
-		Name: Multi0
+	PlayerReference@Multi1:
+		Name: Multi1
 		Playable: True
 		Faction: Random
 		Enemies: Creeps
