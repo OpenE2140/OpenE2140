@@ -10,6 +10,7 @@ ed_vehicles_btti:
 		Queue: Vehicle.ED
 		BuildDuration: 75
 		BuildPaletteOrder: 100
+		Description: Fast light vehicle armed with machine gun.
 	Selectable:
 		Bounds: 640, 464, 0, 0
 	Health:

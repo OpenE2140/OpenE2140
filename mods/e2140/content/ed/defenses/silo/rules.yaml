@@ -84,5 +84,6 @@ ed_mcu_silo:
 		BuildDuration: 100
 		BuildPaletteOrder: 35
 		Prerequisites: NuclearWeapons, ed_buildings_bcc
+		Description: Superweapon.\nLaunches nukes.
 	WithTextDecoration:
 		Text: Silo

@@ -11,6 +11,7 @@ ed_infantry_a03:
 		BuildDuration: 100
 		BuildPaletteOrder: 30
 		Prerequisites: IonCannon
+		Description: Armed with ion-cannon.\nCan disable enemy vehicles.\nCan capture enemy buildings.\nCan reinforce ally buildings.
 	Health:
 		HP: 28
 	RevealsShroud:

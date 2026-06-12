@@ -59,5 +59,6 @@ shared_mcu_research_center:
 		BuildDuration: 100
 		BuildPaletteOrder: 70
 		Prerequisites: anypower
+		Description: Allows researching new technologies.
 	WithTextDecoration:
 		Text: Research Center
