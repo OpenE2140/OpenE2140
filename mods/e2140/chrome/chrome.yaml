@@ -1,32 +1,20 @@
 ^SidebarUcs:
 	Image: chrome/assets/sidebar-ucs.png
-	Image2x: chrome/assets/sidebar-ucs-2x.png
-	Image3x: chrome/assets/sidebar-ucs-3x.png
 
 ^SidebarEd:
 	Image: chrome/assets/sidebar-ed.png
-	Image2x: chrome/assets/sidebar-ed-2x.png
-	Image3x: chrome/assets/sidebar-ed-3x.png
 
 ^ResearchUcs:
 	Image: chrome/assets/research-ucs.png
-	Image2x: chrome/assets/research-ucs-2x.png
-	Image3x: chrome/assets/research-ucs-3x.png
 
 ^ResearchEd:
 	Image: chrome/assets/research-ed.png
-	Image2x: chrome/assets/research-ed-2x.png
-	Image3x: chrome/assets/research-ed-3x.png
 
 ^Dialog:
 	Image: chrome/assets/dialog.png
-	Image2x: chrome/assets/dialog-2x.png
-	Image3x: chrome/assets/dialog-3x.png
 
 ^Glyphs:
 	Image: chrome/assets/glyphs.png
-	Image2x: chrome/assets/glyphs-2x.png
-	Image3x: chrome/assets/glyphs-3x.png
 
 ^LoadScreen:
 	Image: chrome/assets/loadscreen.png
