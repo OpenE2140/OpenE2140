@@ -23,6 +23,7 @@ ed_vehicles_screamer:
 		Palette:
 		PauseOnCondition: VehicleDisabled
 	DetectCloaked:
+		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
 	ProximityExternalCondition:
 		Condition: VehicleInterfered

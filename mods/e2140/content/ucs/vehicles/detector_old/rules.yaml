@@ -23,6 +23,7 @@ ucs_vehicles_detector_old:
 		Palette:
 		PauseOnCondition: VehicleDisabled
 	DetectCloaked:
+		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_detector_old_husk
