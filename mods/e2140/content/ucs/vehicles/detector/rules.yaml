@@ -23,6 +23,7 @@ ucs_vehicles_detector:
 	RevealsShroud:
 		Range: 4c896
 	DetectCloaked:
+		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
 	Turreted:
 		Turret: primary
