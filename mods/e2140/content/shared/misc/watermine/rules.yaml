@@ -24,7 +24,7 @@ shared_misc_watermine:
 	Tooltip:
 		Name: Water Mine
 	Targetable:
-		TargetTypes: Ground, Mine
+		TargetTypes: Ship
 	Immobile:
 		OccupiesSpace: True
 	HitShape:
