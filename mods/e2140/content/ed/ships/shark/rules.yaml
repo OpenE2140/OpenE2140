@@ -36,6 +36,9 @@ ed_ships_shark:
 	LeavesTrails:
 		MovingInterval: 4
 		StartDelay: 4
+	DetectCloaked:
+		Range: 3c896
+		DetectionTypes: WaterMine
 	Encyclopedia:
 		Category: ED - Ships
 		Order: 1
