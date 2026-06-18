@@ -1,7 +1,7 @@
 PowerPlantCraterRadiation:
 	Warhead@Damage: SpreadDamage
-		Falloff: 100, 75, 50
-		Range: 1c128, 1c384, 1c768
-		Damage: 3
+		Falloff: 100, 100, 100
+		Range: 1c128, 1c512, 2c0
+		Damage: 1
 		DamageTypes: Default
 		ValidTargets: RadiationVulnerable
