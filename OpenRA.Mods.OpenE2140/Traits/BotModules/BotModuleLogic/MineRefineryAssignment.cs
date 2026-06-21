@@ -10,46 +10,29 @@ internal class MineRefineryAssignment
 
 	public Actor? Refinery { get; set; }
 
-	public List<Actor> CrateTransporters { get; set; } = [];
+	public List<Actor> CrateTransporters { get; } = [];
 
 	public int ExpectedCrateTransporterCount { get; init; }
-
-	public void AssignCrateTransporters(List<Actor> freeCrateTransporters)
-	{
-		if (this.CrateTransporters.Count >= this.ExpectedCrateTransporterCount || freeCrateTransporters.Count == 0)
-			return;
-
-		for (var i = this.CrateTransporters.Count; i <= this.ExpectedCrateTransporterCount; i++)
-		{
-			if (freeCrateTransporters.Count == 0)
-				break;
-
-			var transporter = freeCrateTransporters[^1];
-			freeCrateTransporters.RemoveAt(freeCrateTransporters.Count - 1);
-
-			this.CrateTransporters.Add(transporter);
-		}
-	}
 
 	public void OrderCrateTransportersToWork(IBot bot, HashSet<Actor> availableCrateTransporters)
 	{
 		if (this.Mine == null || this.Refinery == null)
 			return;
 
-		// Process already assigned crate transporters
+		this.RemoveInvalidCrateTransporters();
+
 		foreach (var actor in this.CrateTransporters)
 			ProcessCrateTransporter(actor);
 
-		// Try assigning new crate transporter, if there's currently not enough of them
-		for (var i = this.CrateTransporters.Count; i < this.ExpectedCrateTransporterCount; i++)
+		while (this.CrateTransporters.Count < this.ExpectedCrateTransporterCount)
 		{
-			var crateTransporter = availableCrateTransporters.FirstOrDefault();
+			var crateTransporter = availableCrateTransporters
+				.MinByOrDefault(t => (this.Mine.Location - t.Location).Length);
 			if (crateTransporter == null)
-				break; // no additional transporters available
+				break;
 
 			availableCrateTransporters.Remove(crateTransporter);
 			this.CrateTransporters.Add(crateTransporter);
-
 			ProcessCrateTransporter(crateTransporter);
 		}
 
@@ -61,14 +44,22 @@ internal class MineRefineryAssignment
 			if (!actor.TryGetTrait<CrateTransporterRoutine>(out var routine))
 				return;
 
-			// TODO: handle Mine depletion
-			if ((crateTransporter.HasCrate && routine.CurrentRefinery != this.Refinery) || actor.IsIdle)
+			var currentMine = routine.CurrentMine;
+			var currentRefinery = routine.CurrentRefinery;
+
+			if (currentMine?.IsDead == true || currentMine?.IsInWorld == false)
+				currentMine = null;
+
+			if (currentRefinery?.IsDead == true || currentRefinery?.IsInWorld == false)
+				currentRefinery = null;
+
+			if ((crateTransporter.HasCrate && currentRefinery != this.Refinery) || actor.IsIdle)
 				QueueDockOrder(actor, this.Refinery, false, [this.Mine]);
-			else if ((!crateTransporter.HasCrate && routine.CurrentMine != this.Mine) || actor.IsIdle)
+			else if ((!crateTransporter.HasCrate && currentMine != this.Mine) || actor.IsIdle)
 				QueueDockOrder(actor, this.Mine, false, [this.Refinery]);
 		}
 
-		void QueueDockOrder(Actor actor, Actor? target, bool isQueued, Actor[]? extraActors = null)
+		void QueueDockOrder(Actor actor, Actor target, bool isQueued, Actor[]? extraActors = null)
 		{
 			var order = new Order(CrateTransporterRoutine.TransportCratesOrderID, actor, Target.FromActor(target), isQueued)
 			{
@@ -83,9 +74,14 @@ internal class MineRefineryAssignment
 	{
 		for (var i = this.CrateTransporters.Count - 1; i >= 0; i--)
 		{
-			var crateTransporter = this.CrateTransporters[i];
-			if (crateTransporter.IsDead)
+			if (this.CrateTransporters[i].IsDead)
 				this.CrateTransporters.RemoveAt(i);
 		}
+	}
+
+	internal void TryAddCrateTransporter(Actor crateTransporter)
+	{
+		if (this.CrateTransporters.Count < this.ExpectedCrateTransporterCount - 1)
+			this.CrateTransporters.Add(crateTransporter);
 	}
 }

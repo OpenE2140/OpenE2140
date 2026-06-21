@@ -8,10 +8,10 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 public class CrateTransporterManager
 {
 	private readonly List<MineRefineryAssignment> mineRefineryAssignments = [];
-	private readonly (List<Actor> Mines, List<Actor> Refineries) assignmentActorsDirtyCheck = ([], []);
 	private readonly ActorIndex.OwnerAndNamesAndTrait<ResourceMineInfo> mines;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<ResourceRefineryInfo> refineries;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<CrateTransporterInfo> crateTransporters;
+	private readonly AssignmentDirtyCheck assignmentDirtyCheck = new AssignmentDirtyCheck();
 	private readonly EconomyManagerBotModuleInfo info;
 
 	public CrateTransporterManager(ActorIndex.OwnerAndNamesAndTrait<ResourceMineInfo> mines, ActorIndex.OwnerAndNamesAndTrait<ResourceRefineryInfo> refineries, ActorIndex.OwnerAndNamesAndTrait<CrateTransporterInfo> crateTransporters, EconomyManagerBotModuleInfo info)
@@ -24,13 +24,6 @@ public class CrateTransporterManager
 
 	internal IReadOnlyList<MineRefineryAssignment> MineRefineryAssignments => this.mineRefineryAssignments;
 
-	public void OnSufficientEconomy()
-	{
-		// Force reassigning mines/refineries, in case crate transporters got out of sync.
-		this.assignmentActorsDirtyCheck.Mines.Clear();
-		this.assignmentActorsDirtyCheck.Refineries.Clear();
-	}
-
 	public void Tick(IBot bot)
 	{
 		this.UpdateMineRefineryAssignments();
@@ -39,111 +32,115 @@ public class CrateTransporterManager
 
 	private void UpdateMineRefineryAssignments()
 	{
-		var unassignedMines = this.mines.Alive().ToHashSet();
-		var unassignedRefineries = this.refineries.Alive().ToHashSet();
+		var aliveMines = this.mines.Alive().ToList();
+		var aliveRefineries = this.refineries.Alive().ToList();
 
-		var hasChanged = false;
-		if (!unassignedMines.SetEquals(this.assignmentActorsDirtyCheck.Mines))
-			hasChanged = true;
-
-		if (!hasChanged && !unassignedRefineries.SetEquals(this.assignmentActorsDirtyCheck.Refineries))
-			hasChanged = true;
-
-		if (!hasChanged)
+		if (!this.assignmentDirtyCheck.UpdateDirtyState(aliveMines, aliveRefineries))
 			return;
 
-		this.assignmentActorsDirtyCheck.Mines.Clear();
-		this.assignmentActorsDirtyCheck.Mines.AddRange(unassignedMines);
-		this.assignmentActorsDirtyCheck.Refineries.Clear();
-		this.assignmentActorsDirtyCheck.Refineries.AddRange(unassignedRefineries);
+		this.RebuildAssignments(aliveMines, aliveRefineries);
+	}
 
-		if (unassignedMines.Count == 0 || unassignedRefineries.Count == 0)
+	private void RebuildAssignments(List<Actor> aliveMines, List<Actor> aliveRefineries)
+	{
+		var allCrateTransporters = this.mineRefineryAssignments
+			.SelectMany(a => a.CrateTransporters)
+			.Where(t => !t.IsDead)
+			.ToList();
+
+		this.mineRefineryAssignments.Clear();
+
+		var pairs = FindClosestPairs(aliveMines, aliveRefineries);
+		var pairedMines = new HashSet<Actor>();
+		var pairedRefineries = new HashSet<Actor>();
+
+		foreach (var (mine, refinery) in pairs)
 		{
-			this.mineRefineryAssignments.Clear();
-			return;
+			pairedMines.Add(mine);
+			pairedRefineries.Add(refinery);
+
+			this.mineRefineryAssignments.Add(new MineRefineryAssignment
+			{
+				Mine = mine,
+				Refinery = refinery,
+				ExpectedCrateTransporterCount = this.info.CrateTransporterPerRefineryMinePair
+			});
 		}
 
-		// Create lookup of existing, valid assignment pairs to preserve existing connections
-		var validAssignmentPairs = this.mineRefineryAssignments
-			.Where(a => a.Mine?.IsDead == false && a.Refinery?.IsDead == false)
-			.ToDictionary(a => (a.Mine, a.Refinery));
-		this.mineRefineryAssignments.Clear();
-		this.mineRefineryAssignments.EnsureCapacity(Math.Max(unassignedMines.Count, unassignedRefineries.Count));
+		this.RedistributeCrateTransporters(allCrateTransporters);
+	}
 
-		foreach (var mine in unassignedMines)
+	private static List<(Actor Mine, Actor Refinery)> FindClosestPairs(ICollection<Actor> mines, ICollection<Actor> refineries)
+	{
+		var result = new List<(Actor Mine, Actor Refinery)>();
+		var usedMines = new HashSet<Actor>();
+		var usedRefineries = new HashSet<Actor>();
+
+		var pairs = mines
+			.SelectMany(m => refineries.Select(r => (Mine: m, Refinery: r, Dist: (m.Location - r.Location).Length)))
+			.OrderBy(p => p.Dist)
+			.ToList();
+
+		foreach (var (mine, refinery, _) in pairs)
 		{
-			Actor? nearestRefinery = null;
-			var maxSearchRadius = this.info.MaxRefineryDistance;
-			for (var i = 0; i <= 3; i++)
-			{
-				var searchResult = FindNearestActor(unassignedRefineries, mine.Location, maxSearchRadius * i);
-				if (searchResult?.actor == null)
-				{
-					++maxSearchRadius;
-					continue;
-				}
+			if (usedMines.Contains(mine) || usedRefineries.Contains(refinery))
+				continue;
 
-				nearestRefinery = searchResult.Value.actor;
-				break;
-			}
+			usedMines.Add(mine);
+			usedRefineries.Add(refinery);
+			result.Add((mine, refinery));
+		}
 
-			if (nearestRefinery != null)
-			{
-				if (validAssignmentPairs.TryGetValue((mine, nearestRefinery), out var assignment))
-				{
-					assignment.RemoveInvalidCrateTransporters();
-				}
-				else
-				{
-					assignment = new MineRefineryAssignment
-					{
-						Mine = mine,
-						Refinery = nearestRefinery,
-						ExpectedCrateTransporterCount = this.info.CrateTransporterPerRefineryMinePair
-					};
-				}
+		return result;
+	}
 
-				this.mineRefineryAssignments.Add(assignment);
+	private void RedistributeCrateTransporters(List<Actor> crateTransporters)
+	{
+		if (this.mineRefineryAssignments.Count == 0)
+			return;
 
-				unassignedRefineries.Remove(nearestRefinery);
-			}
-
-			static (Actor actor, int distance)? FindNearestActor(IEnumerable<Actor> actors, CPos searchStart, int maxRadius)
-			{
-				return actors
-					.Select(a => (actor: a, distance: (a.Location - searchStart).LengthSquared))
-					.OrderBy(t => t.distance)
-					.FirstOrDefault(a => a.distance <= maxRadius.PowerOf2());
-			}
+		foreach (var crateTransporter in crateTransporters)
+		{
+			var bestAssignment = this.mineRefineryAssignments
+				.Where(a => a.Mine != null)
+				.MinBy(a => (a.Mine!.Location - crateTransporter.Location).Length);
+			bestAssignment?.TryAddCrateTransporter(crateTransporter);
 		}
 	}
 
 	private void OrderCrateTransporterToWork(IBot bot)
 	{
-		var availableCrateTransporters = this.crateTransporters.Alive().ToHashSet();
-		if (availableCrateTransporters.Count == 0)
-			return;
+		var assignedCrateTransporters = this.mineRefineryAssignments.SelectMany(a => a.CrateTransporters).ToHashSet();
+		var availableCrateTransporters = this.crateTransporters.Alive().Except(assignedCrateTransporters).ToHashSet();
 
-		// First pass: skip those crate transporters, which are already assigned
 		foreach (var assignment in this.mineRefineryAssignments)
-		{
-			for (var i = assignment.CrateTransporters.Count - 1; i >= 0; i--)
-			{
-				var crateTransporter = assignment.CrateTransporters[i];
-
-				availableCrateTransporters.Remove(crateTransporter);
-
-				// Clean up any dead crate transporters
-				if (crateTransporter.IsDead)
-					assignment.CrateTransporters.RemoveAt(i);
-			}
-		}
-
-		// Second pass: queue orders for crate transporters and assign those, which are free (i.e. currently unassigned)
-		foreach (var assignment in this.mineRefineryAssignments)
-		{
 			assignment.OrderCrateTransportersToWork(bot, availableCrateTransporters);
-		}
 	}
 
+	private class AssignmentDirtyCheck
+	{
+		private HashSet<Actor> lastKnownMines = [];
+		private HashSet<Actor> lastKnownRefineries = [];
+
+		public bool UpdateDirtyState(IEnumerable<Actor> mines, IEnumerable<Actor> refineries)
+		{
+			var minesSet = mines.ToHashSet();
+			var refineriesSet = refineries.ToHashSet();
+
+			var isDirty = false;
+			if (!minesSet.SetEquals(this.lastKnownMines))
+				isDirty = true;
+
+			if (!isDirty && !refineriesSet.SetEquals(this.lastKnownRefineries))
+				isDirty = true;
+
+			if (isDirty)
+			{
+				this.lastKnownMines = minesSet;
+				this.lastKnownRefineries = refineriesSet;
+			}
+
+			return isDirty;
+		}
+	}
 }

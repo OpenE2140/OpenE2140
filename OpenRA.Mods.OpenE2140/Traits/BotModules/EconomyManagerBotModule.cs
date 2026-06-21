@@ -259,15 +259,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 
 		this.CleanTrackedMcuDeployments();
 
-		var hadSufficientEconomy = this.hasSufficientEconomy;
 		this.Tick(bot);
-
-		if (!hadSufficientEconomy && this.hasSufficientEconomy)
-		{
-			//AIUtils.BotDebug("{0} has sufficient economy", bot.Player);
-
-			this.crateTransporterManager.OnSufficientEconomy();
-		}
 	}
 
 	private void CleanTrackedMcuDeployments()
