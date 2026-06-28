@@ -100,6 +100,7 @@ Player:
 			ed_vehicles_ht34j: 20
 			ed_vehicles_warhammer: 5
 			ed_vehicles_miner: 5
+			ed_vehicles_screamer: 2
 			ed_aircrafts_storm: 1
 			ed_aircrafts_thunder: 1
 			ed_aircrafts_vtol: 1
@@ -121,6 +122,8 @@ Player:
 			ucs_vehicles_big_mech: 5
 			ucs_vehicles_miner_bt: 5
 			ucs_vehicles_goliath: 2
+			ucs_vehicles_shadow: 2
+			ucs_vehicles_detector: 2
 			ucs_aircrafts_gargoil: 1
 			ucs_aircrafts_gargoil_ii: 1
 			ucs_aircrafts_hellwind: 1
@@ -130,6 +133,7 @@ Player:
 		UnitLimits:
 			ed_infantry_a04: 4
 			ed_vehicles_miner: 2
+			ed_vehicles_screamer: 2
 			ed_aircrafts_storm: 2
 			ed_aircrafts_thunder: 2
 			ed_aircrafts_vtol: 2
@@ -139,6 +143,8 @@ Player:
 			ucs_infantry_silver_t: 6
 			ucs_vehicles_miner_bt: 2
 			ucs_vehicles_goliath: 4
+			ucs_vehicles_shadow: 2
+			ucs_vehicles_detector: 2
 			ucs_aircrafts_gargoil: 2
 			ucs_aircrafts_gargoil_ii: 2
 			ucs_aircrafts_hellwind: 2

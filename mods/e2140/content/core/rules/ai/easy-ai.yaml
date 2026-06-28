@@ -102,6 +102,7 @@ Player:
 			ed_vehicles_ht34j: 5
 			ed_vehicles_warhammer: 1
 			ed_vehicles_miner: 1
+			# Easy bot doesn't use Screamers/Shadows/Detectors
 			ed_aircrafts_storm: 1
 			ed_aircrafts_thunder: 1
 			ed_aircrafts_vtol: 1
