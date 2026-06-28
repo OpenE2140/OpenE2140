@@ -2,7 +2,11 @@ Notifications:
 	e2140|content/core/notifications.yaml
 
 Rules:
-	e2140|content/core/rules/ai.yaml
+	e2140|content/core/rules/ai/ai-shared.yaml
+	e2140|content/core/rules/ai/easy-ai.yaml
+	e2140|content/core/rules/ai/medium-ai.yaml
+	e2140|content/core/rules/ai/hard-ai.yaml
+	e2140|content/core/rules/ai/cheating-ai.yaml
 	e2140|content/core/rules/colorpicker.yaml
 	e2140|content/core/rules/defaults.yaml
 	e2140|content/core/rules/misc.yaml

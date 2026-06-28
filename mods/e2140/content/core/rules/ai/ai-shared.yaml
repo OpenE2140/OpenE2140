@@ -1,0 +1,65 @@
+Player:
+	GrantConditionOnRushProtection:
+		Condition: rush-protection-active
+
+	McuDeployManagerBotModule@AllAI:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+		ConstructionBuildingTypes: ucs_buildings_prod_center, ed_buildings_constr_center
+		RefineryTypes: shared_mcu_refinery
+		MineTypes: shared_mcu_mine
+		McuTypes: ucs_mcu_prod_center, ucs_mcu_pb_control, ucs_mcu_robot_factory, ucs_mcu_teleport, ucs_mcu_heavy_tech, ed_mcu_bcc, ed_mcu_bio_center, ed_mcu_constr_center, ed_mcu_tech_house, shared_mcu_air_base, shared_mcu_mine, shared_mcu_power_plant, shared_mcu_power_plant_upgraded, shared_mcu_refinery, shared_mcu_research_center, ucs_mcu_pb_cannon, ed_mcu_silo, ucs_mcu_sdi_defense, ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
+		DefenseMcuTypes: ed_mcu_an_center, ed_mcu_defense_tower, ed_mcu_defense_tower_upgraded, ed_mcu_heavy_defense_tower, ed_mcu_heavy_defense_tower_upgraded, ed_mcu_pillbox, ucs_mcu_big_eye, ucs_mcu_big_eye_upgraded, ucs_mcu_little_eye, ucs_mcu_little_eye_upgraded
+		InnerDefenseRadius: 4
+		OuterDefenseRadius: 7
+		MaximumDefenseRadius: 12
+		MinBaseRadius: 4
+		MaxBaseRadius: 10
+		MinMoveRadius: 5
+		PlaceDefenseTowardsEnemyChance: 80
+
+	SendUnitToAttackBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+		ActorTypesAndAttackDesire:
+			ucs_vehicles_goliath: 30
+			ucs_infantry_silver_t: 30
+		ValidTargets: Structure
+		InvalidTargets: Air, Ship
+
+	MinelayerBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+		MinelayingActorTypes: ed_vehicles_miner, ucs_vehicles_miner_bt, ucs_ships_ttre400
+		IgnoredEnemyTargetTypes: Structure, Defense, Air
+		UseEnemyLocationTargetTypes: Structure, Defense, Air
+		AwayFromAlliedTargetTypes: Structure, Defense
+		AwayFromEnemyTargetTypes: Structure, Defense
+
+	BuildingRepairBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+
+	DeployedMcuBuildingRepairBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+
+	SupportPowerBotModule:
+		RequiresCondition: enable-easy-ai || enable-medium-ai || enable-hard-ai || enable-cheating-ai
+		Decisions:
+			nukepower:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 40
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 15
+					TargetMetric: Health
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Enemy
+					Types: Air, Ground, Water
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@3:
+					Against: Ally
+					Types: Air, Ground
+					Attractiveness: -100
+					TargetMetric: Health
+					CheckRadius: 7c0

@@ -1,0 +1,36 @@
+Player:
+	ModularBot@CheatingAI:
+		Name: bot-cheating.name
+		Type: cheating
+	GrantConditionOnBotOwner@CheatingAI:
+		Condition: enable-cheating-ai
+		Bots: cheating
+
+	EconomyManagerBotModule@CheatingAI:
+		RequiresCondition: enable-cheating-ai
+		CrateTransporterTypes: shared_vehicles_bantha, shared_aircrafts_heavy_lifter
+		RefineryTypes: shared_buildings_refinery
+		MineTypes: shared_buildings_mine
+		MinimumResourceCellsToDeploy: 4
+		MaxRefineryDistance: 25
+		CrateTransporterPerRefineryMinePair: 2
+		EconomyExpansionDelays: 1500, 1500, 1500, 1500, 2000, 2000, 2000
+
+	ResearchBotModule@CheatingAI:
+		RequiresCondition: enable-cheating-ai
+		ResearchDelay: 0
+
+	# Hard and Cheating AI currently share same config for these modules:
+	# - BaseMcuBuilderBotModule
+	# - SquadManagerBotModule
+	# - UnitBuilderBotModule
+
+^AICashCheat:
+	GrantConditionOnBotOwner:
+		Condition: enable-cash-cheat
+		Bots: cheating
+
+	CashTrickler:
+		RequiresCondition: enable-cash-cheat
+		ShowTicks: false
+		Amount: 100
