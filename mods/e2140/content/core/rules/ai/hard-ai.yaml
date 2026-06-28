@@ -44,41 +44,37 @@ Player:
 			ucs_mcu_pb_control: 1
 			ucs_mcu_robot_factory: 1
 			ucs_mcu_heavy_tech: 1
-			ed_mcu_bcc: 1
 			ed_mcu_bio_center: 1
 			ed_mcu_constr_center: 1
 			ed_mcu_tech_house: 1
+			ed_mcu_bcc: 1
 			shared_mcu_air_base: 1
 			shared_mcu_research_center: 1
 			ucs_mcu_pb_cannon: 1
-			ed_mcu_silo: 1
-			ed_mcu_an_center: 1
 			ed_mcu_defense_tower: 2
 			ed_mcu_defense_tower_upgraded: 2
 			ed_mcu_heavy_defense_tower: 6
 			ed_mcu_heavy_defense_tower_upgraded: 1
 			ed_mcu_pillbox: 1
+			ed_mcu_silo: 1
+			ed_mcu_an_center: 1
 			ucs_mcu_little_eye: 2
 			ucs_mcu_little_eye_upgraded: 2
 			ucs_mcu_big_eye: 6
 			ucs_mcu_big_eye_upgraded: 1
 		McuLimits:
-			ucs_mcu_pb_cannon: 2
-			ed_mcu_silo: 2
-			ucs_mcu_sdi_defense: 1
-			ucs_mcu_robot_factory: 2
 			ed_mcu_bio_center: 2
 			ed_mcu_tech_house: 2
+			ed_mcu_silo: 2
+			ucs_mcu_robot_factory: 2
 			ucs_mcu_heavy_tech: 2
+			ucs_mcu_pb_cannon: 2
+			ucs_mcu_sdi_defense: 1
 			shared_mcu_air_base: 2
 			shared_mcu_research_center: 1
 		McuDelays:
-			ucs_mcu_pb_control: 12000
 			ed_mcu_bcc: 12000
-
-	ResearchBotModule@CheatingAI:
-		RequiresCondition: enable-cheating-ai
-		ResearchDelay: 0
+			ucs_mcu_pb_control: 12000
 
 	SquadManagerBotModule@HardAI:
 		RequiresCondition: (enable-hard-ai || enable-cheating-ai) && !rush-protection-active
@@ -138,12 +134,6 @@ Player:
 			ucs_ships_ttre400: 2
 		UnitLimits:
 			ed_infantry_a04: 6
-			ucs_infantry_silver_t: 10
-			ucs_vehicles_miner_bt: 4
-			ucs_vehicles_goliath: 8
-			ucs_aircrafts_gargoil: 3
-			ucs_aircrafts_gargoil_ii: 3
-			ucs_aircrafts_hellwind: 2
 			ed_vehicles_miner: 4
 			ed_aircrafts_storm: 3
 			ed_aircrafts_thunder: 3
@@ -151,6 +141,12 @@ Player:
 			ed_aircrafts_nemezis: 2
 			ed_ships_shark: 10
 			ed_ships_kt30: 20
+			ucs_infantry_silver_t: 10
+			ucs_vehicles_miner_bt: 4
+			ucs_vehicles_goliath: 8
+			ucs_aircrafts_gargoil: 3
+			ucs_aircrafts_gargoil_ii: 3
+			ucs_aircrafts_hellwind: 2
 			ucs_ships_russ3: 10
 			ucs_ships_orca: 20
 			ucs_ships_ttre400: 4
