@@ -61,8 +61,6 @@ Player:
 	GrantConditionOnPrerequisiteManager:
 	# Renders custom UI for debugging AI. Requires Developer Mode enabled.
 	AIDebugRender:
-		# TODO: once AI is released, disable it.
-		Enable: true
 
 # Map editor specific player setup.
 EditorPlayer:
