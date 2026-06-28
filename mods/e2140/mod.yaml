@@ -104,6 +104,7 @@ FluentMessages:
 	common|fluent/common.ftl
 	common|fluent/chrome.ftl
 	common|fluent/hotkeys.ftl
+	common|fluent/ingame-debug.ftl
 	common|fluent/rules.ftl
 
 Include: chrome/mod.yaml
