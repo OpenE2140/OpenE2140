@@ -84,6 +84,7 @@ shared_mcu_power_plant:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 138
 		BuildPaletteOrder: 10
+		Description: Provides power.
 	WithTextDecoration:
 		Text: Power Plant
 
