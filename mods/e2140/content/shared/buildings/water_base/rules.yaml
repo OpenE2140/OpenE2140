@@ -117,6 +117,7 @@ shared_mcu_water_base:
 		Queue: Building.UCS, Building.ED
 		BuildDuration: 113
 		BuildPaletteOrder: 80
-		Prerequisites: Engine
+		# Water Base requires either Heavy Tech (UCS) or Tech House (ED)
+		Prerequisites: Engine, VehicleFactory
 	WithTextDecoration:
 		Text: Water Base
