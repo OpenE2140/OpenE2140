@@ -89,7 +89,6 @@ Player:
 			ed_infantry_a01: 1
 			ed_infantry_a02: 3
 			ed_infantry_a03: 2
-			ed_infantry_a04: 4
 			ed_vehicles_btti: 1
 			ed_vehicles_st01b: 2
 			ed_vehicles_st02: 2
@@ -131,7 +130,6 @@ Player:
 			ucs_ships_orca: 10
 			ucs_ships_ttre400: 1
 		UnitLimits:
-			ed_infantry_a04: 4
 			ed_vehicles_miner: 2
 			ed_vehicles_screamer: 2
 			ed_aircrafts_storm: 2
