@@ -43,13 +43,13 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 {
 	public readonly CrateTransporterRoutineInfo Info;
 
-	private readonly bool startRoutine;
+	private bool startRoutine;
 
 	public CrateTransporterRoutine(ActorInitializer init, CrateTransporterRoutineInfo info)
 	{
 		this.Info = info;
 
-		this.startRoutine = init.GetOrDefault<ParentActorInit>(info) != null;
+		this.startRoutine = init.GetOrDefault<ParentActorInit>(info) != null && this.Info.FreeActorDelayRoutine >= 0;
 	}
 
 	public Actor? CurrentMine { get; private set; }
@@ -64,8 +64,10 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 
 	void INotifyCreated.Created(Actor self)
 	{
-		if (this.startRoutine && this.Info.FreeActorDelayRoutine >= 0)
+		if (this.startRoutine)
 		{
+			this.startRoutine = false;
+
 			if (this.Info.FreeActorDelayRoutine > 0)
 				self.QueueActivity(new Wait(this.Info.FreeActorDelayRoutine));
 
@@ -127,10 +129,11 @@ public class CrateTransporterRoutine : INotifyDockClient, IResolveOrder, INotify
 
 		var currentActivity = self.CurrentActivity;
 
-		// While Mobile actors have ProductionExitMove queued when produced, for Aircraft it is the Fly activity.
-		// Currently, when the production building has rally point set, the TransportCrates activity is not queued.
-		if (currentActivity == null || (currentActivity is ProductionExitMove or Fly && currentActivity.NextActivity == null))
-			self.QueueActivity(new TransportCrates(self));
+		// Make sure to queue TransportCrates only when player has not replaced/overriden orders given to crate transporter.
+		if (currentActivity == null
+			|| (currentActivity is Fly && currentActivity.NextActivity == null)
+			|| (currentActivity is ProductionExitMove or AttackMoveActivity && currentActivity.NextActivity is null or AttackMoveActivity))
+			self.QueueActivity(true, new TransportCrates(self));
 	}
 
 	internal void UpdateTargets()
