@@ -31,7 +31,6 @@ public class ProductionExitMove : Activity
 
 	private readonly Mobile mobile;
 	private readonly ISafeDragNotify[] safeDragNotify;
-	private readonly INotifyActorProduced[] actorProducedNotifiers;
 	private readonly Actor producent;
 	private readonly WPos start;
 	private readonly WPos? end;
@@ -60,7 +59,6 @@ public class ProductionExitMove : Activity
 		this.mobile = self.Trait<Mobile>();
 		this.start = self.CenterPosition;
 		this.safeDragNotify = producent.TryGetTraitsImplementing<ISafeDragNotify>().ToArray();
-		this.actorProducedNotifiers = self.TryGetTraitsImplementing<INotifyActorProduced>().ToArray();
 		this.producent = producent;
 		this.IsInterruptible = false;
 		this.maxAttempts = maxAttempts;
@@ -150,7 +148,6 @@ public class ProductionExitMove : Activity
 			case ExitMoveState.Dragging:
 			{
 				this.NotifyDragComplete(self);
-				this.NotifyActorProduced(self);
 
 				return true;
 			}
@@ -181,10 +178,5 @@ public class ProductionExitMove : Activity
 	private void NotifyDragComplete(Actor self)
 	{
 		Array.ForEach(this.safeDragNotify, t => t.SafeDragComplete(this.producent, self));
-	}
-
-	private void NotifyActorProduced(Actor self)
-	{
-		Array.ForEach(this.actorProducedNotifiers, t => t.OnProduced(self, this.producent));
 	}
 }
