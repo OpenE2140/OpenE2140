@@ -334,7 +334,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				else if (actor.TryGetTrait<Aircraft>(out var aircraft))
 				{
 					// When Aircraft is produced, the exit should be closed immediately
-					if (this.rallyPoint == null)
+					if (this.rallyPoint != null)
 						this.QueuePathToRallyPoint(this.productionInfo);
 					else
 						actor.QueueActivity(aircraft.MoveTo(exitCell));
@@ -445,7 +445,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 			}
 
 			default:
-				throw new ArgumentOutOfRangeException(nameof(this.state), "Unknown state.");
+				throw new InvalidOperationException($"Unknown state: {this.state}");
 		}
 	}
 
@@ -464,7 +464,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 		// Queue path to rally point only if current activity has been ordered by this Production trait (and not player).
 		// If player has moved produced actor, it's safe to assume they wanted to override the default behavior (of moving to rally point).
-		if (actor.CurrentActivity != productionInfo.ExitMoveActivity)
+		if (actor.CurrentActivity != productionInfo.ExitMoveActivity || actor.CurrentActivity?.NextActivity != null)
 			return;
 
 		foreach (var cell in this.rallyPoint.Path)
