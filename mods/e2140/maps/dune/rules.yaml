@@ -1,0 +1,3 @@
+shared_mcu_water_base:
+	Buildable:
+		Prerequisites: ~disabled
