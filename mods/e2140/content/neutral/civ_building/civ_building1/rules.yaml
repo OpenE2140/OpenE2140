@@ -1,7 +1,7 @@
 neutral_building_civ_1:
 	Inherits: ^CoreCivilianBuilding
 	Tooltip:
-		Name: Civ building 1
+		Name: Civilian building
 	Building:
 		Dimensions: 3,3
 		Footprint: xxx xxx ===
