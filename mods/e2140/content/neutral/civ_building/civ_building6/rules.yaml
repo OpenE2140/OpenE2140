@@ -1,7 +1,7 @@
 neutral_building_civ_6:
 	Inherits: ^CoreCivilianBuilding
 	Tooltip:
-		Name: Civ building 6
+		Name: Civilian building
 	Building:
 		LocalCenterOffset: -430,-430,0
 	HitShape:
