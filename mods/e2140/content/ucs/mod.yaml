@@ -7,11 +7,10 @@ Missions:
 Rules:
 	e2140|content/ucs/rules.yaml
 	e2140|content/ucs/research.yaml
-	e2140|content/ucs/buildings/heavy_tech/rules.yaml
-	e2140|content/ucs/buildings/prod_center/rules.yaml
-	e2140|content/ucs/buildings/robot_factory/rules.yaml
-	e2140|content/ucs/buildings/teleport/rules.yaml
-	e2140|content/ucs/buildings/pb_control/rules.yaml
+	e2140|content/ucs/infantry/silver_one/rules.yaml
+	e2140|content/ucs/infantry/silver_r/rules.yaml
+	e2140|content/ucs/infantry/silver_max/rules.yaml
+	e2140|content/ucs/infantry/silver_t/rules.yaml
 	e2140|content/ucs/vehicles/t100/rules.yaml
 	e2140|content/ucs/vehicles/raptor_es/rules.yaml
 	e2140|content/ucs/vehicles/raptor_ad/rules.yaml
@@ -31,13 +30,14 @@ Rules:
 	e2140|content/ucs/aircrafts/gargoil/rules.yaml
 	e2140|content/ucs/aircrafts/hellwind/rules.yaml
 	e2140|content/ucs/aircrafts/gargoil2/rules.yaml
-	e2140|content/ucs/infantry/silver_one/rules.yaml
-	e2140|content/ucs/infantry/silver_r/rules.yaml
-	e2140|content/ucs/infantry/silver_max/rules.yaml
-	e2140|content/ucs/infantry/silver_t/rules.yaml
 	e2140|content/ucs/ships/ttre400/rules.yaml
 	e2140|content/ucs/ships/russ3/rules.yaml
-	e2140|content/ucs/ships/orca/rules.yaml
+	e2140|content/ucs/ships/orca/rules.yaml	
+	e2140|content/ucs/buildings/heavy_tech/rules.yaml
+	e2140|content/ucs/buildings/prod_center/rules.yaml
+	e2140|content/ucs/buildings/robot_factory/rules.yaml
+	e2140|content/ucs/buildings/teleport/rules.yaml
+	e2140|content/ucs/buildings/pb_control/rules.yaml
 	e2140|content/ucs/defenses/big_eye/rules.yaml
 	e2140|content/ucs/defenses/big_eye_upgraded/rules.yaml
 	e2140|content/ucs/defenses/little_eye/rules.yaml
