@@ -3,6 +3,18 @@ Notifications:
 
 Rules:
 	e2140|content/shared/research.yaml
+	e2140|content/shared/infantry/civil1/rules.yaml
+	e2140|content/shared/infantry/civil2/rules.yaml
+	e2140|content/shared/infantry/civil3/rules.yaml
+	e2140|content/shared/infantry/scientist/rules.yaml
+	e2140|content/shared/vehicles/mcu/rules.yaml
+	e2140|content/shared/vehicles/hcum/rules.yaml
+	e2140|content/shared/vehicles/bantha/rules.yaml
+	e2140|content/shared/aircrafts/heavy_lifter/rules.yaml
+	e2140|content/shared/misc/wall/rules.yaml
+	e2140|content/shared/misc/landmine/rules.yaml
+	e2140|content/shared/misc/watermine/rules.yaml
+	e2140|content/shared/misc/crate/rules.yaml				
 	e2140|content/shared/buildings/power_plant/rules.yaml
 	e2140|content/shared/buildings/power_plant_upgraded/rules.yaml
 	e2140|content/shared/buildings/research_center/rules.yaml
@@ -11,19 +23,7 @@ Rules:
 	e2140|content/shared/buildings/refinery/rules.yaml
 	e2140|content/shared/buildings/shelter/rules.yaml
 	e2140|content/shared/buildings/mine/rules.yaml	
-	e2140|content/shared/vehicles/mcu/rules.yaml
-	e2140|content/shared/vehicles/hcum/rules.yaml
 	e2140|content/shared/buildings/air_base/rules.yaml
-	e2140|content/shared/vehicles/bantha/rules.yaml
-	e2140|content/shared/aircrafts/heavy_lifter/rules.yaml
-	e2140|content/shared/infantry/civil1/rules.yaml
-	e2140|content/shared/infantry/civil2/rules.yaml
-	e2140|content/shared/infantry/civil3/rules.yaml
-	e2140|content/shared/infantry/scientist/rules.yaml
-	e2140|content/shared/misc/wall/rules.yaml
-	e2140|content/shared/misc/landmine/rules.yaml
-	e2140|content/shared/misc/watermine/rules.yaml
-	e2140|content/shared/misc/crate/rules.yaml
 
 Sequences:
 	e2140|content/shared/sequences/projectiles.yaml
