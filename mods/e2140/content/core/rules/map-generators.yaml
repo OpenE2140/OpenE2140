@@ -414,111 +414,111 @@
 		Type: clear
 		Name: map-generator-clear
 		Tilesets: TEMPERATE, SNOW, SANDY, DESERT, WASTELAND, URBAN, URBAN2
-		Settings:
+		Options:
 			MultiChoiceOption@Tile:
 				Label: label-clear-map-generator-option-tile
 				Choice@TemperateClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: TEMPERATE
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@TemperateWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: TEMPERATE
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@TemperateSand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: TEMPERATE
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@SnowClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: SNOW
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@SnowWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: SNOW
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@SnowSand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: SNOW
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@SandyClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: SANDY
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@SandyWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: SANDY
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@SandySand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: SANDY
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@DesertClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: DESERT
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@DesertWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: DESERT
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@DesertSand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: DESERT
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@WastelandClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: WASTELAND
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@WastelandWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: WASTELAND
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@WastelandSand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: WASTELAND
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@UrbanClear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: URBAN
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@UrbanWater:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: URBAN
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@UrbanSand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: URBAN
-					Settings:
+					Parameters:
 						Tile: 60
 				Choice@Urban2Clear:
 					Label: label-clear-map-generator-choice-tile-clear
 					Tileset: URBAN2
-					Settings:
+					Parameters:
 						Tile: 255
 				Choice@Urban2Water:
 					Label: label-clear-map-generator-choice-tile-water
 					Tileset: URBAN2
-					Settings:
+					Parameters:
 						Tile: 100
 				Choice@Urban2Sand:
 					Label: label-clear-map-generator-choice-tile-sand
 					Tileset: URBAN2
-					Settings:
+					Parameters:
 						Tile: 60
