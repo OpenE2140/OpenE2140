@@ -377,15 +377,18 @@
 				Parameter: DenyWalledAreas
 				Default: True
 				Priority: 1
+				Visibility: Editor
 			BooleanOption@Roads:
 				Label: label-opene2140-map-generator-option-roads
 				Parameter: Roads
 				Default: True
 				Priority: 1
+				Visibility: Editor
 			MultiChoiceOption@CivilianDensity:
 				Label: label-opene2140-map-generator-option-civilian-density
 				Default: None
 				Priority: 3
+				Visibility: Editor
 				Choice@None:
 					Label: label-opene2140-map-generator-choice-civilian-density-none
 					Parameters:
