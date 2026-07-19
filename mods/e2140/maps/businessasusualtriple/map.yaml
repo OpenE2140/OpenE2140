@@ -2717,30 +2717,6 @@ Actors:
 	Actor935: neutral_tree04
 		Owner: Neutral
 		Location: 95,74
-	Actor936: shared_buildings_mine
-		Owner: Neutral
-		Location: 33,1
-	Actor937: shared_buildings_mine
-		Owner: Neutral
-		Location: 41,1
-	Actor938: shared_buildings_mine
-		Owner: Neutral
-		Location: 54,1
-	Actor939: shared_buildings_mine
-		Owner: Neutral
-		Location: 62,1
-	Actor940: shared_buildings_mine
-		Owner: Neutral
-		Location: 33,159
-	Actor941: shared_buildings_mine
-		Owner: Neutral
-		Location: 41,159
-	Actor942: shared_buildings_mine
-		Owner: Neutral
-		Location: 54,159
-	Actor943: shared_buildings_mine
-		Owner: Neutral
-		Location: 62,159
 	Actor944: neutral_tree01
 		Owner: Neutral
 		Location: 46,5
@@ -2879,3 +2855,27 @@ Actors:
 	Actor12: neutral_tree05
 		Owner: Neutral
 		Location: 43,84
+	Actor19: shared_buildings_mine
+		Owner: Neutral
+		Location: 33,2
+	Actor20: shared_buildings_mine
+		Owner: Neutral
+		Location: 41,2
+	Actor21: shared_buildings_mine
+		Owner: Neutral
+		Location: 54,2
+	Actor22: shared_buildings_mine
+		Owner: Neutral
+		Location: 62,2
+	Actor24: shared_buildings_mine
+		Owner: Neutral
+		Location: 33,158
+	Actor25: shared_buildings_mine
+		Owner: Neutral
+		Location: 41,158
+	Actor28: shared_buildings_mine
+		Owner: Neutral
+		Location: 54,158
+	Actor30: shared_buildings_mine
+		Owner: Neutral
+		Location: 62,158
