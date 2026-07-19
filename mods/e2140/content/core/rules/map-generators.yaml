@@ -3,10 +3,10 @@
 		Type: opene2140
 		Name: map-generator-opene2140
 		Tilesets: TEMPERATE, SNOW, SANDY, DESERT, WASTELAND, URBAN, URBAN2
-		Settings:
+		Options:
 			MultiChoiceOption@hidden_defaults:
 				Choice@hidden_defaults:
-					Settings:
+					Parameters:
 						TerrainFeatureSize: 20480
 						SandFeatureSize: 10240
 						ForestFeatureSize: 20480
@@ -74,27 +74,27 @@
 			MultiChoiceOption@hidden_tileset_overrides:
 				Choice@Temperate:
 					Tileset: TEMPERATE
-					Settings:
+					Parameters:
 				Choice@Snow:
 					Tileset: SNOW
-					Settings:
+					Parameters:
 				Choice@Sandy:
 					Tileset: SANDY
-					Settings:
+					Parameters:
 				Choice@Desert:
 					Tileset: DESERT
-					Settings:
+					Parameters:
 				Choice@Wasteland:
 					Tileset: WASTELAND
-					Settings:
+					Parameters:
 				Choice@Urban:
 					Tileset: URBAN
-					Settings:
+					Parameters:
 						PlayableTerrain: Shore,Clear,Resources,Sand,SandEdge,Road,Water,AsphaltRoad
 						UnplayableTerrain: Rock,Creek,Building
 				Choice@Urban2:
 					Tileset: URBAN2
-					Settings:
+					Parameters:
 						UnplayableTerrain: Rock,Creek,Building
 			IntegerOption@Seed:
 				Label: label-opene2140-map-generator-option-seed
@@ -106,14 +106,14 @@
 				Default: Plots
 				Choice@Lakes:
 					Label: label-opene2140-map-generator-choice-terrain-type-lakes
-					Settings:
+					Parameters:
 				Choice@Puddles:
 					Label: label-opene2140-map-generator-choice-terrain-type-puddles
-					Settings:
+					Parameters:
 						Water: 100
 				Choice@Gardens:
 					Label: label-opene2140-map-generator-choice-terrain-type-gardens
-					Settings:
+					Parameters:
 						Water: 50
 						Forests: 300
 						ForestCutout: 3
@@ -122,7 +122,7 @@
 						RoadShrink: 4
 				Choice@Plots:
 					Label: label-opene2140-map-generator-choice-terrain-type-plots
-					Settings:
+					Parameters:
 						TerrainFeatureSize: 10240
 						ForestFeatureSize: 10240
 						ResourceFeatureSize: 10240
@@ -137,16 +137,16 @@
 						RoadShrink: 4
 				Choice@Plains:
 					Label: label-opene2140-map-generator-choice-terrain-type-plains
-					Settings:
+					Parameters:
 						Water: 0
 				Choice@Parks:
 					Label: label-opene2140-map-generator-choice-terrain-type-parks
-					Settings:
+					Parameters:
 						Water: 0
 						Forests: 100
 				Choice@Woodlands:
 					Label: label-opene2140-map-generator-choice-terrain-type-woodlands
-					Settings:
+					Parameters:
 						Water: 0
 						Forests: 400
 						ForestCutout: 3
@@ -155,7 +155,7 @@
 						RoadShrink: 4
 				Choice@Overgrown:
 					Label: label-opene2140-map-generator-choice-terrain-type-overgrown
-					Settings:
+					Parameters:
 						Water: 0
 						Forests: 500
 						EnforceSymmetry: 2
@@ -163,7 +163,7 @@
 						Roughness: 250
 				Choice@Rocky:
 					Label: label-opene2140-map-generator-choice-terrain-type-rocky
-					Settings:
+					Parameters:
 						Water: 0
 						Forests: 300
 						ForestCutout: 3
@@ -174,42 +174,42 @@
 						RoadShrink: 4
 				Choice@Mountains:
 					Label: label-opene2140-map-generator-choice-terrain-type-mountains
-					Settings:
+					Parameters:
 						Water: 0
 						Mountains: 900
 						Roughness: 600
 						MinimumTerrainContourSpacing: 5
 				Choice@MountainLakes:
 					Label: label-opene2140-map-generator-choice-terrain-type-mountain-lakes
-					Settings:
+					Parameters:
 						Water: 200
 						Mountains: 900
 						Roughness: 850
 						MinimumTerrainContourSpacing: 5
 				Choice@Oceanic:
 					Label: label-opene2140-map-generator-choice-terrain-type-oceanic
-					Settings:
+					Parameters:
 						Water: 800
 						Forests: 0
 						MinimumSpawnRadius: 4
 				Choice@LargeIslands:
 					Label: label-opene2140-map-generator-choice-terrain-type-large-islands
-					Settings:
+					Parameters:
 						Water: 750
 						TerrainFeatureSize: 51200
 						Forests: 0
 				Choice@Continents:
 					Label: label-opene2140-map-generator-choice-terrain-type-continents
-					Settings:
+					Parameters:
 						Water: 500
 						TerrainFeatureSize: 102400
 				Choice@Wetlands:
 					Label: label-opene2140-map-generator-choice-terrain-type-wetlands
-					Settings:
+					Parameters:
 						Water: 500
 				Choice@NarrowWetlands:
 					Label: label-opene2140-map-generator-choice-terrain-type-narrow-wetlands
-					Settings:
+					Parameters:
 						Water: 500
 						TerrainFeatureSize: 5120
 						Forests: 0
@@ -227,62 +227,62 @@
 				Priority: 1
 				Choice@None:
 					Label: label-opene2140-map-generator-choice-mirror-none
-					Settings:
+					Parameters:
 						Mirror: None
 				Choice@LeftMatchesRight:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-horizontal
 					Players: 2, 4, 6, 8, 10, 12, 14, 16
-					Settings:
+					Parameters:
 						Mirror: LeftMatchesRight
 				Choice@TopLeftMatchesBottomRight:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-diagonal-tl
 					Players: 2, 4, 6, 8, 10, 12, 14, 16
-					Settings:
+					Parameters:
 						Mirror: TopLeftMatchesBottomRight
 				Choice@TopMatchesBottom:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-vertical
 					Players: 2, 4, 6, 8, 10, 12, 14, 16
-					Settings:
+					Parameters:
 						Mirror: TopMatchesBottom
 				Choice@TopRightMatchesBottomLeft:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-diagonal-tr
 					Players: 2, 4, 6, 8, 10, 12, 14, 16
-					Settings:
+					Parameters:
 						Mirror: TopRightMatchesBottomLeft
 				Choice@2Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-2-rotations
 					Players: 2, 4, 6, 8, 10, 12, 14, 16
-					Settings:
+					Parameters:
 						Rotations: 2
 				Choice@3Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-3-rotations
 					Players: 3, 6, 9, 12, 15
-					Settings:
+					Parameters:
 						Rotations: 3
 				Choice@4Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-4-rotations
 					Players: 4, 8, 12, 16
-					Settings:
+					Parameters:
 						Rotations: 4
 				Choice@5Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-5-rotations
 					Players: 5, 10, 15
-					Settings:
+					Parameters:
 						Rotations: 5
 				Choice@6Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-6-rotations
 					Players: 6, 12
-					Settings:
+					Parameters:
 						Rotations: 6
 				Choice@7Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-7-rotations
 					Players: 7, 14
-					Settings:
+					Parameters:
 						Rotations: 7
 				Choice@8Rotations:
 					Label: label-opene2140-map-generator-choice-symmetry-mirror-8-rotations
 					Players: 8, 16
-					Settings:
+					Parameters:
 						Rotations: 8
 			MultiChoiceOption@Shape:
 				Label: label-opene2140-map-generator-option-shape
@@ -290,38 +290,38 @@
 				Priority: 1
 				Choice@Square:
 					Label: label-opene2140-map-generator-choice-shape-square
-					Settings:
+					Parameters:
 						ExternalCircularBias: 0
 				Choice@CircleMountain:
 					Label: label-opene2140-map-generator-choice-shape-circle-mountain
-					Settings:
+					Parameters:
 						ExternalCircularBias: 1
 				Choice@CircleWater:
 					Label: label-opene2140-map-generator-choice-shape-circle-water
-					Settings:
+					Parameters:
 						ExternalCircularBias: -1
 			MultiChoiceOption@ResourceGrouping:
 				Label: label-opene2140-map-generator-option-resource-grouping
 				Default: Normal
 				Choice@Tiny:
 					Label: label-opene2140-map-generator-choice-resource-grouping-tiny
-					Settings:
+					Parameters:
 						ResourcesPerPatch: 25000
 				Choice@Small:
 					Label: label-opene2140-map-generator-choice-resource-grouping-small
-					Settings:
+					Parameters:
 						ResourcesPerPatch: 50000
 				Choice@Normal:
 					Label: label-opene2140-map-generator-choice-resource-grouping-normal
-					Settings:
+					Parameters:
 						ResourcesPerPatch: 100000
 				Choice@Large:
 					Label: label-opene2140-map-generator-choice-resource-grouping-large
-					Settings:
+					Parameters:
 						ResourcesPerPatch: 200000
 				Choice@Huge:
 					Label: label-opene2140-map-generator-choice-resource-grouping-huge
-					Settings:
+					Parameters:
 						ResourcesPerPatch: 400000
 			MultiChoiceOption@ResourceDensity:
 				Label: label-opene2140-map-generator-option-resource-density
@@ -329,47 +329,47 @@
 				Priority: 1
 				Choice@None:
 					Label: label-opene2140-map-generator-choice-resource-density-none
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 0
 						PlayerCountResourceMultiplier: 0
 				Choice@Players:
 					Label: label-opene2140-map-generator-choice-resource-density-players
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 0
 						PlayerCountResourceMultiplier: 600000
 				Choice@AreaAndPlayers:
 					Label: label-opene2140-map-generator-choice-resource-density-area-and-players
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 150
 						PlayerCountResourceMultiplier: 300000
 				Choice@AreaVeryLow:
 					Label: label-opene2140-map-generator-choice-resource-density-area-very-low
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 75
 						PlayerCountResourceMultiplier: 0
 				Choice@AreaLow:
 					Label: label-opene2140-map-generator-choice-resource-density-area-low
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 150
 						PlayerCountResourceMultiplier: 0
 				Choice@AreaMedium:
 					Label: label-opene2140-map-generator-choice-resource-density-area-medium
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 300
 						PlayerCountResourceMultiplier: 0
 				Choice@AreaHigh:
 					Label: label-opene2140-map-generator-choice-resource-density-area-high
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 500
 						PlayerCountResourceMultiplier: 0
 				Choice@AreaVeryHigh:
 					Label: label-opene2140-map-generator-choice-resource-density-area-very-high
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 800
 						PlayerCountResourceMultiplier: 0
 				Choice@Full:
 					Label: label-opene2140-map-generator-choice-resource-density-full
-					Settings:
+					Parameters:
 						AreaResourceMultiplier: 1000000000
 						PlayerCountResourceMultiplier: 0
 			BooleanOption@DenyWalledArea:
@@ -388,27 +388,27 @@
 				Priority: 3
 				Choice@None:
 					Label: label-opene2140-map-generator-choice-civilian-density-none
-					Settings:
+					Parameters:
 						CivilianBuildings: 0
 				Choice@Low:
 					Label: label-opene2140-map-generator-choice-civilian-density-low
-					Settings:
+					Parameters:
 						CivilianBuildings: 75
 				Choice@Medium:
 					Label: label-opene2140-map-generator-choice-civilian-density-medium
-					Settings:
+					Parameters:
 						CivilianBuildings: 125
 				Choice@High:
 					Label: label-opene2140-map-generator-choice-civilian-density-high
-					Settings:
+					Parameters:
 						CivilianBuildings: 250
 				Choice@VeryHigh:
 					Label: label-opene2140-map-generator-choice-civilian-density-very-high
-					Settings:
+					Parameters:
 						CivilianBuildings: 500
 				Choice@Max:
 					Label: label-opene2140-map-generator-choice-civilian-density-max
-					Settings:
+					Parameters:
 						CivilianBuildings: 1000
 	ClearMapGenerator@Clear:
 		Type: clear
