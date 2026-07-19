@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 
 RUN apt-get update && \
   apt-get install -y \
@@ -20,7 +20,7 @@ ARG TAG
 
 RUN ./src/packaging/linux/buildserver.sh $TAG ./build/
 
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0
+FROM mcr.microsoft.com/dotnet/runtime-deps:10.0
 
 COPY --from=build /srv/opene2140/build /srv/opene2140/
 COPY ./docker/opene2140-server.sh /usr/local/bin/

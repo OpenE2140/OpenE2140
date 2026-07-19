@@ -7,7 +7,7 @@ Windows
 
 Compiling OpenE2140 requires the following dependencies:
 * [Windows PowerShell >= 4.0](https://microsoft.com/powershell) (included by default in recent Windows 10 versions)
-* [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (or via Visual Studio)
+* [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) (or via Visual Studio)
 
 To compile OpenE2140, open the `OpenE2140.sln` solution in the main folder, build it from the command-line with `dotnet` or use the Makefile analogue command `make all` scripted in PowerShell syntax.
 
@@ -16,7 +16,7 @@ Run the game with `launch-game.cmd`.
 Linux
 =====
 
-.NET 8 SDK is required to compile OpenE2140. The [.NET 8 download page](https://dotnet.microsoft.com/download/dotnet/8.0) provides repositories for various package managers and binary releases for several architectures.
+.NET 10 SDK is required to compile OpenE2140. The [.NET 10 download page](https://dotnet.microsoft.com/download/dotnet/8.0) provides repositories for various package managers and binary releases for several architectures.
 
 To compile OpenE2140, run `make` from the command line. After this one can run the game with `./launch-game.sh`.
 
@@ -86,6 +86,6 @@ sudo yum install SDL2 freetype "lua = 5.1" openal-soft
 macOS
 =====
 
-[.NET 8 SDK for macOS](https://dotnet.microsoft.com/download/dotnet/8.0) is required to compile OpenE2140.
+[.NET 10 SDK for macOS](https://dotnet.microsoft.com/download/dotnet/8.0) is required to compile OpenE2140.
 
 To compile OpenE2140, run `make` from the command line. Run with `./launch-game.sh`.
