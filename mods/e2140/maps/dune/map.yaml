@@ -1,0 +1,65 @@
+MapFormat: 12
+
+RequiresMod: e2140
+
+Title: Dune
+
+Author: Dzierzan
+
+Tileset: SANDY
+
+MapSize: 102,102
+
+Bounds: 1,1,100,100
+
+Visibility: Lobby
+
+Categories: Conquest
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+		Enemies: Multi0, Multi1, Multi2, Multi3
+	PlayerReference@Multi0:
+		Name: Multi0
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi1:
+		Name: Multi1
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi2:
+		Name: Multi2
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+	PlayerReference@Multi3:
+		Name: Multi3
+		Playable: True
+		Faction: Random
+		Enemies: Creeps
+
+Actors:
+	Actor0: mpspawn
+		Owner: Neutral
+		Location: 80,65
+	Actor1: mpspawn
+		Owner: Neutral
+		Location: 36,80
+	Actor2: mpspawn
+		Owner: Neutral
+		Location: 21,36
+	Actor3: mpspawn
+		Owner: Neutral
+		Location: 65,21
+
+Rules: rules.yaml
