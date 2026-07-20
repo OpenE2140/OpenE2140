@@ -125,7 +125,7 @@ DiscordService:
 	ApplicationId: 1125051696196898948
 
 Include: content/core/mod.yaml
-Include: content/shared/mod.yaml
-Include: content/neutral/mod.yaml
 Include: content/ed/mod.yaml
 Include: content/ucs/mod.yaml
+Include: content/shared/mod.yaml
+Include: content/neutral/mod.yaml

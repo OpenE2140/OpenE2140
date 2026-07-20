@@ -7,10 +7,10 @@ Missions:
 Rules:
 	e2140|content/ed/rules.yaml
 	e2140|content/ed/research.yaml
-	e2140|content/ed/buildings/constr_center/rules.yaml
-	e2140|content/ed/buildings/tech_house/rules.yaml
-	e2140|content/ed/buildings/bio_center/rules.yaml
-	e2140|content/ed/buildings/bcc/rules.yaml
+	e2140|content/ed/infantry/a01/rules.yaml
+	e2140|content/ed/infantry/a02/rules.yaml
+	e2140|content/ed/infantry/a03/rules.yaml
+	e2140|content/ed/infantry/a04/rules.yaml
 	e2140|content/ed/vehicles/st01b/rules.yaml
 	e2140|content/ed/vehicles/st02/rules.yaml
 	e2140|content/ed/vehicles/mt200/rules.yaml
@@ -29,13 +29,13 @@ Rules:
 	e2140|content/ed/aircrafts/hat/rules.yaml
 	e2140|content/ed/aircrafts/vtol/rules.yaml
 	e2140|content/ed/aircrafts/nemezis/rules.yaml
-	e2140|content/ed/infantry/a01/rules.yaml
-	e2140|content/ed/infantry/a02/rules.yaml
-	e2140|content/ed/infantry/a03/rules.yaml
-	e2140|content/ed/infantry/a04/rules.yaml
 	e2140|content/ed/ships/shark/rules.yaml
 	e2140|content/ed/ships/wtrn/rules.yaml
 	e2140|content/ed/ships/kt30/rules.yaml
+	e2140|content/ed/buildings/constr_center/rules.yaml
+	e2140|content/ed/buildings/tech_house/rules.yaml
+	e2140|content/ed/buildings/bio_center/rules.yaml
+	e2140|content/ed/buildings/bcc/rules.yaml
 	e2140|content/ed/defenses/pillbox/rules.yaml
 	e2140|content/ed/defenses/defense_tower/rules.yaml
 	e2140|content/ed/defenses/defense_tower_upgraded/rules.yaml	
