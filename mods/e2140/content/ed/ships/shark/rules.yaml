@@ -11,6 +11,7 @@ ed_ships_shark:
 		BuildDuration: 113
 		BuildPaletteOrder: 10
 		Prerequisites: Engine
+		Description: Ship armed with torpedo launcher.\nCan only target naval units.\nDetects enemy water mines.
 	Selectable:
 		Bounds: 704, 624, 0, 0
 	Health:

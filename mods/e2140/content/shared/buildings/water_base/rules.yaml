@@ -119,5 +119,6 @@ shared_mcu_water_base:
 		BuildPaletteOrder: 80
 		# Water Base requires either Heavy Tech (UCS) or Tech House (ED)
 		Prerequisites: Engine, VehicleFactory
+		Description: Allows production of naval units.
 	WithTextDecoration:
 		Text: Water Base
