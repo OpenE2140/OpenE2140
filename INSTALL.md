@@ -9,7 +9,7 @@ Compiling OpenE2140 requires the following dependencies:
 * [Windows PowerShell >= 4.0](https://microsoft.com/powershell) (included by default in recent Windows 10 versions)
 * [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) (or via Visual Studio)
 
-To compile OpenE2140, open the `OpenE2140.sln` solution in the main folder, build it from the command-line with `dotnet` or use the Makefile analogue command `make all` scripted in PowerShell syntax.
+To compile OpenE2140, open the `OpenE2140.slnx` solution in the main folder, build it from the command-line with `dotnet` or use the Makefile analogue command `make all` scripted in PowerShell syntax.
 
 Run the game with `launch-game.cmd`.
 
