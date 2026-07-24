@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".dockerignore" />
+    <File Path=".editorconfig" />
+    <File Path=".gitignore" />
+    <File Path="mod.config" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="engine/OpenRA.Game/OpenRA.Game.csproj" />
+  <Project Path="engine/OpenRA.Mods.Common/OpenRA.Mods.Common.csproj" />
+  <Project Path="OpenRA.Mods.OpenE2140/OpenRA.Mods.OpenE2140.csproj" />
+</Solution>
