@@ -48,7 +48,7 @@ MOD_SEARCH_PATHS = "$(shell $(PYTHON) -c "import os; print(os.path.realpath('.')
 MANIFEST_PATH = "mods/$(MOD_ID)/mod.yaml"
 HAS_LUAC = $(shell command -v luac 2> /dev/null)
 LUA_FILES = $(shell find mods/*/maps/* -iname '*.lua' 2> /dev/null)
-MOD_SOLUTION_FILES = $(shell find . -maxdepth 1 -iname '*.sln' 2> /dev/null)
+MOD_SOLUTION_FILES = $(shell find . -maxdepth 1 -iname '*.slnx' 2> /dev/null)
 
 DOTNET = dotnet
 
@@ -143,11 +143,11 @@ engine: check-variables check-sdk-scripts
 
 all: engine
 
-@find . -maxdepth 1 -name '*.sln' -exec $(DOTNET) build -c ${CONFIGURATION} -p:TargetPlatform=$(TARGETPLATFORM) \;
+@find . -maxdepth 1 -name '*.slnx' -exec $(DOTNET) build -c ${CONFIGURATION} -p:TargetPlatform=$(TARGETPLATFORM) \;
 
 clean: engine
 ifneq ("$(MOD_SOLUTION_FILES)","")
-	@find . -maxdepth 1 -name '*.sln' -exec $(DOTNET) clean \;
+	@find . -maxdepth 1 -name '*.slnx' -exec $(DOTNET) clean \;
 endif
 	@cd $(ENGINE_DIRECTORY) && make clean
 

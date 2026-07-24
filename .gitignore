@@ -9,7 +9,7 @@ obj
 *.vcproj*
 *.suo
 *.user
-*.sln.cache
+*.slnx.cache
 *.manifest
 *.CodeAnalysisLog.xml
 *.lastcodeanalysissucceeded

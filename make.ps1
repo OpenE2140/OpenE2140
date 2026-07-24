@@ -13,7 +13,7 @@ $env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
 ###############################################################
 function All-Command
 {
-	If (!(Test-Path "*.sln"))
+	If (!(Test-Path "*.slnx"))
 	{
 		Write-Host "No custom solution file found. Aborting." -ForegroundColor Red
 		return
@@ -39,7 +39,7 @@ function All-Command
 
 function Clean-Command
 {
-	If (!(Test-Path "*.sln"))
+	If (!(Test-Path "*.slnx"))
 	{
 		Write-Host "No custom solution file found - nothing to clean. Aborting." -ForegroundColor Red
 		return
@@ -118,7 +118,7 @@ function Test-Command
 
 function Check-Command
 {
-	If (!(Test-Path "*.sln"))
+	If (!(Test-Path "*.slnx"))
 	{
 		Write-Host "No custom solution file found. Skipping static code checks." -ForegroundColor Cyan
 		return
