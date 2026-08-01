@@ -140,7 +140,7 @@ public abstract class CrateTransporterInfo : DockClientBaseInfo, IEditorActorOpt
 	}
 }
 
-public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
+public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, IRender, INotifyKilled, INotifyActorDisposing, IResolveOrder, IOrderVoice, IIssueOrder, IIssueDeployOrder
 {
 	private const string UnloadResourceCrateOrderID = "UnloadResourceCrate";
 	private const string LoadResourceCrateOrderID = "LoadResourceCrate";
@@ -265,6 +265,12 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 	}
 
 	void INotifyKilled.Killed(Actor self, AttackInfo e)
+	{
+		if (this.crate?.Actor.TryGetTrait<ISubActor>(out var subActor) == true)
+			subActor.OnParentKilled(this.crate.Actor, self);
+	}
+
+	void INotifyActorDisposing.Disposing(Actor self)
 	{
 		if (this.crate?.Actor.TryGetTrait<ISubActor>(out var subActor) == true)
 			subActor.OnParentKilled(this.crate.Actor, self);
