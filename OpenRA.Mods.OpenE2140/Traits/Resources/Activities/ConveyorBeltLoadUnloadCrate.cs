@@ -56,8 +56,11 @@ public class ConveyorBeltLoadUnloadCrate : Activity
 				break;
 			case DockState.Docking:
 			{
-				this.QueueChild(this.conveyorBeltDockHost.GetInnerDockActivity(
-					this.conveyorBeltActor, self, () => this.state = DockState.Docked, new(this.IsLoading, DockAnimation.Docking)));
+				if (this.conveyorBeltActor.IsDead)
+					this.state = DockState.Undocking;
+				else
+					this.QueueChild(this.conveyorBeltDockHost.GetInnerDockActivity(
+						this.conveyorBeltActor, self, () => this.state = DockState.Docked, new(this.IsLoading, DockAnimation.Docking)));
 
 				break;
 			}

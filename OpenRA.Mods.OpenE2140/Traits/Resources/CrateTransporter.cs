@@ -201,7 +201,7 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 
 	public override bool OnDockTick(Actor self, Actor hostActor, IDockHost host)
 	{
-		if (this.IsTraitDisabled)
+		if (this.IsTraitDisabled || !host.IsEnabledAndInWorld)
 			return true;
 
 		if (this.DockingInProgress == null)
@@ -222,6 +222,9 @@ public abstract class CrateTransporter : DockClientBase<CrateTransporterInfo>, I
 
 	internal bool OnConveyorBeltDockTick(Actor self, ConveyorBelt conveyorBelt, Actor conveyorBeltActor)
 	{
+		if (conveyorBeltActor.IsDead)
+			return true;
+
 		if (conveyorBelt is ResourceMine resourceMine)
 		{
 			this.crate = resourceMine.RemoveCrate();

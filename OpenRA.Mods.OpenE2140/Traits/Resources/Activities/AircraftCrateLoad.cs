@@ -152,7 +152,7 @@ public class AircraftCrateLoad : CrateLoadBase
 		{
 			var dat = self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition);
 
-			if (this.IsCanceling || this.target.Type == TargetType.Invalid || !this.target.Actor.IsInWorld)
+			if (this.IsCanceling || this.target.Type == TargetType.Invalid || !this.target.Actor.IsInWorld || this.target.Actor.IsDead)
 			{
 				if (dat > this.aircraft.LandAltitude && dat < this.aircraft.Info.CruiseAltitude)
 				{

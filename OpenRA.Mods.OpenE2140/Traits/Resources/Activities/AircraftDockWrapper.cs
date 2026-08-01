@@ -30,9 +30,12 @@ public class AircraftDockWrapper : Activity
 		// In happy path scenario, IConveyorBeltDockHost.GetInnerDockActivity() in AircraftConveyorBeltDock is the place,
 		// where the TakeOff activity is queued. And since the (un)docking skipped entirely, there's nothing else queuing the TakeOff activity.
 
+		// Since this can also happen, when Mine/Refinery is destroyed/disposed just before docking starts,
+		// this "fix" needs to be activated regardless of whether the activity is being canceled or not.
+
 		var dat = self.World.Map.DistanceAboveTerrain(this.aircraft.CenterPosition);
 
-		if (this.IsCanceling && this.aircraft.HasInfluence())
+		if (this.aircraft.HasInfluence())
 		{
 			if (this.wsb.DefaultAnimation.IsPlayingSequence(this.aircraftCrateTransporter.Info.DockSequence))
 				this.wsb.CancelCustomAnimation(self);

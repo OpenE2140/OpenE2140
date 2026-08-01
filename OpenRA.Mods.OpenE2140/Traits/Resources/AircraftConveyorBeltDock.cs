@@ -104,11 +104,17 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 
 				waitBeforeTakeOff.Queue(new TakeOff(clientActor));
 			}
-			else
+			else if (this.IsEnabledAndInWorld)
 			{
 				// When unloading a resource crate, the lift off animation can play for a bit longer
 				// A few ticks is enough, there's no need to do any precise calculation for altitude, velocity, etc.
 				waitBeforeTakeOff.Queue(new DelayCancelAnimation(wsb, delay: 10).WithChild(new TakeOff(clientActor)));
+			}
+			else
+			{
+				// Dock host was destroyed, take off immediately.
+				wsb.CancelCustomAnimation(clientActor);
+				return new TakeOff(clientActor);
 			}
 
 			return waitBeforeTakeOff;
@@ -165,7 +171,7 @@ public class AircraftConveyorBeltDock : SharedDockHost, IConveyorBeltDockHost
 			{
 				// When crate is being loaded, start playing lift animation at correct time (see GetLiftAnimationStartDelay() for more details)
 				var animation = new LoadUnloadAnimation(this.wsb, this.dockSequence.Name,
-					shouldStartPlaying: () => this.aircraft.Facing == GetDockAngle(),
+					shouldStartPlaying: () => this.aircraft.Facing == GetDockAngle() && this.aircraftConveyorBeltDock.IsEnabledAndInWorld,
 					() => this.crateTransporter.GetLiftAnimationStartDelay(this.LandAltitude.Length));
 				animation.QueueChild(landOnCrate);
 
