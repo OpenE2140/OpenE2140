@@ -10,6 +10,7 @@ ed_infantry_a04:
 		BuildDuration: 100
 		BuildPaletteOrder: 40
 		Prerequisites: AiMine
+		Description: Mine laying infantry.\nCan detect enemy mines.\nCan capture enemy buildings.\nCan reinforce own buildings.
 	Health:
 		HP: 20
 	RevealsShroud:

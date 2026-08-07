@@ -190,5 +190,6 @@ shared_mcu_mine:
 		BuildDuration: 100
 		BuildPaletteOrder: 60
 		Prerequisites: anypower
+		Description: Place it at location with resources to extract raw materials from ground and package into resource crates.\nUse Banthas or Heavy Lifters to load up the crates.
 	WithTextDecoration:
 		Text: Mine

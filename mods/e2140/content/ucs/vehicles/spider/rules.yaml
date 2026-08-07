@@ -11,6 +11,7 @@ ucs_vehicles_spider:
 		BuildDuration: 113
 		BuildPaletteOrder: 60
 		Prerequisites: LightPlasmaCannon
+		Description: Heavy mech armed with plasma guns.
 	Selectable:
 		Bounds: 960, 928, 0, 0
 	Health:

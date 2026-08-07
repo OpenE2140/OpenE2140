@@ -75,5 +75,6 @@ ed_mcu_bio_center:
 		BuildDuration: 100
 		BuildPaletteOrder: 20
 		Prerequisites: anypower
+		Description: Allows production of infantry.
 	WithTextDecoration:
 		Text: Bio-Center
