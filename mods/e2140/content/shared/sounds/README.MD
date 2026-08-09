@@ -21,3 +21,9 @@ Author: Reality Pump Studios, Dzierzan
 Source: Earth 2140
 License: Proprietary
 Description: Shorter version of water splash sound. Edited by Dzierzan.
+
+**gate-in/out.wav**
+Author: lowpolygon, Dzierzan
+Source: https://freesound.org/people/lowpolygon/sounds/421722/
+License: Creative Commons 0
+Description: Gate opening and closing. Edited by Dzierzan.
