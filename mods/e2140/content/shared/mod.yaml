@@ -12,6 +12,7 @@ Rules:
 	e2140|content/shared/vehicles/bantha/rules.yaml
 	e2140|content/shared/aircrafts/heavy_lifter/rules.yaml
 	e2140|content/shared/misc/wall/rules.yaml
+	e2140|content/shared/misc/gate/rules.yaml
 	e2140|content/shared/misc/landmine/rules.yaml
 	e2140|content/shared/misc/watermine/rules.yaml
 	e2140|content/shared/misc/crate/rules.yaml				
@@ -48,6 +49,7 @@ Sequences:
 	e2140|content/shared/infantry/civil3/sequences.yaml
 	e2140|content/shared/infantry/scientist/sequences.yaml
 	e2140|content/shared/misc/wall/sequences.yaml
+	e2140|content/shared/misc/gate/sequences.yaml
 	e2140|content/shared/misc/landmine/sequences.yaml
 	e2140|content/shared/misc/watermine/sequences.yaml
 	e2140|content/shared/misc/crate/sequences.yaml

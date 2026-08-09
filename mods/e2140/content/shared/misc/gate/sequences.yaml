@@ -1,0 +1,57 @@
+^shared_buildings_gate:
+	idle:
+		Length: 14
+	damaged-idle:
+		Start: 14
+		Length: 14
+	overlay-first:
+		Filename: content/shared/misc/gate/gate_horizontal_overlay.png
+		ZOffset: -3036
+	overlay-second:
+		Filename: content/shared/misc/gate/gate_horizontal_overlay.png
+		Start: 1
+		ZOffset: -3036
+	open:
+		Start: 13
+		ZRamp: 1
+		ZOffset: -3036
+	damaged-open:
+		Start: 27
+		ZRamp: 1
+		ZOffset: -3036
+
+shared_buildings_gate_horizontal_2:
+	Inherits: ^shared_buildings_gate
+	Defaults:
+		Filename: content/shared/misc/gate/gate_horizontal_2.png
+		Offset: 1,0
+
+shared_buildings_gate_horizontal_3:
+	Inherits: ^shared_buildings_gate
+	Defaults:
+		Filename: content/shared/misc/gate/gate_horizontal_3.png
+		Offset: 1,0
+
+shared_buildings_gate_vertical_2:
+	Inherits: ^shared_buildings_gate
+	Defaults:
+		Filename: content/shared/misc/gate/gate_vertical_2.png
+		Offset: 0,-4
+	idle:
+		Length: 15
+	damaged-idle:
+		Start: 15
+		Length: 14
+	overlay-first:
+		Filename: content/shared/misc/gate/gate_vertical_overlay.png
+	overlay-second:
+		Filename: content/shared/misc/gate/gate_vertical_overlay.png
+	open:
+		Start: 14
+	damaged-open:
+		Start: 29
+
+shared_buildings_gate_vertical_3:
+	Inherits: shared_buildings_gate_vertical_2
+	Defaults:
+		Filename: content/shared/misc/gate/gate_vertical_3.png

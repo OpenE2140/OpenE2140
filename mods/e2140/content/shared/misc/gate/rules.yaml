@@ -1,0 +1,109 @@
+^shared_buildings_gate:
+	Inherits: ^CoreVisibleActor
+	Tooltip:
+		Name: Gate
+	Health:
+		HP: 500
+	Building:
+		Dimensions: 2,1
+		Footprint: xx
+	HitShape:
+		UseTargetableCellsOffsets: True
+	MapEditorData:
+		Categories: Wall
+	Interactable:
+	BlocksProjectiles:
+	Armor:
+		Type: building
+	Targetable:
+		TargetTypes: Ground, Structure
+	Targetable@NoAutoAttack:
+		TargetTypes: NoAutoAttack
+	OwnerLostAction:
+		Action: Kill
+	UpdatesPlayerStatistics:
+		AddToAssetsValue: false
+	MustBeDestroyed:
+		RequiredForShortGame: false
+	FireWarheadsOnDeath:
+		Weapon: WallExplosion
+		EmptyWeapon: WallExplosion
+	-HiddenUnderFog:
+	FrozenUnderFog:
+	Gate:
+		OpeningSound: gate-in.wav
+		ClosingSound: gate-out.wav
+		CloseDelay: 100
+		TransitionDelay: 25
+	WithGateSpriteBody:
+		OpenSequence: open
+	WithIdleOverlay@First:
+		Palette:
+		Sequence: overlay-first
+	WithIdleOverlay@Second:
+		Palette:
+		Sequence: overlay-second
+
+shared_buildings_gate_horizontal_2:
+	Inherits: ^shared_buildings_gate
+	Building:
+		Dimensions: 2,1
+		Footprint: xx
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1024, -126
+			BottomRight: 1024, 256
+	WithGateSpriteBody:
+		WallConnections: -1,0, 2,0
+	WithIdleOverlay@First:
+		Offset: -200,-1024,0
+	WithIdleOverlay@Second:
+		Offset: -200,1000,0
+
+shared_buildings_gate_horizontal_3:
+	Inherits: ^shared_buildings_gate
+	Building:
+		Dimensions: 3,1
+		Footprint: xxx
+	HitShape:
+		Type: Rectangle
+			TopLeft: -1524, -126
+			BottomRight: 1524, 256
+	WithGateSpriteBody:
+		WallConnections: -1,0, 3,0
+	WithIdleOverlay@First:
+		Offset: -200,-1540,0
+	WithIdleOverlay@Second:
+		Offset: -200,1500,0
+
+shared_buildings_gate_vertical_2:
+	Inherits: ^shared_buildings_gate
+	Building:
+		Dimensions: 1,2
+		Footprint: x x
+	HitShape:
+		Type: Rectangle
+			TopLeft: -225, -924
+			BottomRight: 150, 1024
+	WithGateSpriteBody:
+		WallConnections: 0,-1, 0,2
+	WithIdleOverlay@First:
+		Offset: -1725,-50,0
+	WithIdleOverlay@Second:
+		Offset: 1275,-50,0
+
+shared_buildings_gate_vertical_3:
+	Inherits: ^shared_buildings_gate
+	Building:
+		Dimensions: 1,3
+		Footprint: x x x
+	HitShape:
+		Type: Rectangle
+			TopLeft: -225, -1424
+			BottomRight: 150, 1524
+	WithGateSpriteBody:
+		WallConnections: 0,-1, 0,3
+	WithIdleOverlay@First:
+		Offset: -2525,-50,0
+	WithIdleOverlay@Second:
+		Offset: 2075,-50,0
