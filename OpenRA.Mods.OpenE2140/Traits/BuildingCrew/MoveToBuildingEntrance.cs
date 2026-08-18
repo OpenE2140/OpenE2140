@@ -31,14 +31,15 @@ public class MoveToBuildingEntrance : MoveAdjacentTo
 
 	protected override (bool AlreadyAtDestination, List<CPos> Path) CalculatePathToTarget(Actor self, BlockedByActor check)
 	{
+		if (this.Target.Type == TargetType.Invalid)
+			return (false, PathFinder.NoPath);
+
 		// PERF: Assume that candidate cells don't change within a tick to avoid repeated queries
 		// when Move enumerates different BlockedByActor values.
 		if (this.searchCellsTick != self.World.WorldTick)
 		{
 			this.SearchCells.Clear();
 			this.searchCellsTick = self.World.WorldTick;
-
-			Debug.Assert(this.Target.Type == TargetType.Actor, $"Target is not actor: {this.Target}");
 
 			var entryCells = this.targetBuildingCrew.Entrances.Select(c => c.EntryCell);
 
