@@ -69,9 +69,12 @@ World:
 	ScreenShaker:
 		MinMultiplier: -10,0
 		MaxMultiplier: 10,0
-	# Research level limit
+	# Research level limit.
 	ResearchLimit:
 		Limit: 5
+	# Objectives panel in in-game menu.
+	ObjectivesPanel:
+		PanelName: SKIRMISH_STATS
 	# Used to manage beacons.
 	RadarPings:
 	# Required for the color picker.
