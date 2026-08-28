@@ -111,6 +111,10 @@ High-level, non-technical roadmap can be found on [our website](https://opene214
 	* custom rally point artwork
 - [michal-mad](https://github.com/michal-mad)
 	* programming
+- Narcoleptic
+	- artwork for new units
+- Chrobak
+	- video editor
 
 ## Special thanks!
 
