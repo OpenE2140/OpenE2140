@@ -6,8 +6,7 @@ World:
 	-SpawnStartingUnits:
 	-MapStartingLocations:
 	MissionData:
-		Briefing: 
-		This scenario map starts with all four players' bases fully constructed and ready for battle. It is designed for 2v2 matches, with each team consisting of one ED player and one UCS player. Assign players in slots 1 and 2 to the same team, and players in slots 3 and 4 to the opposing team.
+		Briefing: This scenario map starts with all four players' bases fully constructed and ready for battle. It is designed for 2v2 matches, with each team consisting of one ED player and one UCS player. Assign players in slots 1 and 2 to the same team, and players in slots 3 and 4 to the opposing team.
 
 
 Player:
