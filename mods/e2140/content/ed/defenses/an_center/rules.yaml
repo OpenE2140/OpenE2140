@@ -65,4 +65,4 @@ ed_mcu_an_center:
 		Prerequisites: anypower, IonCannon
 		Description: Long reveal range.\nDetects cloaked enemy units.
 	WithTextDecoration:
-		Text: Watch Tower
+		Text: AN Center
