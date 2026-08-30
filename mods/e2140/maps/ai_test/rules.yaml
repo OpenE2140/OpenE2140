@@ -1,6 +1,0 @@
-Player:
-	Shroud:
-		ExploredMapCheckboxEnabled: True
-		FogCheckboxEnabled: False
-	PlayerResources:
-		DefaultCash: 5000
