@@ -30,7 +30,7 @@ Player:
 		MaximumUndeployedMcu: 1
 		PowerTypes: shared_mcu_power_plant, shared_mcu_power_plant_upgraded
 		ResearchCenterTypes: shared_mcu_research_center
-		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base
+		ProductionTypes: ed_mcu_bio_center, ucs_mcu_robot_factory, ucs_mcu_heavy_tech, ed_mcu_tech_house, shared_mcu_air_base, ucs_mcu_prod_center, ed_mcu_constr_center
 		BuildingQueues: Building.ED, Building.UCS
 		DefenseQueues: Defense.ED, Defense.UCS
 		McuFractions:
@@ -46,20 +46,22 @@ Player:
 			shared_mcu_research_center: 1
 			ucs_mcu_pb_cannon: 1
 			ed_mcu_defense_tower: 2
-			ed_mcu_defense_tower_upgraded: 2
+			ed_mcu_defense_tower_upgraded: 4
 			ed_mcu_heavy_defense_tower: 4
-			ed_mcu_heavy_defense_tower_upgraded: 1
-			ed_mcu_pillbox: 1
+			ed_mcu_heavy_defense_tower_upgraded: 2
+			ed_mcu_pillbox: 2
 			ed_mcu_silo: 1
-			ed_mcu_an_center: 1
+			ed_mcu_an_center: 2
 			ucs_mcu_little_eye: 2
-			ucs_mcu_little_eye_upgraded: 2
+			ucs_mcu_little_eye_upgraded: 4
 			ucs_mcu_big_eye: 4
-			ucs_mcu_big_eye_upgraded: 1
+			ucs_mcu_big_eye_upgraded: 2
 		McuLimits:
+			ed_mcu_constr_center: 2
 			ed_mcu_bio_center: 2
 			ed_mcu_tech_house: 2
 			ed_mcu_silo: 1
+			ucs_mcu_prod_center: 2
 			ucs_mcu_robot_factory: 2
 			ucs_mcu_heavy_tech: 2
 			ucs_mcu_pb_cannon: 1
