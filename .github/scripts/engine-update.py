@@ -283,10 +283,10 @@ def main() -> None:
 	print(f"Current ENGINE_VERSION in local mod.config: {current_engine_version}")
 
 	owner, repo = parse_github_repo(engine_source)
-	print(f"Engine repo: {owner}/{repo} (default branch: bleed)")
+	default_branch = "opene2140-engine"
+	print(f"Engine repo: {owner}/{repo} (default branch: {default_branch})")
 
 	# Retrieve latest commit in the engine repo by calling GitHub API
-	default_branch = "bleed"
 	commit_data = github_api_get(f"https://api.github.com/repos/{owner}/{repo}/commits/{default_branch}", gh_token)
 
 	engine_commit_hash = None
