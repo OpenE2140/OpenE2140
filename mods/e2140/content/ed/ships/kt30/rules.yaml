@@ -23,10 +23,12 @@ ed_ships_kt30:
 	Turreted:
 		Turret: primary
 		Offset: 770,0,128
+		PauseOnCondition: VehicleDisabled
 	Turreted@SECONDARY:
 		Turret: secondary
 		TurnSpeed: 30
 		Offset: -770,0,225
+		PauseOnCondition: VehicleDisabled
 	AttackTurreted:
 		Turrets: primary, secondary
 		Armaments: primary, secondary
