@@ -42,6 +42,8 @@ Player:
 	PlayerResources:
 		InsufficientFundsNotification: InsufficientCash
 		InsufficientFundsTextNotification: Insufficient cash.
+		SelectableCash: 3000, 5000, 7500, 10000, 20000, 50000
+		DefaultCash: 5000
 	# Notifications
 	DamageNotifier:
 		TextNotification: Base under attack.
