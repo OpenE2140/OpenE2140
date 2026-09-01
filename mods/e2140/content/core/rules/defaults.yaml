@@ -148,6 +148,9 @@
 		DamageStep: 10
 		SelfDestructingNotification: SelfDestructionActivated
 		SelfDestructingStoppedNotification: SelfDestructionStopped
+	# Explosion sound played once when a construction is destroyed.
+	SoundOnDamageTransition:
+		DestroyedSounds: 24.smp
 
 # Base for all buildings.
 ^CoreBuilding:
