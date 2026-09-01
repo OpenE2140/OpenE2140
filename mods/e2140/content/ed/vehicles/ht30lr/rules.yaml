@@ -23,10 +23,12 @@ ed_vehicles_ht30lr:
 		Range: 2c896
 	Turreted@PRIMARY:
 		Turret: primary
+		PauseOnCondition: VehicleDisabled
 	Turreted@SECONDARY:
 		Turret: secondary
 		TurnSpeed: 30
 		Offset: 0,0,230
+		PauseOnCondition: VehicleDisabled
 	AttackTurreted:
 		Turrets: primary, secondary
 		Armaments: primary, secondary
