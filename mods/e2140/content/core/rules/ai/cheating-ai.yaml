@@ -33,4 +33,4 @@ Player:
 	CashTrickler:
 		RequiresCondition: enable-cash-cheat
 		ShowTicks: false
-		Amount: 100
+		Amount: 200
