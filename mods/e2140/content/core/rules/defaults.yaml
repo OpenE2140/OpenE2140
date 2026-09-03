@@ -1,5 +1,6 @@
 # Base for all actors.
 ^CoreVisibleActor:
+	Inherits: ^PlayerHandicaps
 	# All our actors are sprite based and need to render sprites.
 	RenderSprites:
 		FactionImages:
@@ -1124,3 +1125,8 @@
 		RequiresCondition: stance-attackanything || assault-move
 	AttackMove:
 		AssaultMoveCondition: assault-move
+
+# Handicap multipliers
+^PlayerHandicaps:
+	HandicapFirepowerMultiplier:
+	HandicapDamageMultiplier:
