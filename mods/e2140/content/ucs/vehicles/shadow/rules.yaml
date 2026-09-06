@@ -21,10 +21,12 @@ ucs_vehicles_shadow:
 	RevealsShroud:
 		Range: 4c896
 	Passenger:
-		# TODO: This needs to be adjusted once proper support for WTP 100 and WTRN is implemented.
-		CargoCondition: InsideTransport
+		CargoConditions:
+			ucs_vehicles_wtp_100: LoadedAsPassenger
+	# When Shadow is loaded into WTP 100/WTRN, cloaking ability of Shadow gets broken in many situations.
+	# Therefore the transporter takes over the cloaking ability and Shadow's needs to be disabled.
 	ProximityExternalCondition:
-		RequiresCondition: !InsideTransport
+		RequiresCondition: !LoadedAsPassenger
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
