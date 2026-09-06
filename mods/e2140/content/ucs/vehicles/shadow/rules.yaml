@@ -20,7 +20,11 @@ ucs_vehicles_shadow:
 		Speed: 90
 	RevealsShroud:
 		Range: 4c896
+	Passenger:
+		# TODO: This needs to be adjusted once proper support for WTP 100 and WTRN is implemented.
+		CargoCondition: InsideTransport
 	ProximityExternalCondition:
+		RequiresCondition: !InsideTransport
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
