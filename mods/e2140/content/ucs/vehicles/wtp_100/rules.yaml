@@ -1,5 +1,6 @@
 ucs_vehicles_wtp_100:
 	Inherits: ^UcsVehicle
+	Inherits: ^AutoTargetAll
 	Tooltip:
 		Name: WTP 100
 	Valued:
@@ -39,6 +40,11 @@ ucs_vehicles_wtp_100:
 		PassengerConditions:
 			ucs_vehicles_shadow: ShadowPassengerLoaded
 			ucs_vehicles_detector: DetectorPassengerLoaded
+	AutoTarget:
+		RequiresCondition: PassengersLoaded
+		AttackAnythingCondition: stance-attackanything
+		MinimumScanTimeInterval: 5
+		MaximumScanTimeInterval: 15
 	
 	AttackAttachedCargo:
 		RequiresCondition: PassengersLoaded

@@ -1,7 +1,6 @@
 ﻿using OpenRA.Activities;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
@@ -17,10 +16,13 @@ public class AttackAttachedCargoInfo : AttackFollowInfo
 }
 
 
-public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotifyPassengerExited
+public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotifyPassengerExited, INotifyStanceChanged
 {
 	private readonly List<Armament> armaments = [];
 	private readonly Dictionary<Actor, AttackBase> paxAttackBases = [];
+	private readonly Dictionary<Actor, AutoTarget> paxAutoTargets = [];
+	private UnitStance? oldUnitStance;
+	private AutoTarget? autoTarget;
 
 	private INotifyAttack[] notifyAttacks = [];
 
@@ -32,6 +34,8 @@ public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotif
 	protected override void Created(Actor self)
 	{
 		this.notifyAttacks = self.TraitsImplementing<INotifyAttack>().ToArray();
+		this.autoTarget = self.TraitOrDefault<AutoTarget>();
+		this.oldUnitStance = this.autoTarget?.Stance;
 		base.Created(self);
 	}
 
@@ -47,6 +51,10 @@ public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotif
 		if (ab != null)
 			this.paxAttackBases[passenger] = ab;
 
+		var at = passenger.TraitsImplementing<AutoTarget>().FirstOrDefault();
+		if (at != null)
+			this.paxAutoTargets[passenger] = at;
+
 		foreach (var a in passenger.TraitsImplementing<Armament>())
 		{
 			if (this.Info.Armaments.Contains(a.Info.Name))
@@ -61,6 +69,8 @@ public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotif
 	{
 		// TODO: multiple AttackBases?
 		this.paxAttackBases.Remove(passenger);
+
+		this.paxAutoTargets.Remove(passenger);
 
 		foreach (var a in this.armaments.ToList())
 		{
@@ -111,7 +121,26 @@ public class AttackAttachedCargo : AttackFollow, INotifyPassengerEntered, INotif
 		}
 	}
 
-	public override Activity GetAttackActivity(Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
+	protected override void Tick(Actor self)
+	{
+		base.Tick(self);
+
+		if (this.IsTraitDisabled || this.IsTraitPaused)
+			return;
+
+		if (this.autoTarget != null && this.oldUnitStance != null && this.oldUnitStance != this.autoTarget.Stance)
+		{
+			foreach (var (actor, at) in this.paxAutoTargets)
+			{
+				at.SetStance(actor, this.autoTarget.Stance);
+			}
+
+			this.oldUnitStance = this.autoTarget.Stance;
+		}
+	}
+
+	public override Activity GetAttackActivity(
+		Actor self, AttackSource source, in Target newTarget, bool allowMove, bool forceAttack, Color? targetLineColor = null)
 	{
 		var parentActivity = new AttackFollowAttackActivity(this.paxAttackBases, newTarget, forceAttack);
 
