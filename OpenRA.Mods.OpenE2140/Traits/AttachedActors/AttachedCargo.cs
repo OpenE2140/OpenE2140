@@ -1,12 +1,13 @@
 using System.Reflection;
 using JetBrains.Annotations;
+using OpenRA;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Support;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits;
+namespace OpenRA.Mods.OpenE2140.Traits.AttachedActors;
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 public class AttachedCargoInfo : CargoInfo

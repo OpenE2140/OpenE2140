@@ -2,7 +2,7 @@ MapFormat: 12
 
 RequiresMod: e2140
 
-Title: shadow_test
+Title: wtp_test
 
 Author: dummy
 
@@ -54,6 +54,7 @@ Actors:
 		Owner: UCS_Player
 		Facing: 384
 		Location: 40,29
+		Cargo: ucs_vehicles_spider_ii
 	Actor2: ucs_vehicles_wtp_100
 		Owner: UCS_Player
 		Facing: 384

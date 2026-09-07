@@ -2,7 +2,7 @@
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits;
+namespace OpenRA.Mods.OpenE2140.Traits.AttachedActors;
 
 [Desc($"Custom version of {nameof(OpenRA.Mods.Common.Traits.RevealsShroud)}, which expands range of {nameof(AttachedCargo)} actor " +
 	$"with passengers that have larger radius for revealing shroud.")]
