@@ -1,0 +1,87 @@
+MapFormat: 12
+
+RequiresMod: e2140
+
+Title: shadow_test
+
+Author: dummy
+
+Tileset: SANDY
+
+MapSize: 66,66
+
+Bounds: 1,1,64,64
+
+Visibility: Lobby
+
+Categories: Maps
+
+Players:
+	PlayerReference@UCS_Player:
+		Name: UCS_Player
+		AllowBots: False
+		Playable: True
+		Required: True
+		LockFaction: True
+		Faction: ucs
+		LockColor: True
+		Color: F20F0F
+		LockSpawn: True
+		LockTeam: True
+		Enemies: UCS_AI
+	PlayerReference@UCS_AI:
+		Name: UCS_AI
+		Bot: dummy
+		Faction: ucs
+		Enemies: UCS_Player
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+
+Actors:
+	Actor_prodcenter: ucs_buildings_prod_center
+		Owner: UCS_Player
+		Location: 25,28
+	Actor26: ucs_buildings_heavy_tech
+		Owner: UCS_Player
+		Location: 42,28
+	Actor0: shared_buildings_power_plant
+		Owner: UCS_Player
+		Location: 25,21
+	Actor1: ucs_vehicles_wtp_100
+		Owner: UCS_Player
+		Facing: 384
+		Location: 40,29
+	Actor2: ucs_vehicles_wtp_100
+		Owner: UCS_Player
+		Facing: 384
+		Location: 35,14
+	Actor3: ucs_mcu_heavy_tech
+		Owner: UCS_Player
+		Facing: 384
+		Location: 37,12
+	Actor4: ucs_vehicles_wtp_100
+		Owner: UCS_AI
+		Facing: 384
+		Location: 26,36
+		Cargo: ucs_vehicles_detector
+	Actor5: ucs_vehicles_tiger_assault
+		Owner: UCS_AI
+		Facing: 384
+		Location: 32,36
+	Actor8: ucs_defenses_little_eye
+		Owner: UCS_AI
+		Location: 43,36
+	Actor9: ucs_buildings_robot_factory
+		Owner: UCS_AI
+		Location: 43,41
+	Actor6: shared_buildings_power_plant
+		Owner: UCS_AI
+		Location: 40,38
+	Actor7: ucs_buildings_prod_center
+		Owner: UCS_AI
+		Location: 47,37
+
+Rules: rules.yaml
