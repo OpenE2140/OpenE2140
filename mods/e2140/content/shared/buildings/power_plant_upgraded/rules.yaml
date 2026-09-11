@@ -63,12 +63,12 @@ shared_buildings_power_plant_upgraded:
 		Palette:
 		Sequence: addon
 		Offset: -550,1550,0
-		RequiresCondition: !Transforming && Powered
+		RequiresCondition: !Transforming
 	WithIdleOverlay@AddonB:
 		Palette:
 		Sequence: addon
 		Offset: 800,1200,0
-		RequiresCondition: !Transforming && Powered
+		RequiresCondition: !Transforming
 
 shared_mcu_power_plant_upgraded:
 	Inherits@1: ^SharedVehicleMcu
