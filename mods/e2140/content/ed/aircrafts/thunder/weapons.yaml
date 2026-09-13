@@ -22,11 +22,16 @@ ed_aircrafts_thunder:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-	Warhead@Damage: SpreadDamage
+	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 20
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 20
+		DamageTypes: Explosion
+		ValidTargets: Air
 	Warhead@EffectGround: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_3
