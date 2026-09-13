@@ -22,11 +22,16 @@ ucs_aircrafts_gargoil_ii:
 		Shadow: True
 		ShadowColor: 00000046
 		HorizontalRateOfTurn: 20
-	Warhead@Damage: SpreadDamage
+	Warhead@DamageGround: SpreadDamage
 		Spread: 128
 		Damage: 80
 		DamageTypes: Explosion
 		ValidTargets: Ground, Ship
+	Warhead@DamageAir: SpreadDamage
+		Spread: 128
+		Damage: 80
+		DamageTypes: Explosion
+		ValidTargets: Air
 	Warhead@Effect: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_1, projectile_explosion_2
