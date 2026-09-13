@@ -26,7 +26,7 @@ ed_aircrafts_vtol:
 		Spread: 128
 		Damage: 80
 		DamageTypes: Explosion
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@Effect: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_1, projectile_explosion_2

@@ -26,7 +26,7 @@ ed_aircrafts_thunder:
 		Spread: 128
 		Damage: 20
 		DamageTypes: Explosion
-		ValidTargets: Ground, Ship
+		ValidTargets: Ground, Ship, Air
 	Warhead@EffectGround: CreateEffect
 		Image: explosion
 		Explosions: projectile_explosion_3
