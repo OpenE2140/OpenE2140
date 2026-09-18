@@ -24,6 +24,7 @@ public class TransportCrates : Activity
 	private readonly DockClientManager dockClient;
 
 	private bool hasDocked;
+	private bool canceled;
 
 	public TransportCrates(Actor self)
 	{
@@ -36,7 +37,13 @@ public class TransportCrates : Activity
 
 	protected override void OnFirstRun(Actor self)
 	{
-		if (this.routine.Info.AssignTargetsAutomatically || this.GetDockHostActor() != null)
+		// Don't queue MoveToDock, if there's literally no dock to use at all.
+		if (this.dockClient.ClosestDock(null, ignoreOccupancy: true) == null)
+		{
+			// It's not possible to cancel activity in OnFirstRun(), thus that needs to be postponed to Tick().
+			this.canceled = true;
+		}
+		else if (this.routine.Info.AssignTargetsAutomatically || this.GetDockHostActor() != null)
 			this.QueueChild(new MoveToDock(self, dockHostActor: this.GetDockHostActor(), dockLineColor: this.dockClient.DockLineColor));
 	}
 
@@ -48,7 +55,7 @@ public class TransportCrates : Activity
 
 	public override bool Tick(Actor self)
 	{
-		if (this.IsCanceling || !this.routine.Info.AssignTargetsAutomatically)
+		if (this.canceled || this.IsCanceling || !this.routine.Info.AssignTargetsAutomatically)
 			return this.TickChild(self);
 
 		if (this.crateTransporter.DockingInProgress == true)

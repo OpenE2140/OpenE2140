@@ -334,7 +334,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				else if (actor.TryGetTrait<Aircraft>(out var aircraft))
 				{
 					// When Aircraft is produced, the exit should be closed immediately
-					if (this.rallyPoint != null)
+					if (this.rallyPoint?.Path.Count > 0)
 						this.QueuePathToRallyPoint(this.productionInfo);
 					else
 						actor.QueueActivity(aircraft.MoveTo(exitCell));
