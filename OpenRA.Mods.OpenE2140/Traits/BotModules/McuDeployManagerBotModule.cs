@@ -520,11 +520,15 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		if (this.IsTraitDisabled)
 			return null;
 
-		return
-		[
-			new MiniYamlNode("InitialBaseCenter", FieldSaver.FormatValue(this.initialBaseCenter)),
-			new MiniYamlNode("DefenseCenter", FieldSaver.FormatValue(this.defenseCenter))
-		];
+		return GetData().ToList();
+
+		IEnumerable<MiniYamlNode> GetData()
+		{
+			if (this.initialBaseCenter != null)
+				yield return new MiniYamlNode("InitialBaseCenter", FieldSaver.FormatValue(this.initialBaseCenter));
+			if (this.defenseCenter != null)
+				yield return new MiniYamlNode("DefenseCenter", FieldSaver.FormatValue(this.defenseCenter));
+		};
 	}
 
 	void IGameSaveTraitData.ResolveTraitData(Actor self, MiniYaml data)
@@ -533,11 +537,11 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			return;
 
 		var initialBaseCenterNode = data.NodeWithKeyOrDefault("InitialBaseCenter");
-		if (initialBaseCenterNode != null)
+		if (!string.IsNullOrEmpty(initialBaseCenterNode?.Value.Value))
 			this.initialBaseCenter = FieldLoader.GetValue<CPos>("InitialBaseCenter", initialBaseCenterNode.Value.Value);
 
 		var defenseCenterNode = data.NodeWithKeyOrDefault("DefenseCenter");
-		if (defenseCenterNode != null)
+		if (!string.IsNullOrEmpty(defenseCenterNode?.Value.Value))
 			this.defenseCenter = FieldLoader.GetValue<CPos>("DefenseCenter", defenseCenterNode.Value.Value);
 	}
 
