@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Graphics;
 using OpenRA.Mods.OpenE2140.Helpers.Reflection;
@@ -49,7 +50,7 @@ public static class SpriteCutOffHelper
 				}
 
 				bounds = new Rectangle(sprite.Bounds.X, sprite.Bounds.Y, sprite.Bounds.Width, height);
-				spriteOffset = new float3(sprite.Offset.X, offset, sprite.Offset.Z);
+				spriteOffset = new Vector3(sprite.Offset.X, offset, sprite.Offset.Z);
 			}
 			else if (cutOffDirection == CutOffDirection.Top)
 			{
@@ -66,7 +67,7 @@ public static class SpriteCutOffHelper
 				}
 
 				bounds = new Rectangle(sprite.Bounds.X, sprite.Bounds.Y + sprite.Bounds.Height - height, sprite.Bounds.Width, height);
-				spriteOffset = new float3(sprite.Offset.X, offset + sprite.Offset.Y, sprite.Offset.Z);
+				spriteOffset = new Vector3(sprite.Offset.X, offset + sprite.Offset.Y, sprite.Offset.Z);
 			}
 
 			SpriteFieldHelper.SetValue(

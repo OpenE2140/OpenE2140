@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using System.Reflection;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
@@ -113,7 +114,7 @@ public class DayNight : ITick, IWorldLoaded
 	{
 		var light = this.GetLightColor(self.World);
 
-		this.globalTint?.SetValue(this.terrainLighting, new float3(light.R, light.G, light.B) / byte.MaxValue);
+		this.globalTint?.SetValue(this.terrainLighting, new Vector3(light.R, light.G, light.B) / byte.MaxValue);
 
 		foreach (var cell in self.World.Map.AllCells)
 			this.updateTint?.Invoke(this.terrainSpriteLayer, [cell.ToMPos(self.World.Map)]);
@@ -124,7 +125,7 @@ public class DayNight : ITick, IWorldLoaded
 		var progress = this.GetNightProgress(world);
 
 		return progress < 0.5
-			? this.info.DayColor.Lerp(this.info.DuskColor, progress * 2)
-			: this.info.NightColor.Lerp(this.info.DuskColor, 1 - (progress - 0.5f) * 2);
+			? Exts.ColorLerp(progress * 2, this.info.DayColor, this.info.DuskColor)
+			: Exts.ColorLerp(1 - (progress - 0.5f) * 2, this.info.NightColor, this.info.DuskColor);
 	}
 }

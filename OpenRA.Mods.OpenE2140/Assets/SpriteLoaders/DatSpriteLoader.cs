@@ -12,6 +12,7 @@
 #endregion
 
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Assets.FileFormats;
@@ -24,7 +25,7 @@ public class DatSpriteFrame : ISpriteFrame
 	public SpriteFrameType Type { get; }
 	public Size Size { get; }
 	public Size FrameSize { get; }
-	public float2 Offset { get; }
+	public Vector2 Offset { get; }
 	public byte[] Data { get; }
 	public bool DisableExportPadding => true;
 
@@ -33,7 +34,7 @@ public class DatSpriteFrame : ISpriteFrame
 		this.Type = type;
 		this.Size = size;
 		this.FrameSize = size;
-		this.Offset = new float2(0, 0);
+		this.Offset = new Vector2(0, 0);
 		this.Data = pixels;
 	}
 }

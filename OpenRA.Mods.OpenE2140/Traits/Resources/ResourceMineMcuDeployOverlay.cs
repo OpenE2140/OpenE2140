@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Orders;
@@ -91,7 +92,7 @@ public class ResourceMineMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 
 			yield return new SpriteRenderable(
 				this.validCell, wr.World.Map.CenterOfCell(cell), WVec.Zero, -511, null, 1f,
-				this.validAlpha, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+				this.validAlpha, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 		}
 	}
 

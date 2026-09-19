@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
@@ -47,12 +48,12 @@ public class ActorDebug : IRender
 			{
 				foreach (var p in ios.OccupiedCells())
 				{
-					yield return new SpriteRenderable(this.sprite, self.World.Map.CenterOfCell(p.Cell), WVec.Zero, -511, null, 1f, 0.5f, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+					yield return new SpriteRenderable(this.sprite, self.World.Map.CenterOfCell(p.Cell), WVec.Zero, -511, null, 1f, 0.5f, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 				}
 			}
 			else
 			{
-				yield return new SpriteRenderable(this.sprite, self.World.Map.CenterOfCell(actor.Location), WVec.Zero, -511, null, 1f, 0.5f, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+				yield return new SpriteRenderable(this.sprite, self.World.Map.CenterOfCell(actor.Location), WVec.Zero, -511, null, 1f, 0.5f, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 			}
 		}
 	}

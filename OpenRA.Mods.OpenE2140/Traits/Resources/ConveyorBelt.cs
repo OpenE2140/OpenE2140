@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -185,7 +186,7 @@ public class ConveyorBelt : SharedDockHostManager<ConveyorBeltInfo>, ITick, IRen
 						sprite.Sheet,
 						new Rectangle(sprite.Bounds.X + subtract, sprite.Bounds.Y, sprite.Bounds.Width - subtract, sprite.Bounds.Height),
 						sprite.ZRamp,
-						sprite.Offset + new float3(subtract / 2f, 0, 0),
+						sprite.Offset + new Vector3(subtract / 2f, 0, 0),
 						sprite.Channel,
 						sprite.BlendMode
 					)

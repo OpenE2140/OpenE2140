@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Weather;
@@ -89,7 +90,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 			self.CenterPosition + this.Info.Offset,
 			this.Info.Range,
 			this.Info.Intensity,
-			new float3(this.Info.Color.R, this.Info.Color.G, this.Info.Color.B) / byte.MaxValue
+			new Vector3(this.Info.Color.R, this.Info.Color.G, this.Info.Color.B) / byte.MaxValue
 		);
 	}
 

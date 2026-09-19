@@ -36,18 +36,18 @@ public class CircleRenderable : IRenderable, IFinalizedRenderable
 		if (this.filled)
 		{
 			var offset = new WVec(this.radius.Length, this.radius.Length, 0);
-			var tl = wr.ScreenPxPosition(this.Pos - offset);
-			var br = wr.ScreenPxPosition(this.Pos + offset);
+			var tl = wr.ScreenPxPosition(this.Pos - offset).ToVector3();
+			var br = wr.ScreenPxPosition(this.Pos + offset).ToVector3();
 
 			cr.FillEllipse(tl, br, this.color);
 		}
 		else
 		{
 			var r = this.radius.Length;
-			var a = wr.ScreenPxPosition(this.Pos + r * FacingOffsets[CircleSegments - 1] / 1024);
+			var a = wr.ScreenPxPosition(this.Pos + r * FacingOffsets[CircleSegments - 1] / 1024).ToVector3();
 			for (var i = 0; i < CircleSegments; i++)
 			{
-				var b = wr.ScreenPxPosition(this.Pos + r * FacingOffsets[i] / 1024);
+				var b = wr.ScreenPxPosition(this.Pos + r * FacingOffsets[i] / 1024).ToVector3();
 				cr.DrawLine(a, b, this.width, this.color);
 				a = b;
 			}

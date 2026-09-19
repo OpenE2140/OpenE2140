@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
@@ -51,7 +52,7 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 {
 	private readonly WithCloakShadowInfo info;
 	private readonly Cloak cloak;
-	private readonly float3 shadowColor;
+	private readonly Vector3 shadowColor;
 	private readonly float shadowAlpha;
 	private readonly Dictionary<RenderSprites, RenderSpritesReflectionHelper> reflectionHelpers;
 	private readonly IDefaultVisibility defaultVisibility;
@@ -63,7 +64,7 @@ public class WithCloakShadow : IRenderModifier, INotifyCreated
 	{
 		this.info = info;
 		this.cloak = self.Trait<Cloak>();
-		this.shadowColor = new float3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
+		this.shadowColor = new Vector3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
 		this.shadowAlpha = info.ShadowColor.A / 255f;
 
 		this.reflectionHelpers = self.TraitsImplementing<RenderSprites>().ToDictionary(rs => rs, rs => new RenderSpritesReflectionHelper(rs));

@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
@@ -80,7 +81,7 @@ public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IR
 
 			yield return new SpriteRenderable(
 				this.validCell.sprite, wr.World.Map.CenterOfCell(cell), WVec.Zero, 0, null, 1f,
-				this.validCell.alpha, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+				this.validCell.alpha, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 		}
 	}
 

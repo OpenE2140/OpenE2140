@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -63,7 +64,7 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 						return null;
 
 					return mr.WithTint(
-							new float3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
+							new Vector3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
 							mr.TintModifiers | TintModifiers.ReplaceColor
 						)
 						.WithAlpha(this.ShadowColor.A / 255f);
@@ -76,14 +77,14 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderModifier
 {
 	private readonly WithTurretShadowInfo info;
-	private readonly float3 shadowColor;
+	private readonly Vector3 shadowColor;
 	private readonly float shadowAlpha;
 
 	public WithTurretShadow(WithTurretShadowInfo info)
 		: base(info)
 	{
 		this.info = info;
-		this.shadowColor = new float3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
+		this.shadowColor = new Vector3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
 		this.shadowAlpha = info.ShadowColor.A / 255f;
 	}
 

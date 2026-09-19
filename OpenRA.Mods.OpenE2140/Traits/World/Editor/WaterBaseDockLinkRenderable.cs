@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Primitives;
@@ -44,8 +45,8 @@ public class WaterBaseDockLinkRenderable : IRenderable, IFinalizedRenderable
 	public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
 	public void Render(WorldRenderer wr)
 	{
-		var startPos = wr.Viewport.WorldToViewPx(wr.ScreenPosition(this.Pos));
-		var endPos = wr.Viewport.WorldToViewPx(wr.Screen3DPosition(this.end));
+		var startPos = wr.Viewport.WorldToViewPx(wr.ScreenPosition(this.Pos).AsVector3()).ToVector3();
+		var endPos = wr.Viewport.WorldToViewPx(wr.Screen3DPosition(this.end)).ToVector3();
 		Game.Renderer.RgbaColorRenderer.DrawLine(
 			startPos,
 			endPos,
@@ -55,9 +56,9 @@ public class WaterBaseDockLinkRenderable : IRenderable, IFinalizedRenderable
 		DrawTargetMarker(this.color, endPos, this.markerWidth);
 	}
 
-	public static void DrawTargetMarker(Color color, int2 screenPos, float size)
+	public static void DrawTargetMarker(Color color, Vector3 screenPos, float size)
 	{
-		var offset = new float2(size, size);
+		var offset = new Vector3(size, size, 0);
 		var tl = screenPos - offset;
 		var br = screenPos + offset;
 		Game.Renderer.RgbaColorRenderer.FillRect(tl, br, color);

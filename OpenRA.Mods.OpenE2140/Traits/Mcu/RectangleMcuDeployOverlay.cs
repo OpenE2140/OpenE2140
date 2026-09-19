@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Primitives;
@@ -44,12 +45,12 @@ public class BuildingOverlayRectangleRenderable : IRenderable, IFinalizedRendera
 	public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
 	public void Render(WorldRenderer wr)
 	{
-		var tl = wr.Viewport.WorldToViewPx(this.decorationBounds.TopLeft).ToFloat2();
-		var br = wr.Viewport.WorldToViewPx(this.decorationBounds.BottomRight).ToFloat2();
-		var tr = new float2(br.X, tl.Y);
-		var bl = new float2(tl.X, br.Y);
-		var u = new float2(24, 0);
-		var v = new float2(0, 24);
+		var tl = wr.Viewport.WorldToViewPx(this.decorationBounds.TopLeft).ToVector3();
+		var br = wr.Viewport.WorldToViewPx(this.decorationBounds.BottomRight).ToVector3();
+		var tr = new Vector3(br.X, tl.Y, 0);
+		var bl = new Vector3(tl.X, br.Y, 0);
+		var u = new Vector3(24, 0, 0);
+		var v = new Vector3(0, 24, 0);
 
 		var cr = Game.Renderer.RgbaColorRenderer;
 		cr.DrawLine([tl + u, tl, tl + v], 1, this.color, true);

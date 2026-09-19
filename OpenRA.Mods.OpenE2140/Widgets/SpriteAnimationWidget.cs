@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Widgets;
 using OpenRA.Widgets;
+using GraphicsUtil = OpenRA.Graphics.Util;
 
 namespace OpenRA.Mods.OpenE2140.Widgets;
 
@@ -39,7 +41,7 @@ public class SpriteAnimationWidget : Widget
 		if (this.spritesheet.Length == 0)
 			return;
 
-		this.currentFrame = (int)float2.Lerp(0, this.spritesheet.Length, (float)this.playTime.Elapsed.TotalSeconds * this.invLength);
+		this.currentFrame = (int)GraphicsUtil.Lerp(0, this.spritesheet.Length, (float)this.playTime.Elapsed.TotalSeconds * this.invLength);
 		if (this.currentFrame >= this.spritesheet.Length)
 		{
 			this.currentFrame = 0;
@@ -53,7 +55,7 @@ public class SpriteAnimationWidget : Widget
 			{
 				var x = (this.RenderBounds.Width - sprite.Size.X) / 2 + this.RenderBounds.X;
 				var y = (this.RenderBounds.Height - sprite.Size.Y) / 2 + this.RenderBounds.Y;
-				WidgetUtils.DrawSprite(sprite, new float2(x, y));
+				WidgetUtils.DrawSprite(sprite, new Vector2(x, y));
 			}
 		}
 	}

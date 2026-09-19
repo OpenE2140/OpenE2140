@@ -12,6 +12,7 @@
 #endregion
 
 using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Primitives;
@@ -26,11 +27,11 @@ public class VirtualSpriteLoader : ISpriteLoader
 		public SpriteFrameType Type { get; }
 		public Size Size { get; }
 		public Size FrameSize { get; }
-		public float2 Offset { get; }
+		public Vector2 Offset { get; }
 		public byte[] Data { get; }
 		public bool DisableExportPadding => true;
 
-		public SpriteFrame(SpriteFrameType type, Size size, float2 offset, byte[] pixels)
+		public SpriteFrame(SpriteFrameType type, Size size, Vector2 offset, byte[] pixels)
 		{
 			this.Type = type;
 			this.Size = size;
@@ -55,7 +56,7 @@ public class VirtualSpriteLoader : ISpriteLoader
 				frame => new SpriteFrame(
 					SpriteFrameType.Rgba32,
 					frame.Bounds.Size,
-					new float2(frame.Bounds.X + frame.Bounds.Width / 2f, frame.Bounds.Y + frame.Bounds.Height / 2f),
+					new Vector2(frame.Bounds.X + frame.Bounds.Width / 2f, frame.Bounds.Y + frame.Bounds.Height / 2f),
 					frame.Pixels
 				)
 			)

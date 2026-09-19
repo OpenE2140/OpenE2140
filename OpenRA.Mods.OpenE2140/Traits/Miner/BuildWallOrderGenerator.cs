@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
@@ -218,7 +219,7 @@ public class BuildWallOrderGenerator : UnitOrderGenerator
 					alpha = this.blockedAlpha;
 				}
 
-				yield return new SpriteRenderable(tile, world.Map.CenterOfCell(cell), WVec.Zero, -511, null, 1f, alpha, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+				yield return new SpriteRenderable(tile, world.Map.CenterOfCell(cell), WVec.Zero, -511, null, 1f, alpha, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 			}
 		}
 

@@ -58,7 +58,7 @@ public class WithBuildingCrewPipsDecoration : WithDecorationBase<WithBuildingCre
 		this.pips.PlayRepeating(this.Info.EmptySequence);
 
 		var palette = wr.Palette(this.Info.Palette);
-		var pipSize = this.pips.Image.Size.XY.ToInt2();
+		var pipSize = int2.FromVector(this.pips.Image.Size);
 		var pipStride = this.Info.PipStride != int2.Zero ? this.Info.PipStride : new int2(pipSize.X, 0);
 
 		screenPos -= pipSize / 2;
@@ -66,7 +66,7 @@ public class WithBuildingCrewPipsDecoration : WithDecorationBase<WithBuildingCre
 		{
 			var sequenceName = i < this.buildingCrew.CrewMembers.Count ? this.Info.FullSequence : this.Info.EmptySequence;
 			this.pips.PlayRepeating(sequenceName);
-			yield return new UISpriteRenderable(this.pips.Image, self.CenterPosition, screenPos, 0, palette);
+			yield return new UISpriteRenderable(this.pips.Image, self.CenterPosition, screenPos.ToVector2(), 0, palette);
 
 			screenPos += pipStride;
 		}

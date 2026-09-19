@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using JetBrains.Annotations;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Traits;
@@ -27,7 +28,7 @@ public record ResearchIcon(
 	string Image,
 	PaletteReference IconClockPalette,
 	PaletteReference IconDarkenPalette,
-	float2 Pos
+	Vector2 Pos
 );
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
@@ -82,8 +83,8 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 	private Rectangle eventBounds;
 
 	private SpriteFont? overlayFont;
-	private float2 iconOffset;
-	private float2 timeOffset;
+	private Vector2 iconOffset;
+	private Vector2 timeOffset;
 
 	public Researchable[] Researchables = [];
 	private readonly Research research;
@@ -118,7 +119,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 		this.NotResearchable.PlayFetchIndex(this.NotResearchableSequence, () => 0);
 		this.hotkeys = Exts.MakeArray(this.HotkeyCount, i => this.modData.Hotkeys[this.HotkeyPrefix + (i + 1).ToStringInvariant("D2")]);
 		this.overlayFont = Game.Renderer.Fonts[this.OverlayFont];
-		this.iconOffset = 0.5f * this.IconSize.ToFloat2() + this.IconSpriteOffset;
+		this.iconOffset = 0.5f * this.IconSize.ToVector2() + this.IconSpriteOffset.ToVector2();
 	}
 
 	private void ScrollDown()
@@ -284,7 +285,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 					item.Info.Id,
 					this.worldRenderer.Palette(this.ClockPalette),
 					this.worldRenderer.Palette(this.NotResearchablePalette),
-					new float2(rectangle.Location)
+					rectangle.Location.ToVector2()
 				)
 			);
 		}
@@ -297,7 +298,7 @@ public class ResearchPaletteWidget : Widget, IFactionSpecificWidget
 		this.timeOffset = this.iconOffset;
 
 		if (this.overlayFont != null)
-			this.timeOffset -= this.overlayFont.Measure(WidgetUtils.FormatTime(0, this.World.Timestep)) / 2;
+			this.timeOffset -= this.overlayFont.Measure(WidgetUtils.FormatTime(0, this.World.Timestep)).ToVector2() / 2;
 
 		Game.Renderer.EnableAntialiasingFilter();
 

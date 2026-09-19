@@ -11,6 +11,7 @@
 
 #endregion
 
+using System.Numerics;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common.Graphics;
 using OpenRA.Mods.Common.Orders;
@@ -54,7 +55,7 @@ public class WaterBaseMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 			if (footprint.TryGetValue(cell, out var cellType) && cellType == PlaceBuildingCellType.Invalid)
 				continue;
 
-			yield return new SpriteRenderable(this.validCell, wr.World.Map.CenterOfCell(cell), WVec.Zero, -511, null, 1f, this.validAlpha, float3.Ones, TintModifiers.IgnoreWorldTint, true);
+			yield return new SpriteRenderable(this.validCell, wr.World.Map.CenterOfCell(cell), WVec.Zero, -511, null, 1f, this.validAlpha, Vector3.One, TintModifiers.IgnoreWorldTint, true);
 		}
 	}
 
