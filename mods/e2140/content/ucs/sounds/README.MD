@@ -21,3 +21,9 @@ Author: Kibblesbob, Dzierzan
 Source: https://soundbible.com/1794-Missle-Launch.html
 License: Creative Commons 0
 Description: ORCA heavy missile launcher sound.
+
+**detector_machinegun.wav**
+Author: SuperPhat, Dzierzan
+Source: https://freesound.org/people/SuperPhat/sounds/417688/
+License: Creative Commons 0
+Description: DETECTOR machine gun.
