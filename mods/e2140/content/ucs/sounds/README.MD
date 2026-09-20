@@ -15,3 +15,9 @@ Author: Reality Pump Studios, michael.dgg.2
 Source: Earth 2140
 License: Proprietary
 Description: Production cancel announcer sound.
+
+**detector_machinegun.wav**
+Author: SuperPhat, Dzierzan
+Source: https://freesound.org/people/SuperPhat/sounds/417688/
+License: Creative Commons 0
+Description: DETECTOR machine gun.
