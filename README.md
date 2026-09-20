@@ -8,8 +8,10 @@ Links:
 * [Mod DB page](https://www.moddb.com/mods/opene2140)
 * [OpenE2140 channel on Dalek.zone](https://dalek.zone/c/opene2140/videos) (PeerTube)
 
+
 # Videos
 
+- [OpenE2140: Skirmish Alpha Trailer](https://dalek.zone/w/b8G6Jg41ZbS8d8smyUY1tJ)
 - [OpenE2140: Multiplayer Alpha Trailer](https://dalek.zone/w/ejPG78GsWPgyRzWCE8if7S)
 - [OpenE2140: Multiplayer preview (May 2025)](https://dalek.zone/w/rL4636QCeN2ubT9VTa9rKo)
 - [OpenE2140: Preview 7 (March 2025)](https://dalek.zone/w/p6ZBrmKPjPa9L44U1ukLLp)
@@ -21,20 +23,33 @@ Links:
 
 # Screenshots
 
-### Screenshots (May 2025)
 
-<a href="https://github.com/user-attachments/assets/dd90d1dc-dfb2-4f42-8fff-e5448cf2150f"><img src="https://github.com/user-attachments/assets/dd90d1dc-dfb2-4f42-8fff-e5448cf2150f" height="200"></a>
-<a href="https://github.com/user-attachments/assets/cc391f23-4749-4af5-a40c-60a4a657be49"><img src="https://github.com/user-attachments/assets/cc391f23-4749-4af5-a40c-60a4a657be49" height="200"></a>
-<a href="https://github.com/user-attachments/assets/96ff06b5-a7be-4334-8f0c-1deef7bbe0aa"><img src="https://github.com/user-attachments/assets/96ff06b5-a7be-4334-8f0c-1deef7bbe0aa" height="200"></a>
-<a href="https://github.com/user-attachments/assets/1d0c5852-c5bc-47c9-98de-7b49c75c8807"><img src="https://github.com/user-attachments/assets/1d0c5852-c5bc-47c9-98de-7b49c75c8807" height="200"></a>
+### Screenshots (September 2026)
+
+<a href="https://github.com/user-attachments/assets/919c64de-e08c-4e26-b90a-4d2bd3828639"><img src="https://github.com/user-attachments/assets/919c64de-e08c-4e26-b90a-4d2bd3828639" width="200" /></a>
+<a href="https://github.com/user-attachments/assets/360b61eb-3dc2-4127-b329-3f75da8047b8"><img src="https://github.com/user-attachments/assets/360b61eb-3dc2-4127-b329-3f75da8047b8" width="200" /></a>
+<a href="https://github.com/user-attachments/assets/370398f1-4d58-4f53-b27c-8e5cf05f0657"><img src="https://github.com/user-attachments/assets/370398f1-4d58-4f53-b27c-8e5cf05f0657" width="200" /></a>
+<a href="https://github.com/user-attachments/assets/4ecc3456-4438-47fd-9812-2a74c1367493"><img src="https://github.com/user-attachments/assets/4ecc3456-4438-47fd-9812-2a74c1367493" width="200" /></a>
 
 
-### Screenshots (March 2025)
-<a href="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f"><img src="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f" height="200"></a>
-<a href="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511"><img src="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511" height="200"></a>
 
-<a href="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a"><img src="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a" height="200"></a>
 
+<details>
+	<summary>Screenshots (May 2025)</summary>
+	<a href="https://github.com/user-attachments/assets/dd90d1dc-dfb2-4f42-8fff-e5448cf2150f"><img src="https://github.com/user-attachments/assets/dd90d1dc-dfb2-4f42-8fff-e5448cf2150f" height="200"></a>
+	<a href="https://github.com/user-attachments/assets/cc391f23-4749-4af5-a40c-60a4a657be49"><img src="https://github.com/user-attachments/assets/cc391f23-4749-4af5-a40c-60a4a657be49" height="200"></a>
+	<a href="https://github.com/user-attachments/assets/96ff06b5-a7be-4334-8f0c-1deef7bbe0aa"><img src="https://github.com/user-attachments/assets/96ff06b5-a7be-4334-8f0c-1deef7bbe0aa" height="200"></a>
+	<a href="https://github.com/user-attachments/assets/1d0c5852-c5bc-47c9-98de-7b49c75c8807"><img src="https://github.com/user-attachments/assets/1d0c5852-c5bc-47c9-98de-7b49c75c8807" height="200"></a>
+</details>
+
+
+<details>
+	<summary>Screenshots (March 2025)</summary>
+	<a href="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f"><img src="https://github.com/user-attachments/assets/e453bac7-cd03-476a-9e35-637ec61d8f1f" height="200"></a>
+	<a href="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511"><img src="https://github.com/user-attachments/assets/84e42121-3c2c-429b-a684-e19a35038511" height="200"></a>
+	
+	<a href="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a"><img src="https://github.com/user-attachments/assets/bc31ec28-c8bc-42a4-a561-458e531c3f5a" height="200"></a>
+</details>
 
 <details>
 	<summary>Screenshots (March 2024)</summary>
