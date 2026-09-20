@@ -898,6 +898,8 @@
 		RequiresCondition: VehicleDisabled && !airborne
 	RevealsShroud@Disabled:
 		Type: CenterPosition
+	KillsSelf:
+		RequiresCondition: VehicleDisabled && airborne
 
 # Vehicles leave a husk when they're destroyed
 ^Husk:
