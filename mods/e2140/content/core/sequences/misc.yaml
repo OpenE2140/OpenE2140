@@ -26,12 +26,15 @@ clock-ed:
 		Filename: chrome/assets/clock-ed.png
 		Length: 30
 
-moveflash:
-	idle:
-		Filename: content/core/assets/moveflash.png
-		Length: 6
-		Tick: 60
-		ZOffset: 2048
+orderflash:
+    Defaults:
+        Length: 6
+        Tick: 60
+        ZOffset: 2048
+    move:
+        Filename: content/core/assets/moveflash.png
+    attack:
+        Filename: content/core/assets/attackflash.png
 
 rallypoint:
 	Defaults:
