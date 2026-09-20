@@ -3,7 +3,7 @@ ucs_ships_orca:
 	ReloadDelay: 62
 	Range: 6c896
 	MinRange: 2c512
-	Report: 4.smp
+	Report: orca_missile_launch.wav
 	ValidTargets: Ground, Water, Ship
 	Burst: 2
 	BurstDelays: 24

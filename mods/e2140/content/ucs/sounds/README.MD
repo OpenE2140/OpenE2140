@@ -16,6 +16,12 @@ Source: Earth 2140
 License: Proprietary
 Description: Production cancel announcer sound.
 
+**orca_missile_launch.wav**
+Author: Kibblesbob, Dzierzan
+Source: https://soundbible.com/1794-Missle-Launch.html
+License: Creative Commons 0
+Description: ORCA heavy missile launcher sound.
+
 **detector_machinegun.wav**
 Author: SuperPhat, Dzierzan
 Source: https://freesound.org/people/SuperPhat/sounds/417688/
