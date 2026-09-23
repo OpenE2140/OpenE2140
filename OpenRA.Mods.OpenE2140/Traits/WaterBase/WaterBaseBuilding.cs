@@ -11,7 +11,6 @@
 
 #endregion
 
-using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;

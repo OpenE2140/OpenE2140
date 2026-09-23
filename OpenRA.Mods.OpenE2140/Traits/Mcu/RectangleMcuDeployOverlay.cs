@@ -13,7 +13,6 @@
 
 using System.Numerics;
 using OpenRA.Graphics;
-using OpenRA.Mods.Common.Graphics;
 using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Mcu;

@@ -12,15 +12,12 @@ public class ResourceMineDeployZoneSearch
 
 	private readonly List<ResourceCluster> clusters = [];
 
-	public ResourceMineDeployZoneSearch(
-		Map map,
-		IResourceLayer resourceLayer,
-		EconomyManagerBotModuleInfo economyManagerBotModuleInfo)
+	public ResourceMineDeployZoneSearch(Map map, IResourceLayer resourceLayer, EconomyManagerBotModuleInfo info)
 	{
 		this.map = map;
 		this.resourceLayer = resourceLayer;
-		this.resourceCellClusterMinimumCount = economyManagerBotModuleInfo.ResourceCellClusterMinimumCount;
-		this.minimumResourceCellsToDeploy = economyManagerBotModuleInfo.MinimumResourceCellsToDeploy;
+		this.resourceCellClusterMinimumCount = info.ResourceCellClusterMinimumCount;
+		this.minimumResourceCellsToDeploy = info.MinimumResourceCellsToDeploy;
 	}
 
 	public void UpdateAvailableResourceClusters(CPos origin, int maxSearchRadius)
@@ -29,10 +26,7 @@ public class ResourceMineDeployZoneSearch
 		this.clusters.AddRange(this.FindResourceClusters(origin, maxSearchRadius, this.resourceCellClusterMinimumCount));
 	}
 
-	public List<DeployZone> FindResourceMineDeployZones(
-		CPos origin,
-		int maxSearchRadius,
-		CVec[] footprintOffsets)
+	public List<DeployZone> FindResourceMineDeployZones(CPos origin, int maxSearchRadius, CVec[] footprintOffsets)
 	{
 		// If there are no resource clusters cached, update cache first.
 		if (this.clusters.Count == 0)

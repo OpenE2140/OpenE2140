@@ -1,9 +1,6 @@
 ﻿using OpenRA.Graphics;
-using OpenRA.Mods.Common;
-using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits;
-using OpenRA.Primitives;
 using OpenRA.Traits;
 using Transforms = OpenRA.Mods.OpenE2140.Traits.Mcu.Transforms;
 
