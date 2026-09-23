@@ -423,20 +423,22 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		protected override IEnumerable<IRenderable> Render(WorldRenderer wr, OpenRA.World world) { yield break; }
 		protected override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, OpenRA.World world)
 		{
-			var lastMousePos = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
+			var cell = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
+			if (!world.Map.Contains(cell))
+				yield break;
 
 			var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 
-			foreach (var t in this.transforms.DockBuildingInfo.Tiles(lastMousePos))
+			foreach (var t in this.transforms.DockBuildingInfo.Tiles(cell))
 			{
-				footprint.Add(t, this.transforms.CanPlaceDock(lastMousePos) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+				footprint.Add(t, this.transforms.CanPlaceDock(cell) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 			}
 
-			foreach (var r in this.RenderPlaceBuildingPreviews(this.Self, wr, lastMousePos, footprint))
+			foreach (var r in this.RenderPlaceBuildingPreviews(this.Self, wr, cell, footprint))
 				yield return r;
 		}
 
-		// TODO: maybe refactor with McuDeployOverlay ?
+		// TODO: maybe refactor with McuDeployOverlay.RenderPlaceBuildingPreviews ?
 		private IEnumerable<IRenderable> RenderPlaceBuildingPreviews(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 		{
 			var previewGeneratorInfos = this.transforms.DockActorInfo.TraitInfos<IPlaceBuildingPreviewGeneratorInfo>();
