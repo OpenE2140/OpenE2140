@@ -155,7 +155,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 
 	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitPaused && !this.IsTraitDisabled; }
 
-	public void DeployTransform(bool queued)
+	private void DeployTransform(bool queued)
 	{
 		if (!queued && !this.CanDeploy(this.self))
 		{
@@ -246,19 +246,16 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			this.moveInfo = self.Info.TraitInfo<IMoveInfo>();
 		}
 
-		protected override void OnFirstRun(Actor self)
-		{
-			if (self.Location != this.targetLocation && this.move == null)
-				this.Cancel(self);
-		}
-
 		public override bool Tick(Actor self)
 		{
-			if (this.move == null || this.IsCanceling)
+			if (this.IsCanceling)
 				return true;
 
 			if (self.Location != this.targetLocation)
 			{
+				if (this.move == null)
+					return true;
+
 				// Limit number of move attempts
 				if (++this.attempt > 3)
 				{
