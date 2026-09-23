@@ -134,8 +134,12 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
+		targetLocation ??= self.Location;
+		if (!self.World.Map.Contains(targetLocation.Value))
+			return false;
+
 		// First check, if the main building can be deployed at specified/current location.
-		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, (targetLocation ?? self.Location) + this.Info.Offset, self))
+		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, targetLocation.Value + this.Info.Offset, self))
 			return false;
 
 		// Now check, if there are any cells in buildable radius, where the dock can be placed.
@@ -206,49 +210,63 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		}
 	}
 
-	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
+	Order? IIssueOrder.IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
 		if (order.OrderID == BeginPlaceDockOrderID)
-			return this.BeginPlaceDock(queued);
+			return this.BeginPlaceDock(self, target, queued);
 		else if (order.OrderID == BuildWaterBaseOrderID)
 			return new Order(BuildWaterBaseOrderID, self, target, queued);
 
 		return null;
 	}
 
-	public void ResolveOrder(Actor self, Order order)
+	private Order? BeginPlaceDock(Actor self, in Target target, bool queued)
+	{
+		var targetLocation = self.World.Map.CellContaining(target.CenterPosition);
+		if (!this.CanDeploy(self, targetLocation))
+			return null;
+
+		self.World.OrderGenerator = new PlaceDockOrderGenerator(self, targetLocation, queued);
+		return new Order(BeginPlaceDockOrderID, self, Target.FromCell(self.World, targetLocation), queued);
+	}
+
+	Order? IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
+	{
+		return this.BeginPlaceDock(self, Target.FromCell(self.World, self.Location), queued);
+	}
+
+	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued)
+	{
+		return !this.IsTraitPaused && !this.IsTraitDisabled && this.CanDeploy(this.self);
+	}
+
+	void IResolveOrder.ResolveOrder(Actor self, Order order)
 	{
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return;
 
-		CPos? cellLocation = order.Target.Type == TargetType.Terrain ? self.World.Map.CellContaining(order.Target.CenterPosition) : null;
-		if (order.OrderString == BuildWaterBaseOrderID && this.CanDeploy(self) && cellLocation != null && this.CanPlaceDock(cellLocation.Value))
+		if (order.OrderString == "Stop")
 		{
-			Sync.RunUnsynced(self.World, () => this.self.World.CancelInputMode());
-			this.DockLocation = cellLocation;
-			this.DeployTransform(order.Queued);
+			this.DockLocation = null;
+			self.CancelActivity();
+			return;
 		}
-		else if (order.OrderString == BeginPlaceDockOrderID && this.CanDeploy(self))
+
+		if (order.Target.Type != TargetType.Terrain)
+			return;
+
+		if (order.OrderString == BuildWaterBaseOrderID)
 		{
-			Sync.RunUnsynced(self.World, () => this.self.World.OrderGenerator = new PlaceDockOrderGenerator(this.self, order.Queued));
+			var cell = self.World.Map.CellContaining(order.Target.CenterPosition);
+			var deployLocation = order.ExtraLocation;
+
+			this.DeployTransform(deployLocation, cell, order.Queued);
 		}
 	}
 
-	private Order BeginPlaceDock(bool queued)
+	private void DeployTransform(CPos deployLocation, CPos dockLocation, bool queued)
 	{
-		return new Order(BeginPlaceDockOrderID, this.self, queued);
-	}
-
-	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
-	{
-		return this.BeginPlaceDock(queued);
-	}
-
-	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitPaused && !this.IsTraitDisabled && this.CanDeploy(this.self); }
-
-	public void DeployTransform(bool queued)
-	{
-		if (!queued && (!this.CanDeploy(this.self) || this.DockLocation == null || !this.CanPlaceDock(this.DockLocation.Value)))
+		if (!queued && (!this.CanDeploy(this.self, deployLocation) || !this.CanPlaceDock(dockLocation)))
 		{
 			foreach (var order in this.ClearBlockersOrders(this.self.Location + this.Info.Offset))
 				this.self.World.IssueOrder(order);
@@ -258,11 +276,14 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			foreach (var s in this.Info.NoTransformSounds)
 				Game.Sound.PlayToPlayer(SoundType.World, this.self.Owner, s);
 
-			Game.Sound.PlayNotification(this.self.World.Map.Rules, this.self.Owner, "Speech", this.Info.NoTransformNotification, this.self.Owner.Faction.InternalName);
+			Game.Sound.PlayNotification(
+				this.self.World.Map.Rules, this.self.Owner, "Speech", this.Info.NoTransformNotification, this.self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(this.self.Owner, this.Info.NoTransformTextNotification);
 
 			return;
 		}
+
+		this.DockLocation = dockLocation;
 
 		this.self.QueueActivity(queued, this.GetTransformActivity());
 	}
@@ -362,30 +383,35 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 	private class PlaceDockOrderGenerator : OrderGenerator
 	{
 		public readonly Actor Self;
+		private readonly CPos deployLocation;
 		private readonly bool queued;
 		private readonly WaterBaseTransforms transforms;
 
 		protected override MouseActionType ActionType => MouseActionType.PlaceBuilding;
 
-		public PlaceDockOrderGenerator(Actor self, bool queued)
+		public PlaceDockOrderGenerator(Actor self, CPos deployLocation, bool queued)
 			: base(self.World)
 		{
 			this.Self = self;
+			this.deployLocation = deployLocation;
 			this.queued = queued;
 			this.transforms = self.Trait<WaterBaseTransforms>();
 		}
 
 		protected override IEnumerable<Order> OrderInner(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
+			world.CancelInputMode();
 			if (mi.Button != this.ActionButton)
 			{
-				world.CancelInputMode();
 				yield break;
 			}
 
 			if (this.transforms.CanPlaceDock(cell))
 			{
-				yield return new Order(BuildWaterBaseOrderID, this.Self, Target.FromCell(world, cell), this.queued);
+				yield return new Order(BuildWaterBaseOrderID, this.Self, Target.FromCell(world, cell), this.queued)
+				{
+					ExtraLocation = this.deployLocation
+				};
 			}
 		}
 
