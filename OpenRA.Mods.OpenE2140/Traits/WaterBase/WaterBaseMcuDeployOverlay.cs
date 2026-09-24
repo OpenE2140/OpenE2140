@@ -48,7 +48,9 @@ public class WaterBaseMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 
 	IEnumerable<IRenderable> ICustomMcuDeployOverlay.Render(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
-		foreach (var cell in this.transforms.GetPossibleCellsForDockPlacement())
+		var deployLocation = topLeft -= this.transforms.Info.Offset;
+
+		foreach (var cell in this.transforms.GetPossibleCellsForDockPlacement(deployLocation))
 		{
 			// If Main Building cannot be placed at this cell, don't render overlay sprite for the dock placement here.
 			// It's redundant (because Water Base cannot be deployed anyway) and looks bad, when both sprites are rendered over each other.
@@ -61,8 +63,10 @@ public class WaterBaseMcuDeployOverlayRenderer : ICustomMcuDeployOverlay
 
 	IEnumerable<IRenderable> ICustomMcuDeployOverlay.RenderAnnotations(Actor self, WorldRenderer wr, CPos topLeft, Dictionary<CPos, PlaceBuildingCellType> footprint)
 	{
-		var color = this.transforms.GetPossibleCellsForDockPlacement().Any() ? Color.Green : Color.Red;
+		var deployLocation = topLeft -= this.transforms.Info.Offset;
 
-		yield return new CircleAnnotationRenderable(this.transforms.GetCenterOfFootprint(), this.transforms.Info.MaximumDockDistance, 1, color);
+		var color = this.transforms.GetPossibleCellsForDockPlacement(deployLocation).Any() ? Color.Green : Color.Red;
+
+		yield return new CircleAnnotationRenderable(this.transforms.GetCenterOfFootprint(deployLocation), this.transforms.Info.MaximumDockDistance, 1, color);
 	}
 }

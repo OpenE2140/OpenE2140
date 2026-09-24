@@ -11,17 +11,20 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
+using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Activites;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Orders;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using static OpenRA.Mods.OpenE2140.Traits.Mcu.Mcu;
+using OpenE2140Transform = OpenRA.Mods.OpenE2140.Activites.Transform;
 
 namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
 
@@ -144,60 +147,51 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 		// Now check, if there are any cells in buildable radius, where the dock can be placed.
 		if (this.DockLocation == null)
-			return this.GetPossibleCellsForDockPlacement().Any();
+			return this.GetPossibleCellsForDockPlacement(targetLocation).Any();
 		else
-			return this.GetPossibleCellsForDockPlacement().Contains(this.DockLocation.Value);
+			return this.GetPossibleCellsForDockPlacement(targetLocation).Contains(this.DockLocation.Value);
 	}
 
-	public bool CanPlaceDock(CPos location)
+	public bool CanPlaceDock(CPos location, CPos? deployLocation = null)
 	{
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return false;
 
-		return this.GetPossibleCellsForDockPlacement().Contains(location);
+		return this.GetPossibleCellsForDockPlacement(deployLocation).Contains(location);
 	}
 
-	public IEnumerable<CPos> GetPossibleCellsForDockPlacement()
+	public IEnumerable<CPos> GetPossibleCellsForDockPlacement(CPos? deployLocation = null)
 	{
-		return this.GetCellsInRangeForDock()
+		return this.GetCellsInRangeForDock(deployLocation)
 			.Where(c => !this.self.World.ShroudObscures(c) && this.self.World.CanPlaceBuilding(c, this.DockActorInfo, this.DockBuildingInfo, this.self));
 	}
 
-	public IEnumerable<CPos> GetBuildableCellsForDock()
-	{
-		return this.GetCellsInRangeForDock()
-			.Where(c => !this.self.World.ShroudObscures(c) && this.self.World.IsCellBuildable(c, this.DockActorInfo, this.DockBuildingInfo, this.self));
-	}
+	//public IEnumerable<CPos> GetBuildableCellsForDock()
+	//{
+	//	return this.GetCellsInRangeForDock()
+	//		.Where(c => !this.self.World.ShroudObscures(c) && this.self.World.IsCellBuildable(c, this.DockActorInfo, this.DockBuildingInfo, this.self));
+	//}
 
-	private IEnumerable<CPos> GetCellsInRangeForDock()
+	private IEnumerable<CPos> GetCellsInRangeForDock(CPos? deployLocation = null)
 	{
-		var centerOfFootprint = this.GetCenterOfFootprint();
+		deployLocation ??= this.self.Location;
 
-		return this.self.World.Map.FindTilesInAnnulus(this.self.Location, 0, (this.Info.MaximumDockDistance.Length / this.self.World.Map.Grid.TileScale) + 1)
+		var centerOfFootprint = this.GetCenterOfFootprint(deployLocation);
+
+		return this.self.World.Map
+			.FindTilesInAnnulus(deployLocation.Value, 0, (this.Info.MaximumDockDistance.Length / this.self.World.Map.Grid.TileScale) + 1)
 			.Where(c => (this.self.World.Map.CenterOfCell(c) - centerOfFootprint).Length <= this.Info.MaximumDockDistance.Length);
 	}
 
-	public WPos GetCenterOfFootprint()
+	public WPos GetCenterOfFootprint(CPos? deployLocation = null)
 	{
-		return this.CustomBuildingInfo.GetCenterOfFootprint(this.self.Location + this.Info.Offset);
+		deployLocation ??= this.self.Location;
+		return this.CustomBuildingInfo.GetCenterOfFootprint(deployLocation.Value + this.Info.Offset);
 	}
 
 	private IEnumerable<Order> ClearBlockersOrders(CPos topLeft)
 	{
 		return AIUtils.ClearBlockersOrders(this.CustomBuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
-	}
-
-	public Activity GetTransformActivity()
-	{
-		return new Transform(this.Info.IntoActor)
-		{
-			Offset = this.Info.Offset,
-			Facing = this.Info.Facing,
-			Sounds = this.Info.TransformSounds,
-			Notification = this.Info.TransformNotification,
-			TextNotification = this.Info.TransformTextNotification,
-			Faction = this.faction
-		};
 	}
 
 	public IEnumerable<IOrderTargeter> Orders
@@ -258,13 +252,19 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			var cell = self.World.Map.CellContaining(order.Target.CenterPosition);
 			var deployLocation = order.ExtraLocation;
 
-			this.DeployTransform(deployLocation, cell, order.Queued);
+			if (!this.ValidateDeployTransform(deployLocation, cell, order.Queued))
+				return;
+
+			this.DockLocation = cell;
+
+			this.self.QueueActivity(order.Queued, this.GetTransformActivity(deployLocation, cell));
+			self.ShowTargetLines();
 		}
 	}
 
-	private void DeployTransform(CPos deployLocation, CPos dockLocation, bool queued)
+	private bool ValidateDeployTransform(CPos deployLocation, CPos dockLocation, bool queued)
 	{
-		if (!queued && (!this.CanDeploy(this.self, deployLocation) || !this.CanPlaceDock(dockLocation)))
+		if (!queued && (!this.CanDeploy(this.self, deployLocation) || !this.CanPlaceDock(dockLocation, deployLocation)))
 		{
 			foreach (var order in this.ClearBlockersOrders(this.self.Location + this.Info.Offset))
 				this.self.World.IssueOrder(order);
@@ -278,35 +278,60 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 				this.self.World.Map.Rules, this.self.Owner, "Speech", this.Info.NoTransformNotification, this.self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(this.self.Owner, this.Info.NoTransformTextNotification);
 
-			return;
+			return false;
 		}
 
-		this.DockLocation = dockLocation;
+		return true;
+	}
 
-		this.self.QueueActivity(queued, this.GetTransformActivity());
+	private Activity GetTransformActivity(CPos deployLocation, CPos dockLocation)
+	{
+		if (deployLocation == this.self.Location)
+		{
+			return new OpenE2140Transform(this.Info.IntoActor)
+			{
+				Offset = this.Info.Offset,
+				Facing = this.Info.Facing,
+				Sounds = this.Info.TransformSounds,
+				Notification = this.Info.TransformNotification,
+				TextNotification = this.Info.TransformTextNotification,
+				Faction = this.faction
+			};
+		}
+
+		return new MoveToTransform(this.self, deployLocation, dockLocation, this);
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr, Target target)
 	{
-		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
-		foreach (var item in previewTraits)
-			foreach (var r in item.Render(self, wr, target))
-				yield return r;
+		return RenderOrderPreviewOverlay(self, wr, target, Game.GetModifierKeys(), (p, t) => p.Render(self, wr, t));
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr, Target target)
 	{
-		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
-		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAboveShroud(self, wr, target))
-				yield return r;
+		return RenderOrderPreviewOverlay(self, wr, target, Game.GetModifierKeys(), (p, t) => p.RenderAboveShroud(self, wr, t));
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr, Target target)
 	{
+		return RenderOrderPreviewOverlay(self, wr, target, Game.GetModifierKeys(), (p, t) => p.RenderAnnotations(self, wr, t));
+	}
+
+	private static IEnumerable<IRenderable> RenderOrderPreviewOverlay(
+		Actor self, WorldRenderer wr, Target target, Modifiers modifiers,
+		Func<ITransformsPreview, Target, IEnumerable<IRenderable>> renderFunc)
+	{
+		if (modifiers.HasModifier(Modifiers.Ctrl))
+		{
+			var cell = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
+			if (!self.World.Map.Contains(cell))
+				yield break;
+			target = Target.FromCell(self.World, cell);
+		}
+
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAnnotations(self, wr, target))
+			foreach (var r in renderFunc(item, target))
 				yield return r;
 	}
 
@@ -355,39 +380,57 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
-		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
+		if (this.mcuDeployOverlay == null || !TryGetActiveDockPlacement(self, out var generator))
 			return [];
 
-		return this.mcuDeployOverlay.RenderAboveShroud(self, wr, Target.FromActor(self));
+		var target = generator.DeployLocation != null
+			? Target.FromCell(self.World, generator.DeployLocation.Value)
+			: Target.FromActor(self);
+
+		return this.mcuDeployOverlay.RenderAboveShroud(self, wr, target);
 	}
 
 	bool IRenderAboveShroud.SpatiallyPartitionable => false;
 
 	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
 	{
-		if (this.mcuDeployOverlay == null || !IsDockPlacementActive(self))
+		if (this.mcuDeployOverlay == null || !TryGetActiveDockPlacement(self, out var generator))
 			return [];
 
-		return this.mcuDeployOverlay.RenderAnnotations(self, wr, Target.FromActor(self));
+		var target = generator.DeployLocation != null
+			? Target.FromCell(self.World, generator.DeployLocation.Value)
+			: Target.FromActor(self);
+
+		return this.mcuDeployOverlay.RenderAnnotations(self, wr, target);
 	}
 
 	bool IRenderAnnotations.SpatiallyPartitionable => false;
 
-	private static bool IsDockPlacementActive(Actor self)
+	private static bool TryGetActiveDockPlacement(Actor self, [NotNullWhen(true)] out PlaceDockOrderGenerator? generator)
 	{
-		return self.World.OrderGenerator is PlaceDockOrderGenerator o && o.Self == self;
+		if (self.World.OrderGenerator is PlaceDockOrderGenerator o && o.Self == self)
+		{
+			generator = o;
+			return true;
+		}
+
+		generator = null;
+		return false;
 	}
 
-	private class PlaceDockOrderGenerator : OrderGenerator
+	private class PlaceDockOrderGenerator : ExtendedUnitOrderGenerator
 	{
 		public readonly Actor Self;
-		private readonly CPos deployLocation;
 		private readonly bool queued;
 		private readonly WaterBaseTransforms transforms;
 
+		private CPos? deployLocation;
+
+		public CPos? DeployLocation => this.deployLocation;
+
 		protected override MouseActionType ActionType => MouseActionType.PlaceBuilding;
 
-		public PlaceDockOrderGenerator(Actor self, CPos deployLocation, bool queued)
+		public PlaceDockOrderGenerator(Actor self, CPos? deployLocation, bool queued)
 			: base(self.World)
 		{
 			this.Self = self;
@@ -398,28 +441,42 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 		protected override IEnumerable<Order> OrderInner(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
-			world.CancelInputMode();
 			if (mi.Button != this.ActionButton)
 			{
+				world.CancelInputMode();
 				yield break;
 			}
 
-			if (this.transforms.CanPlaceDock(cell))
+			if (!world.Map.Contains(cell))
+			{
+				world.CancelInputMode();
+				yield break;
+			}
+
+			if (this.deployLocation == null && mi.Modifiers.HasModifier(Modifiers.Ctrl))
+			{
+				this.deployLocation = cell;
+				yield break;
+			}
+
+			if (this.deployLocation != null && this.transforms.CanPlaceDock(cell, this.deployLocation))
 			{
 				yield return new Order(BuildWaterBaseOrderID, this.Self, Target.FromCell(world, cell), this.queued)
 				{
-					ExtraLocation = this.deployLocation
+					ExtraLocation = this.deployLocation.Value
 				};
 			}
+
+			world.CancelInputMode();
 		}
 
-		protected override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
+		public override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
 		{
 			world.CancelInputMode();
 		}
 
-		protected override IEnumerable<IRenderable> Render(WorldRenderer wr, OpenRA.World world) { yield break; }
-		protected override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, OpenRA.World world)
+		public override IEnumerable<IRenderable> Render(WorldRenderer wr, OpenRA.World world) { yield break; }
+		public override IEnumerable<IRenderable> RenderAboveShroud(WorldRenderer wr, OpenRA.World world)
 		{
 			var cell = wr.Viewport.ViewToWorld(Viewport.LastMousePos);
 			if (!world.Map.Contains(cell))
@@ -429,7 +486,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 			foreach (var t in this.transforms.DockBuildingInfo.Tiles(cell))
 			{
-				footprint.Add(t, this.transforms.CanPlaceDock(cell) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+				footprint.Add(t, this.transforms.CanPlaceDock(cell, deployLocation: this.deployLocation) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 			}
 
 			foreach (var r in this.RenderPlaceBuildingPreviews(this.Self, wr, cell, footprint))
@@ -461,11 +518,16 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			}
 		}
 
-		protected override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, OpenRA.World world) { yield break; }
+		public override IEnumerable<IRenderable> RenderAnnotations(WorldRenderer wr, OpenRA.World world) { yield break; }
 
-		protected override string GetCursor(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+		public override string GetCursor(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
-			return this.transforms.CanPlaceDock(cell) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
+			if (this.deployLocation == null)
+				return this.transforms.CanDeploy(this.Self, cell) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
+			else
+				return this.transforms.CanPlaceDock(cell, this.deployLocation.Value)
+					? this.transforms.Info.DeployCursor
+					: this.transforms.Info.DeployBlockedCursor;
 		}
 	}
 
@@ -488,20 +550,127 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 		public bool CanTarget(Actor self, in Target target, ref TargetModifiers modifiers, ref string cursor)
 		{
-			if (target.Type != TargetType.Actor)
+			if (target.Type == TargetType.Invalid)
+				return false;
+			else if (target.Type == TargetType.Terrain && !modifiers.HasModifier(TargetModifiers.ForceAttack))
 				return false;
 
 			var location = self.World.Map.CellContaining(target.CenterPosition);
 			if (!self.World.Map.Contains(location))
 				return false;
 
-			cursor = this.transforms.CanDeploy(self) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
+			cursor = this.transforms.CanDeploy(self, location) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
 
 			this.IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
 
-			return self == target.Actor;
+			if (target.Type == TargetType.Actor)
+				return self == target.Actor;
+
+			return true;
 		}
 
 		public bool IsQueued { get; private set; }
+	}
+
+	private class BeginPlaceDockOrderGenerator : ExtendedUnitOrderGenerator
+	{
+		private readonly Actor self;
+		private readonly WaterBaseTransforms transforms;
+
+		public BeginPlaceDockOrderGenerator(Actor self, WaterBaseTransforms transforms)
+			: base(self.World)
+		{
+			this.self = self;
+			this.transforms = transforms;
+		}
+
+		protected override IEnumerable<Order> OrderInner(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+		{
+			if (mi.Modifiers.HasModifier(Modifiers.Ctrl))
+			{
+				var queued = mi.Modifiers.HasModifier(Modifiers.Shift);
+				world.OrderGenerator = new PlaceDockOrderGenerator(this.self, cell, queued);
+			}
+
+			return [];
+		}
+		public override void SelectionChanged(OpenRA.World world, IEnumerable<Actor> selected)
+		{
+			world.CancelInputMode();
+		}
+
+		public override string GetCursor(OpenRA.World world, CPos cell, int2 worldPixel, MouseInput mi)
+		{
+			if (!world.Map.Contains(cell))
+				return this.transforms.Info.DeployBlockedCursor;
+
+			if (mi.Modifiers.HasModifier(Modifiers.Ctrl) || this.transforms.CanDeploy(this.self, cell))
+				return this.transforms.Info.DeployCursor;
+
+			return this.transforms.Info.DeployBlockedCursor;
+		}
+	}
+
+
+	private class MoveToTransform : Activity
+	{
+		private readonly CPos targetLocation;
+		private readonly CPos dockLocation;
+		private readonly WaterBaseTransforms transforms;
+		private readonly IMove? move;
+		private readonly IMoveInfo? moveInfo;
+
+		private int attempt;
+
+		public MoveToTransform(Actor self, CPos targetLocation, CPos dockLocation, WaterBaseTransforms transforms)
+		{
+			this.targetLocation = targetLocation;
+			this.dockLocation = dockLocation;
+			this.transforms = transforms;
+
+			this.move = self.TraitOrDefault<IMove>();
+			this.moveInfo = self.Info.TraitInfo<IMoveInfo>();
+		}
+
+		public override bool Tick(Actor self)
+		{
+			if (this.IsCanceling || self.Disposed)
+				return true;
+
+			if (self.Location != this.targetLocation)
+			{
+				if (this.move == null)
+					return true;
+
+				// Limit number of move attempts
+				if (++this.attempt > 3)
+				{
+					return true;
+				}
+
+				if (this.attempt > 1)
+					this.QueueChild(new Wait(30));
+
+				var moveActivity = this.move.MoveTo(this.targetLocation, targetLineColor: this.moveInfo?.GetTargetLineColor());
+				this.QueueChild(moveActivity);
+				return false;
+			}
+
+			if (this.transforms.ValidateDeployTransform(this.targetLocation, this.dockLocation, false))
+				this.QueueChild(this.transforms.GetTransformActivity(this.targetLocation, this.dockLocation));
+
+			return true;
+		}
+
+		public override IEnumerable<TargetLineNode> TargetLineNodes(Actor self)
+		{
+			if (this.ChildActivity != null)
+				return this.ChildActivity.TargetLineNodes(self);
+
+			if (this.moveInfo != null)
+				return [new TargetLineNode(Target.FromCell(self.World, this.targetLocation), this.moveInfo.GetTargetLineColor())];
+
+			return [];
+		}
 	}
 }
