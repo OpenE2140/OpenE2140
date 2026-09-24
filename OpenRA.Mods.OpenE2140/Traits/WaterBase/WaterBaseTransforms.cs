@@ -205,8 +205,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		get
 		{
 			if (!this.IsTraitDisabled)
-				yield return new DeployOrderTargeter(BeginPlaceDockOrderID, 5,
-					() => this.CanDeploy(this.self) ? this.Info.DeployCursor : this.Info.DeployBlockedCursor);
+				yield return new BeginPlaceDockOrderTargeter(this);
 		}
 	}
 
@@ -220,13 +219,12 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		return null;
 	}
 
-	private Order? BeginPlaceDock(Actor self, in Target target, bool queued)
+	private Order BeginPlaceDock(Actor self, in Target target, bool queued)
 	{
 		var targetLocation = self.World.Map.CellContaining(target.CenterPosition);
-		if (!this.CanDeploy(self, targetLocation))
-			return null;
+		if (this.CanDeploy(self, targetLocation))
+			self.World.OrderGenerator = new PlaceDockOrderGenerator(self, targetLocation, queued);
 
-		self.World.OrderGenerator = new PlaceDockOrderGenerator(self, targetLocation, queued);
 		return new Order(BeginPlaceDockOrderID, self, Target.FromCell(self.World, targetLocation), queued);
 	}
 
@@ -469,5 +467,41 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 		{
 			return this.transforms.CanPlaceDock(cell) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
 		}
+	}
+
+	private class BeginPlaceDockOrderTargeter : IOrderTargeter
+	{
+		private readonly WaterBaseTransforms transforms;
+
+		public string OrderID => BeginPlaceDockOrderID;
+		public int OrderPriority => 5;
+
+		public BeginPlaceDockOrderTargeter(WaterBaseTransforms transforms)
+		{
+			this.transforms = transforms;
+		}
+
+		public bool TargetOverridesSelection(Actor self, in Target target, List<Actor> actorsAt, CPos xy, TargetModifiers modifiers)
+		{
+			return true;
+		}
+
+		public bool CanTarget(Actor self, in Target target, ref TargetModifiers modifiers, ref string cursor)
+		{
+			if (target.Type != TargetType.Actor)
+				return false;
+
+			var location = self.World.Map.CellContaining(target.CenterPosition);
+			if (!self.World.Map.Contains(location))
+				return false;
+
+			cursor = this.transforms.CanDeploy(self) ? this.transforms.Info.DeployCursor : this.transforms.Info.DeployBlockedCursor;
+
+			this.IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
+
+			return self == target.Actor;
+		}
+
+		public bool IsQueued { get; private set; }
 	}
 }
