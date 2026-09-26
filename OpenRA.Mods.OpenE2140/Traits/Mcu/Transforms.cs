@@ -15,8 +15,8 @@ using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
-using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Orders;
 using OpenRA.Traits;
 using Transform = OpenRA.Mods.OpenE2140.Activites.Transform;
 
@@ -79,6 +79,7 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 
 public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, ITransforms, IOrderPreviewRender
 {
+	private const string BeginDeployTransformOrderID = "BeginDeployTransformBuilding";
 	private const string DeployTransformOrderID = "DeployTransform";
 
 	private readonly Actor self;
@@ -115,27 +116,15 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			: AIUtils.ClearBlockersOrders(this.customBuildingInfo.Tiles(topLeft).ToList(), this.self.Owner, this.self);
 	}
 
-	public Activity GetTransformActivity()
-	{
-		return new Transform(this.Info.IntoActor)
-		{
-			Offset = this.Info.Offset,
-			Facing = this.Info.Facing,
-			Sounds = this.Info.TransformSounds,
-			Notification = this.Info.TransformNotification,
-			TextNotification = this.Info.TransformTextNotification,
-			Faction = this.faction
-		};
-	}
-
 	public IEnumerable<IOrderTargeter> Orders
 	{
 		get
 		{
 			if (!this.IsTraitDisabled)
 			{
-				yield return new DeployOrderTargeter(DeployTransformOrderID, 5,
-					() => this.CanDeploy(this.self) ? this.Info.DeployCursor : this.Info.DeployBlockedCursor);
+				//yield return new DeployOrderTargeter(DeployTransformOrderID, 5,
+				//	() => this.CanDeploy(this.self) ? this.Info.DeployCursor : this.Info.DeployBlockedCursor);
+				yield return new BeginDeployTransformOrderTargeter(this, this.Info.DeployCursor, this.Info.DeployBlockedCursor);
 			}
 		}
 	}
@@ -143,23 +132,61 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
 		if (order.OrderID is DeployTransformOrderID or OrderConstants.MoveAndDeployTransformOrderID)
-			return new Order(order.OrderID, self, queued);
+		{
+			return new Order(order.OrderID, self, target, queued);
+		}
+		else if (order.OrderID == BeginDeployTransformOrderID)
+			return BeginDeployTransform(self, queued);
 
 		return null;
 	}
 
+	private static Order BeginDeployTransform(Actor self, bool queued)
+	{
+		self.World.OrderGenerator = new MoveAndTransformOrderGenerator(self, queued);
+		return new Order(BeginDeployTransformOrderID, self, queued);
+	}
+
 	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
 	{
+		//return BeginDeployTransform(self, queued);
 		return new Order(DeployTransformOrderID, self, queued);
 	}
 
-	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued) { return !this.IsTraitPaused && !this.IsTraitDisabled; }
-
-	private void DeployTransform(bool queued)
+	bool IIssueDeployOrder.CanIssueDeployOrder(Actor self, bool queued)
 	{
-		if (!queued && !this.CanDeploy(this.self))
+		return !this.IsTraitPaused && !this.IsTraitDisabled;
+	}
+
+	void IResolveOrder.ResolveOrder(Actor self, Order order)
+	{
+		if (this.IsTraitPaused || this.IsTraitDisabled)
+			return;
+
+		if (order.OrderString == DeployTransformOrderID)
+			this.self.QueueActivity(order.Queued, this.GetTransformActivity(self.Location));
+		else if (order.OrderString == OrderConstants.MoveAndDeployTransformOrderID)
 		{
-			foreach (var order in this.ClearBlockersOrders(this.self.Location + this.Info.Offset))
+			// Only terrain target is supported.
+			if (order.Target.Type != TargetType.Terrain)
+			{
+				return;
+			}
+
+			var deployLocation = self.World.Map.CellContaining(order.Target.CenterPosition);
+
+			if (!this.ValidateDeployTransform(deployLocation, order.Queued))
+				return;
+
+			self.QueueActivity(order.Queued, new MoveToTransform(self, deployLocation, this));
+			self.ShowTargetLines();
+		}
+	}
+	private bool ValidateDeployTransform(CPos targetLocation, bool queued)
+	{
+		if (!queued && !this.CanDeploy(this.self, targetLocation))
+		{
+			foreach (var order in this.ClearBlockersOrders(targetLocation + this.Info.Offset))
 				this.self.World.IssueOrder(order);
 
 			// Only play the "Cannot deploy here" audio
@@ -170,63 +197,99 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			Game.Sound.PlayNotification(this.self.World.Map.Rules, this.self.Owner, "Speech", this.Info.NoTransformNotification, this.self.Owner.Faction.InternalName);
 			TextNotificationsManager.AddTransientLine(this.self.Owner, this.Info.NoTransformTextNotification);
 
-			return;
+			return false;
 		}
 
-		this.self.QueueActivity(queued, this.GetTransformActivity());
+		return true;
 	}
 
-	void IResolveOrder.ResolveOrder(Actor self, Order order)
+	private Activity GetTransformActivity(CPos deployLocation)
 	{
-		if (this.IsTraitPaused || this.IsTraitDisabled)
-			return;
-
-		if (order.OrderString == DeployTransformOrderID)
-			this.DeployTransform(order.Queued);
-		else if (order.OrderString == OrderConstants.MoveAndDeployTransformOrderID)
+		if (deployLocation == this.self.Location)
 		{
-			// Only terrain target is supported.
-			if (order.Target.Type != TargetType.Terrain)
+			return new Transform(this.Info.IntoActor)
 			{
-				this.DeployTransform(order.Queued);
-				return;
-			}
-
-			// If at target location already, just queue Transform activity directly.
-			var targetLocation = self.World.Map.CellContaining(order.Target.CenterPosition);
-			if (targetLocation == self.Location)
-			{
-				this.DeployTransform(order.Queued);
-				return;
-			}
-
-			self.QueueActivity(order.Queued, new MoveToTransform(self, targetLocation, this));
-			self.ShowTargetLines();
+				Offset = this.Info.Offset,
+				Facing = this.Info.Facing,
+				Sounds = this.Info.TransformSounds,
+				Notification = this.Info.TransformNotification,
+				TextNotification = this.Info.TransformTextNotification,
+				Faction = this.faction
+			};
 		}
+
+		return new MoveToTransform(this.self, deployLocation, this);
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr, Target target)
 	{
-		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
-		foreach (var item in previewTraits)
-			foreach (var r in item.Render(self, wr, target))
-				yield return r;
+		return RenderOrderPreviewOverlay(self, p => p.Render(self, wr, target));
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.RenderAboveShroud(Actor self, WorldRenderer wr, Target target)
 	{
-		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
-		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAboveShroud(self, wr, target))
-				yield return r;
+		return RenderOrderPreviewOverlay(self, p => p.RenderAboveShroud(self, wr, target));
 	}
 
 	IEnumerable<IRenderable> IOrderPreviewRender.RenderAnnotations(Actor self, WorldRenderer wr, Target target)
 	{
+		return RenderOrderPreviewOverlay(self, p => p.RenderAnnotations(self, wr, target));
+	}
+
+	private static IEnumerable<IRenderable> RenderOrderPreviewOverlay(Actor self, Func<ITransformsPreview, IEnumerable<IRenderable>> renderFunc)
+	{
 		var previewTraits = self.TraitsImplementing<ITransformsPreview>();
 		foreach (var item in previewTraits)
-			foreach (var r in item.RenderAnnotations(self, wr, target))
+			foreach (var r in renderFunc(item))
 				yield return r;
+	}
+
+	private class BeginDeployTransformOrderTargeter : IOrderTargeter
+	{
+		private readonly ITransforms transforms;
+		private readonly string deployCursor;
+		private readonly string deployBlockedCursor;
+
+		public string OrderID { get; private set; } = OrderConstants.MoveAndDeployTransformOrderID;
+		public int OrderPriority => 5;
+
+		public BeginDeployTransformOrderTargeter(ITransforms transforms, string deployCursor, string deployBlockedCursor)
+		{
+			this.transforms = transforms;
+			this.deployCursor = deployCursor;
+			this.deployBlockedCursor = deployBlockedCursor;
+		}
+
+		public bool TargetOverridesSelection(Actor self, in Target target, List<Actor> actorsAt, CPos xy, TargetModifiers modifiers)
+		{
+			return true;
+		}
+
+		public bool CanTarget(Actor self, in Target target, ref TargetModifiers modifiers, ref string cursor)
+		{
+			var forceAttack = modifiers.HasModifier(TargetModifiers.ForceAttack);
+
+			if (target.Type == TargetType.Invalid)
+				return false;
+			else if (target.Type == TargetType.Terrain && !forceAttack)
+				return false;
+
+			var location = self.World.Map.CellContaining(target.CenterPosition);
+			if (!self.World.Map.Contains(location))
+				return false;
+
+			cursor = this.transforms.CanDeploy(self, location) ? this.deployCursor : this.deployBlockedCursor;
+			this.OrderID = forceAttack ? OrderConstants.MoveAndDeployTransformOrderID : DeployTransformOrderID;
+
+			this.IsQueued = modifiers.HasModifier(TargetModifiers.ForceQueue);
+
+			if (target.Type == TargetType.Actor)
+				return self == target.Actor;
+
+			return true;
+		}
+
+		public bool IsQueued { get; private set; }
 	}
 
 	private class MoveToTransform : Activity
@@ -270,7 +333,8 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 				return false;
 			}
 
-			this.transforms.DeployTransform(false);
+			if (this.transforms.ValidateDeployTransform(this.targetLocation, false))
+				this.QueueChild(this.transforms.GetTransformActivity(this.targetLocation));
 
 			return true;
 		}
