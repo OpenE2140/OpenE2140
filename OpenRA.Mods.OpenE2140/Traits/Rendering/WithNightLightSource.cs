@@ -43,6 +43,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 {
 	private readonly TerrainLighting? terrainLighting;
 	private readonly DayNight? dayNight;
+	private readonly Vector3 nightColor;
 
 	private int lightingToken = -1;
 
@@ -51,6 +52,8 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 	{
 		this.terrainLighting = self.World.WorldActor.TraitOrDefault<TerrainLighting>();
 		this.dayNight = self.World.WorldActor.TraitOrDefault<DayNight>();
+
+		this.nightColor = this.Info.Color.ToVector4().AsVector3();
 	}
 
 	void INotifyRemovedFromWorld.RemovedFromWorld(Actor self)
@@ -90,7 +93,7 @@ public sealed class WithNightLightSource : ConditionalTrait<WithNightLightSource
 			self.CenterPosition + this.Info.Offset,
 			this.Info.Range,
 			this.Info.Intensity,
-			new Vector3(this.Info.Color.R, this.Info.Color.G, this.Info.Color.B) / byte.MaxValue
+			this.nightColor
 		);
 	}
 

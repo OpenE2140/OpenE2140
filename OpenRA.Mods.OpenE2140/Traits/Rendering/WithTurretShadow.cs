@@ -44,6 +44,10 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 		if (!this.EnabledByDefault)
 			yield break;
 
+		var sColor = this.ShadowColor.ToVector4();
+		var shadowColor = sColor.AsVector3();
+		var shadowAlpha = sColor.W;
+
 		foreach (var turret in this.Turrets)
 		{
 			var t = init.Actor.TraitInfos<TurretedInfo>().First(tt => tt.Turret == turret);
@@ -63,11 +67,9 @@ public class WithTurretShadowInfo : ConditionalTraitInfo, Requires<RenderSprites
 					if (renderUi || renderable is not IModifyableRenderable mr)
 						return null;
 
-					return mr.WithTint(
-							new Vector3(this.ShadowColor.R, this.ShadowColor.G, this.ShadowColor.B) / 255f,
-							mr.TintModifiers | TintModifiers.ReplaceColor
-						)
-						.WithAlpha(this.ShadowColor.A / 255f);
+					return mr
+						.WithTint(shadowColor, mr.TintModifiers | TintModifiers.ReplaceColor)
+						.WithAlpha(shadowAlpha);
 				}
 			);
 		}
@@ -84,8 +86,9 @@ public class WithTurretShadow : ConditionalTrait<WithTurretShadowInfo>, IRenderM
 		: base(info)
 	{
 		this.info = info;
-		this.shadowColor = new Vector3(info.ShadowColor.R, info.ShadowColor.G, info.ShadowColor.B) / 255f;
-		this.shadowAlpha = info.ShadowColor.A / 255f;
+		var sColor = info.ShadowColor.ToVector4();
+		this.shadowColor = sColor.AsVector3();
+		this.shadowAlpha = sColor.W;
 	}
 
 	IEnumerable<IRenderable> IRenderModifier.ModifyRender(Actor self, WorldRenderer wr, IEnumerable<IRenderable> r)

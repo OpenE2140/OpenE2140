@@ -180,7 +180,7 @@ public sealed class OpenE2140MapGeneratorInfo : MapGeneratorBaseInfo
 				my.NodeWithKeyOrDefault("RepaintTiles")?.Value.ToDictionary(
 					k =>
 					{
-						if (Exts.TryParseUshortInvariant(k, out var tile))
+						if (Exts.TryParseUInt16Invariant(k, out var tile))
 							return tile;
 						else
 							throw new YamlException($"RepaintTile {k} is not a ushort");
