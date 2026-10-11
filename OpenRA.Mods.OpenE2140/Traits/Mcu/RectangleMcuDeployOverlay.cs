@@ -38,7 +38,7 @@ public class BuildingOverlayRectangleRenderable : IRenderable, IFinalizedRendera
 	public bool IsDecoration => true;
 
 	public IRenderable WithZOffset(int newOffset) { return this; }
-	public IRenderable OffsetBy(in WVec vec) { return new SelectionBoxAnnotationRenderable(this.Pos + vec, this.decorationBounds, this.color); }
+	public IRenderable OffsetBy(in WVec vec) { return new BuildingOverlayRectangleRenderable(this.Pos + vec, this.decorationBounds, this.color); }
 	public IRenderable AsDecoration() { return this; }
 
 	public IFinalizedRenderable PrepareRender(WorldRenderer wr) { return this; }
