@@ -25,6 +25,7 @@ namespace OpenRA.Mods.OpenE2140.Traits.WaterBase;
 
 public class WaterBaseBuildingInfo : CustomBuildingInfo, Requires<RepairableBuildingInfo>, INotifyEditorPlacementInfo
 {
+	// TODO: move completely to base.GetBuildingPlacementFootprint
 	public override Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = base.GetBuildingPlacementFootprint(world, cell, toIgnore);

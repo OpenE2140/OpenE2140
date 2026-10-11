@@ -142,7 +142,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 			return false;
 
 		// First check, if the main building can be deployed at specified/current location.
-		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, targetLocation.Value + this.Info.Offset, self))
+		if (!this.CustomBuildingInfo.CanPlaceBuilding(self.World, targetLocation.Value + this.Info.Offset, BuildingActorCheck.Ignoring(self)))
 			return false;
 
 		// Now check, if there are any cells in buildable radius, where the dock can be placed.

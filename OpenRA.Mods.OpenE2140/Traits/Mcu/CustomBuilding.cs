@@ -28,12 +28,18 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		$"Currently requires that all terrain types used in the condition are also defined in the {nameof(BuildingInfo)}.{nameof(BuildingInfo.TerrainTypes)} field.")]
 	public readonly BooleanExpression? AllowedTerrainTypesCondition;
 
-	public virtual bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null)
+	public virtual bool IsCellBuildable(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null)
 	{
-		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, toIgnore);
+		if (this.buildingInfo != null && buildingActorCheck?.IgnoreAllActors == true)
+		{
+			// Buildings can never be placed on ramps
+			return world.Map.Ramp[cell] == 0 && this.buildingInfo.TerrainTypes.Contains(world.Map.GetTerrainInfo(cell).Type);
+		}
+
+		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, buildingActorCheck?.IgnoredActor);
 	}
 
-	public virtual bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore = null)
+	public virtual bool CanPlaceBuilding(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null)
 	{
 		if (this.buildingInfo == null)
 			return false;
@@ -55,7 +61,11 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 				return false;
 		}
 
-		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, toIgnore);
+		if (this.buildingInfo.AllowInvalidPlacement)
+			return true;
+
+		return this.buildingInfo.Tiles(cell).All(t => world.Map.Contains(t)
+			&& this.IsCellBuildable(world, t, buildingActorCheck));
 	}
 
 	public virtual Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
@@ -65,9 +75,10 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		if (this.buildingInfo == null)
 			return footprint;
 
+		var buildingActorCheck = BuildingActorCheck.Ignoring(toIgnore);
 		foreach (var t in this.buildingInfo.Tiles(cell))
 		{
-			footprint.Add(t, this.IsCellBuildable(world, t, toIgnore) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+			footprint.Add(t, this.IsCellBuildable(world, t, buildingActorCheck) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 		}
 
 		return footprint;

@@ -105,9 +105,9 @@ public interface ITransformsPreview
 
 public interface ICustomBuildingInfo : ITraitInfoInterface
 {
-	bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore = null);
+	bool CanPlaceBuilding(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null);
 
-	bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore = null);
+	bool IsCellBuildable(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null);
 
 	Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore);
 
@@ -116,6 +116,23 @@ public interface ICustomBuildingInfo : ITraitInfoInterface
 	IReadOnlyDictionary<CVec, FootprintCellType> Footprint();
 
 	WPos GetCenterOfFootprint(CPos location);
+}
+
+public readonly struct BuildingActorCheck
+{
+	public static readonly BuildingActorCheck None = new(ignoreAllActors: true, null);
+	public static readonly BuildingActorCheck All = new(ignoreAllActors: false, null);
+
+	public static BuildingActorCheck Ignoring(Actor actor) => new(ignoreAllActors: false, actor);
+
+	public bool IgnoreAllActors { get; }
+	public Actor? IgnoredActor { get; }
+
+	private BuildingActorCheck(bool ignoreAllActors, Actor? ignoredActor)
+	{
+		this.IgnoreAllActors = ignoreAllActors;
+		this.IgnoredActor = ignoredActor;
+	}
 }
 
 public interface INotifyBuildingRepair

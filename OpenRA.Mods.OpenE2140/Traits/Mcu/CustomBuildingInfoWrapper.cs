@@ -28,23 +28,36 @@ public class CustomBuildingInfoWrapper : ICustomBuildingInfo
 		this.buildingInfo = actorInfo.TraitInfo<BuildingInfo>();
 	}
 
-	public bool CanPlaceBuilding(OpenRA.World world, CPos cell, Actor? toIgnore)
+	public bool CanPlaceBuilding(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null)
 	{
-		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, toIgnore);
+		if (buildingActorCheck?.IgnoreAllActors == true)
+		{
+			// Buildings can never be placed on ramps
+			return world.Map.Ramp[cell] == 0 && this.buildingInfo.TerrainTypes.Contains(world.Map.GetTerrainInfo(cell).Type);
+		}
+
+		return world.CanPlaceBuilding(cell, this.actorInfo, this.buildingInfo, buildingActorCheck?.IgnoredActor);
 	}
 
-	public bool IsCellBuildable(OpenRA.World world, CPos cell, Actor? toIgnore)
+	public bool IsCellBuildable(OpenRA.World world, CPos cell, BuildingActorCheck? buildingActorCheck = null)
 	{
-		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, toIgnore);
+		if (buildingActorCheck?.IgnoreAllActors == true)
+		{
+			// Buildings can never be placed on ramps
+			return world.Map.Ramp[cell] == 0 && this.buildingInfo.TerrainTypes.Contains(world.Map.GetTerrainInfo(cell).Type);
+		}
+
+		return world.IsCellBuildable(cell, this.actorInfo, this.buildingInfo, buildingActorCheck?.IgnoredActor);
 	}
 
 	public Dictionary<CPos, PlaceBuildingCellType> GetBuildingPlacementFootprint(OpenRA.World world, CPos cell, Actor toIgnore)
 	{
 		var footprint = new Dictionary<CPos, PlaceBuildingCellType>();
 
+		var buildingActorCheck = BuildingActorCheck.Ignoring(toIgnore);
 		foreach (var t in this.buildingInfo.Tiles(cell))
 		{
-			footprint.Add(t, this.IsCellBuildable(world, t, toIgnore) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+			footprint.Add(t, this.IsCellBuildable(world, t, buildingActorCheck) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
 		}
 
 		return footprint;
