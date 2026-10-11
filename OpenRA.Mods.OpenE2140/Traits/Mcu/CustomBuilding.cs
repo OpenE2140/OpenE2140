@@ -75,11 +75,20 @@ public class CustomBuildingInfo : TraitInfo<CustomBuilding>, IRulesetLoaded, Req
 		if (this.buildingInfo == null)
 			return footprint;
 
+		var footprintCellTypes = new Dictionary<string, int>();
 		var buildingActorCheck = BuildingActorCheck.Ignoring(toIgnore);
 		foreach (var t in this.buildingInfo.Tiles(cell))
 		{
 			footprint.Add(t, this.IsCellBuildable(world, t, buildingActorCheck) ? PlaceBuildingCellType.Valid : PlaceBuildingCellType.Invalid);
+
+			var terrainType = world.Map.GetTerrainInfo(t).Type;
+			footprintCellTypes.TryGetValue(terrainType, out var count);
+			footprintCellTypes[terrainType] = ++count;
 		}
+
+		// Next check, if cells of the footprint contain valid terrain types
+		if (this.AllowedTerrainTypesCondition?.Evaluate(footprintCellTypes) == false)
+			return footprint.Keys.ToDictionary(c => c, _ => PlaceBuildingCellType.Invalid);
 
 		return footprint;
 	}

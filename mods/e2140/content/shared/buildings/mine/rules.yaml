@@ -142,7 +142,8 @@ shared_buildings_mine:
 		Footprint: xxx xx= ===
 		LocalCenterOffset: -370,-520,0
 		TerrainTypes: Clear, Road, Resources
-	ResourceMineCustomBuilding:
+	# CustomBuilding wraps and extends all footprint-related operations, but does not inherit from Building (so it's defined separately).
+	CustomBuilding:
 		# In E2140 at least one Resources tile is required for Mine.
 		# Make sure all terrain types used in the condition are also defined in Building.TerrainTypes
 		# TODO: remove this requirement
