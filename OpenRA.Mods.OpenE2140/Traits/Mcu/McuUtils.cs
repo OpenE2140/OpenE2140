@@ -31,6 +31,11 @@ public static class McuUtils
 
 	public static ActorInfo? GetTargetBuilding(OpenRA.World world, ActorInfo? mcuActor)
 	{
+		return GetTargetBuilding(world.Map.Rules, mcuActor);
+	}
+
+	public static ActorInfo? GetTargetBuilding(Ruleset rules, ActorInfo? mcuActor)
+	{
 		if (mcuActor == null)
 			return null;
 
@@ -39,7 +44,7 @@ public static class McuUtils
 
 		var targetActor = GetTargetBuilding(mcuActor);
 
-		return targetActor != null ? world.Map.Rules.Actors[targetActor] : null;
+		return targetActor != null ? rules.Actors[targetActor] : null;
 	}
 
 	public static ActorInfo? GetMcuActor(Ruleset rules, string actorName)

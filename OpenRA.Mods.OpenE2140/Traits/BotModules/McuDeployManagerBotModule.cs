@@ -15,6 +15,7 @@ using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
+using OpenRA.Mods.OpenE2140.Traits.Resources;
 using OpenRA.Traits;
 using TransformsInfo = OpenRA.Mods.OpenE2140.Traits.Mcu.TransformsInfo;
 
@@ -88,12 +89,60 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 
 	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
 	{
-		var nonExistingActors = this.ConstructionBuildingTypes.Where(a => !rules.Actors.ContainsKey(a)).ToList();
-		if (nonExistingActors.Count > 0)
-			throw new YamlException($"Unknown actors: {string.Join(", ", nonExistingActors)}");
+		// Do these comprehensive checks just once (at startup). This allows simplifying code running at runtime.
+
+		var mcuActorTypes = this.MineTypes
+			.Concat(this.RefineryTypes)
+			.Concat(this.DefenseMcuTypes)
+			.Select(actorType => (actorType, actorInfo: rules.Actors.TryGetValue(actorType, out var ai) ? ai : null))
+			.ToList();
+		var nonExistentActors = mcuActorTypes
+			.Where(x => x.actorInfo == null)
+			.Select(x => x.actorType)
+			.Concat(this.ConstructionBuildingTypes.Where(a => !rules.Actors.ContainsKey(a)))
+			.ToList();
+		if (nonExistentActors.Count > 0)
+			throw new YamlException($"Unknown actors: {string.Join(", ", nonExistentActors)}");
+
+		var mcuActorTypesWithExtras = mcuActorTypes
+			.Select(x =>
+				(
+					mcuActorType: x.actorType,
+					mcuActorInfo: x.actorInfo,
+					transformsInfo: x.actorInfo?.TryGetTrait<ITransformsInfo>(out var transforms) == true ? transforms : null,
+					buildingActorInfo: McuUtils.GetTargetBuilding(rules, x.actorInfo)
+				))
+			.Distinct()  // Assume all configured MCU types have unique roles (i.e. Mine building isn't also Water Base building at the same time).
+			.ToList();
+
+		var invalidActorsMissingTransformsInfo = mcuActorTypesWithExtras.Where(x => x.transformsInfo == null);
+		if (invalidActorsMissingTransformsInfo.Any())
+			throw new YamlException($"Invalid MCU actors (missing ITransforms trait): {string.Join(", ", GetActorTypes(invalidActorsMissingTransformsInfo))}");
+
+		var invalidActorsMissingTargetBuilding = mcuActorTypesWithExtras.Where(x => x.buildingActorInfo == null);
+		if (invalidActorsMissingTargetBuilding.Any())
+			throw new YamlException($"Invalid MCU actors (missing/invalid Transforms.IntoActor): {string.Join(", ", GetActorTypes(invalidActorsMissingTargetBuilding))}");
+
+		var invalidMineActors = mcuActorTypesWithExtras
+			.Where(x => this.MineTypes.Contains(x.mcuActorType) && x.buildingActorInfo?.HasTraitInfo<ResourceMineInfo>() != true)
+			.ToList();
+		if (invalidMineActors.Count > 0)
+			throw new YamlException($"Invalid Mine MCU actors (missing {nameof(ResourceMine)} trait): {string.Join(", ", GetActorTypes(invalidMineActors))}");
+
+		var invalidRefineryActors = mcuActorTypesWithExtras
+			.Where(x => this.RefineryTypes.Contains(x.mcuActorType) && x.buildingActorInfo?.HasTraitInfo<ResourceRefineryInfo>() != true)
+			.ToList();
+		if (invalidMineActors.Count > 0)
+			throw new YamlException($"Invalid Mine MCU actors (missing {nameof(ResourceRefinery)} trait): {string.Join(", ", GetActorTypes(invalidRefineryActors))}");
 
 		base.RulesetLoaded(rules, ai);
+
+		static IEnumerable<string> GetActorTypes(
+			IEnumerable<(string mcuActorType, ActorInfo? mcuActorInfo, ITransformsInfo? transformsInfo, ActorInfo? buildingActorInfo)> actorDatas)
+		{
+			return actorDatas.Select(x => x.mcuActorType);
 	}
+}
 }
 
 public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick,
