@@ -29,7 +29,7 @@ public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>
 	}
 }
 
-public class McuDeployOverlay : ITransformsPreview
+public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderAnnotations, IResolveOrder
 {
 	public McuDeployOverlayInfo Info { get; }
 
@@ -37,6 +37,8 @@ public class McuDeployOverlay : ITransformsPreview
 	private readonly ActorInfo buildingActor;
 	private readonly ICustomBuildingInfo customBuildingInfo;
 	private readonly ITransformsInfo transformsInfo;
+
+	private Target lastTarget = Target.Invalid;
 
 	public McuDeployOverlay(Actor self, McuDeployOverlayInfo info)
 	{
@@ -115,5 +117,34 @@ public class McuDeployOverlay : ITransformsPreview
 			foreach (var r in renderFunc(preview))
 				yield return r;
 		}
+	}
+	bool IRenderAboveShroud.SpatiallyPartitionable => true;
+
+	bool IRenderAnnotations.SpatiallyPartitionable => true;
+
+	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
+	{
+		if (this.lastTarget.Type != TargetType.Invalid && ShouldRenderOverlay())
+			return this.RenderAboveShroud(self, wr, this.lastTarget);
+
+		return [];
+	}
+
+	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
+	{
+		if (this.lastTarget.Type != TargetType.Invalid && ShouldRenderOverlay())
+			return this.RenderAnnotations(self, wr, this.lastTarget);
+
+		return [];
+	}
+
+	private static bool ShouldRenderOverlay() => Game.GetModifierKeys().HasModifier(Modifiers.Ctrl);
+
+	void IResolveOrder.ResolveOrder(Actor self, Order order)
+	{
+		if (order.OrderString is "DeployTransform" or OrderConstants.MoveAndDeployTransformOrderID)
+			this.lastTarget = order.Target;
+		else
+			this.lastTarget = Target.Invalid;
 	}
 }

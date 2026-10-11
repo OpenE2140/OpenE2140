@@ -163,22 +163,18 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		if (this.IsTraitPaused || this.IsTraitDisabled)
 			return;
 
-		if (order.OrderString == DeployTransformOrderID)
-			this.self.QueueActivity(order.Queued, this.GetTransformActivity(self.Location));
-		else if (order.OrderString == OrderConstants.MoveAndDeployTransformOrderID)
+		if (order.OrderString is OrderConstants.MoveAndDeployTransformOrderID or DeployTransformOrderID)
 		{
-			// Only terrain target is supported.
-			if (order.Target.Type != TargetType.Terrain)
+			var deployLocation = order.Target.Type switch
 			{
-				return;
-			}
-
-			var deployLocation = self.World.Map.CellContaining(order.Target.CenterPosition);
+				TargetType.Terrain => self.World.Map.CellContaining(order.Target.CenterPosition),
+				_ => self.Location,
+			};
 
 			if (!this.ValidateDeployTransform(deployLocation, order.Queued))
 				return;
 
-			self.QueueActivity(order.Queued, new MoveToTransform(self, deployLocation, this));
+			self.QueueActivity(order.Queued, this.GetTransformActivity(deployLocation));
 			self.ShowTargetLines();
 		}
 	}
