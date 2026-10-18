@@ -16,6 +16,7 @@ using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Power;
+using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Mods.OpenE2140.Utils;
 using OpenRA.Traits;
 
@@ -43,6 +44,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 
 	private readonly OwnerAndTraitIndex<BuildingInfo> playerBuildings;
 	private readonly OwnerAndTraitIndex<McuInfo> playerMcus;
+	private readonly IBotWaterBaseDeployZones? waterBaseDeployZones;
 
 	private int minimumExcessPower;
 	private bool itemQueuedThisTick;
@@ -65,6 +67,7 @@ public sealed class McuBuilderQueueManager : IDisposable
 		this.minimumExcessPower = baseBuilder.Info.MinimumExcessPower;
 		this.playerBuildings = new OwnerAndTraitIndex<BuildingInfo>(this.world, [], this.player);
 		this.playerMcus = new OwnerAndTraitIndex<McuInfo>(this.world, [], this.player);
+		this.waterBaseDeployZones = player.PlayerActor.TraitsImplementing<IBotWaterBaseDeployZones>().FirstEnabledTraitOrDefault();
 	}
 
 	internal void RequestBuildingProduction(string actorName)
@@ -221,8 +224,6 @@ public sealed class McuBuilderQueueManager : IDisposable
 				return PickMcuToBuild(powerMcu, powerBuilding);
 		}
 
-		// TODO: add support for Water Base
-
 		// Build everything else
 		foreach (var frac in this.baseBuilder.Info.McuFractions.Shuffle(this.world.LocalRandom))
 		{
@@ -241,6 +242,19 @@ public sealed class McuBuilderQueueManager : IDisposable
 			// Check the number of this structure and its variants
 			var mcuActorInfo = this.world.Map.Rules.Actors[mcuName];
 			var buildingInfo = McuUtils.GetTargetBuilding(this.world, mcuActorInfo)!;
+			if (buildingInfo == null)
+				continue;
+
+			// Water Base requires a suitable water body nearby
+			if (buildingInfo.HasTraitInfo<WaterBaseBuildingInfo>())
+			{
+				if (this.waterBaseDeployZones == null)
+					continue;
+
+				var baseCenter = this.playerBuildings.Alive().FirstOrDefault()?.Location;
+				if (baseCenter == null || !this.waterBaseDeployZones.HasSuitableWaterBody(baseCenter.Value))
+					continue;
+			}
 
 			var existingMcuCount = this.playerMcus.Alive().Count(a => a.Info.Name == mcuName)
 				+ this.baseBuilder.McusBeingProduced.GetValueOrDefault(mcuName)

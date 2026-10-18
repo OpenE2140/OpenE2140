@@ -38,4 +38,20 @@ namespace OpenRA.Mods.OpenE2140.Traits.BotModules
 
 		void McuTransformed(IBot bot, Actor buildingActor) { }
 	}
+
+	public interface IBotWaterBaseDeployZones
+	{
+		bool HasSuitableWaterBody(CPos baseCenter);
+
+		List<WaterBaseDeployZone> GetWaterBaseDeployZones(CPos baseCenter);
+	}
+
+	public class WaterBaseDeployZone
+	{
+		public List<CPos> CandidateCells { get; init; } = [];
+
+		public CPos PreferredLocation { get; init; }
+
+		public List<CPos> WaterCells { get; init; } = [];
+	}
 }

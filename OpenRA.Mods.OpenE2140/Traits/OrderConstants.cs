@@ -3,4 +3,6 @@
 public static class OrderConstants
 {
 	public const string MoveAndDeployTransformOrderID = "MoveAndDeployTransform";
+
+	public const string BuildWaterBaseOrderID = "BuildWaterBase";
 }

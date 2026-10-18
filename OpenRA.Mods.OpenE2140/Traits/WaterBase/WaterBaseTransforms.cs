@@ -96,7 +96,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 	IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, IOrderPreviewRender, INotifyTransform, ITransforms, IRenderAboveShroud, IRenderAnnotations
 {
 	private const string BeginPlaceDockOrderID = "BeginPlaceWaterBaseDock";
-	private const string BuildWaterBaseOrderID = "BuildWaterBase";
+	private const string BuildWaterBaseOrderID = OrderConstants.BuildWaterBaseOrderID;
 
 	private readonly Actor self;
 	private readonly string faction;

@@ -14,14 +14,15 @@
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Extensions;
+using OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 using OpenRA.Mods.OpenE2140.Traits.Mcu;
 using OpenRA.Mods.OpenE2140.Traits.Resources;
+using OpenRA.Mods.OpenE2140.Traits.WaterBase;
 using OpenRA.Traits;
-using TransformsInfo = OpenRA.Mods.OpenE2140.Traits.Mcu.TransformsInfo;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules;
 
-public enum BuildingType { Building, Defense, Mine, Refinery }
+public enum BuildingType { Building, Defense, Mine, Refinery, WaterBase }
 
 [TraitLocation(SystemActors.Player)]
 [Desc("Manages AI MCUs.")]
@@ -41,6 +42,10 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 
 	[Desc("Actor types that are considered MCUs, which deploy into defense buildings.")]
 	public readonly HashSet<string> DefenseMcuTypes = [];
+
+	[ActorReference]
+	[Desc("Actor types that are considered MCUs, which deploy into water bases.")]
+	public readonly HashSet<string> WaterBaseMcuTypes = [];
 
 	[Desc($"Interval in ticks after which defense center is reset back to null. Should be greater than {nameof(DefenseCenterUpdateInterval)}.")]
 	public readonly int DefenseCenterResetInterval = 100;
@@ -85,6 +90,18 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 	[Desc("Maximum number of retries before trying to find new deploy location for an MCU.")]
 	public readonly int MaxRetryCount = 3;
 
+	[Desc("Radius in cells around the base center to search for suitable water bodies.")]
+	public readonly int WaterBaseSearchRadius = 40;
+
+	[Desc("Minimum number of connected water cells required to consider a water body suitable for a Water Base.")]
+	public readonly int MinimumWaterBodySize = 20;
+
+	[Desc("Minimum distance in cells from center of the base when checking for Water Base MCU deployment location.")]
+	public readonly int WaterBaseMinMoveRadius = 4;
+
+	[Desc("Maximum distance in cells from center of the base when checking for Water Base MCU deployment location.")]
+	public readonly int WaterBaseMaxMoveRadius = 30;
+
 	public override object Create(ActorInitializer init) { return new McuDeployManagerBotModule(init.Self, this); }
 
 	public override void RulesetLoaded(Ruleset rules, ActorInfo ai)
@@ -94,6 +111,7 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 		var mcuActorTypes = this.MineTypes
 			.Concat(this.RefineryTypes)
 			.Concat(this.DefenseMcuTypes)
+			.Concat(this.WaterBaseMcuTypes)
 			.Select(actorType => (actorType, actorInfo: rules.Actors.TryGetValue(actorType, out var ai) ? ai : null))
 			.ToList();
 		var nonExistentActors = mcuActorTypes
@@ -141,18 +159,19 @@ public class McuDeployManagerBotModuleInfo : ConditionalTraitInfo
 			IEnumerable<(string mcuActorType, ActorInfo? mcuActorInfo, ITransformsInfo? transformsInfo, ActorInfo? buildingActorInfo)> actorDatas)
 		{
 			return actorDatas.Select(x => x.mcuActorType);
+		}
 	}
-}
 }
 
 public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotModuleInfo>, IBotTick,
-	IBotPositionsUpdated, IBotMcuDeployment, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager, INotifyTransformSequence
+	IBotPositionsUpdated, IBotMcuDeployment, IGameSaveTraitData, IBotRespondToAttack, IBotMcuDeployManager, INotifyTransformSequence, IBotWaterBaseDeployZones
 {
 	private readonly OpenRA.World world;
 	private readonly Player player;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<McuInfo> playerMcus;
 	private readonly ActorIndex.OwnerAndNamesAndTrait<BuildingInfo> constructionBuildings;
 	private readonly Dictionary<string, ICustomBuildingInfo> constructionBuildingInfos;
+	private readonly WaterBodyClusterSearch waterBodyClusterSearch;
 	private readonly Dictionary<Actor, McuDeployContext> mcuDeployContext = [];
 
 	private IBotPositionsUpdated[] notifyPositionsUpdated = [];
@@ -183,6 +202,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 			})
 			.Where(a => a.BuildingInfo != null)
 			.ToDictionary(a => a.ActorName, a => a.BuildingInfo!);
+
+		this.waterBodyClusterSearch = new WaterBodyClusterSearch(this.world.Map, this.Info.MinimumWaterBodySize);
 	}
 
 	protected override void Created(Actor self)
@@ -200,6 +221,7 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	void IBotPositionsUpdated.UpdatedBaseCenter(CPos newLocation)
 	{
 		this.initialBaseCenter = newLocation;
+		this.waterBodyClusterSearch.UpdateAvailableWaterBodies(newLocation, this.Info.WaterBaseSearchRadius);
 	}
 
 	void IBotPositionsUpdated.UpdatedDefenseCenter(CPos newLocation)
@@ -224,6 +246,17 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	int IBotMcuDeployManager.UndeployedMcuCount(IBot bot, string mcuType)
 	{
 		return this.playerMcus.Actors.Count(a => !a.IsDead && a.Info.Name == mcuType);
+	}
+
+	bool IBotWaterBaseDeployZones.HasSuitableWaterBody(CPos baseCenter)
+	{
+		this.waterBodyClusterSearch.UpdateAvailableWaterBodies(baseCenter, this.Info.WaterBaseSearchRadius);
+		return this.waterBodyClusterSearch.GetWaterBaseDeployZones(baseCenter, this.Info.WaterBaseSearchRadius).Count > 0;
+	}
+
+	List<WaterBaseDeployZone> IBotWaterBaseDeployZones.GetWaterBaseDeployZones(CPos baseCenter)
+	{
+		return this.waterBodyClusterSearch.GetWaterBaseDeployZones(baseCenter, this.Info.WaterBaseSearchRadius);
 	}
 
 	void IBotTick.BotTick(IBot bot)
@@ -314,27 +347,67 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	// Find any MCU and deploy them at a sensible location.
 	private void DeployMcu(IBot bot, Actor mcu, bool move)
 	{
-		var deployLocation = mcu.Location;
-		if (move)
-		{
-			var desiredLocation = this.ChooseMcuDeployLocation(mcu);
-			if (desiredLocation == null)
-				return;
+		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
 
-			deployLocation = desiredLocation.Value;
+		CPos deployLocation;
+		if (this.GetBuildingType(mcu) == BuildingType.WaterBase)
+		{
+			CPos? dockLocation;
+
+			if (move)
+			{
+				var desiredLocation = this.ChooseMcuDeployLocation(mcu);
+				if (desiredLocation == null)
+					return;
+
+				deployLocation = desiredLocation.Value;
+				dockLocation = context.DockLocation;
+
+				if (dockLocation == null)
+					return;
+			}
+			else
+			{
+				deployLocation = mcu.Location;
+				dockLocation = this.FindBestDockCell(mcu, deployLocation);
+				if (dockLocation == null)
+					return;
+			}
+
+			context.TargetLocation = deployLocation;
+			context.DockLocation = dockLocation;
+			bot.QueueOrder(new Order(OrderConstants.BuildWaterBaseOrderID, mcu, Target.FromCell(this.world, dockLocation.Value), true)
+			{
+				ExtraLocation = deployLocation
+			});
+
+			//this.notifyMcuDeployment.ForEach(m => m.OrderedMcuToDeploy(bot, mcu, deployLocation));
+			return;
+		}
+		else
+		{
+			deployLocation = mcu.Location;
+			if (move)
+			{
+				var desiredLocation = this.ChooseMcuDeployLocation(mcu);
+				if (desiredLocation == null)
+					return;
+
+				deployLocation = desiredLocation.Value;
+			}
+			context.TargetLocation = deployLocation;
+
+			bot.QueueOrder(new Order(OrderConstants.MoveAndDeployTransformOrderID, mcu, Target.FromCell(this.world, deployLocation), true));
 		}
 
-		var context = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
-		context.TargetLocation = deployLocation;
 		context.DeployAttempt++;
-		bot.QueueOrder(new Order(OrderConstants.MoveAndDeployTransformOrderID, mcu, Target.FromCell(this.world, deployLocation), true));
 
 		this.notifyMcuDeployment.ForEach(m => m.OrderedMcuToDeploy(bot, mcu, deployLocation));
 	}
 
 	private CPos? ChooseMcuDeployLocation(Actor mcu)
 	{
-		var offset = mcu.Info.TraitInfo<TransformsInfo>().Offset;
+		var offset = mcu.Info.TraitInfo<ITransformsInfo>().Offset;
 		var buildingInfo = CustomBuildingInfoWrapper.WrapIfNecessary(McuUtils.GetTargetBuilding(this.world, mcu.Info)!);
 		if (buildingInfo == null)
 			return null;
@@ -476,6 +549,12 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 				break;
 			}
+			case BuildingType.WaterBase:
+			{
+				targetLocation = this.FindWaterBaseDeployLocation(mcu, buildingInfo, baseCenter);
+
+				break;
+			}
 			case BuildingType.Building:
 			{
 				var searchCenter = baseCenter;
@@ -509,12 +588,96 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		return targetLocation;
 	}
 
+	private CPos? FindWaterBaseDeployLocation(Actor mcu, ICustomBuildingInfo buildingInfo, CPos baseCenter)
+	{
+		var transformsInfo = mcu.Info.TraitInfo<WaterBaseTransformsInfo>();
+		var offset = transformsInfo.Offset;
+
+		var deployContext = this.mcuDeployContext.GetOrAdd(mcu, actor => new McuDeployContext { McuActor = actor });
+		deployContext.MaxMoveRadius ??= this.Info.WaterBaseMinMoveRadius;
+
+		var zones = this.waterBodyClusterSearch.GetWaterBaseDeployZones(baseCenter, this.Info.WaterBaseSearchRadius)
+			.OrderBy(z => (z.PreferredLocation - baseCenter).LengthSquared)
+			.ToList();
+
+		CPos? bestCell = null;
+		var bestScore = int.MaxValue;
+
+		foreach (var zone in zones)
+		{
+			var waterCellSet = zone.WaterCells.ToHashSet();
+
+			foreach (var deployCell in zone.CandidateCells)
+			{
+				var distanceToBaseSquared = (deployCell - baseCenter).LengthSquared;
+				if (distanceToBaseSquared < this.Info.WaterBaseMinMoveRadius.PowerOf2())
+					continue;
+
+				if (distanceToBaseSquared > deployContext.MaxMoveRadius.Value.PowerOf2())
+					continue;
+
+				var topLeft = deployCell + offset;
+				if (!buildingInfo.CanPlaceBuilding(this.world, topLeft, BuildingActorCheck.Ignoring(mcu)))
+					continue;
+
+				var dockCell = this.FindValidDockCell(mcu, deployCell, waterCellSet);
+				if (dockCell == null)
+					continue;
+
+				var score = (deployCell - baseCenter).LengthSquared;
+				if (score < bestScore)
+				{
+					bestScore = score;
+					bestCell = deployCell;
+					deployContext.DockLocation = dockCell;
+				}
+			}
+		}
+
+		if (bestCell == null)
+			deployContext.MaxMoveRadius = Math.Min(deployContext.MaxMoveRadius.Value + this.Info.MoveRadiusIncreaseOnFailed, this.Info.WaterBaseMaxMoveRadius);
+		else
+			deployContext.MaxMoveRadius = this.Info.WaterBaseMinMoveRadius;
+
+		return bestCell;
+	}
+
+	private CPos? FindBestDockCell(Actor mcu, CPos deployLocation)
+	{
+		var baseCenter = this.GetClosestBaseCenter(mcu.Location);
+
+		var zones = this.waterBodyClusterSearch.GetWaterBaseDeployZones(baseCenter, this.Info.WaterBaseSearchRadius);
+		foreach (var zone in zones)
+		{
+			var waterCellSet = zone.WaterCells.ToHashSet();
+			var dockCell = this.FindValidDockCell(mcu, deployLocation, waterCellSet);
+			if (dockCell != null)
+				return dockCell;
+		}
+
+		return null;
+	}
+
+	private CPos? FindValidDockCell(Actor mcu, CPos deployLocation, HashSet<CPos> waterCells)
+	{
+		var transforms = mcu.Trait<WaterBaseTransforms>();
+		foreach (var waterCell in waterCells)
+		{
+			if (transforms.CanPlaceDock(waterCell, deployLocation))
+				return waterCell;
+		}
+
+		return null;
+	}
+
 	private BuildingType GetBuildingType(Actor mcu)
 	{
 		var mcuTypeName = mcu.Info.Name;
 
 		if (this.Info.DefenseMcuTypes.Contains(mcuTypeName))
 			return BuildingType.Defense;
+		else if (this.Info.WaterBaseMcuTypes.Contains(mcuTypeName))
+			return BuildingType.WaterBase;
 		else if (this.Info.MineTypes.Contains(mcuTypeName))
 			return BuildingType.Mine;
 		else if (this.Info.RefineryTypes.Contains(mcuTypeName))
@@ -562,7 +725,6 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 
 	//TODO:
 	// 1. Build refinery and mine together
-	// 2. Water terrain deploying
 
 	List<MiniYamlNode>? IGameSaveTraitData.IssueTraitData(Actor self)
 	{
@@ -577,7 +739,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 				yield return new MiniYamlNode("InitialBaseCenter", FieldSaver.FormatValue(this.initialBaseCenter));
 			if (this.defenseCenter != null)
 				yield return new MiniYamlNode("DefenseCenter", FieldSaver.FormatValue(this.defenseCenter));
-		};
+		}
+		;
 	}
 
 	void IGameSaveTraitData.ResolveTraitData(Actor self, MiniYaml data)
@@ -599,6 +762,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 		public required Actor McuActor { get; init; }
 
 		public CPos? TargetLocation { get; set; }
+
+		public CPos? DockLocation { get; set; }
 
 		public Actor? BuildingActor { get; set; }
 

@@ -118,7 +118,7 @@ public class ResourceMineDeployZoneSearch
 		if (maxSearchRadius <= maximumTileSearchRange)
 			searchTiles = this.map.FindTilesInCircle(origin, maxSearchRadius);
 		else
-			searchTiles = FindTilesInAnnulusSpatialChunked(this.map, origin, 0, maxSearchRadius);
+			searchTiles = MapSearchHelper.FindTilesInAnnulusSpatialChunked(this.map, origin, 0, maxSearchRadius);
 
 		foreach (var cell in searchTiles)
 		{
@@ -182,37 +182,6 @@ public class ResourceMineDeployZoneSearch
 			.ToList();
 
 		return clusters;
-
-		static IEnumerable<CPos> FindTilesInAnnulusSpatialChunked(Map map, CPos center, int minRange, int maxRange, bool allowOutsideBounds = false)
-		{
-			var maxChunkSize = map.Grid.MaximumTileSearchRange;
-			var results = new HashSet<CPos>();
-
-			var minRangeSquared = minRange * minRange;
-			var maxRangeSquared = maxRange * maxRange;
-
-			var minBounds = center + new CVec(-maxRange, -maxRange);
-			var maxBounds = center + new CVec(maxRange, maxRange);
-
-			for (var chunkX = minBounds.X; chunkX <= maxBounds.X; chunkX += maxChunkSize)
-			{
-				for (var chunkY = minBounds.Y; chunkY <= maxBounds.Y; chunkY += maxChunkSize)
-				{
-					var chunkCenter = new CPos(chunkX, chunkY);
-
-					foreach (var tile in map.FindTilesInCircle(chunkCenter, maxChunkSize, allowOutsideBounds))
-					{
-						var offset = tile - center;
-						var distanceSquared = offset.LengthSquared;
-
-						if (distanceSquared >= minRangeSquared && distanceSquared <= maxRangeSquared)
-							results.Add(tile);
-					}
-				}
-			}
-
-			return results;
-		}
 	}
 
 	private record class ResourceCluster(List<CPos> Cells);

@@ -44,6 +44,7 @@ Player:
 			ed_mcu_bcc: 1
 			shared_mcu_air_base: 1
 			shared_mcu_research_center: 1
+			shared_mcu_water_base: 1
 			ucs_mcu_pb_cannon: 1
 			ed_mcu_defense_tower: 2
 			ed_mcu_defense_tower_upgraded: 4
@@ -68,6 +69,7 @@ Player:
 			ucs_mcu_sdi_defense: 1
 			shared_mcu_air_base: 2
 			shared_mcu_research_center: 1
+			shared_mcu_water_base: 1
 		McuDelays:
 			ed_mcu_bcc: 16000
 			ucs_mcu_pb_control: 16000
