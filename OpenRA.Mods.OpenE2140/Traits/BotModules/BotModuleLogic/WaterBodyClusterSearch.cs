@@ -30,6 +30,8 @@ public class WaterBodyClusterSearch
 	private CPos? lastOrigin;
 	private int lastRadius;
 
+	internal IReadOnlyCollection<WaterBodyCluster> Clusters => this.clusters;
+
 	public WaterBodyClusterSearch(Map map, int minimumWaterBodySize)
 	{
 		this.map = map;

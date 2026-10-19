@@ -184,6 +184,8 @@ public class McuDeployManagerBotModule : ConditionalTrait<McuDeployManagerBotMod
 	private int scanInterval;
 	private bool firstTick = true;
 
+	public IReadOnlyCollection<WaterBodyCluster> WaterBodyClusters => this.waterBodyClusterSearch.Clusters;
+
 	public McuDeployManagerBotModule(Actor self, McuDeployManagerBotModuleInfo info)
 		: base(info)
 	{
