@@ -201,7 +201,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private int logicTicks;
 	private bool hasSufficientEconomy;
 	private int reachedEconomyLevel;
-	private int? nextExpansionTick = 0;
+	private int? nextExpansionTick;
 	private int? lastEconomyExpansion;
 	private int? economyExpansionTargetLevel;
 	private int? expandingEconomySince;
@@ -218,6 +218,9 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		this.mines = new ActorIndex.OwnerAndNamesAndTrait<ResourceMineInfo>(this.world, info.MineTypes, this.player);
 		this.refineries = new ActorIndex.OwnerAndNamesAndTrait<ResourceRefineryInfo>(this.world, info.RefineryTypes, this.player);
 		this.crateTransporterManager = new CrateTransporterManager(this.mines, this.refineries, this.crateTransporters, info);
+
+		if (info.EconomyExpansionDelays.Count > 0)
+			this.nextExpansionTick = 0;
 	}
 
 	protected override void Created(Actor self)
