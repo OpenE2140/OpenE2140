@@ -63,11 +63,13 @@ public class ResearchBotModule : ConditionalTrait<ResearchBotModuleInfo>, IBotTi
 			return;
 		}
 
-		//AIUtils.BotDebug("{0} decided to research {1}", this.player, nextTechnologyId);
+		AIUtils.BotDebug("{0} decided to research {1}", this.player, nextTechnologyId);
 
 		this.player.World.IssueOrder(new Order(Research.Research.StartResearchOrder, this.player.PlayerActor, false) { TargetString = nextTechnologyId });
 
-		this.researchTick = this.Info.ResearchDelay;
+		// Add small delay to allow the order to propagate and actually start the research.
+		// This prevents spamming research orders, if ResearchDelay is very low (or zero).
+		this.researchTick = Math.Max(8, this.Info.ResearchDelay);
 	}
 
 	private Technology? GetNextTechnology()
