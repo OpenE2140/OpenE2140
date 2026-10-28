@@ -59,6 +59,9 @@ public class EconomyManagerBotModuleInfo : ConditionalTraitInfo, NotBefore<IReso
 	[Desc("Maximum distance from Mine, where Refinery can be placed.")]
 	public readonly int MaxRefineryDistance = 12;
 
+	[Desc("Maximum allowed ratio of ground path distance to crow distance for mobile crate transporters when picking a Refinery location.")]
+	public readonly int MaxRefineryGroundPathFactor = 2;
+
 	[Desc("Number of crate transporters assigned to single Mine/Refinery pair.",
 		"Be aware of the fact, that over the course of the game, AI can have more crate transporters: " +
 		"for example Refinery gets destroyed, then rebuilt -> AI gets one free crate transporter from the Refinery.")]
@@ -191,6 +194,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private IResourceLayer? resourceLayer;
 	private PlayerIncomeTracker? incomeTracker;
 	private ResourceMineDeployZoneSearch? resourceMineDeployZoneSearch;
+	private ResourceRefineryDeployZoneSearch? refineryDeployZoneSearch;
 
 	private IBotMcuDeployManager? McuDeployManager => this.mcuDeployManager.FirstEnabledTraitOrDefault();
 
@@ -228,7 +232,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			this.incomeTracker = new PlayerIncomeTracker(self.World, playerResources);
 
 		if (this.resourceLayer != null)
+		{
 			this.resourceMineDeployZoneSearch = new ResourceMineDeployZoneSearch(this.world.Map, this.resourceLayer, this.Info);
+			this.refineryDeployZoneSearch = new ResourceRefineryDeployZoneSearch(this.world, this.Info);
+		}
 	}
 
 	protected override void TraitEnabled(Actor self)
@@ -439,8 +446,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		if (unitBuilder != null && shouldBuildCrateTransporter)
 		{
 			// Build the best crate transporter that's possible to build currently.
-			var crateTransporterType = this.Info.CrateTransporterTypes
-				.LastOrDefault(t => unitBuilder.CanBuildUnit(this.player, t));
+			var crateTransporterType = this.GetPreferredCrateTransporterType()?.Name;
 
 			if (crateTransporterType != null
 				&& unitBuilder.RequestedProductionCount(bot, crateTransporterType) == 0
@@ -547,14 +553,10 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		if (!mcu.Info.TryGetTrait<TransformsInfo>(out var transformsInfo))
 			return [];
 
-		// Origin = where the building's top-left would be if MCU stayed at its current location.
-		var origin = mcu.Location + transformsInfo.Offset;
+		var preferredTransporter = this.GetPreferredCrateTransporterType();
+		var locomotor = this.GetCrateTransporterLocomotor(preferredTransporter);
 
-		// Find nearby Mines, which are:
-		// - alive
-		// - and have currently unassigned Mine
-
-		var possibleMineLocations = new List<CPos>();
+		var mineLocations = new List<MineDeployLocation>();
 
 		foreach (var mine in this.mines.Alive())
 		{
@@ -571,7 +573,7 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 			if (mineMcuInfo == null || !mineMcuInfo.TryGetTrait<TransformsInfo>(out var mineTransformsInfo))
 				continue;
 
-			possibleMineLocations.Add(mine.Location - mineTransformsInfo.Offset);
+			mineLocations.Add(new MineDeployLocation(mine.Location - mineTransformsInfo.Offset, mineCenterLocation));
 		}
 
 		// If there's a mine MCU currently moving to deploy, consider the deploy cell a possible Mine location.
@@ -579,32 +581,40 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 		foreach (var (mcuActor, deployLocation) in this.mineMcusMovingToDeploy)
 		{
 			if (!mcuActor.IsDead)
-				possibleMineLocations.Add(deployLocation);
+				mineLocations.Add(new MineDeployLocation(deployLocation, deployLocation));
 		}
 
-		var checkedLocations = new HashSet<CPos>();
-		var candidateZones = new List<DeployZone>();
+		return this.refineryDeployZoneSearch?.FindRefineryDeployZones(
+			locomotor,
+			buildingInfo,
+			transformsInfo.Offset,
+			mineLocations) ?? [];
+	}
 
-		// Evaluate each mine for suitable location, where new Refinery can be placed
-		foreach (var location in possibleMineLocations)
-		{
-			var deployZoneCells = new List<CPos>();
+	private ActorInfo? GetPreferredCrateTransporterType()
+	{
+		var unitBuilder = this.requestUnitProduction.FirstEnabledTraitOrDefault();
+		var typeName = unitBuilder != null
+			? this.Info.CrateTransporterTypes.LastOrDefault(t => unitBuilder.CanBuildUnit(this.player, t))
+			: this.Info.CrateTransporterTypes.LastOrDefault();
 
-			foreach (var cell in this.world.Map.FindTilesInAnnulus(location, this.Info.MinRefineryDistance, this.Info.MaxRefineryDistance))
-			{
-				if (checkedLocations.Add(cell) && this.world.Map.Contains(cell) && buildingInfo.IsCellBuildable(this.world, cell))
-					deployZoneCells.Add(cell);
-			}
+		if (typeName == null)
+			return null;
 
-			var zone = new DeployZone
-			{
-				PreferredLocation = location,
-				CandidateCells = deployZoneCells
-			};
-			candidateZones.Add(zone);
-		}
+		this.world.Map.Rules.Actors.TryGetValue(typeName, out var actorInfo);
+		return actorInfo;
+	}
 
-		return candidateZones;
+	private Locomotor? GetCrateTransporterLocomotor(ActorInfo? transporterInfo)
+	{
+		if (transporterInfo == null || transporterInfo.HasTraitInfo<AircraftInfo>())
+			return null;
+
+		if (!transporterInfo.TryGetTrait<MobileInfo>(out var mobileInfo))
+			return null;
+
+		return this.world.WorldActor.TraitsImplementing<Locomotor>()
+			.FirstOrDefault(l => l.Info.Name == mobileInfo.Locomotor);
 	}
 
 	private List<DeployZone> FindResourceDeployZones(Actor mcu)
