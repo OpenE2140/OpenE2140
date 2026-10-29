@@ -57,7 +57,7 @@ public class ResourceRefineryDeployZoneSearch
 				if (!checkedLocations.Add(cell) || !this.world.Map.Contains(cell))
 					continue;
 
-				if (!refineryBuildingInfo.IsCellBuildable(this.world, cell, BuildingActorCheck.All))
+				if (!refineryBuildingInfo.IsCellBuildable(this.world, cell))
 					continue;
 
 				var refineryCenter = this.world.Map.CellContaining(refineryBuildingInfo.GetCenterOfFootprint(cell + refineryOffset));
