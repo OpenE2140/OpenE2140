@@ -1,57 +1,56 @@
 ﻿using OpenRA.Traits;
 
-namespace OpenRA.Mods.OpenE2140.Traits.BotModules
+namespace OpenRA.Mods.OpenE2140.Traits.BotModules;
+
+public interface IBotEconomyManager
 {
-	public interface IBotEconomyManager
-	{
-		bool HasSufficientEconomy();
+	bool HasSufficientEconomy();
 
-		List<DeployZone> GetDeployCellsCandidates(Actor mcu);
-	}
+	List<DeployZone> GetDeployCellsCandidates(Actor mcu);
+}
 
-	public class DeployZone
-	{
-		public List<CPos> CandidateCells { get; init; } = [];
+public class DeployZone
+{
+	public List<CPos> CandidateCells { get; init; } = [];
 
-		public CPos PreferredLocation { get; init; }
-	}
+	public CPos PreferredLocation { get; init; }
+}
 
-	public interface IBotMcuBaseBuilder
-	{
-		void RequestBuildingProduction(IBot bot, string actor);
+public interface IBotMcuBaseBuilder
+{
+	void RequestBuildingProduction(IBot bot, string actor);
 
-		int RequestedProductionCount(IBot bot, string actor);
+	int RequestedProductionCount(IBot bot, string actor);
 
-		int InProductionCount(IBot bot, string actor);
-	}
+	int InProductionCount(IBot bot, string actor);
+}
 
-	public interface IBotMcuDeployManager
-	{
-		int UndeployedMcuCount(IBot bot, string mcuType);
-	}
+public interface IBotMcuDeployManager
+{
+	int UndeployedMcuCount(IBot bot, string mcuType);
+}
 
-	public interface IBotMcuDeployment
-	{
-		void OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation) { }
+public interface IBotMcuDeployment
+{
+	void OrderedMcuToDeploy(IBot bot, Actor mcuActor, CPos deployLocation) { }
 
-		void McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor) { }
+	void McuDeployed(IBot bot, Actor mcuActor, Actor buildingActor) { }
 
-		void McuTransformed(IBot bot, Actor buildingActor) { }
-	}
+	void McuTransformed(IBot bot, Actor buildingActor) { }
+}
 
-	public interface IBotWaterBaseDeployZones
-	{
-		bool HasSuitableWaterBody(CPos baseCenter);
+public interface IBotWaterBaseDeployZones
+{
+	bool HasSuitableWaterBody(CPos baseCenter);
 
-		List<WaterBaseDeployZone> GetWaterBaseDeployZones(CPos baseCenter);
-	}
+	List<WaterBaseDeployZone> GetWaterBaseDeployZones(CPos baseCenter);
+}
 
-	public class WaterBaseDeployZone
-	{
-		public List<CPos> CandidateCells { get; init; } = [];
+public class WaterBaseDeployZone
+{
+	public List<CPos> CandidateCells { get; init; } = [];
 
-		public CPos PreferredLocation { get; init; }
+	public CPos PreferredLocation { get; init; }
 
-		public List<CPos> WaterCells { get; init; } = [];
-	}
+	public List<CPos> WaterCells { get; init; } = [];
 }
