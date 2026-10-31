@@ -55,6 +55,7 @@ public class ResearchLimitInfo : TraitInfo, ILobbyOptions
 public class ResearchLimit : INotifyCreated
 {
 	private readonly ResearchLimitInfo info;
+
 	public int Limit { get; private set; }
 
 	public ResearchLimit(ResearchLimitInfo info)
@@ -64,6 +65,9 @@ public class ResearchLimit : INotifyCreated
 
 	void INotifyCreated.Created(Actor self)
 	{
-		this.Limit = int.Parse(self.World.LobbyInfo.GlobalSettings.OptionOrDefault(ResearchLimitInfo.Id, this.info.Limit.ToString()));
+		if (self.World.LobbyInfo.GlobalSettings.TryGetOption(ResearchLimitInfo.Id, out var level))
+			this.Limit = int.Parse(level);
+		else
+			this.Limit = this.info.Limit;
 	}
 }
