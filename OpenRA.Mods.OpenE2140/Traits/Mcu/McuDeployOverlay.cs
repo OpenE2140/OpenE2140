@@ -29,7 +29,7 @@ public class McuDeployOverlayInfo : TraitInfo, Requires<ITransformsInfo>
 	}
 }
 
-public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderAnnotations, IResolveOrder
+public class McuDeployOverlay : ITransformsPreview
 {
 	public McuDeployOverlayInfo Info { get; }
 
@@ -37,8 +37,6 @@ public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderA
 	private readonly ActorInfo buildingActor;
 	private readonly ICustomBuildingInfo customBuildingInfo;
 	private readonly ITransformsInfo transformsInfo;
-
-	private Target lastTarget = Target.Invalid;
 
 	public McuDeployOverlay(Actor self, McuDeployOverlayInfo info)
 	{
@@ -67,9 +65,6 @@ public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderA
 		var topLeft = this.GetTopLeft(self, target);
 
 		var footprint = this.customBuildingInfo.GetBuildingPlacementFootprint(self.World, topLeft, self);
-
-		//foreach (var r in this.RenderPlaceBuildingPreviews(self, wr, topLeft, footprint))
-		//	yield return r;
 
 		foreach (var r in this.RenderTransformsPreviews(self, wr, o => o.RenderAnnotations(self, wr, topLeft, footprint)))
 			yield return r;
@@ -117,34 +112,5 @@ public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderA
 			foreach (var r in renderFunc(preview))
 				yield return r;
 		}
-	}
-	bool IRenderAboveShroud.SpatiallyPartitionable => false;
-
-	bool IRenderAnnotations.SpatiallyPartitionable => false;
-
-	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
-	{
-		if (this.lastTarget.Type != TargetType.Invalid && ShouldRenderOverlay())
-			return this.RenderAboveShroud(self, wr, this.lastTarget);
-
-		return [];
-	}
-
-	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
-	{
-		if (this.lastTarget.Type != TargetType.Invalid && ShouldRenderOverlay())
-			return this.RenderAnnotations(self, wr, this.lastTarget);
-
-		return [];
-	}
-
-	private static bool ShouldRenderOverlay() => Game.GetModifierKeys().HasModifier(Modifiers.Ctrl);
-
-	void IResolveOrder.ResolveOrder(Actor self, Order order)
-	{
-		if (order.OrderString is "DeployTransform" or OrderConstants.MoveAndDeployTransformOrderID)
-			this.lastTarget = order.Target;
-		else
-			this.lastTarget = Target.Invalid;
 	}
 }

@@ -11,12 +11,12 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
 using OpenRA.Activities;
 using OpenRA.Graphics;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
-using OpenRA.Mods.OpenE2140.Orders;
 using OpenRA.Traits;
 using Transform = OpenRA.Mods.OpenE2140.Activites.Transform;
 
@@ -77,9 +77,10 @@ public class TransformsInfo : PausableConditionalTraitInfo, ITransformsInfo
 	public override object Create(ActorInitializer init) { return new Transforms(init, this); }
 }
 
-public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, ITransforms, IOrderPreviewRender
+public class Transforms : PausableConditionalTrait<TransformsInfo>,
+	IIssueOrder, IResolveOrder, IOrderVoice, IIssueDeployOrder, ITransforms, IOrderPreviewRender,
+	IRenderAboveShroud, IRenderAnnotations
 {
-	private const string BeginDeployTransformOrderID = "BeginDeployTransformBuilding";
 	private const string DeployTransformOrderID = "DeployTransform";
 
 	private readonly Actor self;
@@ -135,24 +136,13 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 	public Order? IssueOrder(Actor self, IOrderTargeter order, in Target target, bool queued)
 	{
 		if (order.OrderID is DeployTransformOrderID or OrderConstants.MoveAndDeployTransformOrderID)
-		{
 			return new Order(order.OrderID, self, target, queued);
-		}
-		else if (order.OrderID == BeginDeployTransformOrderID)
-			return BeginDeployTransform(self, queued);
 
 		return null;
 	}
 
-	private static Order BeginDeployTransform(Actor self, bool queued)
-	{
-		self.World.OrderGenerator = new MoveAndTransformOrderGenerator(self, queued);
-		return new Order(BeginDeployTransformOrderID, self, queued);
-	}
-
 	Order IIssueDeployOrder.IssueDeployOrder(Actor self, bool queued)
 	{
-		//return BeginDeployTransform(self, queued);
 		return new Order(DeployTransformOrderID, self, queued);
 	}
 
@@ -181,6 +171,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			self.ShowTargetLines();
 		}
 	}
+
 	private bool ValidateDeployTransform(CPos targetLocation, bool queued)
 	{
 		if (!queued && !this.CanDeploy(this.self, targetLocation))
@@ -188,8 +179,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			foreach (var order in this.ClearBlockersOrders(targetLocation + this.Info.Offset))
 				this.self.World.IssueOrder(order);
 
-			// Only play the "Cannot deploy here" audio
-			// for non-queued orders
+			// Only play the "Cannot deploy here" audio for non-queued orders
 			foreach (var s in this.Info.NoTransformSounds)
 				Game.Sound.PlayToPlayer(SoundType.World, this.self.Owner, s);
 
@@ -220,6 +210,33 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 		return new MoveToTransform(this.self, deployLocation, this);
 	}
 
+	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
+	{
+		return RenderTransformsOverlay(self, (p, target) => p.RenderAboveShroud(self, wr, target));
+	}
+
+	IEnumerable<IRenderable> IRenderAnnotations.RenderAnnotations(Actor self, WorldRenderer wr)
+	{
+		return RenderTransformsOverlay(self, (p, target) => p.RenderAnnotations(self, wr, target));
+	}
+
+	private static IEnumerable<IRenderable> RenderTransformsOverlay(Actor self, Func<ITransformsPreview, Target, IEnumerable<IRenderable>> renderFunc)
+	{
+		if (ShouldRenderOverlay() && TryGetCurrentDeployTarget(self, out var location))
+		{
+			var target = Target.FromCell(self.World, location.Value);
+			return RenderOrderPreviewOverlay(self, p => renderFunc(p, target));
+		}
+
+		return [];
+	}
+
+	private static bool ShouldRenderOverlay() => Game.GetModifierKeys().HasModifier(Modifiers.Ctrl);
+
+	bool IRenderAnnotations.SpatiallyPartitionable => false;
+
+	bool IRenderAboveShroud.SpatiallyPartitionable => false;
+
 	IEnumerable<IRenderable> IOrderPreviewRender.Render(Actor self, WorldRenderer wr, Target target)
 	{
 		return RenderOrderPreviewOverlay(self, p => p.Render(self, wr, target));
@@ -243,6 +260,21 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 				yield return r;
 	}
 
+	private static bool TryGetCurrentDeployTarget(Actor self, [NotNullWhen(true)] out CPos? targetLocation)
+	{
+		var activity = self.CurrentActivity?.ActivitiesImplementing<MoveToTransform>()
+			.FirstOrDefault(a => a.State is ActivityState.Active or ActivityState.Queued);
+		if (activity != null)
+		{
+			targetLocation = activity.TargetLocation;
+			return true;
+		}
+
+		targetLocation = null;
+		return false;
+	}
+
+
 	private class BeginDeployTransformOrderTargeter : IOrderTargeter
 	{
 		private readonly ITransforms transforms;
@@ -251,6 +283,8 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 
 		public string OrderID { get; private set; } = OrderConstants.MoveAndDeployTransformOrderID;
 		public int OrderPriority => 5;
+
+		public bool IsQueued { get; private set; }
 
 		public BeginDeployTransformOrderTargeter(ITransforms transforms, string deployCursor, string deployBlockedCursor)
 		{
@@ -287,22 +321,21 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 
 			return true;
 		}
-
-		public bool IsQueued { get; private set; }
 	}
 
 	private class MoveToTransform : Activity
 	{
-		private readonly CPos targetLocation;
 		private readonly Transforms transforms;
 		private readonly IMove? move;
 		private readonly IMoveInfo? moveInfo;
 
 		private int attempt;
 
+		public CPos TargetLocation { get; }
+
 		public MoveToTransform(Actor self, CPos targetLocation, Transforms transforms)
 		{
-			this.targetLocation = targetLocation;
+			this.TargetLocation = targetLocation;
 			this.transforms = transforms;
 			this.move = self.TraitOrDefault<IMove>();
 			this.moveInfo = self.Info.TraitInfo<IMoveInfo>();
@@ -313,7 +346,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 			if (this.IsCanceling)
 				return true;
 
-			if (self.Location != this.targetLocation)
+			if (self.Location != this.TargetLocation)
 			{
 				if (this.move == null)
 					return true;
@@ -327,13 +360,13 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 				if (this.attempt > 1)
 					this.QueueChild(new Wait(30));
 
-				var moveActivity = this.move.MoveTo(this.targetLocation, targetLineColor: this.moveInfo?.GetTargetLineColor());
+				var moveActivity = this.move.MoveTo(this.TargetLocation, targetLineColor: this.moveInfo?.GetTargetLineColor());
 				this.QueueChild(moveActivity);
 				return false;
 			}
 
-			if (this.transforms.ValidateDeployTransform(this.targetLocation, false))
-				this.QueueChild(this.transforms.GetTransformActivity(this.targetLocation));
+			if (this.transforms.ValidateDeployTransform(this.TargetLocation, false))
+				this.QueueChild(this.transforms.GetTransformActivity(this.TargetLocation));
 
 			return true;
 		}
@@ -344,7 +377,7 @@ public class Transforms : PausableConditionalTrait<TransformsInfo>, IIssueOrder,
 				return this.ChildActivity.TargetLineNodes(self);
 
 			if (this.moveInfo != null)
-				return [new TargetLineNode(Target.FromCell(self.World, this.targetLocation), this.moveInfo.GetTargetLineColor())];
+				return [new TargetLineNode(Target.FromCell(self.World, this.TargetLocation), this.moveInfo.GetTargetLineColor())];
 
 			return [];
 		}
