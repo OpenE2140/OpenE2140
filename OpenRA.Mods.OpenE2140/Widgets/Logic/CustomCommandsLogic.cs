@@ -63,7 +63,7 @@ public class CustomCommandsLogic : ChromeLogic
 				.Where(a => a.Owner == world.LocalPlayer && a.IsInWorld && !a.IsDead)
 				.ToArray();
 
-			this.buildWallDisabled = !this.selectedActors.Any(a => a.Info.HasTraitInfo<WallBuilderInfo>() );
+			this.buildWallDisabled = !this.selectedActors.Any(a => a.Info.HasTraitInfo<WallBuilderInfo>());
 
 			this.selectionHash = world.Selection.Hash;
 		}

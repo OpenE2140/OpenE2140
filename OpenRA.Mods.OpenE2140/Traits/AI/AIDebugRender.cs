@@ -111,8 +111,8 @@ public class AIDebugRender : IRenderAnnotations
 			var halfCell = wr.World.Map.Grid.TileScale / 2;
 			var ts = new WVec(halfCell, halfCell, 0);
 
-			var tl = wr.Viewport.WorldToViewPx(wr.ScreenPxPosition(this.Pos - ts)).ToVector3(); 
-			var br = wr.Viewport.WorldToViewPx(wr.ScreenPxPosition(this.Pos + ts)).ToVector3(); 
+			var tl = wr.Viewport.WorldToViewPx(wr.ScreenPxPosition(this.Pos - ts)).ToVector3();
+			var br = wr.Viewport.WorldToViewPx(wr.ScreenPxPosition(this.Pos + ts)).ToVector3();
 
 			var cr = Game.Renderer.RgbaColorRenderer;
 			cr.FillRect(tl, br, this.color);

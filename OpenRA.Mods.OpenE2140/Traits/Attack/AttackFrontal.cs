@@ -16,9 +16,9 @@ using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Primitives;
 using OpenRA.Traits;
-using BaseAttackFrontalInfo = OpenRA.Mods.Common.Traits.AttackFrontalInfo;
-using BaseAttackFrontal = OpenRA.Mods.Common.Traits.AttackFrontal;
 using BaseAttack = OpenRA.Mods.Common.Activities.Attack;
+using BaseAttackFrontal = OpenRA.Mods.Common.Traits.AttackFrontal;
+using BaseAttackFrontalInfo = OpenRA.Mods.Common.Traits.AttackFrontalInfo;
 
 namespace OpenRA.Mods.OpenE2140.Traits.Attack;
 

@@ -129,7 +129,7 @@ public class SelfDestructible : ConditionalTrait<SelfDestructibleInfo>, ITick, I
 		if (playNotification)
 		{
 			Game.Sound.PlayNotification(self.World.Map.Rules, self.Owner, "Speech", this.Info.SelfDestructingNotification, self.Owner.Faction.InternalName);
-			TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingTextNotification); 
+			TextNotificationsManager.AddTransientLine(self.Owner, this.Info.SelfDestructingTextNotification);
 		}
 
 		this.UpdateCondition(self);

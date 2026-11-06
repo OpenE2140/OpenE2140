@@ -1,5 +1,4 @@
 ﻿using OpenRA.Mods.Common.Traits;
-using OpenRA.Primitives;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules.BotModuleLogic;
 

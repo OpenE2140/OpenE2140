@@ -1,5 +1,5 @@
-﻿using Microsoft.Win32;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Microsoft.Win32;
 using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Installer;
 

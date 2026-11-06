@@ -12,12 +12,12 @@
 #endregion
 
 using System.Collections.Frozen;
+using OpenRA.Mods.Common;
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
+using OpenRA.Mods.OpenE2140.Extensions;
 using OpenRA.Primitives;
 using OpenRA.Traits;
-using OpenRA.Mods.Common;
-using OpenRA.Mods.OpenE2140.Extensions;
 
 namespace OpenRA.Mods.OpenE2140.Traits.BotModules;
 

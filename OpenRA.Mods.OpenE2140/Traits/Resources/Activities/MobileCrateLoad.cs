@@ -9,7 +9,7 @@
  * information, see COPYING.
  */
 
-# endregion
+#endregion
 
 using OpenRA.Mods.Common.Activities;
 using OpenRA.Mods.Common.Traits;
