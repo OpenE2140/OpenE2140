@@ -428,7 +428,7 @@ public class WaterBaseTransforms : PausableConditionalTrait<WaterBaseTransformsI
 
 		public CPos? DeployLocation => this.deployLocation;
 
-		protected override MouseActionType ActionType => MouseActionType.PlaceBuilding;
+		protected override MouseActionType ActionType => MouseActionType.Contextual;
 
 		public PlaceDockOrderGenerator(Actor self, CPos? deployLocation, bool queued)
 			: base(self.World)
