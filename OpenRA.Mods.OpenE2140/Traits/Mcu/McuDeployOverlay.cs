@@ -118,9 +118,9 @@ public class McuDeployOverlay : ITransformsPreview, IRenderAboveShroud, IRenderA
 				yield return r;
 		}
 	}
-	bool IRenderAboveShroud.SpatiallyPartitionable => true;
+	bool IRenderAboveShroud.SpatiallyPartitionable => false;
 
-	bool IRenderAnnotations.SpatiallyPartitionable => true;
+	bool IRenderAnnotations.SpatiallyPartitionable => false;
 
 	IEnumerable<IRenderable> IRenderAboveShroud.RenderAboveShroud(Actor self, WorldRenderer wr)
 	{
