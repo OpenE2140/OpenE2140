@@ -44,6 +44,14 @@ public interface IProduceActorInitModifier
 	void ModifyActorInit(Actor self, TypeDictionary init);
 }
 
+[RequireExplicitImplementation]
+public interface IInterceptableProjectile
+{
+	WPos Position { get; }
+	Player Owner { get; }
+	void Intercept(OpenRA.World world, Actor interceptor);
+}
+
 public interface INotifyTransform
 {
 	void TransformCanceled(Actor self);
