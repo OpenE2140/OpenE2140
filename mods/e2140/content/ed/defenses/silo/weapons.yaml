@@ -15,3 +15,10 @@ ed_defenses_silo:
 		ExplosionPalette:
 		ImpactSounds: 14.smp
 		ValidTargets: Ground, Water, Ship, Air
+
+ed_defenses_silo_intercepted:
+	Inherits: VehicleExplosion
+	ValidTargets: Ground, Water, Air
+	Warhead@Effect: CreateEffect
+		ValidTargets: Ground, Water, Air
+		ImpactActors: false

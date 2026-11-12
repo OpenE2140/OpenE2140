@@ -59,6 +59,8 @@ ed_defenses_silo:
 		TrailDelay: 4
 		TrailZOffset: 1000
 		TrailPalette:
+		Interceptable: true
+		InterceptionWeapon: ed_defenses_silo_intercepted
 		SupportPowerPaletteOrder: 20
 		FlightVelocity: 0c200
 		FlightDelay: 200

@@ -15,6 +15,22 @@ ucs_buildings_sdi_defense:
 		Dimensions: 3,3
 		Footprint: xx= xx= ===
 		LocalCenterOffset: -440,-512,0
+	InterceptsProjectiles:
+		HorizontalRange: 5c0
+		VerticalRange: 3c0
+		Cooldown: 30
+		InterceptDelay: 5
+		Offsets: -102,-145,0, -920,-500,0, -85,-825,0
+		MergeDistance: 0c900
+		ValidRelationships: Ally, Enemy, Neutral
+		Width: 0c60
+		Shape: Cylindrical
+		Color: 465D2380
+		SecondaryBeam: true
+		SecondaryBeamWidth: 0c20
+		SecondaryBeamColor: B4DF83AA
+		ZOffset: 2048
+		PauseOnCondition: !Powered || Transforming
 	# SDI Defence doesn't have crew.
 	-BuildingCrew:
 	-BuildingCrewEntrance@1:
