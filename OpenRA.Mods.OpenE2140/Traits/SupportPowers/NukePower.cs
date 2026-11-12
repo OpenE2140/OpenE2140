@@ -86,6 +86,36 @@ public class NukePowerInfo : SupportPowerInfo
 	[Desc("Use the Player Palette to render the trail sequence.")]
 	public readonly bool TrailUsePlayerPalette = false;
 
+	[Desc("Z offset for the main missile sprite. Higher values draw on top.")]
+	public readonly int MissileZOffset = 0;
+
+	[Desc("Z offset for the spawned trail SpriteEffects.")]
+	public readonly int TrailZOffset = 0;
+
+	[Desc("Image for the static trail sprite drawn between the main missile and spawned trail effects.")]
+	public readonly string? StaticTrailImage;
+
+	[SequenceReference(nameof(StaticTrailImage))]
+	[Desc("Static trail sprite sequence while ascending.")]
+	public readonly string StaticTrailUp = "up";
+
+	[SequenceReference(nameof(StaticTrailImage))]
+	[Desc("Static trail sprite sequence while descending.")]
+	public readonly string StaticTrailDown = "down";
+
+	[PaletteReference(nameof(StaticTrailPaletteIsPlayerPalette))]
+	[Desc("Palette to use for the static trail sprite.")]
+	public readonly string StaticTrailPalette = "effect";
+
+	[Desc("Use the Player Palette to render the static trail sprite.")]
+	public readonly bool StaticTrailPaletteIsPlayerPalette = false;
+
+	[Desc("Z offset for the static trail sprite. Should be between TrailZOffset and MissileZOffset.")]
+	public readonly int StaticTrailZOffset = 0;
+
+	[Desc("Delay in ticks between the main missile and the static trail position along the flight path.")]
+	public readonly int StaticTrailDelay = 0;
+
 	[Desc("Travel time - split equally between ascent and descent.")]
 	public readonly int FlightDelay = 400;
 
@@ -192,7 +222,10 @@ internal sealed class NukePower : SupportPower
 			targetPosition, this.info.DetonationAltitude, this.info.RemoveMissileOnDetonation,
 			this.info.FlightVelocity, this.info.MissileDelay, this.info.FlightDelay, skipAscent,
 			this.info.TrailImage, this.info.TrailSequences, this.info.TrailPalette, this.info.TrailUsePlayerPalette, this.info.TrailDelay, this.info.TrailInterval,
-			this.info.Interceptable, this.info.InterceptionWeaponInfo);
+			this.info.Interceptable, this.info.InterceptionWeaponInfo,
+			this.info.StaticTrailImage, this.info.StaticTrailUp, this.info.StaticTrailDown, this.info.StaticTrailPalette, this.info.StaticTrailPaletteIsPlayerPalette,
+			this.info.StaticTrailDelay, this.info.StaticTrailZOffset,
+			this.info.MissileZOffset, this.info.TrailZOffset);
 
 		self.World.AddFrameEndTask(w => w.Add(missile));
 

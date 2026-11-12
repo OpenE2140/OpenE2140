@@ -56,6 +56,13 @@ projectile:
 		Filename: projectile_nuclear_rocket_up.vspr
 	nuclear_rocket_down:
 		Filename: projectile_nuclear_rocket_down.vspr
+	nuclear_rocket_thruster_up:
+		Filename: thruster_up.vspr
+		BlendMode: Additive
+		Offset: 1,8
+	nuclear_rocket_thruster_down:
+		Filename: thruster_down.vspr
+		BlendMode: Additive
 	plasmablast_up:
 		Filename: projectile_plasmablast_up.vspr
 		BlendMode: Additive

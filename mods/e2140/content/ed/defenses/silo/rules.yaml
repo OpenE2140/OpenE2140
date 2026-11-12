@@ -43,12 +43,21 @@ ed_defenses_silo:
 		MissileUp: nuclear_rocket_up
 		MissileDown: nuclear_rocket_down
 		MissileDelay: 5
+		MissileZOffset: 0
 		MissilePalette:
 		SpawnOffset: 512,-64,0
 		DisplayTimerRelationships: Ally, Neutral, Enemy
 		DisplayRadarPing: True
+		StaticTrailImage: projectile
+		StaticTrailUp: nuclear_rocket_thruster_up
+		StaticTrailDown: nuclear_rocket_thruster_down
+		StaticTrailDelay: 4
+		StaticTrailZOffset: 800
+		StaticTrailPalette:
 		TrailImage: trail
 		TrailSequences: trail_rocket_big
+		TrailDelay: 4
+		TrailZOffset: 1000
 		TrailPalette:
 		SupportPowerPaletteOrder: 20
 		FlightVelocity: 0c200
