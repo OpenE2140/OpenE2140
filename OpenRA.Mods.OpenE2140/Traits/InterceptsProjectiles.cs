@@ -68,6 +68,9 @@ public class InterceptsProjectilesInfo : PausableConditionalTraitInfo
 	[Desc("Z offset for beam rendering.")]
 	public readonly int ZOffset = 2048;
 
+	[Desc("Sound to play when a target projectile is locked.")]
+	public readonly string? Sound;
+
 	public override object Create(ActorInitializer init) { return new InterceptsProjectiles(init.Self, this); }
 }
 
@@ -136,6 +139,10 @@ public class InterceptsProjectiles : PausableConditionalTrait<InterceptsProjecti
 
 		this.delayTicks = this.Info.InterceptDelay;
 		this.beam = new InterceptBeam(self, this.Info, this.target);
+
+		if (!string.IsNullOrEmpty(this.Info.Sound))
+			Game.Sound.Play(SoundType.World, this.Info.Sound, this.target.Position);
+
 		self.World.AddFrameEndTask(w => w.Add(this.beam));
 	}
 

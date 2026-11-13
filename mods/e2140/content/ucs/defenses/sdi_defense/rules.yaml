@@ -20,6 +20,7 @@ ucs_buildings_sdi_defense:
 		VerticalRange: 3c0
 		Cooldown: 30
 		InterceptDelay: 5
+		Sound: e2140|content/ucs/defenses/sdi_defense/sdi_defense_laser.wav
 		Offsets: -102,-145,0, -920,-500,0, -85,-825,0
 		MergeDistance: 0c900
 		ValidRelationships: Ally, Enemy, Neutral
