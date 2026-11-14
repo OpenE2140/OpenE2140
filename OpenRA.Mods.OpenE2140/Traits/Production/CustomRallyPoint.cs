@@ -11,6 +11,7 @@
 
 #endregion
 
+using OpenRA.Effects;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.OpenE2140.Traits.Effects;
 using OpenRA.Traits;
@@ -41,14 +42,8 @@ public class CustomRallyPoint : RallyPoint, INotifyCreated, INotifyAddedToWorld
 	{
 	}
 
-	void INotifyCreated.Created(Actor self)
+	protected override IEffect CreateRallyPointIndicator(Actor self)
 	{
-		// HACK: RallyPoint class is using INotifyAddedToWorld to add standard RallyPointIndicator effect to World.
-		// CustomRallyPoint does this too, but we'd like to suppress creating the standard RallyPointIndicator altogether.
-	}
-
-	void INotifyAddedToWorld.AddedToWorld(Actor self)
-	{
-		self.World.AddFrameEndTask(w => w.Add(new CustomRallyPointIndicator(self, this)));
+		return new CustomRallyPointIndicator(self, this);
 	}
 }
