@@ -25,7 +25,7 @@ public enum MiningAreaBorderShape { Square, Circle, None }
 
 [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]
 [Desc("Custom overlay for ResourceMine.")]
-public class ResourceMineOverlayInfo : ConditionalTraitInfo, Requires<ResourceMineInfo>, Requires<ICustomBuildingInfo>
+public class ResourceMineOverlayInfo : TraitInfo, Requires<ResourceMineInfo>, Requires<ICustomBuildingInfo>
 {
 	[Desc("Player relationships who can view the overlay.")]
 	public readonly PlayerRelationship ValidRelationships = PlayerRelationship.Ally;
@@ -45,16 +45,17 @@ public class ResourceMineOverlayInfo : ConditionalTraitInfo, Requires<ResourceMi
 	}
 }
 
-public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IRenderAnnotations, IRenderAboveShroud
+public class ResourceMineOverlay : IRenderAnnotations, IRenderAboveShroud
 {
+	private readonly ResourceMineOverlayInfo info;
 	private readonly ResourceMine resourceMine;
 	private readonly ICustomBuildingInfo customBuildingInfo;
 	private readonly IResourceLayer resourceLayer;
 	private readonly (Sprite sprite, float alpha) validCell;
 
 	public ResourceMineOverlay(Actor self, ResourceMineOverlayInfo info)
-		: base(info)
 	{
+		this.info = info;
 		this.resourceMine = self.Trait<ResourceMine>();
 		this.customBuildingInfo = self.Info.TraitInfo<ICustomBuildingInfo>();
 
@@ -98,11 +99,11 @@ public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IR
 		var isDepleted = this.resourceMine.IsDepleted;
 
 		// When selected, render at full opacity, if just hovered then semi-transparent.
-		var color = isDepleted ? this.Info.DepletedMiningAreaBorderColor : this.Info.MiningAreaBorderColor;
+		var color = isDepleted ? this.info.DepletedMiningAreaBorderColor : this.info.MiningAreaBorderColor;
 		var footprintCenter = this.customBuildingInfo.GetCenterOfFootprint(self.Location);
 		var borderRange = WDist.FromCells(this.resourceMine.Info.Range) + new WDist(512);
 
-		switch (this.Info.MiningAreaBorderShape)
+		switch (this.info.MiningAreaBorderShape)
 		{
 			case MiningAreaBorderShape.Square:
 			{
@@ -133,7 +134,7 @@ public class ResourceMineOverlay : ConditionalTrait<ResourceMineOverlayInfo>, IR
 
 		if (viewer != null)
 		{
-			if (!this.Info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(viewer)))
+			if (!this.info.ValidRelationships.HasRelationship(self.Owner.RelationshipWith(viewer)))
 				return false;
 		}
 
