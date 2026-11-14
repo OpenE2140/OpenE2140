@@ -264,8 +264,10 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 		foreach (var actor in blockingActors)
 		{
 			var mobile = actor.TraitOrDefault<Mobile>();
-			var cell = mobile?.GetAdjacentCell(targetCell);
+			if (mobile == null || mobile.CanEnterCell(targetCell, ignoreActor: self))
+				continue;
 
+			var cell = mobile.GetAdjacentCell(targetCell);
 			if (cell != null)
 				actor.QueueActivity(false, mobile?.MoveTo(cell.Value));
 		}
@@ -300,7 +302,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				// If produced actor is aircraft, consider ejection process complete.
 				if (self.World.Map.CellContaining(actor.CenterPosition) != this.GetSpawnCell(self))
 				{
-					this.QueuePathToRallyPoint(this.productionInfo);
 					this.NotifyProducedUnit(self, actor);
 
 					this.lastProducedUnit = this.productionInfo;
@@ -329,6 +330,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 						// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
 						this.productionInfo = this.productionInfo with { ExitMoveActivity = activity };
 						actor.QueueActivity(this.productionInfo.ExitMoveActivity);
+						this.QueuePathToRallyPoint(this.productionInfo);
 					}
 				}
 				else if (actor.TryGetTrait<Aircraft>(out var aircraft))
@@ -394,7 +396,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 				var exitCell = self.Location + this.productionInfo.ExitInfo.ExitCell;
 
 				var blockingActors = self.World.ActorMap.GetActorsAt(exitCell).Exclude(actor).ToArray();
-
 				if (blockingActors.Length == 0)
 				{
 					// Store move activity that is queued by this AnimatedExitProduction, it's going to be needed later.
@@ -407,7 +408,6 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 
 				// current exit cell is still blocked, try picking another
 				var nextFreeExit = this.SelectExit(self, actor.Info, this.productionInfo.ProductionType);
-
 				if (nextFreeExit != null)
 				{
 					this.productionInfo = this.productionInfo with { ExitInfo = nextFreeExit.Info };
@@ -459,7 +459,7 @@ public class AnimatedExitProduction : Common.Traits.Production, ITick, INotifyPr
 	{
 		var actor = productionInfo.Actor;
 
-		if (actor == null || this.rallyPoint == null)
+		if (actor == null || this.rallyPoint == null || this.rallyPoint.Path.Count == 0)
 			return;
 
 		// Queue path to rally point only if current activity has been ordered by this Production trait (and not player).
