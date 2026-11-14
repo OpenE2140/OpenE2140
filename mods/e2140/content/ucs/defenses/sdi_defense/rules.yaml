@@ -32,6 +32,7 @@ ucs_buildings_sdi_defense:
 		SecondaryBeamColor: B4DF83AA
 		ZOffset: 2048
 		PauseOnCondition: !Powered || Transforming
+	SdiDefenseOverlay:
 	# SDI Defence doesn't have crew.
 	-BuildingCrew:
 	-BuildingCrewEntrance@1:
@@ -62,6 +63,7 @@ ucs_mcu_sdi_defense:
 		Name: Mobile SDI Defence
 	Transforms:
 		IntoActor: ucs_buildings_sdi_defense
+	SdiDefenseMcuDeployOverlay:
 	Valued:
 		Cost: 2000
 	Buildable:
