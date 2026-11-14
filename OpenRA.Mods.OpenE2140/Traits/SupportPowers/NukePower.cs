@@ -95,17 +95,17 @@ public class NukePowerInfo : SupportPowerInfo
 	[Desc("Image for the static trail sprite drawn between the main missile and spawned trail effects.")]
 	public readonly string? StaticTrailImage;
 
-	[SequenceReference(nameof(StaticTrailImage))]
+	[SequenceReference(nameof(StaticTrailImage), allowNullImage: true)]
 	[Desc("Static trail sprite sequence while ascending.")]
 	public readonly string StaticTrailUp = "up";
 
-	[SequenceReference(nameof(StaticTrailImage))]
+	[SequenceReference(nameof(StaticTrailImage), allowNullImage: true)]
 	[Desc("Static trail sprite sequence while descending.")]
 	public readonly string StaticTrailDown = "down";
 
 	[PaletteReference(nameof(StaticTrailPaletteIsPlayerPalette))]
 	[Desc("Palette to use for the static trail sprite.")]
-	public readonly string StaticTrailPalette = "effect";
+	public readonly string? StaticTrailPalette;
 
 	[Desc("Use the Player Palette to render the static trail sprite.")]
 	public readonly bool StaticTrailPaletteIsPlayerPalette = false;
@@ -181,6 +181,10 @@ public class NukePowerInfo : SupportPowerInfo
 
 			this.InterceptionWeaponInfo = interceptionWeapon;
 		}
+
+		if (!string.IsNullOrEmpty(this.StaticTrailImage) && (string.IsNullOrEmpty(this.StaticTrailUp) || string.IsNullOrEmpty(this.StaticTrailDown)))
+			throw new YamlException(
+				$"When {nameof(this.StaticTrailImage)} is defined, both {nameof(this.StaticTrailUp)} and {nameof(this.StaticTrailDown)} need to be defined");
 
 		base.RulesetLoaded(rules, ai);
 	}

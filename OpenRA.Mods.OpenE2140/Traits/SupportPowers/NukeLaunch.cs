@@ -30,9 +30,9 @@ public class NukeLaunch : IProjectile, ISpatiallyPartitionable, IInterceptablePr
 	private readonly string downSequence;
 
 	private readonly Animation? staticTrailAnim;
-	private readonly string staticTrailUp;
-	private readonly string staticTrailDown;
-	private readonly string staticTrailPalette;
+	private readonly string? staticTrailUp;
+	private readonly string? staticTrailDown;
+	private readonly string? staticTrailPalette;
 	private readonly int staticTrailDelay;
 	private readonly int staticTrailZOffset;
 	private readonly int missileZOffset;
@@ -66,7 +66,7 @@ public class NukeLaunch : IProjectile, ISpatiallyPartitionable, IInterceptablePr
 		bool skipAscent,
 		string? trailImage, ImmutableArray<string> trailSequences, string trailPalette, bool trailUsePlayerPalette, int trailDelay, int trailInterval,
 		bool interceptable, WeaponInfo? interceptionWeapon,
-		string? staticTrailImage, string staticTrailUp, string staticTrailDown, string staticTrailPalette, bool staticTrailPaletteIsPlayerPalette,
+		string? staticTrailImage, string? staticTrailUp, string? staticTrailDown, string? staticTrailPalette, bool staticTrailPaletteIsPlayerPalette,
 		int staticTrailDelay, int staticTrailZOffset,
 		int missileZOffset, int trailZOffset)
 	{
@@ -112,7 +112,7 @@ public class NukeLaunch : IProjectile, ISpatiallyPartitionable, IInterceptablePr
 		if (!string.IsNullOrEmpty(image))
 			this.anim = new Animation(firedBy.World, image);
 
-		if (!string.IsNullOrEmpty(staticTrailImage))
+		if (!string.IsNullOrEmpty(staticTrailImage) && !string.IsNullOrEmpty(staticTrailUp) && !string.IsNullOrEmpty(staticTrailDown))
 			this.staticTrailAnim = new Animation(firedBy.World, staticTrailImage);
 
 		this.pos = skipAscent ? this.descendSource : this.ascendSource;
