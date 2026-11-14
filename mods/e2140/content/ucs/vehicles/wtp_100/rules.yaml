@@ -1,5 +1,6 @@
 ucs_vehicles_wtp_100:
 	Inherits: ^UcsVehicle
+	Inherits: ^AutoTargetAll
 	Tooltip:
 		Name: WTP 100
 	Valued:
@@ -29,9 +30,38 @@ ucs_vehicles_wtp_100:
 	# Don't count WTP 100 as army in the player statistics.
 	UpdatesPlayerStatistics:
 		AddToArmyValue: false
-	Cargo:
+	AttachedCargo:
 		Types: Infantry, Vehicle
 		MaxWeight: 6
+		UnloadVoice: Unload
+		UnloadCursor: exit
+		ZOffset: 64
+		LoadedCondition: PassengersLoaded
+		PassengerConditions:
+			ucs_vehicles_shadow: ShadowPassengerLoaded
+			ucs_vehicles_detector: DetectorPassengerLoaded
+	AutoTarget:
+		RequiresCondition: PassengersLoaded
+		AttackAnythingCondition: stance-attackanything
+		MinimumScanTimeInterval: 5
+		MaximumScanTimeInterval: 15
+	
+	AttackAttachedCargo:
+		RequiresCondition: PassengersLoaded
+		Voice: Attack
+
+	# AttachedCargo trait is very hacky and Shadow's cloaking ability breaks in many situations.
+	# Therefore when Shadow is loaded, WTP 100 takes over the cloaking ability.
+	ProximityExternalCondition:
+		RequiresCondition: ShadowPassengerLoaded
+		Condition: shadowcloak
+		Range: 4c896
+		AffectsParent: true
+	# Same hack as above needs to be applied to cloak detection.
+	DetectCloaked:
+		RequiresCondition: DetectorPassengerLoaded
+		DetectionTypes: Cloak, UnderwaterCloak
+		Range: 4c896
 	WithCargoPipsDecoration:
 		Palette:
 		FullSequence: pip-blue
