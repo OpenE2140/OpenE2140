@@ -4,9 +4,38 @@ Player:
 World:
 	LuaScript:
 		Scripts: script.lua
+	CameraOvalMover:
+		DegreesPerSecond: 6
+		OvalRadius: 15000, 15000, 0
 	-SpawnStartingUnits:
 	-MapStartingLocations:
+	-StartGameNotification:
+	MusicPlaylist:
+		AllowMuteBackgroundMusic: true
+		DisableWorldSounds: true
+	# Client index of issued orders don't match the actual index of session client.
+	# Thus the order validator rejects the orders. This is just workaround to make bots work on shellmap.
+	-ValidateOrder:
 
 shared_buildings_mine:
 	ResourceMine:
 		CrateSize: 0
+
+^CoreConstruction:
+	DamageMultiplier@UNKILLABLE:
+		Modifier: 0
+
+shared_buildings_wall:
+	-Targetable:
+	DamageMultiplier@UNKILLABLE:
+		Modifier: 0
+
+^shared_buildings_gate:
+	DamageMultiplier@UNKILLABLE:
+		Modifier: 0
+
+# Currently, AI doesn't repair its own disabled vehicles, but SquadManagerBotModule still assigns them to squads.
+# TODO: fix SquadManagerBotModule so that it correctly ignores actors with paused/disabled Mobile/Aircraft traits.
+^DisabledActor:
+	KillsSelf:
+		RequiresCondition: VehicleDisabled
