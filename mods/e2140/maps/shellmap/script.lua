@@ -8,10 +8,11 @@ SetupUnits = function()
 	end)
 end
 
-
-
 WorldLoaded = function()
-	Camera.Position = Viewport.CenterPosition
-
-	SetupUnits()
+	ED = Player.GetPlayer("ED")
+	UCS = Player.GetPlayer("UCS")
+	Trigger.AfterDelay(DateTime.Seconds(0.5), function()
+		ED.GrantCondition("enable-ed-ai")
+		UCS.GrantCondition("enable-ucs-ai")
+	end)
 end
