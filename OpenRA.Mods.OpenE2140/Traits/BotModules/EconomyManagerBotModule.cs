@@ -123,7 +123,6 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 	private bool hasSufficientEconomy;
 	private int reachedEconomyLevel;
 	private int? nextExpansionTick;
-	private int? lastEconomyExpansion;
 	private int? economyExpansionTargetLevel;
 	private int? expandingEconomySince;
 	private CPos? baseCenter;
@@ -282,8 +281,6 @@ public class EconomyManagerBotModule : ConditionalTrait<EconomyManagerBotModuleI
 					AIUtils.BotDebug($"{bot.Player} has completed all economy expansion milestones, but might do some extra expansions later.");
 				else
 					AIUtils.BotDebug($"{bot.Player} has completed all economy expansion milestones and is now in maintenance mode.");
-
-				this.lastEconomyExpansion = this.world.WorldTick;
 
 				isEconomySufficient = true;
 				this.economyExpansionTargetLevel = null;
