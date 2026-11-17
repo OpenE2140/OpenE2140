@@ -30,7 +30,7 @@ public class WallInfo : TraitInfo
 public class Wall
 {
 	private readonly WallInfo info;
-	private int wallBuiltCondition;
+	private int wallBuiltCondition = Actor.InvalidConditionToken;
 
 	public Wall(WallInfo info)
 	{

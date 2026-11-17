@@ -112,6 +112,14 @@ internal sealed class WithAnimatedWallSpriteBody : WithSpriteBody, INotifyRemove
 		this.DefaultAnimation.PlayFetchIndex(this.NormalizeSequence(self, this.Info.Sequence), () => this.adjacent);
 	}
 
+	protected override void Created(Actor self)
+	{
+		base.Created(self);
+
+		if (this.createdByMap)
+			self.TraitOrDefault<Wall>()?.OnWallBuilt(self);
+	}
+
 	void ITick.Tick(Actor self)
 	{
 		if (!this.dirty)
