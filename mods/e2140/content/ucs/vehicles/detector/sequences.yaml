@@ -9,11 +9,12 @@ ucs_vehicles_detector:
 		Filename: content/ucs/vehicles/detector/ucs_vehicles_detector_turret.png
 		Facings: -16
 		Offset: 0, -4
-	overlay:
+	idle-overlay:
 		Filename: content/ucs/vehicles/detector/detector_radar.png
 		Length: 16
 		Tick: 50
 		Offset: 0, -5
+		ZOffset: 16
 	muzzle:
 		Filename: content/ucs/vehicles/detector/muzzle.png
 		Length: 3

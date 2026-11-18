@@ -26,6 +26,7 @@ ucs_vehicles_detector_old:
 	DetectCloaked:
 		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
+		RequiresCondition: !VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_detector_old_husk
 	# Don't count DETECTOR as army in the player statistics.
