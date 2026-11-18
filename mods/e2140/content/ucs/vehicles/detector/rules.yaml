@@ -26,14 +26,13 @@ ucs_vehicles_detector:
 	DetectCloaked:
 		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
+		RequiresCondition: !VehicleDisabled
 	Turreted:
 		Turret: primary
 		Offset: 0, 0, 32
-	Turreted@OVERLAY:
-		Turret: overlay
-	WithSpriteTurret@OVERLAY:
-		Sequence: overlay
-		Turret: overlay
+	WithIdleOverlay:
+		Palette:
+		PauseOnCondition: VehicleDisabled
 	Armament@PRIMARY:
 		Weapon: ucs_vehicles_detector
 		Recoil: 60
