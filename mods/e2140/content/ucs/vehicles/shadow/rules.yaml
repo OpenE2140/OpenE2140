@@ -24,8 +24,7 @@ ucs_vehicles_shadow:
 		Condition: shadowcloak
 		Range: 4c896
 		AffectsParent: true
-	DetectCloaked:
-		Range: 4c896
+		RequiresCondition: !VehicleDisabled
 	SpawnActorOnDeath:
 		Actor: ucs_vehicles_shadow_husk
 	# Don't count SHADOW as army in the player statistics.
