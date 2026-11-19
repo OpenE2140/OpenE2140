@@ -1,5 +1,6 @@
 Rules:
 	e2140|content/neutral/trees/rules.yaml
+	e2140|content/neutral/lamps/rules.yaml	
 	e2140|content/neutral/pipes/rules.yaml
 	e2140|content/neutral/civ_building/rules.yaml
 	e2140|content/neutral/civ_building/civ_building1/rules.yaml
@@ -13,6 +14,7 @@ Rules:
 
 Sequences:
 	e2140|content/neutral/trees/sequences.yaml
+	e2140|content/neutral/lamps/sequences.yaml	
 	e2140|content/neutral/pipes/sequences.yaml
 	e2140|content/neutral/civ_building/civ_building1/sequences.yaml
 	e2140|content/neutral/civ_building/civ_building2/sequences.yaml

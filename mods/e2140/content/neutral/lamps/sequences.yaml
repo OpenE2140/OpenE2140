@@ -1,0 +1,159 @@
+^Lamp:
+	Defaults:
+		Filename: content/neutral/lamps/lamps.png
+		Offset: 0, -10
+		ZOffset: 256
+
+neutral_lamp01:
+	Inherits: ^Lamp
+	idle:
+		Start: 0
+	damaged-idle:
+		Start: 1
+
+neutral_lamp02:
+	Inherits: ^Lamp
+	idle:
+		Start: 2
+	damaged-idle:
+		Start: 3
+
+neutral_lamp03:
+	Inherits: ^Lamp
+	idle:
+		Start: 4
+	damaged-idle:
+		Start: 5
+
+neutral_lamp04:
+	Inherits: ^Lamp
+	idle:
+		Start: 6
+	damaged-idle:
+		Start: 7
+
+neutral_lamp05:
+	Inherits: ^Lamp
+	idle:
+		Start: 8
+	damaged-idle:
+		Start: 9
+
+neutral_lamp06:
+	Inherits: ^Lamp
+	idle:
+		Start: 10
+	damaged-idle:
+		Start: 11
+
+neutral_lamp07:
+	Inherits: ^Lamp
+	idle:
+		Start: 12
+	damaged-idle:
+		Start: 13
+
+neutral_lamp08:
+	Inherits: ^Lamp
+	idle:
+		Start: 14
+	damaged-idle:
+		Start: 15
+
+neutral_lamp09:
+	Inherits: ^Lamp
+	idle:
+		Start: 16
+	damaged-idle:
+		Start: 17
+
+neutral_lamp10:
+	Inherits: ^Lamp
+	idle:
+		Start: 18
+	damaged-idle:
+		Start: 19
+
+neutral_lamp11:
+	Inherits: ^Lamp
+	idle:
+		Start: 20
+	damaged-idle:
+		Start: 21
+
+neutral_lamp12:
+	Inherits: ^Lamp
+	idle:
+		Start: 22
+	damaged-idle:
+		Start: 23
+
+neutral_lamp13:
+	Inherits: ^Lamp
+	idle:
+		Start: 24
+	damaged-idle:
+		Start: 25
+
+neutral_lamp14:
+	Inherits: ^Lamp
+	idle:
+		Start: 26
+	damaged-idle:
+		Start: 27
+
+neutral_lamp15:
+	Inherits: ^Lamp
+	idle:
+		Start: 28
+	damaged-idle:
+		Start: 29
+
+neutral_lamp16:
+	Inherits: ^Lamp
+	idle:
+		Start: 30
+	damaged-idle:
+		Start: 31
+
+neutral_lamp17:
+	Inherits: ^Lamp
+	idle:
+		Start: 32
+	damaged-idle:
+		Start: 33
+
+neutral_lamp18:
+	Inherits: ^Lamp
+	idle:
+		Start: 34
+	damaged-idle:
+		Start: 35
+
+neutral_lamp19:
+	Inherits: ^Lamp
+	idle:
+		Start: 36
+	damaged-idle:
+		Start: 37
+
+neutral_lamp20:
+	Inherits: ^Lamp
+	idle:
+		Start: 38
+	damaged-idle:
+		Start: 39
+
+neutral_lamp21:
+	Inherits: ^Lamp
+	idle:
+		Start: 40
+	damaged-idle:
+		Start: 41
+
+neutral_lamp22:
+	Inherits: ^Lamp
+	idle:
+		Start: 42
+	damaged-idle:
+		Start: 43
