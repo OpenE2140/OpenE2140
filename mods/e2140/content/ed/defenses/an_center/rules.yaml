@@ -39,6 +39,7 @@ ed_defenses_an_center:
 		PauseOnCondition: !Powered
 	DetectCloaked:
 		Range: 12c896
+		RequiresCondition: Powered
 	Encyclopedia:
 		Category: ED - Buildings
 		Order: 17
