@@ -1,0 +1,86 @@
+^Lamp:
+	Inherits: ^CoreDecoration
+	HitShape:
+		Type: Circle
+			Radius: 256
+	Tooltip:
+		Name: Lamp
+	Health:
+		HP: 150
+	Interactable:
+	Targetable:
+		TargetTypes: Ground
+	Building:
+		Footprint: _
+		# Lamps can be placed on resources.
+		# This means that when placed on a cell with resources in the map editor, the resources are kept, after the game starts.
+		TerrainTypes: Clear, Road, Resources
+	CustomChangesTerrain:
+		TerrainType: ClearTree
+		TerrainTypes: Clear, Road, Sand, SandEdge, Resources
+
+neutral_lamp01:
+	Inherits: ^Lamp
+
+neutral_lamp02:
+	Inherits: ^Lamp
+
+neutral_lamp03:
+	Inherits: ^Lamp
+
+neutral_lamp04:
+	Inherits: ^Lamp
+
+neutral_lamp05:
+	Inherits: ^Lamp
+
+neutral_lamp06:
+	Inherits: ^Lamp
+
+neutral_lamp07:
+	Inherits: ^Lamp
+
+neutral_lamp08:
+	Inherits: ^Lamp
+
+neutral_lamp09:
+	Inherits: ^Lamp
+
+neutral_lamp10:
+	Inherits: ^Lamp
+
+neutral_lamp11:
+	Inherits: ^Lamp
+
+neutral_lamp12:
+	Inherits: ^Lamp
+
+neutral_lamp13:
+	Inherits: ^Lamp
+
+neutral_lamp14:
+	Inherits: ^Lamp
+
+neutral_lamp15:
+	Inherits: ^Lamp
+
+neutral_lamp16:
+	Inherits: ^Lamp
+
+neutral_lamp17:
+	Inherits: ^Lamp
+
+neutral_lamp18:
+	Inherits: ^Lamp
+
+neutral_lamp19:
+	Inherits: ^Lamp
+
+neutral_lamp20:
+	Inherits: ^Lamp
+
+neutral_lamp21:
+	Inherits: ^Lamp
+
+neutral_lamp22:
+	Inherits: ^Lamp
