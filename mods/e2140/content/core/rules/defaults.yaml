@@ -317,6 +317,7 @@
 	DetectCloaked:
 		Range: 4c896
 		DetectionTypes: Cloak, UnderwaterCloak
+		RequiresCondition: Powered
 	# Towers are added to the observer stats.
 	UpdatesPlayerStatistics:
 
