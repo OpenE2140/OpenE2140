@@ -81,6 +81,7 @@ ed_vehicles_miner:
 	DetectCloaked:
 		Range: 4c896
 		DetectionTypes: LandMine
+		RequiresCondition: !VehicleDisabled
 	GrantConditionOnMinelaying:
 		Condition: Minelaying
 	GrantConditionOnWallBuilding:
