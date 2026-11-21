@@ -23,7 +23,11 @@ ucs_vehicles_detector:
 		Speed: 90
 	RevealsShroud:
 		Range: 4c896
+	Passenger:
+		CargoConditions:
+			ucs_vehicles_wtp_100: LoadedAsPassenger
 	DetectCloaked:
+		RequiresCondition: !LoadedAsPassenger
 		DetectionTypes: Cloak, UnderwaterCloak
 		Range: 4c896
 	Turreted:
