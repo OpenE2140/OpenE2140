@@ -1106,11 +1106,10 @@
 	AutoTargetPriority@Default:
 		RequiresCondition: !stance-attackanything
 		ValidTargets: Infantry, InfantryUCS, Vehicle, Air, Ship, Defense, Mine
-		InvalidTargets: NoAutoAttack
+		InvalidTargets: NoAutoAttack, Disabled
 	AutoTargetPriority@AttackAnythingHigherPriority:
 		RequiresCondition: stance-attackanything
-		ValidTargets: Ground, Infantry, InfantryUCS, Vehicle, Air, Ship, Defense, Structure, Mine
-		InvalidTargets: Disabled
+		ValidTargets: Ground, Infantry, InfantryUCS, Vehicle, Air, Ship, Defense, Structure, Mine, Disabled
 		Priority: 2
 	AutoTargetPriority@AttackAnythingLowerPriority:
 		RequiresCondition: stance-attackanything
