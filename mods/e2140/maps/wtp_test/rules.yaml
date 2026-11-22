@@ -1,0 +1,9 @@
+Player:
+	-ConquestVictoryConditions:
+	
+	ModularBot@Dummy:
+		Name: Dummy
+		Type: dummy
+World:
+	-SpawnStartingUnits:
+	-MapStartingLocations:
